@@ -28,7 +28,17 @@
     NSArray* arr = [[NSArray alloc] initWithObjects:start, nil];
     [self setViewControllers:arr direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
-
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:@"MSG_LOGIN" object:nil];
+}
+-(void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN" object:nil];
+}
+-(void)login{
+    [self performSegueWithIdentifier:@"wel2main" sender:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -65,7 +75,7 @@
     } else if ([str isEqualToString:@"FourViewController"]) {
         return 3;
     } else {
-        return -1;
+        return NSNotFound;
     }
 
 }
@@ -83,7 +93,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
     int index = [self indexOfViewController:viewController];
-    if ((index == 0) || (index == -1)) {
+    if (index == -1) {
         return nil;
     }
     

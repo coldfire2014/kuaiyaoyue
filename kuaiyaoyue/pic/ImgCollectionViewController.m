@@ -38,8 +38,8 @@ static NSString * const fIdentifier = @"imgcellf";
     [self.collectionView registerClass:[ImgCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self.collectionView registerClass:[imgGroupView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:hIdentifier];
     [self.collectionView registerClass:[imgGroupView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:fIdentifier];
-    self.view.backgroundColor = [[UIColor alloc] initWithWhite:0.9 alpha:0.8];
-    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor clearColor];
+    self.collectionView.backgroundColor = [[UIColor alloc] initWithWhite:0.9 alpha:0.8];
     self.collectionView.frame = CGRectMake(0, 128.0/2.0, w, h-128.0/2.0);
     assert = ASSETHELPER;
     
@@ -165,8 +165,6 @@ static NSString * const fIdentifier = @"imgcellf";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backWithNO) name:@"MSG_BACK" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backWithOK) name:@"MSG_IMGS_OK" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setBadge:) name:@"MSG_SET_BADGE" object:nil];
-    
-    
 }
 -(void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

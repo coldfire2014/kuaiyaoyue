@@ -253,6 +253,7 @@
 		E577FC2B1A356E66009ED66D /* picViewAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = picViewAnimate.m; path = pic/picViewAnimate.m; sourceTree = "<group>"; };
 		E577FC311A356EFB009ED66D /* imgSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgSegue.h; path = pic/imgSegue.h; sourceTree = "<group>"; };
 		E577FC321A356EFB009ED66D /* imgSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = imgSegue.m; path = pic/imgSegue.m; sourceTree = "<group>"; };
+		E577FC341A358189009ED66D /* kuaiyaoyue.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kuaiyaoyue.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +398,7 @@
 		84B446DE1A32BEF500546859 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				E577FC351A358439009ED66D /* Segue */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -496,6 +498,7 @@
 			children = (
 				84E8425D1A2EDF6B00A401A0 /* Info.plist */,
 				84E8425E1A2EDF6B00A401A0 /* main.m */,
+				E577FC341A358189009ED66D /* kuaiyaoyue.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -659,6 +662,13 @@
 				E577FC2B1A356E66009ED66D /* picViewAnimate.m */,
 			);
 			name = pic;
+			sourceTree = "<group>";
+		};
+		E577FC351A358439009ED66D /* Segue */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Segue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -955,6 +965,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = kuaiyaoyue/kuaiyaoyue.pch;
 				INFOPLIST_FILE = kuaiyaoyue/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -968,6 +980,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = kuaiyaoyue/kuaiyaoyue.pch;
 				INFOPLIST_FILE = kuaiyaoyue/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -30,7 +30,7 @@
     if (isPresent) {
         [[transitionContext containerView] addSubview:toView.view];
         toView.view.alpha = 1;
-        fromView.view.alpha = 0;
+        fromView.view.alpha = 1;
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
     }else{
         [[transitionContext containerView] addSubview:fromView.view];

@@ -10,9 +10,11 @@
 
 @interface FileManage : NSObject
 
-+ (FileManage *)getManager;
+@property (nonatomic ,strong) NSString* hlimgDirectory;
+@property (nonatomic ,strong) NSString* imgDirectory;
+@property (nonatomic ,strong) NSString* audioDirectory;
 
 -(NSString *)GetYPFile:(NSString *) name;
 -(BOOL) ISYPFile:(NSString *)name;
-
++ (FileManage *)sharedFileManage;
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AssetHelper.h"
 //调用例子
 //var imgView = segue.destinationViewController as ImgCollectionViewController
 //if obj == "head" {

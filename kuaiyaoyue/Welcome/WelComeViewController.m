@@ -9,7 +9,6 @@
 #import "WelComeViewController.h"
 #import "UDObject.h"
 #import "picViewAnimate.h"
-#import "AssetHelper.h"
 @interface WelComeViewController ()
 
 @end
@@ -23,13 +22,18 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    NSString *name = nil;
-//    if ([[UDObject getOPEN] length] > 0) {
-//        name = @"main";
-//    }else{
-//        name = @"wel";
-//    }
-//    [self performSegueWithIdentifier:name sender:nil];
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    NSString *name = nil;
+    if ([[UDObject getOPEN] length] > 0) {
+        name = @"main";
+    }else{
+        name = @"wel";
+    }
+    [self performSegueWithIdentifier:name sender:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,7 +84,8 @@
     return nil;
 }
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
-    NSRange r = [[presented.classForCoder description] rangeOfString:@"createViewController"];
+    NSString* name = [presented.classForCoder description];
+    NSRange r = [name rangeOfString:@"createViewController"];
     if (r.length == 0 ) {
         picViewAnimate* ca = [[picViewAnimate alloc] initWithPresent:YES];
         return ca;

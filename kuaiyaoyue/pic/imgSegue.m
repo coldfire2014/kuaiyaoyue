@@ -7,10 +7,10 @@
 //
 
 #import "imgSegue.h"
-#import "ViewController.h"
+#import "WelComeViewController.h"
 @implementation imgSegue
 -(void) perform{
-    ViewController* src = self.sourceViewController;
+    WelComeViewController* src = self.sourceViewController;
     UIViewController* des = self.destinationViewController;
     des.modalPresentationStyle = UIModalPresentationCustom;
     des.transitioningDelegate = src;

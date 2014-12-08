@@ -90,8 +90,8 @@
 }
 
 -(void)downYP:(NSString *) name :(NSString *)url{
-    BOOL is_bd = [[FileManage getManager] ISYPFile:name];
-    NSString *file  = [[FileManage getManager] GetYPFile:name];
+    BOOL is_bd = [[FileManage sharedFileManage] ISYPFile:name];
+    NSString *file  = [[FileManage sharedFileManage] GetYPFile:name];
     if (!is_bd) {
         [HttpManage DownMusic:url filepath:file cb:^(BOOL isOK) {
             addnum++;
@@ -152,7 +152,7 @@
     num = [indexPath row];
     [_tableView reloadData];
     
-    NSString *file  = [[FileManage getManager] GetYPFile:info.title];
+    NSString *file  = [[FileManage sharedFileManage] GetYPFile:info.title];
     [self AudioPlay:file];
 }
 
