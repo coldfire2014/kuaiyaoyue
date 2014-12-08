@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PageViewController : UIPageViewController<UIPageViewControllerDelegate,UIPageViewControllerDataSource>
+@interface PageViewController : UIPageViewController<UIPageViewControllerDelegate,UIPageViewControllerDataSource,UIViewControllerTransitioningDelegate>
 
 @end

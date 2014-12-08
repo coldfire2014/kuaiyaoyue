@@ -75,7 +75,9 @@
 		84E842D31A2F087A00A401A0 /* HttpManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842D21A2F087A00A401A0 /* HttpManage.m */; };
 		84E842D71A2F0E9E00A401A0 /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842D61A2F0E9E00A401A0 /* MusicInfo.m */; };
 		E54851C21A35A71E00590E5C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E54851C11A35A71E00590E5C /* Default-568h@2x.png */; };
-		E54851D41A35AE0500590E5C /* coverinSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D31A35AE0500590E5C /* coverinSegue.m */; };
+		E54851D81A35AF0500590E5C /* coverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D71A35AF0500590E5C /* coverSegue.m */; };
+		E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DA1A35AF5C00590E5C /* coverAnimation.m */; };
+		E54851DE1A35B08800590E5C /* w2mainSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DD1A35B08800590E5C /* w2mainSegue.m */; };
 		E577FC071A356C01009ED66D /* ImgNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC061A356C01009ED66D /* ImgNavBar.m */; };
 		E577FC0C1A356C80009ED66D /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC091A356C80009ED66D /* AssetHelper.m */; };
 		E577FC0D1A356C80009ED66D /* myImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC0B1A356C80009ED66D /* myImageView.m */; };
@@ -234,8 +236,12 @@
 		84E842D51A2F0E9E00A401A0 /* MusicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicInfo.h; sourceTree = "<group>"; };
 		84E842D61A2F0E9E00A401A0 /* MusicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicInfo.m; sourceTree = "<group>"; };
 		E54851C11A35A71E00590E5C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "kuaiyaoyue/skin/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
-		E54851D21A35AE0500590E5C /* coverinSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = coverinSegue.h; path = Segue/coverinSegue.h; sourceTree = "<group>"; };
-		E54851D31A35AE0500590E5C /* coverinSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = coverinSegue.m; path = Segue/coverinSegue.m; sourceTree = "<group>"; };
+		E54851D61A35AF0500590E5C /* coverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coverSegue.h; sourceTree = "<group>"; };
+		E54851D71A35AF0500590E5C /* coverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = coverSegue.m; sourceTree = "<group>"; };
+		E54851D91A35AF5C00590E5C /* coverAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coverAnimation.h; sourceTree = "<group>"; };
+		E54851DA1A35AF5C00590E5C /* coverAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = coverAnimation.m; sourceTree = "<group>"; };
+		E54851DC1A35B08800590E5C /* w2mainSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = w2mainSegue.h; sourceTree = "<group>"; };
+		E54851DD1A35B08800590E5C /* w2mainSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = w2mainSegue.m; sourceTree = "<group>"; };
 		E577FC051A356C01009ED66D /* ImgNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImgNavBar.h; path = bar/ImgNavBar.h; sourceTree = "<group>"; };
 		E577FC061A356C01009ED66D /* ImgNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImgNavBar.m; path = bar/ImgNavBar.m; sourceTree = "<group>"; };
 		E577FC081A356C80009ED66D /* AssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
@@ -403,9 +409,9 @@
 		84B446DE1A32BEF500546859 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				E54851D21A35AE0500590E5C /* coverinSegue.h */,
-				E54851D31A35AE0500590E5C /* coverinSegue.m */,
-				E577FC351A358439009ED66D /* Segue */,
+				E54851D91A35AF5C00590E5C /* coverAnimation.h */,
+				E54851DA1A35AF5C00590E5C /* coverAnimation.m */,
+				E54851D51A35AEE400590E5C /* Segue */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -642,6 +648,17 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		E54851D51A35AEE400590E5C /* Segue */ = {
+			isa = PBXGroup;
+			children = (
+				E54851D61A35AF0500590E5C /* coverSegue.h */,
+				E54851D71A35AF0500590E5C /* coverSegue.m */,
+				E54851DC1A35B08800590E5C /* w2mainSegue.h */,
+				E54851DD1A35B08800590E5C /* w2mainSegue.m */,
+			);
+			name = Segue;
+			sourceTree = "<group>";
+		};
 		E577FC041A356BB9009ED66D /* bar */ = {
 			isa = PBXGroup;
 			children = (
@@ -670,13 +687,6 @@
 				E577FC2B1A356E66009ED66D /* picViewAnimate.m */,
 			);
 			name = pic;
-			sourceTree = "<group>";
-		};
-		E577FC351A358439009ED66D /* Segue */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Segue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -827,6 +837,7 @@
 				844826001A31B3F40018240E /* DetailViewController.m in Sources */,
 				84E842C81A2EFDCB00A401A0 /* UIButton+AFNetworking.m in Sources */,
 				84E842C91A2EFDCB00A401A0 /* UIImageView+AFNetworking.m in Sources */,
+				E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */,
 				84B446CB1A32B3D000546859 /* UIView+MJExtension.m in Sources */,
 				84E842681A2EDF6B00A401A0 /* ViewController.m in Sources */,
 				84E8425F1A2EDF6B00A401A0 /* main.m in Sources */,
@@ -849,10 +860,11 @@
 				84B446C51A32B3D000546859 /* MJRefreshBaseView.m in Sources */,
 				84E842C01A2EFDCB00A401A0 /* AFSecurityPolicy.m in Sources */,
 				84E842C31A2EFDCB00A401A0 /* AFURLResponseSerialization.m in Sources */,
-				E54851D41A35AE0500590E5C /* coverinSegue.m in Sources */,
 				844825791A31588C0018240E /* PageViewController.m in Sources */,
 				84E842BC1A2EFDCB00A401A0 /* AFHTTPRequestOperation.m in Sources */,
 				844825761A31536C0018240E /* WelComeViewController.m in Sources */,
+				E54851D81A35AF0500590E5C /* coverSegue.m in Sources */,
+				E54851DE1A35B08800590E5C /* w2mainSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

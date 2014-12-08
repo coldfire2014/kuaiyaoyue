@@ -9,6 +9,7 @@
 #import "WelComeViewController.h"
 #import "UDObject.h"
 #import "picViewAnimate.h"
+#import "coverAnimation.h"
 @interface WelComeViewController ()
 
 @end
@@ -73,39 +74,25 @@
     }
 }
 -(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
-    NSRange r = [[dismissed.classForCoder description] rangeOfString:@"createViewController"];
-    if (r.length == 0 ) {
+    NSRange r = [[dismissed.classForCoder description] rangeOfString:@"ImgCollectionViewController"];
+    if (r.length > 0 ) {
         picViewAnimate* ca = [[picViewAnimate alloc] initWithPresent:NO];
         return ca;
     } else {
-//        createNewAnimate2* ca = [[createNewAnimate2 alloc] initWithPresent:NO];
-//        return ca;
+        coverAnimation* ca = [[coverAnimation alloc] initWithPresent:NO];
+        return ca;
     }
     return nil;
 }
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
     NSString* name = [presented.classForCoder description];
-    NSRange r = [name rangeOfString:@"createViewController"];
-    if (r.length == 0 ) {
+    NSRange r = [name rangeOfString:@"ImgCollectionViewController"];
+    if (r.length > 0 ) {
         picViewAnimate* ca = [[picViewAnimate alloc] initWithPresent:YES];
         return ca;
     } else {
-        //        static int i = 0;
-        //        if (i == 0) {
-        //            i++;
-        //            createNewAnimate* ca = [[createNewAnimate alloc] initWithPresent:YES];//曲线
-        //            return ca;
-        //        }
-        //        //    else if (i == 1) {
-        //        //        i++;
-        //        //        createNewAnimate1* ca = [[createNewAnimate1 alloc] initWithPresent:YES];//直线加速
-        //        //        return ca;
-        //        //    }
-        //        else {
-        //            i=0;
-//        createNewAnimate2* ca = [[createNewAnimate2 alloc] initWithPresent:YES];//弹出（中心弹出）
-//        return ca;
-        //        }
+        coverAnimation* ca = [[coverAnimation alloc] initWithPresent:YES];
+        return ca;
     }
     return nil;
 }

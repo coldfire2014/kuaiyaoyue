@@ -12,6 +12,7 @@
 #import "ThreeViewController.h"
 #import "FourViewController.h"
 
+#import "coverAnimation.h"
 @interface PageViewController ()
 
 @end
@@ -44,7 +45,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(UIViewController *)viewControllerAtIndex:(int) index{
+-(UIViewController *)viewControllerAtIndex:(NSInteger) index{
     if ((index < 0) || (index >= 4)) {
         return nil;
     }
@@ -64,7 +65,7 @@
     return dataViewController;
 }
 
--(int)indexOfViewController:(UIViewController *)viewController{
+-(NSInteger)indexOfViewController:(UIViewController *)viewController{
     NSString *str = [viewController.classForCoder description];
     if ([str isEqualToString:@"OneViewController"]) {
         return 0;
@@ -81,7 +82,7 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
-    int index = [self indexOfViewController:viewController];
+    NSInteger index = [self indexOfViewController:viewController];
     if ((index == 0) || (index == -1)) {
         return nil;
     }
@@ -92,7 +93,7 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
-    int index = [self indexOfViewController:viewController];
+    NSInteger index = [self indexOfViewController:viewController];
     if (index == -1) {
         return nil;
     }
@@ -108,7 +109,16 @@
     return UIPageViewControllerSpineLocationMin;
 }
 
-
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+//    NSRange r = [[dismissed.classForCoder description] rangeOfString:@"createViewController"];
+    coverAnimation* ca = [[coverAnimation alloc] initWithPresent:NO];
+    return ca;
+}
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+//    NSString* name = [presented.classForCoder description];
+//    NSRange r = [name rangeOfString:@"createViewController"];
+    coverAnimation* ca = [[coverAnimation alloc] initWithPresent:YES];
+    return ca;}
 /*
 #pragma mark - Navigation
 

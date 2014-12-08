@@ -237,8 +237,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="qHT-nQ-aXb" kind="custom" identifier="wel" id="j4f-zQ-sLy"/>
-                        <segue destination="eGG-ps-HQp" kind="modal" identifier="main" id="D53-YK-KM5"/>
+                        <segue destination="qHT-nQ-aXb" kind="custom" identifier="wel" customClass="coverSegue" id="j4f-zQ-sLy"/>
+                        <segue destination="eGG-ps-HQp" kind="custom" identifier="main" customClass="coverSegue" id="D53-YK-KM5"/>
                         <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="1qO-rs-4lY"/>
                     </connections>
                 </viewController>
@@ -751,7 +751,7 @@
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qHT-nQ-aXb" customClass="PageViewController" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="eGG-ps-HQp" kind="modal" identifier="wel2main" id="I0j-Cp-NYv"/>
+                        <segue destination="eGG-ps-HQp" kind="custom" identifier="wel2main" customClass="w2mainSegue" id="I0j-Cp-NYv"/>
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6QQ-pv-uh8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -891,7 +891,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="D53-YK-KM5"/>
+        <segue reference="I0j-Cp-NYv"/>
         <segue reference="ke8-Ls-G9I"/>
         <segue reference="g1i-JP-2RV"/>
         <segue reference="T42-Yw-sgu"/>

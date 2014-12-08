@@ -1,5 +1,5 @@
 //
-//  coverinSegue.h
+//  coverSegue.h
 //  kuaiyaoyue
 //
 //  Created by wuyangbing on 14/12/8.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface coverinSegue : UIStoryboardSegue
+@interface coverSegue : UIStoryboardSegue
 
 @end
