@@ -8,13 +8,9 @@
 
 #import "FileManage.h"
 
-static FileManage *fileManager = nil;
-static NSString *hlimgDirectory = nil;
-static NSString *imgDirectory = nil;
-static NSString *audioDirectory = nil;
+@implementation FileManage{
 
-
-@implementation FileManage
+}
 
 - (id)init {
     self = [super init];
@@ -24,11 +20,15 @@ static NSString *audioDirectory = nil;
     return self;
 }
 
-+ (FileManage *)getManager {
-    if (fileManager == nil) {
-        fileManager = [[FileManage alloc] init];
-    }
-    return fileManager;
++ (FileManage *)sharedFileManage
+{
+    static FileManage *_sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[FileManage alloc] init];
+    });
+    
+    return _sharedInstance;
 }
 
 -(void)CreateFile{
@@ -40,29 +40,29 @@ static NSString *audioDirectory = nil;
     [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     // 创建目录
     
-    hlimgDirectory = [testDirectory stringByAppendingPathComponent:@"HLImage"];
-    imgDirectory = [testDirectory stringByAppendingPathComponent:@"Image"];
-    audioDirectory = [testDirectory stringByAppendingPathComponent:@"Audio"];
+    self.hlimgDirectory = [testDirectory stringByAppendingPathComponent:@"HLImage"];
+    self.imgDirectory = [testDirectory stringByAppendingPathComponent:@"Image"];
+    self.audioDirectory = [testDirectory stringByAppendingPathComponent:@"Audio"];
     
-    if (![fileManager fileExistsAtPath:hlimgDirectory]) {
-        [fileManager createDirectoryAtPath:hlimgDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+    if (![fileManager fileExistsAtPath:self.hlimgDirectory]) {
+        [fileManager createDirectoryAtPath:self.hlimgDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     }
     
-    if (![fileManager fileExistsAtPath:imgDirectory]) {
-        [fileManager createDirectoryAtPath:imgDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+    if (![fileManager fileExistsAtPath:self.imgDirectory]) {
+        [fileManager createDirectoryAtPath:self.imgDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     }
     
-    if (![fileManager fileExistsAtPath:audioDirectory]) {
-        [fileManager createDirectoryAtPath:audioDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+    if (![fileManager fileExistsAtPath:self.audioDirectory]) {
+        [fileManager createDirectoryAtPath:self.audioDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     }
 }
 
 -(NSString *)GetYPFile:(NSString *) name{
-    return [audioDirectory stringByAppendingPathComponent:name];
+    return [self.audioDirectory stringByAppendingPathComponent:name];
 }
 
 -(BOOL) ISYPFile:(NSString *)name{
-    NSString *filepath = [audioDirectory stringByAppendingPathComponent:name];
+    NSString *filepath = [self.audioDirectory stringByAppendingPathComponent:name];
     return [[NSFileManager defaultManager] fileExistsAtPath:filepath];
 
 }

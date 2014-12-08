@@ -12,6 +12,7 @@
 #import "ThreeViewController.h"
 #import "FourViewController.h"
 
+#import "coverAnimation.h"
 @interface PageViewController ()
 
 @end
@@ -28,13 +29,23 @@
     NSArray* arr = [[NSArray alloc] initWithObjects:start, nil];
     [self setViewControllers:arr direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
-
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:@"MSG_LOGIN" object:nil];
+}
+-(void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN" object:nil];
+}
+-(void)login{
+    [self performSegueWithIdentifier:@"wel2main" sender:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(UIViewController *)viewControllerAtIndex:(int) index{
+-(UIViewController *)viewControllerAtIndex:(NSInteger) index{
     if ((index < 0) || (index >= 4)) {
         return nil;
     }
@@ -54,7 +65,7 @@
     return dataViewController;
 }
 
--(int)indexOfViewController:(UIViewController *)viewController{
+-(NSInteger)indexOfViewController:(UIViewController *)viewController{
     NSString *str = [viewController.classForCoder description];
     if ([str isEqualToString:@"OneViewController"]) {
         return 0;
@@ -65,13 +76,13 @@
     } else if ([str isEqualToString:@"FourViewController"]) {
         return 3;
     } else {
-        return -1;
+        return NSNotFound;
     }
 
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
-    int index = [self indexOfViewController:viewController];
+    NSInteger index = [self indexOfViewController:viewController];
     if ((index == 0) || (index == -1)) {
         return nil;
     }
@@ -82,8 +93,8 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
-    int index = [self indexOfViewController:viewController];
-    if ((index == 0) || (index == -1)) {
+    NSInteger index = [self indexOfViewController:viewController];
+    if (index == -1) {
         return nil;
     }
     
@@ -98,7 +109,16 @@
     return UIPageViewControllerSpineLocationMin;
 }
 
-
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+//    NSRange r = [[dismissed.classForCoder description] rangeOfString:@"createViewController"];
+    coverAnimation* ca = [[coverAnimation alloc] initWithPresent:NO];
+    return ca;
+}
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+//    NSString* name = [presented.classForCoder description];
+//    NSRange r = [name rangeOfString:@"createViewController"];
+    coverAnimation* ca = [[coverAnimation alloc] initWithPresent:YES];
+    return ca;}
 /*
 #pragma mark - Navigation
 

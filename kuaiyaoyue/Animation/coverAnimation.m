@@ -1,14 +1,14 @@
 //
-//  picViewAnimate.m
-//  SpeciallyEffect
+//  coverAnimation.m
+//  kuaiyaoyue
 //
-//  Created by wuyangbing on 14/12/7.
-//  Copyright (c) 2014年 wuyangbing. All rights reserved.
+//  Created by wuyangbing on 14/12/8.
+//  Copyright (c) 2014年 davidwang. All rights reserved.
 //
 
-#import "picViewAnimate.h"
+#import "coverAnimation.h"
 
-@implementation picViewAnimate
+@implementation coverAnimation
 - (instancetype)initWithPresent:(BOOL)p
 {
     self = [super init];
@@ -18,11 +18,7 @@
     return self;
 }
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext{
-    if (isPresent) {
-        return 0.1;
-    } else {
-        return 0.1;
-    }
+    return 0.5;
 }
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
     UIViewController* toView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
@@ -30,8 +26,15 @@
     if (isPresent) {
         [[transitionContext containerView] addSubview:toView.view];
         toView.view.alpha = 1;
-        fromView.view.alpha = 1;
-        [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+        CATransform3D t = CATransform3DIdentity;
+        t.m34 = -1.0/900.0;
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            fromView.view.layer.transform = CATransform3DTranslate(t, 0, 0, 600);
+            fromView.view.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+        }];
+        
     }else{
         [[transitionContext containerView] addSubview:fromView.view];
         toView.view.alpha = 1;

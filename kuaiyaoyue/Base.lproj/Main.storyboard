@@ -237,14 +237,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="qHT-nQ-aXb" kind="modal" identifier="wel" id="j4f-zQ-sLy"/>
-                        <segue destination="eGG-ps-HQp" kind="modal" identifier="main" id="D53-YK-KM5"/>
+                        <segue destination="qHT-nQ-aXb" kind="custom" identifier="wel" customClass="coverSegue" id="j4f-zQ-sLy"/>
+                        <segue destination="eGG-ps-HQp" kind="custom" identifier="main" customClass="coverSegue" id="D53-YK-KM5"/>
                         <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="1qO-rs-4lY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TkI-tn-yyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2162" y="589"/>
+            <point key="canvasLocation" x="-2158" y="509"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WvV-j7-NaL">
@@ -751,7 +751,7 @@
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qHT-nQ-aXb" customClass="PageViewController" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="eGG-ps-HQp" kind="modal" id="I0j-Cp-NYv"/>
+                        <segue destination="eGG-ps-HQp" kind="custom" identifier="wel2main" customClass="w2mainSegue" id="I0j-Cp-NYv"/>
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6QQ-pv-uh8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -837,7 +837,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zI1-S4-Ill">
-                                <rect key="frame" x="285" y="482" width="30" height="30"/>
+                                <rect key="frame" x="285" y="239" width="30" height="30"/>
                                 <state key="normal" title="登录">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -850,15 +850,14 @@
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="MH7-Di-pjJ" secondAttribute="centerY" id="Hlq-dS-cod"/>
                             <constraint firstAttribute="centerX" secondItem="MH7-Di-pjJ" secondAttribute="centerX" id="MiE-Jy-wVO"/>
-                            <constraint firstItem="M1N-mw-hQn" firstAttribute="top" secondItem="zI1-S4-Ill" secondAttribute="bottom" constant="88" id="PNR-g9-zpT"/>
-                            <constraint firstItem="zI1-S4-Ill" firstAttribute="leading" secondItem="FVS-aB-tQv" secondAttribute="leadingMargin" constant="269" id="TG0-Ka-u4H"/>
-                            <constraint firstAttribute="centerX" secondItem="zI1-S4-Ill" secondAttribute="centerX" id="dF7-g9-I90"/>
+                            <constraint firstItem="MH7-Di-pjJ" firstAttribute="top" secondItem="zI1-S4-Ill" secondAttribute="bottom" constant="20" id="gfG-Gp-H4g"/>
+                            <constraint firstAttribute="centerX" secondItem="zI1-S4-Ill" secondAttribute="centerX" id="mAe-aP-0dz"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t17-MA-Kjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2846" y="3305"/>
+            <point key="canvasLocation" x="-2846" y="3316"/>
         </scene>
         <!--One View Controller-->
         <scene sceneID="bPp-6s-f0Y">
@@ -892,12 +891,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2wa-38-rX6"/>
-        <segue reference="D53-YK-KM5"/>
+        <segue reference="I0j-Cp-NYv"/>
         <segue reference="ke8-Ls-G9I"/>
-        <segue reference="T42-Yw-sgu"/>
         <segue reference="g1i-JP-2RV"/>
-        <segue reference="luI-zA-BtH"/>
-        <segue reference="fps-RF-Hk5"/>
+        <segue reference="T42-Yw-sgu"/>
+        <segue reference="2wa-38-rX6"/>
+        <segue reference="qae-G8-0oD"/>
+        <segue reference="22X-oD-zs7"/>
     </inferredMetricsTieBreakers>
 </document>

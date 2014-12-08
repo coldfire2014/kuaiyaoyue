@@ -1,14 +1,14 @@
 //
-//  imgSegue.m
-//  SpeciallyEffect
+//  coverSegue.m
+//  kuaiyaoyue
 //
-//  Created by wuyangbing on 14/12/7.
-//  Copyright (c) 2014年 wuyangbing. All rights reserved.
+//  Created by wuyangbing on 14/12/8.
+//  Copyright (c) 2014年 davidwang. All rights reserved.
 //
 
-#import "imgSegue.h"
+#import "coverSegue.h"
 #import "WelComeViewController.h"
-@implementation imgSegue
+@implementation coverSegue
 -(void) perform{
     WelComeViewController* src = self.sourceViewController;
     UIViewController* des = self.destinationViewController;

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AssetHelper.h"
 @interface ImgCollectionViewCell : UICollectionViewCell
 @property (nonatomic ,strong) NSIndexPath* index;
 @property (nonatomic ,strong) ALAsset* asset;
