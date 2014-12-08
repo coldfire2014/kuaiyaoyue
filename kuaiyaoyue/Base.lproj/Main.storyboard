@@ -239,6 +239,7 @@
                     <connections>
                         <segue destination="qHT-nQ-aXb" kind="modal" identifier="wel" id="j4f-zQ-sLy"/>
                         <segue destination="eGG-ps-HQp" kind="modal" identifier="main" id="D53-YK-KM5"/>
+                        <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="1qO-rs-4lY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TkI-tn-yyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -456,10 +457,10 @@
             </objects>
             <point key="canvasLocation" x="678" y="-835"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Img Collection View Controller-->
         <scene sceneID="Scc-gB-SCU">
             <objects>
-                <collectionViewController id="eGo-cX-lU3" sceneMemberID="viewController">
+                <collectionViewController id="eGo-cX-lU3" customClass="ImgCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="H9K-2q-oFi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

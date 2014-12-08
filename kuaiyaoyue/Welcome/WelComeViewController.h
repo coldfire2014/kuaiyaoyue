@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface WelComeViewController : UIViewController
+#import "ImgCollectionViewController.h"
+@interface WelComeViewController : UIViewController<UIViewControllerTransitioningDelegate,ImgCollectionViewDelegate>
 
 - (IBAction)onclick:(id)sender;
 @end
