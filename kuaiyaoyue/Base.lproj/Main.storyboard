@@ -237,14 +237,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="qHT-nQ-aXb" kind="modal" identifier="wel" id="j4f-zQ-sLy"/>
+                        <segue destination="qHT-nQ-aXb" kind="custom" identifier="wel" id="j4f-zQ-sLy"/>
                         <segue destination="eGG-ps-HQp" kind="modal" identifier="main" id="D53-YK-KM5"/>
                         <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="1qO-rs-4lY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TkI-tn-yyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2162" y="589"/>
+            <point key="canvasLocation" x="-2158" y="509"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WvV-j7-NaL">
@@ -891,12 +891,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="I0j-Cp-NYv"/>
-        <segue reference="T42-Yw-sgu"/>
-        <segue reference="2wa-38-rX6"/>
+        <segue reference="D53-YK-KM5"/>
         <segue reference="ke8-Ls-G9I"/>
         <segue reference="g1i-JP-2RV"/>
-        <segue reference="22X-oD-zs7"/>
+        <segue reference="T42-Yw-sgu"/>
+        <segue reference="2wa-38-rX6"/>
         <segue reference="qae-G8-0oD"/>
+        <segue reference="22X-oD-zs7"/>
     </inferredMetricsTieBreakers>
 </document>

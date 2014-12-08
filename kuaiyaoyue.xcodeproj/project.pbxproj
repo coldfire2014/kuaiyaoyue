@@ -74,6 +74,8 @@
 		84E842CC1A2EFDCB00A401A0 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842BB1A2EFDCB00A401A0 /* UIWebView+AFNetworking.m */; };
 		84E842D31A2F087A00A401A0 /* HttpManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842D21A2F087A00A401A0 /* HttpManage.m */; };
 		84E842D71A2F0E9E00A401A0 /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842D61A2F0E9E00A401A0 /* MusicInfo.m */; };
+		E54851C21A35A71E00590E5C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E54851C11A35A71E00590E5C /* Default-568h@2x.png */; };
+		E54851D41A35AE0500590E5C /* coverinSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D31A35AE0500590E5C /* coverinSegue.m */; };
 		E577FC071A356C01009ED66D /* ImgNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC061A356C01009ED66D /* ImgNavBar.m */; };
 		E577FC0C1A356C80009ED66D /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC091A356C80009ED66D /* AssetHelper.m */; };
 		E577FC0D1A356C80009ED66D /* myImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC0B1A356C80009ED66D /* myImageView.m */; };
@@ -231,6 +233,9 @@
 		84E842D21A2F087A00A401A0 /* HttpManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManage.m; sourceTree = "<group>"; };
 		84E842D51A2F0E9E00A401A0 /* MusicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicInfo.h; sourceTree = "<group>"; };
 		84E842D61A2F0E9E00A401A0 /* MusicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicInfo.m; sourceTree = "<group>"; };
+		E54851C11A35A71E00590E5C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "kuaiyaoyue/skin/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		E54851D21A35AE0500590E5C /* coverinSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = coverinSegue.h; path = Segue/coverinSegue.h; sourceTree = "<group>"; };
+		E54851D31A35AE0500590E5C /* coverinSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = coverinSegue.m; path = Segue/coverinSegue.m; sourceTree = "<group>"; };
 		E577FC051A356C01009ED66D /* ImgNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImgNavBar.h; path = bar/ImgNavBar.h; sourceTree = "<group>"; };
 		E577FC061A356C01009ED66D /* ImgNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImgNavBar.m; path = bar/ImgNavBar.m; sourceTree = "<group>"; };
 		E577FC081A356C80009ED66D /* AssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
@@ -398,6 +403,8 @@
 		84B446DE1A32BEF500546859 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				E54851D21A35AE0500590E5C /* coverinSegue.h */,
+				E54851D31A35AE0500590E5C /* coverinSegue.m */,
 				E577FC351A358439009ED66D /* Segue */,
 			);
 			path = Animation;
@@ -538,6 +545,7 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				E54851C11A35A71E00590E5C /* Default-568h@2x.png */,
 				E577FC1D1A356E13009ED66D /* T3.png */,
 				E577FC1E1A356E14009ED66D /* T4.png */,
 			);
@@ -756,6 +764,7 @@
 				84E8426D1A2EDF6B00A401A0 /* Images.xcassets in Resources */,
 				84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */,
 				84B446C41A32B3D000546859 /* MJRefresh.bundle in Resources */,
+				E54851C21A35A71E00590E5C /* Default-568h@2x.png in Resources */,
 				E577FC1F1A356E14009ED66D /* T3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -840,6 +849,7 @@
 				84B446C51A32B3D000546859 /* MJRefreshBaseView.m in Sources */,
 				84E842C01A2EFDCB00A401A0 /* AFSecurityPolicy.m in Sources */,
 				84E842C31A2EFDCB00A401A0 /* AFURLResponseSerialization.m in Sources */,
+				E54851D41A35AE0500590E5C /* coverinSegue.m in Sources */,
 				844825791A31588C0018240E /* PageViewController.m in Sources */,
 				84E842BC1A2EFDCB00A401A0 /* AFHTTPRequestOperation.m in Sources */,
 				844825761A31536C0018240E /* WelComeViewController.m in Sources */,
@@ -968,7 +978,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = kuaiyaoyue/kuaiyaoyue.pch;
 				INFOPLIST_FILE = kuaiyaoyue/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -983,7 +993,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = kuaiyaoyue/kuaiyaoyue.pch;
 				INFOPLIST_FILE = kuaiyaoyue/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
