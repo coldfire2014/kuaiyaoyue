@@ -8,7 +8,10 @@
 
 #import "ViewController.h"
 #import "MJRefresh.h"
-
+#import "CreateBtn.h"
+#import "StateView.h"
+#import "BigStateView.h"
+#import "MenuViewController.h"
 @interface ViewController (){
     NSMutableArray *data;
 }
@@ -20,14 +23,75 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
     self.title = @"主页";
     
      data = [[NSMutableArray alloc] init];
     [self inData];
     [self setupRefresh];
-}
+    
+    CreateBtn* btnView = [[CreateBtn alloc] initWithFrame:CGRectMake(0, 0, 47, 47)];
+    btnView.tag = 99;
+    btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 8.0);
+    [self.view addSubview:btnView];
+    
+    UITapGestureRecognizer* pan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didPan)];
+    [btnView addGestureRecognizer:pan];//160*220
+    StateView* s = [[StateView alloc] initWithFrame:CGRectMake(264, 110+55, 55, 55)];
+    s.tag = 101;
+    [s setState:StateGoing withAll:@"19" andAdd:@"+9"];
+    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+    [self.view addSubview:s];
+    
+    BigStateView* b = [[BigStateView alloc] initWithFrame:CGRectMake(0, 200, 320.0/2.0, 220.0/2.0)];
+    b.tag = 102;
+    b.center = CGPointMake(self.view.bounds.size.width/2.0, 200);
+    [b setState:StateGoing withAll:@"999" andAdd:@"+99"];
+    [b setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+    [self.view addSubview:b];
 
+
+    NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(changeTimeAtTimedisplay) userInfo:nil repeats:YES];
+
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [self.navigationController.navigationBar setHidden:YES];
+}
+-(void)changeTimeAtTimedisplay{
+    static double t = 5;
+    BigStateView* s = (BigStateView*)[self.view viewWithTag:102];
+    t = t - 0.2;
+    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:t] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:3+t]];
+}
+- (UIImage *)imageFromView:(UIView *)view
+{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
+- (void)didPan{
+    UIView* view = [self.view viewWithTag:99];
+    view.alpha = 0;
+    UIImage *snapshotImage = [self imageFromView:self.view];
+    view.alpha = 1;
+//    [self performSegueWithIdentifier:@"CreateIncoming" sender:snapshotImage];
+    [self performSegueWithIdentifier:@"menu" sender:snapshotImage];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier compare:@"Imgcoming"] == NSOrderedSame ) {
+//        ImgCollectionViewController* des = (ImgCollectionViewController*)segue.destinationViewController;
+//        des.maxCount = 2;
+//        des.needAnimation = YES;
+//        des.delegate = self;
+    } else {
+        MenuViewController* des = (MenuViewController*)segue.destinationViewController;
+        des.bgimg = (UIImage*)sender;
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -110,7 +174,7 @@
 {
     switch ([indexPath row]) {
         case 0:
-            [self performSegueWithIdentifier:@"zdyedit" sender:nil];
+            [self performSegueWithIdentifier:@"del" sender:nil];
             break;
         case 1:
             [self performSegueWithIdentifier:@"hledit" sender:nil];
@@ -125,10 +189,5 @@
         default:
             break;
     }
-}
-
-- (IBAction)menu_onclick:(id)sender {
-    
-    [self performSegueWithIdentifier:@"menu" sender:nil];
 }
 @end

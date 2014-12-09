@@ -9,9 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuViewController : UIViewController
-- (IBAction)hl_onclick:(id)sender;
-- (IBAction)sw_onclick:(id)sender;
-- (IBAction)wl_onclick:(id)sender;
-- (IBAction)zdy_onclick:(id)sender;
-
+@property (nonatomic,strong) UIImage* bgimg;
+@property (nonatomic) int tapID;
 @end

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TemplateViewController : UIViewController
-
+@property (nonatomic,strong) NSString* type;
+@property (nonatomic,strong) UIImage* bgimg;
 @end

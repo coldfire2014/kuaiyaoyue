@@ -78,6 +78,17 @@
 		E54851D81A35AF0500590E5C /* coverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D71A35AF0500590E5C /* coverSegue.m */; };
 		E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DA1A35AF5C00590E5C /* coverAnimation.m */; };
 		E54851DE1A35B08800590E5C /* w2mainSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DD1A35B08800590E5C /* w2mainSegue.m */; };
+		E55F59EE1A36894B00B0D587 /* StateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59ED1A36894B00B0D587 /* StateView.m */; };
+		E55F59F11A368AC800B0D587 /* CreateBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59F01A368AC800B0D587 /* CreateBtn.m */; };
+		E55F59F41A36967D00B0D587 /* BigStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59F31A36967D00B0D587 /* BigStateView.m */; };
+		E55F59F71A36A26300B0D587 /* MainNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59F61A36A26300B0D587 /* MainNavigationControllerDelegate.m */; };
+		E55F5A001A36A64800B0D587 /* createNewAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59F91A36A64800B0D587 /* createNewAnimate.m */; };
+		E55F5A011A36A64800B0D587 /* createNewAnimate1.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59FB1A36A64800B0D587 /* createNewAnimate1.m */; };
+		E55F5A021A36A64800B0D587 /* createNewAnimate2.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59FD1A36A64800B0D587 /* createNewAnimate2.m */; };
+		E55F5A031A36A64800B0D587 /* modelListAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59FF1A36A64800B0D587 /* modelListAnimate.m */; };
+		E55F5A051A36A7FA00B0D587 /* cardOne.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E55F5A041A36A7FA00B0D587 /* cardOne.jpg */; };
+		E55F5A081A36FA9100B0D587 /* MenuBackBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F5A071A36FA9100B0D587 /* MenuBackBtn.m */; };
+		E55F5A0B1A3702E000B0D587 /* EditBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F5A0A1A3702E000B0D587 /* EditBtn.m */; };
 		E577FC071A356C01009ED66D /* ImgNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC061A356C01009ED66D /* ImgNavBar.m */; };
 		E577FC0C1A356C80009ED66D /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC091A356C80009ED66D /* AssetHelper.m */; };
 		E577FC0D1A356C80009ED66D /* myImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC0B1A356C80009ED66D /* myImageView.m */; };
@@ -242,6 +253,27 @@
 		E54851DA1A35AF5C00590E5C /* coverAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = coverAnimation.m; sourceTree = "<group>"; };
 		E54851DC1A35B08800590E5C /* w2mainSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = w2mainSegue.h; sourceTree = "<group>"; };
 		E54851DD1A35B08800590E5C /* w2mainSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = w2mainSegue.m; sourceTree = "<group>"; };
+		E55F59EC1A36894B00B0D587 /* StateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateView.h; path = element/StateView.h; sourceTree = "<group>"; };
+		E55F59ED1A36894B00B0D587 /* StateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StateView.m; path = element/StateView.m; sourceTree = "<group>"; };
+		E55F59EF1A368AC800B0D587 /* CreateBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateBtn.h; path = element/CreateBtn.h; sourceTree = "<group>"; };
+		E55F59F01A368AC800B0D587 /* CreateBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateBtn.m; path = element/CreateBtn.m; sourceTree = "<group>"; };
+		E55F59F21A36967D00B0D587 /* BigStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BigStateView.h; path = element/BigStateView.h; sourceTree = "<group>"; };
+		E55F59F31A36967D00B0D587 /* BigStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BigStateView.m; path = element/BigStateView.m; sourceTree = "<group>"; };
+		E55F59F51A36A26300B0D587 /* MainNavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationControllerDelegate.h; sourceTree = "<group>"; };
+		E55F59F61A36A26300B0D587 /* MainNavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationControllerDelegate.m; sourceTree = "<group>"; };
+		E55F59F81A36A64800B0D587 /* createNewAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = createNewAnimate.h; sourceTree = "<group>"; };
+		E55F59F91A36A64800B0D587 /* createNewAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = createNewAnimate.m; sourceTree = "<group>"; };
+		E55F59FA1A36A64800B0D587 /* createNewAnimate1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = createNewAnimate1.h; sourceTree = "<group>"; };
+		E55F59FB1A36A64800B0D587 /* createNewAnimate1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = createNewAnimate1.m; sourceTree = "<group>"; };
+		E55F59FC1A36A64800B0D587 /* createNewAnimate2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = createNewAnimate2.h; sourceTree = "<group>"; };
+		E55F59FD1A36A64800B0D587 /* createNewAnimate2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = createNewAnimate2.m; sourceTree = "<group>"; };
+		E55F59FE1A36A64800B0D587 /* modelListAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modelListAnimate.h; sourceTree = "<group>"; };
+		E55F59FF1A36A64800B0D587 /* modelListAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = modelListAnimate.m; sourceTree = "<group>"; };
+		E55F5A041A36A7FA00B0D587 /* cardOne.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cardOne.jpg; path = kuaiyaoyue/skin/cardOne.jpg; sourceTree = SOURCE_ROOT; };
+		E55F5A061A36FA9100B0D587 /* MenuBackBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuBackBtn.h; path = element/MenuBackBtn.h; sourceTree = "<group>"; };
+		E55F5A071A36FA9100B0D587 /* MenuBackBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuBackBtn.m; path = element/MenuBackBtn.m; sourceTree = "<group>"; };
+		E55F5A091A3702E000B0D587 /* EditBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditBtn.h; path = element/EditBtn.h; sourceTree = "<group>"; };
+		E55F5A0A1A3702E000B0D587 /* EditBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditBtn.m; path = element/EditBtn.m; sourceTree = "<group>"; };
 		E577FC051A356C01009ED66D /* ImgNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImgNavBar.h; path = bar/ImgNavBar.h; sourceTree = "<group>"; };
 		E577FC061A356C01009ED66D /* ImgNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImgNavBar.m; path = bar/ImgNavBar.m; sourceTree = "<group>"; };
 		E577FC081A356C80009ED66D /* AssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
@@ -409,9 +441,19 @@
 		84B446DE1A32BEF500546859 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				E55F59F81A36A64800B0D587 /* createNewAnimate.h */,
+				E55F59F91A36A64800B0D587 /* createNewAnimate.m */,
+				E55F59FA1A36A64800B0D587 /* createNewAnimate1.h */,
+				E55F59FB1A36A64800B0D587 /* createNewAnimate1.m */,
+				E55F59FC1A36A64800B0D587 /* createNewAnimate2.h */,
+				E55F59FD1A36A64800B0D587 /* createNewAnimate2.m */,
+				E55F59FE1A36A64800B0D587 /* modelListAnimate.h */,
+				E55F59FF1A36A64800B0D587 /* modelListAnimate.m */,
 				E54851D91A35AF5C00590E5C /* coverAnimation.h */,
 				E54851DA1A35AF5C00590E5C /* coverAnimation.m */,
 				E54851D51A35AEE400590E5C /* Segue */,
+				E55F59F51A36A26300B0D587 /* MainNavigationControllerDelegate.h */,
+				E55F59F61A36A26300B0D587 /* MainNavigationControllerDelegate.m */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -469,6 +511,7 @@
 		84E8425B1A2EDF6B00A401A0 /* kuaiyaoyue */ = {
 			isa = PBXGroup;
 			children = (
+				E55F59EB1A3688A900B0D587 /* element */,
 				E577FC211A356E31009ED66D /* pic */,
 				E577FC041A356BB9009ED66D /* bar */,
 				84B446DE1A32BEF500546859 /* Animation */,
@@ -551,6 +594,7 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				E55F5A041A36A7FA00B0D587 /* cardOne.jpg */,
 				E54851C11A35A71E00590E5C /* Default-568h@2x.png */,
 				E577FC1D1A356E13009ED66D /* T3.png */,
 				E577FC1E1A356E14009ED66D /* T4.png */,
@@ -657,6 +701,23 @@
 				E54851DD1A35B08800590E5C /* w2mainSegue.m */,
 			);
 			name = Segue;
+			sourceTree = "<group>";
+		};
+		E55F59EB1A3688A900B0D587 /* element */ = {
+			isa = PBXGroup;
+			children = (
+				E55F59EF1A368AC800B0D587 /* CreateBtn.h */,
+				E55F59F01A368AC800B0D587 /* CreateBtn.m */,
+				E55F59EC1A36894B00B0D587 /* StateView.h */,
+				E55F59ED1A36894B00B0D587 /* StateView.m */,
+				E55F59F21A36967D00B0D587 /* BigStateView.h */,
+				E55F59F31A36967D00B0D587 /* BigStateView.m */,
+				E55F5A061A36FA9100B0D587 /* MenuBackBtn.h */,
+				E55F5A071A36FA9100B0D587 /* MenuBackBtn.m */,
+				E55F5A091A3702E000B0D587 /* EditBtn.h */,
+				E55F5A0A1A3702E000B0D587 /* EditBtn.m */,
+			);
+			name = element;
 			sourceTree = "<group>";
 		};
 		E577FC041A356BB9009ED66D /* bar */ = {
@@ -775,6 +836,7 @@
 				84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */,
 				84B446C41A32B3D000546859 /* MJRefresh.bundle in Resources */,
 				E54851C21A35A71E00590E5C /* Default-568h@2x.png in Resources */,
+				E55F5A051A36A7FA00B0D587 /* cardOne.jpg in Resources */,
 				E577FC1F1A356E14009ED66D /* T3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -795,8 +857,10 @@
 			files = (
 				84B446D01A32BAE200546859 /* LoginViewController.m in Sources */,
 				E577FC101A356D57009ED66D /* StatusBar.m in Sources */,
+				E55F59F41A36967D00B0D587 /* BigStateView.m in Sources */,
 				84B446C61A32B3D000546859 /* MJRefreshConst.m in Sources */,
 				84B446C71A32B3D000546859 /* MJRefreshFooterView.m in Sources */,
+				E55F59EE1A36894B00B0D587 /* StateView.m in Sources */,
 				8448257F1A31865E0018240E /* TwoViewController.m in Sources */,
 				84E842C41A2EFDCB00A401A0 /* AFURLSessionManager.m in Sources */,
 				84B446CA1A32B3D000546859 /* UIScrollView+MJRefresh.m in Sources */,
@@ -813,6 +877,7 @@
 				E577FC2D1A356E66009ED66D /* ImgCollectionViewController.m in Sources */,
 				84E842911A2EEA1300A401A0 /* MusicViewController.m in Sources */,
 				844825851A3186820018240E /* FourViewController.m in Sources */,
+				E55F5A011A36A64800B0D587 /* createNewAnimate1.m in Sources */,
 				84E842C11A2EFDCB00A401A0 /* AFURLConnectionOperation.m in Sources */,
 				E577FC0C1A356C80009ED66D /* AssetHelper.m in Sources */,
 				844825F21A31A48A0018240E /* SWYQViewController.m in Sources */,
@@ -824,11 +889,13 @@
 				84B446C91A32B3D000546859 /* UIScrollView+MJExtension.m in Sources */,
 				84E842D31A2F087A00A401A0 /* HttpManage.m in Sources */,
 				84B473A51A30372A00A21457 /* DataBaseManage.m in Sources */,
+				E55F5A021A36A64800B0D587 /* createNewAnimate2.m in Sources */,
 				844826061A31B6E30018240E /* YJFKViewController.m in Sources */,
 				84E842BE1A2EFDCB00A401A0 /* AFHTTPSessionManager.m in Sources */,
 				84B446D41A32BD7000546859 /* ShareViewController.m in Sources */,
 				84E842C21A2EFDCB00A401A0 /* AFURLRequestSerialization.m in Sources */,
 				84E842621A2EDF6B00A401A0 /* AppDelegate.m in Sources */,
+				E55F5A0B1A3702E000B0D587 /* EditBtn.m in Sources */,
 				844825F61A31A4D20018240E /* PreviewViewController.m in Sources */,
 				844825EC1A31A46A0018240E /* HLEditViewController.m in Sources */,
 				844825EF1A31A4800018240E /* CHWLEditorViewController.m in Sources */,
@@ -836,12 +903,16 @@
 				8448257C1A3186520018240E /* OneViewController.m in Sources */,
 				844826001A31B3F40018240E /* DetailViewController.m in Sources */,
 				84E842C81A2EFDCB00A401A0 /* UIButton+AFNetworking.m in Sources */,
+				E55F5A081A36FA9100B0D587 /* MenuBackBtn.m in Sources */,
 				84E842C91A2EFDCB00A401A0 /* UIImageView+AFNetworking.m in Sources */,
 				E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */,
 				84B446CB1A32B3D000546859 /* UIView+MJExtension.m in Sources */,
 				84E842681A2EDF6B00A401A0 /* ViewController.m in Sources */,
+				E55F59F71A36A26300B0D587 /* MainNavigationControllerDelegate.m in Sources */,
 				84E8425F1A2EDF6B00A401A0 /* main.m in Sources */,
 				84E842C71A2EFDCB00A401A0 /* UIAlertView+AFNetworking.m in Sources */,
+				E55F5A001A36A64800B0D587 /* createNewAnimate.m in Sources */,
+				E55F59F11A368AC800B0D587 /* CreateBtn.m in Sources */,
 				84E842CC1A2EFDCB00A401A0 /* UIWebView+AFNetworking.m in Sources */,
 				84B473881A2FFEC800A21457 /* FileManage.m in Sources */,
 				E577FC301A356E66009ED66D /* picViewAnimate.m in Sources */,
@@ -859,6 +930,7 @@
 				844825E51A31A1AE0018240E /* TemplateViewController.m in Sources */,
 				84B446C51A32B3D000546859 /* MJRefreshBaseView.m in Sources */,
 				84E842C01A2EFDCB00A401A0 /* AFSecurityPolicy.m in Sources */,
+				E55F5A031A36A64800B0D587 /* modelListAnimate.m in Sources */,
 				84E842C31A2EFDCB00A401A0 /* AFURLResponseSerialization.m in Sources */,
 				844825791A31588C0018240E /* PageViewController.m in Sources */,
 				84E842BC1A2EFDCB00A401A0 /* AFHTTPRequestOperation.m in Sources */,

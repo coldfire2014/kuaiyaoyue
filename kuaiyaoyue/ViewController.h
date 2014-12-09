@@ -13,7 +13,5 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
-- (IBAction)menu_onclick:(id)sender;
-
 @end
 
