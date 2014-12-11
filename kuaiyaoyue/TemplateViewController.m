@@ -7,7 +7,8 @@
 //
 
 #import "TemplateViewController.h"
-
+#import "MenuBackBtn.h"
+#import "EditBtn.h"
 @interface TemplateViewController ()
 
 @end
@@ -17,8 +18,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor clearColor];
+    UIImageView* bk = [[UIImageView alloc] initWithImage:self.bgimg];
+    [self.view addSubview:bk];
+    UIView* bgView = [[UIView alloc] initWithFrame:self.view.bounds];
+    bgView.backgroundColor = [[UIColor alloc] initWithWhite:0.9 alpha:0.7];
+    bgView.layer.opacity = 1;
+    bgView.tag = 301;
+    [self.view addSubview:bgView];
+    
+    MenuBackBtn* backBtn = [[MenuBackBtn alloc] initWithFrame:CGRectMake(0, 20.0, 88.0/2.0, 88.0/2.0) andType:self.type];
+    backBtn.tag = 303;
+    [self.view addSubview:backBtn];
+    UITapGestureRecognizer* pan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(back)];
+    [backBtn addGestureRecognizer:pan];
+    
+    EditBtn* btnView = [[EditBtn alloc] initWithFrame:CGRectMake(0, 0, 47, 47)];
+    btnView.tag = 302;
+    btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 8.0);
+//    btnView.layer.transform = CATransform3DMakeRotation(-M_PI*2.0-M_PI_4,0,0,1);
+    [self.view addSubview:btnView];
+    
 }
-
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

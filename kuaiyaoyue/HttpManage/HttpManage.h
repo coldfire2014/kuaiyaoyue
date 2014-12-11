@@ -20,16 +20,17 @@
 
 + (instancetype)sharedClient;
 - (instancetype)init;
+
 @end
 
 @interface AFConnectionAPIClientLogin : AFHTTPRequestOperationManager
 
 + (instancetype)sharedClient;
 - (instancetype)init;
+
 @end
 
 @interface HttpManage : NSObject
-
 
 //下载音乐
 +(void)DownMusic:(NSString *) url filepath:(NSString *) filepath cb:(void(^)(BOOL isOK))callback;
@@ -41,6 +42,5 @@
 +(void)logout:(NSString *)token cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback;
 //验证token是否有效
 +(void)checkToken:(void(^)(BOOL isOK ,NSMutableArray *array))callback;
-
 
 @end
