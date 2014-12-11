@@ -23,7 +23,7 @@
         
         UILabel *add = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-7,17.0)];
         add.tag = 1301;
-        [add setFont:[UIFont systemFontOfSize:14]];
+        [add setFont:[UIFont systemFontOfSize:13]];
         [add setTextAlignment:NSTextAlignmentRight];
         [add setLineBreakMode:NSLineBreakByClipping];
         [add setTextColor:[[UIColor alloc] initWithRed:76.0/255.0 green:196.0/255.0 blue:134.0/255.0 alpha:1.0]];
@@ -42,7 +42,7 @@
         UILabel *all = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 34, 34)];
         all.tag = 1302;
         all.center = CGPointMake(self.bounds.size.width/2.0-6.0, self.bounds.size.height/2.0+5.0);
-        [all setFont:[UIFont systemFontOfSize:15]];
+        [all setFont:[UIFont systemFontOfSize:14]];
         [all setTextAlignment:NSTextAlignmentCenter];
         [all setLineBreakMode:NSLineBreakByClipping];
         [all setTextColor:getColor];
