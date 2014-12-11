@@ -50,7 +50,7 @@
                                 [NSValue valueWithCATransform3D:CATransform3DIdentity],
                                 [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI_2 + M_PI_4,0,0,1)],nil];
         transformAnim.removedOnCompletion = NO;
-        transformAnim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transformAnim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
         transformAnim.duration = [self transitionDuration:transitionContext];
         [btnView.layer addAnimation:transformAnim forKey:@"transform"];
         
@@ -81,7 +81,7 @@
         CAAnimationGroup* group1 = [CAAnimationGroup animation];
         group1.animations = [[NSArray alloc] initWithObjects:alphaAnim1,positionAnim1,scaleAnim1, nil];
         group1.duration = [self transitionDuration:transitionContext];
-        group1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        group1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
         group1.removedOnCompletion = YES;
         group1.fillMode = kCAFillModeForwards;
         [oneView.layer addAnimation:group1 forKey:@"one"];
@@ -107,7 +107,7 @@
         CAAnimationGroup* group2 = [CAAnimationGroup animation];
         group2.animations = [[NSArray alloc] initWithObjects:alphaAnim2,positionAnim2,scaleAnim2, nil];
         group2.duration = [self transitionDuration:transitionContext];
-        group2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        group2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
         group2.removedOnCompletion = NO;
         group2.fillMode = kCAFillModeForwards;
         [twoView.layer addAnimation:group2 forKey:@"two"];
@@ -134,7 +134,7 @@
         CAAnimationGroup* group3 = [CAAnimationGroup animation];
         group3.animations = [[NSArray alloc] initWithObjects:alphaAnim3,positionAnim3,scaleAnim3, nil];
         group3.duration = [self transitionDuration:transitionContext];
-        group3.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        group3.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
         group3.removedOnCompletion = NO;
         group3.fillMode = kCAFillModeForwards;
         [threeView.layer addAnimation:group3 forKey:@"three"];
@@ -161,7 +161,7 @@
         CAAnimationGroup* group4 = [CAAnimationGroup animation];
         group4.animations = [[NSArray alloc] initWithObjects:alphaAnim4,positionAnim4,scaleAnim4, nil];
         group4.duration = [self transitionDuration:transitionContext];
-        group4.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        group4.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
         group4.removedOnCompletion = NO;
         group4.fillMode = kCAFillModeForwards;
         [fourView.layer addAnimation:group4 forKey:@"four"];

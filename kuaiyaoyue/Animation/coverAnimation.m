@@ -18,7 +18,7 @@
     return self;
 }
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext{
-    return 0.5;
+    return 1.3;
 }
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
     UIViewController* toView = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
@@ -29,7 +29,7 @@
         CATransform3D t = CATransform3DIdentity;
         t.m34 = -1.0/900.0;
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-            fromView.view.layer.transform = CATransform3DTranslate(t, 0, 0, 600);
+            fromView.view.layer.transform = CATransform3DTranslate(t, 0, 0, 500);
             fromView.view.alpha = 0.0;
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
