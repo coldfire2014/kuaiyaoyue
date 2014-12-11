@@ -15,6 +15,7 @@
     UIColor* goneColor;
     ItemState nowState;
     CAShapeLayer *racetrack;
+    
 }
 -(void)setState:(ItemState)state withAll:(NSString*) all andAdd:(NSString*) add;
 -(void)setStartTime:(NSDate*)startT EndTime:(NSDate*)endT andGoneTime:(NSDate*)goneT;
