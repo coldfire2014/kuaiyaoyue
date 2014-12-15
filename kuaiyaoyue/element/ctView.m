@@ -14,7 +14,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        numberOfVisibleItems = 6;
+        numberOfVisibleItems = 4;
     }
     return self;
 }
@@ -93,8 +93,8 @@
             if ([_delegate respondsToSelector:@selector(cellForItemAtIndex:)]) {
                 UIView *webbg0 = [_delegate cellForItemAtIndex:i];          
                 webbg0.tag = 990+i;
-//                webbg0.layer.anchorPoint = CGPointMake(0.5, 1);
-                webbg0.center = CGPointMake(bk.bounds.size.width/2.0, bk.bounds.size.height/2.0);
+                webbg0.layer.anchorPoint = CGPointMake(1, 0);
+                webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + self.itemSize.width/2.0, bk.bounds.size.height/2.0 - self.itemSize.height/2.0);
                 webbg0.layer.transform = [self ftransformForItemView:webbg0 withOffset:i];
                 [bk addSubview:webbg0];
             } else {
@@ -119,38 +119,41 @@
 -(CATransform3D)transformForItemView:(UIView *)view withOffset:(CGFloat)offset
 {
     
-    perspective = -1.0f/900.0f;//透视
+    perspective = -1.0f/90.0f;//透视
     
     CATransform3D transform = CATransform3DIdentity;
-//    transform.m34 = perspective;
-//    if (offset == -1 || offset == itemCount - 1) {
-//        view.alpha = 0;
-//        transform = CATransform3DRotate(transform, -M_PI*3.9/4.0, 1, 0, 0);
-//        return transform;
-//    }else{
-//        if (offset < 0) {
-//            int a = (int)offset % (int)itemCount;
-//            offset = itemCount + a;
-//
-//        }
-//        if (offset >= numberOfVisibleItems) {
-//            view.alpha = 0;
-//        }else{
-//            view.alpha = 1;
-//        }
-//        transform = CATransform3DTranslate(transform,0, -_radius * offset/3.6,-offset*100);
+    transform.m34 = perspective;
+    if (offset == -1 || offset == itemCount - 1) {
+        view.alpha = 0;
+        transform = CATransform3DTranslate(transform,-self.frame.size.width*2.0, 0,offset);
         return transform;
-//    }
+    }else{
+        if (offset < 0) {
+            int a = (int)offset % (int)itemCount;
+            offset = itemCount + a;
+
+        }
+        if (offset >= numberOfVisibleItems) {
+            view.alpha = 0;
+        }else{
+            view.alpha = 1;
+        }
+        transform = CATransform3DRotate(transform, -0.025*offset, 0, 0,1);//Translate(transform,0, -_radius * offset/3.6,-offset*100);
+        transform = CATransform3DTranslate(transform, 0, 0,-offset);
+        return transform;
+    }
 }
 
 -(void)btnSwipe:(UISwipeGestureRecognizer *)recognizer{
-    if(recognizer.direction==UISwipeGestureRecognizerDirectionUp) {
+    BOOL isIn = YES;
+    if(recognizer.direction==UISwipeGestureRecognizerDirectionUp || recognizer.direction==UISwipeGestureRecognizerDirectionRight) {
         if (currentItemIndex <= 0) {
             currentItemIndex = itemCount - 1;
         }else{
             currentItemIndex--;
         }
-    }else if(recognizer.direction==UISwipeGestureRecognizerDirectionDown) {
+        isIn = NO;
+    }else if(recognizer.direction==UISwipeGestureRecognizerDirectionDown || recognizer.direction==UISwipeGestureRecognizerDirectionLeft) {
         if (currentItemIndex >= itemCount-1) {
             currentItemIndex = 0;
         }else{
@@ -162,7 +165,7 @@
     } else {
         NSLog(@"Not respondsToSelector:@selector(didShowItemAtIndex:)");
     }
-    [self scrollToItemAtIndex:currentItemIndex animated:YES];
+    [self scrollToItemAtIndex:currentItemIndex animated:YES inOrout:isIn];
 }
 -(void)left{
     if (currentItemIndex >= itemCount-1) {
@@ -176,7 +179,7 @@
         NSLog(@"Not respondsToSelector:@selector(didShowItemAtIndex:)");
     }
     
-    [self scrollToItemAtIndex:currentItemIndex animated:YES];
+    [self scrollToItemAtIndex:currentItemIndex animated:YES inOrout:YES];
 }
 -(void)right{
     if (currentItemIndex <= 0) {
@@ -190,19 +193,24 @@
         NSLog(@"Not respondsToSelector:@selector(didShowItemAtIndex:)");
     }
     
-    [self scrollToItemAtIndex:currentItemIndex animated:YES];
+    [self scrollToItemAtIndex:currentItemIndex animated:YES inOrout:NO];
 }
--(void)scrollToItemAtIndex:(int)index animated:(BOOL)animate{
+-(void)scrollToItemAtIndex:(int)index animated:(BOOL)animate inOrout:(BOOL)isIn{
     UIView* contentView = [self viewWithTag:101];
     if (animate)
     {
-        
         //        isAnimationing = YES;
         [UIView beginAnimations:@"present-countdown" context:nil];
-        [UIView setAnimationDuration:0.35];
+        
         [UIView setAnimationDelegate:self];
         //        [UIView setAnimationDidStopSelector:@selector(tapAnimationStop)];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        if (isIn) {
+            [UIView setAnimationDuration:0.55];
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+        } else {
+            [UIView setAnimationDuration:0.40];
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        }
         
         for (int i = 0;i < itemCount;i++)
         {

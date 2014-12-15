@@ -10,6 +10,7 @@
 #import "MenuBackBtn.h"
 #import "EditBtn.h"
 #import "myImageView.h"
+#import "TemplateCell.h"
 @interface TemplateViewController ()
 
 @end
@@ -46,11 +47,11 @@
     [self.view addSubview: tempList];
     tempList.delegate = self;
     CGFloat h =  tempList.frame.size.height - 20;
-    CGFloat w =  h * 640.0 / 960.0;
+    CGFloat w =  h * mainScreenFrame.size.width / mainScreenFrame.size.height;
     tempList.itemSize = CGSizeMake(w,h);//定义cell的显示大小
     
     [tempList reloadViews];//加载cell
-//    [tempList showList];//进厂动画
+    [tempList showList];//进厂动画
     [self didShowItemAtIndex:0];
     
     MenuBackBtn* backBtn = [[MenuBackBtn alloc] initWithFrame:CGRectMake(0, 20.0, 88.0/2.0, 88.0/2.0) andType:self.type];
@@ -76,18 +77,17 @@
 
 -(int)numberOfItems{
     //列表元素个数
-    return 5;
+    return 9;
 }
 -(UIView*)cellForItemAtIndex:(int)index{
-    NSString* iName = @"Default-568h@2x";
+    
+    NSString* iName = [[NSString alloc] initWithFormat:@"b%d",index+1];
+    UIImage* imgt = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:iName ofType:@"jpg"]];
+    UIImage* img = [[UIImage alloc] initWithCGImage:imgt.CGImage scale:2.0 orientation:UIImageOrientationUp];
     CGRect itemRect = CGRectMake(0, 0, tempList.itemSize.width, tempList.itemSize.height);
-    UIView* tmp = [[UIView alloc] initWithFrame:itemRect];
-    tmp.backgroundColor = [UIColor clearColor];
-    tmp.clipsToBounds = YES;
-    myImageView* img = [[myImageView alloc] initWithFrame:itemRect andImageName:iName withScale:2.0 andAlign:UIImgAlignmentCenter];
-    img.center = CGPointMake( tempList.itemSize.width/2.0, tempList.itemSize.height/2.0 );
-    [tmp addSubview:img];
-    return tmp;
+    
+    TemplateCell* mainCell = [[TemplateCell alloc] initWithFrame:itemRect andImage:img];
+    return mainCell;
 }
 -(void)didSelectItemAtIndex:(int)index{
     //选中事件

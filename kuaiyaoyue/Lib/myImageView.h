@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, UIImgAlignment) {
 @interface myImageView : UIImageView
 - (id)initWithFrame:(CGRect)nframe andImageName:(NSString *)name withScale:(CGFloat)scale;
 - (id)initWithFrame:(CGRect)nframe andImageName:(NSString *)name withScale:(CGFloat)scale andAlign:(UIImgAlignment)align;
+- (id)initWithFrame:(CGRect)nframe andImage:(UIImage *)img withScale:(CGFloat)scale andAlign:(UIImgAlignment)align;
 - (void)changeWithImageName:(NSString *)name withScale:(CGFloat)scale;
 - (void)changeWithImageName:(NSString *)name withScale:(CGFloat)scale andAlign:(UIImgAlignment)align;
 + (UIImage*)getShadowImage:(CGRect)bounds;

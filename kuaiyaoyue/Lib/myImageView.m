@@ -105,6 +105,65 @@
     }
     return self;
 }
+- (id)initWithFrame:(CGRect)nframe andImage:(UIImage *)img withScale:(CGFloat)scale andAlign:(UIImgAlignment)align{
+    
+    self = [super initWithFrame:nframe];
+    if (self) {
+        self.userInteractionEnabled = YES;
+        self.backgroundColor = [UIColor clearColor];
+//        NSRange r = [name rangeOfString:@".jpg"];
+//        if (r.length>0) {
+//            name = [name substringToIndex:r.location];
+//            UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"jpg"]];
+//            self.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:scale orientation:UIImageOrientationUp];
+//        } else if([name length] != 0){
+//            UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"png"]];
+//            self.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:scale orientation:UIImageOrientationUp];
+//        }else{
+//            self.image = nil;
+//        }
+        self.image = img;
+        if (self.image != nil) {
+            CGSize imgSize = self.image.size;
+            CGFloat my = nframe.size.height / nframe.size.width;
+            CGFloat img = imgSize.height / imgSize.width;
+            if (my > img) {
+                CGFloat ih = nframe.size.height;
+                CGFloat iw = imgSize.width * nframe.size.height / imgSize.height;
+                switch (align) {
+                    case UIImgAlignmentBottom:
+                        self.frame = CGRectMake(0, nframe.size.height - ih, iw, ih);
+                        break;
+                    case UIImgAlignmentCenter:
+                        self.frame = CGRectMake(0, (nframe.size.height - ih)/2.0, iw, ih);
+                        break;
+                    case UIImgAlignmentTop:
+                        self.frame = CGRectMake(0, 0, iw, ih);
+                        break;
+                    default:
+                        break;
+                }
+            } else if (my < img) {
+                CGFloat iw = nframe.size.width;
+                CGFloat ih = imgSize.height * nframe.size.width / imgSize.width;
+                switch (align) {
+                    case UIImgAlignmentBottom:
+                        self.frame = CGRectMake(0, nframe.size.height - ih, iw, ih);
+                        break;
+                    case UIImgAlignmentCenter:
+                        self.frame = CGRectMake(0, (nframe.size.height - ih)/2.0, iw, ih);
+                        break;
+                    case UIImgAlignmentTop:
+                        self.frame = CGRectMake(0, 0, iw, ih);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+    return self;
+}
 - (id)initWithFrame:(CGRect)nframe andImageName:(NSString *)name withScale:(CGFloat)scale andAlign:(UIImgAlignment)align{
     
     self = [super initWithFrame:nframe];
@@ -124,16 +183,36 @@
         }
         if (self.image != nil) {
             CGSize imgSize = self.image.size;
-            if (imgSize.height > nframe.size.height) {
+            CGFloat my = nframe.size.height / nframe.size.width;
+            CGFloat img = imgSize.height / imgSize.width;
+            if (my > img) {
+                CGFloat ih = nframe.size.height;
+                CGFloat iw = imgSize.width * nframe.size.height / imgSize.height;
                 switch (align) {
                     case UIImgAlignmentBottom:
-                        self.frame = CGRectMake(0, nframe.size.height - imgSize.height, imgSize.width, imgSize.height);
+                        self.frame = CGRectMake(0, nframe.size.height - ih, iw, ih);
                         break;
                     case UIImgAlignmentCenter:
-                        self.frame = CGRectMake(0, (nframe.size.height - imgSize.height)/2.0, imgSize.width, imgSize.height);
+                        self.frame = CGRectMake(0, (nframe.size.height - ih)/2.0, iw, ih);
                         break;
                     case UIImgAlignmentTop:
-                        self.frame = CGRectMake(0, 0, imgSize.width, imgSize.height);
+                        self.frame = CGRectMake(0, 0, iw, ih);
+                        break;
+                    default:
+                        break;
+                }
+            } else if (my < img) {
+                CGFloat iw = nframe.size.width;
+                CGFloat ih = imgSize.height * nframe.size.width / imgSize.width;
+                switch (align) {
+                    case UIImgAlignmentBottom:
+                        self.frame = CGRectMake(0, nframe.size.height - ih, iw, ih);
+                        break;
+                    case UIImgAlignmentCenter:
+                        self.frame = CGRectMake(0, (nframe.size.height - ih)/2.0, iw, ih);
+                        break;
+                    case UIImgAlignmentTop:
+                        self.frame = CGRectMake(0, 0, iw, ih);
                         break;
                     default:
                         break;
