@@ -74,6 +74,7 @@
 		84E842CC1A2EFDCB00A401A0 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842BB1A2EFDCB00A401A0 /* UIWebView+AFNetworking.m */; };
 		84E842D31A2F087A00A401A0 /* HttpManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842D21A2F087A00A401A0 /* HttpManage.m */; };
 		84E842D71A2F0E9E00A401A0 /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842D61A2F0E9E00A401A0 /* MusicInfo.m */; };
+		E54170E51A3EABC60022D2CC /* ctView.m in Sources */ = {isa = PBXBuildFile; fileRef = E54170E41A3EABC60022D2CC /* ctView.m */; };
 		E54851C21A35A71E00590E5C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E54851C11A35A71E00590E5C /* Default-568h@2x.png */; };
 		E54851D81A35AF0500590E5C /* coverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D71A35AF0500590E5C /* coverSegue.m */; };
 		E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DA1A35AF5C00590E5C /* coverAnimation.m */; };
@@ -246,6 +247,8 @@
 		84E842D21A2F087A00A401A0 /* HttpManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManage.m; sourceTree = "<group>"; };
 		84E842D51A2F0E9E00A401A0 /* MusicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicInfo.h; sourceTree = "<group>"; };
 		84E842D61A2F0E9E00A401A0 /* MusicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicInfo.m; sourceTree = "<group>"; };
+		E54170E31A3EABC60022D2CC /* ctView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ctView.h; path = element/ctView.h; sourceTree = "<group>"; };
+		E54170E41A3EABC60022D2CC /* ctView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ctView.m; path = element/ctView.m; sourceTree = "<group>"; };
 		E54851C11A35A71E00590E5C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "kuaiyaoyue/skin/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		E54851D61A35AF0500590E5C /* coverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coverSegue.h; sourceTree = "<group>"; };
 		E54851D71A35AF0500590E5C /* coverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = coverSegue.m; sourceTree = "<group>"; };
@@ -706,6 +709,8 @@
 		E55F59EB1A3688A900B0D587 /* element */ = {
 			isa = PBXGroup;
 			children = (
+				E54170E31A3EABC60022D2CC /* ctView.h */,
+				E54170E41A3EABC60022D2CC /* ctView.m */,
 				E55F59EF1A368AC800B0D587 /* CreateBtn.h */,
 				E55F59F01A368AC800B0D587 /* CreateBtn.m */,
 				E55F59EC1A36894B00B0D587 /* StateView.h */,
@@ -914,6 +919,7 @@
 				E55F5A001A36A64800B0D587 /* createNewAnimate.m in Sources */,
 				E55F59F11A368AC800B0D587 /* CreateBtn.m in Sources */,
 				84E842CC1A2EFDCB00A401A0 /* UIWebView+AFNetworking.m in Sources */,
+				E54170E51A3EABC60022D2CC /* ctView.m in Sources */,
 				84B473881A2FFEC800A21457 /* FileManage.m in Sources */,
 				E577FC301A356E66009ED66D /* picViewAnimate.m in Sources */,
 				8448258D1A318FBE0018240E /* ViewCell.m in Sources */,

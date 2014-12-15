@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TemplateViewController : UIViewController
+#import "ctView.h"
+@interface TemplateViewController : UIViewController<ctViewDelegate>
+{
+    ctView* tempList;
+}
 @property (nonatomic,strong) NSString* type;
 @property (nonatomic,strong) UIImage* bgimg;
 @end

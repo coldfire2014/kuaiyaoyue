@@ -9,6 +9,7 @@
 #import "TemplateViewController.h"
 #import "MenuBackBtn.h"
 #import "EditBtn.h"
+#import "myImageView.h"
 @interface TemplateViewController ()
 
 @end
@@ -26,6 +27,31 @@
     bgView.layer.opacity = 1;
     bgView.tag = 301;
     [self.view addSubview:bgView];
+    
+    //    这段兼容ios6
+    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+    
+    CGFloat subTap = -20;
+    if (ISIOS7LATER) {
+        mainScreenFrame = [[UIScreen mainScreen] bounds];
+        subTap = 0;
+    }
+    CGFloat titleHeight = 30;
+    //列表布局
+    tempList = [[ctView alloc] initWithFrame:CGRectMake(5,20+44+titleHeight + subTap,mainScreenFrame.size.width-10,mainScreenFrame.size.height-60-20-44-titleHeight- subTap)];
+    
+    tempList.tag = 404;
+    tempList.userInteractionEnabled = YES;
+    tempList.backgroundColor = [UIColor clearColor];
+    [self.view addSubview: tempList];
+    tempList.delegate = self;
+    CGFloat h =  tempList.frame.size.height - 20;
+    CGFloat w =  h * 640.0 / 960.0;
+    tempList.itemSize = CGSizeMake(w,h);//定义cell的显示大小
+    
+    [tempList reloadViews];//加载cell
+//    [tempList showList];//进厂动画
+    [self didShowItemAtIndex:0];
     
     MenuBackBtn* backBtn = [[MenuBackBtn alloc] initWithFrame:CGRectMake(0, 20.0, 88.0/2.0, 88.0/2.0) andType:self.type];
     backBtn.tag = 303;
@@ -46,6 +72,28 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(int)numberOfItems{
+    //列表元素个数
+    return 5;
+}
+-(UIView*)cellForItemAtIndex:(int)index{
+    NSString* iName = @"Default-568h@2x";
+    CGRect itemRect = CGRectMake(0, 0, tempList.itemSize.width, tempList.itemSize.height);
+    UIView* tmp = [[UIView alloc] initWithFrame:itemRect];
+    tmp.backgroundColor = [UIColor clearColor];
+    tmp.clipsToBounds = YES;
+    myImageView* img = [[myImageView alloc] initWithFrame:itemRect andImageName:iName withScale:2.0 andAlign:UIImgAlignmentCenter];
+    img.center = CGPointMake( tempList.itemSize.width/2.0, tempList.itemSize.height/2.0 );
+    [tmp addSubview:img];
+    return tmp;
+}
+-(void)didSelectItemAtIndex:(int)index{
+    //选中事件
+}
+-(void)didShowItemAtIndex:(int)index{
+    //列表当前显示元素，目前用于换颜色
 }
 
 /*

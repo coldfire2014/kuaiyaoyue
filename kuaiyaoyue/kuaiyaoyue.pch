@@ -14,4 +14,8 @@
 #import "AssetHelper.h"
 #import "StatusBar.h"
 
+#define ISIOS7LATER [[[UIDevice currentDevice] systemVersion] floatValue]>=7
+
+#define ISIOS8LATER [[[UIDevice currentDevice] systemVersion] floatValue]>=8
+
 #endif

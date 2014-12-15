@@ -844,12 +844,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="luI-zA-BtH"/>
+        <segue reference="D53-YK-KM5"/>
         <segue reference="rSh-pc-yju"/>
-        <segue reference="I0j-Cp-NYv"/>
-        <segue reference="Lw5-Qc-P3E"/>
         <segue reference="OzK-a2-yjV"/>
+        <segue reference="Lw5-Qc-P3E"/>
         <segue reference="ipw-VX-ZEV"/>
+        <segue reference="luI-zA-BtH"/>
         <segue reference="fps-RF-Hk5"/>
     </inferredMetricsTieBreakers>
 </document>
