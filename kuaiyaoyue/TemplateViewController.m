@@ -76,7 +76,7 @@
 }
 
 -(int)numberOfItems{
-    //列表元素个数
+    //列表元素个数哈哈
     return 9;
 }
 -(UIView*)cellForItemAtIndex:(int)index{
