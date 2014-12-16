@@ -1030,11 +1030,11 @@
         <image name="ic_54_trash.png" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Eog-z4-jhp"/>
         <segue reference="D53-YK-KM5"/>
-        <segue reference="rSh-pc-yju"/>
-        <segue reference="OzK-a2-yjV"/>
-        <segue reference="Lw5-Qc-P3E"/>
-        <segue reference="ipw-VX-ZEV"/>
+        <segue reference="e4a-kv-CoT"/>
+        <segue reference="e52-93-Vqk"/>
+        <segue reference="Fa7-cG-yOT"/>
         <segue reference="luI-zA-BtH"/>
         <segue reference="fps-RF-Hk5"/>
     </inferredMetricsTieBreakers>
