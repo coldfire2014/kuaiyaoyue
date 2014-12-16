@@ -30,7 +30,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"主页";
-    
      data = [[NSMutableArray alloc] init];
     [self inData];
     [self setupRefresh];
@@ -42,6 +41,7 @@
     
     UITapGestureRecognizer* pan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didPan)];
     [btnView addGestureRecognizer:pan];//160*220
+    
 //    StateView* s = [[StateView alloc] initWithFrame:CGRectMake(264, 110+55, 55, 55)];
 //    s.tag = 101;
 //    [s setState:StateGoing withAll:@"19" andAdd:@"+9"];
@@ -60,8 +60,9 @@
     [timer fire];
     
     [self headview];
-    _tableview.contentInset = UIEdgeInsetsMake(176, 0 ,0, 0);
-   [_tableview setContentOffset:CGPointMake(0, -196) animated:YES];
+    //滑动监听
+    _tableview.contentInset = UIEdgeInsetsMake(-20, 0 ,0, 0);
+//   [_tableview setContentOffset:CGPointMake(0, -196) animated:YES];
     
     NSDate * date = [NSDate date];
     //1418630019
@@ -75,6 +76,7 @@
     }else{
         NSLog(@"已登录");
     }
+    
     
     
 }
@@ -132,8 +134,8 @@
 //        des.needAnimation = YES;
 //        des.delegate = self;
     } else {
-        MenuViewController* des = (MenuViewController*)segue.destinationViewController;
-        des.bgimg = (UIImage*)sender;
+//        MenuViewController* des = (MenuViewController*)segue.destinationViewController;
+//        des.bgimg = (UIImage*)sender;
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -207,8 +209,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"ViewCell";
     ViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-  
-    
+    cell.widht = self.view.frame.size.width;
     return cell;
 }
 
@@ -217,6 +218,9 @@
 {
     
     NSLog(@"indexPath-%ld",[indexPath row]);
+    
+    [self performSegueWithIdentifier:@"detail" sender:nil];
+    
 //    switch ([indexPath row]) {
 //        case 0:
 //            [self performSegueWithIdentifier:@"del" sender:nil];
@@ -237,27 +241,29 @@
     
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    float destinaOffset = -96;
-    float startChangeOffset = -scrollView.contentInset.top;
-    
-    CGPoint newOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y<startChangeOffset?startChangeOffset:(scrollView.contentOffset.y>destinaOffset?destinaOffset:scrollView.contentOffset.y));
-    float newY = -newOffset.y-scrollView.contentInset.top;
+//写滑动监听
 
-    [_head_view setFrame:CGRectMake(0, newY, _showview_img.frame.size.width, _showview_img.frame.size.height)];
-    
-    float d = destinaOffset-startChangeOffset;
-    float alpha = 1-(newOffset.y-startChangeOffset)/d;
-    NSLog(@"%f",(newOffset.y-startChangeOffset)/d);
-    NSLog(@"%f",1 - (0.5-(0.5)*(alpha)));
-    
-    [_showview_img setFrame:CGRectMake( 17-(17)*(1-alpha) + 9,80-(80)*(alpha) + 36, _showview_img.frame.size.width, _showview_img.frame.size.height)];
-    
-    [_showsetting setFrame:CGRectMake(_showsetting.frame.origin.x, 92-(92)*(alpha) + 28
-                                      , _showsetting.frame.size.width, _showsetting.frame.size.height)];
-    _show_title.alpha = 1 - alpha;
-    
-    _showtm.backgroundColor = [[UIColor alloc] initWithRed:(69.0/255.0) green:(76.0/255.0) blue:(78.0/255.0) alpha:1 - (0.5-(0.5)*(alpha))];
-}
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    float destinaOffset = -96;
+//    float startChangeOffset = -scrollView.contentInset.top;
+//    
+//    CGPoint newOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y<startChangeOffset?startChangeOffset:(scrollView.contentOffset.y>destinaOffset?destinaOffset:scrollView.contentOffset.y));
+//    float newY = -newOffset.y-scrollView.contentInset.top;
+//
+//    [_head_view setFrame:CGRectMake(0, newY, _showview_img.frame.size.width, _showview_img.frame.size.height)];
+//    
+//    float d = destinaOffset-startChangeOffset;
+//    float alpha = 1-(newOffset.y-startChangeOffset)/d;
+//    NSLog(@"%f",(newOffset.y-startChangeOffset)/d);
+//    NSLog(@"%f",1 - (0.5-(0.5)*(alpha)));
+//    
+//    [_showview_img setFrame:CGRectMake( 17-(17)*(1-alpha) + 9,80-(80)*(alpha) + 36, _showview_img.frame.size.width, _showview_img.frame.size.height)];
+//    
+//    [_showsetting setFrame:CGRectMake(_showsetting.frame.origin.x, 92-(92)*(alpha) + 28
+//                                      , _showsetting.frame.size.width, _showsetting.frame.size.height)];
+//    _show_title.alpha = 1 - alpha;
+//    
+//    _showtm.backgroundColor = [[UIColor alloc] initWithRed:(69.0/255.0) green:(76.0/255.0) blue:(78.0/255.0) alpha:1 - (0.5-(0.5)*(alpha))];
+//}
 
 @end

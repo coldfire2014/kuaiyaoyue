@@ -14,11 +14,12 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    s = [[StateView alloc] initWithFrame:CGRectMake(320 - 55,0, 55, 55)];
+    NSLog(@"%f",_widht);
+    s = [[StateView alloc] initWithFrame:CGRectMake(0,-5, 55, 55)];
     [s setState:StateGoing withAll:@"19" andAdd:@""];
     [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
     
-    [self addSubview:s];
+    [_show_time addSubview:s];
 
 }
 

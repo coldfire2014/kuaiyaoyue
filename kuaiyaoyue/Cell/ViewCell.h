@@ -13,5 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *show_img;
 @property (weak, nonatomic) IBOutlet UIButton *show_send;
 - (IBAction)send_onclick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *show_time;
+
+@property CGFloat widht;
 
 @end
