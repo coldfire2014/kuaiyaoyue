@@ -13,6 +13,14 @@
 +(NSString *) getOPEN;
 +(void)setOPEN;
 
++(void)setUserInfo:(NSString *) Account userName:(NSString *) userName token:(NSString *)token;
++(NSString *)getAccount;
++(NSString *)getuserName;
++(NSString *)gettoken;
+
++(void) setTSID:(NSString *) tsid;
++(NSString *)getTSID;
+
 
 
 @end

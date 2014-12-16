@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "UDObject.h"
 
 @interface AppDelegate ()
 
@@ -17,8 +18,84 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    //wyb
+    if (ISIOS8LATER) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
+                                                                                             |UIRemoteNotificationTypeSound
+                                                                                             |UIRemoteNotificationTypeAlert) categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }else{
+        [[UIApplication sharedApplication]
+         registerForRemoteNotificationTypes:
+         (UIRemoteNotificationTypeAlert |
+          UIRemoteNotificationTypeBadge |
+          UIRemoteNotificationTypeSound)];
+    }
+    
+    
     return YES;
+}
+
+#ifdef __IPHONE_8_0
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    //register to receive notifications
+    [application registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
+{
+    //handle the actions
+    if ([identifier isEqualToString:@"declineAction"]){
+    }
+    else if ([identifier isEqualToString:@"answerAction"]){
+    }
+}
+#endif
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)pToken {
+    NSString *TOKEN = [NSString stringWithFormat:@"%@",pToken];
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"<>"];
+    TOKEN = [TOKEN stringByTrimmingCharactersInSet:set];
+    TOKEN = [TOKEN stringByReplacingOccurrencesOfString:@" " withString:@""];
+    //注册成功，将deviceToken保存到应用服务器数据库中
+    [UDObject setTSID:TOKEN];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    // 处理推送消息
+    NSLog(@"userinfo:%@",userInfo);
+    NSLog(@"收到推送消息:%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
+    //注册(第一步)
+    NSNotification *ntfc  =[NSNotification notificationWithName:@"message" object:nil];
+    //发送（第二步）
+    [[NSNotificationCenter defaultCenter] postNotification:ntfc];
+    
+    if (application.applicationState == UIApplicationStateActive){
+        //  @"{
+        //        //自定义参数
+        //        \"userinfo\":
+        //        {
+        //            \"name\":\"remote notice\"
+        //        },
+        //        //标准写法
+        //        \"aps\":
+        //        {
+        //            \"alert\":
+        //            {
+        //                \"action-loc-key\":\"Open\",//支持多语言
+        //                \"body\":\"messgae content\"//消息正文
+        //            },
+        //            \"badge\":1,//为App 的icon  标记 具体数值
+        //            \"sound\":\"default\" //播放的音频文件,default 表示系统默认的选择列铃声
+        //        }
+        //    }"
+    }else{
+        //        self.viewController.maincenter.tabController.selectedIndex = 2;
+    }
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Registfail%@",error);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

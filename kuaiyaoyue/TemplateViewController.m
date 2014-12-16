@@ -79,21 +79,28 @@
     //列表元素个数哈哈
     return 9;
 }
+
 -(UIView*)cellForItemAtIndex:(int)index{
     
+    //得到IMG
     NSString* iName = [[NSString alloc] initWithFormat:@"b%d",index+1];
     UIImage* imgt = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:iName ofType:@"jpg"]];
     UIImage* img = [[UIImage alloc] initWithCGImage:imgt.CGImage scale:2.0 orientation:UIImageOrientationUp];
+    
+    
     CGRect itemRect = CGRectMake(0, 0, tempList.itemSize.width, tempList.itemSize.height);
     
     TemplateCell* mainCell = [[TemplateCell alloc] initWithFrame:itemRect andImage:img];
     return mainCell;
 }
+
 -(void)didSelectItemAtIndex:(int)index{
     //选中事件
+    
 }
 -(void)didShowItemAtIndex:(int)index{
     //列表当前显示元素，目前用于换颜色
+    
 }
 
 /*

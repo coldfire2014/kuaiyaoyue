@@ -9,7 +9,7 @@
 #import "HttpManage.h"
 //#import "ZipArchive.h"
 
-#define HTTPURL @"http://115.29.11.57"
+#define HTTPURL @"http://test.kyy121.com/"
 /*
 43    //BadCredentialsException     密码不正确
 53    VerificationTimeoutException    验证码超时
@@ -53,7 +53,6 @@ static NSString * const APIBaseURLString = HTTPURL;
     
     return _sharedClient;
 }
-
 - (instancetype)init{
     AFConnectionAPIClient *client = [[AFConnectionAPIClient alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
     client.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -106,8 +105,8 @@ static NSString * const APIBaseURLString = HTTPURL;
 +(void)getAll:(NSString *)timestamp cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             timestamp,@"timestamp",nil];
-    NSLog(@"params-%@",params);
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"/invitation/nozzle/NefMusic/getAll.aspx"];
+    NSLog(@"params-%@",params);
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
@@ -158,21 +157,35 @@ password:1235456                     //用户密码
                     j_password:(NSString *)j_password
                         isJson:(NSString *)isJson
                             cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
+   
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            mobilePhone,@"mobilePhone",password,@"password",
-                            phoneId,@"phoneId",j_username,@"j_username",
-                            j_password,@"j_password",isJson,@"isJson",
+                            mobilePhone,@"mobilePhone",
+                            password,@"password",
+                            phoneId,@"phoneId",
+                            mobilePhone,@"j_username",
+                            password,@"j_password",
+                            @"true",@"isJson",
                             nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/j_spring_security_check"];
-    [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
+    NSLog(@"params-%@-%@",params,url);
+    
+    [[AFConnectionAPIClientLogin sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
+        
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *array = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
-        callback(YES,array);
+        NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+        NSLog(@"%@",resultDic);
+        
+        NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+        [userInfo setObject:mobilePhone forKey:@"phone"];
+        [userInfo setObject:[resultDic objectForKey:@"token"] forKey:@"userid"];
+        [userInfo synchronize];
+        callback(YES,nil);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSLog(@"error-%@",error);
         callback(NO,nil);
+        
     }];
     
 }

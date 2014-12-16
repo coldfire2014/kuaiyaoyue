@@ -15,6 +15,9 @@
 
 #import "TimeTool.h"
 
+#import "HttpManage.h"
+#import "UDObject.h"
+
 @interface ViewController (){
     NSMutableArray *data;
 }
@@ -66,7 +69,27 @@
     
     [TimeTool TopJZTime:1418630019];
     
+    if ([UDObject gettoken].length > 0) {
+        [self j_spring_security_check:@"123456789" password:@"123456789"];
+        NSLog(@"登录");
+    }else{
+        NSLog(@"已登录");
+    }
+    
+    
 }
+
+-(void)j_spring_security_check:(NSString *)username password:(NSString *)password{
+    [HttpManage j_spring_security_check:username password:password phoneId:[UDObject getTSID] j_username:username j_password:password isJson:@"true" cb:^(BOOL isOK, NSDictionary *dic) {
+        if (isOK) {
+            NSString *token = [dic objectForKey:@"token"];
+            [UDObject setUserInfo:username userName:@"" token:token];
+        }else{
+            
+        }
+    }];
+}
+
 
 -(void)headview{
     _show_img.layer.masksToBounds = YES;

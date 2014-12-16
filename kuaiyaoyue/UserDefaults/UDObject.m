@@ -21,4 +21,32 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++(void)setUserInfo:(NSString *) Account userName:(NSString *) userName token:(NSString *)token{
+    [[NSUserDefaults standardUserDefaults] setValue:Account forKey:@"Account"];
+    [[NSUserDefaults standardUserDefaults] setValue:userName forKey:@"userName"];
+    [[NSUserDefaults standardUserDefaults] setValue:token forKey:@"token"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++(void) setTSID:(NSString *) tsid{
+    [[NSUserDefaults standardUserDefaults] setValue:tsid forKey:@"tsid"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++(NSString *)getTSID{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"tsid"];
+}
+
++(NSString *)getAccount{
+   return [[NSUserDefaults standardUserDefaults] objectForKey:@"Account"];
+}
+
++(NSString *)getuserName{
+   return [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
+}
+
++(NSString *)gettoken{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+}
+
 @end
