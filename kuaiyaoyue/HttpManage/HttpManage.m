@@ -53,6 +53,7 @@ static NSString * const APIBaseURLString = HTTPURL;
     
     return _sharedClient;
 }
+
 - (instancetype)init{
     AFConnectionAPIClient *client = [[AFConnectionAPIClient alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
     client.requestSerializer = [AFJSONRequestSerializer serializer];

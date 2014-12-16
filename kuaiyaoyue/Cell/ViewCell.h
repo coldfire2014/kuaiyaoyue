@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BigStateView.h"
 
 @interface ViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *show_img;
+@property (weak, nonatomic) IBOutlet UIButton *show_send;
+- (IBAction)send_onclick:(id)sender;
 
 @end

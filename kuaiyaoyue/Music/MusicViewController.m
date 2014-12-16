@@ -67,6 +67,7 @@
     }else{
         timestamp = @"-1";
     }
+    
     [HttpManage getAll:timestamp cb:^(BOOL isOK, NSMutableArray *array) {
          if (isOK) {
              NSLog(@"%@",array);
