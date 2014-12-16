@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84197CBF1A3B374200D9401B /* ic_32_clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84197CBB1A3B374200D9401B /* ic_32_clock@2x.png */; };
+		84197CC01A3B374200D9401B /* ic_32_timer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84197CBC1A3B374200D9401B /* ic_32_timer@2x.png */; };
+		84197CC11A3B374200D9401B /* ic_54_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84197CBD1A3B374200D9401B /* ic_54_setting@2x.png */; };
+		84197CC21A3B374200D9401B /* ic_54_trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84197CBE1A3B374200D9401B /* ic_54_trash@2x.png */; };
 		844825761A31536C0018240E /* WelComeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825751A31536C0018240E /* WelComeViewController.m */; };
 		844825791A31588C0018240E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825781A31588C0018240E /* PageViewController.m */; };
 		8448257C1A3186520018240E /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448257B1A3186520018240E /* OneViewController.m */; };
@@ -47,6 +51,7 @@
 		84B473A81A3050C100A21457 /* Music.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B473A71A3050C100A21457 /* Music.m */; };
 		84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84B473AA1A30572F00A21457 /* SVProgressHUD.bundle */; };
 		84B473AE1A30572F00A21457 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B473AC1A30572F00A21457 /* SVProgressHUD.m */; };
+		84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5A4781A3EC9C200C55200 /* TimeTool.m */; };
 		84E8425F1A2EDF6B00A401A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E8425E1A2EDF6B00A401A0 /* main.m */; };
 		84E842621A2EDF6B00A401A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842611A2EDF6B00A401A0 /* AppDelegate.m */; };
 		84E842651A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84E842631A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld */; };
@@ -125,6 +130,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84197CBB1A3B374200D9401B /* ic_32_clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_32_clock@2x.png"; sourceTree = "<group>"; };
+		84197CBC1A3B374200D9401B /* ic_32_timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_32_timer@2x.png"; sourceTree = "<group>"; };
+		84197CBD1A3B374200D9401B /* ic_54_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_54_setting@2x.png"; sourceTree = "<group>"; };
+		84197CBE1A3B374200D9401B /* ic_54_trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_54_trash@2x.png"; sourceTree = "<group>"; };
 		844825741A31536C0018240E /* WelComeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelComeViewController.h; sourceTree = "<group>"; };
 		844825751A31536C0018240E /* WelComeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelComeViewController.m; sourceTree = "<group>"; };
 		844825771A31588C0018240E /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
@@ -199,6 +208,8 @@
 		84B473AA1A30572F00A21457 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		84B473AB1A30572F00A21457 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		84B473AC1A30572F00A21457 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		84B5A4771A3EC9C200C55200 /* TimeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTool.h; sourceTree = "<group>"; };
+		84B5A4781A3EC9C200C55200 /* TimeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTool.m; sourceTree = "<group>"; };
 		84E842591A2EDF6B00A401A0 /* kuaiyaoyue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kuaiyaoyue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E8425D1A2EDF6B00A401A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E8425E1A2EDF6B00A401A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -515,6 +526,15 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		84B5A4761A3EC9B100C55200 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				84B5A4771A3EC9C200C55200 /* TimeTool.h */,
+				84B5A4781A3EC9C200C55200 /* TimeTool.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		84E842501A2EDF6B00A401A0 = {
 			isa = PBXGroup;
 			children = (
@@ -537,6 +557,7 @@
 		84E8425B1A2EDF6B00A401A0 /* kuaiyaoyue */ = {
 			isa = PBXGroup;
 			children = (
+				84B5A4761A3EC9B100C55200 /* Tool */,
 				E55F59EB1A3688A900B0D587 /* element */,
 				E577FC211A356E31009ED66D /* pic */,
 				E577FC041A356BB9009ED66D /* bar */,
@@ -633,6 +654,10 @@
 				E54851C11A35A71E00590E5C /* Default-568h@2x.png */,
 				E577FC1D1A356E13009ED66D /* T3.png */,
 				E577FC1E1A356E14009ED66D /* T4.png */,
+				84197CBB1A3B374200D9401B /* ic_32_clock@2x.png */,
+				84197CBC1A3B374200D9401B /* ic_32_timer@2x.png */,
+				84197CBD1A3B374200D9401B /* ic_54_setting@2x.png */,
+				84197CBE1A3B374200D9401B /* ic_54_trash@2x.png */,
 			);
 			path = Res;
 			sourceTree = "<group>";
@@ -873,6 +898,7 @@
 				E524FF301A3ED4B8002E7DC0 /* b1.jpg in Resources */,
 				84B446CC1A32B50500546859 /* Main.storyboard in Resources */,
 				84E8426D1A2EDF6B00A401A0 /* Images.xcassets in Resources */,
+				84197CC11A3B374200D9401B /* ic_54_setting@2x.png in Resources */,
 				84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */,
 				E524FF311A3ED4B8002E7DC0 /* b2.jpg in Resources */,
 				E524FF331A3ED4B8002E7DC0 /* b4.jpg in Resources */,
@@ -971,6 +997,7 @@
 				844825821A31867A0018240E /* ThreeViewController.m in Sources */,
 				84B446C81A32B3D000546859 /* MJRefreshHeaderView.m in Sources */,
 				844825891A318C810018240E /* UDObject.m in Sources */,
+				84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */,
 				84E842CB1A2EFDCB00A401A0 /* UIRefreshControl+AFNetworking.m in Sources */,
 				E577FC2C1A356E66009ED66D /* ImgCollectionViewCell.m in Sources */,
 				844826031A31B6D80018240E /* GYWMViewController.m in Sources */,

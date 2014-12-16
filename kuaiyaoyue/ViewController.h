@@ -12,6 +12,12 @@
 @interface ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (weak, nonatomic) IBOutlet UIView *showview_img;
+@property (weak, nonatomic) IBOutlet UIImageView *show_img;
+@property (weak, nonatomic) IBOutlet UIView *head_view;
+@property (weak, nonatomic) IBOutlet UIButton *showsetting;
+@property (weak, nonatomic) IBOutlet UILabel *show_title;
+@property (weak, nonatomic) IBOutlet UIView *showtm;
 
 @end
 

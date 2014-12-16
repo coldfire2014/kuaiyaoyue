@@ -8,10 +8,18 @@
 
 #import "ViewCell.h"
 
-@implementation ViewCell
+@implementation ViewCell{
+    StateView* s;
+}
 
 - (void)awakeFromNib {
     // Initialization code
+    s = [[StateView alloc] initWithFrame:CGRectMake(320 - 55,0, 55, 55)];
+    [s setState:StateGoing withAll:@"19" andAdd:@""];
+    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+    
+    [self addSubview:s];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -20,4 +28,15 @@
     // Configure the view for the selected state
 }
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    _show_img.layer.cornerRadius = 3;
+    _show_img.clipsToBounds = YES;
+    _show_img.contentMode = UIViewContentModeScaleAspectFill;
+    
+    _show_send.layer.cornerRadius = 3;
+}
+
+- (IBAction)send_onclick:(id)sender {
+}
 @end

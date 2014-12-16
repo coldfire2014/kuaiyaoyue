@@ -12,6 +12,9 @@
 #import "StateView.h"
 #import "BigStateView.h"
 #import "MenuViewController.h"
+
+#import "TimeTool.h"
+
 @interface ViewController (){
     NSMutableArray *data;
 }
@@ -36,23 +39,41 @@
     
     UITapGestureRecognizer* pan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didPan)];
     [btnView addGestureRecognizer:pan];//160*220
-    StateView* s = [[StateView alloc] initWithFrame:CGRectMake(264, 110+55, 55, 55)];
-    s.tag = 101;
-    [s setState:StateGoing withAll:@"19" andAdd:@"+9"];
-    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
-    [self.view addSubview:s];
+//    StateView* s = [[StateView alloc] initWithFrame:CGRectMake(264, 110+55, 55, 55)];
+//    s.tag = 101;
+//    [s setState:StateGoing withAll:@"19" andAdd:@"+9"];
+//    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+//    [self.view addSubview:s];
     
-    BigStateView* b = [[BigStateView alloc] initWithFrame:CGRectMake(0, 200, 320.0/2.0, 220.0/2.0)];
-    b.tag = 102;
-    b.center = CGPointMake(self.view.bounds.size.width/2.0, 200);
-    [b setState:StateGoing withAll:@"999" andAdd:@"+99"];
-    [b setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
-    [self.view addSubview:b];
+//    BigStateView* b = [[BigStateView alloc] initWithFrame:CGRectMake(0, 200, 320.0/2.0, 220.0/2.0)];
+//    b.tag = 102;
+//    b.center = CGPointMake(self.view.bounds.size.width/2.0, 200);
+//    [b setState:StateGoing withAll:@"999" andAdd:@"+99"];
+//    [b setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+//    [self.view addSubview:b];
 
     
     NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(changeTimeAtTimedisplay) userInfo:nil repeats:YES];
     [timer fire];
+    
+    [self headview];
+    _tableview.contentInset = UIEdgeInsetsMake(176, 0 ,0, 0);
+   [_tableview setContentOffset:CGPointMake(0, -196) animated:YES];
+    
+    NSDate * date = [NSDate date];
+    //1418630019
+    NSLog(@"%ld",(long)[date timeIntervalSince1970]);
+    
+    [TimeTool TopJZTime:1418630019];
+    
 }
+
+-(void)headview{
+    _show_img.layer.masksToBounds = YES;
+    _show_img.layer.cornerRadius = 34;
+    _showview_img.layer.cornerRadius = 36;
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
 }
@@ -119,7 +140,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
         [data removeAllObjects];
-        for (int i = 0; i< 4; i++) {
+        for (int i = 0; i< 20; i++) {
             NSDictionary *dic = [[NSDictionary alloc] init];
             [data addObject:dic];
         }
@@ -131,7 +152,6 @@
 
 - (void)footerRereshing
 {
-
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
@@ -148,7 +168,7 @@
 
 -(void)inData{
    
-    for (int i = 0; i< 4; i++) {
+    for (int i = 0; i< 20; i++) {
         NSDictionary *dic = [[NSDictionary alloc] init];
         [data addObject:dic];
     }
@@ -172,22 +192,49 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch ([indexPath row]) {
-        case 0:
-            [self performSegueWithIdentifier:@"del" sender:nil];
-            break;
-        case 1:
-            [self performSegueWithIdentifier:@"hledit" sender:nil];
-            break;
-        case 2:
-            [self performSegueWithIdentifier:@"swedit" sender:nil];
-            break;
-        case 3:
-            [self performSegueWithIdentifier:@"chedit" sender:nil];
-            break;
-            
-        default:
-            break;
-    }
+    
+    NSLog(@"indexPath-%ld",[indexPath row]);
+//    switch ([indexPath row]) {
+//        case 0:
+//            [self performSegueWithIdentifier:@"del" sender:nil];
+//            break;
+//        case 1:
+//            [self performSegueWithIdentifier:@"hledit" sender:nil];
+//            break;
+//        case 2:
+//            [self performSegueWithIdentifier:@"swedit" sender:nil];
+//            break;
+//        case 3:
+//            [self performSegueWithIdentifier:@"chedit" sender:nil];
+//            break;
+//            
+//        default:
+//            break;
+//    }
+    
 }
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    float destinaOffset = -96;
+    float startChangeOffset = -scrollView.contentInset.top;
+    
+    CGPoint newOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y<startChangeOffset?startChangeOffset:(scrollView.contentOffset.y>destinaOffset?destinaOffset:scrollView.contentOffset.y));
+    float newY = -newOffset.y-scrollView.contentInset.top;
+
+    [_head_view setFrame:CGRectMake(0, newY, _showview_img.frame.size.width, _showview_img.frame.size.height)];
+    
+    float d = destinaOffset-startChangeOffset;
+    float alpha = 1-(newOffset.y-startChangeOffset)/d;
+    NSLog(@"%f",(newOffset.y-startChangeOffset)/d);
+    NSLog(@"%f",1 - (0.5-(0.5)*(alpha)));
+    
+    [_showview_img setFrame:CGRectMake( 17-(17)*(1-alpha) + 9,80-(80)*(alpha) + 36, _showview_img.frame.size.width, _showview_img.frame.size.height)];
+    
+    [_showsetting setFrame:CGRectMake(_showsetting.frame.origin.x, 92-(92)*(alpha) + 28
+                                      , _showsetting.frame.size.width, _showsetting.frame.size.height)];
+    _show_title.alpha = 1 - alpha;
+    
+    _showtm.backgroundColor = [[UIColor alloc] initWithRed:(69.0/255.0) green:(76.0/255.0) blue:(78.0/255.0) alpha:1 - (0.5-(0.5)*(alpha))];
+}
+
 @end
