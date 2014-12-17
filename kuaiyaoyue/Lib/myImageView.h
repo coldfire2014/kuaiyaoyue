@@ -21,4 +21,5 @@ typedef NS_ENUM(NSInteger, UIImgAlignment) {
 + (UIImage*)getShadowImage:(CGRect)bounds;
 - (void)clearBadge;
 - (void)setBadgeValue:(NSInteger)badgeValue;
++ (UIImage*)getGradImage:(CGRect)bounds;
 @end
