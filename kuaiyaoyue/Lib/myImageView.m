@@ -251,5 +251,32 @@
     UIGraphicsEndImageContext();
     return imageCopy;
 }
-
++ (UIImage*)getGradImage:(CGRect)bounds{
+    UIGraphicsBeginImageContext(bounds.size);
+    CGImageRef imgRef = NULL;
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    size_t gradLocationsNum = 2;
+    CGFloat gradLocations[2] = {0.0f, 0.50f};
+    CGFloat gradColors[8] = {1.0f,1.0f,1.0f,1.0f,1.0f,1.0f,1.0f,0.0f};
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, gradColors, gradLocations, gradLocationsNum);
+    CGColorSpaceRelease(colorSpace);
+    
+    //Gradient center
+    CGPoint gradCenter= CGPointMake(bounds.size.width/2.0, bounds.size.height/2.0);
+    //Gradient radius
+    float gradRadius = MIN(bounds.size.width , bounds.size.height) ;
+    //Gradient draw
+    CGContextDrawRadialGradient (context, gradient, gradCenter,
+                                 0, gradCenter, gradRadius,
+                                 kCGGradientDrawsAfterEndLocation);
+    CGGradientRelease(gradient);
+    
+    
+    CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, bounds.size.width, bounds.size.height), imgRef);
+    UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return imageCopy;
+}
 @end

@@ -67,7 +67,7 @@
         get.center = CGPointMake(self.bounds.size.width/2.0-6.0, self.bounds.size.height/2.0+5.0);
         get.layer.borderWidth = 2.0;
         get.layer.cornerRadius = get.frame.size.height/2.0;
-        get.layer.borderColor = [[UIColor alloc] initWithRed:103.0/255.0 green:164.0/255.0 blue:219.0/255.0 alpha:1.0].CGColor;
+        get.layer.borderColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0].CGColor;
         [self addSubview:get];
         UIBezierPath* aPath = [UIBezierPath bezierPath];
         racetrack = [CAShapeLayer layer];
