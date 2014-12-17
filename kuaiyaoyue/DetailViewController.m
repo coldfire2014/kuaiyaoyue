@@ -25,7 +25,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"我是详情";
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
+    label.text = @"快邀约";
+    [label sizeToFit];
+    label.textColor = [[UIColor alloc] initWithRed:1 green:1 blue:1 alpha:1.0];
+    label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
+    [self.navigationItem setTitleView:label];
+    
     self.navigationController.navigationBar.alpha = 0.8;
     data = [[NSMutableArray alloc] init];
     NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -36,6 +43,7 @@
     [data addObject:dic];
     selectRow = -1;
     _tableView.contentInset = UIEdgeInsetsMake(-64, 0 ,0, 0);
+    
     
     [self setupRefresh];
 }

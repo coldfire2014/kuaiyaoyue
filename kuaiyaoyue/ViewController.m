@@ -61,7 +61,7 @@
     
     [self headview];
     //滑动监听
-    _tableview.contentInset = UIEdgeInsetsMake(-20, 0 ,0, 0);
+//    _tableview.contentInset = UIEdgeInsetsMake(-20, 0 ,0, 0);
 //   [_tableview setContentOffset:CGPointMake(0, -196) animated:YES];
     
     NSDate * date = [NSDate date];
@@ -77,6 +77,8 @@
         NSLog(@"已登录");
     }
     
+    
+
     
     
 }
@@ -265,5 +267,6 @@
 //    
 //    _showtm.backgroundColor = [[UIColor alloc] initWithRed:(69.0/255.0) green:(76.0/255.0) blue:(78.0/255.0) alpha:1 - (0.5-(0.5)*(alpha))];
 //}
+
 
 @end

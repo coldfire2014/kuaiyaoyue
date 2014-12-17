@@ -17,7 +17,7 @@
         self.opaque = NO;
         self.backgroundColor = [UIColor clearColor];
         
-        goingColor = [[UIColor alloc] initWithRed:76.0/255.0 green:196.0/255.0 blue:134.0/255.0 alpha:1.0];
+        goingColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
         getColor = [[UIColor alloc] initWithRed:103.0/255.0 green:164.0/255.0 blue:219.0/255.0 alpha:1.0];
         goneColor = [[UIColor alloc] initWithWhite:0.5 alpha:1.0];
         
