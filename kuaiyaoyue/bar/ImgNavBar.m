@@ -29,9 +29,9 @@
         layer.position = bk.center;
         layer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 0, 1);
         layer.colors = [[NSArray alloc] initWithObjects:
-                        (id)[[UIColor alloc] initWithRed:75.0/255.0 green:139.0/255.0 blue:231.0/255.0 alpha:1.0].CGColor,
-                        (id)[[UIColor alloc] initWithRed:105.0/255.0 green:190.0/255.0 blue:241.0/255.0 alpha:1.0].CGColor,
-                        (id)[[UIColor alloc] initWithRed:122.0/255.0 green:224.0/255.0 blue:245.0/255.0 alpha:1.0].CGColor, nil];
+                        (id)[[UIColor alloc] initWithRed:204.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1.0].CGColor,
+                        (id)[[UIColor alloc] initWithRed:224.0/255.0 green:78.0/255.0 blue:78.0/255.0 alpha:1.0].CGColor,
+                        (id)[[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0].CGColor, nil];
         layer.locations = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:0.65],[NSNumber numberWithDouble:1.0], nil];
         [bk.layer addSublayer:layer];
         bk.tag = 101;
