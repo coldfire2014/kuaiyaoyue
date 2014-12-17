@@ -81,7 +81,7 @@
                 webbg0.tag = 990+i;
                 webbg0.layer.anchorPoint = CGPointMake(0.5, 1);
                 webbg0.center = CGPointMake(webbg0.center.x, bk.bounds.size.height);
-                webbg0.layer.transform = [self transformForItemView:webbg0 withOffset:i-currentItemIndex];
+//                webbg0.layer.transform = [self transformForItemView:webbg0 withOffset:i-currentItemIndex];
                 [bk addSubview:webbg0];
             } else {
                 NSLog(@"Not respondsToSelector:@selector(cellForItemAtIndex:)");
@@ -95,7 +95,7 @@
                 webbg0.tag = 990+i;
                 webbg0.layer.anchorPoint = CGPointMake(1, 0);
                 webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + self.itemSize.width/2.0, bk.bounds.size.height/2.0 - self.itemSize.height/2.0);
-                webbg0.layer.transform = [self ftransformForItemView:webbg0 withOffset:i];
+//                webbg0.layer.transform = [self ftransformForItemView:webbg0 withOffset:i];
                 [bk addSubview:webbg0];
             } else {
                 NSLog(@"Not respondsToSelector:@selector(cellForItemAtIndex:)");
@@ -107,7 +107,7 @@
     currentItemIndex = 0;
     for (int i = 0; i<itemCount; i++) {
         UIView* webbg0 = [self viewWithTag:990+i];
-        [UIView animateWithDuration:0.4 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             webbg0.layer.transform = [self transformForItemView:webbg0 withOffset:i];
         }];
     }

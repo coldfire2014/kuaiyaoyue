@@ -43,7 +43,7 @@
     
     CGFloat subTap = -20;
     if (ISIOS7LATER) {
-        mainScreenFrame = [[UIScreen mainScreen] bounds];
+        mainScreenFrame = [[UIScreen mainScreen] bounds];//568,667
         subTap = 0;
     }
     CGFloat titleHeight = 30;
@@ -59,10 +59,6 @@
     CGFloat w =  h * mainScreenFrame.size.width / mainScreenFrame.size.height;
     tempList.itemSize = CGSizeMake(w,h);//定义cell的显示大小
     
-    [tempList reloadViews];//加载cell
-    [tempList showList];//进厂动画
-    [self didShowItemAtIndex:0];
-    
     MenuBackBtn* backBtn = [[MenuBackBtn alloc] initWithFrame:CGRectMake(0, 20.0, 88.0/2.0, 88.0/2.0) andType:self.type];
     backBtn.tag = 303;
     [self.view addSubview:backBtn];
@@ -75,6 +71,13 @@
 //    btnView.layer.transform = CATransform3DMakeRotation(-M_PI*2.0-M_PI_4,0,0,1);
     [self.view addSubview:btnView];
     
+    [tempList reloadViews];//加载cell
+}
+- (void)viewDidAppear:(BOOL)animated{
+    //showList加载数据完成后调用
+    [tempList showList];//进厂动画
+    [self didShowItemAtIndex:0];
+
 }
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];

@@ -25,8 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"ddd";
-    
+    self.title = @"我是详情";
+    self.navigationController.navigationBar.alpha = 0.8;
     data = [[NSMutableArray alloc] init];
     NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                          @"哈哈哈",@"name",
@@ -39,9 +39,9 @@
     
     [self setupRefresh];
 }
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [self.navigationController.navigationBar setHidden:NO];
-    
 }
 
 - (void)didReceiveMemoryWarning {

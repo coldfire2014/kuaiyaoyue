@@ -22,10 +22,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        self.layer.shadowRadius = 2;
-        self.layer.shadowOpacity = 0.7;
-        self.layer.shadowColor = [UIColor grayColor].CGColor;
-        self.layer.shadowOffset = CGSizeMake(1, 1);
         
         UIView* tmp = [[UIView alloc] initWithFrame:frame];
         tmp.backgroundColor = [UIColor clearColor];
@@ -37,6 +33,16 @@
         imgv.center = CGPointMake( frame.size.width/2.0, frame.size.height/2.0 );
         imgv.layer.cornerRadius = 2;
         imgv.layer.masksToBounds = YES;
+        CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+        if (mainScreenFrame.size.height>480) {
+            self.layer.shadowRadius = 2;
+            self.layer.shadowOpacity = 1.0;
+            self.layer.shadowColor = [UIColor grayColor].CGColor;
+            self.layer.shadowOffset = CGSizeMake(1, 1);
+        } else {
+//            imgv.layer.borderWidth = 2.0;
+//            imgv.layer.borderColor = [[UIColor alloc] initWithWhite:0.5 alpha:0.4].CGColor;
+        }
         [tmp addSubview:imgv];
         [self addSubview:tmp];
     }
