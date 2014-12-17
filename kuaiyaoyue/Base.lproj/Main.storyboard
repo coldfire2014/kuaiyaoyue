@@ -622,7 +622,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="196"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardOne.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="FYe-7L-8BU">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_list.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="FYe-7L-8BU">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="196"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQV-Tk-9rp">

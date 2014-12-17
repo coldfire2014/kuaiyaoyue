@@ -19,7 +19,7 @@
 }
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext{
     if (isPresent) {
-        return 0.8;
+        return 1.0;
     }
     return 0.4;
 }
@@ -37,7 +37,14 @@
         anim.duration = [self transitionDuration:transitionContext];
         anim.delegate = self;
         [fromView.view.layer addAnimation:anim forKey:@"opacity"];
-        
+        UIView* coverView = [toView.view viewWithTag:299];
+        if (coverView != nil) {
+            CAKeyframeAnimation* alphaAnim = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
+            alphaAnim.values = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:1.0], nil];
+            alphaAnim.removedOnCompletion = NO;
+            alphaAnim.duration = 0.2;
+            [coverView.layer addAnimation:alphaAnim forKey:@"opacity"];
+        }
         UIView* bgView = [toView.view viewWithTag:301];
         CreateBtn* btnView = (CreateBtn*)[toView.view viewWithTag:302];
         CAKeyframeAnimation* alphaAnim = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
@@ -143,13 +150,16 @@
     } else {
         [[transitionContext containerView] addSubview:toView.view];
         toView.view.alpha = 0.0;
+        UIView* coverView = [fromView.view viewWithTag:299];
         UIView* bgView = [fromView.view viewWithTag:301];
         CreateBtn* btnView = (CreateBtn*)[fromView.view viewWithTag:302];
         btnView.layer.transform = CATransform3DMakeRotation(3.0*M_PI_4,0,0,1);
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             bgView.alpha = 0;
             btnView.layer.transform = CATransform3DIdentity;
-            
+            if (coverView != nil) {
+                coverView.alpha = 0;
+            }
         } completion:^(BOOL finished) {
             toView.view.alpha = 1.0;
             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];

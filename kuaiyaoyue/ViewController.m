@@ -133,9 +133,9 @@
 //        des.maxCount = 2;
 //        des.needAnimation = YES;
 //        des.delegate = self;
-    } else {
-//        MenuViewController* des = (MenuViewController*)segue.destinationViewController;
-//        des.bgimg = (UIImage*)sender;
+    } else if ([segue.identifier compare:@"menu"] == NSOrderedSame ) {
+        MenuViewController* des = (MenuViewController*)segue.destinationViewController;
+        des.bgimg = (UIImage*)sender;
     }
 }
 - (void)didReceiveMemoryWarning {

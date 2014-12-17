@@ -21,9 +21,31 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor clearColor];
     UIImageView* bk = [[UIImageView alloc] initWithImage:self.bgimg];
+    
+    UIVisualEffectView* all = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+    all.frame = bk.bounds;
+    all.tag = 299;
+    [bk addSubview:all];
+    UIColor* bgCover;
+    if (nil != all) {
+        bgCover = [UIColor clearColor];
+    } else {
+        bgCover = [[UIColor alloc] initWithWhite:0.9 alpha:0.9];
+//        GPUImagePicture *picture = [[GPUImagePicture alloc] initWithImage:img];
+//        GPUImageView *webbg2 = [[GPUImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
+//        webbg2.layer.contentsGravity = kCAGravityTop;
+//        webbg2.clipsToBounds = YES;
+//        //        webbg2.layer.cornerRadius = radiu;
+//        GPUImageGaussianBlurFilter *_blurFilter = [[GPUImageGaussianBlurFilter alloc] init];//毛玻璃
+//        _blurFilter.blurRadiusInPixels = 2.0f;
+//        [picture addTarget:_blurFilter];
+//        [_blurFilter addTarget:webbg2];
+//        [picture processImage];
+//        [self.view addSubview:webbg2];
+    }
     [self.view addSubview:bk];
     UIView* bgView = [[UIView alloc] initWithFrame:self.view.bounds];
-    bgView.backgroundColor = [[UIColor alloc] initWithWhite:0.9 alpha:0.7];
+    bgView.backgroundColor = bgCover;
     bgView.layer.opacity = 1;
     bgView.tag = 301;
     [self.view addSubview:bgView];
@@ -90,28 +112,6 @@
     [three addGestureRecognizer:tapThree];
     UITapGestureRecognizer* tapFour = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFour)];
     [four addGestureRecognizer:tapFour];
-    
-//    UIImage* img = self.bgimg;
-//    UIImageView* imgv = [[UIImageView alloc] initWithImage:img];
-//    UIVisualEffectView* all = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-//    all.frame = self.view.bounds;
-//    [imgv addSubview:all];
-//    if (nil != all) {
-//        [self.view addSubview:imgv];
-//    } else {
-//        GPUImagePicture *picture = [[GPUImagePicture alloc] initWithImage:img];
-//        GPUImageView *webbg2 = [[GPUImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
-//        webbg2.layer.contentsGravity = kCAGravityTop;
-//        webbg2.clipsToBounds = YES;
-//        //        webbg2.layer.cornerRadius = radiu;
-//        GPUImageGaussianBlurFilter *_blurFilter = [[GPUImageGaussianBlurFilter alloc] init];//毛玻璃
-//        _blurFilter.blurRadiusInPixels = 2.0f;
-//        [picture addTarget:_blurFilter];
-//        [_blurFilter addTarget:webbg2];
-//        [picture processImage];
-//        [self.view addSubview:webbg2];
-//    }
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,9 +119,9 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)back{
-    UIVisualEffectView* all = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
-    all.frame = self.view.bounds;
-    [self.view addSubview:all];
+//    UIVisualEffectView* all = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+//    all.frame = self.view.bounds;
+//    [self.view addSubview:all];
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didTapOne{

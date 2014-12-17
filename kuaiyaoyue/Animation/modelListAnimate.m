@@ -116,7 +116,7 @@
         _transitionContext = transitionContext;
     }else{
         [[transitionContext containerView] addSubview:toView.view];
-        toView.view.alpha = 0.0;
+        toView.view.alpha = 1.0;
 //        UIView* bgView = [fromView.view viewWithTag:301];
 //        CreateBtn* btnView = (CreateBtn*)[fromView.view viewWithTag:302];
 //        btnView.layer.transform = CATransform3DMakeRotation(3.0*M_PI_4,0,0,1);

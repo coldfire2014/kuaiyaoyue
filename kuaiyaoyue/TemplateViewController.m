@@ -22,13 +22,22 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor clearColor];
     UIImageView* bk = [[UIImageView alloc] initWithImage:self.bgimg];
+    UIVisualEffectView* all = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+    all.frame = bk.bounds;
+    all.tag = 299;
+    [bk addSubview:all];
+    UIColor* bgCover;
+    if (nil != all) {
+        bgCover = [UIColor clearColor];
+    } else {
+        bgCover = [[UIColor alloc] initWithWhite:0.9 alpha:0.9];
+    }
     [self.view addSubview:bk];
     UIView* bgView = [[UIView alloc] initWithFrame:self.view.bounds];
-    bgView.backgroundColor = [[UIColor alloc] initWithWhite:0.9 alpha:0.7];
+    bgView.backgroundColor = bgCover;
     bgView.layer.opacity = 1;
     bgView.tag = 301;
     [self.view addSubview:bgView];
-    
     //    这段兼容ios6
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
     
