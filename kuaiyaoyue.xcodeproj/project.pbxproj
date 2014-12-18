@@ -76,6 +76,7 @@
 		84E842CC1A2EFDCB00A401A0 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842BB1A2EFDCB00A401A0 /* UIWebView+AFNetworking.m */; };
 		84E842D31A2F087A00A401A0 /* HttpManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842D21A2F087A00A401A0 /* HttpManage.m */; };
 		84E842D71A2F0E9E00A401A0 /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842D61A2F0E9E00A401A0 /* MusicInfo.m */; };
+		84FE0B831A426440005A9599 /* PhotoGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0B821A426440005A9599 /* PhotoGridCell.m */; };
 		E524FF3B1A3ED9A5002E7DC0 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */; };
 		E54170E51A3EABC60022D2CC /* ctView.m in Sources */ = {isa = PBXBuildFile; fileRef = E54170E41A3EABC60022D2CC /* ctView.m */; };
 		E54851D81A35AF0500590E5C /* coverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D71A35AF0500590E5C /* coverSegue.m */; };
@@ -250,6 +251,8 @@
 		84E842D21A2F087A00A401A0 /* HttpManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManage.m; sourceTree = "<group>"; };
 		84E842D51A2F0E9E00A401A0 /* MusicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicInfo.h; sourceTree = "<group>"; };
 		84E842D61A2F0E9E00A401A0 /* MusicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicInfo.m; sourceTree = "<group>"; };
+		84FE0B811A426440005A9599 /* PhotoGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoGridCell.h; sourceTree = "<group>"; };
+		84FE0B821A426440005A9599 /* PhotoGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoGridCell.m; sourceTree = "<group>"; };
 		E524FF391A3ED9A5002E7DC0 /* TemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateCell.h; sourceTree = "<group>"; };
 		E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateCell.m; sourceTree = "<group>"; };
 		E54170E31A3EABC60022D2CC /* ctView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ctView.h; path = element/ctView.h; sourceTree = "<group>"; };
@@ -363,6 +366,8 @@
 				E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */,
 				841728A91A40385800272A0C /* DVCCell.h */,
 				841728AA1A40385800272A0C /* DVCCell.m */,
+				84FE0B811A426440005A9599 /* PhotoGridCell.h */,
+				84FE0B821A426440005A9599 /* PhotoGridCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -908,6 +913,7 @@
 				84B446D41A32BD7000546859 /* ShareViewController.m in Sources */,
 				84E842C21A2EFDCB00A401A0 /* AFURLRequestSerialization.m in Sources */,
 				84E842621A2EDF6B00A401A0 /* AppDelegate.m in Sources */,
+				84FE0B831A426440005A9599 /* PhotoGridCell.m in Sources */,
 				E55F5A0B1A3702E000B0D587 /* EditBtn.m in Sources */,
 				844825F61A31A4D20018240E /* PreviewViewController.m in Sources */,
 				844825EC1A31A46A0018240E /* HLEditViewController.m in Sources */,
