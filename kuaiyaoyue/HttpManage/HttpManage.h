@@ -31,6 +31,10 @@
 @end
 
 @interface HttpManage : NSObject
+//解压文件
++ (void)unzip:(NSString*)filePath filename:(NSString *) filename;
+//下载ZIP包
++ (void)postdownload :(NSString *)URL :(NSString *)zipname;
 
 //下载音乐
 +(void)DownMusic:(NSString *) url filepath:(NSString *) filepath cb:(void(^)(BOOL isOK))callback;
@@ -71,9 +75,9 @@
 //模板查询
 +(void)template:(NSString *)timestamp
                 size:(NSString *)size
-                cb:(void(^)(BOOL isOK ,NSMutableData *array))callback;
+                cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback;
 //更新模板
-+(void)templateRenewal:(NSString *)timestamp cb:(void(^)(BOOL isOK ,NSMutableData *array))callback;
++(void)templateRenewal:(NSString *)timestamp cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback;
 //婚礼提交
 +(void)marry:(NSString *)token
        bride:(NSString *)bride
@@ -119,7 +123,7 @@ closeTimestamp:(NSString *)closeTimestamp
 //查询历史记录
 +(void)multiHistory:(NSString *)token
                size:(NSString *)size
-                 cb:(void(^)(BOOL isOK ,NSMutableData *array))callback;
+                 cb:(void(^)(BOOL isOK ,NSDictionary *array))callback;
 
 //历史记录删除单个
 +(void)deleteRecords:(NSString *)unquieId

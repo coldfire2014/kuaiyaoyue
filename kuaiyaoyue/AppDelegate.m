@@ -35,6 +35,8 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
+    [WXApi registerApp:@"wx06ea6c3bc82c99ac" withDescription:@"sdyydome"];
+    
     return YES;
 }
 
@@ -74,26 +76,7 @@
     [[NSNotificationCenter defaultCenter] postNotification:ntfc];
     
     if (application.applicationState == UIApplicationStateActive){
-        //  @"{
-        //        //自定义参数
-        //        \"userinfo\":
-        //        {
-        //            \"name\":\"remote notice\"
-        //        },
-        //        //标准写法
-        //        \"aps\":
-        //        {
-        //            \"alert\":
-        //            {
-        //                \"action-loc-key\":\"Open\",//支持多语言
-        //                \"body\":\"messgae content\"//消息正文
-        //            },
-        //            \"badge\":1,//为App 的icon  标记 具体数值
-        //            \"sound\":\"default\" //播放的音频文件,default 表示系统默认的选择列铃声
-        //        }
-        //    }"
     }else{
-        //        self.viewController.maincenter.tabController.selectedIndex = 2;
     }
 }
 
@@ -117,13 +100,195 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    NSArray *fetchedObjects = [[DataBaseManage getDataBaseManage] QueryTemplate];
+    NSLog(@"%lu",(unsigned long)[fetchedObjects count]);
+    if ([fetchedObjects count] != 0) {
+        is_xz = NO;
+        Template *template = [fetchedObjects objectAtIndex:0];
+        NSString *timestamp = template.neftimestamp;
+        [self maxtemplate :timestamp];
+        
+        NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+//        NSString *uptime = [userInfo objectForKey:@"uptime"];
+//        if (uptime.length > 0) {
+//            timestamp = uptime;
+//        }
+//        [HttpManage templateRenewal:timestamp cb:^(BOOL isOK, NSArray *array) {
+//            if (isOK) {
+//                for (int i = 0; i < [array count]; i++) {
+//                    NSDictionary *dic = [array objectAtIndex:i];
+//                    BOOL is = [[DataBaseManage getDataBaseManage] UpdataInfo:dic];
+//                    if (i == ([array count]-1) && is) {
+//                        NSDictionary *dic1 = [array objectAtIndex:0];
+//                        
+//                        NSString *uptime = [dic1 objectForKey:@"renewal"];
+//                        [userInfo setObject:uptime forKey:@"uptime"];
+//                        [userInfo synchronize];
+//                        NSLog(@"哈哈哈-%@",uptime);
+//                    }}}
+//        }];
+    }else{
+        is_xz = YES;
+        [self maxtemplate :@"-1"];
+    }
+//    [self checkToken];
 }
+
+-(void)maxtemplate:(NSString *)timestamp{
+    [HttpManage template:timestamp size:@"-1" cb:^(BOOL isOK, NSMutableArray *array) {
+        if (isOK) {
+            for (int i = 0; i < [array count]; i++) {
+                NSDictionary *resultDic = [array objectAtIndex:i];
+                if (is_xz) {
+                    [self zip:[resultDic objectForKey:@"zipUrl"] :[NSString stringWithFormat:@"%d",i]];
+                }
+                [[DataBaseManage getDataBaseManage] AddTemplate:resultDic];
+            }
+        }
+    }];
+    
+}
+
+-(void)zip : (NSString *)zip :(NSString *) i{
+    if ([zip length] > 0) {
+        NSArray *array = [zip componentsSeparatedByString:@"/"];
+        NSString *name = [NSString stringWithFormat:@"%@",[array objectAtIndex:([array count]- 1)]];
+        NSArray *array1 = [name componentsSeparatedByString:@"."];
+        NSString *name1 = [NSString stringWithFormat:@"%@",[array1 objectAtIndex:([array1 count]- 2)]];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
+        [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+        NSString *path = [testDirectory stringByAppendingPathComponent:name1];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            [HttpManage postdownload:zip :name1];
+        }
+    }
+}
+
+-(void)checkToken{
+    if ([UDObject gettoken].length > 0) {
+        [HttpManage checkToken:[UDObject gettoken] cb:^(BOOL isOK, NSDictionary *dic) {
+            if (isOK) {
+                if ([[dic objectForKey:@"result"] isEqualToString:@"success"]) {
+                    
+                }else{
+                    
+//                    [DataBase DelUserdataALL:_managedObjectContext];
+//                    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+//                    [userInfo setObject:@"" forKey:@"phone"];
+//                    [userInfo setObject:@"" forKey:@"hlopen"];
+//                    [userInfo setObject:@"" forKey:@"userid"];
+//                    [userInfo setObject:@"" forKey:@"fjopen"];
+//                    [userInfo synchronize];
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"账号以过期" message:@"需重新登录" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                    [alert show];
+                    
+                    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+                    [window makeKeyAndVisible];
+                    _window = window;
+                    _window.rootViewController = [storyBoard instantiateInitialViewController];
+                    
+                }
+            }else{
+                
+            }
+        }];
+    }
+}
+
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    //    return  [WXApi handleOpenURL:url delegate:self];
+    NSLog(@"%@",url);
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    //    BOOL isSuc = [WXApi handleOpenURL:url delegate:self];
+    return [WXApi handleOpenURL:url delegate:self];
+    //    return  isSuc;
+}
+
+-(void) onReq:(BaseReq*)req
+{
+    NSLog(@"req-%@",req);
+}
+
+//回调
+-(void) onResp:(BaseResp*)resp
+{
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        if (resp.errCode == 0) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"back" object:self];
+//            [SVProgressHUD showSuccessWithStatus:@"分享成功" duration:1];
+        }
+    }else{
+        if (resp.errCode == 0) {
+            SendAuthResp *req = (SendAuthResp *)resp;
+            [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
+            [self getAccess_token:req.code];
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"nowx" object:self];
+        }
+    }
+}
+
+-(void)getAccess_token:(NSString *) code
+{
+    //https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+    
+    NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",@"wx06ea6c3bc82c99ac",@"1e9e5b207389d2959a43ad203f74a6fd",code];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *zoneUrl = [NSURL URLWithString:url];
+        NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+        NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (data) {
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                NSLog(@"%@",dic);
+                [self getUserInfo:[dic objectForKey:@"access_token"] :[dic objectForKey:@"openid"]];
+            }
+        });
+    });
+}
+
+-(void)getUserInfo :(NSString *) access_token :(NSString *)openid
+{
+    // https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID
+    
+    NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",access_token,openid];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *zoneUrl = [NSURL URLWithString:url];
+        NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+        NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (data) {
+                [SVProgressHUD dismiss];
+                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_SDWX" object:self userInfo:dic];
+            }
+        });
+        
+    });
+}
+
 
 #pragma mark - Core Data stack
 

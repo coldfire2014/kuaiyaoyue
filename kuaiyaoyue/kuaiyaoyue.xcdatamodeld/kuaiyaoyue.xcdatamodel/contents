@@ -1,12 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Info" representedClassName="Info" syncable="YES">
+        <attribute name="neffontcolor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neffontsize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefheight" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefparametername" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neftemplateid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neftimetype" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefwidth" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefx" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefy" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Music" representedClassName="Music" syncable="YES">
         <attribute name="nefname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="neftypeid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nefurl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Template" representedClassName="Template" syncable="YES">
+        <attribute name="nefbackcolor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefbackground" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefid" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nefintegral" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nefmark" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="nefmbbg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefmbdw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefpreview" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefthumburl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neftimestamp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neftypeId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nefurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefzipurl" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Userdata" representedClassName="Userdata" syncable="YES">
+        <attribute name="nefAccount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefaddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefbackground" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefbride" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefcardtypeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefclosetimestamp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefcontent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefdate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefgroom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefimages" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefinviter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neflocation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neflogo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefmusic" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefmusicurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefnumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefpartyname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neftape" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neftemplateurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefthumb" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neftimestamp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neftitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neftotal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neftype" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="neftypeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefurl" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
+        <element name="Info" positionX="-54" positionY="108" width="128" height="180"/>
         <element name="Music" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Template" positionX="-63" positionY="9" width="128" height="255"/>
+        <element name="Userdata" positionX="-54" positionY="117" width="128" height="465"/>
     </elements>
 </model>

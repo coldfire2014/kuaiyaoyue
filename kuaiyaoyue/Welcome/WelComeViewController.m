@@ -10,6 +10,8 @@
 #import "UDObject.h"
 #import "picViewAnimate.h"
 #import "coverAnimation.h"
+//#import "ZipDown.h"
+
 @interface WelComeViewController ()
 
 @end
@@ -19,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+//    [ZipDown Unzip];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -28,7 +31,7 @@
     [super viewDidAppear:animated];
     
     NSString *name = nil;
-    if ([[UDObject getOPEN] length] > 0) {
+    if ([[UDObject gettoken] length] > 0) {
         name = @"main";
     }else{
         name = @"wel";

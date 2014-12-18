@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HLEditViewController : UIViewController
+@interface HLEditViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *gridview;
+@property (weak, nonatomic) IBOutlet UIView *bottomview;
+
+@property (strong ,nonatomic) NSMutableArray *data;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollview;
 
 @end

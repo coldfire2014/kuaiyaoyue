@@ -11,8 +11,14 @@
 #import "TwoViewController.h"
 #import "ThreeViewController.h"
 #import "FourViewController.h"
-
+#import "WXApi.h"
 #import "coverAnimation.h"
+#import "HttpManage.h"
+#import "UDObject.h"
+#import "SVProgressHUD.h"
+#import "DataBaseManage.h"
+#import "UDObject.h"
+
 @interface PageViewController ()
 
 @end
@@ -32,14 +38,44 @@
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:@"MSG_LOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(sdwx:)
+                                                 name: @"MSG_SDWX"
+                                               object: nil];
 }
 -(void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN" object:nil];
 }
 -(void)login{
-    [self performSegueWithIdentifier:@"wel2main" sender:nil];
+//    [self performSegueWithIdentifier:@"wel2main" sender:nil];
+    SendAuthReq* req =[[SendAuthReq alloc ] init];
+    req.scope = @"snsapi_userinfo" ;
+    req.state = @"com.nef" ;
+    //第三方向微信终端发送一个SendAuthReq消息结构
+    [WXApi sendReq:req];
+    
 }
+
+
+-(void)sdwx :(NSNotification*)notification{
+    
+    NSDictionary *dictionary = [notification userInfo];
+    NSString *name = [dictionary objectForKey:@"nickname"];
+    NSString *opneid = [dictionary objectForKey:@"openid"];
+    [SVProgressHUD show];
+    [HttpManage registers:name userPwd:@"123456" phoneId:[UDObject getTSID] openId:opneid cb:^(BOOL isOK, NSDictionary *dic) {
+        [SVProgressHUD dismiss];
+        if (isOK) {
+            [UDObject setUserInfo:name userName:name token:[dic objectForKey:@"token"]];
+             [self performSegueWithIdentifier:@"wel2main" sender:nil];
+        }else{
+        
+        }
+    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

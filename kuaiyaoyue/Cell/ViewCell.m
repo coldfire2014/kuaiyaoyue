@@ -7,6 +7,7 @@
 //
 
 #import "ViewCell.h"
+#import "TimeTool.h"
 
 @implementation ViewCell{
     StateView* s;
@@ -16,10 +17,17 @@
     // Initialization code
     NSLog(@"%f",_widht);
     s = [[StateView alloc] initWithFrame:CGRectMake(0,-5, 55, 55)];
-    [s setState:StateGoing withAll:@"19" andAdd:@""];
-    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
     
     [_show_time addSubview:s];
+    
+    _show_img.layer.cornerRadius = 3;
+    _show_img.clipsToBounds = YES;
+    _show_img.contentMode = UIViewContentModeScaleAspectFill;
+    
+    _show_send.layer.cornerRadius = 3;
+    
+    
+    
 
 }
 
@@ -29,13 +37,55 @@
     // Configure the view for the selected state
 }
 
+//0自定义，1为婚礼，2为派对
+
 -(void)layoutSubviews{
     [super layoutSubviews];
-    _show_img.layer.cornerRadius = 3;
-    _show_img.clipsToBounds = YES;
-    _show_img.contentMode = UIViewContentModeScaleAspectFill;
+    int type = _info.neftype;
+    long long kstime = 0;
+    long long endtime = 0;
     
-    _show_send.layer.cornerRadius = 3;
+    switch (type) {
+        case 0:
+            _show_title.text = _info.neftitle;
+            _show_endtime.text = [NSString stringWithFormat:@"报名截止：%@",_info.nefclosetimestamp];
+            _show_hdtime.text = [NSString stringWithFormat:@"活动时间：%@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
+            [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
+            
+            kstime = [_info.neftimestamp longLongValue];
+            endtime = [_info.nefclosetimestamp longLongValue];
+            
+            [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:kstime] EndTime:[NSDate dateWithTimeIntervalSinceNow:endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+            
+            break;
+        case 1:
+            _show_title.text = [NSString stringWithFormat:@"%@&%@ 婚礼",_info.nefgroom,_info.nefbride];
+            _show_endtime.text = [NSString stringWithFormat:@"报名截止：%@",_info.neftimestamp];
+            _show_hdtime.text = [NSString stringWithFormat:@"活动时间：%@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
+            [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
+            
+            kstime = [_info.nefdate longLongValue];
+            endtime = [_info.neftimestamp longLongValue];
+            
+            [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:kstime] EndTime:[NSDate dateWithTimeIntervalSinceNow:endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+            
+            break;
+        case 2:
+            _show_title.text = _info.nefpartyname;
+            _show_endtime.text = [NSString stringWithFormat:@"报名截止：%@",_info.nefclosetimestamp];
+            _show_hdtime.text = [NSString stringWithFormat:@"活动时间：%@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
+            [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
+            
+            kstime = [_info.neftimestamp longLongValue];
+            endtime = [_info.nefclosetimestamp longLongValue];
+            
+            [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:kstime] EndTime:[NSDate dateWithTimeIntervalSinceNow:endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+            
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (IBAction)send_onclick:(id)sender {
