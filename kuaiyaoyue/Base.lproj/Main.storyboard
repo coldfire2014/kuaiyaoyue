@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wbj-gc-hIR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oWB-DN-aF8">
     <dependencies>
         <deployment version="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -473,6 +473,27 @@
                                                         <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-kM-Ow0">
+                                                        <rect key="frame" x="9" y="43" width="582" height="106"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="9" minimumInteritemSpacing="9" id="au4-d5-jzh">
+                                                            <size key="itemSize" width="106" height="106"/>
+                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        </collectionViewFlowLayout>
+                                                        <cells>
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5N3-eK-bwL">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                </view>
+                                                            </collectionViewCell>
+                                                        </cells>
+                                                    </collectionView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
@@ -1800,8 +1821,8 @@
     </scenes>
     <resources>
         <image name="bg_list.jpg" width="640" height="360"/>
-        <image name="bg_top.jpg" width="640" height="360"/>
-        <image name="cardOne.jpg" width="640" height="360"/>
+        <image name="bg_top.jpg" width="640" height="202"/>
+        <image name="cardOne.jpg" width="296" height="478"/>
         <image name="ic_32_clock" width="16" height="16"/>
         <image name="ic_32_timer" width="16" height="16"/>
         <image name="ic_38_save" width="19" height="19"/>
@@ -1822,12 +1843,12 @@
         <image name="ic_c_timer" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cEa-HE-o2s"/>
-        <segue reference="ztp-xN-fnN"/>
-        <segue reference="D53-YK-KM5"/>
+        <segue reference="fps-RF-Hk5"/>
         <segue reference="Oey-PZ-F9W"/>
-        <segue reference="x3h-Pp-84V"/>
+        <segue reference="D53-YK-KM5"/>
+        <segue reference="ztp-xN-fnN"/>
         <segue reference="keJ-rR-p7N"/>
-        <segue reference="Tpj-6l-Acb"/>
+        <segue reference="x3h-Pp-84V"/>
+        <segue reference="luI-zA-BtH"/>
     </inferredMetricsTieBreakers>
 </document>
