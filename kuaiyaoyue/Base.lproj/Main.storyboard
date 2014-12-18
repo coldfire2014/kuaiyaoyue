@@ -1856,12 +1856,12 @@
         <image name="ic_c_timer" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fps-RF-Hk5"/>
+        <segue reference="D53-YK-KM5"/>
         <segue reference="FZT-Wq-vqX"/>
         <segue reference="Tpj-6l-Acb"/>
         <segue reference="1Qf-a2-pbq"/>
-        <segue reference="yXU-Vc-xFb"/>
         <segue reference="UoY-ek-b61"/>
-        <segue reference="I0j-Cp-NYv"/>
+        <segue reference="yXU-Vc-xFb"/>
+        <segue reference="fps-RF-Hk5"/>
     </inferredMetricsTieBreakers>
 </document>

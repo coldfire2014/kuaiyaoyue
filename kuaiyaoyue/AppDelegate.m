@@ -8,8 +8,13 @@
 
 #import "AppDelegate.h"
 #import "UDObject.h"
+#import "DataBaseManage.h"
+#import "Template.h"
+#import "HttpManage.h"
 #import "PCHeader.h"
-@interface AppDelegate ()
+@interface AppDelegate (){
+    BOOL is_xz;
+}
 
 @end
 

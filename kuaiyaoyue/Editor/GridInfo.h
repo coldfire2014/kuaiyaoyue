@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @interface GridInfo : NSObject
 
 @property (strong ,nonatomic) UIImage *img;
