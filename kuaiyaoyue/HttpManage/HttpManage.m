@@ -9,7 +9,7 @@
 #import "HttpManage.h"
 //#import "ZipArchive.h"
 
-#define HTTPURL @"http://test.kyy121.com/"
+#define HTTPURL @"http://115.29.11.57/"
 /*
 43    //BadCredentialsException     密码不正确
 53    VerificationTimeoutException    验证码超时
@@ -208,6 +208,7 @@ password:1235456                     //用户密码
                             nil];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUser/registers.aspx"];
+    NSLog(@"%@-%@",url,params);
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
@@ -311,14 +312,15 @@ password:1235456                     //用户密码
  */
 +(void)template:(NSString *)timestamp
            size:(NSString *)size
-             cb:(void(^)(BOOL isOK ,NSMutableData *array))callback{
+             cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             timestamp,@"timestamp",size,@"size",nil];
+    NSLog(@"%@",params);
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefTemplate/template.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
-        NSMutableData *array = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+        NSMutableArray *array = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
         callback(YES,array);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
@@ -332,14 +334,14 @@ password:1235456                     //用户密码
  更新模板
  "timestamp":"1407915296703", //上一次更新时间，为-1则是不更新
  */
-+(void)templateRenewal:(NSString *)timestamp cb:(void(^)(BOOL isOK ,NSMutableData *array))callback{
++(void)templateRenewal:(NSString *)timestamp cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             timestamp,@"timestamp",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefTemplate/templateRenewal.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
-        NSMutableData *array = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+        NSMutableArray *array = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
         callback(YES,array);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
@@ -511,18 +513,19 @@ closeTimestamp:(NSString *)closeTimestamp
  */
 +(void)multiHistory:(NSString *)token
                size:(NSString *)size
-                 cb:(void(^)(BOOL isOK ,NSMutableData *array))callback{
+                 cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            token,@"token",size,@"size",nil];
+                            token,@"token",@"30",@"timestamp",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUserData/multiHistory.aspx"];
+    
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
-        NSMutableData *array = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+        NSDictionary *array = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
         callback(YES,array);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
-        NSLog(@"error-%@",error);
+        NSLog(@"error-%@",error.userInfo);
         callback(NO,nil);
     }];
 }
@@ -634,6 +637,29 @@ closeTimestamp:(NSString *)closeTimestamp
 //        [za UnzipCloseFile];
 //    }
 //}
+
+/*
+ 下载ZIP包
+ */
++ (void)postdownload:(NSString *)URL :(NSString *)zipname
+{
+    //下载并解压
+    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:URL]];
+    AFURLConnectionOperation *operation =   [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *testDirectory = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"sdyy"];
+    NSString *filePath = [testDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.zip",zipname]];
+    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:filePath append:NO];
+    [operation setCompletionBlock:^{
+        NSLog(@"downloadComplete!");
+        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+            NSLog(@"存在");
+//            [self unzip:filePath :testDirectory];
+        }
+    }];
+    [operation start];
+}
+
 
 /*
  文件上传-图片

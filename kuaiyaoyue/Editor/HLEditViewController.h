@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomview;
 
 @property (strong ,nonatomic) NSMutableArray *data;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollview;
 
 @end

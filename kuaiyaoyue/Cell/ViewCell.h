@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "BigStateView.h"
+#import "Userdata.h"
 
 @interface ViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *show_img;
 @property (weak, nonatomic) IBOutlet UIButton *show_send;
 - (IBAction)send_onclick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *show_time;
+@property (weak, nonatomic) IBOutlet UILabel *show_title;
+@property (weak, nonatomic) IBOutlet UILabel *show_endtime;
+@property (weak, nonatomic) IBOutlet UILabel *show_hdtime;
+@property (weak, nonatomic) Userdata *info;
 
 @property CGFloat widht;
 

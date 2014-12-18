@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oWB-DN-aF8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wbj-gc-hIR">
     <dependencies>
         <deployment version="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -472,11 +472,11 @@
                                                         <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-kM-Ow0">
-                                                        <rect key="frame" x="9" y="43" width="582" height="115"/>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-kM-Ow0">
+                                                        <rect key="frame" x="9" y="43" width="582" height="345"/>
                                                         <color key="backgroundColor" red="0.8980392157" green="0.3921568627" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="115" id="2dg-SZ-5dC"/>
+                                                            <constraint firstAttribute="height" constant="345" id="9cM-Cp-Y8B"/>
                                                         </constraints>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="9" minimumInteritemSpacing="9" id="au4-d5-jzh">
                                                             <size key="itemSize" width="106" height="106"/>
@@ -493,10 +493,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="OTy-kM-Ow0" firstAttribute="top" secondItem="ckD-j1-jOx" secondAttribute="top" constant="43" id="29l-Y5-dqF"/>
                                                     <constraint firstAttribute="width" constant="600" id="3pS-wE-k9w"/>
-                                                    <constraint firstItem="OTy-kM-Ow0" firstAttribute="leading" secondItem="ckD-j1-jOx" secondAttribute="leading" constant="9" id="Bc9-ao-Fer"/>
-                                                    <constraint firstAttribute="trailing" secondItem="OTy-kM-Ow0" secondAttribute="trailing" constant="9" id="FFT-J7-Syf"/>
-                                                    <constraint firstItem="OTy-kM-Ow0" firstAttribute="top" secondItem="ckD-j1-jOx" secondAttribute="top" constant="43" id="QOA-Vu-PA0"/>
+                                                    <constraint firstItem="OTy-kM-Ow0" firstAttribute="leading" secondItem="ckD-j1-jOx" secondAttribute="leading" constant="9" id="Lts-GT-ksk"/>
+                                                    <constraint firstAttribute="trailing" secondItem="OTy-kM-Ow0" secondAttribute="trailing" constant="9" id="Zbw-y5-zvr"/>
                                                     <constraint firstAttribute="height" constant="161" id="d5w-UN-kFs"/>
                                                 </constraints>
                                             </view>
@@ -629,6 +629,7 @@
                     <connections>
                         <outlet property="bottomview" destination="ckD-j1-jOx" id="JIH-UP-H1p"/>
                         <outlet property="gridview" destination="OTy-kM-Ow0" id="EQp-lv-fcb"/>
+                        <outlet property="scrollview" destination="c3l-FE-Ebe" id="Lle-sJ-F9e"/>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="yl" id="luI-zA-BtH"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="yy" id="fps-RF-Hk5"/>
                         <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="bym-b5-cxi"/>
@@ -1044,9 +1045,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="show_endtime" destination="gzt-54-GfR" id="jhB-DJ-eXZ"/>
+                                            <outlet property="show_hdtime" destination="37Z-L5-sMo" id="G40-Ur-8gZ"/>
                                             <outlet property="show_img" destination="eIE-P2-GYe" id="Fir-In-aBn"/>
                                             <outlet property="show_send" destination="l77-5R-uao" id="lZ6-hn-K1O"/>
                                             <outlet property="show_time" destination="fie-yD-usJ" id="iKx-OF-rFn"/>
+                                            <outlet property="show_title" destination="HyH-rN-Ixi" id="mTK-0Z-QCN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1852,12 +1856,12 @@
         <image name="ic_c_timer" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="luI-zA-BtH"/>
-        <segue reference="FZT-Wq-vqX"/>
         <segue reference="fps-RF-Hk5"/>
-        <segue reference="yXU-Vc-xFb"/>
+        <segue reference="FZT-Wq-vqX"/>
+        <segue reference="Tpj-6l-Acb"/>
         <segue reference="1Qf-a2-pbq"/>
+        <segue reference="yXU-Vc-xFb"/>
         <segue reference="UoY-ek-b61"/>
-        <segue reference="D53-YK-KM5"/>
+        <segue reference="I0j-Cp-NYv"/>
     </inferredMetricsTieBreakers>
 </document>

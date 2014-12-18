@@ -43,6 +43,8 @@
     assert = ASSETHELPER;
     assert.bReverse = YES;
     
+    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, 550)];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -104,6 +106,10 @@
     if (info.is_open) {
         [cell.del_button setHidden:NO];
         cell.show_img.image = info.img;
+        cell.show_img.alpha = 0;
+        [UIView animateWithDuration:0.3 animations:^{
+            cell.show_img.alpha = 1;
+        }];
     }else{
         [cell.del_button setHidden:YES];
         cell.show_img.image = nil;
@@ -111,6 +117,8 @@
     
     cell.show_img.clipsToBounds = YES;
     cell.show_img.contentMode = UIViewContentModeScaleAspectFill;
+    
+    _bottomview.clipsToBounds = YES;
     
     return cell;
     
@@ -142,7 +150,10 @@
     [_data removeObject:info];
     [_gridview reloadData];
     count ++;
-    [self sethigh];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self sethigh];
+    }];
+    
 }
 
 -(void)didSelectAssets:(NSArray*)items{
@@ -167,24 +178,28 @@
     [self.gridview reloadData];
     count -= items.count;
     
-    [self sethigh];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self sethigh];
+    }];
     
 }
 
 -(void)sethigh{
     long index = [_data count];
-    long height = _bottomview.frame.size.height;
+    long height = 161;
     if (index <= 3) {
         _bottomview.frame = CGRectMake(_bottomview.frame.origin.x, _bottomview.frame.origin.y, _bottomview.frame.size.width, height);
-        _gridview.frame = CGRectMake(_gridview.frame.origin.x, _gridview.frame.origin.y, _gridview.frame.size.width, 115);
+//        _gridview.frame = CGRectMake(_gridview.frame.origin.x, _gridview.frame.origin.y, _gridview.frame.size.width, 115);
     }else if(index > 3 && index <= 6){
         _bottomview.frame = CGRectMake(_bottomview.frame.origin.x, _bottomview.frame.origin.y, _bottomview.frame.size.width, height+115);
+        [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, 550+115)];
 //        _gridview.frame = CGRectMake(_gridview.frame.origin.x, _gridview.frame.origin.y, _gridview.frame.size.width, 115*2);
-        _gridview.contentSize = CGSizeMake(_gridview.frame.size.width, 115*2);
+//        _gridview.contentSize = CGSizeMake(_gridview.frame.size.width, 115*2);
         NSLog(@"%f",_gridview.frame.size.height);
     }else if(index > 6 && index <= 9){
         _bottomview.frame = CGRectMake(_bottomview.frame.origin.x, _bottomview.frame.origin.y, _bottomview.frame.size.width, height+115*2);
-        _gridview.frame = CGRectMake(_gridview.frame.origin.x, _gridview.frame.origin.y, _gridview.frame.size.width, 115*3);
+        [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, 550+115*2)];
+//        _gridview.frame = CGRectMake(_gridview.frame.origin.x, _gridview.frame.origin.y, _gridview.frame.size.width, 115*3);
     }
 }
 

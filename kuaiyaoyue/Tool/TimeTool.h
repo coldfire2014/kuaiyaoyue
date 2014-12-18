@@ -12,4 +12,6 @@
 
 +(NSString *)TopJZTime:(long) jztime;
 
++(NSString*)getFullTimeStr:(long long)time;
+
 @end

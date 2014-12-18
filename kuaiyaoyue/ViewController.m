@@ -17,9 +17,12 @@
 
 #import "HttpManage.h"
 #import "UDObject.h"
+#import "DataBaseManage.h"
+#import "Userdata.h"
+
 
 @interface ViewController (){
-    NSMutableArray *data;
+    NSArray *data;
 }
 
 @end
@@ -30,8 +33,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"主页";
-     data = [[NSMutableArray alloc] init];
-    [self inData];
+     data = [[NSArray alloc] init];
     [self setupRefresh];
     
     CreateBtn* btnView = [[CreateBtn alloc] initWithFrame:CGRectMake(0, 0, 47, 47)];
@@ -41,21 +43,6 @@
     
     UITapGestureRecognizer* pan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didPan)];
     [btnView addGestureRecognizer:pan];//160*220
-    
-    
-//    StateView* s = [[StateView alloc] initWithFrame:CGRectMake(264, 110+55, 55, 55)];
-//    s.tag = 101;
-//    [s setState:StateGoing withAll:@"19" andAdd:@"+9"];
-//    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
-//    [self.view addSubview:s];
-    
-//    BigStateView* b = [[BigStateView alloc] initWithFrame:CGRectMake(0, 200, 320.0/2.0, 220.0/2.0)];
-//    b.tag = 102;
-//    b.center = CGPointMake(self.view.bounds.size.width/2.0, 200);
-//    [b setState:StateGoing withAll:@"999" andAdd:@"+99"];
-//    [b setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
-//    [self.view addSubview:b];
-
     
     NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(changeTimeAtTimedisplay) userInfo:nil repeats:YES];
     [timer fire];
@@ -72,24 +59,54 @@
     
     [TimeTool TopJZTime:1418630019];
     
-    if ([UDObject gettoken].length > 0) {
-        [self j_spring_security_check:@"123456789" password:@"123456789"];
-        NSLog(@"登录");
-    }else{
-        NSLog(@"已登录");
-    }
-    
+//    if ([UDObject gettoken].length > 0) {
+//        [self j_spring_security_check:@"123456789" password:@"123456789"];
+//        NSLog(@"登录");
+//    }else{
+//        NSLog(@"已登录");
+//    }
+    [self GetRecord];
 }
 
--(void)j_spring_security_check:(NSString *)username password:(NSString *)password{
-    [HttpManage j_spring_security_check:username password:password phoneId:[UDObject getTSID] j_username:username j_password:password isJson:@"true" cb:^(BOOL isOK, NSDictionary *dic) {
+//-(void)j_spring_security_check:(NSString *)username password:(NSString *)password{
+//    [HttpManage j_spring_security_check:username password:password phoneId:[UDObject getTSID] j_username:username j_password:password isJson:@"true" cb:^(BOOL isOK, NSDictionary *dic) {
+//        if (isOK) {
+//            NSString *token = [dic objectForKey:@"token"];
+//            [UDObject setUserInfo:username userName:@"" token:token];
+//        }else{
+//            
+//        }
+//    }];
+//}
+
+-(void)GetHTTPRecord{
+    [HttpManage multiHistory:[UDObject gettoken] size:@"-1" cb:^(BOOL isOK, NSDictionary *array) {
         if (isOK) {
-            NSString *token = [dic objectForKey:@"token"];
-            [UDObject setUserInfo:username userName:@"" token:token];
-        }else{
-            
+            NSArray *customList = [array objectForKey:@"customList"];
+            for (NSDictionary *dic in customList) {
+                [[DataBaseManage getDataBaseManage] AddUserdata:dic type:0];
+            }
+            NSArray *marryList = [array objectForKey:@"marryList"];
+            for (NSDictionary *dic in marryList) {
+                [[DataBaseManage getDataBaseManage] AddUserdata:dic type:1];
+            }
+            NSArray *partyList = [array objectForKey:@"partyList"];
+            for (NSDictionary *dic in partyList) {
+                [[DataBaseManage getDataBaseManage] AddUserdata:dic type:2];
+            }
+            [self GetRecord];
         }
     }];
+}
+
+-(void)GetRecord{
+    data = [[DataBaseManage getDataBaseManage] getUserdata];
+    
+    if ([data count] > 0) {
+        [_tableview reloadData];
+    }else{
+        [self GetHTTPRecord];
+    }
 }
 
 
@@ -125,19 +142,13 @@
     view.alpha = 0;
     UIImage *snapshotImage = [self imageFromView:self.view];
     view.alpha = 1;
-//    [self performSegueWithIdentifier:@"CreateIncoming" sender:snapshotImage];
     [self performSegueWithIdentifier:@"menu" sender:snapshotImage];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier compare:@"Imgcoming"] == NSOrderedSame ) {
-//        ImgCollectionViewController* des = (ImgCollectionViewController*)segue.destinationViewController;
-//        des.maxCount = 2;
-//        des.needAnimation = YES;
-//        des.delegate = self;
-    } else if ([segue.identifier compare:@"menu"] == NSOrderedSame ) {
+    if ([segue.identifier compare:@"menu"] == NSOrderedSame ) {
         MenuViewController* des = (MenuViewController*)segue.destinationViewController;
         des.bgimg = (UIImage*)sender;
     }
@@ -168,13 +179,8 @@
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
-        [data removeAllObjects];
-        for (int i = 0; i< 20; i++) {
-            NSDictionary *dic = [[NSDictionary alloc] init];
-            [data addObject:dic];
-        }
-        [_tableview reloadData];
         
+        [self GetRecord];
         [_tableview headerEndRefreshing];
     });
 }
@@ -184,24 +190,15 @@
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
-        for (int i = 0; i< 4; i++) {
-            NSDictionary *dic = [[NSDictionary alloc] init];
-            [data addObject:dic];
-        }
-        [_tableview reloadData];
+//        for (int i = 0; i< 4; i++) {
+//            NSDictionary *dic = [[NSDictionary alloc] init];
+//            [data addObject:dic];
+//        }
+//        [_tableview reloadData];
         
         // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
         [_tableview footerEndRefreshing];
     });
-}
-
--(void)inData{
-   
-    for (int i = 0; i< 20; i++) {
-        NSDictionary *dic = [[NSDictionary alloc] init];
-        [data addObject:dic];
-    }
-[_tableview reloadData];
 }
 
 
@@ -214,35 +211,18 @@
     static NSString *identifier = @"ViewCell";
     ViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     cell.widht = self.view.frame.size.width;
+    
+    
+    cell.info = [data objectAtIndex:[indexPath row]];
+    
     return cell;
 }
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSLog(@"indexPath-%ld",[indexPath row]);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"detail" sender:nil];
-    
-//    switch ([indexPath row]) {
-//        case 0:
-//            [self performSegueWithIdentifier:@"del" sender:nil];
-//            break;
-//        case 1:
-//            [self performSegueWithIdentifier:@"hledit" sender:nil];
-//            break;
-//        case 2:
-//            [self performSegueWithIdentifier:@"swedit" sender:nil];
-//            break;
-//        case 3:
-//            [self performSegueWithIdentifier:@"chedit" sender:nil];
-//            break;
-//            
-//        default:
-//            break;
-//    }
-    
 }
 
 //写滑动监听
