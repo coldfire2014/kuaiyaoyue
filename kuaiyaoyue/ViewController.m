@@ -61,6 +61,7 @@
     [timer fire];
     
     [self headview];
+    
     //滑动监听
 //    _tableview.contentInset = UIEdgeInsetsMake(-20, 0 ,0, 0);
 //   [_tableview setContentOffset:CGPointMake(0, -196) animated:YES];
@@ -77,10 +78,6 @@
     }else{
         NSLog(@"已登录");
     }
-    
-    
-
-    
     
 }
 
@@ -105,12 +102,14 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
 }
+
 -(void)changeTimeAtTimedisplay{
     static double t = 5;
     BigStateView* s = (BigStateView*)[self.view viewWithTag:102];
     t = t - 0.2;
     [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:t] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:3+t]];
 }
+
 - (UIImage *)imageFromView:(UIView *)view
 {
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, 0.0);
@@ -120,6 +119,7 @@
     
     return img;
 }
+
 - (void)didPan{
     UIView* view = [self.view viewWithTag:99];
     view.alpha = 0;
@@ -128,6 +128,7 @@
 //    [self performSegueWithIdentifier:@"CreateIncoming" sender:snapshotImage];
     [self performSegueWithIdentifier:@"menu" sender:snapshotImage];
 }
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

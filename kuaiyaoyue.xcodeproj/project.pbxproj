@@ -76,7 +76,9 @@
 		84E842CC1A2EFDCB00A401A0 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842BB1A2EFDCB00A401A0 /* UIWebView+AFNetworking.m */; };
 		84E842D31A2F087A00A401A0 /* HttpManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842D21A2F087A00A401A0 /* HttpManage.m */; };
 		84E842D71A2F0E9E00A401A0 /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842D61A2F0E9E00A401A0 /* MusicInfo.m */; };
-		84FE0B831A426440005A9599 /* PhotoGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0B821A426440005A9599 /* PhotoGridCell.m */; };
+		84FE0B871A426C71005A9599 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0B851A426C71005A9599 /* PhotoCell.m */; };
+		84FE0B881A426C71005A9599 /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FE0B861A426C71005A9599 /* PhotoCell.xib */; };
+		84FE0B8C1A426E6B005A9599 /* GridInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0B8B1A426E6B005A9599 /* GridInfo.m */; };
 		E524FF3B1A3ED9A5002E7DC0 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */; };
 		E54170E51A3EABC60022D2CC /* ctView.m in Sources */ = {isa = PBXBuildFile; fileRef = E54170E41A3EABC60022D2CC /* ctView.m */; };
 		E54851D81A35AF0500590E5C /* coverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D71A35AF0500590E5C /* coverSegue.m */; };
@@ -251,8 +253,11 @@
 		84E842D21A2F087A00A401A0 /* HttpManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManage.m; sourceTree = "<group>"; };
 		84E842D51A2F0E9E00A401A0 /* MusicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicInfo.h; sourceTree = "<group>"; };
 		84E842D61A2F0E9E00A401A0 /* MusicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicInfo.m; sourceTree = "<group>"; };
-		84FE0B811A426440005A9599 /* PhotoGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoGridCell.h; sourceTree = "<group>"; };
-		84FE0B821A426440005A9599 /* PhotoGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoGridCell.m; sourceTree = "<group>"; };
+		84FE0B841A426C71005A9599 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
+		84FE0B851A426C71005A9599 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		84FE0B861A426C71005A9599 /* PhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCell.xib; sourceTree = "<group>"; };
+		84FE0B8A1A426E6B005A9599 /* GridInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridInfo.h; sourceTree = "<group>"; };
+		84FE0B8B1A426E6B005A9599 /* GridInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridInfo.m; sourceTree = "<group>"; };
 		E524FF391A3ED9A5002E7DC0 /* TemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateCell.h; sourceTree = "<group>"; };
 		E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateCell.m; sourceTree = "<group>"; };
 		E54170E31A3EABC60022D2CC /* ctView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ctView.h; path = element/ctView.h; sourceTree = "<group>"; };
@@ -366,8 +371,9 @@
 				E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */,
 				841728A91A40385800272A0C /* DVCCell.h */,
 				841728AA1A40385800272A0C /* DVCCell.m */,
-				84FE0B811A426440005A9599 /* PhotoGridCell.h */,
-				84FE0B821A426440005A9599 /* PhotoGridCell.m */,
+				84FE0B841A426C71005A9599 /* PhotoCell.h */,
+				84FE0B851A426C71005A9599 /* PhotoCell.m */,
+				84FE0B861A426C71005A9599 /* PhotoCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -375,6 +381,7 @@
 		844825E91A31A45C0018240E /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				84FE0B891A426E65005A9599 /* Model */,
 				844825EA1A31A46A0018240E /* HLEditViewController.h */,
 				844825EB1A31A46A0018240E /* HLEditViewController.m */,
 				844825ED1A31A4800018240E /* CHWLEditorViewController.h */,
@@ -711,6 +718,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		84FE0B891A426E65005A9599 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84FE0B8A1A426E6B005A9599 /* GridInfo.h */,
+				84FE0B8B1A426E6B005A9599 /* GridInfo.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		E54851D51A35AEE400590E5C /* Segue */ = {
 			isa = PBXGroup;
 			children = (
@@ -855,6 +871,7 @@
 				84E8426D1A2EDF6B00A401A0 /* Images.xcassets in Resources */,
 				84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */,
 				84B446C41A32B3D000546859 /* MJRefresh.bundle in Resources */,
+				84FE0B881A426C71005A9599 /* PhotoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -913,7 +930,6 @@
 				84B446D41A32BD7000546859 /* ShareViewController.m in Sources */,
 				84E842C21A2EFDCB00A401A0 /* AFURLRequestSerialization.m in Sources */,
 				84E842621A2EDF6B00A401A0 /* AppDelegate.m in Sources */,
-				84FE0B831A426440005A9599 /* PhotoGridCell.m in Sources */,
 				E55F5A0B1A3702E000B0D587 /* EditBtn.m in Sources */,
 				844825F61A31A4D20018240E /* PreviewViewController.m in Sources */,
 				844825EC1A31A46A0018240E /* HLEditViewController.m in Sources */,
@@ -927,6 +943,7 @@
 				E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */,
 				84B446CB1A32B3D000546859 /* UIView+MJExtension.m in Sources */,
 				841728AB1A40385800272A0C /* DVCCell.m in Sources */,
+				84FE0B871A426C71005A9599 /* PhotoCell.m in Sources */,
 				84E842681A2EDF6B00A401A0 /* ViewController.m in Sources */,
 				E55F59F71A36A26300B0D587 /* MainNavigationControllerDelegate.m in Sources */,
 				84E8425F1A2EDF6B00A401A0 /* main.m in Sources */,
@@ -951,6 +968,7 @@
 				846195591A31DA8700FDF2CA /* GridCell.m in Sources */,
 				844825E51A31A1AE0018240E /* TemplateViewController.m in Sources */,
 				84B446C51A32B3D000546859 /* MJRefreshBaseView.m in Sources */,
+				84FE0B8C1A426E6B005A9599 /* GridInfo.m in Sources */,
 				84E842C01A2EFDCB00A401A0 /* AFSecurityPolicy.m in Sources */,
 				E55F5A031A36A64800B0D587 /* modelListAnimate.m in Sources */,
 				84E842C31A2EFDCB00A401A0 /* AFURLResponseSerialization.m in Sources */,

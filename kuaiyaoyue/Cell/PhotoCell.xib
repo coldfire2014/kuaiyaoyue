@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PhotoCell">
+            <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGh-EY-k7V">
+                        <rect key="frame" x="0.0" y="13" width="93" height="93"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_other_add" translatesAutoresizingMaskIntoConstraints="NO" id="4DL-iI-OfI">
+                                <rect key="frame" x="28" y="29" width="36" height="36"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tLa-4T-k2O">
+                                <rect key="frame" x="0.0" y="0.0" width="93" height="93"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="tLa-4T-k2O" firstAttribute="top" secondItem="xGh-EY-k7V" secondAttribute="top" id="15y-9a-HgN"/>
+                            <constraint firstItem="tLa-4T-k2O" firstAttribute="leading" secondItem="xGh-EY-k7V" secondAttribute="leading" id="173-oD-UnH"/>
+                            <constraint firstItem="4DL-iI-OfI" firstAttribute="leading" secondItem="xGh-EY-k7V" secondAttribute="leading" constant="28" id="41o-aE-4WH"/>
+                            <constraint firstItem="4DL-iI-OfI" firstAttribute="top" secondItem="xGh-EY-k7V" secondAttribute="top" constant="29" id="AlU-TY-MYg"/>
+                            <constraint firstAttribute="centerX" secondItem="4DL-iI-OfI" secondAttribute="centerX" id="E3e-vJ-gc0"/>
+                            <constraint firstAttribute="trailing" secondItem="tLa-4T-k2O" secondAttribute="trailing" id="lLd-qy-ba8"/>
+                            <constraint firstAttribute="centerY" secondItem="4DL-iI-OfI" secondAttribute="centerY" id="t6R-1y-qgk"/>
+                            <constraint firstAttribute="bottom" secondItem="tLa-4T-k2O" secondAttribute="bottom" id="yAk-U8-2I4"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NoG-E8-Orw">
+                        <rect key="frame" x="82" y="0.0" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Ptb-2d-P5A"/>
+                            <constraint firstAttribute="width" constant="24" id="kBv-mH-eHM"/>
+                        </constraints>
+                        <state key="normal" image="ic_c_x">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted" image="ic_c_x_pre"/>
+                        <connections>
+                            <action selector="del_onclick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="d8n-Au-45y"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="xGh-EY-k7V" secondAttribute="bottom" id="29U-AI-EdN"/>
+                <constraint firstItem="NoG-E8-Orw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="J0b-x4-AYi"/>
+                <constraint firstAttribute="trailing" secondItem="NoG-E8-Orw" secondAttribute="trailing" id="LwN-Ey-D7s"/>
+                <constraint firstItem="xGh-EY-k7V" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WKQ-4v-8zP"/>
+                <constraint firstItem="xGh-EY-k7V" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="13" id="wiy-Wy-dqt"/>
+                <constraint firstAttribute="trailing" secondItem="xGh-EY-k7V" secondAttribute="trailing" constant="13" id="zNX-jW-qgu"/>
+            </constraints>
+            <connections>
+                <outlet property="del_button" destination="NoG-E8-Orw" id="HLV-f7-XA7"/>
+                <outlet property="show_img" destination="tLa-4T-k2O" id="CO7-vV-9aT"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_c_x" width="24" height="24"/>
+        <image name="ic_c_x_pre" width="24" height="24"/>
+        <image name="ic_other_add" width="72" height="72"/>
+    </resources>
+</document>

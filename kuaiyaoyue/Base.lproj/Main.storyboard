@@ -190,7 +190,6 @@
                     <connections>
                         <segue destination="qHT-nQ-aXb" kind="custom" identifier="wel" customClass="coverSegue" id="j4f-zQ-sLy"/>
                         <segue destination="eGG-ps-HQp" kind="custom" identifier="main" customClass="coverSegue" id="D53-YK-KM5"/>
-                        <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="1qO-rs-4lY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TkI-tn-yyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -461,8 +460,8 @@
                                                     <constraint firstItem="aTT-TT-NHl" firstAttribute="leading" secondItem="nik-FW-yC0" secondAttribute="leading" constant="76" id="v7h-5B-euV"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckD-j1-jOx">
-                                                <rect key="frame" x="0.0" y="270" width="600" height="300"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckD-j1-jOx">
+                                                <rect key="frame" x="0.0" y="270" width="600" height="161"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_c_lady" translatesAutoresizingMaskIntoConstraints="NO" id="i9m-q1-asv">
                                                         <rect key="frame" x="9" y="10" width="24" height="24"/>
@@ -473,39 +472,46 @@
                                                         <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-kM-Ow0">
-                                                        <rect key="frame" x="9" y="43" width="582" height="106"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-kM-Ow0">
+                                                        <rect key="frame" x="9" y="43" width="582" height="115"/>
+                                                        <color key="backgroundColor" red="0.8980392157" green="0.3921568627" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="115" id="2dg-SZ-5dC"/>
+                                                        </constraints>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="9" minimumInteritemSpacing="9" id="au4-d5-jzh">
                                                             <size key="itemSize" width="106" height="106"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
-                                                        <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5N3-eK-bwL">
-                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                </view>
-                                                            </collectionViewCell>
-                                                        </cells>
+                                                        <cells/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="oWB-DN-aF8" id="o2V-53-3el"/>
+                                                            <outlet property="delegate" destination="oWB-DN-aF8" id="8L6-ra-WYC"/>
+                                                        </connections>
                                                     </collectionView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="600" id="3pS-wE-k9w"/>
+                                                    <constraint firstItem="OTy-kM-Ow0" firstAttribute="leading" secondItem="ckD-j1-jOx" secondAttribute="leading" constant="9" id="Bc9-ao-Fer"/>
+                                                    <constraint firstAttribute="trailing" secondItem="OTy-kM-Ow0" secondAttribute="trailing" constant="9" id="FFT-J7-Syf"/>
+                                                    <constraint firstItem="OTy-kM-Ow0" firstAttribute="top" secondItem="ckD-j1-jOx" secondAttribute="top" constant="43" id="QOA-Vu-PA0"/>
+                                                    <constraint firstAttribute="height" constant="161" id="d5w-UN-kFs"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="nik-FW-yC0" secondAttribute="trailing" id="3xj-Ao-qgG"/>
                                             <constraint firstItem="VWC-HT-cIv" firstAttribute="top" secondItem="KxQ-is-VP0" secondAttribute="top" constant="18" id="5es-XG-Tq7"/>
+                                            <constraint firstAttribute="trailing" secondItem="ckD-j1-jOx" secondAttribute="trailing" id="DMt-BV-jbF"/>
                                             <constraint firstAttribute="trailing" secondItem="VWC-HT-cIv" secondAttribute="trailing" id="HIa-it-MQB"/>
+                                            <constraint firstItem="ckD-j1-jOx" firstAttribute="top" secondItem="KxQ-is-VP0" secondAttribute="top" constant="270" id="Pdq-pA-12j"/>
                                             <constraint firstAttribute="trailing" secondItem="dnD-gN-xml" secondAttribute="trailing" id="SNd-xv-Fl0"/>
                                             <constraint firstItem="dnD-gN-xml" firstAttribute="leading" secondItem="KxQ-is-VP0" secondAttribute="leading" id="Tnx-65-vb8"/>
                                             <constraint firstItem="dnD-gN-xml" firstAttribute="top" secondItem="VWC-HT-cIv" secondAttribute="bottom" constant="12" id="Xwi-YS-pBP"/>
+                                            <constraint firstItem="ckD-j1-jOx" firstAttribute="leading" secondItem="KxQ-is-VP0" secondAttribute="leading" id="YG7-DL-N6D"/>
                                             <constraint firstItem="nik-FW-yC0" firstAttribute="top" secondItem="dnD-gN-xml" secondAttribute="bottom" constant="12" id="gyf-da-ybs"/>
                                             <constraint firstItem="VWC-HT-cIv" firstAttribute="leading" secondItem="KxQ-is-VP0" secondAttribute="leading" id="p4h-B8-8Lv"/>
                                             <constraint firstItem="nik-FW-yC0" firstAttribute="leading" secondItem="KxQ-is-VP0" secondAttribute="leading" id="uDT-IX-J8U"/>
@@ -621,8 +627,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomview" destination="ckD-j1-jOx" id="JIH-UP-H1p"/>
+                        <outlet property="gridview" destination="OTy-kM-Ow0" id="EQp-lv-fcb"/>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="yl" id="luI-zA-BtH"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="yy" id="fps-RF-Hk5"/>
+                        <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="bym-b5-cxi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giO-uz-hMR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -672,7 +681,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsK-Bk-e2O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2158" y="-181"/>
+            <point key="canvasLocation" x="1454" y="-415"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="zp0-jQ-aiI">
@@ -1843,12 +1852,12 @@
         <image name="ic_c_timer" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fps-RF-Hk5"/>
-        <segue reference="Oey-PZ-F9W"/>
-        <segue reference="D53-YK-KM5"/>
-        <segue reference="ztp-xN-fnN"/>
-        <segue reference="keJ-rR-p7N"/>
-        <segue reference="x3h-Pp-84V"/>
         <segue reference="luI-zA-BtH"/>
+        <segue reference="FZT-Wq-vqX"/>
+        <segue reference="fps-RF-Hk5"/>
+        <segue reference="yXU-Vc-xFb"/>
+        <segue reference="1Qf-a2-pbq"/>
+        <segue reference="UoY-ek-b61"/>
+        <segue reference="D53-YK-KM5"/>
     </inferredMetricsTieBreakers>
 </document>
