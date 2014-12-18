@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 typedef NS_ENUM(NSInteger, ItemState) {
-    StateGoing = 0,
-    StateGet,
-    StateDone,
+    StateGoing = 0,//进行
+    StateGet,//闭合
+    StateDone,//灰色
 };
 
 @interface StateView : UIView

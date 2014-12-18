@@ -12,7 +12,7 @@
 	<string>6.0</string>
 	<key>CFBundleLocalizations</key>
 	<array>
-		<string>zh</string>
+		<string>zh_CN</string>
 	</array>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>

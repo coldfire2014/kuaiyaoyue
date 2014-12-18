@@ -17,6 +17,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"返回";
+    UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
+    label.text = @"快邀约";
+    [label sizeToFit];
+    label.textColor = color;
+    label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
+    [self.navigationItem setTitleView:label];
+    [self.navigationController.navigationBar setTintColor:color];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
 }
 
 - (void)didReceiveMemoryWarning {

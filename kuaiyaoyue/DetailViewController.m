@@ -11,6 +11,7 @@
 #import "DVCCell.h"
 #import "myImageView.h"
 #import "MJRefresh.h"
+#import "BigStateView.h"
 
 @interface DetailViewController ()<DVCCellDelegate>{
     BOOL isopen;
@@ -44,9 +45,18 @@
     selectRow = -1;
     _tableView.contentInset = UIEdgeInsetsMake(-64, 0 ,0, 0);
     
-    
+    [self layoutheadview];
     [self setupRefresh];
 }
+
+-(void)layoutheadview{
+    BigStateView* s = [[BigStateView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 44.5,65 + 5, 99, 99)];
+    [s setState:StateGoing withAll:@"19" andAdd:@""];
+    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+    
+    [_headview addSubview:s];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController.navigationBar setHidden:NO];
@@ -151,10 +161,14 @@
         cell.index = indexPath;
         cell.delegate = self;
         if ([cell.phone compare:@""] == NSOrderedSame) {
+            [cell.show_phone setEnabled:NO];
         } else {
+            [cell.show_phone setEnabled:YES];
         }
         if ([cell.talk compare:@""] == NSOrderedSame) {
+            [cell.show_message setEnabled:NO];
         } else {
+            [cell.show_message setEnabled:YES];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;

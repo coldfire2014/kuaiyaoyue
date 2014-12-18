@@ -42,6 +42,7 @@
     UITapGestureRecognizer* pan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didPan)];
     [btnView addGestureRecognizer:pan];//160*220
     
+    
 //    StateView* s = [[StateView alloc] initWithFrame:CGRectMake(264, 110+55, 55, 55)];
 //    s.tag = 101;
 //    [s setState:StateGoing withAll:@"19" andAdd:@"+9"];
@@ -220,7 +221,7 @@
 {
     
     NSLog(@"indexPath-%ld",[indexPath row]);
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"detail" sender:nil];
     
 //    switch ([indexPath row]) {

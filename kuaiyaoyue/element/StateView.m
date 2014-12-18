@@ -18,7 +18,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         goingColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
-        getColor = [[UIColor alloc] initWithRed:103.0/255.0 green:164.0/255.0 blue:219.0/255.0 alpha:1.0];
+        getColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
         goneColor = [[UIColor alloc] initWithWhite:0.5 alpha:1.0];
         
         UILabel *add = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-7,17.0)];

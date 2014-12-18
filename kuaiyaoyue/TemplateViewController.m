@@ -11,6 +11,7 @@
 #import "EditBtn.h"
 #import "myImageView.h"
 #import "TemplateCell.h"
+
 @interface TemplateViewController ()
 
 @end
@@ -20,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"返回";
     self.view.backgroundColor = [UIColor clearColor];
     UIImageView* bk = [[UIImageView alloc] initWithImage:self.bgimg];
     UIVisualEffectView* all = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
@@ -79,6 +81,13 @@
     [self didShowItemAtIndex:0];
 
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController.navigationBar setHidden:YES];
+}
+
+
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -108,7 +117,7 @@
 
 -(void)didSelectItemAtIndex:(int)index{
     //选中事件
-    
+    [self performSegueWithIdentifier:@"hledit" sender:nil];
 }
 -(void)didShowItemAtIndex:(int)index{
     //列表当前显示元素，目前用于换颜色
