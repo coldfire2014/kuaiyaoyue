@@ -75,6 +75,7 @@
 		84E842D71A2F0E9E00A401A0 /* MusicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842D61A2F0E9E00A401A0 /* MusicInfo.m */; };
 		84FE0B831A426440005A9599 /* PhotoGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0B821A426440005A9599 /* PhotoGridCell.m */; };
 		E524FF3B1A3ED9A5002E7DC0 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */; };
+		E52D00301A43200E00817261 /* UIImageView+LBBlurredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */; };
 		E54170E51A3EABC60022D2CC /* ctView.m in Sources */ = {isa = PBXBuildFile; fileRef = E54170E41A3EABC60022D2CC /* ctView.m */; };
 		E54851D81A35AF0500590E5C /* coverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D71A35AF0500590E5C /* coverSegue.m */; };
 		E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DA1A35AF5C00590E5C /* coverAnimation.m */; };
@@ -255,6 +256,8 @@
 		84FE0B821A426440005A9599 /* PhotoGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoGridCell.m; sourceTree = "<group>"; };
 		E524FF391A3ED9A5002E7DC0 /* TemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateCell.h; sourceTree = "<group>"; };
 		E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateCell.m; sourceTree = "<group>"; };
+		E52D002E1A43200E00817261 /* UIImageView+LBBlurredImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LBBlurredImage.h"; sourceTree = "<group>"; };
+		E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LBBlurredImage.m"; sourceTree = "<group>"; };
 		E54170E31A3EABC60022D2CC /* ctView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ctView.h; path = element/ctView.h; sourceTree = "<group>"; };
 		E54170E41A3EABC60022D2CC /* ctView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ctView.m; path = element/ctView.m; sourceTree = "<group>"; };
 		E54851D61A35AF0500590E5C /* coverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coverSegue.h; sourceTree = "<group>"; };
@@ -609,6 +612,7 @@
 		84E842851A2EE88100A401A0 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				E52D002D1A431FEA00817261 /* blur */,
 				E5573F881A4303A9006AAB8F /* ZipArchive */,
 				E577FC081A356C80009ED66D /* AssetHelper.h */,
 				E577FC091A356C80009ED66D /* AssetHelper.m */,
@@ -718,6 +722,15 @@
 				84E842D61A2F0E9E00A401A0 /* MusicInfo.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		E52D002D1A431FEA00817261 /* blur */ = {
+			isa = PBXGroup;
+			children = (
+				E52D002E1A43200E00817261 /* UIImageView+LBBlurredImage.h */,
+				E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */,
+			);
+			name = blur;
 			sourceTree = "<group>";
 		};
 		E54851D51A35AEE400590E5C /* Segue */ = {
@@ -961,6 +974,7 @@
 				844826001A31B3F40018240E /* DetailViewController.m in Sources */,
 				84E842C81A2EFDCB00A401A0 /* UIButton+AFNetworking.m in Sources */,
 				E55F5A081A36FA9100B0D587 /* MenuBackBtn.m in Sources */,
+				E52D00301A43200E00817261 /* UIImageView+LBBlurredImage.m in Sources */,
 				84E842C91A2EFDCB00A401A0 /* UIImageView+AFNetworking.m in Sources */,
 				E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */,
 				84B446CB1A32B3D000546859 /* UIView+MJExtension.m in Sources */,
@@ -1124,7 +1138,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = kuaiyaoyue/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1139,7 +1153,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = kuaiyaoyue/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

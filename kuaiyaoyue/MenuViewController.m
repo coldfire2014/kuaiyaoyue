@@ -10,6 +10,7 @@
 #import "CreateBtn.h"
 #import "myImageView.h"
 #import "TemplateViewController.h"
+#import "UIImageView+LBBlurredImage.h"
 @interface MenuViewController ()
 
 @end
@@ -31,6 +32,11 @@
         bgCover = [UIColor clearColor];
     } else {
         bgCover = [[UIColor alloc] initWithWhite:0.9 alpha:0.9];
+//        bgCover = [UIColor clearColor];
+//        [bk setImageToBlur:self.bgimg blurRadius:10.0 completionBlock:^(NSError *error) {
+//            
+//        }];
+        
 //        GPUImagePicture *picture = [[GPUImagePicture alloc] initWithImage:img];
 //        GPUImageView *webbg2 = [[GPUImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
 //        webbg2.layer.contentsGravity = kCAGravityTop;
