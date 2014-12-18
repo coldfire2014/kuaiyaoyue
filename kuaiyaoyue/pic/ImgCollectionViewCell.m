@@ -8,6 +8,7 @@
 
 #import "ImgCollectionViewCell.h"
 #import "perviewImg.h"
+#import "StatusBar.h"
 @implementation ImgCollectionViewCell
 - (instancetype)initWithFrame:(CGRect)frame
 {

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AssetHelper.h"
 @interface perviewImg : UIView
 {
     AssetHelper* assert;

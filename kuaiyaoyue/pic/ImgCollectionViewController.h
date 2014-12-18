@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PCHeader.h"
 //调用例子
 //var imgView = segue.destinationViewController as ImgCollectionViewController
 //if obj == "head" {

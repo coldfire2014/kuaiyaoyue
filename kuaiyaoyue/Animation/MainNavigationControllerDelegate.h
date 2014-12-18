@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @interface MainNavigationControllerDelegate : NSObject<UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UINavigationController *navigationController;

@@ -11,7 +11,7 @@
 #import "EditBtn.h"
 #import "myImageView.h"
 #import "TemplateCell.h"
-
+#import "PCHeader.h"
 @interface TemplateViewController ()
 
 @end
