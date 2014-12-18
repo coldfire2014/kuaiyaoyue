@@ -38,7 +38,7 @@
 - (IBAction)login_onclick:(id)sender {
     [UDObject setOPEN];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_LOGIN" object:nil];
-//    [self performSegueWithIdentifier:@"wel2main" sender:nil];
+    [self performSegueWithIdentifier:@"wel2main" sender:nil];
 }
 
 @end
