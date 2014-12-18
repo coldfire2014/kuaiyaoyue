@@ -10,4 +10,5 @@
 
 @interface ImgNavBar : UIView
 -(void)okCount:(NSInteger)count;
+
 @end
