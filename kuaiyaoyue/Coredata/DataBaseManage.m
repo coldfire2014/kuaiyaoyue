@@ -217,7 +217,6 @@ static NSManagedObjectContext *context = nil;
         userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
     }
     
-    
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
