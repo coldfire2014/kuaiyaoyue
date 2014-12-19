@@ -17,5 +17,6 @@
 -(void)shareQQWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img;
 -(void)shareWXWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img;
 -(void)shareWXPYWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img;
--(void)shareMsgWithTitle:(NSString*)msg;
+-(void)shareMsgWithMsg:(NSString*)msg;
+-(void)copyWithMsg:(NSString*)msg;
 @end

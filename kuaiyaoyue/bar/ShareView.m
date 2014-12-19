@@ -160,7 +160,12 @@
     req.scene = WXSceneTimeline;
     [WXApi sendReq:req];
 }
--(void)shareMsgWithTitle:(NSString*)msg{
+-(void)copyWithMsg:(NSString*)msg{
+    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    pboard.string = msg;
+}
+
+-(void)shareMsgWithMsg:(NSString*)msg{
     if( [MFMessageComposeViewController canSendText] ){
         
         MFMessageComposeViewController * controller = [[MFMessageComposeViewController alloc]init]; //autorelease];
