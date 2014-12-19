@@ -86,18 +86,30 @@
         }
     }
 }
+
 - (id)initWithFrame:(CGRect)nframe andImageName:(NSString *)name withScale:(CGFloat)scale{
+    self = [self initWithFrame:nframe andImageName:name withScale:scale andBundleName:nil];
+    if (self) {
+
+    }
+    return self;
+}
+- (id)initWithFrame:(CGRect)nframe andImageName:(NSString *)name withScale:(CGFloat)scale andBundleName:(NSString*) nbundle{
     self = [super initWithFrame:nframe];
     if (self) {
+        NSBundle *bundle = [NSBundle mainBundle];
+        if(nil != nbundle){
+            bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:nbundle ofType:@"bundle"]];
+        }
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor clearColor];
         NSRange r = [name rangeOfString:@".jpg"];
         if (r.length>0) {
             name = [name substringToIndex:r.location];
-            UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"jpg"]];
+            UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:name ofType:@"jpg"]];
             self.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:scale orientation:UIImageOrientationUp];
         } else if([name length] != 0){
-            UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"png"]];
+            UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:name ofType:@"png"]];
             self.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:scale orientation:UIImageOrientationUp];
         }else{
             self.image = nil;
@@ -165,18 +177,29 @@
     return self;
 }
 - (id)initWithFrame:(CGRect)nframe andImageName:(NSString *)name withScale:(CGFloat)scale andAlign:(UIImgAlignment)align{
+    self = [self initWithFrame:nframe andImageName:name withScale:scale andAlign:align andBundleName:nil];
+    if (self) {
+        
+    }
+    return self;
+}
+- (id)initWithFrame:(CGRect)nframe andImageName:(NSString *)name withScale:(CGFloat)scale andAlign:(UIImgAlignment)align andBundleName:(NSString *)nbundle{
     
     self = [super initWithFrame:nframe];
     if (self) {
+        NSBundle *bundle = [NSBundle mainBundle];
+        if(nil != nbundle){
+            bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:nbundle ofType:@"bundle"]];
+        }
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor clearColor];
         NSRange r = [name rangeOfString:@".jpg"];
         if (r.length>0) {
             name = [name substringToIndex:r.location];
-            UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"jpg"]];
+            UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:name ofType:@"jpg"]];
             self.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:scale orientation:UIImageOrientationUp];
         } else if([name length] != 0){
-            UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:@"png"]];
+            UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:name ofType:@"png"]];
             self.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:scale orientation:UIImageOrientationUp];
         }else{
             self.image = nil;
