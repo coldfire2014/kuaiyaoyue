@@ -87,13 +87,13 @@
 		84FE0BC81A42D891005A9599 /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = 84FE0BC71A42D891005A9599 /* 1.zip */; };
 		E524FF3B1A3ED9A5002E7DC0 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */; };
 		E52D00301A43200E00817261 /* UIImageView+LBBlurredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */; };
+		E541617E1A43E2B20077A89D /* waitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E541617D1A43E2B20077A89D /* waitingView.m */; };
 		E54170E51A3EABC60022D2CC /* ctView.m in Sources */ = {isa = PBXBuildFile; fileRef = E54170E41A3EABC60022D2CC /* ctView.m */; };
 		E541B3031A43C944006F89E1 /* CalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E541B3021A43C944006F89E1 /* CalHelper.m */; };
 		E541B3071A43C98E006F89E1 /* libTalkingData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E541B3051A43C98E006F89E1 /* libTalkingData.a */; };
 		E541B32A1A43DC3E006F89E1 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = E541B3291A43DC3E006F89E1 /* ShareView.m */; };
 		E541B32E1A43DC9E006F89E1 /* imgBar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E541B32B1A43DC9E006F89E1 /* imgBar.bundle */; };
 		E541B32F1A43DC9E006F89E1 /* ImgNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E541B32D1A43DC9E006F89E1 /* ImgNavBar.m */; };
-		E541B3321A43DD5D006F89E1 /* waitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E541B3311A43DD5D006F89E1 /* waitingView.m */; };
 		E541B3341A43DE2A006F89E1 /* shareView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E541B3331A43DE2A006F89E1 /* shareView.bundle */; };
 		E54851D81A35AF0500590E5C /* coverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D71A35AF0500590E5C /* coverSegue.m */; };
 		E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DA1A35AF5C00590E5C /* coverAnimation.m */; };
@@ -291,6 +291,8 @@
 		E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateCell.m; sourceTree = "<group>"; };
 		E52D002E1A43200E00817261 /* UIImageView+LBBlurredImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LBBlurredImage.h"; sourceTree = "<group>"; };
 		E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LBBlurredImage.m"; sourceTree = "<group>"; };
+		E541617C1A43E2B20077A89D /* waitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = waitingView.h; path = bar/waitingView.h; sourceTree = "<group>"; };
+		E541617D1A43E2B20077A89D /* waitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = waitingView.m; path = bar/waitingView.m; sourceTree = "<group>"; };
 		E54170E31A3EABC60022D2CC /* ctView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ctView.h; path = element/ctView.h; sourceTree = "<group>"; };
 		E54170E41A3EABC60022D2CC /* ctView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ctView.m; path = element/ctView.m; sourceTree = "<group>"; };
 		E541B3011A43C944006F89E1 /* CalHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalHelper.h; sourceTree = "<group>"; };
@@ -302,8 +304,6 @@
 		E541B32B1A43DC9E006F89E1 /* imgBar.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = imgBar.bundle; path = pic/imgBar.bundle; sourceTree = "<group>"; };
 		E541B32C1A43DC9E006F89E1 /* ImgNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImgNavBar.h; path = pic/ImgNavBar.h; sourceTree = "<group>"; };
 		E541B32D1A43DC9E006F89E1 /* ImgNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImgNavBar.m; path = pic/ImgNavBar.m; sourceTree = "<group>"; };
-		E541B3301A43DD5D006F89E1 /* waitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = waitingView.h; sourceTree = "<group>"; };
-		E541B3311A43DD5D006F89E1 /* waitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = waitingView.m; sourceTree = "<group>"; };
 		E541B3331A43DE2A006F89E1 /* shareView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = shareView.bundle; path = bar/shareView.bundle; sourceTree = "<group>"; };
 		E54851D61A35AF0500590E5C /* coverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coverSegue.h; sourceTree = "<group>"; };
 		E54851D71A35AF0500590E5C /* coverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = coverSegue.m; sourceTree = "<group>"; };
@@ -892,12 +892,12 @@
 		E577FC041A356BB9009ED66D /* bar */ = {
 			isa = PBXGroup;
 			children = (
+				E541617C1A43E2B20077A89D /* waitingView.h */,
+				E541617D1A43E2B20077A89D /* waitingView.m */,
 				E577FC0E1A356D57009ED66D /* StatusBar.h */,
 				E577FC0F1A356D57009ED66D /* StatusBar.m */,
 				E541B3281A43DC3E006F89E1 /* ShareView.h */,
 				E541B3291A43DC3E006F89E1 /* ShareView.m */,
-				E541B3301A43DD5D006F89E1 /* waitingView.h */,
-				E541B3311A43DD5D006F89E1 /* waitingView.m */,
 				E541B3331A43DE2A006F89E1 /* shareView.bundle */,
 			);
 			name = bar;
@@ -1061,7 +1061,7 @@
 				84E842C11A2EFDCB00A401A0 /* AFURLConnectionOperation.m in Sources */,
 				E577FC0C1A356C80009ED66D /* AssetHelper.m in Sources */,
 				844825F21A31A48A0018240E /* SWYQViewController.m in Sources */,
-				E541B3321A43DD5D006F89E1 /* waitingView.m in Sources */,
+				E541617E1A43E2B20077A89D /* waitingView.m in Sources */,
 				84B473A81A3050C100A21457 /* Music.m in Sources */,
 				84E842CA1A2EFDCB00A401A0 /* UIProgressView+AFNetworking.m in Sources */,
 				844825FD1A31B3C40018240E /* SettingViewController.m in Sources */,
