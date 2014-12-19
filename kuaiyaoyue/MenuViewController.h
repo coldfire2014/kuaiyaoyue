@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuViewController : UIViewController
-@property (nonatomic,strong) UIImage* bgimg;
+@property (nonatomic,weak) UIImage* bgimg;
 @property (nonatomic) int tapID;
 @end

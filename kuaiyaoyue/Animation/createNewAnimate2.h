@@ -11,7 +11,7 @@
 @interface createNewAnimate2 : NSObject<UIViewControllerAnimatedTransitioning>
 {
     BOOL isPresent;
-    id <UIViewControllerContextTransitioning> _transitionContext;
 }
+@property (nonatomic,weak) id <UIViewControllerContextTransitioning> transitionContext;
 - (instancetype)initWithPresent:(BOOL)p;
 @end

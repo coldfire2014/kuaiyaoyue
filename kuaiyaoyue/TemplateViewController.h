@@ -10,8 +10,9 @@
 #import "ctView.h"
 @interface TemplateViewController : UIViewController<ctViewDelegate>
 {
-    ctView* tempList;
+//    ctView* tempList;
 }
+@property (nonatomic,strong) ctView* tempList;
 @property (nonatomic,strong) NSString* type;
-@property (nonatomic,strong) UIImage* bgimg;
+@property (nonatomic,weak) UIImage* bgimg;
 @end
