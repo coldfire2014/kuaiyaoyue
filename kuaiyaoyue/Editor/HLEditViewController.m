@@ -43,7 +43,16 @@
     assert = ASSETHELPER;
     assert.bReverse = YES;
     
-    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, 550)];
+    _scrollview.delegate = self;
+    
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
+    
+}
+
+-(void)changeHigh{
+    [UIView animateWithDuration:0.3 animations:^{
+        [self sethigh];
+    }];
     
 }
 
@@ -150,10 +159,7 @@
     [_data removeObject:info];
     [_gridview reloadData];
     count ++;
-    [UIView animateWithDuration:0.3 animations:^{
-        [self sethigh];
-    }];
-    
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
 }
 
 -(void)didSelectAssets:(NSArray*)items{
@@ -178,9 +184,7 @@
     [self.gridview reloadData];
     count -= items.count;
     
-    [UIView animateWithDuration:0.3 animations:^{
-        [self sethigh];
-    }];
+   [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
     
 }
 
@@ -192,15 +196,14 @@
 //        _gridview.frame = CGRectMake(_gridview.frame.origin.x, _gridview.frame.origin.y, _gridview.frame.size.width, 115);
     }else if(index > 3 && index <= 6){
         _bottomview.frame = CGRectMake(_bottomview.frame.origin.x, _bottomview.frame.origin.y, _bottomview.frame.size.width, height+115);
-        [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, 550+115)];
 //        _gridview.frame = CGRectMake(_gridview.frame.origin.x, _gridview.frame.origin.y, _gridview.frame.size.width, 115*2);
 //        _gridview.contentSize = CGSizeMake(_gridview.frame.size.width, 115*2);
         NSLog(@"%f",_gridview.frame.size.height);
     }else if(index > 6 && index <= 9){
         _bottomview.frame = CGRectMake(_bottomview.frame.origin.x, _bottomview.frame.origin.y, _bottomview.frame.size.width, height+115*2);
-        [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, 550+115*2)];
 //        _gridview.frame = CGRectMake(_gridview.frame.origin.x, _gridview.frame.origin.y, _gridview.frame.size.width, 115*3);
     }
+    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, _bottomview.frame.origin.y + _bottomview.frame.size.height + 50)];
 }
 
 -(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
@@ -225,7 +228,7 @@
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"%f",scrollView.contentOffset.y);
+    
 }
 
 @end

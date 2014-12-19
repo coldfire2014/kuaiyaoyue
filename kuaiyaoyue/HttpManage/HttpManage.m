@@ -746,12 +746,12 @@ closeTimestamp:(NSString *)closeTimestamp
  uniqueId:"1",  //邀约编号
  timestamp:"-1"   //时间戳，值为-1时查询全部
  */
-+(void)renewal:(NSString *)uniqueId timestamp:(NSString *) timestamp cb:(void (^)(BOOL isOK, NSMutableArray *URL))callback{
++(void)renewal:(NSString *)uniqueId timestamp:(NSString *) timestamp size:(NSString *)size cb:(void (^)(BOOL isOK, NSMutableArray *URL))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             uniqueId,@"uniqueId",timestamp,@"timestamp",
+                            size,@"size",
                             @"ios",@"equipment",@"1.0.5",@"version",
                             nil];
-    
     
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefRegistration/renewal.aspx"];
     

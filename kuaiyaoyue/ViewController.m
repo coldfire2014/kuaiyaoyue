@@ -24,6 +24,8 @@
 
 @interface ViewController (){
     NSArray *data;
+    NSMutableArray *adddata;
+    
     NSString *uniqueId;
     int run;
 }
@@ -68,6 +70,7 @@
 //    }else{
 //        NSLog(@"已登录");
 //    }
+    adddata = [[NSMutableArray alloc] init];
     [self GetRecord];
 }
 
@@ -82,36 +85,69 @@
 //    }];
 //}
 
--(void)GetHTTPRecord{
+-(void)GetRecord{
     [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" cb:^(BOOL isOK, NSDictionary *array) {
         NSLog(@"%@",array);
         if (isOK) {
             NSArray *customList = [array objectForKey:@"customList"];
             for (NSDictionary *dic in customList) {
-                [[DataBaseManage getDataBaseManage] AddUserdata:dic type:0];
+                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                if (!is_bcz) {
+                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:0];
+                }
             }
             NSArray *marryList = [array objectForKey:@"marryList"];
             for (NSDictionary *dic in marryList) {
-                [[DataBaseManage getDataBaseManage] AddUserdata:dic type:1];
+                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                if (!is_bcz) {
+                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:1];
+                }
             }
             NSArray *partyList = [array objectForKey:@"partyList"];
             for (NSDictionary *dic in partyList) {
-                [[DataBaseManage getDataBaseManage] AddUserdata:dic type:2];
+                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                if (!is_bcz) {
+                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:2];
+                }
             }
-            [self GetRecord];
+            [self loaddata];
+        }else{
+            [self loaddata];
         }
     }];
 }
 
--(void)GetRecord{
+-(void)getBottomRecord{
+    if ([data count] > 29) {
+        Userdata *user = [data objectAtIndex:[data count]];
+        NSString* timestamp = user.nefdate;
+        [HttpManage multiHistory:[UDObject gettoken] timestamp:timestamp cb:^(BOOL isOK, NSDictionary *array) {
+            NSLog(@"%@",array);
+            if (isOK) {
+                NSArray *customList = [array objectForKey:@"customList"];
+                for (NSDictionary *dic in customList) {
+                    
+                }
+                NSArray *marryList = [array objectForKey:@"marryList"];
+                for (NSDictionary *dic in marryList) {
+                    
+                }
+                NSArray *partyList = [array objectForKey:@"partyList"];
+                for (NSDictionary *dic in partyList) {
+                    
+                }
+            }else{
+            
+            }
+        }];
+    }
+}
+
+-(void)loaddata{
     data = [[DataBaseManage getDataBaseManage] getUserdata];
     run = 0;
-    if ([data count] > 0) {
-        [self showToptitle];
-        [_tableview reloadData];
-    }else{
-        [self GetHTTPRecord];
-    }
+    [self showToptitle];
+    [_tableview reloadData];
 }
 
 //0自定义，1婚礼，2趴体

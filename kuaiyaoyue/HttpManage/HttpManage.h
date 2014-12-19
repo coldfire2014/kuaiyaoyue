@@ -152,7 +152,7 @@ closeTimestamp:(NSString *)closeTimestamp
 +(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, NSDictionary *URL))callback;
 
 //查询报名人数
-+(void)renewal:(NSString *)uniqueId timestamp:(NSString *) timestamp cb:(void (^)(BOOL isOK, NSMutableArray *URL))callback;
++(void)renewal:(NSString *)uniqueId timestamp:(NSString *) timestamp size:(NSString *)size cb:(void (^)(BOOL isOK, NSMutableArray *URL))callback;
 
 
 @end

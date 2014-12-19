@@ -13,11 +13,13 @@
 #import "MJRefresh.h"
 #import "BigStateView.h"
 #import "HttpManage.h"
+#import "DataBaseManage.h"
+#import "Contacts.h"
 
 @interface DetailViewController ()<DVCCellDelegate>{
     BOOL isopen;
     NSInteger selectRow;
-    NSMutableArray* data;
+    NSArray *data;
 }
 
 @end
@@ -36,29 +38,45 @@
     [self.navigationItem setTitleView:label];
     
     self.navigationController.navigationBar.alpha = 0.8;
-    data = [[NSMutableArray alloc] init];
-    NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                         @"哈哈哈",@"name",
-                         @"12",@"count",
-                         @"18650140605",@"phone",
-                         @"哈哈哈",@"talk",nil];
-    [data addObject:dic];
     selectRow = -1;
     _tableView.contentInset = UIEdgeInsetsMake(-64, 0 ,0, 0);
     
     [self layoutheadview];
     [self setupRefresh];
     [self renewal];
+    
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 -(void)renewal{
-    [HttpManage renewal:_uniqueId timestamp:@"-1" cb:^(BOOL isOK, NSMutableArray *array) {
+    NSArray *arr = [[DataBaseManage getDataBaseManage] GetContacts:_uniqueId];
+    NSString *time = nil;
+    if ([arr count] > 0) {
+        Contacts *contacts = [arr objectAtIndex:0];
+        time = contacts.timestamp;
+    }else{
+        time = @"-1";
+    }
+    
+    [HttpManage renewal:_uniqueId timestamp:time size:@"-1" cb:^(BOOL isOK, NSMutableArray *array) {
         if (isOK) {
-            NSLog(@"%@",array);
+            for (NSDictionary *dic in array) {
+                [[DataBaseManage getDataBaseManage] AddContacts:dic :_uniqueId];
+            }
+            [self initData];
         }else{
-            
+            [self initData];
         }
     }];
+}
+
+-(void)bottomrenewal{
+    
+}
+
+-(void)initData{
+    data = [[DataBaseManage getDataBaseManage] GetContacts:_uniqueId];
+    [_tableView reloadData];
 }
 
 -(void)layoutheadview{
@@ -100,15 +118,15 @@
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
-        [data removeAllObjects];
-        for (int i = 0; i< 20; i++) {
-            NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"哈哈哈",@"name",
-                                 @"12",@"count",
-                                 @"18650140605",@"phone",
-                                 @"哈哈哈",@"talk",nil];
-            [data addObject:dic];
-        }
+//        [data removeAllObjects];
+//        for (int i = 0; i< 20; i++) {
+//            NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
+//                                 @"哈哈哈",@"name",
+//                                 @"12",@"count",
+//                                 @"18650140605",@"phone",
+//                                 @"哈哈哈",@"talk",nil];
+//            [data addObject:dic];
+//        }
         [_tableView reloadData];
         
         [_tableView headerEndRefreshing];
@@ -120,15 +138,15 @@
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
-        for (int i = 0; i< 4; i++) {
-            NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"哈哈哈",@"name",
-                                 @"12",@"count",
-                                 @"18650140605",@"phone",
-                                 @"哈哈哈",@"talk",nil];
-            [data addObject:dic];
-        }
-        [_tableView reloadData];
+//        for (int i = 0; i< 4; i++) {
+//            NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
+//                                 @"哈哈哈",@"name",
+//                                 @"12",@"count",
+//                                 @"18650140605",@"phone",
+//                                 @"哈哈哈",@"talk",nil];
+//            [data addObject:dic];
+//        }
+//        [_tableView reloadData];
         
         // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
         [_tableView footerEndRefreshing];
@@ -164,12 +182,11 @@
         static NSString *identifier = @"DVCCell";
         DVCCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
-        NSDictionary* dic = [data objectAtIndex:indexPath.row];
-        cell.show_num.text = [dic objectForKey:@"count"];
-        cell.show_name.text = [dic objectForKey:@"name"];
-        cell.show_content.text = [dic objectForKey:@"talk"];
-        cell.phone = [dic objectForKey:@"phone"];
-        cell.talk = [dic objectForKey:@"talk"];
+        Contacts *contacts = [data objectAtIndex:[indexPath row]];
+        cell.show_num.text = [NSString stringWithFormat:@"%d",contacts.number];
+        cell.show_name.text = contacts.name;
+        cell.show_content.text = contacts.message;
+        cell.phone = contacts.mobile;
         cell.index = indexPath;
         cell.delegate = self;
         if ([cell.phone compare:@""] == NSOrderedSame) {
@@ -183,6 +200,7 @@
             [cell.show_message setEnabled:YES];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
         return cell;
     
 }

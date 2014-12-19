@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HLEditViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate>
+@interface HLEditViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *gridview;
 @property (weak, nonatomic) IBOutlet UIView *bottomview;

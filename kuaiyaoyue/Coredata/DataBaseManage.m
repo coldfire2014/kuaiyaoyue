@@ -12,6 +12,7 @@
 #import "Info.h"
 #import "Userdata.h"
 #import "UDObject.h"
+#import "Contacts.h"
 
 @implementation DataBaseManage
 
@@ -243,6 +244,27 @@ static NSManagedObjectContext *context = nil;
     return fetchedObjects;
 }
 
+-(BOOL)GetUpUserdata:(NSDictionary *)dic{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Userdata"];
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefid = %@)",[dic objectForKey:@"unquieId"]];
+    [request setPredicate:predict];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    if ([fetchedObjects count] > 0) {
+        Userdata *user = [fetchedObjects objectAtIndex:0];
+        user.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
+        user.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
+        if (![context save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
 -(NSArray *)GetTemplate:(NSString *) neftypeId{
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Template"];
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"neftimestamp" ascending:YES];
@@ -254,7 +276,37 @@ static NSManagedObjectContext *context = nil;
     NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
     
     return fetchedObjects;
+}
+
+
+-(BOOL)AddContacts:(NSDictionary *)dic :(NSString *)nefid{
+    Contacts *contacts = [NSEntityDescription insertNewObjectForEntityForName:@"Contacts" inManagedObjectContext:context];
+    contacts.message = [dic objectForKey:@"message"];
+    contacts.mobile = [NSString stringWithFormat:@"%@",[dic objectForKey:@"mobile"]];
+    contacts.name = [dic objectForKey:@"name"];
+    contacts.number = [[dic objectForKey:@"number"] integerValue];
+    contacts.timestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
+    contacts.nefid = nefid;
     
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+        return NO;
+    }
+    return YES;
+}
+
+-(NSArray *)GetContacts :(NSString *)neftypeid{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Contacts"];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
+    [request setSortDescriptors: sortDescriptors];
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefid = %@)",neftypeid];
+    [request setPredicate:predict];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    return fetchedObjects;
 }
 
 -(void)setMusic:(NSDictionary *) dic{
