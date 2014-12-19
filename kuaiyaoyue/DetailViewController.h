@@ -12,6 +12,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *headview;
 
-
+@property (weak, nonatomic) NSString *uniqueId;
 
 @end

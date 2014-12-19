@@ -10,7 +10,7 @@
 #import "UDObject.h"
 #import "picViewAnimate.h"
 #import "coverAnimation.h"
-//#import "ZipDown.h"
+#import "ZipDown.h"
 
 @interface WelComeViewController ()
 
@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    [ZipDown Unzip];
+    [ZipDown Unzip];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

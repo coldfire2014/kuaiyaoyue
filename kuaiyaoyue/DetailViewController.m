@@ -12,6 +12,7 @@
 #import "myImageView.h"
 #import "MJRefresh.h"
 #import "BigStateView.h"
+#import "HttpManage.h"
 
 @interface DetailViewController ()<DVCCellDelegate>{
     BOOL isopen;
@@ -47,6 +48,17 @@
     
     [self layoutheadview];
     [self setupRefresh];
+    [self renewal];
+}
+
+-(void)renewal{
+    [HttpManage renewal:_uniqueId timestamp:@"-1" cb:^(BOOL isOK, NSMutableArray *array) {
+        if (isOK) {
+            NSLog(@"%@",array);
+        }else{
+            
+        }
+    }];
 }
 
 -(void)layoutheadview{

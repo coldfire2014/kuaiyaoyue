@@ -11,6 +11,8 @@
 #import "myImageView.h"
 #import "TemplateViewController.h"
 #import "UIImageView+LBBlurredImage.h"
+
+
 @interface MenuViewController ()
 
 @end
@@ -163,22 +165,8 @@
     TemplateViewController* des = (TemplateViewController*)segue.destinationViewController;
     des.bgimg = (UIImage*)self.bgimg;
     des.type = (NSString*)sender;
+    NSLog(@"%@",(NSString*)sender);
+    
 }
 
-//
-//- (IBAction)hl_onclick:(id)sender {
-//    [self performSegueWithIdentifier:@"hledit" sender:nil];
-//}
-//
-//- (IBAction)sw_onclick:(id)sender {
-//    [self performSegueWithIdentifier:@"swedit" sender:nil];
-//}
-//
-//- (IBAction)wl_onclick:(id)sender {
-//    [self performSegueWithIdentifier:@"chedit" sender:nil];
-//}
-//
-//- (IBAction)zdy_onclick:(id)sender {
-//    [self performSegueWithIdentifier:@"" sender:nil];
-//}
 @end

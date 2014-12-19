@@ -27,5 +27,7 @@
 -(BOOL)AddUserdata :(NSDictionary *) resultDic type:(int)type;
 //获取历史记录
 -(NSArray *)getUserdata;
+//获取模板列表
+-(NSArray *)GetTemplate:(NSString *) neftypeId;
 
 @end

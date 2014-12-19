@@ -50,6 +50,7 @@
 		84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84B473AA1A30572F00A21457 /* SVProgressHUD.bundle */; };
 		84B473AE1A30572F00A21457 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B473AC1A30572F00A21457 /* SVProgressHUD.m */; };
 		84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5A4781A3EC9C200C55200 /* TimeTool.m */; };
+		84B5D1151A43C44700C5C6E8 /* ZipDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5D1141A43C44700C5C6E8 /* ZipDown.m */; };
 		84E8425F1A2EDF6B00A401A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E8425E1A2EDF6B00A401A0 /* main.m */; };
 		84E842621A2EDF6B00A401A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842611A2EDF6B00A401A0 /* AppDelegate.m */; };
 		84E842651A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84E842631A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld */; };
@@ -211,6 +212,8 @@
 		84B473AC1A30572F00A21457 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		84B5A4771A3EC9C200C55200 /* TimeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTool.h; sourceTree = "<group>"; };
 		84B5A4781A3EC9C200C55200 /* TimeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTool.m; sourceTree = "<group>"; };
+		84B5D1131A43C44700C5C6E8 /* ZipDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipDown.h; sourceTree = "<group>"; };
+		84B5D1141A43C44700C5C6E8 /* ZipDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipDown.m; sourceTree = "<group>"; };
 		84E842591A2EDF6B00A401A0 /* kuaiyaoyue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kuaiyaoyue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E8425D1A2EDF6B00A401A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E8425E1A2EDF6B00A401A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -815,6 +818,8 @@
 		E5573F881A4303A9006AAB8F /* ZipArchive */ = {
 			isa = PBXGroup;
 			children = (
+				84B5D1131A43C44700C5C6E8 /* ZipDown.h */,
+				84B5D1141A43C44700C5C6E8 /* ZipDown.m */,
 				E5573F891A4303A9006AAB8F /* minizip */,
 				E5573F931A4303A9006AAB8F /* ZipArchive.h */,
 				E5573F941A4303A9006AAB8F /* ZipArchive.mm */,
@@ -994,6 +999,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84B446D01A32BAE200546859 /* LoginViewController.m in Sources */,
+				84B5D1151A43C44700C5C6E8 /* ZipDown.m in Sources */,
 				E577FC101A356D57009ED66D /* StatusBar.m in Sources */,
 				E55F59F41A36967D00B0D587 /* BigStateView.m in Sources */,
 				84B446C61A32B3D000546859 /* MJRefreshConst.m in Sources */,

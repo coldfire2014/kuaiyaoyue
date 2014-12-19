@@ -224,4 +224,8 @@
     return nil;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"%f",scrollView.contentOffset.y);
+}
+
 @end

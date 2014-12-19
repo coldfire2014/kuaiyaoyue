@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wbj-gc-hIR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oWB-DN-aF8">
     <dependencies>
         <deployment version="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -25,7 +25,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hij-Rl-7gw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-106" y="589"/>
+            <point key="canvasLocation" x="-44" y="589"/>
         </scene>
         <!--Template View Controller-->
         <scene sceneID="nPx-XQ-722">
@@ -74,7 +74,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ln4-5M-Day" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1414" y="589"/>
+            <point key="canvasLocation" x="1454" y="575"/>
         </scene>
         <!--Music View Controller-->
         <scene sceneID="qCk-ie-AhB">
@@ -1076,6 +1076,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="head_view" destination="Aes-o2-gCr" id="n1P-Tb-62x"/>
+                        <outlet property="show_toptitle" destination="pUc-rT-udx" id="Ygz-Tz-Nf1"/>
                         <outlet property="showsetting" destination="9BW-12-aFQ" id="y4I-cL-r3a"/>
                         <outlet property="showtm" destination="lQV-Tk-9rp" id="66x-aY-ae0"/>
                         <outlet property="tableview" destination="X5t-Q5-YDK" id="Mfq-I3-DIm"/>
@@ -1857,11 +1858,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="D53-YK-KM5"/>
-        <segue reference="FZT-Wq-vqX"/>
-        <segue reference="Tpj-6l-Acb"/>
-        <segue reference="1Qf-a2-pbq"/>
-        <segue reference="UoY-ek-b61"/>
-        <segue reference="yXU-Vc-xFb"/>
         <segue reference="fps-RF-Hk5"/>
+        <segue reference="FZT-Wq-vqX"/>
+        <segue reference="luI-zA-BtH"/>
+        <segue reference="UoY-ek-b61"/>
+        <segue reference="1Qf-a2-pbq"/>
+        <segue reference="yXU-Vc-xFb"/>
     </inferredMetricsTieBreakers>
 </document>

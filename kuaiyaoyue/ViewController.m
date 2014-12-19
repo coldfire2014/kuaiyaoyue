@@ -19,10 +19,13 @@
 #import "UDObject.h"
 #import "DataBaseManage.h"
 #import "Userdata.h"
+#import "DetailViewController.h"
 
 
 @interface ViewController (){
     NSArray *data;
+    NSString *uniqueId;
+    int run;
 }
 
 @end
@@ -80,7 +83,8 @@
 //}
 
 -(void)GetHTTPRecord{
-    [HttpManage multiHistory:[UDObject gettoken] size:@"-1" cb:^(BOOL isOK, NSDictionary *array) {
+    [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" cb:^(BOOL isOK, NSDictionary *array) {
+        NSLog(@"%@",array);
         if (isOK) {
             NSArray *customList = [array objectForKey:@"customList"];
             for (NSDictionary *dic in customList) {
@@ -101,19 +105,54 @@
 
 -(void)GetRecord{
     data = [[DataBaseManage getDataBaseManage] getUserdata];
-    
+    run = 0;
     if ([data count] > 0) {
+        [self showToptitle];
         [_tableview reloadData];
     }else{
         [self GetHTTPRecord];
     }
 }
 
+//0自定义，1婚礼，2趴体
+-(void)showToptitle{
+    NSDate *datenow = [NSDate date];
+    long newdata = (long)[datenow timeIntervalSince1970];
+    int runtime = 0;
+    for (int i = 0; i < [data count]; i++) {
+        Userdata *info = [data objectAtIndex:i];
+        long closetime;
+        switch (info.neftype) {
+            case 0:
+                closetime = (long)([info.nefclosetimestamp longLongValue] /1000);
+                break;
+            case 1:
+                closetime = (long)([info.neftimestamp longLongValue] /1000);
+                break;
+            case 2:
+                closetime = (long)([info.nefclosetimestamp longLongValue] /1000);
+                break;
+                
+            default:
+                break;
+        }
+        if (newdata < closetime) {
+            runtime++;
+        }
+    }
+    
+    NSString *toptitle = [NSString stringWithFormat:@"共%d个邀约,%d个正在进行....",[data count],runtime];
+    _show_toptitle.text = toptitle;
+
+}
+
 
 -(void)headview{
+    
     _show_img.layer.masksToBounds = YES;
     _show_img.layer.cornerRadius = 34;
     _showview_img.layer.cornerRadius = 36;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -151,6 +190,9 @@
     if ([segue.identifier compare:@"menu"] == NSOrderedSame ) {
         MenuViewController* des = (MenuViewController*)segue.destinationViewController;
         des.bgimg = (UIImage*)sender;
+    }else if ([segue.identifier compare:@"detail"] == NSOrderedSame){
+        DetailViewController *view = (DetailViewController*)segue.destinationViewController;
+        view.uniqueId = uniqueId;
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -211,8 +253,6 @@
     static NSString *identifier = @"ViewCell";
     ViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     cell.widht = self.view.frame.size.width;
-    
-    
     cell.info = [data objectAtIndex:[indexPath row]];
     
     return cell;
@@ -222,6 +262,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Userdata *info = [data objectAtIndex:[indexPath row]];
+    uniqueId = info.nefid;
     [self performSegueWithIdentifier:@"detail" sender:nil];
 }
 
