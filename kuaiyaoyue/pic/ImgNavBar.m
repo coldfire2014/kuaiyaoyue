@@ -37,13 +37,13 @@
         bk.tag = 101;
         [self addSubview:bk];
         
-        myImageView* btnLeft = [[myImageView alloc] initWithFrame:CGRectMake(0, 20.0, 44.0, 44.0) andImageName:@"T3" withScale:2.0];
+        myImageView* btnLeft = [[myImageView alloc] initWithFrame:CGRectMake(0, 20.0, 44.0, 44.0) andImageName:@"T3" withScale:2.0 andBundleName:@"imgBar"];
         btnLeft.tag = 102;
         [bk addSubview:btnLeft];
         UITapGestureRecognizer* tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(LeftTap)];
         [btnLeft addGestureRecognizer:tap1 ];
         
-        myImageView* btnRight = [[myImageView alloc] initWithFrame:CGRectMake(bk.frame.size.width-44.0, 20.0, 44.0, 44.0) andImageName:@"T4" withScale:2.0];
+        myImageView* btnRight = [[myImageView alloc] initWithFrame:CGRectMake(bk.frame.size.width-44.0, 20.0, 44.0, 44.0) andImageName:@"T4" withScale:2.0 andBundleName:@"imgBar"];
         btnRight.tag = 103;
         [bk addSubview:btnRight];
         UITapGestureRecognizer* tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(RightTap)];
