@@ -31,7 +31,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.windowLevel = UIWindowLevelAlert + 1.0;
+        self.windowLevel = UIWindowLevelAlert + 2.0;
+        self.backgroundColor = [UIColor clearColor];
+        self.alpha = 1;
+        self.hidden = NO;
     }
     return self;
 }

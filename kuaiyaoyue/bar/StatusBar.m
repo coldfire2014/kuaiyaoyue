@@ -88,4 +88,5 @@
     [bk.layer addAnimation:moveAnim forKey:@"s"];
     [self goout:0.5+time];
 }
+
 @end
