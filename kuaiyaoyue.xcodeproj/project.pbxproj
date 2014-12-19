@@ -90,6 +90,8 @@
 		E524FF3B1A3ED9A5002E7DC0 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */; };
 		E52D00301A43200E00817261 /* UIImageView+LBBlurredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */; };
 		E54170E51A3EABC60022D2CC /* ctView.m in Sources */ = {isa = PBXBuildFile; fileRef = E54170E41A3EABC60022D2CC /* ctView.m */; };
+		E541B3031A43C944006F89E1 /* CalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E541B3021A43C944006F89E1 /* CalHelper.m */; };
+		E541B3071A43C98E006F89E1 /* libTalkingData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E541B3051A43C98E006F89E1 /* libTalkingData.a */; };
 		E54851D81A35AF0500590E5C /* coverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D71A35AF0500590E5C /* coverSegue.m */; };
 		E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DA1A35AF5C00590E5C /* coverAnimation.m */; };
 		E54851DE1A35B08800590E5C /* w2mainSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DD1A35B08800590E5C /* w2mainSegue.m */; };
@@ -291,6 +293,10 @@
 		E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LBBlurredImage.m"; sourceTree = "<group>"; };
 		E54170E31A3EABC60022D2CC /* ctView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ctView.h; path = element/ctView.h; sourceTree = "<group>"; };
 		E54170E41A3EABC60022D2CC /* ctView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ctView.m; path = element/ctView.m; sourceTree = "<group>"; };
+		E541B3011A43C944006F89E1 /* CalHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalHelper.h; sourceTree = "<group>"; };
+		E541B3021A43C944006F89E1 /* CalHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalHelper.m; sourceTree = "<group>"; };
+		E541B3051A43C98E006F89E1 /* libTalkingData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTalkingData.a; sourceTree = "<group>"; };
+		E541B3061A43C98E006F89E1 /* TalkingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingData.h; sourceTree = "<group>"; };
 		E54851D61A35AF0500590E5C /* coverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coverSegue.h; sourceTree = "<group>"; };
 		E54851D71A35AF0500590E5C /* coverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = coverSegue.m; sourceTree = "<group>"; };
 		E54851D91A35AF5C00590E5C /* coverAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coverAnimation.h; sourceTree = "<group>"; };
@@ -360,6 +366,7 @@
 				84B446B21A32B35900546859 /* Foundation.framework in Frameworks */,
 				84B446B01A32B35500546859 /* UIKit.framework in Frameworks */,
 				84FE0B931A4289B0005A9599 /* libWeChatSDK.a in Frameworks */,
+				E541B3071A43C98E006F89E1 /* libTalkingData.a in Frameworks */,
 				84B446AE1A32B35000546859 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -657,6 +664,8 @@
 		84E842851A2EE88100A401A0 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				E541B3041A43C98E006F89E1 /* TalkingData */,
+				E541B3001A43C91E006F89E1 /* cal */,
 				E52D002D1A431FEA00817261 /* blur */,
 				E5573F881A4303A9006AAB8F /* ZipArchive */,
 				84FE0B8F1A4289B0005A9599 /* ShareLinb */,
@@ -800,6 +809,25 @@
 			);
 			name = blur;
 			sourceTree = "<group>";
+		};
+		E541B3001A43C91E006F89E1 /* cal */ = {
+			isa = PBXGroup;
+			children = (
+				E541B3011A43C944006F89E1 /* CalHelper.h */,
+				E541B3021A43C944006F89E1 /* CalHelper.m */,
+			);
+			name = cal;
+			sourceTree = "<group>";
+		};
+		E541B3041A43C98E006F89E1 /* TalkingData */ = {
+			isa = PBXGroup;
+			children = (
+				E541B3051A43C98E006F89E1 /* libTalkingData.a */,
+				E541B3061A43C98E006F89E1 /* TalkingData.h */,
+			);
+			name = TalkingData;
+			path = kuaiyaoyue/Lib/TalkingData;
+			sourceTree = SOURCE_ROOT;
 		};
 		E54851D51A35AEE400590E5C /* Segue */ = {
 			isa = PBXGroup;
@@ -1069,6 +1097,7 @@
 				84E842D71A2F0E9E00A401A0 /* MusicInfo.m in Sources */,
 				84E842BD1A2EFDCB00A401A0 /* AFHTTPRequestOperationManager.m in Sources */,
 				844825821A31867A0018240E /* ThreeViewController.m in Sources */,
+				E541B3031A43C944006F89E1 /* CalHelper.m in Sources */,
 				84B446C81A32B3D000546859 /* MJRefreshHeaderView.m in Sources */,
 				844825891A318C810018240E /* UDObject.m in Sources */,
 				84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */,
@@ -1220,6 +1249,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/ShareLinb",
+					"$(PROJECT_DIR)/kuaiyaoyue/Lib/TalkingData",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1242,6 +1272,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/ShareLinb",
+					"$(PROJECT_DIR)/kuaiyaoyue/Lib/TalkingData",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7cc2b366-7e0a-44d7-abfc-deed0b62d6ef";
