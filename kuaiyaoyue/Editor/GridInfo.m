@@ -12,8 +12,7 @@
 
 @implementation GridInfo
 
-- (GridInfo *)initWithDictionary:(UIImage *) img :(bool) is_open :(ALAsset *)alasset{
-    self.img = img;
+- (GridInfo *)initWithDictionary:(bool) is_open :(ALAsset *)alasset{
     self.is_open = is_open;
     self.alasset = alasset;
     return self;

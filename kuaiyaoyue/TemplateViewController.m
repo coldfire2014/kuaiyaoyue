@@ -90,7 +90,9 @@
     btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 12.0);
 //    btnView.layer.transform = CATransform3DMakeRotation(-M_PI*2.0-M_PI_4,0,0,1);
     [self.view addSubview:btnView];
-    
+    [self indata];
+    loading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [self.view addSubview: loading];
     
     loading.center = _tempList.center;
     [self.view bringSubviewToFront:loading];
@@ -99,7 +101,11 @@
 }
 - (void)viewDidAppear:(BOOL)animated{
     //showList加载数据完成后调用
-    [self indata];
+    if (isloading) {
+        isloading = NO;
+        [_tempList reloadOther];
+        [loading stopAnimating];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

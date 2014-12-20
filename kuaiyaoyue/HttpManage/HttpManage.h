@@ -89,6 +89,7 @@
    timestamp:(NSString *)timestamp
   background:(NSString *)background
     musicUrl:(NSString *)musicUrl
+closeTimestamp:(NSString *)closeTimestamp
          mid:(NSString *)mid
           cb:(void(^)(BOOL isOK ,NSDictionary *array))callback;
 //聚会提交
@@ -145,7 +146,7 @@ closeTimestamp:(NSString *)closeTimestamp
                cb:(void(^)(BOOL isOK ,NSDictionary *array))callback;
 
 //文件上传
-+(void)uploadTP:(UIImage *) image cb:(void(^)(BOOL isOK, NSString *URL))callback;
++(void)uploadTP:(UIImage *) image name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback;
 +(void)uploadYP:(NSString *) file cb:(void (^)(BOOL isOK, NSString *URL))callback;
 
 //版本查询

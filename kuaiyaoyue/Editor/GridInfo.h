@@ -12,10 +12,9 @@
 
 @interface GridInfo : NSObject
 
-@property (weak ,nonatomic) UIImage *img;
-@property (weak ,nonatomic) ALAsset *alasset;
+@property (strong ,nonatomic) ALAsset *alasset;
 @property bool is_open;
 
-- (GridInfo *)initWithDictionary:(UIImage *) img : (bool) is_open :(ALAsset *)alasset;
+- (GridInfo *)initWithDictionary:(bool) is_open :(ALAsset *)alasset;
 
 @end

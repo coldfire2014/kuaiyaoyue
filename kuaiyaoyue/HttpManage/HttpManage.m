@@ -380,15 +380,17 @@ password:1235456                     //用户密码
    timestamp:(NSString *)timestamp
   background:(NSString *)background
     musicUrl:(NSString *)musicUrl
+closeTimestamp:(NSString *)closeTimestamp
          mid:(NSString *)mid
           cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             token,@"token",bride,@"bride",groom,@"groom",
-                            address,@"address",location,@"location",images,@"images",
-                            timestamp,@"timestamp",background,@"background",musicUrl,@"musicUrl",
+                            address,@"address",images,@"images",
+                            timestamp,@"timestamp",background,@"background",musicUrl,@"musicUrl",closeTimestamp,@"closeTimestamp",
                             @"ios",@"equipment",version,@"version",
                             nil];
     
+    NSLog(@"%@",params);
     NSString *pjurl = [NSString stringWithFormat:@"invitation/nozzle/NefUserData/marry/%@.aspx",mid];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,pjurl];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
@@ -677,12 +679,12 @@ closeTimestamp:(NSString *)closeTimestamp
 /*
  文件上传-图片
  */
-+(void)uploadTP:(UIImage *) image cb:(void(^)(BOOL isOK, NSString *URL))callback{
++(void)uploadTP:(UIImage *) image name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback{
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:HTTPURL]];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefImages/upload.aspx"];
     [manager POST:url parameters:nil timeout:9 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData* jtdata = UIImageJPEGRepresentation(image,0.3);
-        [formData appendPartWithFileData:jtdata name:@"files" fileName:@"one.jpg" mimeType:@"image/jpeg"];
+        [formData appendPartWithFileData:jtdata name:@"files" fileName:name mimeType:@"image/jpeg"];
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);

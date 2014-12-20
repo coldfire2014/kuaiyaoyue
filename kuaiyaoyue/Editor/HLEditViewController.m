@@ -26,6 +26,8 @@
 @interface HLEditViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate>{
     int count;
     NSMutableArray *imgdata;
+    int row_index;
+    
     AssetHelper* assert;
     ShowData *show;
     NSString *hltime;
@@ -57,6 +59,8 @@
     [self.navigationController.navigationBar setTintColor:color];
     
     imgdata = [[NSMutableArray alloc] init];
+    
+    
     _data = [[NSMutableArray alloc] init];
     UINib *nib = [UINib nibWithNibName:NSStringFromClass([PhotoCell class]) bundle:nil];
     [_gridview registerNib:nib forCellWithReuseIdentifier:@"PhotoCell"];
@@ -108,7 +112,7 @@
 
 -(void)initImgData{
     count = 9;
-    GridInfo *info = [[GridInfo alloc] initWithDictionary:nil :NO :nil];
+    GridInfo *info = [[GridInfo alloc] initWithDictionary:NO :nil];
     [_data addObject:info];
     [_gridview reloadData];
     
@@ -157,10 +161,13 @@
     PhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
     cell.index = [indexPath row];
     cell.delegate = self;
+    
 //    cell.add_view.backgroundColor = self.nowkColor;
     if (info.is_open) {
         [cell.del_button setHidden:NO];
-        cell.show_img.image = info.img;
+        NSLog(@"%@",info.alasset);
+        UIImage *img = [assert getImageFromAsset:info.alasset type:ASSET_PHOTO_THUMBNAIL];
+        cell.show_img.image = img;
         cell.show_img.alpha = 0;
         [UIView animateWithDuration:0.3 animations:^{
             cell.show_img.alpha = 1;
@@ -196,7 +203,9 @@
     [_gridview reloadData];
     count ++;
 //    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
-    [self sethigh];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self sethigh];
+    }];
 }
 
 -(void)didSelectAssets:(NSArray*)items{
@@ -204,8 +213,7 @@
     for (int i = 0; i < items.count; i++)
     {
         ALAsset* al = [items objectAtIndex:i];
-        UIImage *img = [assert getImageFromAsset:al type:ASSET_PHOTO_THUMBNAIL];
-        GridInfo *info = [[GridInfo alloc] initWithDictionary:img :YES :al];
+        GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :al];
         [self.data addObject:info];
     }
     
@@ -216,13 +224,15 @@
         }
     }
     
-    GridInfo *info = [[GridInfo alloc] initWithDictionary:nil :NO :nil];
+    GridInfo *info = [[GridInfo alloc] initWithDictionary:NO :nil];
     [self.data addObject:info];
     [self.gridview reloadData];
     count -= items.count;
     
 //   [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
-    [self sethigh];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self sethigh];
+    }];
 }
 
 -(void)sethigh{
@@ -380,7 +390,6 @@
 //    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
 //    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
 //    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
-    
 //   [UIImageJPEGRepresentation(bgimg,0.8) writeToFile:[[FileManage sharedFileManage] getImgFile:uuid] atomically:YES];
     [self upmbdt:bgimg];
 }
@@ -444,13 +453,21 @@
 
 -(void)upmbdt:(UIImage *)img{
     [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
-    [HttpManage uploadTP:img cb:^(BOOL isOK, NSString *URL) {
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
         NSLog(@"%@",URL);
         if (isOK) {
-            if ([imgdata count] > 0) {
-                
+            imgdata = [[NSMutableArray alloc] init];
+            if ([_data count] > 0) {
+                row_index = 0;
+                GridInfo *info = [_data objectAtIndex:row_index];
+                UIImage *img = [assert getImageFromAsset:info.alasset type:ASSET_PHOTO_SCREEN_SIZE];
+                [self postuploadHL:img :URL] ;
             }else{
-                [self marry:_unquieId :xn_name :xl_name :address_name :@"" :hltime :URL :mp3url];
+                NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
+                [self marry:_unquieId :xn_name :xl_name :address_name :arr :hltime :URL :mp3url :bmendtime];
             }
         }else{
             [SVProgressHUD dismissWithError:@"上传失败"];
@@ -458,77 +475,40 @@
     }];
 }
 
-//-(void)postuploadHL :(UIImage *) img{
-//    [HttpManage uploadTp:img cb:^(BOOL isOK, NSString *arry) {
-//        if (isOK) {
-//            //解析服务器图片名称
-//            [imgdataup addObject:arry];
-//            NSArray *array1 = [arry componentsSeparatedByString:@"/"];
-//            NSString *imgname1 = [array1 objectAtIndex:([array1 count] - 1)];
-//            NSString *imgpath = [NSString stringWithFormat:@"../HLImage/%@",imgname1];
-//            [imgdata addObject:imgpath];
-//            
-//            NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-//            NSString *key_name = [NSString stringWithFormat:@"hlimg_%d",row_index];
-//            [userInfo setObject:imgpath forKey:key_name];
-//            [userInfo synchronize];
-//            
-//            //重新命名
-//            NSString *img_key = [imgarr objectAtIndex:row_index];
-//            NSArray *array = [img_key componentsSeparatedByString:@"/"];
-//            NSString *imgname = [array objectAtIndex:([array count] - 1)];
-//            NSString  *movepath = [filemanage.hlimgDirectory stringByAppendingPathComponent: imgname];
-//            NSString *topath = [filemanage.hlimgDirectory stringByAppendingPathComponent: imgname1];
-//            [filemanage FileCMM:movepath :topath];
-//            
-//            row_index ++;
-//            if (row_index > 5) {
-//                
-//                NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
-//                NSString *hlarr = [arr componentsJoinedByString:@","];
-//                NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-//                NSString *ylurl = [userInfo objectForKey:@"ylurl"];
-//                imagearrs = hlarr;
-//                [userInfo setObject:hlarr forKey:@"hlarr"];
-//                if([ylurl length] > 0){
-//                    [userInfo setObject:ylurl forKey:@"hlurl"];
-//                }
-//                [userInfo synchronize];
-//                
-//                
-////                //上传信息
-////                NSString *unquieId = [userInfo valueForKey:@"unquieId"];
-////                NSString *xlname = [userInfo valueForKey:@"xlname"];
-////                NSString *xllname = [userInfo valueForKey:@"xllname"];
-////                NSString *dzname = [userInfo valueForKey:@"dzname"];
-////                NSString *jdname = [userInfo valueForKey:@"jdname"];
-////                NSString *jhtime = [userInfo valueForKey:@"jhtime"];
-////                //                imagearrs = [userInfo valueForKey:@"hlarr"];
-////                //                NSArray *arr_0 = [hlarr componentsSeparatedByString:NSLocalizedString(@",", nil)];
-////                NSArray *arr_0 = [[NSArray alloc] initWithArray:imgdataup];
-////                
-////                [httphelper marry:unquieId :xllname :xlname :jdname :dzname :arr_0 :jhtime];
-//                
-//                
-//            }else{
-//                NSString *img_key = [imgarr objectAtIndex:row_index];
-//                NSArray *array = [img_key componentsSeparatedByString:@"/"];
-//                NSString *imgname = [array objectAtIndex:([array count] - 1)];
-//                imgname = [filemanage.hlimgDirectory stringByAppendingPathComponent: imgname];
-//                UIImage *img = [[UIImage alloc]initWithContentsOfFile:imgname];
-//                [self postuploadHL:img];
-//            }
-//        }else{
-//            [SVProgressHUD dismissWithError:@"上传失败"];
-//        }
-//    }];
-//}
 
--(void)marry:(NSString *) unquieId :(NSString *) bride :(NSString *) groom :(NSString *) address :(NSArray *) images :(NSString *) timestamp :(NSString *)background :(NSString *)musicUrl{
-    
-    [HttpManage marry:[UDObject gettoken] bride:bride groom:groom address:address location:nil images:images timestamp:timestamp background:background musicUrl:@"" mid:unquieId cb:^(BOOL isOK, NSDictionary *array) {
+
+-(void)postuploadHL :(UIImage *) img :(NSString *)URL{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    [HttpManage uploadTP:img name:uuid  cb:^(BOOL isOK, NSString *arry) {
         if (isOK) {
-            
+            //解析服务器图片名称
+            [imgdata addObject:arry];
+            row_index ++;
+            if (row_index > [_data count] - 2) {
+                 NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
+                [self marry:_unquieId :xn_name :xl_name :address_name :arr :hltime :URL :mp3url :bmendtime];
+                
+            }else{
+                GridInfo *info = [_data objectAtIndex:row_index];
+                UIImage *img1 = [assert getImageFromAsset:info.alasset type:ASSET_PHOTO_SCREEN_SIZE];
+                [self postuploadHL:img1 :URL];
+            }
+        }else{
+            [SVProgressHUD dismissWithError:@"上传失败"];
+        }
+    }];
+}
+
+-(void)marry:(NSString *) unquieId :(NSString *) bride :(NSString *) groom :(NSString *) address :(NSArray *) images :(NSString *) timestamp :(NSString *)background :(NSString *)musicUrl :(NSString *)closeTimestamp{
+    if (musicUrl.length > 0) {}else{
+        musicUrl = @"";
+    }
+    
+    [HttpManage marry:[UDObject gettoken] bride:bride groom:groom address:address location:nil images:images timestamp:timestamp background:background musicUrl:musicUrl closeTimestamp:closeTimestamp mid:unquieId cb:^(BOOL isOK, NSDictionary *dic) {
+        NSLog(@"%@",dic);
+        if (isOK) {
             
         }else{
             
