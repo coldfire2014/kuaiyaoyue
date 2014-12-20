@@ -9,7 +9,8 @@
 #import "HttpManage.h"
 #import "ZipArchive.h"
 
-#define HTTPURL @"http://test.kyy121.com/"
+#define HTTPURL @"http://10.142.59.103/"
+
 /*
 43    //BadCredentialsException     密码不正确
 53    VerificationTimeoutException    验证码超时
@@ -702,7 +703,6 @@ closeTimestamp:(NSString *)closeTimestamp
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:HTTPURL]];
     [manager POST:@"NefImages/upload.aspx" parameters:nil timeout:11 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData *data = [NSData dataWithContentsOfFile: file];
-        NSLog(@"%d",[data length]/1024);
         [formData appendPartWithFileData:data name:@"files" fileName:@"cs.wav" mimeType:@"audio/wav"];
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {

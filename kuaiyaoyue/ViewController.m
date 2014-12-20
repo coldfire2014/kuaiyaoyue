@@ -32,6 +32,7 @@
     int run;
     UITableViewCellEditingStyle selectEditingStyle;
     BOOL is_chose;
+    
 }
 
 @end
@@ -73,8 +74,10 @@
 //    }else{
 //        NSLog(@"已登录");
 //    }
-    
+    [self loaddata];
     [self GetRecord];
+    
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 
 }
 
