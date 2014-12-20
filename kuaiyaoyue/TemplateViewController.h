@@ -11,6 +11,8 @@
 @interface TemplateViewController : UIViewController<ctViewDelegate>
 {
 //    ctView* tempList;
+    UIActivityIndicatorView* loading;
+    BOOL isloading;
 }
 @property (nonatomic,strong) ctView* tempList;
 @property (nonatomic,strong) NSString* type;
