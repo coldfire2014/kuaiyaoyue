@@ -34,6 +34,7 @@
 @property (nonatomic, assign) CGFloat radius;
 @property(nonatomic, weak) id<ctViewDelegate> delegate;
 -(void)reloadViews;
+-(void)reloadOther;
 -(void)showList;
 -(int)getIndex;
 -(void)left;
