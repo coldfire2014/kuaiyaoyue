@@ -161,6 +161,7 @@ static NSString * const fIdentifier = @"imgcellf";
 }
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [self becomeFirstResponder];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backWithNO) name:@"MSG_BACK" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backWithOK) name:@"MSG_IMGS_OK" object:nil];
@@ -180,6 +181,23 @@ static NSString * const fIdentifier = @"imgcellf";
 -(void)backWithNO{
     isOK = NO;
     [self back];
+}
+- (BOOL) canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self resignFirstResponder];
+    [super viewWillAppear:animated];
+}
+
+- (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake) {
+        NSLog(@"Shake..........");
+    }
 }
 -(void)back{
     isShow = NO;

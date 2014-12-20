@@ -92,6 +92,10 @@
     [self.view addSubview:btnView];
     
     
+    loading.center = _tempList.center;
+    [self.view bringSubviewToFront:loading];
+    [loading startAnimating];
+    isloading = YES;
 }
 - (void)viewDidAppear:(BOOL)animated{
     //showList加载数据完成后调用

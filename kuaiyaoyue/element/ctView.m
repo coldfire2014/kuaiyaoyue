@@ -89,17 +89,32 @@
         }
     }else{
         bk = [self addbkView];
-        for (int i = 0; i<itemCount; i++) {
+        for (int i = 0; i<3; i++) {
             if ([_delegate respondsToSelector:@selector(cellForItemAtIndex:)]) {
                 UIView *webbg0 = [_delegate cellForItemAtIndex:i];          
                 webbg0.tag = 990+i;
                 webbg0.layer.anchorPoint = CGPointMake(1, 0);
                 webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + self.itemSize.width/2.0, bk.bounds.size.height/2.0 - self.itemSize.height/2.0);
-//                webbg0.layer.transform = [self ftransformForItemView:webbg0 withOffset:i];
+                webbg0.layer.transform = [self ftransformForItemView:webbg0 withOffset:i];
                 [bk addSubview:webbg0];
             } else {
                 NSLog(@"Not respondsToSelector:@selector(cellForItemAtIndex:)");
             }
+        }
+    }
+}
+-(void)reloadOther{
+    UIView* bk = [self viewWithTag:101];
+    for (int i = 3; i<itemCount; i++) {
+        if ([_delegate respondsToSelector:@selector(cellForItemAtIndex:)]) {
+            UIView *webbg0 = [_delegate cellForItemAtIndex:i];
+            webbg0.tag = 990+i;
+            webbg0.layer.anchorPoint = CGPointMake(1, 0);
+            webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + self.itemSize.width/2.0, bk.bounds.size.height/2.0 - self.itemSize.height/2.0);
+            webbg0.layer.transform = [self ftransformForItemView:webbg0 withOffset:i];
+            [bk addSubview:webbg0];
+        } else {
+            NSLog(@"Not respondsToSelector:@selector(cellForItemAtIndex:)");
         }
     }
 }

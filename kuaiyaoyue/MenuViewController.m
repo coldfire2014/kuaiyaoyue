@@ -77,7 +77,7 @@
     one.tag = 401;
     one.backgroundColor = [UIColor clearColor];
     
-    myImageView* oneImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"cardOne.jpg" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    myImageView* oneImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"card_o@2x" withScale:2.0 andAlign:UIImgAlignmentCenter];
     [one addSubview:oneImg];
     [bgView addSubview:one];
     
@@ -87,7 +87,7 @@
     two.tag = 402;
     two.backgroundColor = [UIColor clearColor];
     
-    myImageView* twoImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"cardOne.jpg" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    myImageView* twoImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"card_b@2x" withScale:2.0 andAlign:UIImgAlignmentCenter];
     [two addSubview:twoImg];
     [bgView addSubview:two];
     
@@ -96,7 +96,7 @@
     three.layer.cornerRadius = 3;
     three.tag = 403;
     three.backgroundColor = [UIColor clearColor];
-    myImageView* threeImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"cardOne.jpg" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    myImageView* threeImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"card_r@2x" withScale:2.0 andAlign:UIImgAlignmentCenter];
     [three addSubview:threeImg];
     [bgView addSubview:three];
     
@@ -105,7 +105,7 @@
     four.layer.cornerRadius = 3;
     four.tag = 404;
     four.backgroundColor = [UIColor clearColor];
-    myImageView* fourImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"cardOne.jpg" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    myImageView* fourImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"card_g@2x" withScale:2.0 andAlign:UIImgAlignmentCenter];
     [four addSubview:fourImg];
     [bgView addSubview:four];
     
