@@ -142,6 +142,7 @@
 
 -(void)maxtemplate:(NSString *)timestamp{
     [HttpManage template:timestamp size:@"-1" cb:^(BOOL isOK, NSMutableArray *array) {
+        NSLog(@"%@",array);
         if (isOK) {
             for (int i = 0; i < [array count]; i++) {
                 NSDictionary *resultDic = [array objectAtIndex:i];

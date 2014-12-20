@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "AssetHelper.h"
+
 @interface GridInfo : NSObject
 
-@property (strong ,nonatomic) UIImage *img;
+@property (weak ,nonatomic) UIImage *img;
+@property (weak ,nonatomic) ALAsset *alasset;
 @property bool is_open;
 
-- (GridInfo *)initWithDictionary:(UIImage *) img : (bool) is_open;
+- (GridInfo *)initWithDictionary:(UIImage *) img : (bool) is_open :(ALAsset *)alasset;
 
 @end

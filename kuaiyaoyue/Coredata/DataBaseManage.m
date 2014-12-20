@@ -13,6 +13,7 @@
 #import "Userdata.h"
 #import "UDObject.h"
 #import "Contacts.h"
+#import "Fixeds.h"
 
 @implementation DataBaseManage
 
@@ -77,6 +78,11 @@ static NSManagedObjectContext *context = nil;
         [self Addinfo:resultDic1 :nefids];
     }
     
+    NSArray *fixeds = [resultDic objectForKey:@"fixeds"];
+    for (NSDictionary *dic in fixeds) {
+        [self AddFixeds:dic :nefids];
+    }
+    
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -105,6 +111,23 @@ static NSManagedObjectContext *context = nil;
         return NO;
     }
     return YES;
+}
+
+-(void)AddFixeds:(NSDictionary *)dic :(NSString *)nefid{
+    Fixeds *info = [NSEntityDescription insertNewObjectForEntityForName:@"Fixeds" inManagedObjectContext:context];
+    info.nefContent = [dic objectForKey:@"nefContent"];
+    info.nefFontSize = [[dic objectForKey:@"nefFontSize"] intValue];
+    info.nefHeight = [[dic objectForKey:@"nefHeight"] intValue];
+    info.nefWidth = [[dic objectForKey:@"nefWidth"] intValue];
+    info.nefX = [[dic objectForKey:@"nefX"] intValue];
+    info.nefY = [[dic objectForKey:@"nefY"] intValue];
+    info.neftemplateid = nefid;
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
 }
 
 -(BOOL)UpdataInfo :(NSDictionary *)dic{
@@ -140,6 +163,26 @@ static NSManagedObjectContext *context = nil;
     }
     
     return YES;
+}
+
+-(NSArray *)GetInfo:(NSString *) nefid{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Info"];
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(neftemplateid = %@)",nefid];
+    [request setPredicate:predict];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    
+    return fetchedObjects;
+}
+
+-(NSArray *)GetFixeds:(NSString *) nefid{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Fixeds"];
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(neftemplateid = %@)",nefid];
+    [request setPredicate:predict];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    
+    return fetchedObjects;
 }
 
 //0自定义，1婚礼，2趴体
@@ -194,6 +237,7 @@ static NSManagedObjectContext *context = nil;
         userdata.nefthumb = [NSString stringWithFormat:@"%@",[dic objectForKey:@"thumb"]];
         userdata.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
         userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
+        userdata.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
         
     }else if (type == 2){
         NSLog(@"%@",[dic objectForKey:@"partyName"]);

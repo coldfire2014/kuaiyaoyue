@@ -131,8 +131,6 @@
     }
     cell.show_content.text = info.title;
     
-
-
     return cell;
 }
 

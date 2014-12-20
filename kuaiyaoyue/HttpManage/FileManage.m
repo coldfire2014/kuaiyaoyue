@@ -39,14 +39,8 @@
     NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"kyy"];
     [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     // 创建目录
-    
-    self.hlimgDirectory = [testDirectory stringByAppendingPathComponent:@"HLImage"];
     self.imgDirectory = [testDirectory stringByAppendingPathComponent:@"Image"];
     self.audioDirectory = [testDirectory stringByAppendingPathComponent:@"Audio"];
-    
-    if (![fileManager fileExistsAtPath:self.hlimgDirectory]) {
-        [fileManager createDirectoryAtPath:self.hlimgDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-    }
     
     if (![fileManager fileExistsAtPath:self.imgDirectory]) {
         [fileManager createDirectoryAtPath:self.imgDirectory withIntermediateDirectories:YES attributes:nil error:nil];
@@ -57,6 +51,11 @@
     }
 }
 
+-(NSString *)getImgFile:(NSString *)name{
+    [self CreateFile];
+    return [self.imgDirectory stringByAppendingPathComponent:name];
+}
+
 -(NSString *)GetYPFile:(NSString *) name{
     return [self.audioDirectory stringByAppendingPathComponent:name];
 }
@@ -64,7 +63,7 @@
 -(BOOL) ISYPFile:(NSString *)name{
     NSString *filepath = [self.audioDirectory stringByAppendingPathComponent:name];
     return [[NSFileManager defaultManager] fileExistsAtPath:filepath];
-
 }
+
 
 @end

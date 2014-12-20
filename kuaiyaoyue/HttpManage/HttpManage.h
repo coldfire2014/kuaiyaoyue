@@ -85,7 +85,7 @@
        groom:(NSString *)groom
      address:(NSString *)address
     location:(NSString *)location
-      images:(NSString *)images
+      images:(NSArray *)images
    timestamp:(NSString *)timestamp
   background:(NSString *)background
     musicUrl:(NSString *)musicUrl

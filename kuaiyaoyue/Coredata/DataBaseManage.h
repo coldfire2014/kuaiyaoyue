@@ -23,6 +23,10 @@
 -(BOOL)AddTemplate:(NSDictionary *) resultDic;
 //更新Info表
 -(BOOL)UpdataInfo :(NSDictionary *)dic;
+//获取Info表
+-(NSArray *)GetInfo:(NSString *) nefid;
+//获取Fixeds表
+-(NSArray *)GetFixeds:(NSString *) nefid;
 //添加历史记录
 -(BOOL)AddUserdata :(NSDictionary *) resultDic type:(int)type;
 //获取历史记录

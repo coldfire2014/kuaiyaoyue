@@ -29,6 +29,12 @@
 		844826061A31B6E30018240E /* YJFKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844826051A31B6E30018240E /* YJFKViewController.m */; };
 		844826091A31B6F90018240E /* GLJSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844826081A31B6F90018240E /* GLJSViewController.m */; };
 		846195591A31DA8700FDF2CA /* GridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 846195581A31DA8700FDF2CA /* GridCell.m */; };
+		846C1B9D1A45592900B59A18 /* ShowData.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1B9C1A45592900B59A18 /* ShowData.m */; };
+		846C1B9F1A45593C00B59A18 /* ShowData.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C1B9E1A45593C00B59A18 /* ShowData.xib */; };
+		846C1BA21A45704100B59A18 /* NSInfoImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA11A45704100B59A18 /* NSInfoImg.m */; };
+		846C1BA51A45706000B59A18 /* LunarCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA41A45706000B59A18 /* LunarCalendar.m */; };
+		846C1BA81A45706B00B59A18 /* JBCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA71A45706B00B59A18 /* JBCalendar.m */; };
+		846C1BAB1A45734900B59A18 /* Fixeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BAA1A45734900B59A18 /* Fixeds.m */; };
 		848BF4791A43254B0002A1B1 /* Userdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 848BF4781A43254B0002A1B1 /* Userdata.m */; };
 		84B446AE1A32B35000546859 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B446AD1A32B35000546859 /* CoreGraphics.framework */; };
 		84B446B01A32B35500546859 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B446AF1A32B35500546859 /* UIKit.framework */; };
@@ -181,6 +187,17 @@
 		844826081A31B6F90018240E /* GLJSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLJSViewController.m; sourceTree = "<group>"; };
 		846195571A31DA8700FDF2CA /* GridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCell.h; sourceTree = "<group>"; };
 		846195581A31DA8700FDF2CA /* GridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridCell.m; sourceTree = "<group>"; };
+		846C1B9B1A45592900B59A18 /* ShowData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowData.h; sourceTree = "<group>"; };
+		846C1B9C1A45592900B59A18 /* ShowData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowData.m; sourceTree = "<group>"; };
+		846C1B9E1A45593C00B59A18 /* ShowData.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowData.xib; sourceTree = "<group>"; };
+		846C1BA01A45704100B59A18 /* NSInfoImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSInfoImg.h; sourceTree = "<group>"; };
+		846C1BA11A45704100B59A18 /* NSInfoImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSInfoImg.m; sourceTree = "<group>"; };
+		846C1BA31A45706000B59A18 /* LunarCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunarCalendar.h; sourceTree = "<group>"; };
+		846C1BA41A45706000B59A18 /* LunarCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LunarCalendar.m; sourceTree = "<group>"; };
+		846C1BA61A45706B00B59A18 /* JBCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBCalendar.h; sourceTree = "<group>"; };
+		846C1BA71A45706B00B59A18 /* JBCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBCalendar.m; sourceTree = "<group>"; };
+		846C1BA91A45734900B59A18 /* Fixeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fixeds.h; sourceTree = "<group>"; };
+		846C1BAA1A45734900B59A18 /* Fixeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fixeds.m; sourceTree = "<group>"; };
 		848BF4771A43254B0002A1B1 /* Userdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Userdata.h; sourceTree = "<group>"; };
 		848BF4781A43254B0002A1B1 /* Userdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Userdata.m; sourceTree = "<group>"; };
 		84B446AD1A32B35000546859 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -458,6 +475,9 @@
 		844825F31A31A4BB0018240E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				846C1B9B1A45592900B59A18 /* ShowData.h */,
+				846C1B9C1A45592900B59A18 /* ShowData.m */,
+				846C1B9E1A45593C00B59A18 /* ShowData.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -565,6 +585,8 @@
 				848BF4781A43254B0002A1B1 /* Userdata.m */,
 				84B5D1161A441C3E00C5C6E8 /* Contacts.h */,
 				84B5D1171A441C3E00C5C6E8 /* Contacts.m */,
+				846C1BA91A45734900B59A18 /* Fixeds.h */,
+				846C1BAA1A45734900B59A18 /* Fixeds.m */,
 			);
 			path = Coredata;
 			sourceTree = "<group>";
@@ -582,6 +604,12 @@
 		84B5A4761A3EC9B100C55200 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				846C1BA31A45706000B59A18 /* LunarCalendar.h */,
+				846C1BA41A45706000B59A18 /* LunarCalendar.m */,
+				846C1BA61A45706B00B59A18 /* JBCalendar.h */,
+				846C1BA71A45706B00B59A18 /* JBCalendar.m */,
+				846C1BA01A45704100B59A18 /* NSInfoImg.h */,
+				846C1BA11A45704100B59A18 /* NSInfoImg.m */,
 				84B5A4771A3EC9C200C55200 /* TimeTool.h */,
 				84B5A4781A3EC9C200C55200 /* TimeTool.m */,
 			);
@@ -1016,6 +1044,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846C1B9F1A45593C00B59A18 /* ShowData.xib in Resources */,
 				84B446CC1A32B50500546859 /* Main.storyboard in Resources */,
 				84E8426D1A2EDF6B00A401A0 /* Images.xcassets in Resources */,
 				84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */,
@@ -1050,6 +1079,7 @@
 				84B446C71A32B3D000546859 /* MJRefreshFooterView.m in Sources */,
 				84FE0BC61A42D32C005A9599 /* Info.m in Sources */,
 				E55F59EE1A36894B00B0D587 /* StateView.m in Sources */,
+				846C1BA51A45706000B59A18 /* LunarCalendar.m in Sources */,
 				8448257F1A31865E0018240E /* TwoViewController.m in Sources */,
 				84E842C41A2EFDCB00A401A0 /* AFURLSessionManager.m in Sources */,
 				84B446CA1A32B3D000546859 /* UIScrollView+MJRefresh.m in Sources */,
@@ -1080,6 +1110,7 @@
 				84B473AE1A30572F00A21457 /* SVProgressHUD.m in Sources */,
 				84B446C91A32B3D000546859 /* UIScrollView+MJExtension.m in Sources */,
 				84E842D31A2F087A00A401A0 /* HttpManage.m in Sources */,
+				846C1BAB1A45734900B59A18 /* Fixeds.m in Sources */,
 				84B473A51A30372A00A21457 /* DataBaseManage.m in Sources */,
 				E5573F971A4303A9006AAB8F /* unzip.c in Sources */,
 				E55F5A021A36A64800B0D587 /* createNewAnimate2.m in Sources */,
@@ -1089,9 +1120,11 @@
 				84B446D41A32BD7000546859 /* ShareViewController.m in Sources */,
 				84E842C21A2EFDCB00A401A0 /* AFURLRequestSerialization.m in Sources */,
 				84E842621A2EDF6B00A401A0 /* AppDelegate.m in Sources */,
+				846C1BA21A45704100B59A18 /* NSInfoImg.m in Sources */,
 				E55F5A0B1A3702E000B0D587 /* EditBtn.m in Sources */,
 				844825F61A31A4D20018240E /* PreviewViewController.m in Sources */,
 				844825EC1A31A46A0018240E /* HLEditViewController.m in Sources */,
+				846C1BA81A45706B00B59A18 /* JBCalendar.m in Sources */,
 				844825EF1A31A4800018240E /* CHWLEditorViewController.m in Sources */,
 				E577FC0D1A356C80009ED66D /* myImageView.m in Sources */,
 				8448257C1A3186520018240E /* OneViewController.m in Sources */,
@@ -1104,6 +1137,7 @@
 				84B446CB1A32B3D000546859 /* UIView+MJExtension.m in Sources */,
 				841728AB1A40385800272A0C /* DVCCell.m in Sources */,
 				84FE0B871A426C71005A9599 /* PhotoCell.m in Sources */,
+				846C1B9D1A45592900B59A18 /* ShowData.m in Sources */,
 				84E842681A2EDF6B00A401A0 /* ViewController.m in Sources */,
 				E55F59F71A36A26300B0D587 /* MainNavigationControllerDelegate.m in Sources */,
 				84E8425F1A2EDF6B00A401A0 /* main.m in Sources */,

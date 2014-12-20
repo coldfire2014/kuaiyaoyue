@@ -21,6 +21,18 @@
 +(void) setTSID:(NSString *) tsid;
 +(NSString *)getTSID;
 
+//模板生成背景
++(void)setmbscbg:(NSString *)name;
++(NSString *)getmbscbg;
+
+//婚礼存储
++(void)setHLContent:(NSString *) xl_name xn_name:(NSString *)xn_name hltime:(NSString *)hltime bmendtime:(NSString *)bmendtime address_name:(NSString *)address_name;
++(NSString *)getxl_name;
++(NSString *)getxn_name;
++(NSString *)gethltime;
++(NSString *)getbmendtime;
++(NSString *)getaddress_name;
+
 
 
 @end

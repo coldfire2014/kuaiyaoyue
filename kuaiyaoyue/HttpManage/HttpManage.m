@@ -9,7 +9,8 @@
 #import "HttpManage.h"
 #import "ZipArchive.h"
 
-#define HTTPURL @"http://10.142.59.103/"
+#define HTTPURL @"http://test.kyy121.com/"
+#define version @"1.0.5"
 
 /*
 43    //BadCredentialsException     密码不正确
@@ -105,8 +106,8 @@ static NSString * const APIBaseURLString = HTTPURL;
 
 +(void)getAll:(NSString *)timestamp cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            timestamp,@"timestamp",@"ios",@"equipment",@"1.0.5",@"version",nil];
-    NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"/invitation/nozzle/NefMusic/getAll.aspx"];
+                            timestamp,@"timestamp",@"ios",@"equipment",version,@"version",nil];
+    NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefMusic/getAll.aspx"];
     NSLog(@"params-%@",params);
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
@@ -128,7 +129,8 @@ password:1235456                     //用户密码
  */
 +(void)register:(NSString *)mobilePhone password:(NSString *)password cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            mobilePhone,@"mobilePhone",password,@"password",@"ios",@"equipment",@"1.0.5",@"version",nil];
+                        mobilePhone,@"mobilePhone",password,@"password",
+                            @"ios",@"equipment",version,@"version",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUser/register.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
@@ -166,7 +168,7 @@ password:1235456                     //用户密码
                             mobilePhone,@"j_username",
                             password,@"j_password",
                             @"true",@"isJson",
-                            @"ios",@"equipment",@"1.0.5",@"version",
+                            @"ios",@"equipment",version,@"version",
                             nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/j_spring_security_check"];
     NSLog(@"params-%@-%@",params,url);
@@ -207,7 +209,7 @@ password:1235456                     //用户密码
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             userName,@"userName",userPwd,@"userPwd",
                             phoneId,@"phoneId",openId,@"openId",
-                            @"ios",@"equipment",@"1.0.5",@"version",
+                            @"ios",@"equipment",version,@"version",
                             nil];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUser/registers.aspx"];
@@ -233,7 +235,7 @@ password:1235456                     //用户密码
  */
 +(void)logout:(NSString *)token cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            token,@"token",@"ios",@"equipment",@"1.0.5",@"version",nil];
+                            token,@"token",@"ios",@"equipment",version,@"version",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefToken/logout.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
@@ -259,7 +261,7 @@ password:1235456                     //用户密码
            cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             mobilePhone,@"mobilePhone",password,@"password",
-                            @"ios",@"equipment",@"1.0.5",@"version",
+                            @"ios",@"equipment",version,@"version",
                             oldPwd,@"oldPwd",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUser/appeal.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
@@ -295,7 +297,7 @@ password:1235456                     //用户密码
  */
 +(void)checkToken:(NSString *)token cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            token,@"token",@"ios",@"equipment",@"1.0.5",@"version",nil];
+                            token,@"token",@"ios",@"equipment",version,@"version",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefToken/checkToken.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
@@ -318,7 +320,7 @@ password:1235456                     //用户密码
            size:(NSString *)size
              cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            timestamp,@"timestamp",size,@"size",@"ios",@"equipment",@"1.0.5",@"version",nil];
+                            timestamp,@"timestamp",size,@"size",@"ios",@"equipment",version,@"version",nil];
     NSLog(@"%@",params);
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefTemplate/template.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
@@ -374,7 +376,7 @@ password:1235456                     //用户密码
        groom:(NSString *)groom
      address:(NSString *)address
     location:(NSString *)location
-      images:(NSString *)images
+      images:(NSArray *)images
    timestamp:(NSString *)timestamp
   background:(NSString *)background
     musicUrl:(NSString *)musicUrl
@@ -384,6 +386,7 @@ password:1235456                     //用户密码
                             token,@"token",bride,@"bride",groom,@"groom",
                             address,@"address",location,@"location",images,@"images",
                             timestamp,@"timestamp",background,@"background",musicUrl,@"musicUrl",
+                            @"ios",@"equipment",version,@"version",
                             nil];
     
     NSString *pjurl = [NSString stringWithFormat:@"invitation/nozzle/NefUserData/marry/%@.aspx",mid];
@@ -524,7 +527,7 @@ closeTimestamp:(NSString *)closeTimestamp
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                         token,@"token",timestamp,@"timestamp",
-                        @"ios",@"equipment",@"1.0.5",@"version",
+                        @"ios",@"equipment",version,@"version",
                         @"30",@"size",nil];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUserData/multiHistory.aspx"];
@@ -749,7 +752,7 @@ closeTimestamp:(NSString *)closeTimestamp
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             uniqueId,@"uniqueId",timestamp,@"timestamp",
                             size,@"size",
-                            @"ios",@"equipment",@"1.0.5",@"version",
+                            @"ios",@"equipment",version,@"version",
                             nil];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefRegistration/renewal.aspx"];

@@ -15,6 +15,8 @@
 #import "DataBaseManage.h"
 #import "Template.h"
 
+#import "HLEditViewController.h"
+
 @interface TemplateViewController (){
     NSString *neftypeId;
     NSArray *data;
@@ -23,6 +25,9 @@
     CGFloat blue;
     UIColor* nowColor;
     UIColor* nowkColor;
+
+    NSString *unquieId;
+    NSString *nefmbdw;
 }
 
 @end
@@ -85,13 +90,12 @@
     btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 12.0);
 //    btnView.layer.transform = CATransform3DMakeRotation(-M_PI*2.0-M_PI_4,0,0,1);
     [self.view addSubview:btnView];
-    [self indata];
+    
     
 }
 - (void)viewDidAppear:(BOOL)animated{
     //showList加载数据完成后调用
-    
-
+    [self indata];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -111,8 +115,6 @@
     }
     
     data = [[DataBaseManage getDataBaseManage] GetTemplate:neftypeId];
-    
-    NSLog(@"%d",[data count]);
     [_tempList reloadViews];
     [_tempList showList];//进厂动画
     [self didShowItemAtIndex:0];
@@ -149,6 +151,10 @@
 }
 
 -(void)didSelectItemAtIndex:(int)index{
+    Template *info = [data objectAtIndex:index];
+    unquieId = [NSString stringWithFormat:@"%@",info.nefid];
+    nefmbdw = info.nefmbdw;
+    
     //选中事件
     int type = [neftypeId intValue];
     switch (type) {
@@ -190,15 +196,32 @@
     nowkColor = [UIColor colorWithRed:red green:green blue:blue alpha:0.2];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier compare:@"hledit"] == NSOrderedSame ) {
+        HLEditViewController* des = (HLEditViewController*)segue.destinationViewController;
+        des.unquieId = unquieId;
+        des.nefmbdw = nefmbdw;
+    }else if ([segue.identifier compare:@"swedit"] == NSOrderedSame){
+        
+        
+    }else if ([segue.identifier compare:@"chedit"] == NSOrderedSame){
+        
+        
+    }else if ([segue.identifier compare:@"zdedit"] == NSOrderedSame){
+        
+        
+    }
+
+    
 }
-*/
+
 
 //- (IBAction)hl_onclick:(id)sender {
 //    [self performSegueWithIdentifier:@"hledit" sender:nil];

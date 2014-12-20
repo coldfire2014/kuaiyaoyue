@@ -49,4 +49,42 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
 }
 
++(void)setmbscbg:(NSString *)name{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:name forKey:@"bdbg"];
+    [userInfo synchronize];
+}
+
+
++(NSString *)getmbscbg{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"bdbg"];
+}
+
++(void)setHLContent:(NSString *) xl_name xn_name:(NSString *)xn_name hltime:(NSString *)hltime bmendtime:(NSString *)bmendtime address_name:(NSString *)address_name{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:xl_name forKey:@"xl_name"];
+    [userInfo setValue:xn_name forKey:@"xn_name"];
+    [userInfo setValue:hltime forKey:@"hltime"];
+    [userInfo setValue:bmendtime forKey:@"bmendtime"];
+    [userInfo setValue:address_name forKey:@"address_name"];
+    [userInfo synchronize];
+}
+
++(NSString *)getxl_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"xl_name"];
+}
++(NSString *)getxn_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"xn_name"];
+}
++(NSString *)gethltime{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"hltime"];
+}
++(NSString *)getbmendtime{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"bmendtime"];
+}
++(NSString *)getaddress_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"address_name"];
+}
+
+
 @end

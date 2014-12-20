@@ -8,6 +8,15 @@
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Fixeds" representedClassName="Fixeds" syncable="YES">
+        <attribute name="nefContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefFontSize" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nefHeight" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="neftemplateid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefWidth" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nefX" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nefY" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="Info" representedClassName="Info" syncable="YES">
         <attribute name="neffontcolor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="neffontsize" optional="YES" attributeType="String" syncable="YES"/>
@@ -72,10 +81,11 @@
         <attribute name="nefurl" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Contacts" positionX="-54" positionY="135" width="128" height="133"/>
         <element name="Info" positionX="-54" positionY="108" width="128" height="180"/>
         <element name="Music" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="Template" positionX="-63" positionY="9" width="128" height="255"/>
         <element name="Userdata" positionX="-54" positionY="117" width="128" height="465"/>
-        <element name="Contacts" positionX="-54" positionY="135" width="128" height="133"/>
+        <element name="Fixeds" positionX="-54" positionY="135" width="128" height="148"/>
     </elements>
 </model>

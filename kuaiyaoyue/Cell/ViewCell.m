@@ -65,7 +65,7 @@
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
             
             kstime = [_info.nefdate longLongValue];
-            endtime = [_info.neftimestamp longLongValue];
+            endtime = [_info.nefclosetimestamp longLongValue];
             
             [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:kstime] EndTime:[NSDate dateWithTimeIntervalSinceNow:endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
             

@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *gridview;
 @property (weak, nonatomic) IBOutlet UIView *bottomview;
 
+@property (weak, nonatomic) IBOutlet UILabel *music_label;
 
 @property (strong ,nonatomic) NSMutableArray *data;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollview;
@@ -24,8 +25,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *bmend_label;
 @property (weak, nonatomic) IBOutlet UITextField *address_edit;
 
+@property (weak, nonatomic) NSString *unquieId;
+@property (weak, nonatomic) NSString *nefmbdw;
+- (IBAction)music_onclick:(id)sender;
+
 - (IBAction)xl_next:(id)sender;
 - (IBAction)xn_next:(id)sender;
 - (IBAction)address_next:(id)sender;
+- (IBAction)send_onclick:(id)sender;
+- (IBAction)sendandshare_onclick:(id)sender;
 
 @end
