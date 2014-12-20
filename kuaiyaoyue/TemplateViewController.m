@@ -12,7 +12,18 @@
 #import "myImageView.h"
 #import "TemplateCell.h"
 #import "PCHeader.h"
-@interface TemplateViewController ()
+#import "DataBaseManage.h"
+#import "Template.h"
+
+@interface TemplateViewController (){
+    NSString *neftypeId;
+    NSArray *data;
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    UIColor* nowColor;
+    UIColor* nowkColor;
+}
 
 @end
 
@@ -56,10 +67,12 @@
     _tempList.userInteractionEnabled = YES;
     _tempList.backgroundColor = [UIColor clearColor];
     [self.view addSubview: _tempList];
+    
     _tempList.delegate = self;
     CGFloat h =  _tempList.frame.size.height - 20;
     CGFloat w =  h * mainScreenFrame.size.width / mainScreenFrame.size.height;
     _tempList.itemSize = CGSizeMake(w,h);//定义cell的显示大小
+//     [_tempList reloadViews];//加载cell
     
     MenuBackBtn* backBtn = [[MenuBackBtn alloc] initWithFrame:CGRectMake(0, 20.0, 88.0/2.0, 88.0/2.0) andType:self.type];
     backBtn.tag = 303;
@@ -72,13 +85,12 @@
     btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 12.0);
 //    btnView.layer.transform = CATransform3DMakeRotation(-M_PI*2.0-M_PI_4,0,0,1);
     [self.view addSubview:btnView];
+    [self indata];
     
-    [_tempList reloadViews];//加载cell
 }
 - (void)viewDidAppear:(BOOL)animated{
     //showList加载数据完成后调用
-    [_tempList showList];//进厂动画
-    [self didShowItemAtIndex:0];
+    
 
 }
 
@@ -87,10 +99,31 @@
     [self.navigationController.navigationBar setHidden:YES];
 }
 
+-(void)indata{
+    if ([_type isEqualToString:@"hunli"]) {
+        neftypeId = @"1";
+    }else if ([_type isEqualToString:@"sanwu"]){
+        neftypeId = @"2";
+    }else if ([_type isEqualToString:@"cihe"]){
+        neftypeId = @"3";
+    }else if ([_type isEqualToString:@"zdy"]){
+        neftypeId = @"4";
+    }
+    
+    data = [[DataBaseManage getDataBaseManage] GetTemplate:neftypeId];
+    
+    NSLog(@"%d",[data count]);
+    [_tempList reloadViews];
+    [_tempList showList];//进厂动画
+    [self didShowItemAtIndex:0];
+    
+}
+
 
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -98,17 +131,17 @@
 
 -(int)numberOfItems{
     //列表元素个数哈哈
-    return 9;
+    return [data count];
 }
 
 -(UIView*)cellForItemAtIndex:(int)index{
-    
-    //得到IMG
-    NSString* iName = [[NSString alloc] initWithFormat:@"b%d",index+1];
-    UIImage* imgt = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:iName ofType:@"jpg"]];
+    Template *info = [data objectAtIndex:index];
+    NSString *nefmbbg = info.nefmbbg;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    nefmbbg = [documentsDirectory stringByAppendingString:nefmbbg];
+    UIImage* imgt = [[UIImage alloc]initWithContentsOfFile:nefmbbg];
     UIImage* img = [[UIImage alloc] initWithCGImage:imgt.CGImage scale:2.0 orientation:UIImageOrientationUp];
-    
-    
     CGRect itemRect = CGRectMake(0, 0, _tempList.itemSize.width, _tempList.itemSize.height);
     
     TemplateCell* mainCell = [[TemplateCell alloc] initWithFrame:itemRect andImage:img];
@@ -117,11 +150,44 @@
 
 -(void)didSelectItemAtIndex:(int)index{
     //选中事件
-    [self performSegueWithIdentifier:@"hledit" sender:nil];
+    int type = [neftypeId intValue];
+    switch (type) {
+        case 1:
+            [self performSegueWithIdentifier:@"hledit" sender:nil];
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            
+            break;
+        default:
+            break;
+    }
 }
 -(void)didShowItemAtIndex:(int)index{
     //列表当前显示元素，目前用于换颜色
+    Template *info = [data objectAtIndex:index];
     
+    NSString *backColor = info.nefbackcolor;
+    NSString *a = [backColor substringToIndex:3];
+    a = [a substringFromIndex:1];
+    long b = strtoul([a UTF8String],0,16);
+    NSString *c = [backColor substringToIndex:5];
+    c = [c substringFromIndex:3];
+    long d = strtoul([c UTF8String],0,16);
+    NSString *f = [backColor substringFromIndex:5];
+    long e = strtoul([f UTF8String],0,16);
+    
+    red = b/255.0;
+    green = d/255.0;
+    blue = e/255.0;
+    
+    nowColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
+    nowkColor = [UIColor colorWithRed:red green:green blue:blue alpha:0.2];
 }
 
 /*
@@ -133,5 +199,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+//- (IBAction)hl_onclick:(id)sender {
+//    [self performSegueWithIdentifier:@"hledit" sender:nil];
+//}
+//
+//- (IBAction)sw_onclick:(id)sender {
+//    [self performSegueWithIdentifier:@"swedit" sender:nil];
+//}
+//
+//- (IBAction)wl_onclick:(id)sender {
+//    [self performSegueWithIdentifier:@"chedit" sender:nil];
+//}
+//
+//- (IBAction)zdy_onclick:(id)sender {
+//    [self performSegueWithIdentifier:@"" sender:nil];
+//}
 
 @end

@@ -12,11 +12,17 @@
 #import "myImageView.h"
 #import "MJRefresh.h"
 #import "BigStateView.h"
+#import "HttpManage.h"
+#import "DataBaseManage.h"
+#import "Contacts.h"
 
 @interface DetailViewController ()<DVCCellDelegate>{
     BOOL isopen;
     NSInteger selectRow;
-    NSMutableArray* data;
+    NSArray *data;
+    BigStateView* s;
+    NSString *timebh;
+    NSString *dateAndTime;
 }
 
 @end
@@ -35,24 +41,64 @@
     [self.navigationItem setTitleView:label];
     
     self.navigationController.navigationBar.alpha = 0.8;
-    data = [[NSMutableArray alloc] init];
-    NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                         @"哈哈哈",@"name",
-                         @"12",@"count",
-                         @"18650140605",@"phone",
-                         @"哈哈哈",@"talk",nil];
-    [data addObject:dic];
     selectRow = -1;
     _tableView.contentInset = UIEdgeInsetsMake(-64, 0 ,0, 0);
     
     [self layoutheadview];
     [self setupRefresh];
+    [self renewal];
+    
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    _endtime_view.layer.cornerRadius = 21;
+    _cancel_view.layer.cornerRadius = 21;
+    
+    [_picker addTarget:self action:@selector(DatePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_picker setMinimumDate:[NSDate date]];
+    
+    [_bottom_view setFrame:CGRectMake(0, 1000, _bottom_view.frame.size.width, _bottom_view.frame.size.height)];
+    
+}
+
+-(void)changeHight{
+    
+}
+
+-(void)renewal{
+    NSArray *arr = [[DataBaseManage getDataBaseManage] GetContacts:_uniqueId];
+    NSString *time = nil;
+    if ([arr count] > 0) {
+        Contacts *contacts = [arr objectAtIndex:0];
+        time = contacts.timestamp;
+    }else{
+        time = @"-1";
+    }
+    
+    [HttpManage renewal:_uniqueId timestamp:time size:@"-1" cb:^(BOOL isOK, NSMutableArray *array) {
+        if (isOK) {
+            for (NSDictionary *dic in array) {
+                [[DataBaseManage getDataBaseManage] AddContacts:dic :_uniqueId];
+            }
+            [self initData];
+        }else{
+            [self initData];
+        }
+    }];
+}
+
+-(void)bottomrenewal{
+    
+}
+
+-(void)initData{
+    data = [[DataBaseManage getDataBaseManage] GetContacts:_uniqueId];
+    [_tableView reloadData];
 }
 
 -(void)layoutheadview{
-    BigStateView* s = [[BigStateView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 44.5,65 + 5, 99, 99)];
-    [s setState:StateGoing withAll:@"19" andAdd:@""];
-    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:5] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+    s = [[BigStateView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 44.5,65 + 5, 99, 99)];
+    [s setState:StateGoing withAll:_maxnum andAdd:@""];
+    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:_starttime] EndTime:[NSDate dateWithTimeIntervalSinceNow:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:0]];
     
     [_headview addSubview:s];
 }
@@ -88,15 +134,15 @@
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
-        [data removeAllObjects];
-        for (int i = 0; i< 20; i++) {
-            NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"哈哈哈",@"name",
-                                 @"12",@"count",
-                                 @"18650140605",@"phone",
-                                 @"哈哈哈",@"talk",nil];
-            [data addObject:dic];
-        }
+//        [data removeAllObjects];
+//        for (int i = 0; i< 20; i++) {
+//            NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
+//                                 @"哈哈哈",@"name",
+//                                 @"12",@"count",
+//                                 @"18650140605",@"phone",
+//                                 @"哈哈哈",@"talk",nil];
+//            [data addObject:dic];
+//        }
         [_tableView reloadData];
         
         [_tableView headerEndRefreshing];
@@ -108,15 +154,15 @@
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
-        for (int i = 0; i< 4; i++) {
-            NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"哈哈哈",@"name",
-                                 @"12",@"count",
-                                 @"18650140605",@"phone",
-                                 @"哈哈哈",@"talk",nil];
-            [data addObject:dic];
-        }
-        [_tableView reloadData];
+//        for (int i = 0; i< 4; i++) {
+//            NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
+//                                 @"哈哈哈",@"name",
+//                                 @"12",@"count",
+//                                 @"18650140605",@"phone",
+//                                 @"哈哈哈",@"talk",nil];
+//            [data addObject:dic];
+//        }
+//        [_tableView reloadData];
         
         // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
         [_tableView footerEndRefreshing];
@@ -152,12 +198,11 @@
         static NSString *identifier = @"DVCCell";
         DVCCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
-        NSDictionary* dic = [data objectAtIndex:indexPath.row];
-        cell.show_num.text = [dic objectForKey:@"count"];
-        cell.show_name.text = [dic objectForKey:@"name"];
-        cell.show_content.text = [dic objectForKey:@"talk"];
-        cell.phone = [dic objectForKey:@"phone"];
-        cell.talk = [dic objectForKey:@"talk"];
+        Contacts *contacts = [data objectAtIndex:[indexPath row]];
+        cell.show_num.text = [NSString stringWithFormat:@"%d",contacts.number];
+        cell.show_name.text = contacts.name;
+        cell.show_content.text = contacts.message;
+        cell.phone = contacts.mobile;
         cell.index = indexPath;
         cell.delegate = self;
         if ([cell.phone compare:@""] == NSOrderedSame) {
@@ -171,6 +216,7 @@
             [cell.show_message setEnabled:YES];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
         return cell;
     
 }
@@ -206,5 +252,55 @@
     NSLog(@"%@",phone);
 }
 
+
+- (IBAction)endtime_onclick:(id)sender {
+    [_bottom_view setHidden:NO];
+    [UIView animateWithDuration:0.4f animations:^{
+        [self.bottom_view setFrame:CGRectMake(self.bottom_view.frame.origin.x,0, self.bottom_view.frame.size.width, self.bottom_view.frame.size.height)];
+    }];
+}
+
+- (IBAction)cancel_onclick:(id)sender {
+    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"取消后，链接会失效哦！\n列表中也会自动删除" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消",nil];
+    alert.alertViewStyle=UIAlertViewStyleDefault;
+    [alert show];
+}
+
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+  
+    }
+    
+}
+
+- (IBAction)sure_picker:(id)sender{
+//    [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
+//    [HttpHelper dueDate:self.unquieId : timebh  cb:^(BOOL isOK) {
+//        if (isOK) {
+//            [SVProgressHUD dismissWithSuccess:@"提交成功"];
+//            _str_edate = dateAndTime;
+//            [UIView animateWithDuration:0.3f animations:^{
+//                [self.bottom_view setFrame:CGRectMake(self.bottom_view.frame.origin.x,self.view.frame.size.height, self.bottom_view.frame.size.width, self.bottom_view.frame.size.height)];
+//            }];
+//        }else{
+//            [SVProgressHUD dismissWithSuccess:@"提交失败"];
+//            [UIView animateWithDuration:0.3f animations:^{
+//                [self.bottom_view setFrame:CGRectMake(self.bottom_view.frame.origin.x,self.view.frame.size.height, self.bottom_view.frame.size.width, self.bottom_view.frame.size.height)];
+//            }];
+//        }
+//    }];
+}
+
+- (IBAction)qx_picker:(id)sender{
+    [UIView animateWithDuration:0.4f animations:^{
+        [self.bottom_view setFrame:CGRectMake(self.bottom_view.frame.origin.x,self.view.frame.size.height, self.bottom_view.frame.size.width, self.bottom_view.frame.size.height)];
+    }];
+}
+
+- (void)DatePickerValueChanged:(UIDatePicker *) sender {
+    NSDate *select = [sender date]; // 获取被选中的时间
+    timebh = [NSString stringWithFormat:@"%lld", ((long long)[select timeIntervalSince1970] *1000)];
+}
 
 @end

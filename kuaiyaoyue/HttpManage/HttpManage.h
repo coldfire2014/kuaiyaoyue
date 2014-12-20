@@ -78,6 +78,7 @@
                 cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback;
 //更新模板
 +(void)templateRenewal:(NSString *)timestamp cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback;
+
 //婚礼提交
 +(void)marry:(NSString *)token
        bride:(NSString *)bride
@@ -122,7 +123,7 @@ closeTimestamp:(NSString *)closeTimestamp
 
 //查询历史记录
 +(void)multiHistory:(NSString *)token
-               size:(NSString *)size
+               timestamp:(NSString *)timestamp
                  cb:(void(^)(BOOL isOK ,NSDictionary *array))callback;
 
 //历史记录删除单个
@@ -143,15 +144,15 @@ closeTimestamp:(NSString *)closeTimestamp
             model:(NSString *)model
                cb:(void(^)(BOOL isOK ,NSDictionary *array))callback;
 
-//解压
-+(void)unzip:(NSString*)filePath filename:(NSString *) filename;
-
 //文件上传
 +(void)uploadTP:(UIImage *) image cb:(void(^)(BOOL isOK, NSString *URL))callback;
 +(void)uploadYP:(NSString *) file cb:(void (^)(BOOL isOK, NSString *URL))callback;
 
 //版本查询
 +(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, NSDictionary *URL))callback;
+
+//查询报名人数
++(void)renewal:(NSString *)uniqueId timestamp:(NSString *) timestamp size:(NSString *)size cb:(void (^)(BOOL isOK, NSMutableArray *URL))callback;
 
 
 @end

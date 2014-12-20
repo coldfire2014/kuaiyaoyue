@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *showsetting;
 @property (weak, nonatomic) IBOutlet UILabel *show_title;
 @property (weak, nonatomic) IBOutlet UIView *showtm;
+@property (weak, nonatomic) IBOutlet UILabel *show_toptitle;
+- (IBAction)del_onclick:(id)sender;
 
 @end
 

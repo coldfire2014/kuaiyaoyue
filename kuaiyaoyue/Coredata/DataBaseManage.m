@@ -12,6 +12,7 @@
 #import "Info.h"
 #import "Userdata.h"
 #import "UDObject.h"
+#import "Contacts.h"
 
 @implementation DataBaseManage
 
@@ -144,9 +145,11 @@ static NSManagedObjectContext *context = nil;
 //0自定义，1婚礼，2趴体
 -(BOOL)AddUserdata :(NSDictionary *) dic type:(int)type{
     Userdata *userdata = [NSEntityDescription insertNewObjectForEntityForName:@"Userdata" inManagedObjectContext:context];
-    NSLog(@"%@",[UDObject getAccount]);
+
     userdata.nefAccount = [UDObject getAccount];
     userdata.neftype = type;
+    
+    
     
     if (type == 0) {
         userdata.nefid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"unquieId"]];
@@ -165,7 +168,7 @@ static NSManagedObjectContext *context = nil;
         userdata.neftemplateurl = [dic objectForKey:@"templateUrl"];
         userdata.nefurl = [dic objectForKey:@"url"];
         userdata.neftypeId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"typeId"]];
-        userdata.nefthumb = [dic objectForKey:@"thumb"];
+        userdata.nefthumb = [NSString stringWithFormat:@"%@",[dic objectForKey:@"thumb"]];
         userdata.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
         userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
         
@@ -188,11 +191,13 @@ static NSManagedObjectContext *context = nil;
         userdata.neftemplateurl = [dic objectForKey:@"templateUrl"];
         userdata.nefbackground = [dic objectForKey:@"background"];
         userdata.nefmusicurl = [dic objectForKey:@"musicUrl"];
-        userdata.nefthumb = [dic objectForKey:@"thumb"];
+        userdata.nefthumb = [NSString stringWithFormat:@"%@",[dic objectForKey:@"thumb"]];
         userdata.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
         userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
         
     }else if (type == 2){
+        NSLog(@"%@",[dic objectForKey:@"partyName"]);
+        
         userdata.nefid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"unquieId"]];
         userdata.nefinviter = [dic objectForKey:@"inviter"];
         userdata.nefaddress = [dic objectForKey:@"address"];
@@ -211,12 +216,11 @@ static NSManagedObjectContext *context = nil;
         userdata.neftypeId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"typeId"]];
         userdata.nefpartyname = [dic objectForKey:@"partyName"];
         userdata.neftemplateurl = [dic objectForKey:@"templateUrl"];
-        userdata.nefcardtypeId = [dic objectForKey:@"cardTypeId"];
-        userdata.nefthumb = [dic objectForKey:@"thumb"];
+        userdata.nefcardtypeId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"cardTypeId"]];
+        userdata.nefthumb = [NSString stringWithFormat:@"%@",[dic objectForKey:@"thumb"]];
         userdata.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
         userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
     }
-    
     
     NSError *error;
     if (![context save:&error]) {
@@ -234,6 +238,71 @@ static NSManagedObjectContext *context = nil;
     NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
     [request setSortDescriptors: sortDescriptors];
     NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefAccount = %@)",[UDObject getAccount]];
+    [request setPredicate:predict];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    return fetchedObjects;
+}
+
+-(BOOL)GetUpUserdata:(NSDictionary *)dic{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Userdata"];
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefid = %@)",[dic objectForKey:@"unquieId"]];
+    [request setPredicate:predict];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    if ([fetchedObjects count] > 0) {
+        Userdata *user = [fetchedObjects objectAtIndex:0];
+        user.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
+        user.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
+        if (![context save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
+-(NSArray *)GetTemplate:(NSString *) neftypeId{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Template"];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"neftimestamp" ascending:YES];
+    NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
+    [request setSortDescriptors: sortDescriptors];
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(neftypeId = %@)",neftypeId];
+    [request setPredicate:predict];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    
+    return fetchedObjects;
+}
+
+
+-(BOOL)AddContacts:(NSDictionary *)dic :(NSString *)nefid{
+    Contacts *contacts = [NSEntityDescription insertNewObjectForEntityForName:@"Contacts" inManagedObjectContext:context];
+    contacts.message = [dic objectForKey:@"message"];
+    contacts.mobile = [NSString stringWithFormat:@"%@",[dic objectForKey:@"mobile"]];
+    contacts.name = [dic objectForKey:@"name"];
+    contacts.number = [[dic objectForKey:@"number"] integerValue];
+    contacts.timestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
+    contacts.nefid = nefid;
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+        return NO;
+    }
+    return YES;
+}
+
+-(NSArray *)GetContacts :(NSString *)neftypeid{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Contacts"];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
+    [request setSortDescriptors: sortDescriptors];
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefid = %@)",neftypeid];
     [request setPredicate:predict];
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
