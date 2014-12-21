@@ -78,7 +78,38 @@
     CGFloat w =  h * mainScreenFrame.size.width / mainScreenFrame.size.height;
     _tempList.itemSize = CGSizeMake(w,h);//定义cell的显示大小
 //     [_tempList reloadViews];//加载cell
-    
+//
+    UILabel* mbtitle = [[UILabel alloc] initWithFrame:CGRectMake(0, _tempList.frame.origin.y-21.0, _tempList.itemSize.width,21.0)];
+    mbtitle.tag = 501;
+    mbtitle.center = CGPointMake(mainScreenFrame.size.width/2.0, mbtitle.center.y);
+    [mbtitle setFont:[UIFont systemFontOfSize:19]];
+    [mbtitle setTextAlignment:NSTextAlignmentLeft];
+    [mbtitle setLineBreakMode:NSLineBreakByClipping];
+    [mbtitle setTextColor:[[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0  blue:88.0/255.0  alpha:1.0]];
+    [mbtitle setBackgroundColor:[UIColor clearColor]];
+    [mbtitle setText:@""];
+    [self.view addSubview:mbtitle];
+    UILabel* mbtotle = [[UILabel alloc] initWithFrame:CGRectMake(0, _tempList.frame.origin.y-14.0, _tempList.itemSize.width,14.0)];
+    mbtotle.tag = 502;
+    mbtotle.center = CGPointMake(mainScreenFrame.size.width/2.0, mbtotle.center.y);
+    [mbtotle setFont:[UIFont systemFontOfSize:13]];
+    [mbtotle setTextAlignment:NSTextAlignmentRight];
+    [mbtotle setLineBreakMode:NSLineBreakByClipping];
+    [mbtotle setTextColor:[[UIColor alloc] initWithWhite:0.2 alpha:1.0]];
+    [mbtotle setBackgroundColor:[UIColor clearColor]];
+    [mbtotle setText:@""];
+    [self.view addSubview:mbtotle];
+    UILabel* mbid = [[UILabel alloc] initWithFrame:CGRectMake(0, _tempList.frame.origin.y-21.0, _tempList.itemSize.width-40,21.0)];//50
+    mbid.tag = 503;
+    mbid.center = CGPointMake(mainScreenFrame.size.width/2.0, mbid.center.y);
+    [mbid setFont:[UIFont systemFontOfSize:19]];
+    [mbid setTextAlignment:NSTextAlignmentRight];
+    [mbid setLineBreakMode:NSLineBreakByClipping];
+    [mbid setTextColor:[[UIColor alloc] initWithWhite:0.2 alpha:1.0]];
+    [mbid setBackgroundColor:[UIColor clearColor]];
+    [mbid setText:@""];
+    [self.view addSubview:mbid];
+//    
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 20.0+subTap, mainScreenFrame.size.width,54.0)];
     [title setFont:[UIFont systemFontOfSize:20]];
     [title setTextAlignment:NSTextAlignmentCenter];
@@ -251,6 +282,10 @@
     }
 }
 -(void)didShowItemAtIndex:(int)index{
+    UIView* btnView = [self.view viewWithTag:302];
+    UILabel* mbtitle = (UILabel*)[self.view viewWithTag:501];
+    UILabel* mbtotle = (UILabel*)[self.view viewWithTag:502];
+    UILabel* mbid = (UILabel*)[self.view viewWithTag:503];
     //列表当前显示元素，目前用于换颜色
     Template *info = [data objectAtIndex:index];
     
@@ -270,6 +305,17 @@
     
     nowColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
     nowkColor = [UIColor colorWithRed:red green:green blue:blue alpha:0.2];
+    btnView.backgroundColor = nowColor;
+    mbtitle.textColor = nowColor;
+    mbid.textColor = nowColor;
+    mbtotle.text = [[NSString alloc] initWithFormat:@"/%d",data.count];
+    mbid.text = [[NSString alloc] initWithFormat:@"%d",index+1];
+    if ([_type isEqualToString:@"hunli"]) {
+        mbtitle.text = [[NSString alloc] initWithFormat:@"%@",info.nefname];
+    }else{
+        mbtitle.text = @"";
+    }
+    
 }
 
 
