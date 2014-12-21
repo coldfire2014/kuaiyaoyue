@@ -77,13 +77,22 @@
 //        iw = 230.0/2.0;
 //    }
     UIView* one = [[UIView alloc] initWithFrame:CGRectMake(w/2.0-3.0-iw, h-62.0-2.0*ih-6.0, iw, ih)];
-    
     one.clipsToBounds = YES;
     one.layer.cornerRadius = 3;
     one.tag = 401;
     one.backgroundColor = [UIColor clearColor];
     
-    myImageView* oneImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"card_o" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    CAGradientLayer* layer = [CAGradientLayer layer];
+    CGRect f = CGRectMake(0, 0, one.bounds.size.width, one.bounds.size.height);
+    layer.frame = f;
+    layer.colors = [[NSArray alloc] initWithObjects:
+                    (id)[[UIColor alloc] initWithRed:255.0/255.0 green:154.0/255.0 blue:36.0/255.0 alpha:1.0].CGColor,
+                    (id)[[UIColor alloc] initWithRed:255.0/255.0 green:126.0/255.0 blue:00.0/255.0 alpha:1.0].CGColor, nil];
+    layer.locations = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:1.0], nil];
+    [one.layer addSublayer:layer];
+    
+    myImageView* oneImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 232.0/2.0, 360.0/2.0) andImageName:@"card_o" withScale:2.0];
+    oneImg.center = CGPointMake(one.bounds.size.width/2.0, one.bounds.size.height/2.0);
     [one addSubview:oneImg];
     [bgView addSubview:one];
     
@@ -93,7 +102,16 @@
     two.tag = 402;
     two.backgroundColor = [UIColor clearColor];
     
-    myImageView* twoImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"card_b" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    CAGradientLayer* layer2 = [CAGradientLayer layer];
+    layer2.frame = f;
+    layer2.colors = [[NSArray alloc] initWithObjects:
+                    (id)[[UIColor alloc] initWithRed:53.0/255.0 green:167.0/255.0 blue:238.0/255.0 alpha:1.0].CGColor,
+                    (id)[[UIColor alloc] initWithRed:75.0/255.0 green:105.0/255.0 blue:217.0/255.0 alpha:1.0].CGColor, nil];
+    layer2.locations = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:1.0], nil];
+    [two.layer addSublayer:layer2];
+    
+    myImageView* twoImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 232.0/2.0, 360.0/2.0) andImageName:@"card_b" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    twoImg.center = CGPointMake(one.bounds.size.width/2.0, one.bounds.size.height/2.0);
     [two addSubview:twoImg];
     [bgView addSubview:two];
     
@@ -102,7 +120,17 @@
     three.layer.cornerRadius = 3;
     three.tag = 403;
     three.backgroundColor = [UIColor clearColor];
-    myImageView* threeImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"card_r" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    
+    CAGradientLayer* layer3 = [CAGradientLayer layer];
+    layer3.frame = f;
+    layer3.colors = [[NSArray alloc] initWithObjects:
+                     (id)[[UIColor alloc] initWithRed:255.0/255.0 green:103.0/255.0 blue:154.0/255.0 alpha:1.0].CGColor,
+                     (id)[[UIColor alloc] initWithRed:255.0/255.0 green:109.0/255.0 blue:110.0/255.0 alpha:1.0].CGColor, nil];
+    layer3.locations = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:1.0], nil];
+    [three.layer addSublayer:layer3];
+    
+    myImageView* threeImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 232.0/2.0, 360.0/2.0) andImageName:@"card_r" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    threeImg.center = CGPointMake(one.bounds.size.width/2.0, one.bounds.size.height/2.0);
     [three addSubview:threeImg];
     [bgView addSubview:three];
     
@@ -111,7 +139,17 @@
     four.layer.cornerRadius = 3;
     four.tag = 404;
     four.backgroundColor = [UIColor clearColor];
-    myImageView* fourImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, iw, ih) andImageName:@"card_g" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    
+    CAGradientLayer* layer4 = [CAGradientLayer layer];
+    layer4.frame = f;
+    layer4.colors = [[NSArray alloc] initWithObjects:
+                     (id)[[UIColor alloc] initWithRed:38.0/255.0 green:214.0/255.0 blue:90.0/255.0 alpha:1.0].CGColor,
+                     (id)[[UIColor alloc] initWithRed:40.0/255.0 green:216.0/255.0 blue:143.0/255.0 alpha:1.0].CGColor, nil];
+    layer4.locations = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:1.0], nil];
+    [four.layer addSublayer:layer4];
+    
+    myImageView* fourImg = [[myImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 232.0/2.0, 360.0/2.0) andImageName:@"card_g" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    fourImg.center = CGPointMake(one.bounds.size.width/2.0, one.bounds.size.height/2.0);
     [four addSubview:fourImg];
     [bgView addSubview:four];
     
