@@ -964,6 +964,7 @@
                                                             <state key="normal" image="ic_54_call">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
+                                                            <state key="disabled" image="ic_54_call_dis"/>
                                                             <state key="highlighted" image="ic_54_call_pre.png"/>
                                                             <connections>
                                                                 <action selector="phone_onclick:" destination="5Ap-qS-mSD" eventType="touchUpInside" id="DNv-7t-Ph4"/>
@@ -1282,10 +1283,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="报名截止：剩余7天20小时" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzt-54-GfR">
-                                                    <rect key="frame" x="94" y="35" width="141" height="21"/>
+                                                    <rect key="frame" x="94" y="35" width="443" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="141" id="WZS-5o-Y87"/>
+                                                        <constraint firstAttribute="width" constant="443" id="WZS-5o-Y87"/>
                                                         <constraint firstAttribute="height" constant="21" id="kkz-3Y-vTE"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1293,14 +1294,20 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活动时间：2014.12.12 20:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37Z-L5-sMo">
-                                                    <rect key="frame" x="94" y="54" width="175" height="21"/>
+                                                    <rect key="frame" x="94" y="54" width="443" height="21"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="443" id="Nxd-rt-yAa"/>
                                                         <constraint firstAttribute="height" constant="21" id="b2q-d4-Gj4"/>
                                                         <constraint firstAttribute="width" constant="174.5" id="ez2-F5-kd2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="ez2-F5-kd2"/>
+                                                        </mask>
+                                                    </variation>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fie-yD-usJ">
                                                     <rect key="frame" x="545" y="1" width="55" height="55"/>
@@ -1334,7 +1341,9 @@
                                                 <constraint firstItem="37Z-L5-sMo" firstAttribute="leading" secondItem="VbD-gO-EYI" secondAttribute="leadingMargin" constant="86" id="9da-Th-vuZ"/>
                                                 <constraint firstItem="HyH-rN-Ixi" firstAttribute="top" secondItem="VbD-gO-EYI" secondAttribute="topMargin" constant="4" id="ALr-Ec-xan"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="l77-5R-uao" secondAttribute="trailing" constant="6" id="E6J-Ll-qLM"/>
+                                                <constraint firstAttribute="trailing" secondItem="gzt-54-GfR" secondAttribute="trailing" constant="63" id="Het-yG-L7g"/>
                                                 <constraint firstItem="HyH-rN-Ixi" firstAttribute="leading" secondItem="VbD-gO-EYI" secondAttribute="leadingMargin" constant="69" id="Khn-Qm-GOX"/>
+                                                <constraint firstAttribute="trailing" secondItem="37Z-L5-sMo" secondAttribute="trailing" constant="63" id="LLm-9G-BCH"/>
                                                 <constraint firstItem="Hdz-a7-4dp" firstAttribute="leading" secondItem="VbD-gO-EYI" secondAttribute="leadingMargin" constant="69" id="LUh-yA-d1r"/>
                                                 <constraint firstItem="l77-5R-uao" firstAttribute="top" secondItem="VbD-gO-EYI" secondAttribute="topMargin" constant="44" id="aXH-LM-fGF"/>
                                                 <constraint firstItem="fie-yD-usJ" firstAttribute="top" secondItem="VbD-gO-EYI" secondAttribute="top" constant="1" id="cU8-vd-Xsv"/>
@@ -2374,6 +2383,7 @@
         <image name="ic_38_timer" width="19" height="19"/>
         <image name="ic_38_timer_pre" width="19" height="19"/>
         <image name="ic_54_call" width="27" height="27"/>
+        <image name="ic_54_call_dis" width="27" height="27"/>
         <image name="ic_54_call_pre.png" width="27" height="27"/>
         <image name="ic_54_message" width="27" height="27"/>
         <image name="ic_54_message_pre.png" width="27" height="27"/>
@@ -2391,12 +2401,12 @@
         <image name="icon120.png" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="luI-zA-BtH"/>
-        <segue reference="Oey-PZ-F9W"/>
+        <segue reference="qae-G8-0oD"/>
+        <segue reference="keJ-rR-p7N"/>
         <segue reference="D53-YK-KM5"/>
         <segue reference="x3h-Pp-84V"/>
         <segue reference="ztp-xN-fnN"/>
-        <segue reference="keJ-rR-p7N"/>
-        <segue reference="fps-RF-Hk5"/>
+        <segue reference="Oey-PZ-F9W"/>
+        <segue reference="22X-oD-zs7"/>
     </inferredMetricsTieBreakers>
 </document>

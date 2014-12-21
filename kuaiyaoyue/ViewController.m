@@ -27,6 +27,7 @@
     NSString *uniqueId;
     long long starttime;
     long long endtime;
+    long long datatime;
     NSString *maxnum;
     
     int run;
@@ -309,6 +310,7 @@
         view.uniqueId = uniqueId;
         view.maxnum = maxnum;
         view.starttime = starttime;
+        view.datatime = datatime;
         view.endtime = endtime;
     }
 }
@@ -378,23 +380,9 @@
     
     Userdata *info = [data objectAtIndex:[indexPath row]];
     uniqueId = info.nefid;
-    switch (info.neftype) {
-        case 0:
-            starttime = [info.neftimestamp longLongValue];
-            endtime = [info.nefclosetimestamp longLongValue];
-            break;
-        case 1:
-            starttime = [info.nefdate longLongValue];
-            endtime = [info.neftimestamp longLongValue];
-            break;
-        case 2:
-            starttime = [info.neftimestamp longLongValue];
-            endtime = [info.nefclosetimestamp longLongValue];
-            break;
-            
-        default:
-            break;
-    }
+    starttime = [info.nefdate longLongValue]/1000;
+    endtime = [info.nefclosetimestamp longLongValue]/1000;
+    datatime = [info.neftimestamp longLongValue]/1000;
     maxnum = info.neftotal;
     
     [self performSegueWithIdentifier:@"detail" sender:nil];

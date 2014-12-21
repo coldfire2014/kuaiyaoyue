@@ -53,15 +53,17 @@
             _show_hdtime.text = [NSString stringWithFormat:@"活动时间：%@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
             
-            kstime = [_info.neftimestamp longLongValue]/1000;
+            kstime = [_info.nefdate longLongValue]/1000;
             endtime = [_info.nefclosetimestamp longLongValue]/1000;
+            hdtime = [_info.neftimestamp longLongValue]/1000;
             
-            [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:kstime] EndTime:[NSDate dateWithTimeIntervalSinceNow:endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+            // s:发送时间 。e:报名截止 g:活动时间
+            [s setStartTime:[NSDate dateWithTimeIntervalSince1970:kstime] EndTime:[NSDate dateWithTimeIntervalSince1970:endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:hdtime]];
             
             break;
         case 1:
             _show_title.text = [NSString stringWithFormat:@"%@&%@ 婚礼",_info.nefgroom,_info.nefbride];
-            _show_endtime.text = [NSString stringWithFormat:@"报名截止：%@",_info.nefclosetimestamp];
+            _show_endtime.text = [NSString stringWithFormat:@"报名截止：%@",[TimeTool getFullTimeStr:[_info.nefclosetimestamp longLongValue]/1000]];
             _show_hdtime.text = [NSString stringWithFormat:@"活动时间：%@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
             
@@ -69,7 +71,8 @@
             endtime = [_info.nefclosetimestamp longLongValue]/1000;
             hdtime = [_info.neftimestamp longLongValue]/1000;
             
-            [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:kstime] EndTime:[NSDate dateWithTimeIntervalSinceNow:endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:hdtime]];
+            // s:发送时间 。e:报名截止 g:活动时间
+            [s setStartTime:[NSDate dateWithTimeIntervalSince1970:kstime] EndTime:[NSDate dateWithTimeIntervalSince1970:endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:hdtime]];
             
             break;
         case 2:
@@ -78,10 +81,12 @@
             _show_hdtime.text = [NSString stringWithFormat:@"活动时间：%@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
             
-            kstime = [_info.neftimestamp longLongValue]/1000;
+            kstime = [_info.nefdate longLongValue]/1000;
             endtime = [_info.nefclosetimestamp longLongValue]/1000;
+            hdtime = [_info.neftimestamp longLongValue]/1000;
             
-            [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:kstime] EndTime:[NSDate dateWithTimeIntervalSinceNow:endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+            // s:发送时间 。e:报名截止 g:活动时间
+            [s setStartTime:[NSDate dateWithTimeIntervalSince1970:kstime] EndTime:[NSDate dateWithTimeIntervalSince1970:endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:hdtime]];
             
             break;
             

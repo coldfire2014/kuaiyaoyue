@@ -23,6 +23,7 @@
     BigStateView* s;
     NSString *timebh;
     NSString *dateAndTime;
+    UIWebView *phoneCallWebView;
 }
 
 @end
@@ -75,6 +76,7 @@
     }
     
     [HttpManage renewal:_uniqueId timestamp:time size:@"-1" cb:^(BOOL isOK, NSMutableArray *array) {
+        NSLog(@"%@",array);
         if (isOK) {
             for (NSDictionary *dic in array) {
                 [[DataBaseManage getDataBaseManage] AddContacts:dic :_uniqueId];
@@ -98,7 +100,9 @@
 -(void)layoutheadview{
     s = [[BigStateView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - 44.5,65 + 5, 99, 99)];
     [s setState:StateGoing withAll:_maxnum andAdd:@""];
-    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:_starttime] EndTime:[NSDate dateWithTimeIntervalSinceNow:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:0]];
+    
+    // s:发送时间 。e:报名截止 g:活动时间
+    [s setStartTime:[NSDate dateWithTimeIntervalSince1970:_starttime] EndTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:_datatime]];
     
     [_headview addSubview:s];
 }
@@ -203,17 +207,22 @@
         cell.show_name.text = contacts.name;
         cell.show_content.text = contacts.message;
         cell.phone = contacts.mobile;
+        cell.talk = contacts.message;
         cell.index = indexPath;
         cell.delegate = self;
+    
+    
         if ([cell.phone compare:@""] == NSOrderedSame) {
             [cell.show_phone setEnabled:NO];
         } else {
             [cell.show_phone setEnabled:YES];
         }
         if ([cell.talk compare:@""] == NSOrderedSame) {
-            [cell.show_message setEnabled:NO];
+//            [cell.show_message setEnabled:NO];
+            [cell.show_message setHidden:YES];
         } else {
-            [cell.show_message setEnabled:YES];
+//            [cell.show_message setEnabled:YES];
+            [cell.show_message setHidden:NO];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -250,8 +259,16 @@
 
 -(void)didShowPhone:(NSString*) phone{
     NSLog(@"%@",phone);
+    [self makeACall:phone];
 }
 
+-(void)makeACall :(NSString *) phoneNum{
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
+    if ( !phoneCallWebView ) {
+        phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的View 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
+    }
+    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+}
 
 - (IBAction)endtime_onclick:(id)sender {
     [_bottom_view setHidden:NO];
