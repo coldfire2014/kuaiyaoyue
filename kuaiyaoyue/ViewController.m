@@ -22,7 +22,7 @@
 #import "DetailViewController.h"
 #import "StatusBar.h"
 #import "ShareView.h"
-@interface ViewController (){
+@interface ViewController ()<VCDelegate>{
     NSMutableArray *data;
     NSString *uniqueId;
     long long starttime;
@@ -33,6 +33,9 @@
     UITableViewCellEditingStyle selectEditingStyle;
     BOOL is_chose;
     
+    NSString *url;
+    NSString *msg;
+    NSString *title;
 }
 
 @end
@@ -144,6 +147,7 @@
                     userdata.nefthumb = [NSString stringWithFormat:@"%@",[dic objectForKey:@"thumb"]];
                     userdata.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
                     userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
+                    userdata.neftype = 0;
                     [data addObject:userdata];
                     
                 }
@@ -171,6 +175,7 @@
                     userdata.nefthumb = [NSString stringWithFormat:@"%@",[dic objectForKey:@"thumb"]];
                     userdata.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
                     userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
+                    userdata.neftype = 1;
                     [data addObject:userdata];
                 }
                 NSArray *partyList = [array objectForKey:@"partyList"];
@@ -198,6 +203,7 @@
                     userdata.nefthumb = [NSString stringWithFormat:@"%@",[dic objectForKey:@"thumb"]];
                     userdata.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
                     userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
+                    userdata.neftype = 2;
                     [data addObject:userdata];
                 }
                 run = 0;
@@ -290,15 +296,6 @@
     UIImage *snapshotImage = [self imageFromView:self.view];
     view.alpha = 1;
     [self performSegueWithIdentifier:@"menu" sender:snapshotImage];
-//    ShareView* share = [ShareView sharedShareView];
-//    share.fromvc = self;
-//    share.url = @"http://baidu.com";
-//    share.msg = @"lailai";
-//    share.title = @"haha";
-//    NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
-//    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"T4" ofType:@"png"]];
-//    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
-//    [share show];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -368,6 +365,7 @@
     ViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     cell.widht = self.view.frame.size.width;
     cell.info = [data objectAtIndex:[indexPath row]];
+    cell.delegate = self;
     
     return cell;
 }
@@ -465,6 +463,7 @@
 //    }
     
 }
+
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     if (MFMailComposeResultSent == result || MFMailComposeResultSaved == result) {
         [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
@@ -474,15 +473,16 @@
     [controller dismissViewControllerAnimated:YES completion:^{
         ShareView* share = [ShareView sharedShareView];
         share.fromvc = self;
-        share.url = @"http://baidu.com";
-        share.msg = @"lailai";
-        share.title = @"haha";
+        share.url = url;
+        share.msg = msg;
+        share.title = title;
         NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
-        UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"T4" ofType:@"png"]];
+        UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"icon57" ofType:@"png"]];
         share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
         [share show];
     }];
 }
+
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     if (result == MessageComposeResultSent) {
         [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
@@ -492,14 +492,46 @@
     [controller dismissViewControllerAnimated:YES completion:^{
         ShareView* share = [ShareView sharedShareView];
         share.fromvc = self;
-        share.url = @"http://baidu.com";
-        share.msg = @"lailai";
-        share.title = @"haha";
+        share.url = url;
+        share.msg = msg;
+        share.title = title;
         NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
-        UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"T4" ofType:@"png"]];
+        UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"icon57" ofType:@"png"]];
         share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
         [share show];
     }];
+}
+
+- (void)VCDelegate:(ViewCell *)cell didTapAtIndex:(long ) index{
+    Userdata *user = [data objectAtIndex:index];
+    NSLog(@"%d",user.neftype);
+    switch (user.neftype) {
+        case 0:
+            
+            break;
+        case 1:
+            title = [NSString stringWithFormat:@"%@&%@ 婚礼",user.nefgroom,user.nefbride];
+            msg = [NSString stringWithFormat:@"%@ %@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            url = user.nefurl;
+            break;
+        case 2:
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    ShareView* share = [ShareView sharedShareView];
+    share.fromvc = self;
+    share.url = url;
+    share.msg = msg;
+    share.title = title;
+    NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
+    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"icon57" ofType:@"png"]];
+    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+    [share show];
+    
 }
 
 @end

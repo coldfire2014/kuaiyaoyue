@@ -1254,7 +1254,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hNf-Oa-RH2" id="VbD-gO-EYI">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardOne.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="eIE-P2-GYe">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon120.png" translatesAutoresizingMaskIntoConstraints="NO" id="eIE-P2-GYe">
                                                     <rect key="frame" x="9" y="12" width="60" height="60"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="南德斯&amp;萱萱实际 婚礼" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyH-rN-Ixi">
@@ -2363,7 +2363,6 @@
     <resources>
         <image name="bg_list.jpg" width="640" height="360"/>
         <image name="bg_top.jpg" width="640" height="202"/>
-        <image name="cardOne.jpg" width="296" height="478"/>
         <image name="ic_32_arr" width="16" height="16"/>
         <image name="ic_32_clock" width="16" height="16"/>
         <image name="ic_32_open" width="16" height="16"/>
@@ -2389,14 +2388,15 @@
         <image name="ic_c_music" width="24" height="24"/>
         <image name="ic_c_name" width="24" height="24"/>
         <image name="ic_c_timer" width="24" height="24"/>
+        <image name="icon120.png" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="D53-YK-KM5"/>
+        <segue reference="luI-zA-BtH"/>
         <segue reference="Oey-PZ-F9W"/>
+        <segue reference="D53-YK-KM5"/>
         <segue reference="x3h-Pp-84V"/>
-        <segue reference="keJ-rR-p7N"/>
         <segue reference="ztp-xN-fnN"/>
-        <segue reference="Tpj-6l-Acb"/>
-        <segue reference="22X-oD-zs7"/>
+        <segue reference="keJ-rR-p7N"/>
+        <segue reference="fps-RF-Hk5"/>
     </inferredMetricsTieBreakers>
 </document>

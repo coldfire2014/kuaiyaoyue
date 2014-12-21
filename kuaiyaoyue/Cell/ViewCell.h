@@ -10,6 +10,8 @@
 #import "BigStateView.h"
 #import "Userdata.h"
 
+@protocol VCDelegate;
+
 @interface ViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *show_img;
 @property (weak, nonatomic) IBOutlet UIButton *show_send;
@@ -19,7 +21,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *show_endtime;
 @property (weak, nonatomic) IBOutlet UILabel *show_hdtime;
 @property (weak, nonatomic) Userdata *info;
+@property long index;
 
 @property CGFloat widht;
+
+@property (nonatomic, weak) id<VCDelegate> delegate;
+
+@end
+@protocol VCDelegate <NSObject>
+
+- (void)VCDelegate:(ViewCell *)cell didTapAtIndex:(long ) index;
 
 @end

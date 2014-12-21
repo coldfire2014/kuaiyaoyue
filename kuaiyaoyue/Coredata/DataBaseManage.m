@@ -191,9 +191,7 @@ static NSManagedObjectContext *context = nil;
 
     userdata.nefAccount = [UDObject getAccount];
     userdata.neftype = type;
-    
-    
-    
+
     if (type == 0) {
         userdata.nefid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"unquieId"]];
         NSArray *arr = [dic objectForKey:@"images"];
