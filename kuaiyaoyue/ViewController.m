@@ -75,8 +75,6 @@
 //        NSLog(@"已登录");
 //    }
     [self loaddata];
-    [self GetRecord];
-    
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 
 }
@@ -266,6 +264,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
+    [self GetRecord];
 }
 
 -(void)changeTimeAtTimedisplay{

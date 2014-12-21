@@ -39,5 +39,7 @@
 -(NSArray *)GetContacts:(NSString *)neftypeid;
 //添加人数
 -(BOOL)AddContacts:(NSDictionary *)dic :(NSString *)nefid;
+//添加婚礼用户数据
+-(void)AddHLUserdata;
 
 @end

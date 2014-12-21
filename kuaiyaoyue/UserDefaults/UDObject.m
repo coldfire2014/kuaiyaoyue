@@ -60,13 +60,42 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"bdbg"];
 }
 
-+(void)setHLContent:(NSString *) xl_name xn_name:(NSString *)xn_name hltime:(NSString *)hltime bmendtime:(NSString *)bmendtime address_name:(NSString *)address_name{
++(void)setWebUrl:(NSString *)index{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:index forKey:@"weburl"];
+    [userInfo synchronize];
+}
+
++(NSString *)getWebUrl{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"weburl"];
+}
+
++(void)setMbimg:(NSString *)name{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:name forKey:@"mbimg"];
+    [userInfo synchronize];
+}
+
++(NSString *)getMbimg{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"mbimg"];
+}
+
++(void)sethl_imgarr:(NSString *)imgarr{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:imgarr forKey:@"hl_imgarr"];
+    [userInfo synchronize];
+}
+
++(void)setHLContent:(NSString *) xl_name xn_name:(NSString *)xn_name hltime:(NSString *)hltime bmendtime:(NSString *)bmendtime address_name:(NSString *)address_name music:(NSString *)music musicname:(NSString *)musicname imgarr:(NSString *)imgarr{
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
     [userInfo setValue:xl_name forKey:@"xl_name"];
     [userInfo setValue:xn_name forKey:@"xn_name"];
     [userInfo setValue:hltime forKey:@"hltime"];
     [userInfo setValue:bmendtime forKey:@"bmendtime"];
     [userInfo setValue:address_name forKey:@"address_name"];
+    [userInfo setValue:music forKey:@"hl_music"];
+    [userInfo setValue:musicname forKey:@"hl_musicname"];
+    [userInfo setValue:imgarr forKey:@"hl_imgarr"];
     [userInfo synchronize];
 }
 
@@ -84,6 +113,16 @@
 }
 +(NSString *)getaddress_name{
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"address_name"];
+}
++(NSString *)gethlmusic{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"hl_music"];
+}
++(NSString *)gethlmusicname{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"hl_musicname"];
+}
+
++(NSString *)gethlimgarr{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"hl_imgarr"];
 }
 
 

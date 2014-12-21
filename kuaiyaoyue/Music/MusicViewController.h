@@ -17,6 +17,6 @@
 @end
 @protocol MVCDelegate <NSObject>
 
-- (void)MVCDelegate:(MusicViewController *)cell didTapAtIndex:(NSString *) url;
+- (void)MVCDelegate:(MusicViewController *)cell didTapAtIndex:(NSString *) url :(NSString *)name;
 
 @end
