@@ -33,7 +33,7 @@
     if (nil != all) {
         bgCover = [UIColor clearColor];
     } else {
-        bgCover = [[UIColor alloc] initWithWhite:0.9 alpha:0.9];
+        bgCover = [[UIColor alloc] initWithWhite:0.9 alpha:0.95];
 //        bgCover = [UIColor clearColor];
 //        [bk setImageToBlur:self.bgimg blurRadius:10.0 completionBlock:^(NSError *error) {
 //            
@@ -141,11 +141,11 @@
 }
 - (void)didTapOne{
     self.tapID = 401;
-    [self performSegueWithIdentifier:@"showTemplate" sender:@"sanwu"];
+    [self performSegueWithIdentifier:@"showTemplate" sender:@"cihe"];
 }
 - (void)didTapTwo{
     self.tapID = 402;
-    [self performSegueWithIdentifier:@"showTemplate" sender:@"cihe"];
+    [self performSegueWithIdentifier:@"showTemplate" sender:@"sanwu"];
 }
 - (void)didTapThree{
     self.tapID = 403;

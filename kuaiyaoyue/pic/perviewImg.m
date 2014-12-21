@@ -127,7 +127,7 @@
 -(void)goCenter{
     UIView* bkd = [self viewWithTag:204];
     UIView* bk = [self viewWithTag:205];
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         bkd.alpha = 1;
         bk.center = self.center;
     } completion:^(BOOL finished) {
@@ -146,27 +146,12 @@
     if (smallSize.width > smallSize.height) {
         d = smallSize.width / bigSize.width;
     }
-    CAKeyframeAnimation* moveAnim = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-    moveAnim.values = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:d],
-                       [NSNumber numberWithDouble:1.3],
-                       [NSNumber numberWithDouble:0.9],
-                       [NSNumber numberWithDouble:1.04],
-                       [NSNumber numberWithDouble:0.99],
-                       [NSNumber numberWithDouble:1.0],nil];
-    moveAnim.removedOnCompletion = YES;
-    
-    CABasicAnimation* opacityAnim = [CABasicAnimation animationWithKeyPath: @"opacity"];
-    opacityAnim.fromValue = [NSNumber numberWithFloat: 1.0];
-    opacityAnim.toValue = [NSNumber numberWithFloat: 1.0];
-    opacityAnim.removedOnCompletion = YES;
-    
-    CAAnimationGroup* animGroup = [CAAnimationGroup animation];
-    animGroup.animations = [[NSArray alloc] initWithObjects: moveAnim,opacityAnim,nil];
-    animGroup.duration = 0.9;
-    animGroup.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseIn];
-    animGroup.removedOnCompletion = YES;
-    animGroup.fillMode = kCAFillModeForwards;
-    [img.layer addAnimation:animGroup forKey:@"s"];
+    img.layer.transform = CATransform3DMakeScale(d, d, 1);
+    [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        img.layer.transform = CATransform3DIdentity;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 -(void)didbig{
     self.userInteractionEnabled = NO;

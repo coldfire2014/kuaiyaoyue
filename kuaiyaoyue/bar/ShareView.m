@@ -44,7 +44,7 @@
         UIView* bg = [[UIView alloc] initWithFrame:f];
         bg.tag = 799;
         bg.alpha = 0.0;
-        bg.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5];
+        bg.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.9];
         [self addSubview:bg];
 //        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
 //        [bg addGestureRecognizer:tap];

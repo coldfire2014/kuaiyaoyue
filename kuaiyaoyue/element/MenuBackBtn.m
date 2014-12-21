@@ -28,36 +28,36 @@
         
         UIView* one = [[UIView alloc] initWithFrame:CGRectMake(22.0, 18.0, 18.0/2.0-1.0, 22.0/2.0-1.0)];
         one.backgroundColor = [UIColor clearColor];
-        one.layer.borderColor = [[UIColor alloc] initWithRed:251.0/255.0 green:88.0/255.0 blue:141.0/255.0 alpha:1.0].CGColor;
+        one.layer.borderColor = [[UIColor alloc] initWithRed:253.0/255.0 green:127.0/255.0 blue:36.0/255.0 alpha:1.0].CGColor;
         one.layer.borderWidth = 1.0;
         [self addSubview:one];
         
         UIView* two = [[UIView alloc] initWithFrame:CGRectMake(22.0 + 18.0/2.0+1.0, 18.0, 18.0/2.0-1.0, 22.0/2.0-1.0)];
         two.backgroundColor = [UIColor clearColor];
-        two.layer.borderColor = [[UIColor alloc] initWithRed:251.0/255.0 green:88.0/255.0 blue:141.0/255.0 alpha:1.0].CGColor;
+        two.layer.borderColor = [[UIColor alloc] initWithRed:77.0/255.0 green:110.0/255.0 blue:214.0/255.0 alpha:1.0].CGColor;
         two.layer.borderWidth = 1.0;
         [self addSubview:two];
         
         UIView* three = [[UIView alloc] initWithFrame:CGRectMake(22.0, 18.0 + 22.0/2.0+1.0, 18.0/2.0-1.0, 22.0/2.0-1.0)];
         three.backgroundColor = [UIColor clearColor];
-        three.layer.borderColor = [[UIColor alloc] initWithRed:251.0/255.0 green:88.0/255.0 blue:141.0/255.0 alpha:1.0].CGColor;
+        three.layer.borderColor = [[UIColor alloc] initWithRed:251.0/255.0 green:105.0/255.0 blue:151.0/255.0 alpha:1.0].CGColor;
         three.layer.borderWidth = 1.0;
         [self addSubview:three];
         
         UIView* four = [[UIView alloc] initWithFrame:CGRectMake(22.0 + 18.0/2.0+1.0, 18.0 + 22.0/2.0+1.0, 18.0/2.0-1.0, 22.0/2.0-1.0)];
         four.backgroundColor = [UIColor clearColor];
-        four.layer.borderColor = [[UIColor alloc] initWithRed:251.0/255.0 green:88.0/255.0 blue:141.0/255.0 alpha:1.0].CGColor;
+        four.layer.borderColor = [[UIColor alloc] initWithRed:51.0/255.0 green:212.0/255.0 blue:101.0/255.0 alpha:1.0].CGColor;
         four.layer.borderWidth = 1.0;
         [self addSubview:four];
         
-        if ([type compare:@"sanwu"] == NSOrderedSame) {
-            one.backgroundColor = [[UIColor alloc] initWithRed:251.0/255.0 green:88.0/255.0 blue:141.0/255.0 alpha:1.0];
-        } else if ([type compare:@"cihe"] == NSOrderedSame) {
-            two.backgroundColor = [[UIColor alloc] initWithRed:251.0/255.0 green:88.0/255.0 blue:141.0/255.0 alpha:1.0];
+        if ([type compare:@"cihe"] == NSOrderedSame) {
+            one.backgroundColor = [[UIColor alloc] initWithRed:253.0/255.0 green:127.0/255.0 blue:36.0/255.0 alpha:1.0];
+        } else if ([type compare:@"sanwu"] == NSOrderedSame) {
+            two.backgroundColor = [[UIColor alloc] initWithRed:77.0/255.0 green:110.0/255.0 blue:214.0/255.0 alpha:1.0];
         } else if ([type compare:@"hunli"] == NSOrderedSame) {
-            three.backgroundColor = [[UIColor alloc] initWithRed:251.0/255.0 green:88.0/255.0 blue:141.0/255.0 alpha:1.0];
+            three.backgroundColor = [[UIColor alloc] initWithRed:251.0/255.0 green:105.0/255.0 blue:151.0/255.0 alpha:1.0];
         } else if ([type compare:@"zdy"] == NSOrderedSame) {
-            four.backgroundColor = [[UIColor alloc] initWithRed:251.0/255.0 green:88.0/255.0 blue:141.0/255.0 alpha:1.0];
+            four.backgroundColor = [[UIColor alloc] initWithRed:51.0/255.0 green:212.0/255.0 blue:101.0/255.0 alpha:1.0];
         }
     }
     return self;
