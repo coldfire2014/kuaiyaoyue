@@ -20,8 +20,8 @@
 #import "DataBaseManage.h"
 #import "Userdata.h"
 #import "DetailViewController.h"
-
-
+#import "StatusBar.h"
+#import "ShareView.h"
 @interface ViewController (){
     NSMutableArray *data;
     NSString *uniqueId;
@@ -291,6 +291,15 @@
     UIImage *snapshotImage = [self imageFromView:self.view];
     view.alpha = 1;
     [self performSegueWithIdentifier:@"menu" sender:snapshotImage];
+//    ShareView* share = [ShareView sharedShareView];
+//    share.fromvc = self;
+//    share.url = @"http://baidu.com";
+//    share.msg = @"lailai";
+//    share.title = @"haha";
+//    NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
+//    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"T4" ofType:@"png"]];
+//    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+//    [share show];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -457,6 +466,41 @@
 //    }
     
 }
-
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    if (MFMailComposeResultSent == result || MFMailComposeResultSaved == result) {
+        [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
+    } else {
+        [[StatusBar sharedStatusBar] talkMsg:@"消息未发送。" inTime:0.51];
+    }
+    [controller dismissViewControllerAnimated:YES completion:^{
+        ShareView* share = [ShareView sharedShareView];
+        share.fromvc = self;
+        share.url = @"http://baidu.com";
+        share.msg = @"lailai";
+        share.title = @"haha";
+        NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
+        UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"T4" ofType:@"png"]];
+        share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+        [share show];
+    }];
+}
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
+    if (result == MessageComposeResultSent) {
+        [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
+    } else {
+        [[StatusBar sharedStatusBar] talkMsg:@"消息未发送。" inTime:0.51];
+    }
+    [controller dismissViewControllerAnimated:YES completion:^{
+        ShareView* share = [ShareView sharedShareView];
+        share.fromvc = self;
+        share.url = @"http://baidu.com";
+        share.msg = @"lailai";
+        share.title = @"haha";
+        NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
+        UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"T4" ofType:@"png"]];
+        share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+        [share show];
+    }];
+}
 
 @end
