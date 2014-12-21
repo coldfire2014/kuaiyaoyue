@@ -25,6 +25,8 @@
     NSManagedObjectContext *context;
     long tjnum;
     long addnum;
+    NSString *URL;
+    NSString *name;
 }
 
 @end
@@ -47,8 +49,9 @@
 
 - (void)leftBarBtnClicked:(id)sender
 {
-    
-
+    [self.navigationController popViewControllerAnimated:YES];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(MVCDelegate:didTapAtIndex::)]){
+        [self.delegate MVCDelegate:self didTapAtIndex:URL:name];}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -128,6 +131,8 @@
         cell.show_status.text = @"关";
     }else{
         cell.show_status.text = @"开";
+        URL = info.url;
+        name = info.title;
     }
     cell.show_content.text = info.title;
     

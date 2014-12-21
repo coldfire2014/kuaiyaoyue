@@ -275,6 +275,11 @@ static NSManagedObjectContext *context = nil;
     return YES;
 }
 
+-(void)AddHLUserdata{
+    
+    
+}
+
 
 -(NSArray *)getUserdata{
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Userdata"];

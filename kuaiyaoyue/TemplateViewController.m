@@ -14,8 +14,9 @@
 #import "PCHeader.h"
 #import "DataBaseManage.h"
 #import "Template.h"
-
+#import "UDObject.h"
 #import "HLEditViewController.h"
+#import "SWYQViewController.h"
 
 @interface TemplateViewController (){
     NSString *neftypeId;
@@ -261,7 +262,10 @@
     Template *info = [data objectAtIndex:index];
     unquieId = [NSString stringWithFormat:@"%@",info.nefid];
     nefmbdw = info.nefmbdw;
-    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *zipurl = [documentsDirectory stringByAppendingPathComponent:info.nefzipurl];
+    [UDObject setWebUrl:zipurl];
     //选中事件
     int type = [neftypeId intValue];
     switch (type) {
@@ -269,7 +273,7 @@
             [self performSegueWithIdentifier:@"hledit" sender:nil];
             break;
         case 2:
-            
+            [self performSegueWithIdentifier:@"swedit" sender:nil];
             break;
         case 3:
             
@@ -331,7 +335,9 @@
         des.unquieId = unquieId;
         des.nefmbdw = nefmbdw;
     }else if ([segue.identifier compare:@"swedit"] == NSOrderedSame){
-        
+        SWYQViewController *view = (SWYQViewController *)segue.destinationViewController;
+        view.unquieId = unquieId;
+        view.nefmbdw = nefmbdw;
         
     }else if ([segue.identifier compare:@"chedit"] == NSOrderedSame){
         

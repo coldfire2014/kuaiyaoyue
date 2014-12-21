@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PreviewViewController : UIViewController
+@interface PreviewViewController : UIViewController<UIScrollViewDelegate,UIWebViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIWebView *webview;
 @end

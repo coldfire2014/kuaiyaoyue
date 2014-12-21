@@ -26,6 +26,8 @@
 @interface HLEditViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate>{
     int count;
     NSMutableArray *imgdata;
+    //
+    NSMutableArray *addimg;
     int row_index;
     
     AssetHelper* assert;
@@ -38,6 +40,9 @@
     NSString *xn_name;
     NSString *address_name;
     NSString *mp3url;
+    NSString *mp3name;
+    
+    BOOL is_yl;
     
 }
 
@@ -64,7 +69,6 @@
     _data = [[NSMutableArray alloc] init];
     UINib *nib = [UINib nibWithNibName:NSStringFromClass([PhotoCell class]) bundle:nil];
     [_gridview registerNib:nib forCellWithReuseIdentifier:@"PhotoCell"];
-    [self initImgData];
     assert = ASSETHELPER;
     assert.bReverse = YES;
     
@@ -75,6 +79,9 @@
     
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
     
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"预览" style:UIBarButtonItemStyleBordered target:self action:@selector(RightBarBtnClicked:)];
+    self.navigationItem.rightBarButtonItem = right;
+    
     show = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ShowData class]) owner:nil options:nil] lastObject];
     show.delegate = self;
     [show setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
@@ -84,7 +91,16 @@
     [self getHistorical];
 }
 
+-(void)RightBarBtnClicked:(id)sender{
+    //preview
+    is_yl = NO;
+    [self SendUp];
+}
+
 -(void)getHistorical{
+    mp3name = @"";
+    mp3url = @"";
+    count = 9;
     if ([UDObject getxl_name].length > 0) {
         _xl_edit.text = [UDObject getxl_name];
         _xn_edit.text = [UDObject getxn_name];
@@ -93,25 +109,41 @@
         _hltime_label.text = [TimeTool getFullTimeStr:[hltime longLongValue]/1000];
         _bmend_label.text = [TimeTool getFullTimeStr:[bmendtime longLongValue]/1000];
         _address_edit.text = [UDObject getaddress_name];
+        if ([UDObject gethlmusic].length > 0) {
+            mp3name = [UDObject gethlmusicname];
+            _music_label.text = mp3name;
+            mp3url = [UDObject gethlmusic];
+        }
+        NSArray *arr = [[UDObject gethlimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        for (NSString *name in arr) {
+           
+            NSArray *array = [name componentsSeparatedByString:@"/"];
+            NSString *imgname = [array objectAtIndex:([array count] - 1)];
+            NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: imgname];            
+            UIImage *img = [[UIImage alloc]initWithContentsOfFile:imgpath];
+            GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
+            [_data addObject:info];
+        }
+        count -= [arr count];
     }
+    [self initImgData];
 }
 
 -(void)changeHigh{
     [UIView animateWithDuration:0.3 animations:^{
         [self sethigh];
     }];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    is_yl = YES;
     [self.navigationController.navigationBar setHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 -(void)initImgData{
-    count = 9;
     GridInfo *info = [[GridInfo alloc] initWithDictionary:NO :nil];
     [_data addObject:info];
     [_gridview reloadData];
@@ -165,9 +197,7 @@
 //    cell.add_view.backgroundColor = self.nowkColor;
     if (info.is_open) {
         [cell.del_button setHidden:NO];
-        NSLog(@"%@",info.alasset);
-        UIImage *img = [assert getImageFromAsset:info.alasset type:ASSET_PHOTO_THUMBNAIL];
-        cell.show_img.image = img;
+        cell.show_img.image = info.img;
         cell.show_img.alpha = 0;
         [UIView animateWithDuration:0.3 animations:^{
             cell.show_img.alpha = 1;
@@ -213,7 +243,8 @@
     for (int i = 0; i < items.count; i++)
     {
         ALAsset* al = [items objectAtIndex:i];
-        GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :al];
+        UIImage *img = [assert getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
+        GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
         [self.data addObject:info];
     }
     
@@ -295,7 +326,6 @@
 }
 
 - (IBAction)music_onclick:(id)sender {
-    
     //music
     [self performSegueWithIdentifier:@"music" sender:nil];
 }
@@ -363,9 +393,12 @@
     
 }
 
-- (void)MVCDelegate:(MusicViewController *)cell didTapAtIndex:(NSString *) url{
-    
+- (void)MVCDelegate:(MusicViewController *)cell didTapAtIndex:(NSString *) url :(NSString *)name{
+    mp3url = url;
+    mp3name = name;
+    _music_label.text = name;
 }
+
 
 -(void)SendUp{
     xl_name = _xl_edit.text;
@@ -374,8 +407,6 @@
     
     if (xl_name.length > 0 && xn_name.length > 0 && hltime.length > 0 && bmendtime.length > 0 && address_name.length > 0) {
         [self setbg];
-        [UDObject setHLContent:xl_name xn_name:xn_name hltime:hltime bmendtime:bmendtime address_name:address_name];
-        
     }else{
         [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.5];
     }
@@ -387,10 +418,6 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *urlpath = [documentsDirectory stringByAppendingString:_nefmbdw];
     UIImage *bgimg = [self getimg:urlpath];
-//    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-//    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
-//    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
-//   [UIImageJPEGRepresentation(bgimg,0.8) writeToFile:[[FileManage sharedFileManage] getImgFile:uuid] atomically:YES];
     [self upmbdt:bgimg];
 }
 
@@ -452,27 +479,50 @@
 }
 
 -(void)upmbdt:(UIImage *)img{
-    [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
     CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
     NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
-    [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
-        NSLog(@"%@",URL);
-        if (isOK) {
-            imgdata = [[NSMutableArray alloc] init];
-            if ([_data count] > 0) {
-                row_index = 0;
-                GridInfo *info = [_data objectAtIndex:row_index];
-                UIImage *img = [assert getImageFromAsset:info.alasset type:ASSET_PHOTO_SCREEN_SIZE];
-                [self postuploadHL:img :URL] ;
+    NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    addimg = [[NSMutableArray alloc] init];
+    [UDObject setMbimg:[NSString stringWithFormat:@"../Image/%@",uuid]];
+    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+    
+    if (is_yl) {
+        [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
+        [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
+            NSLog(@"%@",URL);
+            if (isOK) {
+                imgdata = [[NSMutableArray alloc] init];
+                if ([_data count] - 1 > 0) {
+                    row_index = 0;
+                    GridInfo *info = [_data objectAtIndex:row_index];
+                    [self postuploadHL:info.img :URL] ;
+                }else{
+                    NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
+                    [self marry:_unquieId :xn_name :xl_name :address_name :arr :hltime :URL :mp3url :bmendtime];
+                }
             }else{
-                NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
-                [self marry:_unquieId :xn_name :xl_name :address_name :arr :hltime :URL :mp3url :bmendtime];
+                [SVProgressHUD dismiss];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
             }
-        }else{
-            [SVProgressHUD dismissWithError:@"上传失败"];
+        }];
+    }else{
+        if ([_data count] - 1 > 0) {
+            for (int i = 0; i<[_data count] - 1; i++) {
+                GridInfo *info = [_data objectAtIndex:row_index];
+                CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+                NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+                uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+                NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+                [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
+                [UIImageJPEGRepresentation(info.img,0.8) writeToFile:imgpath atomically:YES];
+            }
         }
-    }];
+        NSArray *arr = [[NSArray alloc] initWithArray:addimg];
+        NSString *hlarr = [arr componentsJoinedByString:@","];
+        [UDObject sethl_imgarr:hlarr];
+        [self performSegueWithIdentifier:@"preview" sender:nil];
+    }
 }
 
 
@@ -481,6 +531,9 @@
     CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
     NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
+    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
     [HttpManage uploadTP:img name:uuid  cb:^(BOOL isOK, NSString *arry) {
         if (isOK) {
             //解析服务器图片名称
@@ -492,11 +545,11 @@
                 
             }else{
                 GridInfo *info = [_data objectAtIndex:row_index];
-                UIImage *img1 = [assert getImageFromAsset:info.alasset type:ASSET_PHOTO_SCREEN_SIZE];
-                [self postuploadHL:img1 :URL];
+                [self postuploadHL:info.img :URL];
             }
         }else{
-            [SVProgressHUD dismissWithError:@"上传失败"];
+            [SVProgressHUD dismiss];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
         }
     }];
 }
@@ -506,12 +559,17 @@
         musicUrl = @"";
     }
     
+    [SVProgressHUD dismiss];
     [HttpManage marry:[UDObject gettoken] bride:bride groom:groom address:address location:nil images:images timestamp:timestamp background:background musicUrl:musicUrl closeTimestamp:closeTimestamp mid:unquieId cb:^(BOOL isOK, NSDictionary *dic) {
-        NSLog(@"%@",dic);
         if (isOK) {
+            NSArray *arr = [[NSArray alloc] initWithArray:addimg];
+            NSString *hlarr = [arr componentsJoinedByString:@","];
+            [UDObject setHLContent:xl_name xn_name:xn_name hltime:hltime bmendtime:bmendtime address_name:address_name music:musicUrl musicname:mp3name imgarr:hlarr];
+            [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
+            [self.navigationController popToRootViewControllerAnimated:YES];
             
         }else{
-            
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
         }
     }];
 }

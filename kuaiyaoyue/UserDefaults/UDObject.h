@@ -25,13 +25,24 @@
 +(void)setmbscbg:(NSString *)name;
 +(NSString *)getmbscbg;
 
++(void)setWebUrl:(NSString *)index;
++(NSString *)getWebUrl;
+
++(void)setMbimg:(NSString *)name;
++(NSString *)getMbimg;
+
++(void)sethl_imgarr:(NSString *)imgarr;
+
 //婚礼存储
-+(void)setHLContent:(NSString *) xl_name xn_name:(NSString *)xn_name hltime:(NSString *)hltime bmendtime:(NSString *)bmendtime address_name:(NSString *)address_name;
++(void)setHLContent:(NSString *) xl_name xn_name:(NSString *)xn_name hltime:(NSString *)hltime bmendtime:(NSString *)bmendtime address_name:(NSString *)address_name music:(NSString *)music musicname:(NSString *)musicname imgarr:(NSString *)imgarr;
 +(NSString *)getxl_name;
 +(NSString *)getxn_name;
 +(NSString *)gethltime;
 +(NSString *)getbmendtime;
 +(NSString *)getaddress_name;
++(NSString *)gethlmusic;
++(NSString *)gethlmusicname;
++(NSString *)gethlimgarr;
 
 
 

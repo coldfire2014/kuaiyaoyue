@@ -36,7 +36,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"kyy"];
+    NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
     [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     // 创建目录
     self.imgDirectory = [testDirectory stringByAppendingPathComponent:@"Image"];
