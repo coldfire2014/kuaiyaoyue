@@ -366,7 +366,6 @@
 }
 
 -(void)changeHidden:(BOOL)hide completion:(void (^)(BOOL finished))completion{
-    CGRect f = [[UIScreen mainScreen] bounds];
     UIView* bg = [self viewWithTag:799];
     UIView* btn0 = [self viewWithTag:800];
     UIView* btn1 = [self viewWithTag:801];
