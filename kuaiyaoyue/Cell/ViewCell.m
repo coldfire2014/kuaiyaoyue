@@ -44,6 +44,7 @@
     int type = _info.neftype;
     long long kstime = 0;
     long long endtime = 0;
+    long long hdtime = 0;
     
     switch (type) {
         case 0:
@@ -52,8 +53,8 @@
             _show_hdtime.text = [NSString stringWithFormat:@"活动时间：%@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
             
-            kstime = [_info.neftimestamp longLongValue];
-            endtime = [_info.nefclosetimestamp longLongValue];
+            kstime = [_info.neftimestamp longLongValue]/1000;
+            endtime = [_info.nefclosetimestamp longLongValue]/1000;
             
             [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:kstime] EndTime:[NSDate dateWithTimeIntervalSinceNow:endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
             
@@ -64,10 +65,11 @@
             _show_hdtime.text = [NSString stringWithFormat:@"活动时间：%@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
             
-            kstime = [_info.nefdate longLongValue];
-            endtime = [_info.nefclosetimestamp longLongValue];
+            kstime = [_info.nefdate longLongValue]/1000;
+            endtime = [_info.nefclosetimestamp longLongValue]/1000;
+            hdtime = [_info.neftimestamp longLongValue]/1000;
             
-            [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:kstime] EndTime:[NSDate dateWithTimeIntervalSinceNow:endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
+            [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:kstime] EndTime:[NSDate dateWithTimeIntervalSinceNow:endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:hdtime]];
             
             break;
         case 2:
@@ -76,8 +78,8 @@
             _show_hdtime.text = [NSString stringWithFormat:@"活动时间：%@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
             
-            kstime = [_info.neftimestamp longLongValue];
-            endtime = [_info.nefclosetimestamp longLongValue];
+            kstime = [_info.neftimestamp longLongValue]/1000;
+            endtime = [_info.nefclosetimestamp longLongValue]/1000;
             
             [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:kstime] EndTime:[NSDate dateWithTimeIntervalSinceNow:endtime] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:8]];
             

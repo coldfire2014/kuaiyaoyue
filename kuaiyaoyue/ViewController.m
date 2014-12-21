@@ -366,6 +366,7 @@
     cell.widht = self.view.frame.size.width;
     cell.info = [data objectAtIndex:[indexPath row]];
     cell.delegate = self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
@@ -527,8 +528,7 @@
     share.url = url;
     share.msg = msg;
     share.title = title;
-    NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
-    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"icon57" ofType:@"png"]];
+    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon57" ofType:@"png"]];
     share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
     [share show];
     
