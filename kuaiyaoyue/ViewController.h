@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewCell.h"
-
-@interface ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@import MessageUI;
+@interface ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MFMessageComposeViewControllerDelegate,MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UIView *showview_img;

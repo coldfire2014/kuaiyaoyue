@@ -69,7 +69,6 @@
         share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
         [share show];
     }];
-    
 }
 
 - (void)didReceiveMemoryWarning {

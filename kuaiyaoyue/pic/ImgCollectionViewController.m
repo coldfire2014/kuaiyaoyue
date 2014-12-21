@@ -38,8 +38,8 @@ static NSString * const fIdentifier = @"imgcellf";
     [self.collectionView registerClass:[ImgCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self.collectionView registerClass:[imgGroupView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:hIdentifier];
     [self.collectionView registerClass:[imgGroupView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:fIdentifier];
-    self.view.backgroundColor = [UIColor clearColor];
-    self.collectionView.backgroundColor = [[UIColor alloc] initWithWhite:0.9 alpha:0.8];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = [[UIColor alloc] initWithWhite:1.0 alpha:0.9];
     self.collectionView.frame = CGRectMake(0, 128.0/2.0, w, h-128.0/2.0);
     assert = ASSETHELPER;
     

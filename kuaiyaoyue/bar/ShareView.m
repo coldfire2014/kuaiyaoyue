@@ -44,8 +44,12 @@
         UIView* bg = [[UIView alloc] initWithFrame:f];
         bg.tag = 799;
         bg.alpha = 0.0;
-        bg.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5];
+        bg.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.95];
         [self addSubview:bg];
+        UIView* bg2 = [[UIView alloc] initWithFrame:f];
+        bg2.tag = 798;
+        bg2.backgroundColor = [UIColor clearColor];
+        [bg addSubview:bg2];
 //        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
 //        [bg addGestureRecognizer:tap];
 //        UIView* wbj = [[UIView alloc] initWithFrame:CGRectMake(0, f.size.height, f.size.width, f.size.height/2.0)];
@@ -103,13 +107,120 @@
         UITapGestureRecognizer* tap9 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
         [backbtn addGestureRecognizer:tap9];
         
+        [self initBg2];
     }
     return self;
+}
+-(void)initBg2{
+    UIView* bg2 = [self viewWithTag:798];
+    bg2.alpha = 0.0;
+    UILabel* mbtitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 128.0/2.0,16.0)];
+    mbtitle.tag = 700;
+    [mbtitle setFont:[UIFont systemFontOfSize:15]];
+    [mbtitle setTextAlignment:NSTextAlignmentCenter];
+    [mbtitle setLineBreakMode:NSLineBreakByClipping];
+    [mbtitle setTextColor:[[UIColor alloc] initWithWhite:0.4 alpha:1.0]];
+    [mbtitle setBackgroundColor:[UIColor clearColor]];
+    [mbtitle setText:@"朋友圈"];
+    [bg2 addSubview:mbtitle];
+    
+    UILabel* mbtitle1 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 128.0/2.0,16.0)];
+    mbtitle1.tag = 701;
+    [mbtitle1 setFont:[UIFont systemFontOfSize:15]];
+    [mbtitle1 setTextAlignment:NSTextAlignmentCenter];
+    [mbtitle1 setLineBreakMode:NSLineBreakByClipping];
+    [mbtitle1 setTextColor:[[UIColor alloc] initWithWhite:0.4 alpha:1.0]];
+    [mbtitle1 setBackgroundColor:[UIColor clearColor]];
+    [mbtitle1 setText:@"微信"];
+    [bg2 addSubview:mbtitle1];
+    
+    UILabel* mbtitle2 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 128.0/2.0,16.0)];
+    mbtitle2.tag = 702;
+    [mbtitle2 setFont:[UIFont systemFontOfSize:15]];
+    [mbtitle2 setTextAlignment:NSTextAlignmentCenter];
+    [mbtitle2 setLineBreakMode:NSLineBreakByClipping];
+    [mbtitle2 setTextColor:[[UIColor alloc] initWithWhite:0.4 alpha:1.0]];
+    [mbtitle2 setBackgroundColor:[UIColor clearColor]];
+    [mbtitle2 setText:@"新浪微博"];
+    [bg2 addSubview:mbtitle2];
+    
+    UILabel* mbtitle3 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 128.0/2.0,16.0)];
+    mbtitle3.tag = 703;
+    [mbtitle3 setFont:[UIFont systemFontOfSize:15]];
+    [mbtitle3 setTextAlignment:NSTextAlignmentCenter];
+    [mbtitle3 setLineBreakMode:NSLineBreakByClipping];
+    [mbtitle3 setTextColor:[[UIColor alloc] initWithWhite:0.4 alpha:1.0]];
+    [mbtitle3 setBackgroundColor:[UIColor clearColor]];
+    [mbtitle3 setText:@"腾讯微博"];//QQ空间
+    [bg2 addSubview:mbtitle3];
+    
+    UILabel* mbtitle4 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 128.0/2.0,16.0)];
+    mbtitle4.tag = 704;
+    [mbtitle4 setFont:[UIFont systemFontOfSize:15]];
+    [mbtitle4 setTextAlignment:NSTextAlignmentCenter];
+    [mbtitle4 setLineBreakMode:NSLineBreakByClipping];
+    [mbtitle4 setTextColor:[[UIColor alloc] initWithWhite:0.4 alpha:1.0]];
+    [mbtitle4 setBackgroundColor:[UIColor clearColor]];
+    [mbtitle4 setText:@"取消发送"];
+    [bg2 addSubview:mbtitle4];
+    
+    UILabel* mbtitle5 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 128.0/2.0,16.0)];
+    mbtitle5.tag = 705;
+    [mbtitle5 setFont:[UIFont systemFontOfSize:15]];
+    [mbtitle5 setTextAlignment:NSTextAlignmentCenter];
+    [mbtitle5 setLineBreakMode:NSLineBreakByClipping];
+    [mbtitle5 setTextColor:[[UIColor alloc] initWithWhite:0.4 alpha:1.0]];
+    [mbtitle5 setBackgroundColor:[UIColor clearColor]];
+    [mbtitle5 setText:@"QQ好友"];
+    [bg2 addSubview:mbtitle5];
+    
+    UILabel* mbtitle6 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 128.0/2.0,16.0)];
+    mbtitle6.tag = 706;
+    [mbtitle6 setFont:[UIFont systemFontOfSize:15]];
+    [mbtitle6 setTextAlignment:NSTextAlignmentCenter];
+    [mbtitle6 setLineBreakMode:NSLineBreakByClipping];
+    [mbtitle6 setTextColor:[[UIColor alloc] initWithWhite:0.4 alpha:1.0]];
+    [mbtitle6 setBackgroundColor:[UIColor clearColor]];
+    [mbtitle6 setText:@"短信"];
+    [bg2 addSubview:mbtitle6];
+    
+    UILabel* mbtitle7 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 128.0/2.0,16.0)];
+    mbtitle7.tag = 707;
+    [mbtitle7 setFont:[UIFont systemFontOfSize:15]];
+    [mbtitle7 setTextAlignment:NSTextAlignmentCenter];
+    [mbtitle7 setLineBreakMode:NSLineBreakByClipping];
+    [mbtitle7 setTextColor:[[UIColor alloc] initWithWhite:0.4 alpha:1.0]];
+    [mbtitle7 setBackgroundColor:[UIColor clearColor]];
+    [mbtitle7 setText:@"复制链接"];
+    [bg2 addSubview:mbtitle7];
+    
+    UILabel* mbtitle8 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 128.0/2.0,16.0)];
+    mbtitle8.tag = 708;
+    [mbtitle8 setFont:[UIFont systemFontOfSize:15]];
+    [mbtitle8 setTextAlignment:NSTextAlignmentCenter];
+    [mbtitle8 setLineBreakMode:NSLineBreakByClipping];
+    [mbtitle8 setTextColor:[[UIColor alloc] initWithWhite:0.4 alpha:1.0]];
+    [mbtitle8 setBackgroundColor:[UIColor clearColor]];
+    [mbtitle8 setText:@"邮件"];
+    [bg2 addSubview:mbtitle8];
+    CGRect f = [[UIScreen mainScreen] bounds];
+    CGFloat h = -12;
+    mbtitle.center = CGPointMake(f.size.width/2.0-72.0/2.0-128.0/2.0, f.size.height-368.0/2.0 - 128.0/4.0 - 90.0/2.0+h);
+    mbtitle1.center = CGPointMake(f.size.width/2.0, f.size.height-368.0/2.0 - 128.0/4.0 - 90.0/2.0+h);
+    mbtitle2.center = CGPointMake(f.size.width/2.0+72.0/2.0+128.0/2.0, f.size.height-368.0/2.0 - 128.0/4.0 - 90.0/2.0+h);
+    mbtitle3.center = CGPointMake(f.size.width/2.0-72.0/2.0-128.0/2.0, f.size.height-368.0/2.0 + 128.0/4.0+h);
+    mbtitle4.center = CGPointMake(f.size.width/2.0, f.size.height-368.0/2.0 + 128.0/4.0+h);
+    mbtitle5.center = CGPointMake(f.size.width/2.0+72.0/2.0+128.0/2.0, f.size.height-368.0/2.0 + 128.0/4.0+h);
+    mbtitle6.center = CGPointMake(f.size.width/2.0-72.0/2.0-128.0/2.0, f.size.height-368.0/2.0 + 128.0/4.0 + 90.0/2.0 + 128.0/2.0+h);
+    mbtitle7.center = CGPointMake(f.size.width/2.0, f.size.height-368.0/2.0 + 128.0/4.0 + 90.0/2.0 + 128.0/2.0+h);
+    mbtitle8.center = CGPointMake(f.size.width/2.0+72.0/2.0+128.0/2.0, f.size.height-368.0/2.0 + 128.0/4.0 + 90.0/2.0 +128.0/2.0+h);
 }
 -(void)show{
     CGRect f = [[UIScreen mainScreen] bounds];
     self.frame = f;
     UIView* bg = [self viewWithTag:799];
+    UIView* bg2 = [self viewWithTag:798];
+    bg2.alpha = 0.0;
     UIView* backbtn = [self viewWithTag:808];
     backbtn.center = CGPointMake(f.size.width/2.0, f.size.height+128.0/4.0);
     UIView* btn1 = [self viewWithTag:800];
@@ -196,7 +307,9 @@
         btn8.center = CGPointMake(f.size.width/2.0+72.0/2.0+128.0/2.0, f.size.height-368.0/2.0 - 128.0/4.0 + 90.0/2.0 +128.0/2.0);
         btn8.alpha = 1.0;
     } completion:^(BOOL finished) {
-        
+        [UIView animateWithDuration:0.2 animations:^{
+            bg2.alpha = 1.0;
+        }];
     }];
 }
 -(void)hide{
