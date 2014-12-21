@@ -144,10 +144,10 @@
                 CGFloat iw = imgSize.width * nframe.size.height / imgSize.height;
                 switch (align) {
                     case UIImgAlignmentBottom:
-                        self.frame = CGRectMake(0, nframe.size.height - ih, iw, ih);
+                        self.frame = CGRectMake(nframe.size.width - iw, 0, iw, ih);
                         break;
                     case UIImgAlignmentCenter:
-                        self.frame = CGRectMake(0, (nframe.size.height - ih)/2.0, iw, ih);
+                        self.frame = CGRectMake((nframe.size.width - iw)/2.0, 0, iw, ih);
                         break;
                     case UIImgAlignmentTop:
                         self.frame = CGRectMake(0, 0, iw, ih);
@@ -213,10 +213,10 @@
                 CGFloat iw = imgSize.width * nframe.size.height / imgSize.height;
                 switch (align) {
                     case UIImgAlignmentBottom:
-                        self.frame = CGRectMake(0, nframe.size.height - ih, iw, ih);
+                        self.frame = CGRectMake(nframe.size.width - iw, 0, iw, ih);
                         break;
                     case UIImgAlignmentCenter:
-                        self.frame = CGRectMake(0, (nframe.size.height - ih)/2.0, iw, ih);
+                        self.frame = CGRectMake((nframe.size.width - iw)/2.0, 0, iw, ih);
                         break;
                     case UIImgAlignmentTop:
                         self.frame = CGRectMake(0, 0, iw, ih);

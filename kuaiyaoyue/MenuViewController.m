@@ -70,7 +70,12 @@
         ih = 478.0/2.0 - 44.0;
         iw = 296.0/2.0;
     }
-    
+//    CGFloat ih = 334.0/2.0*(h-80.0)/488.0;
+//    CGFloat iw = 230.0/2.0*w/320.0;
+//    if (h == 480.0) {
+//        ih = 334.0/2.0;
+//        iw = 230.0/2.0;
+//    }
     UIView* one = [[UIView alloc] initWithFrame:CGRectMake(w/2.0-3.0-iw, h-62.0-2.0*ih-6.0, iw, ih)];
     one.clipsToBounds = YES;
     one.layer.cornerRadius = 3;
