@@ -297,6 +297,15 @@
     UIImage *snapshotImage = [self imageFromView:self.view];
     view.alpha = 1;
     [self performSegueWithIdentifier:@"menu" sender:snapshotImage];
+//    ShareView* share = [ShareView sharedShareView];
+//    share.fromvc = self;
+//    share.url = @"http://baidu.com";
+//    share.msg = @"lailai";
+//    share.title = @"haha";
+//    NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
+//    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"T4" ofType:@"png"]];
+//    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+//    [share show];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
