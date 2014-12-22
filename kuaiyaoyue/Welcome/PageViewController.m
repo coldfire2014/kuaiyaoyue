@@ -80,7 +80,7 @@
             [UDObject setUserInfo:name userName:name token:[dic objectForKey:@"token"]];
              [self performSegueWithIdentifier:@"wel2main" sender:nil];
         }else{
-        
+            [[StatusBar sharedStatusBar] talkMsg:@"登陆失败了，再试一次吧。" inTime:0.5];
         }
     }];
 }

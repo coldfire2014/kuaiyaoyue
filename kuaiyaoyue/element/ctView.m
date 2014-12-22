@@ -89,7 +89,7 @@
         }
     }else{
         bk = [self addbkView];
-        for (int i = 0; i<3; i++) {
+        for (int i = 0; i<4; i++) {
             if ([_delegate respondsToSelector:@selector(cellForItemAtIndex:)]) {
                 UIView *webbg0 = [_delegate cellForItemAtIndex:i];          
                 webbg0.tag = 990+i;
@@ -101,22 +101,50 @@
                 NSLog(@"Not respondsToSelector:@selector(cellForItemAtIndex:)");
             }
         }
+        for (int i = itemCount - 3; i<itemCount; i++) {
+            if(i<4){
+                continue;
+            }
+            if ([_delegate respondsToSelector:@selector(cellForItemAtIndex:)]) {
+                UIView *webbg0 = [_delegate cellForItemAtIndex:i];
+                webbg0.tag = 990+i;
+                webbg0.layer.anchorPoint = CGPointMake(1, 0);
+                webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + self.itemSize.width/2.0, bk.bounds.size.height/2.0 - self.itemSize.height/2.0);
+                webbg0.layer.transform = [self ftransformForItemView:webbg0 withOffset:i];
+                [bk addSubview:webbg0];
+            } else {
+                NSLog(@"Not respondsToSelector:@selector(cellForItemAtIndex:)");
+            }
+        }
+    }
+}
+-(void)loadViewat:(int)i{
+    UIView* bk = [self viewWithTag:101];
+    if ([_delegate respondsToSelector:@selector(cellForItemAtIndex:)]) {
+        UIView *webbg0 = [_delegate cellForItemAtIndex:i];
+        webbg0.tag = 990+i;
+        webbg0.layer.anchorPoint = CGPointMake(1, 0);
+        webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + self.itemSize.width/2.0, bk.bounds.size.height/2.0 - self.itemSize.height/2.0);
+        webbg0.layer.transform = [self transformForItemView:webbg0 withOffset:i];
+        [bk addSubview:webbg0];
+    } else {
+        NSLog(@"Not respondsToSelector:@selector(cellForItemAtIndex:)");
     }
 }
 -(void)reloadOther{
-    UIView* bk = [self viewWithTag:101];
-    for (int i = 3; i<itemCount; i++) {
-        if ([_delegate respondsToSelector:@selector(cellForItemAtIndex:)]) {
-            UIView *webbg0 = [_delegate cellForItemAtIndex:i];
-            webbg0.tag = 990+i;
-            webbg0.layer.anchorPoint = CGPointMake(1, 0);
-            webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + self.itemSize.width/2.0, bk.bounds.size.height/2.0 - self.itemSize.height/2.0);
-            webbg0.layer.transform = [self ftransformForItemView:webbg0 withOffset:i];
-            [bk addSubview:webbg0];
-        } else {
-            NSLog(@"Not respondsToSelector:@selector(cellForItemAtIndex:)");
-        }
-    }
+//    UIView* bk = [self viewWithTag:101];
+//    for (int i = 3; i<itemCount; i++) {
+//        if ([_delegate respondsToSelector:@selector(cellForItemAtIndex:)]) {
+//            UIView *webbg0 = [_delegate cellForItemAtIndex:i];
+//            webbg0.tag = 990+i;
+//            webbg0.layer.anchorPoint = CGPointMake(1, 0);
+//            webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + self.itemSize.width/2.0, bk.bounds.size.height/2.0 - self.itemSize.height/2.0);
+//            webbg0.layer.transform = [self ftransformForItemView:webbg0 withOffset:i];
+//            [bk addSubview:webbg0];
+//        } else {
+//            NSLog(@"Not respondsToSelector:@selector(cellForItemAtIndex:)");
+//        }
+//    }
 }
 -(void)showList{
     currentItemIndex = 0;
@@ -212,6 +240,29 @@
 }
 -(void)scrollToItemAtIndex:(int)index animated:(BOOL)animate inOrout:(BOOL)isIn{
     UIView* contentView = [self viewWithTag:101];
+    currentItemIndex =  index;
+    int rigth = currentItemIndex + 4;
+    if (rigth > itemCount) {
+        rigth = itemCount;
+    }
+    int left = currentItemIndex - 3;
+    if (left < 0) {
+        left = 0;
+    }
+    for (int i = currentItemIndex;i < rigth;i++)
+    {
+        UIView *view = [contentView viewWithTag:990 + i];
+        if (view == nil) {
+            [self loadViewat:i];
+        }
+    }
+    for (int i = left;i < currentItemIndex;i++)
+    {
+        UIView *view = [contentView viewWithTag:990 + i];
+        if (view == nil) {
+            [self loadViewat:i];
+        }
+    }
     if (animate)
     {
         //        isAnimationing = YES;
