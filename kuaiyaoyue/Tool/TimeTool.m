@@ -12,11 +12,46 @@
 
 @implementation TimeTool
 
-+(NSString *)TopJZTime:(long) jztime{
++(NSString *)TopJZTime:(NSDate*) jzdate{
+    NSDate* today = [NSDate date];
+    NSTimeInterval tt = [today timeIntervalSince1970];
+    NSTimeInterval dt = [jzdate timeIntervalSince1970];
+    double cha = dt-tt;
+    NSString* timetext;
+    if (cha<=0) {
+        timetext = @"已截止";
+    } else if (cha<60) {
+//        int a = cha;
+        timetext = @"即将截止";
+    }else if (cha<60*60) {
+        int a = cha/60;
+        int b = cha - a*60;
+        timetext = [NSString stringWithFormat:@"剩余%d分%d秒",a,b];
+    } else if (cha<60*60*24) {
+        int a = cha/60/60;
+        int b = cha - a*60*60;
+        b=b/60;
+//        timetext = [NSString stringWithFormat:@"%d小时前",a];
+        timetext = [NSString stringWithFormat:@"剩余%d小时%d分",a,b];
+    } else if (cha<60*60*24*30) {
+        int a = cha/60/60/24;
+        int b = cha - a*60*60*24;
+        b=b/60/60;
+//        timetext = [NSString stringWithFormat:@"%d天前",a];
+        timetext = [NSString stringWithFormat:@"剩余%d天零%d小时",a,b];
+    }
+    else if (cha<60*60*24*30*12) {
+        int a = cha/60/60/24/30;
+        int b = cha - a*60*60*24*30;
+        b=b/60/60/24;
+//        timetext = [NSString stringWithFormat:@"%d个月前",a];
+        timetext = [NSString stringWithFormat:@"剩余%d月%d天",a,b];
+    }
+    else {
+        timetext = @"还有很久";
+    }
+    return timetext;
     
-    NSDate * date = [NSDate date];
-    long newtime = (long)[date timeIntervalSince1970];
-    return nil;
 }
 
 +(NSString*)getFullTimeStr:(long long)time{
