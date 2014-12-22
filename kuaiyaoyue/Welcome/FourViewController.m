@@ -10,6 +10,8 @@
 #import "UDObject.h"
 #import "myImageView.h"
 #import "StatusBar.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+//#import "ten"
 @interface FourViewController ()
 
 @end
@@ -126,7 +128,8 @@
 //    [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
 }
 -(void)loginQQ{
-    [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
+//    [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"QQ_LOGIN" object:nil];
 }
 -(void)loginwx{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_LOGIN" object:nil];

@@ -12,8 +12,11 @@
 #import "Template.h"
 #import "HttpManage.h"
 #import "PCHeader.h"
+#import "StatusBar.h"
+
 @interface AppDelegate (){
     BOOL is_xz;
+    TencentOAuth* _tencentOAuth;
 }
 
 @end
@@ -41,6 +44,9 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     [WXApi registerApp:@"wx06ea6c3bc82c99ac" withDescription:@"sdyydome"];
+    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1103283068"
+                                            andDelegate:self];
+    
     
     return YES;
 }
@@ -97,13 +103,110 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQ_LOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQ_SENDTO" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQZONE_SENDTO" object:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
 }
 
+-(void)QQLogin:(NSNotification*)noc{
+    [_tencentOAuth authorize:[NSArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo", @"add_t", nil] inSafari:NO];
+}
+-(void)QQshare:(NSNotification*)noc{
+    NSDictionary* dic = (NSDictionary*)noc.object;
+    NSString *utf8String = [dic valueForKey:@"url"];
+    NSString *title = [dic valueForKey:@"title"];
+    NSString *description = [dic valueForKey:@"des"];
+    NSString *previewImageUrl = [dic valueForKey:@"imgUrl"];
+    QQApiNewsObject *newsObj = [QQApiNewsObject
+                                objectWithURL:[NSURL URLWithString:utf8String]
+                                title:title
+                                description:description
+                                previewImageURL:[NSURL URLWithString:previewImageUrl]];
+    SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObj];
+    //将内容分享到qq
+    QQApiSendResultCode sent = [QQApiInterface sendReq:req];
+    //将内容分享到qzone
+//    QQApiSendResultCode sent = [QQApiInterface SendReqToQZone:req];
+}
+-(void)QQZoneshare:(NSNotification*)noc{
+    NSDictionary* dic = (NSDictionary*)noc.object;
+    NSString *utf8String = [dic valueForKey:@"url"];
+    NSString *title = [dic valueForKey:@"title"];
+    NSString *description = [dic valueForKey:@"des"];
+    NSString *previewImageUrl = [dic valueForKey:@"imgUrl"];
+    QQApiNewsObject *newsObj = [QQApiNewsObject
+                                objectWithURL:[NSURL URLWithString:utf8String]
+                                title:title
+                                description:description
+                                previewImageURL:[NSURL URLWithString:previewImageUrl]];
+    SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObj];
+    //将内容分享到qq
+//    QQApiSendResultCode sent = [QQApiInterface sendReq:req];
+    //将内容分享到qzone
+    QQApiSendResultCode sent = [QQApiInterface SendReqToQZone:req];
+}
+- (void)tencentDidLogin
+{
+//    _labelTitle.text = @"登录完成";
+    if (_tencentOAuth.accessToken && 0 != [_tencentOAuth.accessToken length])
+    {
+        // 记录登录用户的OpenID、Token以及过期时间
+//        _labelAccessToken.text = _tencentOAuth.accessToken;
+        NSString* token = [_tencentOAuth accessToken] ;
+        NSString* openid = [_tencentOAuth openId] ;
+        NSDate* expirationDate = [_tencentOAuth expirationDate] ;
+        if ([_tencentOAuth getUserInfo]) {
+            
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"获取QQ用户数据失败。" inTime:0.5];
+        }
+    }
+    else
+    {
+        [[StatusBar sharedStatusBar] talkMsg:@"未能成功使用QQ登陆。" inTime:0.5];
+//        _labelAccessToken.text = @"登录不成功 没有获取accesstoken";
+    }
+}
+/**
+ * Called when the get_user_info has response.
+ */
+- (void)getUserInfoResponse:(APIResponse*) response {
+    if (response.retCode == URLREQUEST_SUCCEED)
+    {
+        NSDictionary *json = response.jsonResponse;
+        NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:[json objectForKey:@"nickname"],@"nickname",[_tencentOAuth openId],@"openid", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_SDWX" object:self userInfo:dic];
+    }
+}
+- (void)responseDidReceived:(APIResponse*)response forMessage:(NSString *)message{
+    NSLog(@"response=%@,message=%@",response,message);
+}
+-(void)tencentDidNotLogin:(BOOL)cancelled
+{
+    if (cancelled)
+    {
+        [[StatusBar sharedStatusBar] talkMsg:@"QQ登陆失败。" inTime:0.5];
+//        _labelTitle.text = @"用户取消登录";
+    }
+    else
+    {
+        [[StatusBar sharedStatusBar] talkMsg:@"QQ登陆失败了，再试一次吧。" inTime:0.5];
+//        _labelTitle.text = @"登录失败";
+    }
+}
+-(void)tencentDidNotNetWork
+{
+    [[StatusBar sharedStatusBar] talkMsg:@"无网络连接，请设置网络。" inTime:0.5];
+}
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQLogin:) name:@"QQ_LOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQshare:) name:@"QQ_SENDTO" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQZoneshare:) name:@"QQZONE_SENDTO" object:nil];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     NSArray *fetchedObjects = [[DataBaseManage getDataBaseManage] QueryTemplate];
@@ -219,16 +322,21 @@
 {
     //    return  [WXApi handleOpenURL:url delegate:self];
     NSLog(@"%@",url);
-    return [WXApi handleOpenURL:url delegate:self];
+    return [WXApi handleOpenURL:url delegate:self] || [TencentOAuth HandleOpenURL:url];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     //    BOOL isSuc = [WXApi handleOpenURL:url delegate:self];
-    return [WXApi handleOpenURL:url delegate:self];
+    return [WXApi handleOpenURL:url delegate:self] || [TencentOAuth HandleOpenURL:url];
     //    return  isSuc;
 }
-
+//- (void)onReq:(QQBaseReq *)req{
+//    
+//}
+//- (void)onResp:(QQBaseResp *)resp{
+//    
+//}
 -(void) onReq:(BaseReq*)req
 {
     NSLog(@"req-%@",req);
