@@ -18,6 +18,7 @@
 #import "SVProgressHUD.h"
 #import "DataBaseManage.h"
 #import "UDObject.h"
+#import "StatusBar.h"
 
 @interface PageViewController ()
 
@@ -38,6 +39,8 @@
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:@"MSG_LOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ptlogin) name:@"MSG_PTLOGIN" object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(sdwx:)
                                                  name: @"MSG_SDWX"
@@ -46,8 +49,10 @@
 -(void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_PTLOGIN" object:nil];
 }
+
 -(void)login{
 //    [self performSegueWithIdentifier:@"wel2main" sender:nil];
     SendAuthReq* req =[[SendAuthReq alloc ] init];
@@ -55,7 +60,11 @@
     req.state = @"com.nef" ;
     //第三方向微信终端发送一个SendAuthReq消息结构
     [WXApi sendReq:req];
-    
+}
+
+-(void)ptlogin{
+    [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
+    [self j_spring_security_check:@"123456789" password:@"123456789"];
 }
 
 
@@ -164,5 +173,20 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)j_spring_security_check:(NSString *)username password:(NSString *)password{
+    [HttpManage j_spring_security_check:username password:password phoneId:[UDObject getTSID] j_username:username j_password:password isJson:@"true" cb:^(BOOL isOK, NSDictionary *dic) {
+        [SVProgressHUD dismiss];
+        if (isOK) {
+            NSString *token = [dic objectForKey:@"token"];
+            [UDObject setUserInfo:username userName:@"" token:token];
+            [self performSegueWithIdentifier:@"wel2main" sender:nil];
+            [[StatusBar sharedStatusBar] talkMsg:@"登录成功" inTime:0.51];
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"登录失败" inTime:0.51];
+        }
+    }];
+}
+
 
 @end
