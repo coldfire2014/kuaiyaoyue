@@ -44,6 +44,18 @@
 +(NSString *)gethlmusicname;
 +(NSString *)gethlimgarr;
 
-
+//商务存储
++(void)setSWContent:(NSString *)jh_name swtime:(NSString *)swtime swbmendtime:(NSString *)swbmendtime address_name:(NSString *)address_name swxlr_name:(NSString *)swxlr_name swxlfs_name:(NSString *)swxlfs_name swhd_name:(NSString *)swhd_name music:(NSString *)music musicname:(NSString *)musicname
+    imgarr:(NSString *)imgarr;
++(NSString *)getjhname;
++(NSString *)getswtime;
++(NSString *)getswbmendtime;
++(NSString *)getswaddress_name;
++(NSString *)getswxlr_name;
++(NSString *)getswxlfs_name;
++(NSString *)getswhd_name;
++(NSString *)getsw_music;
++(NSString *)getsw_musicname;
++(NSString *)getsw_imgarr;
 
 @end

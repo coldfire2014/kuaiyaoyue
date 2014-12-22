@@ -24,7 +24,7 @@
 #import "MoreView.h"
 #import "MusicViewController.h"
 
-@interface SWYQViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate>{
+@interface SWYQViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,MVDelegate>{
     BOOL is_yl;
     int count;
     MoreView *moreview;
@@ -34,6 +34,15 @@
     NSString *hltime;
     NSString *bmendtime;
     BOOL time_type;
+    
+    UICollectionView *gridview;
+    
+    UIScrollView *scrollview;
+    NSMutableArray *data;
+    NSMutableArray *imgdata;
+    
+    NSString *mp3url;
+    NSString *mp3name;
 }
 
 @end
@@ -59,6 +68,42 @@
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"预览" style:UIBarButtonItemStyleBordered target:self action:@selector(RightBarBtnClicked:)];
     self.navigationItem.rightBarButtonItem = right;
     
+    
+    imgdata = [[NSMutableArray alloc] init];
+    data = [[NSMutableArray alloc] init];
+    
+    [self addview];
+    
+    UINib *nib = [UINib nibWithNibName:NSStringFromClass([PhotoCell class]) bundle:nil];
+    [gridview registerNib:nib forCellWithReuseIdentifier:@"PhotoCell"];
+    [self getHistorical];
+    
+}
+
+-(void)addview{
+    
+    scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 50 - 64)];
+    scrollview.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:scrollview];
+    
+    moreview = [[[NSBundle mainBundle] loadNibNamed:@"MoreView" owner:self options:nil] firstObject];
+    moreview.frame = CGRectMake(0, 0, self.view.frame.size.width, moreview.frame.size.height);
+    moreview.backgroundColor = [UIColor clearColor];
+    moreview.delegate = self;
+    moreview.jh_edit.delegate = self;
+    moreview.address_edit.delegate = self;
+    moreview.xlr_edit.delegate = self;
+    moreview.xlfs_edit.delegate = self;
+    moreview.show_summary.delegate = self;
+    
+    gridview = moreview.girdview;
+    gridview.delegate = self;
+    gridview.dataSource = self;
+    scrollview.delegate = self;
+    [scrollview addSubview:moreview];
+    
+    [scrollview setContentSize:CGSizeMake(scrollview.frame.size.width, 665)];
+    
     NSString* name = @"ShowData";
     show = [[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] firstObject];
     show.delegate = self;
@@ -66,30 +111,60 @@
     show.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:show];
-    
-    [self addbottomview];
-    
 }
 
--(void)addbottomview{
-    moreview = [[[NSBundle mainBundle] loadNibNamed:@"MoreView" owner:self options:nil] firstObject];
-    moreview.frame = CGRectMake(0,_more_view.frame.origin.y+_more_view.frame.size.height ,self.view.frame.size.width, moreview.frame.size.height);
-    [self.add_view addSubview:moreview];
-    [self.add_view setFrame:CGRectMake(0, 0, self.view.frame.size.width, 1000)];
-    [self sethigh];
+-(void)getHistorical{
+    mp3name = @"";
+    mp3url = @"";
+    count = 9;
+    if ([UDObject getxl_name].length > 0) {
+//        _xl_edit.text = [UDObject getxl_name];
+//        _xn_edit.text = [UDObject getxn_name];
+//        hltime = [UDObject gethltime];
+//        bmendtime = [UDObject getbmendtime];
+//        _hltime_label.text = [TimeTool getFullTimeStr:[hltime longLongValue]/1000];
+//        _bmend_label.text = [TimeTool getFullTimeStr:[bmendtime longLongValue]/1000];
+//        _address_edit.text = [UDObject getaddress_name];
+//        if ([UDObject gethlmusic].length > 0) {
+//            mp3name = [UDObject gethlmusicname];
+//            _music_label.text = mp3name;
+//            mp3url = [UDObject gethlmusic];
+//        }
+//        NSArray *arr = [[UDObject gethlimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
+//        for (NSString *name in arr) {
+//            
+//            NSArray *array = [name componentsSeparatedByString:@"/"];
+//            NSString *imgname = [array objectAtIndex:([array count] - 1)];
+//            NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: imgname];
+//            UIImage *img = [[UIImage alloc]initWithContentsOfFile:imgpath];
+//            GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
+//            [_data addObject:info];
+//        }
+//        count -= [arr count];
+    }
+    [self initImgData];
 }
+
 
 -(void)sethigh{
-    long index = [_data count];
-//    long height = 300;
+    long index = [data count];
+    long height = 115;
+    long addheight = 106;
+    
+    NSLog(@"%f",moreview.girdview.frame.origin.y);
+    
     if (index <= 3) {
-//        moreview.frame = CGRectMake(moreview.frame.origin.x, moreview.frame.origin.y, moreview.frame.size.width, height);
+        moreview.bottom_view.frame = CGRectMake(0, moreview.bottom_view.frame.origin.y, moreview.bottom_view.frame.size.width, 290);
+        gridview.frame = CGRectMake(moreview.girdview.frame.origin.x, moreview.girdview.frame.origin.y, moreview.girdview.frame.size.width, height);
     }else if(index > 3 && index <= 6){
-//        moreview.frame = CGRectMake(moreview.frame.origin.x, moreview.frame.origin.y, moreview.frame.size.width, height+115);
+        moreview.bottom_view.frame = CGRectMake(0, moreview.bottom_view.frame.origin.y, moreview.bottom_view.frame.size.width, 290+addheight);
+        gridview.frame = CGRectMake(moreview.girdview.frame.origin.x, moreview.girdview.frame.origin.y, moreview.girdview.frame.size.width, height+addheight);
     }else if(index > 6){
-//        moreview.frame = CGRectMake(moreview.frame.origin.x, moreview.frame.origin.y, moreview.frame.size.width, height+115*2);
+        moreview.bottom_view.frame = CGRectMake(0, moreview.bottom_view.frame.origin.y, moreview.bottom_view.frame.size.width, 290+addheight*2);
+        gridview.frame = CGRectMake(moreview.girdview.frame.origin.x, moreview.girdview.frame.origin.y, moreview.girdview.frame.size.width, height+addheight*2);
     }
-//    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, 50000)];
+    moreview.music_view.frame = CGRectMake(moreview.music_view.frame.origin.x,gridview.frame.origin.y+gridview.frame.size.height, moreview.music_view.frame.size.width, moreview.music_view.frame.size.height);
+    [scrollview setContentSize:CGSizeMake(scrollview.frame.size.width, moreview.bottom_view.frame.origin.y + moreview.bottom_view.frame.size.height+50)];
 }
 
 -(void)viewDidLayoutSubviews{
@@ -114,13 +189,13 @@
     [self.navigationController.navigationBar setHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
-    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, -1000)];
+//    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, -1000)];
 }
 
 -(void)initImgData{
     GridInfo *info = [[GridInfo alloc] initWithDictionary:NO :nil];
-    [_data addObject:info];
-    [_gridview reloadData];
+    [data addObject:info];
+    [gridview reloadData];
     
 }
 
@@ -134,28 +209,30 @@
         des.needAnimation = NO;
         des.delegate = self;
     }else if ([segue.identifier compare:@"music"] == NSOrderedSame){
+        MusicViewController *view = (MusicViewController*)segue.destinationViewController;
+        view.delegate = self;
     }
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if ([self.data count] > 9) {
+    if ([data count] > 9) {
         return 9;
     }else{
-        return [self.data count];
+        return [data count];
     }
 }
 
 //定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((_gridview.frame.size.width - 2*9)/3, (_gridview.frame.size.width - 2*9)/3);
+    return CGSizeMake((gridview.frame.size.width - 2*9)/3, (gridview.frame.size.width - 2*9)/3);
 }
 
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    GridInfo *info = [self.data objectAtIndex:[indexPath row]];
+    GridInfo *info = [data objectAtIndex:[indexPath row]];
     PhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
     cell.index = [indexPath row];
     cell.delegate = self;
@@ -179,13 +256,12 @@
 //    _bottomview.clipsToBounds = YES;
     
     return cell;
-    
 }
 
 #pragma mark - UICollectionViewDelegate
 // 选中某个cell
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    GridInfo *info = [self.data objectAtIndex:[indexPath row]];
+    GridInfo *info = [data objectAtIndex:[indexPath row]];
     if (!info.is_open) {
         [self.view endEditing:NO];
         [self performSegueWithIdentifier:@"imgSelect" sender:nil];
@@ -194,9 +270,9 @@
 }
 
 - (void)PhotoCellDelegate:(PhotoCell *)cell didTapAtIndex:(long ) index{
-    GridInfo *info = [self.data objectAtIndex:index];
-    [_data removeObject:info];
-    [_gridview reloadData];
+    GridInfo *info = [data objectAtIndex:index];
+    [data removeObject:info];
+    [gridview reloadData];
     count ++;
     //    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
     [UIView animateWithDuration:0.3 animations:^{
@@ -211,19 +287,19 @@
         ALAsset* al = [items objectAtIndex:i];
         UIImage *img = [assert getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
         GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
-        [self.data addObject:info];
+        [data addObject:info];
     }
     
-    for (int j = 0;j< [self.data count] ; j++) {
-        GridInfo *info = [self.data objectAtIndex:j];
+    for (int j = 0;j< [data count] ; j++) {
+        GridInfo *info = [data objectAtIndex:j];
         if (!info.is_open) {
-            [self.data removeObject:info];
+            [data removeObject:info];
         }
     }
     
     GridInfo *info = [[GridInfo alloc] initWithDictionary:NO :nil];
-    [self.data addObject:info];
-    [self.gridview reloadData];
+    [data addObject:info];
+    [gridview reloadData];
     count -= items.count;
     
     //   [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
@@ -232,23 +308,26 @@
     }];
 }
 
-- (IBAction)time_onclick:(id)sender {
-    time_type = YES;
-    [self.view endEditing:NO];
-    [UIView animateWithDuration:0.4f animations:^{
-        show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
-    }];
-}
-
-- (IBAction)bm_onclick:(id)sender {
-    [self.view endEditing:NO];
-    if (hltime != nil) {
-        time_type = NO;
-        NSDate * date=[NSDate dateWithTimeIntervalSince1970:([hltime longLongValue]/1000)];
-        [show.picker setMaximumDate:date];
+- (void)MVDelegate:(MoreView *)cell didTapAtIndex:(int) type{
+    
+    if (type == 0) {
+        time_type = YES;
+        [self.view endEditing:NO];
         [UIView animateWithDuration:0.4f animations:^{
-        show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
+            show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
         }];
+    }else if (type == 1){
+        [self.view endEditing:NO];
+        if (hltime != nil) {
+            time_type = NO;
+            NSDate * date=[NSDate dateWithTimeIntervalSince1970:([hltime longLongValue]/1000)];
+            [show.picker setMaximumDate:date];
+            [UIView animateWithDuration:0.4f animations:^{
+                show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
+            }];
+        }
+    }else if (type == 2){
+        [self performSegueWithIdentifier:@"music" sender:nil];
     }
 }
 
@@ -256,10 +335,10 @@
     if (timebh != nil) {
         if (time_type) {
             hltime = timebh;
-            _time_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
+            moreview.time_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
         }else{
             bmendtime = timebh;
-            _bmend_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
+            moreview.bmtime_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
         }
     }
     [UIView animateWithDuration:0.4f animations:^{
@@ -267,19 +346,56 @@
     }];
 }
 
-- (IBAction)more_onclick:(id)sender {
+- (void)MVCDelegate:(MusicViewController *)cell didTapAtIndex:(NSString *) url :(NSString *)name{
+    mp3url = url;
+    mp3name = name;
+    moreview.show_music.text = name;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+    if (ISIOS7LATER) {
+        mainScreenFrame = [[UIScreen mainScreen] bounds];
+    }
+    if (textField == moreview.xlr_edit || textField == moreview.xlfs_edit) {
+        [UIView animateWithDuration:0.3 animations:^{
+            [scrollview setContentOffset:CGPointMake(0, 150)];
+        }];
+    }
     
+    return YES;
 }
 
-- (IBAction)xlfs_next:(id)sender {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == moreview.jh_edit || textField == moreview.xlr_edit) {
+        if (textField.text.length > 10) {
+            textField.text = [textField.text substringToIndex:10];
+        }
+    }else if (textField == moreview.address_edit){
+        if (textField.text.length > 30) {
+            textField.text = [textField.text substringToIndex:30];
+        }
+    }else if (textField == moreview.xlfs_edit){
+        if (textField.text.length > 11) {
+            textField.text = [textField.text substringToIndex:11];
+        }
+    }
+    return YES;
 }
 
-- (IBAction)xlr_next:(id)sender {
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    
+    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+    if (ISIOS7LATER) {
+        mainScreenFrame = [[UIScreen mainScreen] bounds];
+    }
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [scrollview setContentOffset:CGPointMake(0, 290)];
+    }];
+    
+    return YES;
 }
 
-- (IBAction)jh_next:(id)sender {
-}
-
-- (IBAction)address_next:(id)sender {
-}
 @end

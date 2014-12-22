@@ -12,6 +12,7 @@
 		843DBEDC1A46FA2600CDFFCB /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 843DBEDB1A46FA2600CDFFCB /* icon57.png */; };
 		843DBEE01A47BF9800CDFFCB /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 843DBEDF1A47BF9800CDFFCB /* MoreView.m */; };
 		843DBEE41A47C5D500CDFFCB /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843DBEE11A47BFA700CDFFCB /* MoreView.xib */; };
+		843DBEE61A48093C00CDFFCB /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = 843DBEE51A48093C00CDFFCB /* 1.zip */; };
 		844825761A31536C0018240E /* WelComeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825751A31536C0018240E /* WelComeViewController.m */; };
 		844825791A31588C0018240E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825781A31588C0018240E /* PageViewController.m */; };
 		8448257C1A3186520018240E /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448257B1A3186520018240E /* OneViewController.m */; };
@@ -39,6 +40,8 @@
 		846C1BA81A45706B00B59A18 /* JBCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA71A45706B00B59A18 /* JBCalendar.m */; };
 		846C1BAB1A45734900B59A18 /* Fixeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BAA1A45734900B59A18 /* Fixeds.m */; };
 		848BF4791A43254B0002A1B1 /* Userdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 848BF4781A43254B0002A1B1 /* Userdata.m */; };
+		849D667E1A484875004EF00F /* HLEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D667D1A484875004EF00F /* HLEditView.m */; };
+		849D66801A484887004EF00F /* HLEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849D667F1A484887004EF00F /* HLEditView.xib */; };
 		84B446AE1A32B35000546859 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B446AD1A32B35000546859 /* CoreGraphics.framework */; };
 		84B446B01A32B35500546859 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B446AF1A32B35500546859 /* UIKit.framework */; };
 		84B446B21A32B35900546859 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B446B11A32B35900546859 /* Foundation.framework */; };
@@ -95,7 +98,6 @@
 		84FE0B991A42C963005A9599 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FE0B981A42C963005A9599 /* libz.dylib */; };
 		84FE0BC31A42D0AD005A9599 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0BC21A42D0AD005A9599 /* Template.m */; };
 		84FE0BC61A42D32C005A9599 /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0BC51A42D32C005A9599 /* Info.m */; };
-		84FE0BC81A42D891005A9599 /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = 84FE0BC71A42D891005A9599 /* 1.zip */; };
 		E524FF3B1A3ED9A5002E7DC0 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */; };
 		E52D00301A43200E00817261 /* UIImageView+LBBlurredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */; };
 		E534DD721A4643B900542D67 /* ic_54_x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E534DD711A4643B900542D67 /* ic_54_x@2x.png */; };
@@ -177,6 +179,7 @@
 		843DBEDE1A47BF9800CDFFCB /* MoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
 		843DBEDF1A47BF9800CDFFCB /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
 		843DBEE21A47BFA700CDFFCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = kuaiyaoyue/Base.lproj/MoreView.xib; sourceTree = SOURCE_ROOT; };
+		843DBEE51A48093C00CDFFCB /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 1.zip; sourceTree = "<group>"; };
 		844825741A31536C0018240E /* WelComeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelComeViewController.h; sourceTree = "<group>"; };
 		844825751A31536C0018240E /* WelComeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelComeViewController.m; sourceTree = "<group>"; };
 		844825771A31588C0018240E /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
@@ -232,6 +235,9 @@
 		846C1BAA1A45734900B59A18 /* Fixeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fixeds.m; sourceTree = "<group>"; };
 		848BF4771A43254B0002A1B1 /* Userdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Userdata.h; sourceTree = "<group>"; };
 		848BF4781A43254B0002A1B1 /* Userdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Userdata.m; sourceTree = "<group>"; };
+		849D667C1A484875004EF00F /* HLEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEditView.h; sourceTree = "<group>"; };
+		849D667D1A484875004EF00F /* HLEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEditView.m; sourceTree = "<group>"; };
+		849D667F1A484887004EF00F /* HLEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLEditView.xib; sourceTree = "<group>"; };
 		84B446AD1A32B35000546859 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		84B446AF1A32B35500546859 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		84B446B11A32B35900546859 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -341,7 +347,6 @@
 		84FE0BC21A42D0AD005A9599 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Template.m; sourceTree = "<group>"; };
 		84FE0BC41A42D32C005A9599 /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
 		84FE0BC51A42D32C005A9599 /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
-		84FE0BC71A42D891005A9599 /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 1.zip; sourceTree = "<group>"; };
 		E524FF391A3ED9A5002E7DC0 /* TemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateCell.h; sourceTree = "<group>"; };
 		E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateCell.m; sourceTree = "<group>"; };
 		E52D002E1A43200E00817261 /* UIImageView+LBBlurredImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LBBlurredImage.h"; sourceTree = "<group>"; };
@@ -551,6 +556,9 @@
 				843DBEDE1A47BF9800CDFFCB /* MoreView.h */,
 				843DBEDF1A47BF9800CDFFCB /* MoreView.m */,
 				843DBEE11A47BFA700CDFFCB /* MoreView.xib */,
+				849D667C1A484875004EF00F /* HLEditView.h */,
+				849D667D1A484875004EF00F /* HLEditView.m */,
+				849D667F1A484887004EF00F /* HLEditView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -804,6 +812,7 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				843DBEE51A48093C00CDFFCB /* 1.zip */,
 				843DBEDB1A46FA2600CDFFCB /* icon57.png */,
 				843DBED91A46F16600CDFFCB /* icon120.png */,
 				E5590CC81A46A4120080F3B1 /* Default-568h@2x.png */,
@@ -813,7 +822,6 @@
 				E5590CC31A469CAB0080F3B1 /* card_r.png */,
 				E534DD731A464CE700542D67 /* ic_54_edit@2x.png */,
 				E534DD711A4643B900542D67 /* ic_54_x@2x.png */,
-				84FE0BC71A42D891005A9599 /* 1.zip */,
 				84E8426C1A2EDF6B00A401A0 /* Images.xcassets */,
 			);
 			path = Res;
@@ -1149,6 +1157,7 @@
 				E5590CC51A469CAB0080F3B1 /* card_g.png in Resources */,
 				84B446CC1A32B50500546859 /* Main.storyboard in Resources */,
 				84E8426D1A2EDF6B00A401A0 /* Images.xcassets in Resources */,
+				849D66801A484887004EF00F /* HLEditView.xib in Resources */,
 				E5590CC61A469CAB0080F3B1 /* card_o.png in Resources */,
 				E5661A1B1A45708C00E4E2BC /* btn_login_qq_pre.png in Resources */,
 				E5661A2B1A457CB700E4E2BC /* btn_login_2.png in Resources */,
@@ -1161,13 +1170,13 @@
 				E5661A281A457CB700E4E2BC /* btn_login_1_pre.png in Resources */,
 				E541B32E1A43DC9E006F89E1 /* imgBar.bundle in Resources */,
 				84FE0B881A426C71005A9599 /* PhotoCell.xib in Resources */,
+				843DBEE61A48093C00CDFFCB /* 1.zip in Resources */,
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,
 				E5661A2A1A457CB700E4E2BC /* btn_login_2_pre.png in Resources */,
 				E5661A231A45708C00E4E2BC /* logo_login.png in Resources */,
 				E5661A191A45708C00E4E2BC /* bg_login.jpg in Resources */,
 				E5661A1D1A45708C00E4E2BC /* btn_login_weixin_pre.png in Resources */,
 				E541B3341A43DE2A006F89E1 /* shareView.bundle in Resources */,
-				84FE0BC81A42D891005A9599 /* 1.zip in Resources */,
 				E5590CC91A46A4120080F3B1 /* Default-568h@2x.png in Resources */,
 				E5590CC41A469CAB0080F3B1 /* card_b.png in Resources */,
 			);
@@ -1277,6 +1286,7 @@
 				843DBEE01A47BF9800CDFFCB /* MoreView.m in Sources */,
 				84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */,
 				84E842CB1A2EFDCB00A401A0 /* UIRefreshControl+AFNetworking.m in Sources */,
+				849D667E1A484875004EF00F /* HLEditView.m in Sources */,
 				E5573F951A4303A9006AAB8F /* ioapi.c in Sources */,
 				E577FC2C1A356E66009ED66D /* ImgCollectionViewCell.m in Sources */,
 				844826031A31B6D80018240E /* GYWMViewController.m in Sources */,
