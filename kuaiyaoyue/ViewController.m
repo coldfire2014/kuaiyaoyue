@@ -520,4 +520,16 @@
     
 }
 
+-(void)deleteRecords{
+    [HttpManage deleteRecords:@"" cb:^(BOOL isOK, NSDictionary *array) {
+        if (isOK) {
+            
+        }else{
+            
+        }
+    }];
+}
+
+
+
 @end

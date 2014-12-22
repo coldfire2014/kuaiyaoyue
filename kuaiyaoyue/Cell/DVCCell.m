@@ -25,8 +25,8 @@
 
 - (IBAction)message_onclick:(id)sender {
     if ([_talk compare:@""] != NSOrderedSame) {
-        if ([_delegate respondsToSelector:@selector(didSelectItemAtIndex:)]) {
-            [_delegate didSelectItemAtIndex:_index];
+        if ([_delegate respondsToSelector:@selector(didSelectItemAtIndex::)]) {
+            [_delegate didSelectItemAtIndex:_index:self];
         } else {
             NSLog(@"Not respondsToSelector:@selector(didSelectItemAtIndex:)");
         }
