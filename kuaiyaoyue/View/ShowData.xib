@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -8,24 +8,24 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ShowData">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ml-hZ-GqF">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <view contentMode="scaleToFill" id="8ml-hZ-GqF">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gq0-w1-EOy">
-                            <rect key="frame" x="0.0" y="380" width="600" height="220"/>
+                        <view contentMode="scaleToFill" id="Gq0-w1-EOy">
+                            <rect key="frame" x="0.0" y="260" width="320" height="220"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JHe-Sx-awZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <view contentMode="scaleToFill" id="JHe-Sx-awZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xe-fO-zXI">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7xe-fO-zXI">
                                             <rect key="frame" x="0.0" y="0.0" width="70" height="44"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="Iyl-8B-rYC"/>
-                                                <constraint firstAttribute="height" constant="44" id="gCg-Zu-czz"/>
-                                            </constraints>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="取消">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -33,12 +33,9 @@
                                                 <action selector="qx_picker:" destination="iN0-l3-epB" eventType="touchUpInside" id="Pah-fR-mLR"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QI4-Lg-Rpz">
-                                            <rect key="frame" x="530" y="0.0" width="70" height="44"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="70" id="65j-5f-Xm2"/>
-                                                <constraint firstAttribute="height" constant="44" id="69B-Vm-TFu"/>
-                                            </constraints>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QI4-Lg-Rpz">
+                                            <rect key="frame" x="250" y="0.0" width="70" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="确定">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -48,35 +45,16 @@
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="44" id="20p-VB-XVS"/>
-                                        <constraint firstItem="QI4-Lg-Rpz" firstAttribute="top" secondItem="JHe-Sx-awZ" secondAttribute="top" id="FLN-mr-hcD"/>
-                                        <constraint firstAttribute="trailing" secondItem="QI4-Lg-Rpz" secondAttribute="trailing" id="Pfb-NL-i8m"/>
-                                        <constraint firstItem="7xe-fO-zXI" firstAttribute="leading" secondItem="JHe-Sx-awZ" secondAttribute="leading" id="ZkB-Ul-olK"/>
-                                        <constraint firstItem="7xe-fO-zXI" firstAttribute="top" secondItem="JHe-Sx-awZ" secondAttribute="top" id="iOf-d6-Qdn"/>
-                                    </constraints>
                                 </view>
-                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="VGH-1Z-atA">
-                                    <rect key="frame" x="0.0" y="51" width="600" height="162"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="162" id="eyd-rp-rAh"/>
-                                    </constraints>
+                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="VGH-1Z-atA">
+                                    <rect key="frame" x="0.0" y="51" width="320" height="162"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <date key="date" timeIntervalSinceReferenceDate="440691873.93702602">
                                         <!--2014-12-19 14:24:33 +0000-->
                                     </date>
                                 </datePicker>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="VGH-1Z-atA" secondAttribute="bottom" constant="7" id="1Sx-Lu-VH5"/>
-                                <constraint firstAttribute="height" constant="220" id="Eeg-Ak-gNC"/>
-                                <constraint firstAttribute="trailing" secondItem="JHe-Sx-awZ" secondAttribute="trailing" id="QML-LW-h9I"/>
-                                <constraint firstItem="VGH-1Z-atA" firstAttribute="leading" secondItem="Gq0-w1-EOy" secondAttribute="leading" id="i6T-E5-iUc"/>
-                                <constraint firstItem="JHe-Sx-awZ" firstAttribute="top" secondItem="Gq0-w1-EOy" secondAttribute="top" id="kG0-uV-3fH"/>
-                                <constraint firstItem="VGH-1Z-atA" firstAttribute="top" secondItem="JHe-Sx-awZ" secondAttribute="bottom" constant="7" id="mLY-1E-AE6"/>
-                                <constraint firstItem="JHe-Sx-awZ" firstAttribute="leading" secondItem="Gq0-w1-EOy" secondAttribute="leading" id="wPg-MC-sRb"/>
-                                <constraint firstAttribute="trailing" secondItem="VGH-1Z-atA" secondAttribute="trailing" id="z48-Fr-wbH"/>
-                            </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -98,6 +76,12 @@
             <connections>
                 <outlet property="picker" destination="VGH-1Z-atA" id="fwu-0x-CFx"/>
             </connections>
+            <point key="canvasLocation" x="288" y="266"/>
         </view>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

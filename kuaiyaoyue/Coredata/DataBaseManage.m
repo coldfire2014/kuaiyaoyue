@@ -291,6 +291,25 @@ static NSManagedObjectContext *context = nil;
     return fetchedObjects;
 }
 
+-(BOOL)DelUserdata:(NSString *)nefid{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Userdata" inManagedObjectContext:context]];
+    //删除谁的条件在这里配置；
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefid = %@)",nefid];
+    [fetchRequest setPredicate:predict];
+    NSError* error = nil;
+    NSArray* results = [context executeFetchRequest:fetchRequest error:&error];
+    if ([results count] > 0) {
+        [context deleteObject:[results objectAtIndex:0]];
+    }
+    if (![context save:&error])
+    {
+        NSLog(@"error:%@",error);
+        return NO;
+    }
+    return YES;
+}
+
 -(BOOL)GetUpUserdata:(NSDictionary *)dic{
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Userdata"];
     NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefid = %@)",[dic objectForKey:@"unquieId"]];

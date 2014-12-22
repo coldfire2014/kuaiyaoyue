@@ -8,11 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol DVCCellDelegate <NSObject>
-
--(void)didSelectItemAtIndex:(NSIndexPath*)index;
--(void)didShowPhone:(NSString*) phone;
-@end
+@protocol DVCCellDelegate;
 
 @interface DVCCell : UITableViewCell
 
@@ -31,4 +27,9 @@
 @property (nonatomic, strong) NSIndexPath* index;
 
 
+@end
+@protocol DVCCellDelegate <NSObject>
+
+-(void)didSelectItemAtIndex:(NSIndexPath*)index :(DVCCell *)cell;
+-(void)didShowPhone:(NSString*) phone;
 @end
