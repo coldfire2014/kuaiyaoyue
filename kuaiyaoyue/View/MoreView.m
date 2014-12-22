@@ -18,4 +18,6 @@
 }
 */
 
+- (IBAction)music_onclick:(id)sender {
+}
 @end

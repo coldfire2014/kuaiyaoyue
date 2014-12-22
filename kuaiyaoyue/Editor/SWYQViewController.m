@@ -21,11 +21,19 @@
 #import "UDObject.h"
 #import "HttpManage.h"
 #import "StatusBar.h"
+#import "MoreView.h"
+#import "MusicViewController.h"
 
-@interface SWYQViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate>{
+@interface SWYQViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate>{
     BOOL is_yl;
     int count;
+    MoreView *moreview;
+    
     AssetHelper* assert;
+    ShowData *show;
+    NSString *hltime;
+    NSString *bmendtime;
+    BOOL time_type;
 }
 
 @end
@@ -50,6 +58,43 @@
     
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"预览" style:UIBarButtonItemStyleBordered target:self action:@selector(RightBarBtnClicked:)];
     self.navigationItem.rightBarButtonItem = right;
+    
+    NSString* name = @"ShowData";
+    show = [[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] firstObject];
+    show.delegate = self;
+    show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height*3.0/2.0);
+    show.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:show];
+    
+    [self addbottomview];
+    
+}
+
+-(void)addbottomview{
+    moreview = [[[NSBundle mainBundle] loadNibNamed:@"MoreView" owner:self options:nil] firstObject];
+    moreview.frame = CGRectMake(0,_more_view.frame.origin.y+_more_view.frame.size.height ,self.view.frame.size.width, moreview.frame.size.height);
+    [self.add_view addSubview:moreview];
+    [self.add_view setFrame:CGRectMake(0, 0, self.view.frame.size.width, 1000)];
+    [self sethigh];
+}
+
+-(void)sethigh{
+    long index = [_data count];
+//    long height = 300;
+    if (index <= 3) {
+//        moreview.frame = CGRectMake(moreview.frame.origin.x, moreview.frame.origin.y, moreview.frame.size.width, height);
+    }else if(index > 3 && index <= 6){
+//        moreview.frame = CGRectMake(moreview.frame.origin.x, moreview.frame.origin.y, moreview.frame.size.width, height+115);
+    }else if(index > 6){
+//        moreview.frame = CGRectMake(moreview.frame.origin.x, moreview.frame.origin.y, moreview.frame.size.width, height+115*2);
+    }
+//    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, 50000)];
+}
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,6 +113,8 @@
     is_yl = YES;
     [self.navigationController.navigationBar setHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
+    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, -1000)];
 }
 
 -(void)initImgData{
@@ -185,19 +232,54 @@
     }];
 }
 
--(void)sethigh{
-    long index = [_data count];
-    long height = 161;
-    if (index <= 3) {
-        _bottomview.frame = CGRectMake(_bottomview.frame.origin.x, _bottomview.frame.origin.y, _bottomview.frame.size.width, height);
-    }else if(index > 3 && index <= 6){
-        _bottomview.frame = CGRectMake(_bottomview.frame.origin.x, _bottomview.frame.origin.y, _bottomview.frame.size.width, height+115);
-        NSLog(@"%f",_gridview.frame.size.height);
-    }else if(index > 6){
-        _bottomview.frame = CGRectMake(_bottomview.frame.origin.x, _bottomview.frame.origin.y, _bottomview.frame.size.width, height+115*2);
-    }
-    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, _bottomview.frame.origin.y + _bottomview.frame.size.height + 50)];
+- (IBAction)time_onclick:(id)sender {
+    time_type = YES;
+    [self.view endEditing:NO];
+    [UIView animateWithDuration:0.4f animations:^{
+        show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }];
 }
 
+- (IBAction)bm_onclick:(id)sender {
+    [self.view endEditing:NO];
+    if (hltime != nil) {
+        time_type = NO;
+        NSDate * date=[NSDate dateWithTimeIntervalSince1970:([hltime longLongValue]/1000)];
+        [show.picker setMaximumDate:date];
+        [UIView animateWithDuration:0.4f animations:^{
+        show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
+        }];
+    }
+}
 
+- (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
+    if (timebh != nil) {
+        if (time_type) {
+            hltime = timebh;
+            _time_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
+        }else{
+            bmendtime = timebh;
+            _bmend_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
+        }
+    }
+    [UIView animateWithDuration:0.4f animations:^{
+        show.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+    }];
+}
+
+- (IBAction)more_onclick:(id)sender {
+    
+}
+
+- (IBAction)xlfs_next:(id)sender {
+}
+
+- (IBAction)xlr_next:(id)sender {
+}
+
+- (IBAction)jh_next:(id)sender {
+}
+
+- (IBAction)address_next:(id)sender {
+}
 @end

@@ -10,4 +10,10 @@
 
 @interface MoreView : UIView
 
+@property (weak, nonatomic) IBOutlet UITextView *show_summary;
+@property (weak, nonatomic) IBOutlet UICollectionView *girdview;
+@property (weak, nonatomic) IBOutlet UIView *music_view;
+@property (weak, nonatomic) IBOutlet UILabel *show_music;
+- (IBAction)music_onclick:(id)sender;
+
 @end
