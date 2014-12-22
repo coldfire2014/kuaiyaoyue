@@ -149,7 +149,7 @@
 -(void)sethigh{
     long index = [data count];
     long height = 115;
-    long addheight = 106;
+    long addheight = (gridview.frame.size.width - 2*9)/3 + 9;
     
     NSLog(@"%f",moreview.girdview.frame.origin.y);
     

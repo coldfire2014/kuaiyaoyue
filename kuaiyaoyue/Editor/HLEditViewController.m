@@ -293,16 +293,17 @@
 -(void)sethigh{
     long index = [_data count];
     long height = 161;
+    long addheight = (gridview.frame.size.width - 2*9)/3 + 9;
     if (index <= 3) {
         hlev.bottomview.frame = CGRectMake(hlev.bottomview.frame.origin.x, hlev.bottomview.frame.origin.y, hlev.bottomview.frame.size.width, height);
         hlev.gridview.frame = CGRectMake(hlev.gridview.frame.origin.x, hlev.gridview.frame.origin.y, hlev.gridview.frame.size.width, hlev.gridview.frame.size.height);
         
     }else if(index > 3 && index <= 6){
-        hlev.bottomview.frame = CGRectMake(hlev.bottomview.frame.origin.x, hlev.bottomview.frame.origin.y, hlev.bottomview.frame.size.width, height+106);
-        hlev.gridview.frame = CGRectMake(hlev.gridview.frame.origin.x, hlev.gridview.frame.origin.y, hlev.gridview.frame.size.width, hlev.gridview.frame.size.height+106);
+        hlev.bottomview.frame = CGRectMake(hlev.bottomview.frame.origin.x, hlev.bottomview.frame.origin.y, hlev.bottomview.frame.size.width, height+addheight + 10);
+        hlev.gridview.frame = CGRectMake(hlev.gridview.frame.origin.x, hlev.gridview.frame.origin.y, hlev.gridview.frame.size.width, hlev.gridview.frame.size.height+addheight);
     }else if(index > 6){
-        hlev.bottomview.frame = CGRectMake(hlev.bottomview.frame.origin.x, hlev.bottomview.frame.origin.y, hlev.bottomview.frame.size.width, height+106*2);
-        hlev.gridview.frame = CGRectMake(hlev.gridview.frame.origin.x, hlev.gridview.frame.origin.y, hlev.gridview.frame.size.width, hlev.gridview.frame.size.height*2);
+        hlev.bottomview.frame = CGRectMake(hlev.bottomview.frame.origin.x, hlev.bottomview.frame.origin.y, hlev.bottomview.frame.size.width, height+addheight*2 + 10);
+        hlev.gridview.frame = CGRectMake(hlev.gridview.frame.origin.x, hlev.gridview.frame.origin.y, hlev.gridview.frame.size.width, hlev.gridview.frame.size.height+addheight*2);
     }
     [scrollview setContentSize:CGSizeMake(scrollview.frame.size.width,hlev.bottomview.frame.origin.y + hlev.bottomview.frame.size.height + 50)];
 }
