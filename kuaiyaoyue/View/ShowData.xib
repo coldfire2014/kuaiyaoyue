@@ -58,6 +58,11 @@
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Gq0-w1-EOy" firstAttribute="leading" secondItem="8ml-hZ-GqF" secondAttribute="leading" id="CTG-wD-Eis"/>
+                        <constraint firstAttribute="trailing" secondItem="Gq0-w1-EOy" secondAttribute="trailing" id="Yxc-Lu-5wZ"/>
+                        <constraint firstAttribute="bottom" secondItem="Gq0-w1-EOy" secondAttribute="bottom" id="guG-8J-9rP"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

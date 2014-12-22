@@ -214,25 +214,27 @@
         cell.index = indexPath;
         cell.delegate = self;
     
-    
         if ([cell.phone compare:@""] == NSOrderedSame) {
             [cell.show_phone setEnabled:NO];
         } else {
             [cell.show_phone setEnabled:YES];
         }
         if ([cell.talk compare:@""] == NSOrderedSame) {
-            
             [cell.show_message setHidden:YES];
         } else {
-            
             [cell.show_message setHidden:NO];
-            
-            
+            if (indexPath.row == selectRow) {
+                [UIView animateWithDuration:0.3 animations:^{
+                    cell.show_message.layer.transform = CATransform3DMakeRotation( -M_PI_2,0,0,1);
+                }];
+            } else {
+                [UIView animateWithDuration:0.3 animations:^{
+                    cell.show_message.layer.transform = CATransform3DIdentity;
+                }];
+            }
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
         return cell;
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -251,9 +253,6 @@
     NSInteger oldselect = selectRow;
     if (indexPath.row == selectRow) {
         selectRow = -1;
-        [UIView animateWithDuration:0.3 animations:^{
-            cell.show_message.layer.transform = CATransform3DIdentity;
-        }];
     }else{
         if (selectRow != -1) {
             selectRow = indexPath.row;
@@ -261,9 +260,6 @@
             [self.tableView reloadRowsAtIndexPaths:@[old] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
         selectRow = indexPath.row;
-        [UIView animateWithDuration:0.3 animations:^{
-            cell.show_message.layer.transform = CATransform3DMakeRotation( M_PI_2,0,0,1);
-        }];
     }
     
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];

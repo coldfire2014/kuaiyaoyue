@@ -10,7 +10,7 @@
 
 @interface TimeTool : NSObject
 
-+(NSString *)TopJZTime:(long) jztime;
++(NSString *)TopJZTime:(NSDate*) jzdate;
 
 +(NSString*)getFullTimeStr:(long long)time;
 

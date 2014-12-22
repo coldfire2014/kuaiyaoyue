@@ -81,10 +81,10 @@
     
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"预览" style:UIBarButtonItemStyleBordered target:self action:@selector(RightBarBtnClicked:)];
     self.navigationItem.rightBarButtonItem = right;
-    
-    show = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ShowData class]) owner:nil options:nil] lastObject];
+    NSString* name = @"ShowData";
+    show = [[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] firstObject];
     show.delegate = self;
-    [show setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+    show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height*3.0/2.0);
     show.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:show];
@@ -309,7 +309,9 @@
     time_type = YES;
     [self.view endEditing:NO];
     [UIView animateWithDuration:0.4f animations:^{
-        [show setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+//        [show setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        CGFloat h = show.frame.size.height;
+        show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height-h/2.0);
     }];
 }
 
@@ -320,7 +322,8 @@
         NSDate * date=[NSDate dateWithTimeIntervalSince1970:([hltime longLongValue]/1000)];
         [show.picker setMaximumDate:date];
         [UIView animateWithDuration:0.4f animations:^{
-            [show setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+            CGFloat h = show.frame.size.height;
+            show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height-h/2.0);
         }];
     }
 }
@@ -353,7 +356,8 @@
         }
     }
     [UIView animateWithDuration:0.4f animations:^{
-        [show setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+        show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height*3.0/2.0);
+//        [show setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
     }];
 }
 

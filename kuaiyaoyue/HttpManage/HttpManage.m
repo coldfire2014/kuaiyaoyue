@@ -160,8 +160,8 @@ password:1235456                     //用户密码
                     j_password:(NSString *)j_password
                         isJson:(NSString *)isJson
                             cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
-    
-    if (phoneId.length > 0) {
+//    模拟器设置
+    if (phoneId.length >0) {
         
     }else{
         phoneId = @"1";
