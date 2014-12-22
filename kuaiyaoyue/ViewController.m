@@ -434,10 +434,17 @@
 {
     // 删除模式
     if (editingStyle==UITableViewCellEditingStyleDelete) {
-        // 从数据源中删除
-        [data removeObjectAtIndex:indexPath.row];
-        // 删除行
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        Userdata *userdata = [data objectAtIndex:indexPath.row];
+        [HttpManage deleteRecords:userdata.nefid cb:^(BOOL isOK, NSDictionary *array) {
+            if (isOK) {
+                [[DataBaseManage getDataBaseManage] DelUserdata:userdata.nefid];
+                // 从数据源中删除
+                [data removeObjectAtIndex:indexPath.row];
+                // 删除行
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }];
+        
     }
     // 添加模式
 //    else if(editingStyle == UITableViewCellEditingStyleInsert){
@@ -520,14 +527,8 @@
     
 }
 
--(void)deleteRecords{
-    [HttpManage deleteRecords:@"" cb:^(BOOL isOK, NSDictionary *array) {
-        if (isOK) {
-            
-        }else{
-            
-        }
-    }];
+-(void)deleteRecords:(NSString *)unquieId{
+    
 }
 
 
