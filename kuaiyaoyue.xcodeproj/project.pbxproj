@@ -39,9 +39,6 @@
 		846C1BA81A45706B00B59A18 /* JBCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA71A45706B00B59A18 /* JBCalendar.m */; };
 		846C1BAB1A45734900B59A18 /* Fixeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BAA1A45734900B59A18 /* Fixeds.m */; };
 		848BF4791A43254B0002A1B1 /* Userdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 848BF4781A43254B0002A1B1 /* Userdata.m */; };
-		84B446AE1A32B35000546859 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B446AD1A32B35000546859 /* CoreGraphics.framework */; };
-		84B446B01A32B35500546859 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B446AF1A32B35500546859 /* UIKit.framework */; };
-		84B446B21A32B35900546859 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B446B11A32B35900546859 /* Foundation.framework */; };
 		84B446C41A32B3D000546859 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84B446B41A32B3D000546859 /* MJRefresh.bundle */; };
 		84B446C51A32B3D000546859 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446B71A32B3D000546859 /* MJRefreshBaseView.m */; };
 		84B446C61A32B3D000546859 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446B91A32B3D000546859 /* MJRefreshConst.m */; };
@@ -119,8 +116,6 @@
 		E558D0151A47A6DA009BFC50 /* ShowData.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C1B9E1A45593C00B59A18 /* ShowData.xib */; };
 		E558D0191A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E558D0171A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		E558D01A1A47CDE8009BFC50 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E558D0181A47CDE8009BFC50 /* TencentOpenAPI.framework */; };
-		E558D01C1A47CEB8009BFC50 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E558D01B1A47CEB8009BFC50 /* libiconv.dylib */; };
-		E558D01E1A47CEF3009BFC50 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E558D01D1A47CEF3009BFC50 /* libstdc++.dylib */; };
 		E558D0201A47D130009BFC50 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E558D01F1A47D130009BFC50 /* libsqlite3.dylib */; };
 		E558D0221A47D14A009BFC50 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E558D0211A47D14A009BFC50 /* CoreTelephony.framework */; };
 		E5590CC41A469CAB0080F3B1 /* card_b.png in Resources */ = {isa = PBXBuildFile; fileRef = E5590CC01A469CAB0080F3B1 /* card_b.png */; };
@@ -232,9 +227,6 @@
 		846C1BAA1A45734900B59A18 /* Fixeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fixeds.m; sourceTree = "<group>"; };
 		848BF4771A43254B0002A1B1 /* Userdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Userdata.h; sourceTree = "<group>"; };
 		848BF4781A43254B0002A1B1 /* Userdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Userdata.m; sourceTree = "<group>"; };
-		84B446AD1A32B35000546859 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		84B446AF1A32B35500546859 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		84B446B11A32B35900546859 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		84B446B41A32B3D000546859 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		84B446B51A32B3D000546859 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		84B446B61A32B3D000546859 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -382,8 +374,6 @@
 		E5573F941A4303A9006AAB8F /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		E558D0171A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TencentOpenApi_IOS_Bundle.bundle; path = Tencent/TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		E558D0181A47CDE8009BFC50 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = Tencent/TencentOpenAPI.framework; sourceTree = "<group>"; };
-		E558D01B1A47CEB8009BFC50 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libiconv.dylib; sourceTree = DEVELOPER_DIR; };
-		E558D01D1A47CEF3009BFC50 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libstdc++.dylib"; sourceTree = DEVELOPER_DIR; };
 		E558D01F1A47D130009BFC50 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E558D0211A47D14A009BFC50 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E5590CC01A469CAB0080F3B1 /* card_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_b.png; sourceTree = "<group>"; };
@@ -447,16 +437,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FE0B991A42C963005A9599 /* libz.dylib in Frameworks */,
-				84B446B21A32B35900546859 /* Foundation.framework in Frameworks */,
-				84B446B01A32B35500546859 /* UIKit.framework in Frameworks */,
 				E558D0221A47D14A009BFC50 /* CoreTelephony.framework in Frameworks */,
 				84FE0B931A4289B0005A9599 /* libWeChatSDK.a in Frameworks */,
 				E541B3071A43C98E006F89E1 /* libTalkingData.a in Frameworks */,
 				E558D01A1A47CDE8009BFC50 /* TencentOpenAPI.framework in Frameworks */,
-				E558D01C1A47CEB8009BFC50 /* libiconv.dylib in Frameworks */,
-				84B446AE1A32B35000546859 /* CoreGraphics.framework in Frameworks */,
 				E558D0201A47D130009BFC50 /* libsqlite3.dylib in Frameworks */,
-				E558D01E1A47CEF3009BFC50 /* libstdc++.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,12 +622,7 @@
 			children = (
 				E558D0211A47D14A009BFC50 /* CoreTelephony.framework */,
 				E558D01F1A47D130009BFC50 /* libsqlite3.dylib */,
-				E558D01B1A47CEB8009BFC50 /* libiconv.dylib */,
 				84FE0B981A42C963005A9599 /* libz.dylib */,
-				E558D01D1A47CEF3009BFC50 /* libstdc++.dylib */,
-				84B446B11A32B35900546859 /* Foundation.framework */,
-				84B446AF1A32B35500546859 /* UIKit.framework */,
-				84B446AD1A32B35000546859 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1441,7 +1421,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/ShareLinb",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/TalkingData",
-					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib",
 				);
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1471,7 +1450,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/ShareLinb",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/TalkingData",
-					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib",
 				);
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
