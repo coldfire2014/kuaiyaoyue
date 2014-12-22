@@ -114,6 +114,7 @@
 		E5573F971A4303A9006AAB8F /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F8F1A4303A9006AAB8F /* unzip.c */; };
 		E5573F981A4303A9006AAB8F /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F911A4303A9006AAB8F /* zip.c */; };
 		E5573F991A4303A9006AAB8F /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = E5573F941A4303A9006AAB8F /* ZipArchive.mm */; };
+		E558D0151A47A6DA009BFC50 /* ShowData.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C1B9E1A45593C00B59A18 /* ShowData.xib */; };
 		E5590CC41A469CAB0080F3B1 /* card_b.png in Resources */ = {isa = PBXBuildFile; fileRef = E5590CC01A469CAB0080F3B1 /* card_b.png */; };
 		E5590CC51A469CAB0080F3B1 /* card_g.png in Resources */ = {isa = PBXBuildFile; fileRef = E5590CC11A469CAB0080F3B1 /* card_g.png */; };
 		E5590CC61A469CAB0080F3B1 /* card_o.png in Resources */ = {isa = PBXBuildFile; fileRef = E5590CC21A469CAB0080F3B1 /* card_o.png */; };
@@ -523,8 +524,8 @@
 			isa = PBXGroup;
 			children = (
 				846C1B9B1A45592900B59A18 /* ShowData.h */,
-				846C1B9C1A45592900B59A18 /* ShowData.m */,
 				846C1B9E1A45593C00B59A18 /* ShowData.xib */,
+				846C1B9C1A45592900B59A18 /* ShowData.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1100,6 +1101,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E558D0151A47A6DA009BFC50 /* ShowData.xib in Resources */,
 				843DBEDA1A46F16600CDFFCB /* icon120.png in Resources */,
 				E5661A1C1A45708C00E4E2BC /* btn_login_qq.png in Resources */,
 				E5661A291A457CB700E4E2BC /* btn_login_1.png in Resources */,

@@ -84,13 +84,13 @@
                         <constraint firstItem="Gq0-w1-EOy" firstAttribute="leading" secondItem="8ml-hZ-GqF" secondAttribute="leading" id="CTG-wD-Eis"/>
                         <constraint firstAttribute="trailing" secondItem="Gq0-w1-EOy" secondAttribute="trailing" id="Yxc-Lu-5wZ"/>
                         <constraint firstAttribute="bottom" secondItem="Gq0-w1-EOy" secondAttribute="bottom" id="guG-8J-9rP"/>
-                        <constraint firstItem="Gq0-w1-EOy" firstAttribute="top" secondItem="8ml-hZ-GqF" secondAttribute="top" constant="380" id="s9V-KQ-Jw9"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="8ml-hZ-GqF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="koW-t9-zu7"/>
+                <constraint firstAttribute="bottom" secondItem="8ml-hZ-GqF" secondAttribute="bottom" id="lFC-Go-1XT"/>
                 <constraint firstItem="8ml-hZ-GqF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nPS-Wm-pNI"/>
                 <constraint firstAttribute="trailing" secondItem="8ml-hZ-GqF" secondAttribute="trailing" id="rTV-E7-KIR"/>
                 <constraint firstAttribute="bottom" secondItem="8ml-hZ-GqF" secondAttribute="bottom" id="vLN-4l-onC"/>
