@@ -27,7 +27,6 @@
     _show_send.layer.cornerRadius = 3;
     
     
-    
 
 }
 

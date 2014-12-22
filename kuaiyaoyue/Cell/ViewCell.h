@@ -23,6 +23,7 @@
 @property (weak, nonatomic) Userdata *info;
 @property long index;
 
+
 @property CGFloat widht;
 
 @property (nonatomic, weak) id<VCDelegate> delegate;

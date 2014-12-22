@@ -433,7 +433,6 @@
     CGFloat green1 = 0.0;
     CGFloat blue1 = 0.0;
     
-    
     for (int i = 0; i < [dataarray count]; i++) {
         Info *info = [dataarray objectAtIndex:i];
         NSString *parameterName = info.nefparametername;

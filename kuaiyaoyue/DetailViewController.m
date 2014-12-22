@@ -61,7 +61,7 @@
     [_picker setMaximumDate:enddate];
     
     [_bottom_view setFrame:CGRectMake(0, 1000, _bottom_view.frame.size.width, _bottom_view.frame.size.height)];
-    
+    _tableView.separatorStyle = NO;
 }
 
 -(void)changeHight{
