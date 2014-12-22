@@ -67,19 +67,6 @@
 //    _tableview.contentInset = UIEdgeInsetsMake(-20, 0 ,0, 0);
 //   [_tableview setContentOffset:CGPointMake(0, -196) animated:YES];
     
-    NSDate * date = [NSDate date];
-    //1418630019
-    NSLog(@"%ld",(long)[date timeIntervalSince1970]);
-    NSDate* dd = [NSDate dateWithTimeIntervalSinceNow:3*24*60*65];
-    NSString* ds = [TimeTool TopJZTime:dd];
-    NSLog(@"%@",ds);
-    
-//    if ([UDObject gettoken].length > 0) {
-//        [self j_spring_security_check:@"123456789" password:@"123456789"];
-//        NSLog(@"登录");
-//    }else{
-//        NSLog(@"已登录");
-//    }
     [self loaddata];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 
