@@ -17,10 +17,12 @@
 @property (nonatomic,weak) NSString* msg;
 @property (nonatomic,weak) NSString* url;
 @property (nonatomic,strong) UIImage* img;
+@property (nonatomic,weak) NSString* imgUrl;
 
 -(void)shareSinaWeiboWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img;
 -(void)shareTencentWeiboWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img;
--(void)shareQQWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img;
+-(void)shareQQWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(NSString*)img;
+-(void)shareQQZoneWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(NSString*)img;
 -(void)shareWXWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img;
 -(void)shareWXPYWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img;
 -(void)shareMsgWithMsg:(NSString*)msg;

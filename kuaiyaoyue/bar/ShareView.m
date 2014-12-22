@@ -71,8 +71,8 @@
         UITapGestureRecognizer* tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapsinaWb)];
         [sina addGestureRecognizer:tap3];
         
-        myImageView* txwb = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 128.0/2.0, 128.0/2.0) andImageName:@"ic_s_txwb@2x" withScale:2.0 andBundleName:@"shareView"];
-        txwb.tag = 803;
+        myImageView* txwb = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 128.0/2.0, 128.0/2.0) andImageName:@"ic_s_qz@2x" withScale:2.0 andBundleName:@"shareView"];
+        txwb.tag = 803;//ic_s_txwb@2x
         [self addSubview:txwb];
         UITapGestureRecognizer* tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(taptxwb)];
         [txwb addGestureRecognizer:tap4];
@@ -151,7 +151,7 @@
     [mbtitle3 setLineBreakMode:NSLineBreakByClipping];
     [mbtitle3 setTextColor:[[UIColor alloc] initWithWhite:0.4 alpha:1.0]];
     [mbtitle3 setBackgroundColor:[UIColor clearColor]];
-    [mbtitle3 setText:@"腾讯微博"];//QQ空间
+    [mbtitle3 setText:@"QQ空间"];//腾讯微博
     [bg2 addSubview:mbtitle3];
     
     UILabel* mbtitle4 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 128.0/2.0,16.0)];
@@ -348,7 +348,8 @@
     [self shareSinaWeiboWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.img];
 }
 -(void)taptxwb{
-    [self shareTencentWeiboWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.img];
+//    [self shareTencentWeiboWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.img];
+    [self shareQQZoneWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.imgUrl];
 }
 -(void)taplink{
     NSString* msg = [[NSString alloc] initWithFormat:@"%@ %@ %@",self.title,self.msg,self.url];
@@ -359,7 +360,7 @@
     [self shareMsgWithMsg:msg];
 }
 -(void)tapqq{
-    [self shareQQWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.img];
+    [self shareQQWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.imgUrl];
 }
 -(void)tapmail{
     [self shareMailWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.img];
@@ -523,8 +524,16 @@
     pboard.string = msg;
     [[StatusBar sharedStatusBar] talkMsg:@"已复制到剪贴板。" inTime:0.51];
 }
--(void)shareQQWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img{
-    [[StatusBar sharedStatusBar] talkMsg:@"暂不支持QQ分享。" inTime:0.51];
+
+-(void)shareQQZoneWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(NSString*)img{
+//    [[StatusBar sharedStatusBar] talkMsg:@"暂不支持QQ分享。" inTime:0.51];
+    NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:title,@"title",des,@"des",url,@"url",img,@"imgUrl", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"QQZONE_SENDTO" object:dic];
+}
+-(void)shareQQWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(NSString*)img{
+//    [[StatusBar sharedStatusBar] talkMsg:@"暂不支持QQ分享。" inTime:0.51];
+    NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:title,@"title",des,@"des",url,@"url",img,@"imgUrl", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"QQ_SENDTO" object:dic];
 }
 -(void)shareMailWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img{
     if( [MFMailComposeViewController canSendMail] ){

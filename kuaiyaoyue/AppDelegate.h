@@ -10,8 +10,10 @@
 #import <CoreData/CoreData.h>
 #import "WXApi.h"
 #import "SVProgressHUD.h"
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate,WXApiDelegate>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentMessageObject.h>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,WXApiDelegate,TencentSessionDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
