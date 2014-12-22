@@ -121,7 +121,9 @@
     [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
 }
 -(void)login{
-    [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_PTLOGIN" object:nil];
+    
+//    [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
 }
 -(void)loginQQ{
     [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
@@ -136,5 +138,6 @@
     
    
 }
+
 
 @end
