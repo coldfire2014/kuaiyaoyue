@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ImgCollectionViewController.h"
 @interface WelComeViewController : UIViewController<UIViewControllerTransitioningDelegate,ImgCollectionViewDelegate>
-
+{
+    BOOL zipDone;
+    BOOL downloadDone;
+}
 - (IBAction)onclick:(id)sender;
 @end

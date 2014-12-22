@@ -254,6 +254,10 @@
                 }
                 [[DataBaseManage getDataBaseManage] AddTemplate:resultDic];
             }
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DOWNLOAD_DONE" object:nil];
+        }
+        else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DOWNLOAD_DONE" object:nil];
         }
     }];
     
@@ -397,6 +401,9 @@
                 [SVProgressHUD dismiss];
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_SDWX" object:self userInfo:dic];
+            }
+            else{
+                [[StatusBar sharedStatusBar] talkMsg:@"微信登陆失败了，再试一次吧。" inTime:0.5];
             }
         });
         

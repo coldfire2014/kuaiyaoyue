@@ -21,22 +21,56 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [ZipDown Unzip];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    downloadDone = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneZip) name:@"ZIP_DONE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneDownload) name:@"DOWNLOAD_DONE" object:nil];
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ZIP_DONE" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DOWNLOAD_DONE" object:nil];
+}
+-(void)doneDownload{
+    downloadDone = YES;
+    NSString *name = nil;
+    if (downloadDone && zipDone) {
+        if ([[UDObject gettoken] length] > 0) {
+            name = @"main";
+        }else{
+            name = @"wel";
+        }
+        [self performSegueWithIdentifier:name sender:nil];
+    }
+}
+-(void)doneZip{
+    zipDone = YES;
+    NSString *name = nil;
+    if (downloadDone && zipDone) {
+        if ([[UDObject gettoken] length] > 0) {
+            name = @"main";
+        }else{
+            name = @"wel";
+        }
+        [self performSegueWithIdentifier:name sender:nil];
+    }
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
     NSString *name = nil;
     if ([[UDObject gettoken] length] > 0) {
+        zipDone = YES;
         name = @"main";
     }else{
         name = @"wel";
+        zipDone = NO;
+        [ZipDown Unzip];
     }
-    [self performSegueWithIdentifier:name sender:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {

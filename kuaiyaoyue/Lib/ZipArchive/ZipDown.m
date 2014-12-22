@@ -40,6 +40,8 @@
         [userInfo setValue:@"YES" forKey:@"DYC"];
         [userInfo synchronize];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ZIP_DONE" object:nil];
+
 }
 
 @end
