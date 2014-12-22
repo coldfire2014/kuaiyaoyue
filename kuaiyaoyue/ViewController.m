@@ -500,17 +500,21 @@
     NSLog(@"%d",user.neftype);
     switch (user.neftype) {
         case 0:
-            
+//            title = [NSString stringWithFormat:@"%@&%@ 婚礼",user.nefgroom,user.nefbride];
+//            msg = [NSString stringWithFormat:@"%@ %@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+//            url = user.nefurl;
             break;
         case 1:
-            title = [NSString stringWithFormat:@"%@&%@ 婚礼",user.nefgroom,user.nefbride];
-            msg = [NSString stringWithFormat:@"%@ %@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
+            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
             url = user.nefurl;
             break;
         case 2:
-            
+            title = [NSString stringWithFormat:@"%@",user.nefpartyname];
+            msg = [NSString stringWithFormat:@"%@ %@ %@",@"",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            url = user.nefurl;
             break;
-            
+
         default:
             break;
     }
