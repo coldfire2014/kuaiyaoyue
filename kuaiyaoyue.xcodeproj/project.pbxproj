@@ -10,6 +10,8 @@
 		841728AB1A40385800272A0C /* DVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841728AA1A40385800272A0C /* DVCCell.m */; };
 		843DBEDA1A46F16600CDFFCB /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 843DBED91A46F16600CDFFCB /* icon120.png */; };
 		843DBEDC1A46FA2600CDFFCB /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 843DBEDB1A46FA2600CDFFCB /* icon57.png */; };
+		843DBEE01A47BF9800CDFFCB /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 843DBEDF1A47BF9800CDFFCB /* MoreView.m */; };
+		843DBEE41A47C5D500CDFFCB /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843DBEE11A47BFA700CDFFCB /* MoreView.xib */; };
 		844825761A31536C0018240E /* WelComeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825751A31536C0018240E /* WelComeViewController.m */; };
 		844825791A31588C0018240E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825781A31588C0018240E /* PageViewController.m */; };
 		8448257C1A3186520018240E /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448257B1A3186520018240E /* OneViewController.m */; };
@@ -172,6 +174,9 @@
 		841728AA1A40385800272A0C /* DVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVCCell.m; sourceTree = "<group>"; };
 		843DBED91A46F16600CDFFCB /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
 		843DBEDB1A46FA2600CDFFCB /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
+		843DBEDE1A47BF9800CDFFCB /* MoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
+		843DBEDF1A47BF9800CDFFCB /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
+		843DBEE21A47BFA700CDFFCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = kuaiyaoyue/Base.lproj/MoreView.xib; sourceTree = SOURCE_ROOT; };
 		844825741A31536C0018240E /* WelComeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelComeViewController.h; sourceTree = "<group>"; };
 		844825751A31536C0018240E /* WelComeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelComeViewController.m; sourceTree = "<group>"; };
 		844825771A31588C0018240E /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
@@ -543,6 +548,9 @@
 				846C1B9B1A45592900B59A18 /* ShowData.h */,
 				846C1B9C1A45592900B59A18 /* ShowData.m */,
 				846C1B9E1A45593C00B59A18 /* ShowData.xib */,
+				843DBEDE1A47BF9800CDFFCB /* MoreView.h */,
+				843DBEDF1A47BF9800CDFFCB /* MoreView.m */,
+				843DBEE11A47BFA700CDFFCB /* MoreView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1132,6 +1140,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843DBEE41A47C5D500CDFFCB /* MoreView.xib in Resources */,
 				E558D0151A47A6DA009BFC50 /* ShowData.xib in Resources */,
 				843DBEDA1A46F16600CDFFCB /* icon120.png in Resources */,
 				E5661A1C1A45708C00E4E2BC /* btn_login_qq.png in Resources */,
@@ -1265,6 +1274,7 @@
 				84B446C81A32B3D000546859 /* MJRefreshHeaderView.m in Sources */,
 				84B5D1181A441C3E00C5C6E8 /* Contacts.m in Sources */,
 				844825891A318C810018240E /* UDObject.m in Sources */,
+				843DBEE01A47BF9800CDFFCB /* MoreView.m in Sources */,
 				84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */,
 				84E842CB1A2EFDCB00A401A0 /* UIRefreshControl+AFNetworking.m in Sources */,
 				E5573F951A4303A9006AAB8F /* ioapi.c in Sources */,
@@ -1307,6 +1317,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		843DBEE11A47BFA700CDFFCB /* MoreView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				843DBEE21A47BFA700CDFFCB /* Base */,
+			);
+			name = MoreView.xib;
+			sourceTree = "<group>";
+		};
 		84E842691A2EDF6B00A401A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

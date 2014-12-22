@@ -1457,7 +1457,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKG-n6-1hF">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKG-n6-1hF">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nt9-zh-SNz">
@@ -1491,7 +1491,10 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                        <connections>
+                                                            <action selector="jh_next:" destination="7YK-37-kxW" eventType="editingDidEndOnExit" id="9sr-mi-GUU"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Uy-Sy-MKO">
                                                         <rect key="frame" x="0.0" y="43" width="600" height="86"/>
@@ -1548,6 +1551,9 @@
                                                                 <state key="normal">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="time_onclick:" destination="7YK-37-kxW" eventType="touchUpInside" id="X6m-Qi-6CE"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KA0-if-bvB">
                                                                 <rect key="frame" x="0.0" y="43" width="600" height="44"/>
@@ -1557,6 +1563,9 @@
                                                                 <state key="normal">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="bm_onclick:" destination="7YK-37-kxW" eventType="touchUpInside" id="tvu-uF-RGT"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1624,7 +1633,10 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                        <connections>
+                                                            <action selector="xlfs_next:" destination="7YK-37-kxW" eventType="editingDidEndOnExit" id="ue7-dU-xN3"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wda-ch-pvT">
                                                         <rect key="frame" x="104" y="43" width="488" height="43"/>
@@ -1633,7 +1645,10 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                        <connections>
+                                                            <action selector="xlr_next:" destination="7YK-37-kxW" eventType="editingDidEndOnExit" id="5eY-Tj-3kv"/>
+                                                        </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="联系方式：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeJ-Xu-AUp">
                                                         <rect key="frame" x="39" y="54" width="65" height="21"/>
@@ -1681,7 +1696,10 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                        <connections>
+                                                            <action selector="address_next:" destination="7YK-37-kxW" eventType="editingDidEndOnExit" id="3cA-zH-DVx"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1729,6 +1747,9 @@
                                                         <state key="normal" image="ic_32_open">
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="more_onclick:" destination="7YK-37-kxW" eventType="touchUpInside" id="oT0-9S-0kd"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1879,6 +1900,15 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="add_view" destination="nt9-zh-SNz" id="PJ0-YL-XDr"/>
+                        <outlet property="address_label" destination="FlD-ZO-oaQ" id="Tso-1C-EXF"/>
+                        <outlet property="bmend_label" destination="zf2-LA-Eix" id="lob-Gk-dzz"/>
+                        <outlet property="jh_edit" destination="tvn-gb-ofA" id="1zb-OF-Ycv"/>
+                        <outlet property="more_button" destination="hBR-G5-Atp" id="q6H-he-FUW"/>
+                        <outlet property="more_view" destination="oXQ-G6-BlR" id="sFN-OG-UEE"/>
+                        <outlet property="time_label" destination="NyZ-qa-k8L" id="5Dy-Qd-shT"/>
+                        <outlet property="xlfs_label" destination="wda-ch-pvT" id="ROi-lK-0hp"/>
+                        <outlet property="xlr_label" destination="ELU-mG-NKl" id="Ffc-iO-mGa"/>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="yl" id="qae-G8-0oD"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="yy" id="22X-oD-zs7"/>
                     </connections>
@@ -2401,12 +2431,12 @@
         <image name="icon120.png" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qae-G8-0oD"/>
-        <segue reference="keJ-rR-p7N"/>
         <segue reference="D53-YK-KM5"/>
-        <segue reference="x3h-Pp-84V"/>
-        <segue reference="ztp-xN-fnN"/>
         <segue reference="Oey-PZ-F9W"/>
+        <segue reference="keJ-rR-p7N"/>
+        <segue reference="ztp-xN-fnN"/>
+        <segue reference="x3h-Pp-84V"/>
+        <segue reference="qae-G8-0oD"/>
         <segue reference="22X-oD-zs7"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -22,7 +22,7 @@
 #import "DetailViewController.h"
 #import "StatusBar.h"
 #import "ShareView.h"
-@interface ViewController ()<VCDelegate>{
+@interface ViewController ()<VCDelegate,DVCDelegate>{
     NSMutableArray *data;
     NSString *uniqueId;
     long long starttime;
@@ -37,6 +37,7 @@
     NSString *url;
     NSString *msg;
     NSString *title;
+    NSIndexPath *index_path;
 }
 
 @end
@@ -66,19 +67,6 @@
 //    _tableview.contentInset = UIEdgeInsetsMake(-20, 0 ,0, 0);
 //   [_tableview setContentOffset:CGPointMake(0, -196) animated:YES];
     
-    NSDate * date = [NSDate date];
-    //1418630019
-    NSLog(@"%ld",(long)[date timeIntervalSince1970]);
-    NSDate* dd = [NSDate dateWithTimeIntervalSinceNow:3*24*60*65];
-    NSString* ds = [TimeTool TopJZTime:dd];
-    NSLog(@"%@",ds);
-    
-//    if ([UDObject gettoken].length > 0) {
-//        [self j_spring_security_check:@"123456789" password:@"123456789"];
-//        NSLog(@"登录");
-//    }else{
-//        NSLog(@"已登录");
-//    }
     [self loaddata];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 
@@ -311,6 +299,7 @@
         view.starttime = starttime;
         view.datatime = datatime;
         view.endtime = endtime;
+        view.delegate = self;
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -376,7 +365,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    index_path = indexPath;
     Userdata *info = [data objectAtIndex:[indexPath row]];
     uniqueId = info.nefid;
     starttime = [info.nefdate longLongValue]/1000;
@@ -435,14 +424,20 @@
 {
     // 删除模式
     if (editingStyle==UITableViewCellEditingStyleDelete) {
+        
         Userdata *userdata = [data objectAtIndex:indexPath.row];
+        [SVProgressHUD showWithStatus:@"删除中" maskType:SVProgressHUDMaskTypeBlack];
         [HttpManage deleteRecords:userdata.nefid cb:^(BOOL isOK, NSDictionary *array) {
+            [SVProgressHUD dismiss];
             if (isOK) {
-                [[DataBaseManage getDataBaseManage] DelUserdata:userdata.nefid];
                 // 从数据源中删除
                 [data removeObjectAtIndex:indexPath.row];
                 // 删除行
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [[DataBaseManage getDataBaseManage] DelUserdata:userdata.nefid];
+                [[StatusBar sharedStatusBar] talkMsg:@"删除成功" inTime:0.51];
+            }else{
+                [[StatusBar sharedStatusBar] talkMsg:@"删除失败" inTime:0.51];
             }
         }];
         
@@ -471,6 +466,7 @@
         share.url = url;
         share.msg = msg;
         share.title = title;
+        share.imgUrl = @"http://pp.myapp.com/ma_icon/0/icon_11251614_19813241_1418702475/96";
         NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
         UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"icon57" ofType:@"png"]];
         share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
@@ -490,6 +486,7 @@
         share.url = url;
         share.msg = msg;
         share.title = title;
+        share.imgUrl = @"http://pp.myapp.com/ma_icon/0/icon_11251614_19813241_1418702475/96";
         NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
         UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"icon57" ofType:@"png"]];
         share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
@@ -522,16 +519,28 @@
     share.url = url;
     share.msg = msg;
     share.title = title;
+    share.imgUrl = @"http://pp.myapp.com/ma_icon/0/icon_11251614_19813241_1418702475/96";
     UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon57" ofType:@"png"]];
     share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
     [share show];
     
 }
 
--(void)deleteRecords:(NSString *)unquieId{
-    
+- (void)DVCDelegate:(DetailViewController *)cell didTapAtIndex:(NSString *) nefid{
+    [SVProgressHUD showWithStatus:@"删除中" maskType:SVProgressHUDMaskTypeBlack];
+    [HttpManage deleteRecords:nefid cb:^(BOOL isOK, NSDictionary *array) {
+        [SVProgressHUD dismiss];
+        if (isOK) {
+            // 从数据源中删除
+            [data removeObjectAtIndex:index_path.row];
+            // 删除行
+            [_tableview deleteRowsAtIndexPaths:@[index_path] withRowAnimation:UITableViewRowAnimationFade];
+            [[DataBaseManage getDataBaseManage] DelUserdata:nefid];
+            [[StatusBar sharedStatusBar] talkMsg:@"删除成功" inTime:0.51];
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"删除失败" inTime:0.51];
+        }
+    }];
 }
-
-
 
 @end

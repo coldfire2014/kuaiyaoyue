@@ -17,6 +17,7 @@
 #import "UDObject.h"
 #import "HLEditViewController.h"
 #import "SWYQViewController.h"
+#import "StatusBar.h"
 
 @interface TemplateViewController (){
     NSString *neftypeId;
@@ -335,19 +336,18 @@
         des.unquieId = unquieId;
         des.nefmbdw = nefmbdw;
     }else if ([segue.identifier compare:@"swedit"] == NSOrderedSame){
-        SWYQViewController *view = (SWYQViewController *)segue.destinationViewController;
-        view.unquieId = unquieId;
-        view.nefmbdw = nefmbdw;
+//        SWYQViewController *view = (SWYQViewController *)segue.destinationViewController;
+//        view.unquieId = unquieId;
+//        view.nefmbdw = nefmbdw;
+        [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
         
     }else if ([segue.identifier compare:@"chedit"] == NSOrderedSame){
-        
+        [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
         
     }else if ([segue.identifier compare:@"zdedit"] == NSOrderedSame){
-        
+        [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
         
     }
-
-    
 }
 
 

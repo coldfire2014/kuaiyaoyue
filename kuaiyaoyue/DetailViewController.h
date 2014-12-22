@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DVCDelegate;
+
 @interface DetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *headview;
@@ -28,5 +30,12 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *picker;
 - (IBAction)sure_picker:(id)sender;
 - (IBAction)qx_picker:(id)sender;
+
+@property (nonatomic, weak) id<DVCDelegate> delegate;
+
+@end
+@protocol DVCDelegate <NSObject>
+
+- (void)DVCDelegate:(DetailViewController *)cell didTapAtIndex:(NSString *) nefid;
 
 @end
