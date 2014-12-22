@@ -43,7 +43,7 @@
     self.navigationItem.rightBarButtonItem = right;
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
+    _tableView.separatorStyle = NO;
     [self inData];
 }
 
@@ -128,9 +128,9 @@
     MusicInfo *info = [data objectAtIndex:[indexPath row]];
     cell.index = [indexPath row];
     if (!info.state) {
-        cell.show_status.text = @"关";
+        [cell.show_status setHidden:YES];
     }else{
-        cell.show_status.text = @"开";
+        [cell.show_status setHidden:NO];
         URL = info.url;
         name = info.title;
     }

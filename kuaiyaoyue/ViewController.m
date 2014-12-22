@@ -63,6 +63,7 @@
     
     [self headview];
     
+    _tableview.separatorStyle = NO;
     //滑动监听
 //    _tableview.contentInset = UIEdgeInsetsMake(-20, 0 ,0, 0);
 //   [_tableview setContentOffset:CGPointMake(0, -196) animated:YES];
