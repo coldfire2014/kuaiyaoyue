@@ -11,7 +11,7 @@
 #import "myImageView.h"
 #import "TemplateViewController.h"
 #import "UIImageView+LBBlurredImage.h"
-
+#import "StatusBar.h"
 
 @interface MenuViewController ()
 
@@ -197,7 +197,9 @@
 }
 - (void)didTapFour{
     self.tapID = 404;
-    [self performSegueWithIdentifier:@"showTemplate" sender:@"zdy"];
+//    [self performSegueWithIdentifier:@"showTemplate" sender:@"zdy"];
+     [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步其他模块。" inTime:0.51];
+    
 }
 
 #pragma mark - Navigation
