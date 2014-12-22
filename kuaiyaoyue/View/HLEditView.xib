@@ -244,7 +244,7 @@
                 </view>
                 <view contentMode="scaleToFill" id="YJN-uM-yVM">
                     <rect key="frame" x="0.0" y="324" width="320" height="161"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_c_lady" id="jhT-To-0C7">
                             <rect key="frame" x="9" y="10" width="24" height="24"/>
@@ -259,7 +259,7 @@
                         </label>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" id="JdH-IO-hbu">
                             <rect key="frame" x="9" y="43" width="302" height="115"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="9" minimumInteritemSpacing="9" id="HOh-KC-yQT">
                                 <size key="itemSize" width="106" height="106"/>
