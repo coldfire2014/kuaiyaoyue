@@ -510,7 +510,8 @@ closeTimestamp:(NSString *)closeTimestamp
             cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
 
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            unquieId,@"unquieId",timestamp,@"timestamp",nil];
+                            unquieId,@"unquieId",timestamp,@"timestamp",
+                            @"ios",@"equipment",version,@"version",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUserData/dueDate.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
@@ -561,6 +562,7 @@ closeTimestamp:(NSString *)closeTimestamp
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             unquieId,@"unquieId",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUserData/deleteRecords.aspx"];
+    NSLog(@"%@",params);
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];

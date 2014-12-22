@@ -2401,12 +2401,12 @@
         <image name="icon120.png" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qae-G8-0oD"/>
-        <segue reference="keJ-rR-p7N"/>
         <segue reference="D53-YK-KM5"/>
         <segue reference="x3h-Pp-84V"/>
         <segue reference="ztp-xN-fnN"/>
         <segue reference="Oey-PZ-F9W"/>
-        <segue reference="22X-oD-zs7"/>
+        <segue reference="keJ-rR-p7N"/>
+        <segue reference="luI-zA-BtH"/>
+        <segue reference="fps-RF-Hk5"/>
     </inferredMetricsTieBreakers>
 </document>
