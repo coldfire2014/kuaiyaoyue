@@ -66,13 +66,7 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="8ml-hZ-GqF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="koW-t9-zu7"/>
-                <constraint firstAttribute="bottom" secondItem="8ml-hZ-GqF" secondAttribute="bottom" id="lFC-Go-1XT"/>
-                <constraint firstItem="8ml-hZ-GqF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nPS-Wm-pNI"/>
-                <constraint firstAttribute="trailing" secondItem="8ml-hZ-GqF" secondAttribute="trailing" id="rTV-E7-KIR"/>
-                <constraint firstAttribute="bottom" secondItem="8ml-hZ-GqF" secondAttribute="bottom" id="vLN-4l-onC"/>
-            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="picker" destination="VGH-1Z-atA" id="fwu-0x-CFx"/>
             </connections>
