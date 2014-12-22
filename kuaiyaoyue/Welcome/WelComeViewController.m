@@ -37,7 +37,6 @@
         name = @"wel";
     }
     [self performSegueWithIdentifier:name sender:nil];
-
 }
 
 - (void)didReceiveMemoryWarning {

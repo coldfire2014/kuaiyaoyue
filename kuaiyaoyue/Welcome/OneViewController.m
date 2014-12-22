@@ -24,16 +24,16 @@
     
 }
 -(void)didTap{
-    ShareView* share = [ShareView sharedShareView];
-    share.fromvc = self;
-    share.url = @"http://baidu.com";
-    share.msg = @"lailai";
-    share.title = @"haha";
-    share.imgUrl = @"http://pp.myapp.com/ma_icon/0/icon_11251614_19813241_1418702475/96";
-    NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
-    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"T4" ofType:@"png"]];
-    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
-    [share show];
+//    ShareView* share = [ShareView sharedShareView];
+//    share.fromvc = self;
+//    share.url = @"http://baidu.com";
+//    share.msg = @"lailai";
+//    share.title = @"haha";
+//    share.imgUrl = @"http://pp.myapp.com/ma_icon/0/icon_11251614_19813241_1418702475/96";
+//    NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
+//    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"T4" ofType:@"png"]];
+//    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+//    [share show];
 }
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     if (MFMailComposeResultSent == result || MFMailComposeResultSaved == result) {
