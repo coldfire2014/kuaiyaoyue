@@ -125,5 +125,50 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"hl_imgarr"];
 }
 
++(void)setSWContent:(NSString *)jh_name swtime:(NSString *)swtime swbmendtime:(NSString *)swbmendtime address_name:(NSString *)address_name swxlr_name:(NSString *)swxlr_name swxlfs_name:(NSString *)swxlfs_name swhd_name:(NSString *)swhd_name music:(NSString *)music musicname:(NSString *)musicname
+             imgarr:(NSString *)imgarr{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:jh_name forKey:@"swjhname"];
+    [userInfo setValue:swtime forKey:@"swtime"];
+    [userInfo setValue:swbmendtime forKey:@"swbmendtime"];
+    [userInfo setValue:address_name forKey:@"swaddress_name"];
+    [userInfo setValue:swxlr_name forKey:@"swxlr_name"];
+    [userInfo setValue:swxlfs_name forKey:@"swxlfs_name"];
+    [userInfo setValue:swhd_name forKey:@"swhd_name"];
+    [userInfo setValue:music forKey:@"sw_music"];
+    [userInfo setValue:musicname forKey:@"sw_musicname"];
+    [userInfo setValue:imgarr forKey:@"sw_imgarr"];
+    [userInfo synchronize];
+}
++(NSString *)getjhname{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"swjhname"];
+}
++(NSString *)getswtime{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"swtime"];
+}
++(NSString *)getswbmendtime{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"swbmendtime"];
+}
++(NSString *)getswaddress_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"swaddress_name"];
+}
++(NSString *)getswxlr_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"swxlr_name"];
+}
++(NSString *)getswxlfs_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"swxlfs_name"];
+}
++(NSString *)getswhd_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"swhd_name"];
+}
++(NSString *)getsw_music{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"sw_music"];
+}
++(NSString *)getsw_musicname{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"sw_musicname"];
+}
++(NSString *)getsw_imgarr{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"sw_imgarr"];
+}
 
 @end

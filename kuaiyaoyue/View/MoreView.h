@@ -8,12 +8,35 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MVDelegate;
+
 @interface MoreView : UIView
+@property (weak, nonatomic) IBOutlet UITextField *jh_edit;
+@property (weak, nonatomic) IBOutlet UILabel *time_label;
+@property (weak, nonatomic) IBOutlet UILabel *bmtime_label;
+@property (weak, nonatomic) IBOutlet UITextField *address_edit;
+- (IBAction)address_next:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *xlr_edit;
+- (IBAction)xlr_next:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *xlfs_edit;
+- (IBAction)xlfs_next:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextView *show_summary;
 @property (weak, nonatomic) IBOutlet UICollectionView *girdview;
 @property (weak, nonatomic) IBOutlet UIView *music_view;
 @property (weak, nonatomic) IBOutlet UILabel *show_music;
 - (IBAction)music_onclick:(id)sender;
+
+- (IBAction)jh_next:(id)sender;
+- (IBAction)time_onclick:(id)sender;
+- (IBAction)bmtime_onclick:(id)sender;
+
+@property (nonatomic, weak) id<MVDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIView *bottom_view;
+
+@end
+@protocol MVDelegate <NSObject>
+
+- (void)MVDelegate:(MoreView *)cell didTapAtIndex:(int) type;
 
 @end

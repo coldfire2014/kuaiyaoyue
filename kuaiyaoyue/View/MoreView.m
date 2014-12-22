@@ -19,5 +19,31 @@
 */
 
 - (IBAction)music_onclick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(MVDelegate:didTapAtIndex:)]){
+        [self.delegate MVDelegate:self didTapAtIndex:2];}
+}
+
+- (IBAction)jh_next:(id)sender {
+    
+}
+
+- (IBAction)time_onclick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(MVDelegate:didTapAtIndex:)]){
+        [self.delegate MVDelegate:self didTapAtIndex:0];}
+}
+
+- (IBAction)bmtime_onclick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(MVDelegate:didTapAtIndex:)]){
+        [self.delegate MVDelegate:self didTapAtIndex:1];}
+}
+
+- (IBAction)address_next:(id)sender {
+    
+}
+- (IBAction)xlr_next:(id)sender {
+    
+}
+- (IBAction)xlfs_next:(id)sender {
+    
 }
 @end

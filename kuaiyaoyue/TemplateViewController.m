@@ -274,13 +274,14 @@
             [self performSegueWithIdentifier:@"hledit" sender:nil];
             break;
         case 2:
-            [self performSegueWithIdentifier:@"swedit" sender:nil];
+//            [self performSegueWithIdentifier:@"swedit" sender:nil];
+             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         case 3:
-            
+             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         case 4:
-            
+             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         default:
             break;
@@ -320,7 +321,6 @@
     }else{
         mbtitle.text = @"";
     }
-    
 }
 
 
@@ -339,17 +339,12 @@
 //        SWYQViewController *view = (SWYQViewController *)segue.destinationViewController;
 //        view.unquieId = unquieId;
 //        view.nefmbdw = nefmbdw;
-        [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
-        
     }else if ([segue.identifier compare:@"chedit"] == NSOrderedSame){
-        [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
         
     }else if ([segue.identifier compare:@"zdedit"] == NSOrderedSame){
-        [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
         
     }
 }
-
 
 //- (IBAction)hl_onclick:(id)sender {
 //    [self performSegueWithIdentifier:@"hledit" sender:nil];
