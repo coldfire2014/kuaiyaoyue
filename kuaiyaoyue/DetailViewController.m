@@ -249,7 +249,7 @@
     }else{
         if (selectRow != -1) {
             selectRow = indexPath.row;
-            NSIndexPath* old = [NSIndexPath indexPathForRow:oldselect inSection:1];
+            NSIndexPath* old = [NSIndexPath indexPathForRow:oldselect inSection:0];
             [self.tableView reloadRowsAtIndexPaths:@[old] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
         selectRow = indexPath.row;
