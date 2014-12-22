@@ -83,17 +83,6 @@
 
 }
 
--(void)j_spring_security_check:(NSString *)username password:(NSString *)password{
-    [HttpManage j_spring_security_check:username password:password phoneId:[UDObject getTSID] j_username:username j_password:password isJson:@"true" cb:^(BOOL isOK, NSDictionary *dic) {
-        if (isOK) {
-            NSString *token = [dic objectForKey:@"token"];
-            [UDObject setUserInfo:username userName:@"" token:token];
-        }else{
-            
-        }
-    }];
-}
-
 -(void)GetRecord{
     [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" cb:^(BOOL isOK, NSDictionary *array) {
         NSLog(@"%@",array);

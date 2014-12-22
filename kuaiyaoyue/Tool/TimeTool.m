@@ -16,10 +16,6 @@
     
     NSDate * date = [NSDate date];
     long newtime = (long)[date timeIntervalSince1970];
-    
-    
-    
-    
     return nil;
 }
 
@@ -58,7 +54,8 @@
             break;
     }
     
-    NSString * string=[NSString stringWithFormat:@"%04d-%02d-%02d  %02d:%02ld:%02ld",[component year],[component month],[component day],[component hour],(long)[component minute],(long)[component second]];
+//    NSString * string=[NSString stringWithFormat:@"%04d/%02d/%02d %02d:%02ld:%02ld",[component year],[component month],[component day],[component hour],(long)[component minute],(long)[component second]];
+    NSString * string=[NSString stringWithFormat:@"%04d-%02d-%02d %02d:%02ld",[component year],[component month],[component day],[component hour],(long)[component minute]];
     return string;
 }
 
