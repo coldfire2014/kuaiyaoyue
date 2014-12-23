@@ -14,7 +14,7 @@
 @property (weak, nonatomic) NSString *unquieId;
 @property (weak, nonatomic) NSString *nefmbdw;
 
-- (IBAction)send_onclick:(id)sender;
-- (IBAction)sendandshare_onclick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *send_view;
+@property (weak, nonatomic) IBOutlet UIView *sendshare_view;
 
 @end

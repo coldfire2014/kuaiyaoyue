@@ -532,10 +532,10 @@
 				84FE0B891A426E65005A9599 /* Model */,
 				844825EA1A31A46A0018240E /* HLEditViewController.h */,
 				844825EB1A31A46A0018240E /* HLEditViewController.m */,
-				844825ED1A31A4800018240E /* CHWLEditorViewController.h */,
-				844825EE1A31A4800018240E /* CHWLEditorViewController.m */,
 				844825F01A31A48A0018240E /* SWYQViewController.h */,
 				844825F11A31A48A0018240E /* SWYQViewController.m */,
+				844825ED1A31A4800018240E /* CHWLEditorViewController.h */,
+				844825EE1A31A4800018240E /* CHWLEditorViewController.m */,
 				844825F71A31A9BA0018240E /* CustomViewController.h */,
 				844825F81A31A9BA0018240E /* CustomViewController.m */,
 			);

@@ -22,11 +22,17 @@
 }
 
 - (IBAction)time_onclick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(CVDelegate:didTapAtIndex:)]){
+        [self.delegate CVDelegate:self didTapAtIndex:0];}
 }
 
 - (IBAction)endtime_onclick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(CVDelegate:didTapAtIndex:)]){
+        [self.delegate CVDelegate:self didTapAtIndex:1];}
 }
 
 - (IBAction)music_onclick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(CVDelegate:didTapAtIndex:)]){
+        [self.delegate CVDelegate:self didTapAtIndex:2];}
 }
 @end

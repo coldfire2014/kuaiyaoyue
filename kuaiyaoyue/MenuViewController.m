@@ -12,6 +12,7 @@
 #import "TemplateViewController.h"
 #import "UIImageView+LBBlurredImage.h"
 #import "StatusBar.h"
+#import "CustomViewController.h"
 
 @interface MenuViewController ()
 
@@ -22,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"返回";
     self.view.backgroundColor = [UIColor clearColor];
     UIImageView* bk = [[UIImageView alloc] initWithImage:self.bgimg];
     
@@ -197,7 +199,8 @@
 - (void)didTapFour{
     self.tapID = 404;
 //    [self performSegueWithIdentifier:@"showTemplate" sender:@"zdy"];
-     [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步其他模块。" inTime:0.51];
+    [self performSegueWithIdentifier:@"zdyedit" sender:nil];
+//     [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步其他模块。" inTime:0.51];
     
 }
 
@@ -207,10 +210,17 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    TemplateViewController* des = (TemplateViewController*)segue.destinationViewController;
-    des.bgimg = (UIImage*)self.bgimg;
-    des.type = (NSString*)sender;
-    NSLog(@"%@",(NSString*)sender);
+    
+    if ([segue.identifier compare:@"zdyedit"] == NSOrderedSame){
+        CustomViewController *view = (CustomViewController*)segue.destinationViewController;
+        
+    }else{
+        TemplateViewController* des = (TemplateViewController*)segue.destinationViewController;
+        des.bgimg = (UIImage*)self.bgimg;
+        des.type = (NSString*)sender;
+        NSLog(@"%@",(NSString*)sender);
+    }
+    
     
 }
 

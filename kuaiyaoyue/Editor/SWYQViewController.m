@@ -28,6 +28,8 @@
     BOOL is_yl;
     int count;
     MoreView *moreview;
+    NSMutableArray *addimg;
+    int row_index;
     
     AssetHelper* assert;
     ShowData *show;
@@ -40,6 +42,12 @@
     UIScrollView *scrollview;
     NSMutableArray *data;
     NSMutableArray *imgdata;
+    
+    NSString *jh_name;
+    NSString *address_name;
+    NSString *xlr_name;
+    NSString *xxfs_name;
+    NSString *hdjj_name;
     
     NSString *mp3url;
     NSString *mp3name;
@@ -78,6 +86,16 @@
     [gridview registerNib:nib forCellWithReuseIdentifier:@"PhotoCell"];
     [self getHistorical];
     [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
+    
+    _send_view.userInteractionEnabled = YES;
+    _sendshare_view.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(send_onclick:)];
+    
+    [_send_view addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendandshare_onclick:)];
+    
+    [_sendshare_view addGestureRecognizer:tap1];
     
 }
 
@@ -403,5 +421,169 @@
     
     return YES;
 }
+
+- (void)send_onclick:(UITapGestureRecognizer *)gr{
+    [self SendUp];
+}
+
+- (void)sendandshare_onclick:(UITapGestureRecognizer *)gr{
+    
+}
+
+-(void)SendUp{
+    jh_name = moreview.jh_edit.text;
+    address_name = moreview.address_edit.text;
+    xlr_name = moreview.xlr_edit.text;
+    xxfs_name = moreview.xlfs_edit.text;
+    
+    if (jh_name.length > 0 && address_name.length > 0 && hltime.length > 0 && bmendtime.length > 0 && xlr_name.length > 0 && xxfs_name.length > 0) {
+        [self setbg];
+    }else{
+        [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.5];
+    }
+    
+}
+
+-(void)setbg{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *urlpath = [documentsDirectory stringByAppendingString:_nefmbdw];
+    UIImage *bgimg = [self getimg:urlpath];
+    [self upmbdt:bgimg];
+}
+
+-(UIImage *)getimg :(NSString *) str{
+    NSArray *dataarray = [[DataBaseManage getDataBaseManage] GetInfo:_unquieId];
+    NSInfoImg* infodata = [[NSInfoImg alloc] initWithbgImagePath:str];//背景图文件路径
+    
+    CGFloat red1 = 0.0;
+    CGFloat green1 = 0.0;
+    CGFloat blue1 = 0.0;
+    
+    for (int i = 0; i < [dataarray count]; i++) {
+        Info *info = [dataarray objectAtIndex:i];
+        NSString *parameterName = info.nefparametername;
+        CGFloat x = [info.nefx floatValue];
+        CGFloat y = [info.nefy floatValue];
+        CGFloat w = [info.nefwidth floatValue];
+        CGFloat h = [info.nefheight floatValue];
+        NSString *rgb = info.neffontcolor;
+        NSString *a = [rgb substringToIndex:3];
+        a = [a substringFromIndex:1];
+        CGFloat b = strtoul([a UTF8String],0,16);
+        NSString *c = [rgb substringToIndex:5];
+        c = [c substringFromIndex:3];
+        CGFloat d = strtoul([c UTF8String],0,16);
+        NSString *f = [rgb substringFromIndex:5];
+        CGFloat e = strtoul([f UTF8String],0,16);
+        CGFloat size = [info.neffontsize floatValue];
+        
+        red1 = b;
+        green1 = d;
+        blue1 = e;
+        
+        if ([parameterName isEqualToString:@"partyName"]) {
+            
+            [infodata addInfoWithValue:moreview.jh_edit.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+            
+        }else if ([parameterName isEqualToString:@"timestamp"]) {
+            
+            [infodata addInfoWithValue:moreview.time_label.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+            
+        }else if ([parameterName isEqualToString:@"address"]) {
+            [infodata addInfoWithValue:moreview.address_edit.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+        }else if ([parameterName isEqualToString:@"description"]) {
+        
+            [infodata addInfoWithValue:moreview.show_summary.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:NO:NO];
+        }
+    }
+    NSArray *fixeds = [[DataBaseManage getDataBaseManage] GetFixeds:_unquieId];
+    for (Fixeds *info in fixeds) {
+        CGFloat x = info.nefX;
+        CGFloat y = info.nefY;
+        CGFloat w = info.nefWidth;
+        CGFloat h = info.nefHeight;
+        CGFloat size = info.nefFontSize;
+        [infodata addInfoWithValue:info.nefContent andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+    }
+    UIImage *bgimg = [infodata getSaveImg :YES];
+    return bgimg;
+}
+
+-(void)upmbdt:(UIImage *)img{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    addimg = [[NSMutableArray alloc] init];
+    [UDObject setMbimg:[NSString stringWithFormat:@"../Image/%@",uuid]];
+    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+    
+    if (is_yl) {
+        [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
+        [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
+            NSLog(@"%@",URL);
+            if (isOK) {
+                imgdata = [[NSMutableArray alloc] init];
+                if ([data count] - 1 > 0) {
+                    row_index = 0;
+                    GridInfo *info = [data objectAtIndex:row_index];
+                    [self postupload:info.img :URL] ;
+                }else{
+                    NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
+//                    [self marry:_unquieId :xn_name :xl_name :address_name :arr :hltime :URL :mp3url :bmendtime];
+                }
+            }else{
+                [SVProgressHUD dismiss];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+            }
+        }];
+    }else{
+//        if ([data count] - 1 > 0) {
+//            for (int i = 0; i<[data count] - 1; i++) {
+//                GridInfo *info = [data objectAtIndex:row_index];
+//                CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+//                NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+//                uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+//                NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+//                [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
+//                [UIImageJPEGRepresentation(info.img,0.8) writeToFile:imgpath atomically:YES];
+//            }
+//        }
+//        NSArray *arr = [[NSArray alloc] initWithArray:addimg];
+//        NSString *hlarr = [arr componentsJoinedByString:@","];
+//        [UDObject sethl_imgarr:hlarr];
+//        [self performSegueWithIdentifier:@"preview" sender:nil];
+//    }
+}
+
+-(void)postupload :(UIImage *) img :(NSString *)URL{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
+    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+    [HttpManage uploadTP:img name:uuid  cb:^(BOOL isOK, NSString *arry) {
+        if (isOK) {
+            //解析服务器图片名称
+            [imgdata addObject:arry];
+            row_index ++;
+            if (row_index > [data count] - 2) {
+                NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
+//                [self marry:_unquieId :xn_name :xl_name :address_name :arr :hltime :URL :mp3url :bmendtime];
+                
+            }else{
+                GridInfo *info = [data objectAtIndex:row_index];
+                [self postupload:info.img :URL];
+            }
+        }else{
+            [SVProgressHUD dismiss];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+        }
+    }];
+}
+
+
 
 @end

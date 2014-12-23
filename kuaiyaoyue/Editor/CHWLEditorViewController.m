@@ -23,7 +23,7 @@
 #import "StatusBar.h"
 #import "PlayView.h"
 
-@interface CHWLEditorViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate>{
+@interface CHWLEditorViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,PVDelegate>{
     BOOL is_yl;
     int count;
     PlayView *playview;
@@ -97,7 +97,7 @@
     playview = [[[NSBundle mainBundle] loadNibNamed:@"PlayView" owner:self options:nil] firstObject];
     playview.frame = CGRectMake(0, 0, self.view.frame.size.width, playview.frame.size.height);
     playview.backgroundColor = [UIColor clearColor];
-//    playview.delegate = self;
+    playview.delegate = self;
     playview.jh_edit.delegate = self;
     playview.address_edit.delegate = self;
     playview.xlr_edit.delegate = self;
@@ -276,28 +276,25 @@
     }];
 }
 
-//- (void)MVDelegate:(MoreView *)cell didTapAtIndex:(int) type{
-//    
-//    if (type == 0) {
-//        time_type = YES;
-//        [self.view endEditing:NO];
-//        [UIView animateWithDuration:0.4f animations:^{
-//            show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
-//        }];
-//    }else if (type == 1){
-//        [self.view endEditing:NO];
-//        if (hltime != nil) {
-//            time_type = NO;
-//            NSDate * date=[NSDate dateWithTimeIntervalSince1970:([hltime longLongValue]/1000)];
-//            [show.picker setMaximumDate:date];
-//            [UIView animateWithDuration:0.4f animations:^{
-//                show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
-//            }];
-//        }
-//    }else if (type == 2){
-//        [self performSegueWithIdentifier:@"music" sender:nil];
-//    }
-//}
+- (void)PVDelegate:(PlayView *)cell didTapAtIndex:(int) type{
+    if (type == 0) {
+        time_type = YES;
+        [self.view endEditing:NO];
+        [UIView animateWithDuration:0.4f animations:^{
+            show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
+        }];
+    }else if (type == 1){
+        [self.view endEditing:NO];
+        if (hltime != nil) {
+            time_type = NO;
+            NSDate * date=[NSDate dateWithTimeIntervalSince1970:([hltime longLongValue]/1000)];
+            [show.picker setMaximumDate:date];
+            [UIView animateWithDuration:0.4f animations:^{
+                show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
+            }];
+        }
+    }
+}
 
 - (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
     if (timebh != nil) {

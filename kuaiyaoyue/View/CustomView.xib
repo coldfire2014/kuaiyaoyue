@@ -66,7 +66,7 @@
                 </view>
                 <view contentMode="scaleToFill" id="M6C-Of-KO4">
                     <rect key="frame" x="0.0" y="103" width="320" height="219"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="rs1-pc-b6v">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -203,7 +203,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="hWs-Df-qFg">
-                    <rect key="frame" x="0.0" y="334" width="320" height="161"/>
+                    <rect key="frame" x="0.0" y="334" width="320" height="170"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="uOT-UP-yiT">
@@ -234,16 +234,11 @@
                             </collectionViewFlowLayout>
                             <cells/>
                         </collectionView>
-                        <view contentMode="scaleToFill" id="PqD-nR-UfE">
-                            <rect key="frame" x="0.0" y="160" width="320" height="1"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="ony-kD-FQK">
-                    <rect key="frame" x="0.0" y="506" width="320" height="44"/>
+                    <rect key="frame" x="0.0" y="515" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="lMf-xD-Rfs">
@@ -296,9 +291,9 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bottom_view" destination="hWs-Df-qFg" id="9wN-eu-y2u"/>
                 <outlet property="content_edit" destination="dWo-e6-jmG" id="Upq-gI-WWR"/>
                 <outlet property="endtime_label" destination="ref-eh-ecH" id="umB-Rh-602"/>
-                <outlet property="girdview_line" destination="PqD-nR-UfE" id="lHB-yI-6G6"/>
                 <outlet property="gridview" destination="flG-Ef-BIr" id="W8X-E0-UgV"/>
                 <outlet property="music_label" destination="GfY-KZ-saq" id="uuo-Kk-mEh"/>
                 <outlet property="music_view" destination="ony-kD-FQK" id="euo-XR-WGg"/>

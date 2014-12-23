@@ -246,6 +246,11 @@
                     <rect key="frame" x="0.0" y="324" width="320" height="161"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <view contentMode="scaleToFill" id="c7V-2e-Pye">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_c_lady" id="jhT-To-0C7">
                             <rect key="frame" x="9" y="10" width="24" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -286,7 +291,7 @@
                 <outlet property="xl_edit" destination="jza-6p-L99" id="Cg3-kV-Ust"/>
                 <outlet property="xn_edit" destination="g1D-Zb-C86" id="xqv-xm-5Ut"/>
             </connections>
-            <point key="canvasLocation" x="280" y="212.5"/>
+            <point key="canvasLocation" x="280" y="212"/>
         </view>
     </objects>
     <resources>

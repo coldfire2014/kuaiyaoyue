@@ -12,4 +12,6 @@
 
 
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
+@property int type;
+
 @end
