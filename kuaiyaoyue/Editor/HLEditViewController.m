@@ -154,7 +154,13 @@
             hlev.music_label.text = mp3name;
             mp3url = [UDObject gethlmusic];
         }
-        NSArray *arr = [[UDObject gethlimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        NSArray *arr = [[UDObject getsw_imgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        NSString *name = @"";
+        if ([arr count] > 0) {
+            name = [arr objectAtIndex:0];
+        }
+        if (name.length > 0) {
+        
         for (NSString *name in arr) {
            
             NSArray *array = [name componentsSeparatedByString:@"/"];
@@ -165,6 +171,7 @@
             [_data addObject:info];
         }
         count -= [arr count];
+        }
     }
     [self initImgData];
 }

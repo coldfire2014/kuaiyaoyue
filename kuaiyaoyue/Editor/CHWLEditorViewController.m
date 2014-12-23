@@ -28,6 +28,8 @@
     BOOL is_yl;
     int count;
     PlayView *playview;
+    NSMutableArray *addimg;
+    int row_index;
     
     AssetHelper* assert;
     ShowData *show;
@@ -50,6 +52,12 @@
     CGFloat curCount;
     double lowPassResults;
     NSString *recordedFile;
+    
+    NSString *jh_name;
+    NSString *address_name;
+    NSString *xlr_name;
+    NSString *xxfs_name;
+    NSString *wxts_name;
 }
 
 @end
@@ -59,6 +67,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    audioname = @"";
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
     label.text = @"快邀约";
@@ -84,6 +93,8 @@
     [gridview registerNib:nib forCellWithReuseIdentifier:@"PhotoCell"];
     [self getHistorical];
     
+    playview.audio_showview.userInteractionEnabled = YES;
+    
     [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(send_onclick:)];
@@ -93,7 +104,7 @@
     
     [_sendshare_view addGestureRecognizer:tap1];
     
-    playview.audio_showview.userInteractionEnabled = YES;
+    
     AVAudioSession *session = [AVAudioSession sharedInstance];
     NSError *sessionError;
     [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
@@ -129,8 +140,6 @@
 }
 
 -(void)ypviewsx1{
-    
-    
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self
                                                                                             action:@selector(LongPressed1:)];
     
@@ -183,23 +192,14 @@
         
         //上传音频
         if (curCount >= 1) {
-//            [self.anyp_view setHidden:YES];
-//            [self.yp_text setHidden:YES];
-//            [self.luyin_view setHidden:YES];
-//            [self.bfyp_view setHidden:NO];
+            [playview.audio_view setHidden:NO];
+            [playview.del_button setHidden:NO];
         }
         else{
             recordedFile = nil;
-            audioname = nil;
+            audioname = @"";
             [SVProgressHUD showErrorWithStatus:@"发送时间过短" duration:1];
         }
-        
-//        [_luyin_4 setHidden:YES];
-//        [_luyin_3 setHidden:YES];
-//        [_luyin_2 setHidden:YES];
-//        [_luyin_1 setHidden:YES];
-//        [_luyin_0 setHidden:NO];
-//        [_ly_view setHidden:YES];
     }
 }
 
@@ -266,6 +266,10 @@
 }
 
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    [self.view endEditing:NO];
+}
+
 -(void)addview{
     
     scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 50 - 64)];
@@ -299,9 +303,43 @@
 
 -(void)getHistorical{
     count = 9;
-//    if ([UDObject getxl_name].length > 0) {
-//        
-//    }
+    if ([UDObject getwljh_name].length > 0) {
+        playview.jh_edit.text = [UDObject getwljh_name];
+        hltime = [UDObject gewltime];
+        bmendtime = [UDObject getwlbmendtime];
+        playview.time_label.text = [TimeTool getFullTimeStr:[hltime longLongValue]/1000];
+        playview.bmtime_label.text = [TimeTool getFullTimeStr:[bmendtime longLongValue]/1000];
+        playview.address_edit.text = [UDObject getwladdress_name];
+        playview.xlr_edit.text = [UDObject getwllxr_name];
+        playview.xlfs_edit.text = [UDObject getwllxfs_name];
+        playview.show_summary.text = [UDObject getwlts_name];
+        
+        if ([UDObject getwlaudio].length > 0) {
+            NSArray *array = [[UDObject getwlaudio] componentsSeparatedByString:@"/"];
+            audioname = [array objectAtIndex:([array count] - 1)];
+            recordedFile = [[FileManage sharedFileManage] GetYPFile:audioname];
+            [playview.audio_view setHidden:NO];
+            [playview.del_button setHidden:NO];
+        }
+        
+        NSArray *arr = [[UDObject getwlimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        NSString *name = @"";
+        if ([arr count] > 0) {
+            name = [arr objectAtIndex:0];
+        }
+        if (name.length > 0) {
+            
+            for (NSString *name in arr) {
+                NSArray *array = [name componentsSeparatedByString:@"/"];
+                NSString *imgname = [array objectAtIndex:([array count] - 1)];
+                NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: imgname];
+                UIImage *img = [[UIImage alloc]initWithContentsOfFile:imgpath];
+                GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
+                [data addObject:info];
+            }
+            count -= [arr count];
+        }
+    }
     [self initImgData];
 }
 
@@ -471,6 +509,16 @@
                 show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
             }];
         }
+    }else if (type == 2){
+        if (recordedFile.length > 0) {
+            [self AudioPlay];
+        }
+    }else if (type == 3){
+        recordedFile = nil;
+        audioname = @"";
+        [playview.audio_view setHidden:YES];
+        [playview.del_button setHidden:YES];
+
     }
 }
 
@@ -536,12 +584,231 @@
     return YES;
 }
 
+-(void)AudioPlay{
+    NSError *playerError;
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: recordedFile] error:&playerError];
+    [player prepareToPlay];
+    player.volume = 10.0f;
+    player.delegate = self;
+    if (player == nil)
+    {
+        NSLog(@"ERror creating player: %@", [playerError description]);
+    }
+    //    player.delegate = self;
+    if([player isPlaying])
+    {
+        [player pause];
+    }
+    //If the track is not player, play the track and change the play button to "Pause"
+    else
+    {
+        [player play];
+    }
+}
+
 - (void)send_onclick:(UITapGestureRecognizer *)gr{
-    
+    [self SendUp];
 }
 
 - (void)sendandshare_onclick:(UITapGestureRecognizer *)gr{
     
 }
+
+
+-(void)SendUp{
+    jh_name = playview.jh_edit.text;
+    address_name = playview.address_edit.text;
+    xlr_name = playview.xlr_edit.text;
+    xxfs_name = playview.xlfs_edit.text;
+    
+    if (jh_name.length > 0 && address_name.length > 0 && hltime.length > 0 && bmendtime.length > 0 && xlr_name.length > 0 && xxfs_name.length > 0) {
+        [self setbg];
+    }else{
+        [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.5];
+    }
+    
+}
+
+-(void)setbg{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *urlpath = [documentsDirectory stringByAppendingString:_nefmbdw];
+    UIImage *bgimg = [self getimg:urlpath];
+    [self upmbdt:bgimg];
+}
+
+-(UIImage *)getimg :(NSString *) str{
+    NSArray *dataarray = [[DataBaseManage getDataBaseManage] GetInfo:_unquieId];
+    NSInfoImg* infodata = [[NSInfoImg alloc] initWithbgImagePath:str];//背景图文件路径
+    
+    CGFloat red1 = 0.0;
+    CGFloat green1 = 0.0;
+    CGFloat blue1 = 0.0;
+    
+    for (int i = 0; i < [dataarray count]; i++) {
+        Info *info = [dataarray objectAtIndex:i];
+        NSString *parameterName = info.nefparametername;
+        CGFloat x = [info.nefx floatValue];
+        CGFloat y = [info.nefy floatValue];
+        CGFloat w = [info.nefwidth floatValue];
+        CGFloat h = [info.nefheight floatValue];
+        NSString *rgb = info.neffontcolor;
+        NSString *a = [rgb substringToIndex:3];
+        a = [a substringFromIndex:1];
+        CGFloat b = strtoul([a UTF8String],0,16);
+        NSString *c = [rgb substringToIndex:5];
+        c = [c substringFromIndex:3];
+        CGFloat d = strtoul([c UTF8String],0,16);
+        NSString *f = [rgb substringFromIndex:5];
+        CGFloat e = strtoul([f UTF8String],0,16);
+        CGFloat size = [info.neffontsize floatValue];
+        
+        red1 = b;
+        green1 = d;
+        blue1 = e;
+        
+        if ([parameterName isEqualToString:@"partyName"]) {
+            
+            [infodata addInfoWithValue:playview.jh_edit.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+            
+        }else if ([parameterName isEqualToString:@"timestamp"]) {
+            
+            [infodata addInfoWithValue:playview.time_label.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+            
+        }else if ([parameterName isEqualToString:@"address"]) {
+            [infodata addInfoWithValue:playview.address_edit.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+        }else if ([parameterName isEqualToString:@"description"]) {
+            
+            [infodata addInfoWithValue:playview.show_summary.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:NO:YES];
+        }
+    }
+    NSArray *fixeds = [[DataBaseManage getDataBaseManage] GetFixeds:_unquieId];
+    for (Fixeds *info in fixeds) {
+        CGFloat x = info.nefX;
+        CGFloat y = info.nefY;
+        CGFloat w = info.nefWidth;
+        CGFloat h = info.nefHeight;
+        CGFloat size = info.nefFontSize;
+        [infodata addInfoWithValue:info.nefContent andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+    }
+    UIImage *bgimg = [infodata getSaveImg :YES];
+    return bgimg;
+}
+
+-(void)upmbdt:(UIImage *)img{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    addimg = [[NSMutableArray alloc] init];
+    [UDObject setMbimg:[NSString stringWithFormat:@"../Image/%@",uuid]];
+    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+    
+    if (is_yl) {
+        [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
+        [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
+            NSLog(@"%@",URL);
+            if (isOK) {
+                imgdata = [[NSMutableArray alloc] init];
+                if (recordedFile.length > 0) {
+                    [HttpManage uploadYP:recordedFile name:audioname cb:^(BOOL isOK, NSString *URL1) {
+                        NSLog(@"%@",URL1);
+                        if (isOK) {
+                            if ([data count] - 1 > 0) {
+                                row_index = 0;
+                                GridInfo *info = [data objectAtIndex:row_index];
+                                [self postupload:info.img :URL :URL1] ;
+                            }else{
+                                NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
+                                [self party:playview.jh_edit.text :playview.xlr_edit.text :playview.xlfs_edit.text :playview.address_edit.text :arr :@"" :hltime :bmendtime :playview.show_summary.text :URL :_unquieId :URL1];
+                            }
+                        }else{
+                            [SVProgressHUD dismiss];
+                            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+                        }
+                    }];
+                }else{
+                    if ([data count] - 1 > 0) {
+                        row_index = 0;
+                        GridInfo *info = [data objectAtIndex:row_index];
+                        [self postupload:info.img :URL :@""] ;
+                    }else{
+                        NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
+                        [self party:playview.jh_edit.text :playview.xlr_edit.text :playview.xlfs_edit.text :playview.address_edit.text :arr :@"" :hltime :bmendtime :playview.show_summary.text :URL :_unquieId :@""];
+                    }
+                }
+            }else{
+                [SVProgressHUD dismiss];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+            }
+        }];
+    }else{
+        //        if ([data count] - 1 > 0) {
+        //            for (int i = 0; i<[data count] - 1; i++) {
+        //                GridInfo *info = [data objectAtIndex:row_index];
+        //                CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+        //                NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+        //                uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+        //                NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+        //                [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
+        //                [UIImageJPEGRepresentation(info.img,0.8) writeToFile:imgpath atomically:YES];
+        //            }
+        //        }
+        //        NSArray *arr = [[NSArray alloc] initWithArray:addimg];
+        //        NSString *hlarr = [arr componentsJoinedByString:@","];
+        //        [UDObject sethl_imgarr:hlarr];
+        //        [self performSegueWithIdentifier:@"preview" sender:nil];
+    }
+}
+
+-(void)postupload :(UIImage *) img :(NSString *)URL :(NSString *)URL1{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
+    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+    [HttpManage uploadTP:img name:uuid  cb:^(BOOL isOK, NSString *arry) {
+        if (isOK) {
+            //解析服务器图片名称
+            [imgdata addObject:arry];
+            row_index ++;
+            if (row_index > [data count] - 2) {
+                NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
+                [self party:playview.jh_edit.text :playview.xlr_edit.text :playview.xlfs_edit.text :playview.address_edit.text :arr :@"" :hltime :bmendtime :playview.show_summary.text :URL :_unquieId :URL1];
+                
+            }else{
+                GridInfo *info = [data objectAtIndex:row_index];
+                [self postupload:info.img :URL :URL1];
+            }
+        }else{
+            [SVProgressHUD dismiss];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+        }
+    }];
+}
+
+-(void)party:(NSString *) partyName :(NSString *)inviter :(NSString *)telephone :(NSString *)address :(NSArray *)images :(NSString *) tape :(NSString *) timestamp :(NSString *) closetime :(NSString *) description :(NSString *) background :(NSString *) unquieId :(NSString *)musicUrl{
+    
+    [SVProgressHUD dismiss];
+    [HttpManage party:[UDObject gettoken] partyName:partyName inviter:inviter telephone:(NSString *)telephone address:address images:images tape:musicUrl timestamp:timestamp closetime:closetime description:description background:background mid:unquieId cb:^(BOOL isOK, NSDictionary *array) {
+        if (isOK) {
+            NSArray *arr = [[NSArray alloc] initWithArray:addimg];
+            NSString *hlarr = [arr componentsJoinedByString:@","];
+            
+            if (musicUrl.length > 0) {
+                audioname = [NSString stringWithFormat:@"../Audio/%@",audioname];
+            }
+            [UDObject setWLContent:partyName wltime:timestamp wlbmendtime:closetime wladdress_name:address wllxr_name:inviter wllxfs_name:telephone wlts_name:description wlaudio:audioname wlimgarr:hlarr];
+            
+            [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+        }
+    }];
+}
+
 
 @end

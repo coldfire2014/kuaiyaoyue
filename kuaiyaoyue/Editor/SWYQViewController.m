@@ -105,6 +105,10 @@
     }];
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    [self.view endEditing:NO];
+}
+
 -(void)addview{
     
     scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 50 - 64)];

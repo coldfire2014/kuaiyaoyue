@@ -148,7 +148,7 @@ closeTimestamp:(NSString *)closeTimestamp
 
 //文件上传
 +(void)uploadTP:(UIImage *) image name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback;
-+(void)uploadYP:(NSString *) file cb:(void (^)(BOOL isOK, NSString *URL))callback;
++(void)uploadYP:(NSString *) file name:(NSString *)name cb:(void (^)(BOOL isOK, NSString *URL))callback;
 
 //版本查询
 +(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, NSDictionary *URL))callback;
