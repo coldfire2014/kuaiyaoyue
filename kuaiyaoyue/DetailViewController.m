@@ -331,7 +331,7 @@
 
 - (void)DatePickerValueChanged:(UIDatePicker *) sender {
     NSDate *select = [sender date]; // 获取被选中的时间
-    timebh = [NSString stringWithFormat:@"%lld", ((long long)[select timeIntervalSince1970] *1000)];
+
 }
 -(void)viewDidAppear:(BOOL)animated{
     [TalkingData trackPageBegin:@"报名列表"];
