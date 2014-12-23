@@ -709,10 +709,10 @@ closeTimestamp:(NSString *)closeTimestamp
  文件上传音频
  */
 
-+(void)postYPUpload :(NSString *)file cb:(void(^)(BOOL isOK, NSString *URL))callback{
++(void)uploadYP :(NSString *)file name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback{
     
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:HTTPURL]];
-    [manager POST:@"NefImages/upload.aspx" parameters:nil timeout:11 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:@"invitation/nozzle/NefImages/upload.aspx" parameters:nil timeout:11 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData *data = [NSData dataWithContentsOfFile: file];
         [formData appendPartWithFileData:data name:@"files" fileName:@"cs.wav" mimeType:@"audio/wav"];
         

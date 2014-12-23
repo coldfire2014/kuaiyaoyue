@@ -171,4 +171,46 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"sw_imgarr"];
 }
 
++(void)setWLContent:(NSString *)wljh_name wltime:(NSString *)wltime wlbmendtime:(NSString *)wlbmendtime wladdress_name :(NSString *)wladdress_name wllxr_name:(NSString *)wllxr_name wllxfs_name:(NSString *) wllxfs_name wlts_name:(NSString *)wlts_name wlaudio:(NSString *)wlaudio wlimgarr:(NSString *)wlimgarr{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:wljh_name forKey:@"wljh_name"];
+    [userInfo setValue:wltime forKey:@"wltime"];
+    [userInfo setValue:wlbmendtime forKey:@"wlbmendtime"];
+    [userInfo setValue:wladdress_name forKey:@"wladdress_name"];
+    [userInfo setValue:wllxr_name forKey:@"wllxr_name"];
+    [userInfo setValue:wllxfs_name forKey:@"wllxfs_name"];
+    [userInfo setValue:wlts_name forKey:@"wlts_name"];
+    [userInfo setValue:wlaudio forKey:@"wlaudio"];
+    [userInfo setValue:wlimgarr forKey:@"wlimgarr"];
+    [userInfo synchronize];
+}
+
++(NSString *)getwljh_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wljh_name"];
+}
++(NSString *)gewltime{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wltime"];
+}
++(NSString *)getwlbmendtime{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wlbmendtime"];
+}
++(NSString *)getwladdress_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wladdress_name"];
+}
++(NSString *)getwllxr_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wllxr_name"];
+}
++(NSString *)getwllxfs_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wllxfs_name"];
+}
++(NSString *)getwlts_name{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wlts_name"];
+}
++(NSString *)getwlaudio{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wlaudio"];
+}
++(NSString *)getwlimgarr{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wlimgarr"];
+}
+
 @end

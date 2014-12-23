@@ -58,4 +58,16 @@
 +(NSString *)getsw_musicname;
 +(NSString *)getsw_imgarr;
 
+//吃喝玩乐
++(void)setWLContent:(NSString *)wljh_name wltime:(NSString *)wltime wlbmendtime:(NSString *)wlbmendtime wladdress_name :(NSString *)wladdress_name wllxr_name:(NSString *)wllxr_name wllxfs_name:(NSString *) wllxfs_name wlts_name:(NSString *)wlts_name wlaudio:(NSString *)wlaudio wlimgarr:(NSString *)wlimgarr;
++(NSString *)getwljh_name;
++(NSString *)gewltime;
++(NSString *)getwlbmendtime;
++(NSString *)getwladdress_name;
++(NSString *)getwllxr_name;
++(NSString *)getwllxfs_name;
++(NSString *)getwlts_name;
++(NSString *)getwlaudio;
++(NSString *)getwlimgarr;
+
 @end

@@ -28,4 +28,25 @@
         [self.delegate PVDelegate:self didTapAtIndex:1];}
 }
 
+- (IBAction)bf_onclick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(PVDelegate:didTapAtIndex:)]){
+        [self.delegate PVDelegate:self didTapAtIndex:2];}
+
+}
+- (IBAction)del_onclick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(PVDelegate:didTapAtIndex:)]){
+        [self.delegate PVDelegate:self didTapAtIndex:3];}
+}
+
+- (IBAction)jh_next:(id)sender {
+}
+
+- (IBAction)address_next:(id)sender {
+}
+
+- (IBAction)lxr_next:(id)sender {
+}
+
+- (IBAction)lxfs_nex:(id)sender {
+}
 @end

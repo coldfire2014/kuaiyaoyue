@@ -28,6 +28,13 @@
 @property (weak, nonatomic) IBOutlet UIView *audio_showview;
 @property (weak, nonatomic) IBOutlet UIView *audiobottomview;
 @property (weak, nonatomic) IBOutlet UIView *bottom_view;
+- (IBAction)bf_onclick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *del_button;
+- (IBAction)del_onclick:(id)sender;
+- (IBAction)jh_next:(id)sender;
+- (IBAction)address_next:(id)sender;
+- (IBAction)lxr_next:(id)sender;
+- (IBAction)lxfs_nex:(id)sender;
 
 @property (nonatomic, weak) id<PVDelegate> delegate;
 
