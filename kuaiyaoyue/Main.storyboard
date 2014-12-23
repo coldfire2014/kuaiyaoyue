@@ -45,7 +45,7 @@
                         <segue destination="oWB-DN-aF8" kind="show" identifier="hledit" id="Oey-PZ-F9W"/>
                         <segue destination="7YK-37-kxW" kind="show" identifier="swedit" id="keJ-rR-p7N"/>
                         <segue destination="B8p-9i-iFV" kind="show" identifier="chedit" id="x3h-Pp-84V"/>
-                        <segue destination="NFc-c8-4fs" kind="show" identifier="yl" id="cFn-3V-9M3"/>
+                        <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="cFn-3V-9M3"/>
                         <segue destination="8mc-rE-7os" kind="show" identifier="zdyedit" id="ztp-xN-fnN"/>
                     </connections>
                 </viewController>
@@ -80,15 +80,11 @@
                     </view>
                     <connections>
                         <outlet property="webview" destination="uce-70-erm" id="sCZ-qV-5yn"/>
-                        <segue destination="oWB-DN-aF8" kind="show" identifier="hledit" id="FZT-Wq-vqX"/>
-                        <segue destination="7YK-37-kxW" kind="show" identifier="chedit" id="yXU-Vc-xFb"/>
-                        <segue destination="B8p-9i-iFV" kind="show" identifier="chedit" id="1Qf-a2-pbq"/>
-                        <segue destination="8mc-rE-7os" kind="show" identifier="zdyedit" id="UoY-ek-b61"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ln4-5M-Day" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1266" y="589"/>
+            <point key="canvasLocation" x="1534" y="581"/>
         </scene>
         <!--Music View Controller-->
         <scene sceneID="qCk-ie-AhB">
@@ -1428,7 +1424,7 @@
                     <connections>
                         <outlet property="send_view" destination="Si2-qB-hvF" id="agO-wM-wqv"/>
                         <outlet property="sendshare_view" destination="2sm-aR-GzP" id="IDo-ap-Isz"/>
-                        <segue destination="NFc-c8-4fs" kind="show" identifier="yl" id="qae-G8-0oD"/>
+                        <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="qae-G8-0oD"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="22X-oD-zs7"/>
                         <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="HVf-vj-jq7"/>
                     </connections>
@@ -1599,7 +1595,7 @@
                     <connections>
                         <outlet property="send_view" destination="GQw-Y7-Wu1" id="KLK-Jo-gur"/>
                         <outlet property="sendshare_view" destination="LjE-pN-okC" id="afr-Ui-ImP"/>
-                        <segue destination="NFc-c8-4fs" kind="show" identifier="yl" id="Tpj-6l-Acb"/>
+                        <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="Tpj-6l-Acb"/>
                         <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="fpr-vR-MAe"/>
                     </connections>
                 </viewController>
@@ -1776,10 +1772,7 @@
         <segue reference="D53-YK-KM5"/>
         <segue reference="X3g-3s-8JD"/>
         <segue reference="cEa-HE-o2s"/>
-        <segue reference="Oey-PZ-F9W"/>
-        <segue reference="keJ-rR-p7N"/>
-        <segue reference="x3h-Pp-84V"/>
-        <segue reference="Tpj-6l-Acb"/>
+        <segue reference="luI-zA-BtH"/>
         <segue reference="fpr-vR-MAe"/>
     </inferredMetricsTieBreakers>
 </document>

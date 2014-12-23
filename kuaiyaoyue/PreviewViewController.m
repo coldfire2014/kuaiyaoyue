@@ -65,23 +65,76 @@
 
 -(NSString *)changevalue{
     
-    NSString *img = [UDObject gethlimgarr];
-    NSArray *arr;
-    if ([img length] > 0) {
-        arr = [img componentsSeparatedByString:NSLocalizedString(@",", nil)];
-    }else{
-        arr = [[NSArray alloc] init];
-    }
     
-    NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                         @"",@"groom",
-                         @"",@"bride",
-                         @"",@"date",
-                         @"",@"address",
-                         @"",@"location",
-                         arr,@"images",
-                         [UDObject getMbimg],@"backgroundImage",
-                         nil];
+    
+    NSDictionary *dic = nil;
+    //0婚礼,1商务,2玩乐,3自定义
+    if (_type == 0) {
+        NSString *img = [UDObject gethlimgarr];
+        NSArray *arr;
+        if ([img length] > 0) {
+            arr = [img componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        }else{
+            arr = [[NSArray alloc] init];
+        }
+        NSString *musicUrl = [NSString stringWithFormat:@"../Audio/%@",[UDObject gethlmusicname]];
+        
+        dic = [[NSDictionary alloc] initWithObjectsAndKeys:
+               [UDObject getaddress_name],@"address",
+               arr,@"images",
+               [UDObject getMbimg],@"backgroundImage",
+               musicUrl,@"musicUrl",
+               nil];
+    }else if (_type == 1){
+        NSString *img = [UDObject getsw_imgarr];
+        NSArray *arr;
+        if ([img length] > 0) {
+            arr = [img componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        }else{
+            arr = [[NSArray alloc] init];
+        }
+        NSString *musicUrl = [NSString stringWithFormat:@"../Audio/%@",[UDObject getsw_musicname]];
+
+        
+        dic = [[NSDictionary alloc] initWithObjectsAndKeys:
+               [UDObject getswaddress_name],@"address",
+               arr,@"images",
+               [UDObject getMbimg],@"backgroundImage",
+               musicUrl,@"tape",
+               [UDObject getswxlr_name],@"contact",
+               [UDObject getswxlfs_name],@"telephone",
+               nil];
+    
+    }else if (_type == 2){
+        NSString *img = [UDObject getwlimgarr];
+        NSArray *arr;
+        if ([img length] > 0) {
+            arr = [img componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        }else{
+            arr = [[NSArray alloc] init];
+        }
+        dic = [[NSDictionary alloc] initWithObjectsAndKeys:
+               [UDObject getwladdress_name],@"address",
+               arr,@"images",
+               [UDObject getMbimg],@"backgroundImage",
+               [UDObject getwlaudio],@"tape",
+               [UDObject getwllxr_name],@"contact",
+               [UDObject getwllxfs_name],@"telephone",
+               nil];
+    }else if (_type == 3){
+        NSString *img = [UDObject gethlimgarr];
+        NSArray *arr;
+        if ([img length] > 0) {
+            arr = [img componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        }else{
+            arr = [[NSArray alloc] init];
+        }
+        dic = [[NSDictionary alloc] initWithObjectsAndKeys:
+               @"",@"musicUrl",
+               arr,@"images",
+               [UDObject getMbimg],@"backgroundImage",
+               nil];
+    }
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
     NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

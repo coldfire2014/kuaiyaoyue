@@ -16,15 +16,17 @@
 #import "DataBaseManage.h"
 #import "Contacts.h"
 #import "StatusBar.h"
+#import "ShowData.h"
 
-@interface DetailViewController ()<DVCCellDelegate>{
+@interface DetailViewController ()<DVCCellDelegate,SDDelegate>{
     BOOL isopen;
     NSInteger selectRow;
     NSArray *data;
     BigStateView* s;
-    NSString *timebh;
     NSString *dateAndTime;
     UIWebView *phoneCallWebView;
+    
+    ShowData *show;
 }
 
 @end
@@ -55,13 +57,20 @@
     _endtime_view.layer.cornerRadius = 21;
     _cancel_view.layer.cornerRadius = 21;
     
-    [_picker addTarget:self action:@selector(DatePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [_picker setMinimumDate:[NSDate date]];
-    NSDate *enddate=[NSDate dateWithTimeIntervalSince1970:_endtime];
-    [_picker setMaximumDate:enddate];
     
-    [_bottom_view setFrame:CGRectMake(0, 1000, _bottom_view.frame.size.width, _bottom_view.frame.size.height)];
     _tableView.separatorStyle = NO;
+    
+    
+    NSString* name = @"ShowData";
+    show = [[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] firstObject];
+    show.delegate = self;
+    show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height*3.0/2.0);
+    show.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:show];
+
+    [show.picker setMinimumDate:[NSDate date]];
+    NSDate *enddate=[NSDate dateWithTimeIntervalSince1970:_endtime];
+    [show.picker setMaximumDate:enddate];
 }
 
 -(void)changeHight{
@@ -278,9 +287,8 @@
 }
 
 - (IBAction)endtime_onclick:(id)sender {
-    [_bottom_view setHidden:NO];
     [UIView animateWithDuration:0.4f animations:^{
-        [self.bottom_view setFrame:CGRectMake(self.bottom_view.frame.origin.x,0, self.bottom_view.frame.size.width, self.bottom_view.frame.size.height)];
+        show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
     }];
 }
 
@@ -300,25 +308,24 @@
     
 }
 
-- (IBAction)sure_picker:(id)sender{
-    [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
-    [HttpManage dueDate:_uniqueId timestamp:timebh cb:^(BOOL isOK, NSDictionary *array) {
-        [SVProgressHUD dismiss];
-        if (isOK) {
-            _endtime = [timebh longLongValue]/1000;
-            [s setStartTime:[NSDate dateWithTimeIntervalSince1970:_starttime] EndTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:_datatime]];
-            NSDate *enddate=[NSDate dateWithTimeIntervalSince1970:_endtime];
-            [_picker setMaximumDate:enddate];
-            [[StatusBar sharedStatusBar] talkMsg:@"修改成功" inTime:0.51];
-        }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"修改失败" inTime:0.51];
-        }
-    }];
-}
-
-- (IBAction)qx_picker:(id)sender{
+- (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
+    if (timebh != nil) {
+        [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
+        [HttpManage dueDate:_uniqueId timestamp:timebh cb:^(BOOL isOK, NSDictionary *array) {
+            [SVProgressHUD dismiss];
+            if (isOK) {
+                _endtime = [timebh longLongValue]/1000;
+                [s setStartTime:[NSDate dateWithTimeIntervalSince1970:_starttime] EndTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:_datatime]];
+                NSDate *enddate=[NSDate dateWithTimeIntervalSince1970:_endtime];
+                [show.picker setMaximumDate:enddate];
+                [[StatusBar sharedStatusBar] talkMsg:@"修改成功" inTime:0.51];
+            }else{
+                [[StatusBar sharedStatusBar] talkMsg:@"修改失败" inTime:0.51];
+            }
+        }];
+    }
     [UIView animateWithDuration:0.4f animations:^{
-        [self.bottom_view setFrame:CGRectMake(self.bottom_view.frame.origin.x,self.view.frame.size.height, self.bottom_view.frame.size.width, self.bottom_view.frame.size.height)];
+        show.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
     }];
 }
 
