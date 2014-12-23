@@ -1597,6 +1597,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="send_view" destination="GQw-Y7-Wu1" id="KLK-Jo-gur"/>
+                        <outlet property="sendshare_view" destination="LjE-pN-okC" id="afr-Ui-ImP"/>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="yl" id="Tpj-6l-Acb"/>
                         <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="fpr-vR-MAe"/>
                     </connections>
@@ -1773,11 +1775,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="D53-YK-KM5"/>
         <segue reference="X3g-3s-8JD"/>
+        <segue reference="cEa-HE-o2s"/>
         <segue reference="Oey-PZ-F9W"/>
         <segue reference="keJ-rR-p7N"/>
         <segue reference="x3h-Pp-84V"/>
-        <segue reference="HVf-vj-jq7"/>
-        <segue reference="22X-oD-zs7"/>
-        <segue reference="qae-G8-0oD"/>
+        <segue reference="Tpj-6l-Acb"/>
+        <segue reference="fpr-vR-MAe"/>
     </inferredMetricsTieBreakers>
 </document>
