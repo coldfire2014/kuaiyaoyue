@@ -103,7 +103,7 @@
 -(void)layoutheadview{
     s = [[BigStateView alloc] initWithFrame:CGRectMake(0,0, 99, 99)];
     [s setState:StateGoing withAll:_maxnum andAdd:@""];
-    s.center = CGPointMake(_headview.bounds.size.width/2.0, _headview.bounds.size.height-58.0);
+    s.center = CGPointMake(self.view.bounds.size.width/2.0, _headview.bounds.size.height-58.0);
     // s:发送时间 。e:报名截止 g:活动时间
     [s setStartTime:[NSDate dateWithTimeIntervalSince1970:_starttime] EndTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:_datatime]];
     
