@@ -176,6 +176,7 @@ password:1235456                     //用户密码
                             @"true",@"isJson",
                             @"ios",@"equipment",version,@"version",
                             nil];
+    
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/j_spring_security_check"];
     NSLog(@"params-%@-%@",params,url);
     
@@ -185,12 +186,7 @@ password:1235456                     //用户密码
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
         NSLog(@"%@",resultDic);
-        
-        NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-        [userInfo setObject:mobilePhone forKey:@"phone"];
-        [userInfo setObject:[resultDic objectForKey:@"token"] forKey:@"userid"];
-        [userInfo synchronize];
-        callback(YES,nil);
+        callback(YES,resultDic);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSLog(@"error-%@",error);

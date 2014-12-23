@@ -75,7 +75,7 @@
 
 -(void)GetRecord{
     [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" cb:^(BOOL isOK, NSDictionary *array) {
-        NSLog(@"%@",array);
+//        NSLog(@"%@",array);
         if (isOK) {
             NSArray *customList = [array objectForKey:@"customList"];
             for (NSDictionary *dic in customList) {
@@ -443,6 +443,7 @@
         }];
         
     }
+    
     // 添加模式
 //    else if(editingStyle == UITableViewCellEditingStyleInsert){
 //        
