@@ -125,8 +125,8 @@
                                                         <constraint firstAttribute="height" constant="1" id="Ez9-yx-GMJ"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="哈哈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pm4-ov-mJV">
-                                                    <rect key="frame" x="47" y="13" width="506" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pm4-ov-mJV">
+                                                    <rect key="frame" x="40" y="12" width="520" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -136,12 +136,24 @@
                                                 <constraint firstAttribute="bottom" secondItem="y6A-Ig-nxu" secondAttribute="bottom" constant="0.5" id="3c9-0G-9iq"/>
                                                 <constraint firstAttribute="centerX" secondItem="Pm4-ov-mJV" secondAttribute="centerX" id="CMf-si-Con"/>
                                                 <constraint firstItem="y6A-Ig-nxu" firstAttribute="leading" secondItem="Nrp-UT-iI4" secondAttribute="leading" constant="9" id="GoI-7M-bl7"/>
+                                                <constraint firstItem="Pm4-ov-mJV" firstAttribute="leading" secondItem="OuK-Nq-LZi" secondAttribute="trailing" constant="9" id="GxQ-Ku-01V"/>
                                                 <constraint firstItem="Pm4-ov-mJV" firstAttribute="leading" secondItem="OuK-Nq-LZi" secondAttribute="trailing" constant="16" id="JW2-Ot-y2i"/>
                                                 <constraint firstAttribute="centerY" secondItem="Pm4-ov-mJV" secondAttribute="centerY" id="MFo-RK-kTN"/>
                                                 <constraint firstAttribute="trailing" secondItem="y6A-Ig-nxu" secondAttribute="trailing" constant="9" id="Qsu-7W-XHu"/>
                                                 <constraint firstAttribute="centerY" secondItem="OuK-Nq-LZi" secondAttribute="centerY" id="W7S-kW-7SY"/>
+                                                <constraint firstItem="OuK-Nq-LZi" firstAttribute="leading" secondItem="Nrp-UT-iI4" secondAttribute="leading" constant="9" id="dno-YW-LHF"/>
                                                 <constraint firstItem="OuK-Nq-LZi" firstAttribute="leading" secondItem="Nrp-UT-iI4" secondAttribute="leading" constant="9" id="eD2-Nu-op2"/>
+                                                <constraint firstItem="OuK-Nq-LZi" firstAttribute="leading" secondItem="Nrp-UT-iI4" secondAttribute="leading" constant="9" id="hFo-j3-kjL"/>
+                                                <constraint firstAttribute="centerX" secondItem="y6A-Ig-nxu" secondAttribute="centerX" id="jLh-7A-Vhl"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="dno-YW-LHF"/>
+                                                    <exclude reference="eD2-Nu-op2"/>
+                                                    <exclude reference="JW2-Ot-y2i"/>
+                                                    <exclude reference="Qsu-7W-XHu"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="show_content" destination="Pm4-ov-mJV" id="I9f-yw-0RB"/>
@@ -158,10 +170,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="oFs-TZ-q3d" secondAttribute="trailing" constant="-16" id="4Tf-AQ-bEp"/>
+                            <constraint firstItem="oFs-TZ-q3d" firstAttribute="leading" secondItem="lo4-K8-3XM" secondAttribute="leading" id="53R-aY-keP"/>
                             <constraint firstItem="oFs-TZ-q3d" firstAttribute="leading" secondItem="lo4-K8-3XM" secondAttribute="leadingMargin" constant="-16" id="Aa3-w4-cc4"/>
+                            <constraint firstAttribute="centerY" secondItem="oFs-TZ-q3d" secondAttribute="centerY" id="eod-CI-TSM"/>
+                            <constraint firstAttribute="centerX" secondItem="oFs-TZ-q3d" secondAttribute="centerX" id="ewx-y8-sBl"/>
                             <constraint firstItem="oFs-TZ-q3d" firstAttribute="top" secondItem="lo4-K8-3XM" secondAttribute="topMargin" id="l8x-gH-sTv"/>
                             <constraint firstItem="naS-Yi-FfW" firstAttribute="top" secondItem="oFs-TZ-q3d" secondAttribute="bottom" id="meP-4S-fFg"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4Tf-AQ-bEp"/>
+                                <exclude reference="Aa3-w4-cc4"/>
+                                <exclude reference="meP-4S-fFg"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="eee-kl-gIh"/>
                     <connections>
