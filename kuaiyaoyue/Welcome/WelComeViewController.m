@@ -38,6 +38,7 @@
     downloadDone = YES;
     NSString *name = nil;
     if (downloadDone && zipDone) {
+        NSLog(@"%@",[UDObject gettoken]);
         if ([[UDObject gettoken] length] > 0) {
             name = @"main";
         }else{
