@@ -13,4 +13,7 @@
 @property (weak, nonatomic) NSString *unquieId;
 @property (weak, nonatomic) NSString *nefmbdw;
 
+@property (weak, nonatomic) IBOutlet UIView *send_view;
+@property (weak, nonatomic) IBOutlet UIView *sendshare_view;
+
 @end

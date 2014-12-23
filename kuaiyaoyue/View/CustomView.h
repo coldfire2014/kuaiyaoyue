@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CVDelegate;
+
 @interface CustomView : UIView
 
 @property (weak, nonatomic) IBOutlet UIImageView *show_top_img;
@@ -22,7 +24,13 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *gridview;
 @property (weak, nonatomic) IBOutlet UILabel *music_label;
 @property (weak, nonatomic) IBOutlet UIView *music_view;
-@property (weak, nonatomic) IBOutlet UIView *girdview_line;
+@property (weak, nonatomic) IBOutlet UIView *bottom_view;
 
+@property (nonatomic, weak) id<CVDelegate> delegate;
+
+@end
+@protocol CVDelegate <NSObject>
+
+- (void)CVDelegate:(CustomView *)cell didTapAtIndex:(int) type;
 
 @end

@@ -21,6 +21,7 @@
                     </view>
                     <connections>
                         <segue destination="Ltv-6U-l87" kind="show" identifier="showTemplate" id="ELY-CD-8Dq"/>
+                        <segue destination="8mc-rE-7os" kind="show" identifier="zdyedit" id="X3g-3s-8JD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hij-Rl-7gw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -50,7 +51,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kj-8d-xif" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="582" y="589"/>
+            <point key="canvasLocation" x="548" y="767"/>
         </scene>
         <!--Preview View Controller-->
         <scene sceneID="adG-aU-C4Y">
@@ -395,6 +396,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="send_view" destination="STb-Px-NQ2" id="bUO-8d-SrA"/>
+                        <outlet property="sendshare_view" destination="8xB-m9-g0o" id="M5U-ri-zIz"/>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="luI-zA-BtH"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="fps-RF-Hk5"/>
                         <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="bym-b5-cxi"/>
@@ -518,6 +521,8 @@
                     </view>
                     <connections>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="cEa-HE-o2s"/>
+                        <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="72F-Gw-hpx"/>
+                        <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="TVF-8g-g97"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJx-Xq-q9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -546,7 +551,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsK-Bk-e2O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1958" y="1573"/>
+            <point key="canvasLocation" x="2206" y="-157"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="zp0-jQ-aiI">
@@ -1591,6 +1596,7 @@
                     </view>
                     <connections>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="yl" id="Tpj-6l-Acb"/>
+                        <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="fpr-vR-MAe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6r-ai-m5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1763,13 +1769,13 @@
         <image name="img_g" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tpj-6l-Acb"/>
-        <segue reference="1Qf-a2-pbq"/>
-        <segue reference="yXU-Vc-xFb"/>
-        <segue reference="UoY-ek-b61"/>
-        <segue reference="FZT-Wq-vqX"/>
-        <segue reference="cEa-HE-o2s"/>
-        <segue reference="bym-b5-cxi"/>
         <segue reference="D53-YK-KM5"/>
+        <segue reference="X3g-3s-8JD"/>
+        <segue reference="Oey-PZ-F9W"/>
+        <segue reference="keJ-rR-p7N"/>
+        <segue reference="x3h-Pp-84V"/>
+        <segue reference="luI-zA-BtH"/>
+        <segue reference="bym-b5-cxi"/>
+        <segue reference="fps-RF-Hk5"/>
     </inferredMetricsTieBreakers>
 </document>
