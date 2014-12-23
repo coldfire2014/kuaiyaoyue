@@ -11,6 +11,7 @@
 #import "WXApiObject.h"
 #import "StatusBar.h"
 #import "myImageView.h"
+#import "TalkingData.h"
 @import Accounts;
 @implementation ShareView
 
@@ -339,30 +340,38 @@
     }];
 }
 -(void)tapWx{
+    [TalkingData trackEvent:@"分享" label:@"微信"];
     [self shareWXWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.img];
 }
 -(void)tapPyq{
+    [TalkingData trackEvent:@"分享" label:@"朋友圈"];
     [self shareWXPYWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.img];
 }
 -(void)tapsinaWb{
+    [TalkingData trackEvent:@"分享" label:@"新浪微博"];
     [self shareSinaWeiboWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.img];
 }
 -(void)taptxwb{
+    [TalkingData trackEvent:@"分享" label:@"QQZone"];
 //    [self shareTencentWeiboWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.img];
     [self shareQQZoneWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.imgUrl];
 }
 -(void)taplink{
+    [TalkingData trackEvent:@"分享" label:@"复制链接"];
     NSString* msg = [[NSString alloc] initWithFormat:@"%@ %@ %@",self.title,self.msg,self.url];
     [self copyWithMsg:msg];
 }
 -(void)tapsms{
+    [TalkingData trackEvent:@"分享" label:@"短信"];
     NSString* msg = [[NSString alloc] initWithFormat:@"%@ %@ %@",self.title,self.msg,self.url];
     [self shareMsgWithMsg:msg];
 }
 -(void)tapqq{
+    [TalkingData trackEvent:@"分享" label:@"QQ"];
     [self shareQQWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.imgUrl];
 }
 -(void)tapmail{
+    [TalkingData trackEvent:@"分享" label:@"邮箱"];
     [self shareMailWithTitle:self.title andDes:self.msg andURL:self.url andHeadImg:self.img];
 }
 

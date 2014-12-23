@@ -127,8 +127,8 @@
                                                          startAngle:-M_PI_2
                                                            endAngle:2*M_PI*(nowi/alli)-M_PI_2
                                                           clockwise:YES];
-        aPath.lineCapStyle = kCGLineCapRound; //线条拐角
-        aPath.lineJoinStyle = kCGLineCapRound; //终点处理
+        aPath.lineCapStyle = kCGLineCapSquare; //线条拐角
+        aPath.lineJoinStyle = kCGLineCapSquare; //终点处理
         racetrack.path = aPath.CGPath;
         racetrack.opacity = YES;
     }

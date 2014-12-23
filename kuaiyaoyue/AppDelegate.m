@@ -13,7 +13,7 @@
 #import "HttpManage.h"
 #import "PCHeader.h"
 #import "StatusBar.h"
-
+#import "TalkingData.h"
 @interface AppDelegate (){
     BOOL is_xz;
     TencentOAuth* _tencentOAuth;
@@ -46,7 +46,8 @@
     [WXApi registerApp:@"wx06ea6c3bc82c99ac" withDescription:@"sdyydome"];
     _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1103283068"
                                             andDelegate:self];
-    
+    [TalkingData setExceptionReportEnabled:YES];
+    [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"appStore"];
     
     return YES;
 }

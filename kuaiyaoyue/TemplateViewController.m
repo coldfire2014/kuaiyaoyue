@@ -19,7 +19,7 @@
 #import "SWYQViewController.h"
 #import "StatusBar.h"
 #import "CHWLEditorViewController.h"
-
+#import "TalkingData.h"
 @interface TemplateViewController (){
     NSString *neftypeId;
     NSArray *data;
@@ -175,6 +175,7 @@
 }
 - (void)viewDidAppear:(BOOL)animated{
     //showList加载数据完成后调用
+    [TalkingData trackPageBegin:@"模板选择页"];
     if (isloading) {
         isloading = NO;
         [_tempList reloadOther];
@@ -182,6 +183,9 @@
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [TalkingData trackPageEnd:@"模板选择页"];
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController.navigationBar setHidden:YES];
@@ -207,9 +211,11 @@
 
 - (void)backAll{
     [self.navigationController popToRootViewControllerAnimated:YES];
+    [TalkingData trackEvent:@"退回主页"];
 }
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
+    [TalkingData trackEvent:@"返回新建"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -236,6 +242,7 @@
     return mainCell;
 }
 -(void)edit{
+    [TalkingData trackEvent:@"点击编辑按钮"];
     int index = [_tempList getIndex];
     Template *info = [data objectAtIndex:index];
     unquieId = [NSString stringWithFormat:@"%@",info.nefid];
@@ -273,13 +280,16 @@
     switch (type) {
         case 1:
             [self performSegueWithIdentifier:@"hledit" sender:nil];
+            [TalkingData trackEvent:@"编辑模板" label:[[NSString alloc] initWithFormat:@"婚礼编辑-%@",info.nefname]];
             break;
         case 2:
             [self performSegueWithIdentifier:@"swedit" sender:nil];
+            [TalkingData trackEvent:@"编辑模板" label:[[NSString alloc] initWithFormat:@"商务编辑-%@",info.nefname]];
 //             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         case 3:
             [self performSegueWithIdentifier:@"chedit" sender:nil];
+            [TalkingData trackEvent:@"吃喝玩乐模板" label:[[NSString alloc] initWithFormat:@"吃喝玩乐编辑-%@",info.nefname]];
 //             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         case 4:

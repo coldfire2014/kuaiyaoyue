@@ -11,7 +11,7 @@
 #import "picViewAnimate.h"
 #import "coverAnimation.h"
 #import "ZipDown.h"
-
+#import "TalkingData.h"
 @interface WelComeViewController ()
 
 @end
@@ -31,6 +31,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneDownload) name:@"DOWNLOAD_DONE" object:nil];
 }
 -(void)viewDidDisappear:(BOOL)animated{
+    [TalkingData trackPageEnd:@"加载页面"];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ZIP_DONE" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DOWNLOAD_DONE" object:nil];
 }
@@ -61,7 +62,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
+    [TalkingData trackPageBegin:@"加载页面"];
     NSString *name = nil;
     if ([[UDObject gettoken] length] > 0) {
         zipDone = YES;
@@ -71,7 +72,6 @@
         zipDone = NO;
         [ZipDown Unzip];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {

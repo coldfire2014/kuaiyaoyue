@@ -13,7 +13,7 @@
 #import "UIImageView+LBBlurredImage.h"
 #import "StatusBar.h"
 #import "CustomViewController.h"
-
+#import "TalkingData.h"
 @interface MenuViewController ()
 
 @end
@@ -168,6 +168,12 @@
     UITapGestureRecognizer* tapFour = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFour)];
     [four addGestureRecognizer:tapFour];
 }
+-(void)viewDidAppear:(BOOL)animated{
+    [TalkingData trackPageBegin:@"新建菜单"];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [TalkingData trackPageEnd:@"新建菜单"];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -187,21 +193,24 @@
 - (void)didTapOne{
     self.tapID = 401;
     [self performSegueWithIdentifier:@"showTemplate" sender:@"cihe"];
+    [TalkingData trackEvent:@"点击吃喝玩乐"];
 }
 - (void)didTapTwo{
     self.tapID = 402;
     [self performSegueWithIdentifier:@"showTemplate" sender:@"sanwu"];
+    [TalkingData trackEvent:@"点击商务"];
 }
 - (void)didTapThree{
     self.tapID = 403;
     [self performSegueWithIdentifier:@"showTemplate" sender:@"hunli"];
+    [TalkingData trackEvent:@"点击婚礼"];
 }
 - (void)didTapFour{
     self.tapID = 404;
 //    [self performSegueWithIdentifier:@"showTemplate" sender:@"zdy"];
     [self performSegueWithIdentifier:@"zdyedit" sender:nil];
 //     [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步其他模块。" inTime:0.51];
-    
+    [TalkingData trackEvent:@"点击自定义"];
 }
 
 #pragma mark - Navigation

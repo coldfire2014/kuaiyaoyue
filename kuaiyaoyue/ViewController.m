@@ -12,7 +12,7 @@
 #import "StateView.h"
 #import "BigStateView.h"
 #import "MenuViewController.h"
-
+#import "TalkingData.h"
 #import "TimeTool.h"
 
 #import "HttpManage.h"
@@ -247,7 +247,12 @@
     _showview_img.layer.cornerRadius = 36;
     
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [TalkingData trackPageBegin:@"首页"];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [TalkingData trackPageEnd:@"首页"];
+}
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
     [self GetRecord];
