@@ -165,7 +165,6 @@
     [three addGestureRecognizer:tapThree];
     UITapGestureRecognizer* tapFour = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFour)];
     [four addGestureRecognizer:tapFour];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
