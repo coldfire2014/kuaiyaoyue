@@ -25,8 +25,8 @@
     BigStateView* s;
     NSString *dateAndTime;
     UIWebView *phoneCallWebView;
-    
     ShowData *show;
+    
 }
 
 @end
