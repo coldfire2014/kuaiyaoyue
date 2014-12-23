@@ -84,6 +84,12 @@
     [self getHistorical];
 }
 
+-(void)changeHigh{
+    [UIView animateWithDuration:0.3 animations:^{
+        [self sethigh];
+    }];
+}
+
 -(void)RightBarBtnClicked:(id)sender{
     //preview
     is_yl = NO;
@@ -151,12 +157,6 @@
         count -= [arr count];
     }
     [self initImgData];
-}
-
--(void)changeHigh{
-    [UIView animateWithDuration:0.3 animations:^{
-        [self sethigh];
-    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -299,10 +299,10 @@
         hlev.gridview.frame = CGRectMake(hlev.gridview.frame.origin.x, hlev.gridview.frame.origin.y, hlev.gridview.frame.size.width, addheight);
         
     }else if(index > 3 && index <= 6){
-        hlev.bottomview.frame = CGRectMake(hlev.bottomview.frame.origin.x, hlev.bottomview.frame.origin.y, hlev.bottomview.frame.size.width, height+addheight + 10);
+        hlev.bottomview.frame = CGRectMake(hlev.bottomview.frame.origin.x, hlev.bottomview.frame.origin.y, hlev.bottomview.frame.size.width, height+addheight);
         hlev.gridview.frame = CGRectMake(hlev.gridview.frame.origin.x, hlev.gridview.frame.origin.y, hlev.gridview.frame.size.width, addheight*2);
     }else if(index > 6){
-        hlev.bottomview.frame = CGRectMake(hlev.bottomview.frame.origin.x, hlev.bottomview.frame.origin.y, hlev.bottomview.frame.size.width, height+addheight*2 + 10);
+        hlev.bottomview.frame = CGRectMake(hlev.bottomview.frame.origin.x, hlev.bottomview.frame.origin.y, hlev.bottomview.frame.size.width, height+addheight*2);
         hlev.gridview.frame = CGRectMake(hlev.gridview.frame.origin.x, hlev.gridview.frame.origin.y, hlev.gridview.frame.size.width, addheight*3);
     }
     [scrollview setContentSize:CGSizeMake(scrollview.frame.size.width,hlev.bottomview.frame.origin.y + hlev.bottomview.frame.size.height + 50)];

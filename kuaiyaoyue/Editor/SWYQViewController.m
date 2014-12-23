@@ -77,7 +77,14 @@
     UINib *nib = [UINib nibWithNibName:NSStringFromClass([PhotoCell class]) bundle:nil];
     [gridview registerNib:nib forCellWithReuseIdentifier:@"PhotoCell"];
     [self getHistorical];
+    [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
     
+}
+
+-(void)changeHigh{
+    [UIView animateWithDuration:0.3 animations:^{
+        [self sethigh];
+    }];
 }
 
 -(void)addview{
@@ -101,7 +108,6 @@
     gridview.dataSource = self;
     scrollview.delegate = self;
     [scrollview addSubview:moreview];
-    
     [scrollview setContentSize:CGSizeMake(scrollview.frame.size.width, 665)];
     
     NSString* name = @"ShowData";
@@ -109,7 +115,6 @@
     show.delegate = self;
     show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height*3.0/2.0);
     show.backgroundColor = [UIColor clearColor];
-    
     [self.view addSubview:show];
 }
 
@@ -148,22 +153,23 @@
 
 -(void)sethigh{
     long index = [data count];
-    long height = 115;
+    long height = 130 + 45 + (gridview.frame.size.width - 2*9)/3 + 9;
     long addheight = (gridview.frame.size.width - 2*9)/3 + 9;
     
     NSLog(@"%f",moreview.girdview.frame.origin.y);
-    
     if (index <= 3) {
-        moreview.bottom_view.frame = CGRectMake(0, moreview.bottom_view.frame.origin.y, moreview.bottom_view.frame.size.width, 290);
-        gridview.frame = CGRectMake(moreview.girdview.frame.origin.x, moreview.girdview.frame.origin.y, moreview.girdview.frame.size.width, height);
+        moreview.bottom_view.frame = CGRectMake(0, moreview.bottom_view.frame.origin.y, moreview.bottom_view.frame.size.width, height);
+        gridview.frame = CGRectMake(moreview.girdview.frame.origin.x, moreview.girdview.frame.origin.y, moreview.girdview.frame.size.width, addheight);
     }else if(index > 3 && index <= 6){
-        moreview.bottom_view.frame = CGRectMake(0, moreview.bottom_view.frame.origin.y, moreview.bottom_view.frame.size.width, 290+addheight);
-        gridview.frame = CGRectMake(moreview.girdview.frame.origin.x, moreview.girdview.frame.origin.y, moreview.girdview.frame.size.width, height+addheight);
+        moreview.bottom_view.frame = CGRectMake(0, moreview.bottom_view.frame.origin.y, moreview.bottom_view.frame.size.width, height+addheight);
+        gridview.frame = CGRectMake(moreview.girdview.frame.origin.x, moreview.girdview.frame.origin.y, moreview.girdview.frame.size.width, addheight*2);
     }else if(index > 6){
-        moreview.bottom_view.frame = CGRectMake(0, moreview.bottom_view.frame.origin.y, moreview.bottom_view.frame.size.width, 290+addheight*2);
-        gridview.frame = CGRectMake(moreview.girdview.frame.origin.x, moreview.girdview.frame.origin.y, moreview.girdview.frame.size.width, height+addheight*2);
+        moreview.bottom_view.frame = CGRectMake(0, moreview.bottom_view.frame.origin.y, moreview.bottom_view.frame.size.width, height+addheight*2);
+        gridview.frame = CGRectMake(moreview.girdview.frame.origin.x, moreview.girdview.frame.origin.y, moreview.girdview.frame.size.width, addheight*3);
     }
+    
     moreview.music_view.frame = CGRectMake(moreview.music_view.frame.origin.x,gridview.frame.origin.y+gridview.frame.size.height, moreview.music_view.frame.size.width, moreview.music_view.frame.size.height);
+    
     [scrollview setContentSize:CGSizeMake(scrollview.frame.size.width, moreview.bottom_view.frame.origin.y + moreview.bottom_view.frame.size.height+50)];
 }
 
