@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CHWLEditorViewController : UIViewController
+@interface CHWLEditorViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate,UIScrollViewDelegate,UITextFieldDelegate,UITextViewDelegate>
+
+@property (weak, nonatomic) NSString *unquieId;
+@property (weak, nonatomic) NSString *nefmbdw;
 
 @end

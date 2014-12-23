@@ -185,7 +185,6 @@ password:1235456                     //用户密码
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
-        NSLog(@"%@",resultDic);
         callback(YES,resultDic);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
