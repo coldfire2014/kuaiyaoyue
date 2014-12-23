@@ -54,7 +54,6 @@
 		84B446C91A32B3D000546859 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446BF1A32B3D000546859 /* UIScrollView+MJExtension.m */; };
 		84B446CA1A32B3D000546859 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446C11A32B3D000546859 /* UIScrollView+MJRefresh.m */; };
 		84B446CB1A32B3D000546859 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446C31A32B3D000546859 /* UIView+MJExtension.m */; };
-		84B446CC1A32B50500546859 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E842691A2EDF6B00A401A0 /* Main.storyboard */; };
 		84B446D01A32BAE200546859 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446CF1A32BAE200546859 /* LoginViewController.m */; };
 		84B446D41A32BD7000546859 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446D31A32BD7000546859 /* ShareViewController.m */; };
 		84B473881A2FFEC800A21457 /* FileManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B473871A2FFEC800A21457 /* FileManage.m */; };
@@ -286,7 +285,6 @@
 		84E842641A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = kuaiyaoyue.xcdatamodel; sourceTree = "<group>"; };
 		84E842661A2EDF6B00A401A0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		84E842671A2EDF6B00A401A0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		84E8426A1A2EDF6B00A401A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84E8426C1A2EDF6B00A401A0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		84E8426F1A2EDF6C00A401A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		84E842751A2EDF6C00A401A0 /* kuaiyaoyueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kuaiyaoyueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -749,7 +747,6 @@
 				844825F51A31A4D20018240E /* PreviewViewController.m */,
 				844825FE1A31B3F40018240E /* DetailViewController.h */,
 				844825FF1A31B3F40018240E /* DetailViewController.m */,
-				84E842691A2EDF6B00A401A0 /* Main.storyboard */,
 				84E8426E1A2EDF6C00A401A0 /* LaunchScreen.xib */,
 				84E842631A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld */,
 				84E8425C1A2EDF6B00A401A0 /* Supporting Files */,
@@ -1152,7 +1149,6 @@
 				844CC58A1A491CBA00A34186 /* CustomView.xib in Resources */,
 				E534DD721A4643B900542D67 /* ic_54_x@2x.png in Resources */,
 				E5590CC51A469CAB0080F3B1 /* card_g.png in Resources */,
-				84B446CC1A32B50500546859 /* Main.storyboard in Resources */,
 				84E8426D1A2EDF6B00A401A0 /* Images.xcassets in Resources */,
 				849D66801A484887004EF00F /* HLEditView.xib in Resources */,
 				E5590CC61A469CAB0080F3B1 /* card_o.png in Resources */,
@@ -1333,14 +1329,6 @@
 				843DBEE21A47BFA700CDFFCB /* Base */,
 			);
 			name = MoreView.xib;
-			sourceTree = "<group>";
-		};
-		84E842691A2EDF6B00A401A0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84E8426A1A2EDF6B00A401A0 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		84E8426E1A2EDF6C00A401A0 /* LaunchScreen.xib */ = {
