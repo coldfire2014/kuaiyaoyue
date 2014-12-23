@@ -58,7 +58,7 @@
     UITapGestureRecognizer* pan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didPan)];
     [btnView addGestureRecognizer:pan];//160*220
     
-    NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(changeTimeAtTimedisplay) userInfo:nil repeats:YES];
+    NSTimer *timer=[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(changeTimeAtTimedisplay) userInfo:nil repeats:YES];
     [timer fire];
     
     [self headview];
@@ -254,10 +254,7 @@
 }
 
 -(void)changeTimeAtTimedisplay{
-    static double t = 5;
-    BigStateView* s = (BigStateView*)[self.view viewWithTag:102];
-    t = t - 0.2;
-    [s setStartTime:[NSDate dateWithTimeIntervalSinceNow:-10] EndTime:[NSDate dateWithTimeIntervalSinceNow:t] andGoneTime:[NSDate dateWithTimeIntervalSinceNow:3+t]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_MYLIST_CLICK" object:self userInfo:nil];
 }
 
 - (UIImage *)imageFromView:(UIView *)view
