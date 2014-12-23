@@ -23,6 +23,7 @@
 #import "StatusBar.h"
 #import "MusicViewController.h"
 #import "HLEditView.h"
+#import "PreviewViewController.h"
 
 @interface HLEditViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,HLEVDelegate>{
     int count;
@@ -209,6 +210,11 @@
     }else if ([segue.identifier compare:@"music"] == NSOrderedSame){
         MusicViewController *view = (MusicViewController*)segue.destinationViewController;
         view.delegate = self;
+    }
+    //preview
+    else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
+        PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
+        view.type = 0;
     }
 }
 
@@ -553,7 +559,7 @@
         }
         NSArray *arr = [[NSArray alloc] initWithArray:addimg];
         NSString *hlarr = [arr componentsJoinedByString:@","];
-        [UDObject sethl_imgarr:hlarr];
+        [UDObject setHLContent:xl_name xn_name:xn_name hltime:hltime bmendtime:bmendtime address_name:address_name music:mp3url musicname:mp3name imgarr:hlarr];
         [self performSegueWithIdentifier:@"preview" sender:nil];
     }
 }

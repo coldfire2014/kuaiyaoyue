@@ -26,11 +26,6 @@
 - (IBAction)cancel_onclick:(id)sender;
 
 
-@property (weak, nonatomic) IBOutlet UIView *bottom_view;
-@property (weak, nonatomic) IBOutlet UIDatePicker *picker;
-- (IBAction)sure_picker:(id)sender;
-- (IBAction)qx_picker:(id)sender;
-
 @property (nonatomic, weak) id<DVCDelegate> delegate;
 
 @end

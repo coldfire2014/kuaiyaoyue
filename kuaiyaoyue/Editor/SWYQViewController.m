@@ -23,6 +23,7 @@
 #import "StatusBar.h"
 #import "MoreView.h"
 #import "MusicViewController.h"
+#import "PreviewViewController.h"
 
 @interface SWYQViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,MVDelegate>{
     BOOL is_yl;
@@ -60,7 +61,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.title = @"返回";
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
     label.text = @"快邀约";
@@ -218,6 +219,7 @@
 -(void)RightBarBtnClicked:(id)sender{
     //preview
     is_yl = NO;
+    [self SendUp];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -249,6 +251,9 @@
     }else if ([segue.identifier compare:@"music"] == NSOrderedSame){
         MusicViewController *view = (MusicViewController*)segue.destinationViewController;
         view.delegate = self;
+    }else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
+        PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
+        view.type = 1;
     }
 }
 
@@ -546,7 +551,7 @@
                     [self postupload:info.img :URL] ;
                 }else{
                     NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
-                    [self party:moreview.jh_edit.text :moreview.xlr_edit.text :moreview.xlfs_edit.text :moreview.address_edit.text :arr :@"" :hltime :bmendtime :moreview.show_summary.text :URL :_unquieId :mp3name];
+                    [self party:moreview.jh_edit.text :moreview.xlr_edit.text :moreview.xlfs_edit.text :moreview.address_edit.text :arr :@"" :hltime :bmendtime :moreview.show_summary.text :URL :_unquieId :mp3url];
                 }
             }else{
                 [SVProgressHUD dismiss];
@@ -554,21 +559,23 @@
             }
         }];
     }else{
-//        if ([data count] - 1 > 0) {
-//            for (int i = 0; i<[data count] - 1; i++) {
-//                GridInfo *info = [data objectAtIndex:row_index];
-//                CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-//                NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
-//                uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
-//                NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
-//                [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
-//                [UIImageJPEGRepresentation(info.img,0.8) writeToFile:imgpath atomically:YES];
-//            }
-//        }
-//        NSArray *arr = [[NSArray alloc] initWithArray:addimg];
-//        NSString *hlarr = [arr componentsJoinedByString:@","];
-//        [UDObject sethl_imgarr:hlarr];
-//        [self performSegueWithIdentifier:@"preview" sender:nil];
+        if ([data count] - 1 > 0) {
+            for (int i = 0; i<[data count] - 1; i++) {
+                GridInfo *info = [data objectAtIndex:row_index];
+                CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+                NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+                uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+                NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+                [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
+                [UIImageJPEGRepresentation(info.img,0.8) writeToFile:imgpath atomically:YES];
+            }
+        }
+        NSArray *arr = [[NSArray alloc] initWithArray:addimg];
+        NSString *hlarr = [arr componentsJoinedByString:@","];
+        
+        [UDObject setSWContent:moreview.jh_edit.text swtime:hltime swbmendtime:bmendtime address_name:moreview.address_edit.text swxlr_name:moreview.xlr_edit.text swxlfs_name:moreview.xlfs_edit.text swhd_name:moreview.show_summary.text music:mp3url musicname:mp3name imgarr:hlarr];
+        
+        [self performSegueWithIdentifier:@"preview" sender:nil];
     }
 }
 
@@ -586,7 +593,7 @@
             row_index ++;
             if (row_index > [data count] - 2) {
                 NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
-                [self party:moreview.jh_edit.text :moreview.xlr_edit.text :moreview.xlfs_edit.text :moreview.address_edit.text :arr :@"" :hltime :bmendtime :moreview.show_summary.text :URL :_unquieId :mp3name];
+                [self party:moreview.jh_edit.text :moreview.xlr_edit.text :moreview.xlfs_edit.text :moreview.address_edit.text :arr :@"" :hltime :bmendtime :moreview.show_summary.text :URL :_unquieId :mp3url];
                 
             }else{
                 GridInfo *info = [data objectAtIndex:row_index];
