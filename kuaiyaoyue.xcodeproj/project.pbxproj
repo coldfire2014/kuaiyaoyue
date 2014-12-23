@@ -13,6 +13,7 @@
 		843DBEE01A47BF9800CDFFCB /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 843DBEDF1A47BF9800CDFFCB /* MoreView.m */; };
 		843DBEE41A47C5D500CDFFCB /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843DBEE11A47BFA700CDFFCB /* MoreView.xib */; };
 		843DBEE61A48093C00CDFFCB /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = 843DBEE51A48093C00CDFFCB /* 1.zip */; };
+		8442287A1A49479800583893 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844228791A49479800583893 /* Main.storyboard */; };
 		844825761A31536C0018240E /* WelComeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825751A31536C0018240E /* WelComeViewController.m */; };
 		844825791A31588C0018240E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825781A31588C0018240E /* PageViewController.m */; };
 		8448257C1A3186520018240E /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448257B1A3186520018240E /* OneViewController.m */; };
@@ -178,6 +179,7 @@
 		843DBEDF1A47BF9800CDFFCB /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
 		843DBEE21A47BFA700CDFFCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = kuaiyaoyue/Base.lproj/MoreView.xib; sourceTree = SOURCE_ROOT; };
 		843DBEE51A48093C00CDFFCB /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 1.zip; sourceTree = "<group>"; };
+		844228791A49479800583893 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		844825741A31536C0018240E /* WelComeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelComeViewController.h; sourceTree = "<group>"; };
 		844825751A31536C0018240E /* WelComeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelComeViewController.m; sourceTree = "<group>"; };
 		844825771A31588C0018240E /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
@@ -747,6 +749,7 @@
 				844825F51A31A4D20018240E /* PreviewViewController.m */,
 				844825FE1A31B3F40018240E /* DetailViewController.h */,
 				844825FF1A31B3F40018240E /* DetailViewController.m */,
+				844228791A49479800583893 /* Main.storyboard */,
 				84E8426E1A2EDF6C00A401A0 /* LaunchScreen.xib */,
 				84E842631A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld */,
 				84E8425C1A2EDF6B00A401A0 /* Supporting Files */,
@@ -1168,6 +1171,7 @@
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,
 				E5661A2A1A457CB700E4E2BC /* btn_login_2_pre.png in Resources */,
 				E5661A231A45708C00E4E2BC /* logo_login.png in Resources */,
+				8442287A1A49479800583893 /* Main.storyboard in Resources */,
 				E5661A191A45708C00E4E2BC /* bg_login.jpg in Resources */,
 				E5661A1D1A45708C00E4E2BC /* btn_login_weixin_pre.png in Resources */,
 				E541B3341A43DE2A006F89E1 /* shareView.bundle in Resources */,
