@@ -176,6 +176,7 @@ password:1235456                     //用户密码
                             @"true",@"isJson",
                             @"ios",@"equipment",version,@"version",
                             nil];
+    
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/j_spring_security_check"];
     NSLog(@"params-%@-%@",params,url);
     

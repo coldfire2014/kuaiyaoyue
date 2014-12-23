@@ -14,7 +14,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = [[UIColor alloc] initWithRed:251.0/255.0 green:88.0/255.0 blue:141.0/255.0 alpha:1.0];
+        self.backgroundColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
         self.layer.cornerRadius = self.frame.size.height/2.0;
         UIView* huan = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 37, 37)];
         huan.backgroundColor = [UIColor clearColor];
