@@ -18,4 +18,15 @@
 }
 */
 
+- (IBAction)show_top_onclick:(id)sender {
+}
+
+- (IBAction)time_onclick:(id)sender {
+}
+
+- (IBAction)endtime_onclick:(id)sender {
+}
+
+- (IBAction)music_onclick:(id)sender {
+}
 @end
