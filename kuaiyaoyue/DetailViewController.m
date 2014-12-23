@@ -328,11 +328,6 @@
         show.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
     }];
 }
-
-- (void)DatePickerValueChanged:(UIDatePicker *) sender {
-    NSDate *select = [sender date]; // 获取被选中的时间
-
-}
 -(void)viewDidAppear:(BOOL)animated{
     [TalkingData trackPageBegin:@"报名列表"];
 }
