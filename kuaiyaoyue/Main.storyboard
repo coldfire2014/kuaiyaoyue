@@ -1426,6 +1426,8 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="send_view" destination="Si2-qB-hvF" id="agO-wM-wqv"/>
+                        <outlet property="sendshare_view" destination="2sm-aR-GzP" id="IDo-ap-Isz"/>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="yl" id="qae-G8-0oD"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="22X-oD-zs7"/>
                         <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="HVf-vj-jq7"/>
@@ -1774,8 +1776,8 @@
         <segue reference="Oey-PZ-F9W"/>
         <segue reference="keJ-rR-p7N"/>
         <segue reference="x3h-Pp-84V"/>
-        <segue reference="luI-zA-BtH"/>
-        <segue reference="bym-b5-cxi"/>
-        <segue reference="fps-RF-Hk5"/>
+        <segue reference="HVf-vj-jq7"/>
+        <segue reference="22X-oD-zs7"/>
+        <segue reference="qae-G8-0oD"/>
     </inferredMetricsTieBreakers>
 </document>

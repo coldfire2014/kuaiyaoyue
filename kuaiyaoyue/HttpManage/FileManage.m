@@ -57,6 +57,7 @@
 }
 
 -(NSString *)GetYPFile:(NSString *) name{
+    [self CreateFile];
     return [self.audioDirectory stringByAppendingPathComponent:name];
 }
 

@@ -140,30 +140,40 @@
     mp3name = @"";
     mp3url = @"";
     count = 9;
-    if ([UDObject getxl_name].length > 0) {
-//        _xl_edit.text = [UDObject getxl_name];
-//        _xn_edit.text = [UDObject getxn_name];
-//        hltime = [UDObject gethltime];
-//        bmendtime = [UDObject getbmendtime];
-//        _hltime_label.text = [TimeTool getFullTimeStr:[hltime longLongValue]/1000];
-//        _bmend_label.text = [TimeTool getFullTimeStr:[bmendtime longLongValue]/1000];
-//        _address_edit.text = [UDObject getaddress_name];
-//        if ([UDObject gethlmusic].length > 0) {
-//            mp3name = [UDObject gethlmusicname];
-//            _music_label.text = mp3name;
-//            mp3url = [UDObject gethlmusic];
-//        }
-//        NSArray *arr = [[UDObject gethlimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
-//        for (NSString *name in arr) {
-//            
-//            NSArray *array = [name componentsSeparatedByString:@"/"];
-//            NSString *imgname = [array objectAtIndex:([array count] - 1)];
-//            NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: imgname];
-//            UIImage *img = [[UIImage alloc]initWithContentsOfFile:imgpath];
-//            GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
-//            [_data addObject:info];
-//        }
-//        count -= [arr count];
+    if ([UDObject getjhname].length > 0) {
+        moreview.jh_edit.text = [UDObject getjhname];
+        hltime = [UDObject getswtime];
+        bmendtime = [UDObject getswbmendtime];
+        moreview.time_label.text = [TimeTool getFullTimeStr:[hltime longLongValue]/1000];
+        moreview.bmtime_label.text = [TimeTool getFullTimeStr:[bmendtime longLongValue]/1000];
+        moreview.address_edit.text = [UDObject getswaddress_name];
+        moreview.xlr_edit.text = [UDObject getswxlr_name];
+        moreview.xlfs_edit.text = [UDObject getswxlfs_name];
+        moreview.show_summary.text = [UDObject getswhd_name];
+        
+        if ([UDObject getsw_music].length > 0) {
+            mp3name = [UDObject getsw_musicname];
+            moreview.show_music.text = mp3name;
+            mp3url = [UDObject getsw_music];
+        }
+        NSArray *arr = [[UDObject getsw_imgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        NSString *name = @"";
+        if ([arr count] > 0) {
+            name = [arr objectAtIndex:0];
+        }
+        if (name.length > 0) {
+            
+        for (NSString *name in arr) {
+            NSArray *array = [name componentsSeparatedByString:@"/"];
+            NSString *imgname = [array objectAtIndex:([array count] - 1)];
+            NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: imgname];
+            UIImage *img = [[UIImage alloc]initWithContentsOfFile:imgpath];
+            GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
+            [data addObject:info];
+        }
+        count -= [arr count];
+        }
+        
     }
     [self initImgData];
 }
@@ -423,6 +433,7 @@
 }
 
 - (void)send_onclick:(UITapGestureRecognizer *)gr{
+    is_yl = YES;
     [self SendUp];
 }
 
@@ -494,7 +505,7 @@
             [infodata addInfoWithValue:moreview.address_edit.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
         }else if ([parameterName isEqualToString:@"description"]) {
         
-            [infodata addInfoWithValue:moreview.show_summary.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:NO:NO];
+            [infodata addInfoWithValue:moreview.show_summary.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:NO:YES];
         }
     }
     NSArray *fixeds = [[DataBaseManage getDataBaseManage] GetFixeds:_unquieId];
@@ -531,7 +542,7 @@
                     [self postupload:info.img :URL] ;
                 }else{
                     NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
-//                    [self marry:_unquieId :xn_name :xl_name :address_name :arr :hltime :URL :mp3url :bmendtime];
+                    [self party:moreview.jh_edit.text :moreview.xlr_edit.text :moreview.xlfs_edit.text :moreview.address_edit.text :arr :@"" :hltime :bmendtime :moreview.show_summary.text :URL :_unquieId :mp3name];
                 }
             }else{
                 [SVProgressHUD dismiss];
@@ -554,7 +565,7 @@
 //        NSString *hlarr = [arr componentsJoinedByString:@","];
 //        [UDObject sethl_imgarr:hlarr];
 //        [self performSegueWithIdentifier:@"preview" sender:nil];
-//    }
+    }
 }
 
 -(void)postupload :(UIImage *) img :(NSString *)URL{
@@ -571,7 +582,7 @@
             row_index ++;
             if (row_index > [data count] - 2) {
                 NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
-//                [self marry:_unquieId :xn_name :xl_name :address_name :arr :hltime :URL :mp3url :bmendtime];
+                [self party:moreview.jh_edit.text :moreview.xlr_edit.text :moreview.xlfs_edit.text :moreview.address_edit.text :arr :@"" :hltime :bmendtime :moreview.show_summary.text :URL :_unquieId :mp3name];
                 
             }else{
                 GridInfo *info = [data objectAtIndex:row_index];
@@ -584,6 +595,25 @@
     }];
 }
 
-
+-(void)party:(NSString *) partyName :(NSString *)inviter :(NSString *)telephone :(NSString *)address :(NSArray *)images :(NSString *) tape :(NSString *) timestamp :(NSString *) closetime :(NSString *) description :(NSString *) background :(NSString *) unquieId :(NSString *)musicUrl{
+    if (musicUrl.length > 0) {}else{
+        musicUrl = @"";
+    }
+    [SVProgressHUD dismiss];
+    [HttpManage party:[UDObject gettoken] partyName:partyName inviter:inviter telephone:(NSString *)telephone address:address images:images tape:tape timestamp:timestamp closetime:closetime description:description background:background mid:unquieId cb:^(BOOL isOK, NSDictionary *array) {
+        if (isOK) {
+            NSArray *arr = [[NSArray alloc] initWithArray:addimg];
+            NSString *hlarr = [arr componentsJoinedByString:@","];
+            
+            [UDObject setSWContent:partyName swtime:timestamp swbmendtime:closetime address_name:address swxlr_name:inviter swxlfs_name:telephone swhd_name:description music:musicUrl musicname:mp3name imgarr:hlarr];
+            
+            [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+        }
+    }];
+}
 
 @end
