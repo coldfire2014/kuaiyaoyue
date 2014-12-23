@@ -96,8 +96,9 @@ closeTimestamp:(NSString *)closeTimestamp
 +(void)party:(NSString *)token
    partyName:(NSString *)partyName
      inviter:(NSString *)inviter
+   telephone:(NSString *)telephone
      address:(NSString *)address
-      images:(NSString *)images
+      images:(NSArray *)images
         tape:(NSString *)tape
    timestamp:(NSString *)timestamp
    closetime:(NSString *)closetime

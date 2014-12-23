@@ -7,6 +7,7 @@
 //
 
 #import "CHWLEditorViewController.h"
+#import <AVFoundation/AVFoundation.h>
 #import "GridInfo.h"
 #import "PhotoCell.h"
 #import "picViewAnimate.h"
@@ -23,7 +24,7 @@
 #import "StatusBar.h"
 #import "PlayView.h"
 
-@interface CHWLEditorViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,PVDelegate>{
+@interface CHWLEditorViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,PVDelegate,AVAudioPlayerDelegate>{
     BOOL is_yl;
     int count;
     PlayView *playview;
@@ -39,6 +40,16 @@
     UIScrollView *scrollview;
     NSMutableArray *data;
     NSMutableArray *imgdata;
+    
+    NSString * ypurl;
+    
+    AVAudioPlayer *player;
+    AVAudioRecorder *recorder;
+    NSString *audioname;
+    NSTimer *timer;
+    CGFloat curCount;
+    double lowPassResults;
+    NSString *recordedFile;
 }
 
 @end
@@ -74,6 +85,173 @@
     [self getHistorical];
     
     [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(send_onclick:)];
+    
+    [_send_view addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendandshare_onclick:)];
+    
+    [_sendshare_view addGestureRecognizer:tap1];
+    
+    playview.audio_showview.userInteractionEnabled = YES;
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    NSError *sessionError;
+    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+    
+    if(session == nil)
+        NSLog(@"Error creating session: %@", [sessionError description]);
+    
+    else
+        [session setActive:YES error:nil];
+    
+    if ([session respondsToSelector:@selector(requestRecordPermission:)]) {
+        [session requestRecordPermission:^(BOOL granted) {
+            if (granted) {
+                [self ypviewsx];
+            }
+            else {
+                [self ypviewsx1];
+            }
+        }];
+    }
+}
+
+-(void)ypviewsx{
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(LongPressed:)];
+    
+    longPress.allowableMovement = NO;
+    longPress.minimumPressDuration = 0.0;
+    //将长按手势添加到需要实现长按操作的视图里
+    [playview.audio_showview addGestureRecognizer:longPress];
+    
+    
+}
+
+-(void)ypviewsx1{
+    
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(LongPressed1:)];
+    
+    longPress.allowableMovement = NO;
+    longPress.minimumPressDuration = 0.0;
+    //将长按手势添加到需要实现长按操作的视图里
+    [playview.audio_showview addGestureRecognizer:longPress];
+    
+    
+}
+
+//长按事件的实现方法
+- (void) LongPressed1:(UILongPressGestureRecognizer *)gestureRecognizer {
+    [SVProgressHUD dismissWithError:@"请打开麦克风" afterDelay:1];
+}
+
+//长按事件的实现方法
+- (void) LongPressed:(UILongPressGestureRecognizer *)gestureRecognizer {
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        curCount = 0;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setLocale:[NSLocale currentLocale]];
+        [formatter setDateFormat:@"yyyyMMddHHmmss"];
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        audioname = [NSString stringWithFormat:@"audio%@.wav", str];
+        
+        recordedFile = [[FileManage sharedFileManage] GetYPFile:audioname];
+        
+        recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath: recordedFile] settings:[self getAudioRecorderSettingDict] error:nil];
+        
+        recorder.meteringEnabled = YES;
+        [recorder prepareToRecord];
+        [recorder record];
+        player = nil;
+        
+        //启动计时器
+        [self startTimer];
+        
+    }
+    if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        
+    }
+    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        
+        NSLog(@"curCount-%f",curCount);
+        [self stopTimer];
+        
+        [recorder stop];
+        recorder = nil;
+        
+        //上传音频
+        if (curCount >= 1) {
+//            [self.anyp_view setHidden:YES];
+//            [self.yp_text setHidden:YES];
+//            [self.luyin_view setHidden:YES];
+//            [self.bfyp_view setHidden:NO];
+        }
+        else{
+            recordedFile = nil;
+            audioname = nil;
+            [SVProgressHUD showErrorWithStatus:@"发送时间过短" duration:1];
+        }
+        
+//        [_luyin_4 setHidden:YES];
+//        [_luyin_3 setHidden:YES];
+//        [_luyin_2 setHidden:YES];
+//        [_luyin_1 setHidden:YES];
+//        [_luyin_0 setHidden:NO];
+//        [_ly_view setHidden:YES];
+    }
+}
+
+#pragma mark - 启动定时器
+- (void)startTimer{
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(levelTimer:) userInfo:nil repeats:YES];
+    
+}
+
+-(void)levelTimer:(NSTimer*)timer_
+{
+    [recorder updateMeters];
+    curCount += 0.1;
+    
+    if (curCount >= 30) {
+        [self stopTimer];
+        [recorder stop];
+        recorder = nil;
+        [SVProgressHUD showErrorWithStatus:@"发送时间太长" duration:1];
+    }
+    
+    const double ALPHA = 0.05;
+    double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
+    lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;
+    curCount += 0.1;
+    
+}
+
+#pragma mark - 停止定时器
+- (void)stopTimer{
+    if (timer && timer.isValid){
+        [timer invalidate];
+        timer = nil;
+    }
+}
+
+/**
+ 获取录音设置
+ @returns 录音设置
+ */
+//原来的
+- (NSDictionary*)getAudioRecorderSettingDict
+{
+    NSDictionary *recordSetting = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithInt:AVAudioQualityLow],AVEncoderAudioQualityKey,
+                                   [NSNumber numberWithInt:kAudioFormatLinearPCM],AVFormatIDKey,
+                                   [NSNumber numberWithInt:1],AVNumberOfChannelsKey,
+                                   [NSNumber numberWithFloat:10000.0],AVSampleRateKey,
+                                   [NSNumber numberWithBool:NO],AVLinearPCMIsBigEndianKey,
+                                   [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
+                                   nil];
+    return recordSetting;
 }
 
 -(void)changeHigh{
@@ -356,6 +534,14 @@
     }];
     
     return YES;
+}
+
+- (void)send_onclick:(UITapGestureRecognizer *)gr{
+    
+}
+
+- (void)sendandshare_onclick:(UITapGestureRecognizer *)gr{
+    
 }
 
 @end

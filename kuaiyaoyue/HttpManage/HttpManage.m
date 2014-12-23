@@ -423,8 +423,9 @@ closeTimestamp:(NSString *)closeTimestamp
 +(void)party:(NSString *)token
    partyName:(NSString *)partyName
      inviter:(NSString *)inviter
+   telephone:(NSString *)telephone
      address:(NSString *)address
-      images:(NSString *)images
+      images:(NSArray *)images
         tape:(NSString *)tape
    timestamp:(NSString *)timestamp
    closetime:(NSString *)closetime
@@ -433,11 +434,13 @@ closeTimestamp:(NSString *)closeTimestamp
          mid:(NSString *)mid
          cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            token,@"token",partyName,@"partyName",inviter,@"inviter",
+                            token,@"token",partyName,@"partyName",inviter,@"contact",
+                            telephone,@"telephone",
                             address,@"address",images,@"images",tape,@"tape",
-                            timestamp,@"timestamp",closetime,@"closetime",description,@"description",
-                            background,@"background",
+                            timestamp,@"timestamp",closetime,@"closeTimestamp",description,@"description",
+                            background,@"background",@"ios",@"equipment",version,@"version",
                             nil];
+    NSLog(@"%@",params);
     
     NSString *pjurl = [NSString stringWithFormat:@"invitation/nozzle/NefUserData/party/%@.aspx",mid];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,pjurl];
