@@ -554,7 +554,7 @@
 //        NSString *hlarr = [arr componentsJoinedByString:@","];
 //        [UDObject sethl_imgarr:hlarr];
 //        [self performSegueWithIdentifier:@"preview" sender:nil];
-//    }
+    }
 }
 
 -(void)postupload :(UIImage *) img :(NSString *)URL{
