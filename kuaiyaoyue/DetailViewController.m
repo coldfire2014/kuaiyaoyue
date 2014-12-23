@@ -67,7 +67,6 @@
 -(void)changeHight{
     
 }
-
 -(void)renewal{
     NSArray *arr = [[DataBaseManage getDataBaseManage] GetContacts:_uniqueId];
     NSString *time = nil;
