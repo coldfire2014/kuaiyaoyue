@@ -82,6 +82,16 @@
     UINib *nib = [UINib nibWithNibName:NSStringFromClass([PhotoCell class]) bundle:nil];
     [gridview registerNib:nib forCellWithReuseIdentifier:@"PhotoCell"];
     [self getHistorical];
+    
+    _send_view.userInteractionEnabled = YES;
+    _sendshare_view.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(send_onclick:)];
+    
+    [_send_view addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendandshare_onclick:)];
+    
+    [_sendshare_view addGestureRecognizer:tap1];
 }
 
 -(void)changeHigh{
@@ -402,11 +412,11 @@
     return YES;
 }
 
-- (IBAction)send_onclick:(id)sender {
+- (void)send_onclick:(UITapGestureRecognizer *)gr{
     [self SendUp];
 }
 
-- (IBAction)sendandshare_onclick:(id)sender {
+- (void)sendandshare_onclick:(UITapGestureRecognizer *)gr{
     
 }
 

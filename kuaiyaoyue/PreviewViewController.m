@@ -66,7 +66,6 @@
 -(NSString *)changevalue{
     
     NSString *img = [UDObject gethlimgarr];
-    
     NSArray *arr;
     if ([img length] > 0) {
         arr = [img componentsSeparatedByString:NSLocalizedString(@",", nil)];

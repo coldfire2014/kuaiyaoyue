@@ -19,11 +19,13 @@
 */
 
 - (IBAction)time_onclick:(id)sender {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(PVDelegate:didTapAtIndex:)]){
+        [self.delegate PVDelegate:self didTapAtIndex:0];}
 }
 
 - (IBAction)bmtime_onclick:(id)sender {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(PVDelegate:didTapAtIndex:)]){
+        [self.delegate PVDelegate:self didTapAtIndex:1];}
 }
 
 @end

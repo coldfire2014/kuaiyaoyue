@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PVDelegate;
+
 @interface PlayView : UIView
 
 @property (weak, nonatomic) IBOutlet UITextField *jh_edit;
@@ -27,5 +29,11 @@
 @property (weak, nonatomic) IBOutlet UIView *audiobottomview;
 @property (weak, nonatomic) IBOutlet UIView *bottom_view;
 
+@property (nonatomic, weak) id<PVDelegate> delegate;
+
+@end
+@protocol PVDelegate <NSObject>
+
+- (void)PVDelegate:(PlayView *)cell didTapAtIndex:(int) type;
 
 @end
