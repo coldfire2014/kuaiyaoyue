@@ -854,6 +854,7 @@
                                             <constraints>
                                                 <constraint firstItem="Xhd-zd-iI0" firstAttribute="leading" secondItem="8Zk-sv-j9J" secondAttribute="leading" id="3A6-bi-Dx3"/>
                                                 <constraint firstItem="Xhd-zd-iI0" firstAttribute="top" secondItem="8Zk-sv-j9J" secondAttribute="top" id="3CD-ii-UHz"/>
+                                                <constraint firstItem="ElL-Un-WZe" firstAttribute="top" secondItem="Xhd-zd-iI0" secondAttribute="bottom" constant="1" id="Lo8-jC-T32"/>
                                                 <constraint firstAttribute="centerX" secondItem="ElL-Un-WZe" secondAttribute="centerX" id="NaC-Uv-xzU"/>
                                                 <constraint firstItem="ElL-Un-WZe" firstAttribute="bottom" secondItem="8Zk-sv-j9J" secondAttribute="bottomMargin" id="Q1H-gh-VtL"/>
                                                 <constraint firstItem="ElL-Un-WZe" firstAttribute="trailing" secondItem="8Zk-sv-j9J" secondAttribute="trailingMargin" id="QoQ-ba-vlt"/>
@@ -867,6 +868,7 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="Q1H-gh-VtL"/>
                                                     <exclude reference="QoQ-ba-vlt"/>
                                                     <exclude reference="ncw-et-hp2"/>
                                                     <exclude reference="ya1-iR-hel"/>
