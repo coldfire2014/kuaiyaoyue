@@ -324,16 +324,19 @@
     
     nowColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
     nowkColor = [UIColor colorWithRed:red green:green blue:blue alpha:0.2];
-    btnView.backgroundColor = nowColor;
-    mbtitle.textColor = nowColor;
-    mbid.textColor = nowColor;
-    mbtotle.text = [[NSString alloc] initWithFormat:@"/%d",data.count];
-    mbid.text = [[NSString alloc] initWithFormat:@"%d",index+1];
-    if ([_type isEqualToString:@"hunli"]) {
-        mbtitle.text = [[NSString alloc] initWithFormat:@"%@",info.nefname];
-    }else{
-        mbtitle.text = @"";
-    }
+    [UIView animateWithDuration:0.4 animations:^{
+        btnView.backgroundColor = nowColor;
+        mbtitle.textColor = nowColor;
+        mbid.textColor = nowColor;
+        mbtotle.text = [[NSString alloc] initWithFormat:@"/%d",data.count];
+        mbid.text = [[NSString alloc] initWithFormat:@"%d",index+1];
+        if ([_type isEqualToString:@"hunli"]) {
+            mbtitle.text = [[NSString alloc] initWithFormat:@"%@",info.nefname];
+        }else{
+            mbtitle.text = @"";
+        }
+    }];
+    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{

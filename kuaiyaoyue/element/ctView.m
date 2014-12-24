@@ -101,7 +101,7 @@
                 NSLog(@"Not respondsToSelector:@selector(cellForItemAtIndex:)");
             }
         }
-        for (int i = itemCount - 3; i<itemCount; i++) {
+        for (int i = itemCount - 2; i<itemCount; i++) {
             if(i<4){
                 continue;
             }
@@ -268,7 +268,7 @@
     if (rigth > itemCount) {
         rigth = itemCount;
     }
-    int left = currentItemIndex - 3;
+    int left = currentItemIndex - 2;
     if (left < 0) {
         left = 0;
     }
