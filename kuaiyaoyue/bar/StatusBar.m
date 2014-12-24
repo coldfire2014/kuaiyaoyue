@@ -39,7 +39,7 @@
         self.alpha = 1;
         self.hidden = NO;
         bk = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width, 0, self.frame.size.width, 20)];
-        bk.backgroundColor =[[UIColor alloc] initWithRed:204.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1.0];
+        bk.backgroundColor =[[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
         bk.layer.cornerRadius = 10.0;
         [self addSubview:bk];
         msg1 = [[UILabel alloc] initWithFrame:CGRectMake(7, 0, 140, 20)];

@@ -157,7 +157,30 @@
 }
 -(CATransform3D)ftransformForItemView:(UIView *)view withOffset:(CGFloat)offset
 {
-    return [self transformForItemView:view withOffset:offset+3];
+//    return [self transformForItemView:view withOffset:offset+3];
+    perspective = -1.0f/90.0f;//透视
+    
+    CATransform3D transform = CATransform3DIdentity;
+    transform.m34 = perspective;
+    if (offset == -1 || offset == itemCount - 1) {
+        view.alpha = 0;
+        transform = CATransform3DTranslate(transform,-self.frame.size.width*2.0, 0,offset);
+        return transform;
+    }else{
+        if (offset < 0) {
+            int a = (int)offset % (int)itemCount;
+            offset = itemCount + a;
+            
+        }
+        if (offset >= numberOfVisibleItems) {
+            view.alpha = 0;
+        }else{
+            view.alpha = 1;
+        }
+//        transform = CATransform3DRotate(transform, -0.032*offset, 0, 0,1);//Translate(transform,0, -_radius * offset/3.6,-offset*100);
+        transform = CATransform3DTranslate(transform, 0, 0,-offset);
+        return transform;
+    }
 }
 -(CATransform3D)transformForItemView:(UIView *)view withOffset:(CGFloat)offset
 {
@@ -181,7 +204,7 @@
         }else{
             view.alpha = 1;
         }
-        transform = CATransform3DRotate(transform, -0.025*offset, 0, 0,1);//Translate(transform,0, -_radius * offset/3.6,-offset*100);
+        transform = CATransform3DRotate(transform, -0.032*offset, 0, 0,1);//Translate(transform,0, -_radius * offset/3.6,-offset*100);
         transform = CATransform3DTranslate(transform, 0, 0,-offset);
         return transform;
     }
