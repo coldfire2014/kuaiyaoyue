@@ -113,8 +113,9 @@ closeTimestamp:(NSString *)closeTimestamp
       content:(NSString *)content
          logo:(NSString *)logo
         music:(NSString *)music
+    timestamp:(NSString *)timestamp
 closeTimestamp:(NSString *)closeTimestamp
-       images:(NSString *)images
+       images:(NSArray *)images
           mid:(NSString *)mid
            cb:(void(^)(BOOL isOK ,NSDictionary *array))callback;
 

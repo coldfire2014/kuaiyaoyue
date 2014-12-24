@@ -14,6 +14,10 @@
 #import "StatusBar.h"
 #import "CustomViewController.h"
 #import "TalkingData.h"
+#import "DataBaseManage.h"
+#import "Template.h"
+#import "UDObject.h"
+
 @interface MenuViewController ()
 
 @end
@@ -221,7 +225,16 @@
     // Pass the selected object to the new view controller.
     
     if ([segue.identifier compare:@"zdyedit"] == NSOrderedSame){
+        
+        NSArray *data = [[DataBaseManage getDataBaseManage] GetTemplate:@"4"];
+        Template *info = [data objectAtIndex:0];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *zipurl = [documentsDirectory stringByAppendingPathComponent:info.nefzipurl];
+        [UDObject setWebUrl:zipurl];
+        NSLog(@"%@",[NSString stringWithFormat:@"%@",info.nefid]);
         CustomViewController *view = (CustomViewController*)segue.destinationViewController;
+        view.unquieId = [NSString stringWithFormat:@"%@",info.nefid];
         
     }else{
         TemplateViewController* des = (TemplateViewController*)segue.destinationViewController;

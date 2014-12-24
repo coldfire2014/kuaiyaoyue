@@ -13,7 +13,13 @@
 		843DBEE01A47BF9800CDFFCB /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 843DBEDF1A47BF9800CDFFCB /* MoreView.m */; };
 		843DBEE41A47C5D500CDFFCB /* MoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843DBEE11A47BFA700CDFFCB /* MoreView.xib */; };
 		8442287A1A49479800583893 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844228791A49479800583893 /* Main.storyboard */; };
-		8442287E1A49A52E00583893 /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = 8442287D1A49A52E00583893 /* 1.zip */; };
+		844228891A4A518300583893 /* PECropRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 844228811A4A518300583893 /* PECropRectView.m */; };
+		8442288A1A4A518300583893 /* PECropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 844228831A4A518300583893 /* PECropView.m */; };
+		8442288B1A4A518300583893 /* PECropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844228851A4A518300583893 /* PECropViewController.m */; };
+		8442288C1A4A518300583893 /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 844228861A4A518300583893 /* PEPhotoCropEditor.bundle */; };
+		8442288D1A4A518300583893 /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 844228881A4A518300583893 /* PEResizeControl.m */; };
+		844228901A4ABF8F00583893 /* ShowWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8442288F1A4ABF8F00583893 /* ShowWebViewController.m */; };
+		844228921A4AC80700583893 /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = 844228911A4AC80700583893 /* 1.zip */; };
 		844825761A31536C0018240E /* WelComeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825751A31536C0018240E /* WelComeViewController.m */; };
 		844825791A31588C0018240E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825781A31588C0018240E /* PageViewController.m */; };
 		8448257C1A3186520018240E /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448257B1A3186520018240E /* OneViewController.m */; };
@@ -179,7 +185,18 @@
 		843DBEDF1A47BF9800CDFFCB /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
 		843DBEE21A47BFA700CDFFCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = kuaiyaoyue/Base.lproj/MoreView.xib; sourceTree = SOURCE_ROOT; };
 		844228791A49479800583893 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		8442287D1A49A52E00583893 /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 1.zip; sourceTree = "<group>"; };
+		844228801A4A518300583893 /* PECropRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropRectView.h; sourceTree = "<group>"; };
+		844228811A4A518300583893 /* PECropRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropRectView.m; sourceTree = "<group>"; };
+		844228821A4A518300583893 /* PECropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropView.h; sourceTree = "<group>"; };
+		844228831A4A518300583893 /* PECropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropView.m; sourceTree = "<group>"; };
+		844228841A4A518300583893 /* PECropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropViewController.h; sourceTree = "<group>"; };
+		844228851A4A518300583893 /* PECropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropViewController.m; sourceTree = "<group>"; };
+		844228861A4A518300583893 /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PEPhotoCropEditor.bundle; sourceTree = "<group>"; };
+		844228871A4A518300583893 /* PEResizeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEResizeControl.h; sourceTree = "<group>"; };
+		844228881A4A518300583893 /* PEResizeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEResizeControl.m; sourceTree = "<group>"; };
+		8442288E1A4ABF8F00583893 /* ShowWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWebViewController.h; sourceTree = "<group>"; };
+		8442288F1A4ABF8F00583893 /* ShowWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWebViewController.m; sourceTree = "<group>"; };
+		844228911A4AC80700583893 /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 1.zip; sourceTree = "<group>"; };
 		844825741A31536C0018240E /* WelComeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelComeViewController.h; sourceTree = "<group>"; };
 		844825751A31536C0018240E /* WelComeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelComeViewController.m; sourceTree = "<group>"; };
 		844825771A31588C0018240E /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
@@ -470,6 +487,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8442287F1A4A518300583893 /* PECrop */ = {
+			isa = PBXGroup;
+			children = (
+				844228801A4A518300583893 /* PECropRectView.h */,
+				844228811A4A518300583893 /* PECropRectView.m */,
+				844228821A4A518300583893 /* PECropView.h */,
+				844228831A4A518300583893 /* PECropView.m */,
+				844228841A4A518300583893 /* PECropViewController.h */,
+				844228851A4A518300583893 /* PECropViewController.m */,
+				844228861A4A518300583893 /* PEPhotoCropEditor.bundle */,
+				844228871A4A518300583893 /* PEResizeControl.h */,
+				844228881A4A518300583893 /* PEResizeControl.m */,
+			);
+			path = PECrop;
+			sourceTree = "<group>";
+		};
 		844825731A31535A0018240E /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,6 +782,8 @@
 				844825F51A31A4D20018240E /* PreviewViewController.m */,
 				844825FE1A31B3F40018240E /* DetailViewController.h */,
 				844825FF1A31B3F40018240E /* DetailViewController.m */,
+				8442288E1A4ABF8F00583893 /* ShowWebViewController.h */,
+				8442288F1A4ABF8F00583893 /* ShowWebViewController.m */,
 				844228791A49479800583893 /* Main.storyboard */,
 				84E8426E1A2EDF6C00A401A0 /* LaunchScreen.xib */,
 				84E842631A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld */,
@@ -787,6 +822,7 @@
 		84E842851A2EE88100A401A0 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				8442287F1A4A518300583893 /* PECrop */,
 				E558D0161A47CD4F009BFC50 /* Tencent */,
 				E541B3041A43C98E006F89E1 /* TalkingData */,
 				E541B3001A43C91E006F89E1 /* cal */,
@@ -808,7 +844,7 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
-				8442287D1A49A52E00583893 /* 1.zip */,
+				844228911A4AC80700583893 /* 1.zip */,
 				843DBEDB1A46FA2600CDFFCB /* icon57.png */,
 				843DBED91A46F16600CDFFCB /* icon120.png */,
 				E5590CC81A46A4120080F3B1 /* Default-568h@2x.png */,
@@ -1144,7 +1180,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8442287E1A49A52E00583893 /* 1.zip in Resources */,
 				843DBEE41A47C5D500CDFFCB /* MoreView.xib in Resources */,
 				E558D0151A47A6DA009BFC50 /* ShowData.xib in Resources */,
 				843DBEDA1A46F16600CDFFCB /* icon120.png in Resources */,
@@ -1158,6 +1193,7 @@
 				E5590CC61A469CAB0080F3B1 /* card_o.png in Resources */,
 				E5661A1B1A45708C00E4E2BC /* btn_login_qq_pre.png in Resources */,
 				E5661A2B1A457CB700E4E2BC /* btn_login_2.png in Resources */,
+				844228921A4AC80700583893 /* 1.zip in Resources */,
 				843DBEDC1A46FA2600CDFFCB /* icon57.png in Resources */,
 				844CC5831A48F94D00A34186 /* PlayView.xib in Resources */,
 				84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */,
@@ -1170,6 +1206,7 @@
 				84FE0B881A426C71005A9599 /* PhotoCell.xib in Resources */,
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,
 				E5661A2A1A457CB700E4E2BC /* btn_login_2_pre.png in Resources */,
+				8442288C1A4A518300583893 /* PEPhotoCropEditor.bundle in Resources */,
 				E5661A231A45708C00E4E2BC /* logo_login.png in Resources */,
 				8442287A1A49479800583893 /* Main.storyboard in Resources */,
 				E5661A191A45708C00E4E2BC /* bg_login.jpg in Resources */,
@@ -1216,6 +1253,7 @@
 				844826091A31B6F90018240E /* GLJSViewController.m in Sources */,
 				844825E81A31A1D40018240E /* MenuViewController.m in Sources */,
 				84E842BF1A2EFDCB00A401A0 /* AFNetworkReachabilityManager.m in Sources */,
+				8442288D1A4A518300583893 /* PEResizeControl.m in Sources */,
 				E577FC2F1A356E66009ED66D /* perviewImg.m in Sources */,
 				84E842C51A2EFDCB00A401A0 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				E577FC2E1A356E66009ED66D /* imgGroupView.m in Sources */,
@@ -1231,7 +1269,9 @@
 				84B473A81A3050C100A21457 /* Music.m in Sources */,
 				84E842CA1A2EFDCB00A401A0 /* UIProgressView+AFNetworking.m in Sources */,
 				844825FD1A31B3C40018240E /* SettingViewController.m in Sources */,
+				8442288A1A4A518300583893 /* PECropView.m in Sources */,
 				E524FF3B1A3ED9A5002E7DC0 /* TemplateCell.m in Sources */,
+				8442288B1A4A518300583893 /* PECropViewController.m in Sources */,
 				84B473AE1A30572F00A21457 /* SVProgressHUD.m in Sources */,
 				84B446C91A32B3D000546859 /* UIScrollView+MJExtension.m in Sources */,
 				84E842D31A2F087A00A401A0 /* HttpManage.m in Sources */,
@@ -1287,9 +1327,11 @@
 				84E842CB1A2EFDCB00A401A0 /* UIRefreshControl+AFNetworking.m in Sources */,
 				849D667E1A484875004EF00F /* HLEditView.m in Sources */,
 				E5573F951A4303A9006AAB8F /* ioapi.c in Sources */,
+				844228891A4A518300583893 /* PECropRectView.m in Sources */,
 				E577FC2C1A356E66009ED66D /* ImgCollectionViewCell.m in Sources */,
 				844826031A31B6D80018240E /* GYWMViewController.m in Sources */,
 				846195591A31DA8700FDF2CA /* GridCell.m in Sources */,
+				844228901A4ABF8F00583893 /* ShowWebViewController.m in Sources */,
 				844825E51A31A1AE0018240E /* TemplateViewController.m in Sources */,
 				84B446C51A32B3D000546859 /* MJRefreshBaseView.m in Sources */,
 				84FE0BC31A42D0AD005A9599 /* Template.m in Sources */,
@@ -1428,8 +1470,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/Tencent",
@@ -1446,7 +1488,7 @@
 				);
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "033b80e0-abd0-45b8-a481-d4ef6fc8d2fc";
+				PROVISIONING_PROFILE = "4344e1f6-6fb2-4c90-abfd-6efef06084ed";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;

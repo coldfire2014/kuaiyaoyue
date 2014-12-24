@@ -23,11 +23,16 @@
 #import "StatusBar.h"
 #import "MusicViewController.h"
 #import "CustomView.h"
+#import "PECropViewController.h"
+#import "PreviewViewController.h"
 
-@interface CustomViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,CVDelegate>{
+@interface CustomViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,CVDelegate,PECropViewControllerDelegate>{
     BOOL is_yl;
     int count;
     CustomView *custom;
+    
+    NSMutableArray *addimg;
+    int row_index;
     
     AssetHelper* assert;
     ShowData *show;
@@ -43,6 +48,8 @@
     
     NSString *mp3url;
     NSString *mp3name;
+    
+    NSString *topimgname;
 }
 
 @end
@@ -52,7 +59,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.title = @"返回";
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
     label.text = @"快邀约";
@@ -78,6 +85,21 @@
     [gridview registerNib:nib forCellWithReuseIdentifier:@"PhotoCell"];
     [self getHistorical];
     [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(send_onclick:)];
+    
+    [_send_view addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sendandshare_onclick:)];
+    
+    [_sendshare_view addGestureRecognizer:tap1];
+
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editviewonclick:)];
+    [custom.editview addGestureRecognizer:tap2];
+}
+
+- (void)editviewonclick:(UITapGestureRecognizer *)gr{
+    [self.view endEditing:NO];
+    [custom.editview setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,7 +145,41 @@
     mp3name = @"";
     mp3url = @"";
     count = 15;
-    if ([UDObject getxl_name].length > 0) {
+    if ([UDObject getzdytopimg].length > 0) {
+        topimgname = [UDObject getzdytopimg];
+        NSArray *array = [[UDObject getzdytopimg] componentsSeparatedByString:@"/"];
+        NSString *topimg = [array objectAtIndex:([array count] - 1)];
+        topimg = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent:topimg];
+        UIImage *img = [[UIImage alloc]initWithContentsOfFile:topimg];
+        custom.show_top_img.image = img;
+        hltime = [UDObject getzdytime];
+        bmendtime = [UDObject getzdyendtime];
+        custom.time_label.text = [TimeTool getFullTimeStr:[hltime longLongValue]/1000];
+        custom.endtime_label.text = [TimeTool getFullTimeStr:[bmendtime longLongValue]/1000];
+        custom.title_edit.text = [UDObject getzdytitle];
+        custom.content_edit.text = [UDObject getzdydd];
+        if ([UDObject getzdymusic].length > 0) {
+            mp3name = [UDObject getzdymusicname];
+            custom.music_label.text = mp3name;
+            mp3url = [UDObject getzdymusic];
+        }
+        NSArray *arr = [[UDObject getzdyimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        NSString *name = @"";
+        if ([arr count] > 0) {
+            name = [arr objectAtIndex:0];
+        }
+        if (name.length > 0) {
+            
+            for (NSString *name in arr) {
+                NSArray *array = [name componentsSeparatedByString:@"/"];
+                NSString *imgname = [array objectAtIndex:([array count] - 1)];
+                NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: imgname];
+                UIImage *img = [[UIImage alloc]initWithContentsOfFile:imgpath];
+                GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
+                [data addObject:info];
+            }
+            count -= [arr count];
+        }
         
     }
     [self initImgData];
@@ -142,9 +198,15 @@
     }else if(index > 3 && index <= 6){
         custom.bottom_view.frame = CGRectMake(0, custom.bottom_view.frame.origin.y, custom.bottom_view.frame.size.width, height+addheight);
         gridview.frame = CGRectMake(custom.gridview.frame.origin.x, custom.gridview.frame.origin.y, custom.gridview.frame.size.width, addheight*2);
-    }else if(index > 6){
+    }else if(index > 6 && index <= 9){
         custom.bottom_view.frame = CGRectMake(0, custom.bottom_view.frame.origin.y, custom.bottom_view.frame.size.width, height+addheight*2);
         gridview.frame = CGRectMake(custom.gridview.frame.origin.x, custom.gridview.frame.origin.y, custom.gridview.frame.size.width, addheight*3);
+    }else if(index > 9 && index <= 12){
+        custom.bottom_view.frame = CGRectMake(0, custom.bottom_view.frame.origin.y, custom.bottom_view.frame.size.width, height+addheight*3);
+        gridview.frame = CGRectMake(custom.gridview.frame.origin.x, custom.gridview.frame.origin.y, custom.gridview.frame.size.width, addheight*4);
+    }else if(index > 12){
+        custom.bottom_view.frame = CGRectMake(0, custom.bottom_view.frame.origin.y, custom.bottom_view.frame.size.width, height+addheight*4);
+        gridview.frame = CGRectMake(custom.gridview.frame.origin.x, custom.gridview.frame.origin.y, custom.gridview.frame.size.width, addheight*5);
     }
     
     custom.music_view.frame = CGRectMake(custom.music_view.frame.origin.x, custom.bottom_view.frame.origin.y +custom.bottom_view.frame.size.height + 11 , custom.music_view.frame.size.width, custom.music_view.frame.size.height);
@@ -155,6 +217,7 @@
 -(void)RightBarBtnClicked:(id)sender{
     //preview
     is_yl = NO;
+    [self SendUp];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -186,6 +249,9 @@
     }else if ([segue.identifier compare:@"music"] == NSOrderedSame){
         MusicViewController *view = (MusicViewController*)segue.destinationViewController;
         view.delegate = self;
+    }else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
+        PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
+        view.type = 3;
     }
 }
 
@@ -302,9 +368,122 @@
         }
     }else if (type == 2){
         [self performSegueWithIdentifier:@"music" sender:nil];
+    }else if (type == 3){
+        if (custom.show_top_img.image != nil) {
+            [self SendPECropView:custom.show_top_img.image];
+        }else{
+            UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"媒体功能" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"照一照" otherButtonTitles:@"从相册中", nil ];
+            [as showInView:[UIApplication sharedApplication].keyWindow];
+        }
     }
 
 }
+
+#pragma mark ----------ActionSheet 按钮点击-------------
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+        {
+            UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
+            [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [imgPicker setDelegate:self];
+            [imgPicker setAllowsEditing:NO];
+            [self.navigationController presentViewController:imgPicker animated:YES completion:^{
+                
+            }];
+        }
+            break;
+        case 1:
+        {
+            UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
+            [imgPicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+            [imgPicker setDelegate:self];
+            [imgPicker setAllowsEditing:NO];
+            [self.navigationController presentViewController:imgPicker animated:YES completion:^{
+            }];
+            
+            break;
+        }
+        case 2:
+            
+            break;
+        default:
+            break;
+    }
+}
+
+
+#pragma mark ----------图片选择完成-------------
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage  * userHeadImage=[info objectForKey:@"UIImagePickerControllerOriginalImage"];
+//    UIImage *midImage = [self imageWithImageSimple:userHeadImage scaledToSize:CGSizeMake(120.0, 120.0)];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [self SendPECropView:userHeadImage];
+    }];
+    
+}
+
+-(void)SendPECropView :(UIImage *)image{
+    PECropViewController *controller = [[PECropViewController alloc] init];
+    controller.delegate = self;
+    controller.image = image;
+//    [self.navigationController popToViewController:controller animated:YES];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    
+    [self presentViewController:navigationController animated:YES completion:NULL];
+}
+
+#pragma mark -
+
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage
+{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+    custom.show_top_img.image = croppedImage;
+}
+
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller
+{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
+//压缩图片
+- (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize
+{
+    // Create a graphics image context
+    UIGraphicsBeginImageContext(newSize);
+    
+    // Tell the old image to draw in this new context, with the desired
+    // new size
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
+    // Get the new image from the context
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // End the context
+    UIGraphicsEndImageContext();
+    
+    // Return the new image.
+    return newImage;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    UIColor *tintColor = [UIColor colorWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
+    //字体大小、颜色
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                tintColor,
+                                NSForegroundColorAttributeName, nil];
+    [navigationController.navigationBar setTitleTextAttributes:attributes];
+    [[UINavigationBar appearance] setTintColor:tintColor];
+}
+
 
 - (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
     if (timebh != nil) {
@@ -337,6 +516,124 @@
     return YES;
 }
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    
+    [custom.editview setHidden:NO];
+    return YES;
+}
 
+- (void)send_onclick:(UITapGestureRecognizer *)gr{
+    [self SendUp];
+}
+
+- (void)sendandshare_onclick:(UITapGestureRecognizer *)gr{
+    
+}
+
+-(void)SendUp{
+    NSString *zdytitle = custom.title_edit.text;
+    NSString *zdycontent = custom.content_edit.text;
+
+    if (zdytitle.length > 0 && zdycontent.length > 0 && hltime.length > 0 && bmendtime.length > 0 && custom.show_top_img.image != nil && data.count -1 > 0 && mp3url.length > 0) {
+        [self upmbdt:custom.show_top_img.image];
+    }else{
+        [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.5];
+    }
+    
+}
+
+-(void)upmbdt:(UIImage *)img{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    addimg = [[NSMutableArray alloc] init];
+    topimgname = [NSString stringWithFormat:@"../Image/%@",uuid];
+    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+    
+    if (is_yl) {
+        [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
+        [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
+            NSLog(@"%@",URL);
+            if (isOK) {
+                imgdata = [[NSMutableArray alloc] init];
+                if ([data count] - 1 > 0) {
+                    row_index = 0;
+                    GridInfo *info = [data objectAtIndex:row_index];
+                    [self postupload:info.img :URL] ;
+                }else{
+                    [self Sendcustom:URL];
+                }
+            }else{
+                [SVProgressHUD dismiss];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+            }
+        }];
+    }else{
+        if ([data count] - 1 > 0) {
+            for (int i = 0; i<[data count] - 1; i++) {
+                GridInfo *info = [data objectAtIndex:i];
+                CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+                NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+                uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+                NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+                [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
+                
+                [UIImageJPEGRepresentation(info.img,0.8) writeToFile:imgpath atomically:YES];
+            }
+        }
+        
+        NSArray *arr = [[NSArray alloc] initWithArray:addimg];
+        NSString *hlarr = [arr componentsJoinedByString:@","];
+        
+        [UDObject setZDYContent:topimgname zdytitle:custom.time_label.text zdydd:custom.content_edit.text zdytime:hltime zdyendtime:bmendtime zdymusic:mp3url zdymusicname:mp3name zdyimgarr:hlarr];
+        
+        [self performSegueWithIdentifier:@"preview" sender:nil];
+    }
+}
+
+-(void)postupload :(UIImage *) img :(NSString *)URL{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
+    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+    [HttpManage uploadTP:img name:uuid  cb:^(BOOL isOK, NSString *arry) {
+        if (isOK) {
+            //解析服务器图片名称
+            [imgdata addObject:arry];
+            row_index ++;
+            if (row_index > [data count] - 2) {
+                [self Sendcustom:URL];
+            }else{
+                GridInfo *info = [data objectAtIndex:row_index];
+                [self postupload:info.img :URL];
+            }
+        }else{
+            [SVProgressHUD dismiss];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+        }
+    }];
+}
+
+-(void)Sendcustom:(NSString *)logo{
+   
+    NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
+    [HttpManage custom:[UDObject gettoken] title:custom.time_label.text content:custom.content_edit.text logo:logo music:mp3url timestamp:hltime closeTimestamp:bmendtime images:arr mid:_unquieId cb:^(BOOL isOK, NSDictionary *array) {
+        [SVProgressHUD dismiss];
+        NSLog(@"%@",array);
+        if (isOK) {
+            NSString *hlarr = [arr componentsJoinedByString:@","];
+            [UDObject setZDYContent:topimgname zdytitle:custom.time_label.text zdydd:custom.content_edit.text zdytime:hltime zdyendtime:bmendtime zdymusic:mp3url zdymusicname:mp3name zdyimgarr:hlarr];
+            [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+        }
+        
+        
+    }];
+}
 
 @end

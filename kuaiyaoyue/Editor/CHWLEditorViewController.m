@@ -127,6 +127,13 @@
             }
         }];
     }
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editviewonclick:)];
+    [playview.editview addGestureRecognizer:tap2];
+}
+
+- (void)editviewonclick:(UITapGestureRecognizer *)gr{
+    [self.view endEditing:NO];
+    [playview.editview setHidden:YES];
 }
 
 -(void)ypviewsx{
@@ -587,6 +594,7 @@
         [scrollview setContentOffset:CGPointMake(0, 290)];
     }];
     
+    [playview.editview setHidden:NO];
     return YES;
 }
 
@@ -684,8 +692,10 @@
         }else if ([parameterName isEqualToString:@"address"]) {
             [infodata addInfoWithValue:playview.address_edit.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
         }else if ([parameterName isEqualToString:@"description"]) {
-            
-            [infodata addInfoWithValue:playview.show_summary.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:NO:YES];
+            NSString *content = playview.show_summary.text;
+            if (content.length > 0) {
+                [infodata addInfoWithValue:playview.show_summary.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:NO:YES];
+            }
         }
     }
     NSArray *fixeds = [[DataBaseManage getDataBaseManage] GetFixeds:_unquieId];
@@ -751,7 +761,7 @@
     }else{
             if ([data count] - 1 > 0) {
                     for (int i = 0; i<[data count] - 1; i++) {
-                        GridInfo *info = [data objectAtIndex:row_index];
+                        GridInfo *info = [data objectAtIndex:i];
                         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
                         NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
                         uuid = [NSString stringWithFormat:@"%@.jpg",uuid];

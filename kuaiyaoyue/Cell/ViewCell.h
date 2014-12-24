@@ -31,6 +31,6 @@
 @end
 @protocol VCDelegate <NSObject>
 
-- (void)VCDelegate:(ViewCell *)cell didTapAtIndex:(long ) index;
+- (void)VCDelegate:(ViewCell *)cell didTapAtIndex:(long ) index type:(int)type;
 
 @end

@@ -11,8 +11,8 @@
 @interface HLEditViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate,UIScrollViewDelegate,UITextFieldDelegate>
 
 @property (strong ,nonatomic) NSMutableArray *data;
-@property (weak, nonatomic) NSString *unquieId;
-@property (weak, nonatomic) NSString *nefmbdw;
+@property (strong, nonatomic) NSString *unquieId;
+@property (strong, nonatomic) NSString *nefmbdw;
 
 @property (weak, nonatomic) IBOutlet UIView *send_view;
 @property (weak, nonatomic) IBOutlet UIView *sendshare_view;

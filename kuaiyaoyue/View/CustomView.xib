@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="974"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="1105"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="0FR-RP-ATI">
@@ -286,6 +286,11 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" id="xii-Ks-XzN">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="1105"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
@@ -293,6 +298,7 @@
             <connections>
                 <outlet property="bottom_view" destination="hWs-Df-qFg" id="9wN-eu-y2u"/>
                 <outlet property="content_edit" destination="dWo-e6-jmG" id="Upq-gI-WWR"/>
+                <outlet property="editview" destination="xii-Ks-XzN" id="8Bh-VN-DVr"/>
                 <outlet property="endtime_label" destination="ref-eh-ecH" id="umB-Rh-602"/>
                 <outlet property="gridview" destination="flG-Ef-BIr" id="W8X-E0-UgV"/>
                 <outlet property="music_label" destination="GfY-KZ-saq" id="uuo-Kk-mEh"/>
@@ -301,7 +307,7 @@
                 <outlet property="time_label" destination="Tvy-op-xmP" id="DcP-dm-iBE"/>
                 <outlet property="title_edit" destination="jbE-qT-3cU" id="aBB-dH-iJB"/>
             </connections>
-            <point key="canvasLocation" x="280" y="432"/>
+            <point key="canvasLocation" x="280" y="497.5"/>
         </view>
     </objects>
     <resources>

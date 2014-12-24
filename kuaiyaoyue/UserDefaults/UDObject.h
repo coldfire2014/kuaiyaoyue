@@ -70,4 +70,14 @@
 +(NSString *)getwlaudio;
 +(NSString *)getwlimgarr;
 
+//自定义
++(void)setZDYContent:(NSString *) zdytopimg zdytitle:(NSString *)zdytitle zdydd:(NSString *)zdydd zdytime:(NSString *)zdytime zdyendtime:(NSString *)zdyendtime zdymusic:(NSString *)zdymusic zdymusicname:(NSString *)zdymusicname zdyimgarr:(NSString *)zdyimgarr;
++(NSString *)getzdytopimg;
++(NSString *)getzdytitle;
++(NSString *)getzdydd;
++(NSString *)getzdytime;
++(NSString *)getzdyendtime;
++(NSString *)getzdymusic;
++(NSString *)getzdymusicname;
++(NSString *)getzdyimgarr;
 @end

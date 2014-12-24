@@ -64,7 +64,7 @@
 
 -(void)ptlogin{
     [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
-    [self j_spring_security_check:@"12345678" password:@"1234567"];
+    [self j_spring_security_check:@"123456789" password:@"123456789"];
 }
 
 

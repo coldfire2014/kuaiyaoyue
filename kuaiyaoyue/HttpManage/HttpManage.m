@@ -472,17 +472,18 @@ closeTimestamp:(NSString *)closeTimestamp
       content:(NSString *)content
          logo:(NSString *)logo
         music:(NSString *)music
+    timestamp:(NSString *)timestamp
 closeTimestamp:(NSString *)closeTimestamp
-       images:(NSString *)images
+       images:(NSArray *)images
           mid:(NSString *)mid
            cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             token,@"token",title,@"title",content,@"content",
-                            logo,@"logo",music,@"music",closeTimestamp,@"closeTimestamp",
-                            images,@"images",
+                            logo,@"logo",music,@"music",timestamp,@"timestamp",closeTimestamp,@"closeTimestamp",
+                            images,@"images",@"ios",@"equipment",version,@"version",
                             nil];
-    
+    NSLog(@"%@",params);
     NSString *pjurl = [NSString stringWithFormat:@"invitation/nozzle/NefUserData/custom/%@.aspx",mid];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,pjurl];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
@@ -536,6 +537,8 @@ closeTimestamp:(NSString *)closeTimestamp
                         token,@"token",timestamp,@"timestamp",
                         @"ios",@"equipment",version,@"version",
                         @"30",@"size",nil];
+    
+    NSLog(@"%@",params);
     
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUserData/multiHistory.aspx"];
     

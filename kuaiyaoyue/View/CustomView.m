@@ -19,6 +19,8 @@
 */
 
 - (IBAction)show_top_onclick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(CVDelegate:didTapAtIndex:)]){
+        [self.delegate CVDelegate:self didTapAtIndex:3];}
 }
 
 - (IBAction)time_onclick:(id)sender {

@@ -48,11 +48,15 @@
         label.numberOfLines = 0;
     }
     if (isJZ) {
+//        [label sizeToFit];
         label.textAlignment = NSTextAlignmentCenter;
+        
+//        label.center = CGPointMake(320, label.center.y);
     }else{
-        label.textAlignment = NSTextAlignmentLeft;
         [label sizeToFit];
+        label.textAlignment = NSTextAlignmentLeft;
     }
+    
     
     
     
@@ -75,18 +79,19 @@
     iv.image = _bgImg;
     for (int i = 0; i<_infoArr.count; i++) {
         NSDictionary *dic = [_infoArr objectAtIndex:i];
-        
         NSNumber* x = (NSNumber*)[dic valueForKey:@"x"];
-        
         NSNumber* y = (NSNumber*)[dic valueForKey:@"y"];
+        
         if (i == 1) {
             qto = [y floatValue];
         }else if (i == 2){
             qtw = [y floatValue];
         }
+        
         NSNumber* width = (NSNumber*)[dic valueForKey:@"width"];
         NSNumber* height = (NSNumber*)[dic valueForKey:@"height"];
         NSNumber* size = (NSNumber*)[dic valueForKey:@"size"];
+//         NSNumber* size = (NSNumber*)@"49";
         NSNumber* r = (NSNumber*)[dic valueForKey:@"r"];
         NSNumber* g = (NSNumber*)[dic valueForKey:@"g"];
         NSNumber* b = (NSNumber*)[dic valueForKey:@"b"];

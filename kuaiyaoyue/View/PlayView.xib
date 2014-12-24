@@ -36,7 +36,7 @@
                             <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入聚会名称" minimumFontSize="17" id="qs3-Us-Gu8">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入活动名称" minimumFontSize="17" id="qs3-Us-Gu8">
                             <rect key="frame" x="104" y="0.0" width="216" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -388,6 +388,11 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" id="Yfj-No-3Zd">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="1156"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
@@ -400,6 +405,7 @@
                 <outlet property="bmtime_label" destination="Y0r-Rf-6vV" id="AhC-sL-GBT"/>
                 <outlet property="bottom_view" destination="DGs-Zc-gi5" id="VQn-TA-adI"/>
                 <outlet property="del_button" destination="kd5-01-LCl" id="N9z-Gy-0KC"/>
+                <outlet property="editview" destination="Yfj-No-3Zd" id="mH6-eT-hFX"/>
                 <outlet property="girdview" destination="pkt-c5-wQp" id="C7n-aN-oFe"/>
                 <outlet property="jh_edit" destination="qs3-Us-Gu8" id="T3h-WE-pND"/>
                 <outlet property="show_summary" destination="NdZ-dr-Paz" id="Ydo-rd-qlf"/>

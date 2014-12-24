@@ -76,7 +76,7 @@
              NSLog(@"%@",array);
              tjnum = [array count];
              if (tjnum > 0) {
-                 [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeClear];
+                 [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
                  for (int i = 0; i < [array count]; i++) {
                      NSDictionary *dic = [array objectAtIndex:i];
                      [[DataBaseManage getDataBaseManage] setMusic:dic];

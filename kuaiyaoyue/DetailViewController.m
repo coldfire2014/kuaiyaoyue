@@ -106,6 +106,7 @@
 -(void)initData{
     data = [[DataBaseManage getDataBaseManage] GetContacts:_uniqueId];
     [_tableView reloadData];
+    [_tableView headerEndRefreshing];
 }
 
 -(void)layoutheadview{
@@ -148,19 +149,9 @@
 {
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 刷新表格
-//        [data removeAllObjects];
-//        for (int i = 0; i< 20; i++) {
-//            NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-//                                 @"哈哈哈",@"name",
-//                                 @"12",@"count",
-//                                 @"18650140605",@"phone",
-//                                 @"哈哈哈",@"talk",nil];
-//            [data addObject:dic];
-//        }
-        [_tableView reloadData];
+        [self renewal];
         
-        [_tableView headerEndRefreshing];
+        
     });
 }
 
@@ -228,9 +219,10 @@
             [cell.show_phone setEnabled:YES];
         }
         if ([cell.talk compare:@""] == NSOrderedSame) {
-            [cell.show_message setHidden:YES];
+            [cell.show_message setEnabled:NO];
         } else {
-            [cell.show_message setHidden:NO];
+            [cell.show_message setEnabled:YES];
+            
             if (indexPath.row == selectRow) {
                 [UIView animateWithDuration:0.3 animations:^{
                     cell.show_message.layer.transform = CATransform3DMakeRotation( -M_PI_2,0,0,1);

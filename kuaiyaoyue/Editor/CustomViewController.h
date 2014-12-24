@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate,UIScrollViewDelegate,UITextFieldDelegate,UITextViewDelegate>
+@interface CustomViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate,UIScrollViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (weak, nonatomic) NSString *unquieId;
-@property (weak, nonatomic) NSString *nefmbdw;
+@property (strong, nonatomic) NSString *unquieId;
+
+@property (weak, nonatomic) IBOutlet UIView *send_view;
+@property (weak, nonatomic) IBOutlet UIView *sendshare_view;
 
 @end

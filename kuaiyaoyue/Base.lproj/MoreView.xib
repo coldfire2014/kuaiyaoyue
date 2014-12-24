@@ -36,7 +36,7 @@
                             <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入聚会名称" minimumFontSize="17" id="CE3-og-40Y">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入活动名称" minimumFontSize="17" id="CE3-og-40Y">
                             <rect key="frame" x="104" y="0.0" width="207" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -330,7 +330,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hD9-ag-T6l">
-                                    <rect key="frame" x="97.999999357524672" y="12" width="190" height="21"/>
+                                    <rect key="frame" x="98" y="12" width="190" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -360,6 +360,11 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" id="14G-ga-prt">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="950"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
@@ -368,6 +373,7 @@
                 <outlet property="address_edit" destination="Aza-7w-CxJ" id="BGE-mv-xTe"/>
                 <outlet property="bmtime_label" destination="8Z6-3D-KoJ" id="5o6-Ds-aHq"/>
                 <outlet property="bottom_view" destination="3pY-F9-lYq" id="XW5-Xl-6qJ"/>
+                <outlet property="editview" destination="14G-ga-prt" id="7SO-JT-0ff"/>
                 <outlet property="girdview" destination="nvj-tp-Erb" id="Vp1-qT-S9b"/>
                 <outlet property="jh_edit" destination="CE3-og-40Y" id="zfa-1I-NW9"/>
                 <outlet property="music_view" destination="Af9-8r-skG" id="D6p-BY-sh3"/>

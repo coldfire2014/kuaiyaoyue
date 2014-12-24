@@ -98,6 +98,14 @@
     
     [_sendshare_view addGestureRecognizer:tap1];
     
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editviewonclick:)];
+    
+    [moreview.editview addGestureRecognizer:tap2];
+}
+
+- (void)editviewonclick:(UITapGestureRecognizer *)gr{
+    [self.view endEditing:NO];
+    [moreview.editview setHidden:YES];
 }
 
 -(void)changeHigh{
@@ -438,6 +446,8 @@
         [scrollview setContentOffset:CGPointMake(0, 290)];
     }];
     
+    [moreview.editview setHidden:NO];
+    
     return YES;
 }
 
@@ -512,9 +522,14 @@
             
         }else if ([parameterName isEqualToString:@"address"]) {
             [infodata addInfoWithValue:moreview.address_edit.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
-        }else if ([parameterName isEqualToString:@"description"]) {
+        }
         
-            [infodata addInfoWithValue:moreview.show_summary.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:NO:YES];
+        else if ([parameterName isEqualToString:@"description"]) {
+            NSString *content = moreview.show_summary.text;
+            if (content.length > 0) {
+                [infodata addInfoWithValue:moreview.show_summary.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:NO:YES];
+            }
+            
         }
     }
     NSArray *fixeds = [[DataBaseManage getDataBaseManage] GetFixeds:_unquieId];
@@ -561,7 +576,7 @@
     }else{
         if ([data count] - 1 > 0) {
             for (int i = 0; i<[data count] - 1; i++) {
-                GridInfo *info = [data objectAtIndex:row_index];
+                GridInfo *info = [data objectAtIndex:i];
                 CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
                 NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
                 uuid = [NSString stringWithFormat:@"%@.jpg",uuid];

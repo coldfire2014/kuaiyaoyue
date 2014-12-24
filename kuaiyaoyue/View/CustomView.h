@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *music_label;
 @property (weak, nonatomic) IBOutlet UIView *music_view;
 @property (weak, nonatomic) IBOutlet UIView *bottom_view;
+@property (weak, nonatomic) IBOutlet UIView *editview;
 
 @property (nonatomic, weak) id<CVDelegate> delegate;
 

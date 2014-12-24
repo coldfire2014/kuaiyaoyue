@@ -36,11 +36,11 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
-    [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+    _dirDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
+    [fileManager createDirectoryAtPath:_dirDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     // 创建目录
-    self.imgDirectory = [testDirectory stringByAppendingPathComponent:@"Image"];
-    self.audioDirectory = [testDirectory stringByAppendingPathComponent:@"Audio"];
+    self.imgDirectory = [_dirDirectory stringByAppendingPathComponent:@"Image"];
+    self.audioDirectory = [_dirDirectory stringByAppendingPathComponent:@"Audio"];
     
     if (![fileManager fileExistsAtPath:self.imgDirectory]) {
         [fileManager createDirectoryAtPath:self.imgDirectory withIntermediateDirectories:YES attributes:nil error:nil];
@@ -66,5 +66,9 @@
     return [[NSFileManager defaultManager] fileExistsAtPath:filepath];
 }
 
+-(NSString *)getThumb:(NSString *)name{
+    [self CreateFile];
+    return [self.dirDirectory stringByAppendingPathComponent:name];
+}
 
 @end

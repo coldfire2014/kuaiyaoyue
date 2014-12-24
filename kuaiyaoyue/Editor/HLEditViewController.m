@@ -361,9 +361,9 @@
         time_type = YES;
         [self.view endEditing:NO];
         [UIView animateWithDuration:0.4f animations:^{
-            //        [show setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-            CGFloat h = show.frame.size.height;
-            show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height-h/2.0);
+                    [show setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+//            CGFloat h = show.frame.size.height;
+//            show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height-h/2.0);
         }];
     }else if (type == 1){
         [self.view endEditing:NO];
@@ -392,8 +392,8 @@
         }
     }
     [UIView animateWithDuration:0.4f animations:^{
-        show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height*3.0/2.0);
-//        [show setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+//        show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height*3.0/2.0);
+        [show setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
     }];
 }
 
@@ -493,7 +493,6 @@
         
         if ([parameterName isEqualToString:@"marryName"]) {
             NSString *name = [NSString stringWithFormat:@"%@ & %@",hlev.xl_edit.text,hlev.xn_edit.text];
-            
             [infodata addInfoWithValue:name andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
         }else if ([parameterName isEqualToString:@"timestamp"]) {
             
@@ -548,13 +547,13 @@
     }else{
         if ([_data count] - 1 > 0) {
             for (int i = 0; i<[_data count] - 1; i++) {
-                GridInfo *info = [_data objectAtIndex:row_index];
+                GridInfo *info = [_data objectAtIndex:i];
                 CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
                 NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
                 uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
                 NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
-                [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
                 [UIImageJPEGRepresentation(info.img,0.8) writeToFile:imgpath atomically:YES];
+                [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
             }
         }
         NSArray *arr = [[NSArray alloc] initWithArray:addimg];

@@ -64,9 +64,6 @@
 }
 
 -(NSString *)changevalue{
-    
-    
-    
     NSDictionary *dic = nil;
     //0婚礼,1商务,2玩乐,3自定义
     if (_type == 0) {
@@ -85,6 +82,7 @@
                [UDObject getMbimg],@"backgroundImage",
                musicUrl,@"musicUrl",
                nil];
+        
     }else if (_type == 1){
         NSString *img = [UDObject getsw_imgarr];
         NSArray *arr;
@@ -94,8 +92,6 @@
             arr = [[NSArray alloc] init];
         }
         NSString *musicUrl = [NSString stringWithFormat:@"../Audio/%@",[UDObject getsw_musicname]];
-
-        
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                [UDObject getswaddress_name],@"address",
                arr,@"images",
@@ -122,17 +118,18 @@
                [UDObject getwllxfs_name],@"telephone",
                nil];
     }else if (_type == 3){
-        NSString *img = [UDObject gethlimgarr];
+        NSString *img = [UDObject getzdyimgarr];
         NSArray *arr;
         if ([img length] > 0) {
             arr = [img componentsSeparatedByString:NSLocalizedString(@",", nil)];
         }else{
             arr = [[NSArray alloc] init];
         }
+        
+        NSString *musicUrl = [NSString stringWithFormat:@"../Audio/%@",[UDObject getzdymusicname]];
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-               @"",@"musicUrl",
+               musicUrl,@"musicUrl",
                arr,@"images",
-               [UDObject getMbimg],@"backgroundImage",
                nil];
     }
     

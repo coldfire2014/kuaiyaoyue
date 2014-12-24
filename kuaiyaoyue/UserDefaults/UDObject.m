@@ -213,4 +213,41 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"wlimgarr"];
 }
 
++(void)setZDYContent:(NSString *) zdytopimg zdytitle:(NSString *)zdytitle zdydd:(NSString *)zdydd zdytime:(NSString *)zdytime zdyendtime:(NSString *)zdyendtime zdymusic:(NSString *)zdymusic zdymusicname:(NSString *)zdymusicname zdyimgarr:(NSString *)zdyimgarr{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:zdytopimg forKey:@"zdytopimg"];
+    [userInfo setValue:zdytitle forKey:@"zdytitle"];
+    [userInfo setValue:zdydd forKey:@"zdydd"];
+    [userInfo setValue:zdytime forKey:@"zdytime"];
+    [userInfo setValue:zdyendtime forKey:@"zdyendtime"];
+    [userInfo setValue:zdymusic forKey:@"zdymusic"];
+    [userInfo setValue:zdymusicname forKey:@"zdymusicname"];
+    [userInfo setValue:zdyimgarr forKey:@"zdyimgarr"];
+    [userInfo synchronize];
+}
++(NSString *)getzdytopimg{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"zdytopimg"];
+}
++(NSString *)getzdytitle{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"zdytitle"];
+}
++(NSString *)getzdydd{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"zdydd"];
+}
++(NSString *)getzdytime{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"zdytime"];
+}
++(NSString *)getzdyendtime{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"zdyendtime"];
+}
++(NSString *)getzdymusic{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"zdymusic"];
+}
++(NSString *)getzdymusicname{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"zdymusicname"];
+}
++(NSString *)getzdyimgarr{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"zdyimgarr"];
+}
+
 @end

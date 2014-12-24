@@ -8,6 +8,7 @@
 
 #import "ViewCell.h"
 #import "TimeTool.h"
+#import "FileManage.h"
 
 @implementation ViewCell{
     StateView* s;
@@ -24,10 +25,21 @@
     _show_img.clipsToBounds = YES;
     _show_img.contentMode = UIViewContentModeScaleAspectFill;
     
+    _show_img.userInteractionEnabled = YES;
+    
     _show_send.layer.cornerRadius = 3;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shareonclick:)];
+    
+    [_show_img addGestureRecognizer:tap];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(layoutSubviews) name:@"MSG_MYLIST_CLICK" object:nil];
 
+}
+
+- (void)shareonclick:(UITapGestureRecognizer *)gr{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(VCDelegate:didTapAtIndex:type:)]){
+        [self.delegate VCDelegate:self didTapAtIndex:_index type:1];}
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -44,7 +56,18 @@
     long long kstime = 0;
     long long endtime = 0;
     long long hdtime = 0;
+    NSString *topimg = nil;
     NSDate* dd = [NSDate dateWithTimeIntervalSince1970:[_info.nefclosetimestamp longLongValue]/1000];
+    if (type == 0) {
+        
+    }else{
+        NSArray *array = [_info.nefthumb componentsSeparatedByString:@"/"];
+        topimg = [array objectAtIndex:([array count] - 4)];
+        topimg = [[FileManage sharedFileManage] getThumb:topimg];
+        topimg = [NSString stringWithFormat:@"%@/assets/images/preview",topimg];
+    }
+    
+    UIImage *img = [[UIImage alloc]initWithContentsOfFile:topimg];
     switch (type) {
         case 0:
             _show_title.text = _info.neftitle;
@@ -56,6 +79,8 @@
             endtime = [_info.nefclosetimestamp longLongValue]/1000;
             hdtime = [_info.neftimestamp longLongValue]/1000;
             
+            _show_img.image = img;
+            
             // s:发送时间 。e:报名截止 g:活动时间
             [s setStartTime:[NSDate dateWithTimeIntervalSince1970:kstime] EndTime:[NSDate dateWithTimeIntervalSince1970:endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:hdtime]];
             
@@ -64,6 +89,8 @@
             _show_title.text = [NSString stringWithFormat:@"%@&%@ 婚礼",_info.nefgroom,_info.nefbride];
             _show_endtime.text = [NSString stringWithFormat:@"报名截止: %@",[TimeTool TopJZTime:dd]];
             _show_hdtime.text = [NSString stringWithFormat:@"活动时间: %@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
+            _show_img.image = img;
+            
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
             
             kstime = [_info.nefdate longLongValue]/1000;
@@ -84,6 +111,8 @@
             endtime = [_info.nefclosetimestamp longLongValue]/1000;
             hdtime = [_info.neftimestamp longLongValue]/1000;
             
+            _show_img.image = img;
+            
             // s:发送时间 。e:报名截止 g:活动时间
             [s setStartTime:[NSDate dateWithTimeIntervalSince1970:kstime] EndTime:[NSDate dateWithTimeIntervalSince1970:endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:hdtime]];
             
@@ -95,8 +124,8 @@
 }
 
 - (IBAction)send_onclick:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(VCDelegate:didTapAtIndex:)]){
-        [self.delegate VCDelegate:self didTapAtIndex:_index];}
+    if (self.delegate && [self.delegate respondsToSelector:@selector(VCDelegate:didTapAtIndex:type:)]){
+        [self.delegate VCDelegate:self didTapAtIndex:_index type:0];}
 }
 
 @end

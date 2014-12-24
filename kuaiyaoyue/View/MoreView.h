@@ -34,6 +34,9 @@
 @property (nonatomic, weak) id<MVDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIView *bottom_view;
 
+
+@property (weak, nonatomic) IBOutlet UIView *editview;
+
 @end
 @protocol MVDelegate <NSObject>
 

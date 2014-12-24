@@ -22,6 +22,8 @@
 #import "DetailViewController.h"
 #import "StatusBar.h"
 #import "ShareView.h"
+#import "ShowWebViewController.h"
+
 @interface ViewController ()<VCDelegate,DVCDelegate>{
     NSMutableArray *data;
     NSString *uniqueId;
@@ -38,6 +40,8 @@
     NSString *msg;
     NSString *title;
     NSIndexPath *index_path;
+    
+    NSString *weburl;
 }
 
 @end
@@ -75,7 +79,7 @@
 
 -(void)GetRecord{
     [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" cb:^(BOOL isOK, NSDictionary *array) {
-//        NSLog(@"%@",array);
+        NSLog(@"%@",array);
         if (isOK) {
             NSArray *customList = [array objectForKey:@"customList"];
             for (NSDictionary *dic in customList) {
@@ -303,6 +307,9 @@
         view.datatime = datatime;
         view.endtime = endtime;
         view.delegate = self;
+    }else if ([segue.identifier compare:@"showurl"] == NSOrderedSame){
+        ShowWebViewController *view = (ShowWebViewController*)segue.destinationViewController;
+        view.weburl = weburl;
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -497,9 +504,8 @@
     }];
 }
 
-- (void)VCDelegate:(ViewCell *)cell didTapAtIndex:(long ) index{
+- (void)VCDelegate:(ViewCell *)cell didTapAtIndex:(long ) index type:(int)type{
     Userdata *user = [data objectAtIndex:index];
-    NSLog(@"%d",user.neftype);
     switch (user.neftype) {
         case 0:
 //            title = [NSString stringWithFormat:@"%@&%@ 婚礼",user.nefgroom,user.nefbride];
@@ -520,17 +526,20 @@
         default:
             break;
     }
-    
-    ShareView* share = [ShareView sharedShareView];
-    share.fromvc = self;
-    share.url = url;
-    share.msg = msg;
-    share.title = title;
-    share.imgUrl = @"http://pp.myapp.com/ma_icon/0/icon_11251614_19813241_1418702475/96";
-    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon57" ofType:@"png"]];
-    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
-    [share show];
-    
+    if (type == 0) {
+        ShareView* share = [ShareView sharedShareView];
+        share.fromvc = self;
+        share.url = url;
+        share.msg = msg;
+        share.title = title;
+        share.imgUrl = @"http://pp.myapp.com/ma_icon/0/icon_11251614_19813241_1418702475/96";
+        UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon57" ofType:@"png"]];
+        share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+        [share show];
+    }else{
+        weburl = user.nefurl;
+        [self performSegueWithIdentifier:@"showurl" sender:nil];
+    }
 }
 
 - (void)DVCDelegate:(DetailViewController *)cell didTapAtIndex:(NSString *) nefid{

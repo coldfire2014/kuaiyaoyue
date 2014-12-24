@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *xlr_edit;
 @property (weak, nonatomic) IBOutlet UITextField *xlfs_edit;
 
+@property (weak, nonatomic) IBOutlet UIView *editview;
 @property (weak, nonatomic) IBOutlet UITextView *show_summary;
 @property (weak, nonatomic) IBOutlet UICollectionView *girdview;
 

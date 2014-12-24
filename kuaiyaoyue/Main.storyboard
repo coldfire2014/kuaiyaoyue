@@ -84,7 +84,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ln4-5M-Day" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1534" y="581"/>
+            <point key="canvasLocation" x="1572" y="-68"/>
         </scene>
         <!--Music View Controller-->
         <scene sceneID="qCk-ie-AhB">
@@ -278,7 +278,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="-1432" y="589"/>
+            <point key="canvasLocation" x="-1550" y="839"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="xLx-1A-8aO">
@@ -516,9 +516,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="send_view" destination="GVO-vc-hmr" id="K1N-5Z-Ne5"/>
+                        <outlet property="sendshare_view" destination="d8X-j1-RCw" id="mLI-5B-U0l"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="cEa-HE-o2s"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="72F-Gw-hpx"/>
                         <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="TVF-8g-g97"/>
+                        <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="Dsl-9A-YOu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJx-Xq-q9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -778,9 +781,8 @@
                                                                 <constraint firstAttribute="width" constant="27" id="cc4-X0-Ged"/>
                                                                 <constraint firstAttribute="height" constant="27" id="onv-jw-Spz"/>
                                                             </constraints>
-                                                            <state key="normal" image="ic_54_message">
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
+                                                            <state key="normal" image="ic_54_message"/>
+                                                            <state key="disabled" image="ic_54_message_dis"/>
                                                             <state key="highlighted" image="ic_54_message_pre.png"/>
                                                             <connections>
                                                                 <action selector="message_onclick:" destination="5Ap-qS-mSD" eventType="touchUpInside" id="uas-mk-kpC"/>
@@ -919,6 +921,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNg-W4-FhB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-755" y="-68"/>
+        </scene>
+        <!--Show Web View Controller-->
+        <scene sceneID="yau-6J-ig7">
+            <objects>
+                <viewController id="JmL-wg-bJy" customClass="ShowWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pD8-1s-kAm"/>
+                        <viewControllerLayoutGuide type="bottom" id="JLx-RE-16g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R7p-5y-t7w">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6BA-i6-S2b">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6BA-i6-S2b" firstAttribute="leading" secondItem="R7p-5y-t7w" secondAttribute="leading" id="5iC-cv-Nht"/>
+                            <constraint firstItem="6BA-i6-S2b" firstAttribute="top" secondItem="R7p-5y-t7w" secondAttribute="top" id="CmB-kG-4kC"/>
+                            <constraint firstItem="JLx-RE-16g" firstAttribute="top" secondItem="6BA-i6-S2b" secondAttribute="bottom" id="iPt-YX-xhD"/>
+                            <constraint firstAttribute="trailing" secondItem="6BA-i6-S2b" secondAttribute="trailing" id="vsx-Xq-gfc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webview" destination="6BA-i6-S2b" id="Uxp-TD-FOE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EzV-gl-PPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1446" y="113"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="VGg-Og-T4r">
@@ -1259,6 +1294,7 @@
                         <segue destination="CGi-4z-ltL" kind="show" identifier="setting" id="i5v-z0-JBk"/>
                         <segue destination="Aah-1p-LT9" kind="modal" id="gWB-FN-Ga9"/>
                         <segue destination="3qL-Uv-rZn" kind="modal" identifier="share" id="Wm9-pS-VoE"/>
+                        <segue destination="JmL-wg-bJy" kind="show" identifier="showurl" id="INB-X6-GBE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LvK-JD-UgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1764,6 +1800,7 @@
         <image name="ic_54_call_dis" width="27" height="27"/>
         <image name="ic_54_call_pre.png" width="27" height="27"/>
         <image name="ic_54_message" width="27" height="27"/>
+        <image name="ic_54_message_dis" width="27" height="27"/>
         <image name="ic_54_message_pre.png" width="27" height="27"/>
         <image name="ic_54_setting" width="27" height="27"/>
         <image name="ic_54_trash" width="27" height="27"/>
@@ -1773,8 +1810,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="D53-YK-KM5"/>
         <segue reference="X3g-3s-8JD"/>
-        <segue reference="cEa-HE-o2s"/>
         <segue reference="luI-zA-BtH"/>
-        <segue reference="fpr-vR-MAe"/>
+        <segue reference="fps-RF-Hk5"/>
+        <segue reference="bym-b5-cxi"/>
     </inferredMetricsTieBreakers>
 </document>
