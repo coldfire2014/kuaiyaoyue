@@ -120,6 +120,7 @@
             // s:发送时间 。e:报名截止 g:活动时间
             [s setStartTime:[NSDate dateWithTimeIntervalSince1970:kstime] EndTime:[NSDate dateWithTimeIntervalSince1970:endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:hdtime]];
             
+            
             break;
         case 2:
             _show_title.text = _info.nefpartyname;
