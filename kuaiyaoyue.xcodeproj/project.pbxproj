@@ -149,6 +149,7 @@
 		E5661A291A457CB700E4E2BC /* btn_login_1.png in Resources */ = {isa = PBXBuildFile; fileRef = E5661A251A457CB700E4E2BC /* btn_login_1.png */; };
 		E5661A2A1A457CB700E4E2BC /* btn_login_2_pre.png in Resources */ = {isa = PBXBuildFile; fileRef = E5661A261A457CB700E4E2BC /* btn_login_2_pre.png */; };
 		E5661A2B1A457CB700E4E2BC /* btn_login_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E5661A271A457CB700E4E2BC /* btn_login_2.png */; };
+		E57333AD1A4B9848006425C3 /* ChangeTempView.m in Sources */ = {isa = PBXBuildFile; fileRef = E57333AC1A4B9848006425C3 /* ChangeTempView.m */; };
 		E577FC0C1A356C80009ED66D /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC091A356C80009ED66D /* AssetHelper.m */; };
 		E577FC0D1A356C80009ED66D /* myImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC0B1A356C80009ED66D /* myImageView.m */; };
 		E577FC101A356D57009ED66D /* StatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC0F1A356D57009ED66D /* StatusBar.m */; };
@@ -426,6 +427,8 @@
 		E5661A251A457CB700E4E2BC /* btn_login_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_login_1.png; sourceTree = "<group>"; };
 		E5661A261A457CB700E4E2BC /* btn_login_2_pre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_login_2_pre.png; sourceTree = "<group>"; };
 		E5661A271A457CB700E4E2BC /* btn_login_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_login_2.png; sourceTree = "<group>"; };
+		E57333AB1A4B9848006425C3 /* ChangeTempView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeTempView.h; sourceTree = "<group>"; };
+		E57333AC1A4B9848006425C3 /* ChangeTempView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTempView.m; sourceTree = "<group>"; };
 		E577FC081A356C80009ED66D /* AssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
 		E577FC091A356C80009ED66D /* AssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetHelper.m; sourceTree = "<group>"; };
 		E577FC0A1A356C80009ED66D /* myImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myImageView.h; sourceTree = "<group>"; };
@@ -560,6 +563,8 @@
 				844CC5861A491CAE00A34186 /* CustomView.h */,
 				844CC5871A491CAE00A34186 /* CustomView.m */,
 				844CC5891A491CBA00A34186 /* CustomView.xib */,
+				E57333AB1A4B9848006425C3 /* ChangeTempView.h */,
+				E57333AC1A4B9848006425C3 /* ChangeTempView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1260,6 +1265,7 @@
 				84E842C91A2EFDCB00A401A0 /* UIImageView+AFNetworking.m in Sources */,
 				E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */,
 				84B446CB1A32B3D000546859 /* UIView+MJExtension.m in Sources */,
+				E57333AD1A4B9848006425C3 /* ChangeTempView.m in Sources */,
 				841728AB1A40385800272A0C /* DVCCell.m in Sources */,
 				84FE0B871A426C71005A9599 /* PhotoCell.m in Sources */,
 				846C1B9D1A45592900B59A18 /* ShowData.m in Sources */,

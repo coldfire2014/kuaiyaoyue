@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ChangeTempView.h"
 @interface PreviewViewController : UIViewController<UIScrollViewDelegate,UIWebViewDelegate>
 
 
