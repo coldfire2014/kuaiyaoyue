@@ -86,6 +86,7 @@
     switch (type) {
         case 0:
             _show_title.text = _info.neftitle;
+            
             _show_endtime.text = [NSString stringWithFormat:@"报名截止: %@",[TimeTool TopJZTime:dd]];
             _show_hdtime.text = [NSString stringWithFormat:@"活动时间: %@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
@@ -95,6 +96,7 @@
             hdtime = [_info.neftimestamp longLongValue]/1000;
             
             if (img == nil) {
+
                 [_show_img setImageWithURL:[NSURL URLWithString:_info.neflogo] placeholderImage:[UIImage imageNamed:@"icon120.png"]];
             }else{
                 _show_img.image = img;
