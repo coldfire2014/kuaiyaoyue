@@ -10,9 +10,11 @@
 #import "ZipArchive.h"
 
 #define HTTPURL @"http://test.kyy121.com/"
+//
 //#define HTTPURL @"http://10.142.59.103/";
 
 #define version @"1.0.5"
+
 
 /*
 43    //BadCredentialsException     密码不正确
