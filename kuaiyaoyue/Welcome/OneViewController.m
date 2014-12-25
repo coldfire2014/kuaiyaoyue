@@ -19,9 +19,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap)];
-    [self.view addGestureRecognizer:tap];
-    
+//    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap)];
+//    [self.view addGestureRecognizer:tap];
+//    tempView = [[ChangeTempView alloc] initWithFrame:CGRectZero];
+//    tempView.delegate = self;
+//    tempView.type = 1;//0婚礼,1商务,2玩乐,3自定义
+//    [tempView loadDate];
+//    [self.view addSubview:tempView];
 }
 -(void)didTap{
 //    ShareView* share = [ShareView sharedShareView];
@@ -35,6 +39,9 @@
 //    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
 //    [share show];
 }
+//-(void)didSelectTemplate:(Template*)items{
+//    NSLog(@"Template%@",items);
+//}
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     if (MFMailComposeResultSent == result || MFMailComposeResultSaved == result) {
         [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];

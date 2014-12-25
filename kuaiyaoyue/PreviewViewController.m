@@ -29,8 +29,17 @@
     
     _webview.scalesPageToFit = YES;
     _webview.delegate = self;
+    _webview.alpha = 0;
+    tempView = [[ChangeTempView alloc] initWithFrame:CGRectZero];
+    tempView.delegate = self;
+    tempView.type = _type;//0婚礼,1商务,2玩乐,3自定义
+    [tempView loadDate];
+    tempView.alpha = 0;
+    [self.view addSubview:tempView];
 }
-
+-(void)didSelectTemplate:(Template*)items{
+    NSLog(@"Template%@",items);
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -61,6 +70,10 @@
 //页面加载完成，导航条显示，预览图隐藏，
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [_webview stringByEvaluatingJavaScriptFromString:[self changevalue]];
+    [UIView animateWithDuration:0.4 animations:^{
+        _webview.alpha = 1;
+        tempView.alpha = 0;
+    }];
 }
 
 -(NSString *)changevalue{

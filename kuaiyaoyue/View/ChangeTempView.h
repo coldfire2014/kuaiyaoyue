@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Template.h"
+@protocol ChangeTempViewDelegate <NSObject>
 
-@interface ChangeTempView : UIView
+-(void)didSelectTemplate:(Template*)items;
 
+@end
+
+@interface ChangeTempView : UIView<UITableViewDataSource,UITableViewDelegate>
+{
+    NSArray* data;
+}
+@property  int type;
+@property (nonatomic,weak) id<ChangeTempViewDelegate> delegate;
+-(void)loadDate;
 @end

@@ -169,7 +169,7 @@ password:1235456                     //用户密码
     if (phoneId.length >0) {
         
     }else{
-        phoneId = @"1";
+        phoneId = @"3";
     }
    
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
