@@ -134,6 +134,7 @@
     moreview.xlfs_edit.delegate = self;
     moreview.show_summary.delegate = self;
     
+    
     gridview = moreview.girdview;
     gridview.delegate = self;
     gridview.dataSource = self;
@@ -163,6 +164,8 @@
         moreview.xlr_edit.text = [UDObject getswxlr_name];
         moreview.xlfs_edit.text = [UDObject getswxlfs_name];
         moreview.show_summary.text = [UDObject getswhd_name];
+        
+        moreview.show_summary.text = [NSString stringWithFormat:@"剩余%d",70-moreview.show_summary.text.length];
         
         if ([UDObject getsw_music].length > 0) {
             mp3name = [UDObject getsw_musicname];
@@ -447,6 +450,19 @@
     }];
     
     [moreview.editview setHidden:NO];
+    
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSLog(@"%d",textView.text.length);
+    if(textView == moreview.show_summary){
+        if (textView.text.length > 70) {
+            textView.text = [textView.text substringToIndex:70];
+        }
+        NSLog(@"%d",textView.text.length);
+        moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
+    }
     
     return YES;
 }

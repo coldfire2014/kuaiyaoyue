@@ -138,7 +138,7 @@ closeTimestamp:(NSString *)closeTimestamp
            cb:(void(^)(BOOL isOK ,NSDictionary *array))callback;
 
 //清除推送
-+(void)cleanNumber: (void(^)(BOOL isOK ,NSDictionary *array))callback;
++(void)cleanNumber:(NSString *)unquieId token:(NSString *)token cb:(void(^)(BOOL isOK ,NSDictionary *array))callback;
 
 //意见反馈
 +(void)suggestion:(NSString *)token

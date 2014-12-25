@@ -330,7 +330,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hD9-ag-T6l">
-                                    <rect key="frame" x="97.999999357524672" y="12" width="190" height="21"/>
+                                    <rect key="frame" x="98" y="12" width="190" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -357,6 +357,13 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余70字" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m7c-Fl-m9T">
+                            <rect key="frame" x="40" y="27" width="55" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -379,6 +386,7 @@
                 <outlet property="music_view" destination="Af9-8r-skG" id="D6p-BY-sh3"/>
                 <outlet property="show_music" destination="hD9-ag-T6l" id="Ejx-Vg-O9c"/>
                 <outlet property="show_summary" destination="QaE-a0-hel" id="gar-2j-Vq8"/>
+                <outlet property="text_label_num" destination="m7c-Fl-m9T" id="VEP-De-IrY"/>
                 <outlet property="time_label" destination="jOs-5c-nnM" id="qyo-Sz-91Z"/>
                 <outlet property="xlfs_edit" destination="p02-pA-Iz4" id="aqN-Su-9CS"/>
                 <outlet property="xlr_edit" destination="hK2-cZ-QsL" id="2e5-ER-1OG"/>

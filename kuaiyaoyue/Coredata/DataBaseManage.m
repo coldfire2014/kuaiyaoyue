@@ -204,6 +204,8 @@ static NSManagedObjectContext *context = nil;
         userdata.neflogo = [dic objectForKey:@"logo"];
         userdata.nefmusic = [dic objectForKey:@"music"];
         userdata.nefcontent = [dic objectForKey:@"content"];
+        userdata.neftimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
+        userdata.nefdate = [NSString stringWithFormat:@"%@",[dic objectForKey:@"date"]];
         userdata.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
         userdata.nefdate = [NSString stringWithFormat:@"%@",[dic objectForKey:@"date"]];
         userdata.neftemplateurl = [dic objectForKey:@"templateUrl"];
@@ -307,6 +309,28 @@ static NSManagedObjectContext *context = nil;
         NSLog(@"error:%@",error);
         return NO;
     }
+    return YES;
+}
+
+-(BOOL)UpUserdata:(NSString *)nefid{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Userdata"];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"nefdate" ascending:NO];
+    NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
+    [request setSortDescriptors: sortDescriptors];
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefid = %@)",nefid];
+    [request setPredicate:predict];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    if (fetchedObjects.count > 0) {
+        Userdata *data = [fetchedObjects objectAtIndex:0];
+        data.nefnumber = @"0";
+        if (![context save:&error])
+        {
+            NSLog(@"error:%@",error);
+            return NO;
+        }
+    }
+    
     return YES;
 }
 

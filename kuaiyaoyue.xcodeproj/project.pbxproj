@@ -50,6 +50,9 @@
 		846C1BA51A45706000B59A18 /* LunarCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA41A45706000B59A18 /* LunarCalendar.m */; };
 		846C1BA81A45706B00B59A18 /* JBCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA71A45706B00B59A18 /* JBCalendar.m */; };
 		846C1BAB1A45734900B59A18 /* Fixeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BAA1A45734900B59A18 /* Fixeds.m */; };
+		8474A4AE1A4BB28A00C2E489 /* bubble_play_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8474A4AB1A4BB28A00C2E489 /* bubble_play_1@2x.png */; };
+		8474A4AF1A4BB28A00C2E489 /* bubble_play_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8474A4AC1A4BB28A00C2E489 /* bubble_play_2@2x.png */; };
+		8474A4B01A4BB28A00C2E489 /* bubble_play_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8474A4AD1A4BB28A00C2E489 /* bubble_play_3@2x.png */; };
 		848BF4791A43254B0002A1B1 /* Userdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 848BF4781A43254B0002A1B1 /* Userdata.m */; };
 		849D667E1A484875004EF00F /* HLEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D667D1A484875004EF00F /* HLEditView.m */; };
 		849D66801A484887004EF00F /* HLEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849D667F1A484887004EF00F /* HLEditView.xib */; };
@@ -261,6 +264,9 @@
 		846C1BA71A45706B00B59A18 /* JBCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBCalendar.m; sourceTree = "<group>"; };
 		846C1BA91A45734900B59A18 /* Fixeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fixeds.h; sourceTree = "<group>"; };
 		846C1BAA1A45734900B59A18 /* Fixeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fixeds.m; sourceTree = "<group>"; };
+		8474A4AB1A4BB28A00C2E489 /* bubble_play_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_play_1@2x.png"; sourceTree = "<group>"; };
+		8474A4AC1A4BB28A00C2E489 /* bubble_play_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_play_2@2x.png"; sourceTree = "<group>"; };
+		8474A4AD1A4BB28A00C2E489 /* bubble_play_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_play_3@2x.png"; sourceTree = "<group>"; };
 		848BF4771A43254B0002A1B1 /* Userdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Userdata.h; sourceTree = "<group>"; };
 		848BF4781A43254B0002A1B1 /* Userdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Userdata.m; sourceTree = "<group>"; };
 		849D667C1A484875004EF00F /* HLEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEditView.h; sourceTree = "<group>"; };
@@ -861,6 +867,9 @@
 			isa = PBXGroup;
 			children = (
 				844228911A4AC80700583893 /* 1.zip */,
+				8474A4AB1A4BB28A00C2E489 /* bubble_play_1@2x.png */,
+				8474A4AC1A4BB28A00C2E489 /* bubble_play_2@2x.png */,
+				8474A4AD1A4BB28A00C2E489 /* bubble_play_3@2x.png */,
 				843DBEDB1A46FA2600CDFFCB /* icon57.png */,
 				843DBED91A46F16600CDFFCB /* icon120.png */,
 				E5590CC81A46A4120080F3B1 /* Default-568h@2x.png */,
@@ -1210,6 +1219,7 @@
 				843DBEE41A47C5D500CDFFCB /* MoreView.xib in Resources */,
 				E527607E1A4BEDB800D11F5B /* bg_bubble@2x.png in Resources */,
 				E558D0151A47A6DA009BFC50 /* ShowData.xib in Resources */,
+				8474A4AF1A4BB28A00C2E489 /* bubble_play_2@2x.png in Resources */,
 				843DBEDA1A46F16600CDFFCB /* icon120.png in Resources */,
 				E5661A1C1A45708C00E4E2BC /* btn_login_qq.png in Resources */,
 				E5661A291A457CB700E4E2BC /* btn_login_1.png in Resources */,
@@ -1234,6 +1244,7 @@
 				E541B32E1A43DC9E006F89E1 /* imgBar.bundle in Resources */,
 				84FE0B881A426C71005A9599 /* PhotoCell.xib in Resources */,
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,
+				8474A4B01A4BB28A00C2E489 /* bubble_play_3@2x.png in Resources */,
 				E5661A2A1A457CB700E4E2BC /* btn_login_2_pre.png in Resources */,
 				8442288C1A4A518300583893 /* PEPhotoCropEditor.bundle in Resources */,
 				E5661A231A45708C00E4E2BC /* logo_login.png in Resources */,

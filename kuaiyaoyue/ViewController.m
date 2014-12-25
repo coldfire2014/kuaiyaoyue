@@ -74,7 +74,13 @@
     
     [self loaddata];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tsmessage) name:@"message" object:nil];
+}
 
+-(void)tsmessage{
+    [self GetRecord];
 }
 
 -(void)GetRecord{
@@ -383,7 +389,22 @@
     datatime = [info.neftimestamp longLongValue]/1000;
     maxnum = info.neftotal;
     
+    int num = [info.nefnumber intValue];
+    if (num > 0) {
+        [self cleanNumber];
+    }
     [self performSegueWithIdentifier:@"detail" sender:nil];
+    
+    
+    
+}
+
+-(void)cleanNumber{
+    [HttpManage cleanNumber:uniqueId token:[UDObject gettoken] cb:^(BOOL isOK, NSDictionary *array) {
+        if (isOK) {
+            [[DataBaseManage getDataBaseManage] UpUserdata:uniqueId];
+        }
+    }];
 }
 
 //写滑动监听

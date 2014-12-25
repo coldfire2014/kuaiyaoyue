@@ -11,11 +11,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="1156"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view hidden="YES" contentMode="scaleToFill" id="Yfj-No-3Zd">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="1156"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
                 <view contentMode="scaleToFill" id="3OT-Ge-OaE">
                     <rect key="frame" x="0.0" y="18" width="320" height="129"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -340,30 +335,57 @@
                                     <color key="textColor" red="1" green="0.34509803921568627" blue="0.50588235294117645" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view hidden="YES" contentMode="scaleToFill" id="EjS-SV-Rkb">
-                                    <rect key="frame" x="130" y="13" width="60" height="30"/>
+                                <view hidden="YES" alpha="0.0" contentMode="scaleToFill" id="EjS-SV-Rkb">
+                                    <rect key="frame" x="116" y="51" width="88" height="38"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AKn-V2-DJx">
-                                            <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AKn-V2-DJx">
+                                            <rect key="frame" x="0.0" y="0.0" width="88" height="37"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="点击播放">
+                                            <state key="normal" image="bg_bubble">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <state key="highlighted" image="bg_bubble_pre"/>
                                             <connections>
                                                 <action selector="bf_onclick:" destination="iN0-l3-epB" eventType="touchUpInside" id="0zK-dW-5Mb"/>
                                             </connections>
                                         </button>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="听一下" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uvC-ef-nEq">
+                                            <rect key="frame" x="22" y="5" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gif_bubble_play_3" id="XmC-cX-Zqj">
+                                            <rect key="frame" x="69" y="-1" width="19" height="38"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" id="AYS-sh-xdV">
+                                            <rect key="frame" x="0.0" y="0.0" width="88" height="38"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
-                                    <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <view contentMode="scaleToFill" id="OU9-yd-8aU">
                                     <rect key="frame" x="0.0" y="154" width="320" height="1"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VFW-Jg-OYH">
+                                    <rect key="frame" x="130" y="51" width="60" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="btn_120_recording_del">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted" image="btn_120_recording_del_pre"/>
+                                    <connections>
+                                        <action selector="del_onclick:" destination="iN0-l3-epB" eventType="touchUpInside" id="2Gt-34-AD0"/>
+                                    </connections>
+                                </button>
                                 <view contentMode="scaleToFill" id="Tpi-7d-L1N">
                                     <rect key="frame" x="130" y="51" width="60" height="60"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -373,25 +395,25 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kd5-01-LCl">
-                                    <rect key="frame" x="198" y="13" width="35" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <state key="normal" title="删除">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="del_onclick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ms9-w3-jRN"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余70字" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gYy-QR-fne">
+                            <rect key="frame" x="39" y="28" width="55" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" id="Yfj-No-3Zd">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="1156"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -399,17 +421,23 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="address_edit" destination="yzm-8T-6CD" id="MRz-sO-YQS"/>
+                <outlet property="audio_img" destination="T5E-26-bRM" id="ny4-UW-Ot1"/>
                 <outlet property="audio_showview" destination="Tpi-7d-L1N" id="0p9-4B-6yU"/>
                 <outlet property="audio_view" destination="EjS-SV-Rkb" id="O9Q-Ly-bLd"/>
                 <outlet property="audiobottomview" destination="bem-Yh-VxY" id="8py-qn-ZsK"/>
                 <outlet property="bmtime_label" destination="Y0r-Rf-6vV" id="AhC-sL-GBT"/>
                 <outlet property="bottom_view" destination="DGs-Zc-gi5" id="VQn-TA-adI"/>
-                <outlet property="del_button" destination="kd5-01-LCl" id="N9z-Gy-0KC"/>
+                <outlet property="del_button" destination="VFW-Jg-OYH" id="DNK-sj-utP"/>
                 <outlet property="editview" destination="Yfj-No-3Zd" id="mH6-eT-hFX"/>
+                <outlet property="gif_img" destination="XmC-cX-Zqj" id="SVW-Cy-fY4"/>
                 <outlet property="girdview" destination="pkt-c5-wQp" id="C7n-aN-oFe"/>
                 <outlet property="jh_edit" destination="qs3-Us-Gu8" id="T3h-WE-pND"/>
+                <outlet property="lyyl_view" destination="AYS-sh-xdV" id="sAW-j7-h67"/>
+                <outlet property="show_audioname" destination="ILh-vx-X6A" id="2RW-Xb-CCU"/>
                 <outlet property="show_summary" destination="NdZ-dr-Paz" id="Ydo-rd-qlf"/>
+                <outlet property="text_label_num" destination="gYy-QR-fne" id="BXH-6e-rZL"/>
                 <outlet property="time_label" destination="t0I-8g-Imr" id="Qjg-QJ-r5n"/>
+                <outlet property="tyx_label" destination="uvC-ef-nEq" id="hAK-UA-gcr"/>
                 <outlet property="xlfs_edit" destination="9J3-CJ-bhU" id="KvR-u0-hkp"/>
                 <outlet property="xlr_edit" destination="ndo-ho-38m" id="0jW-vf-VdR"/>
             </connections>
@@ -417,7 +445,12 @@
         </view>
     </objects>
     <resources>
+        <image name="bg_bubble" width="88" height="37"/>
+        <image name="bg_bubble_pre" width="88" height="37"/>
         <image name="btn_120_recording" width="60" height="60"/>
+        <image name="btn_120_recording_del" width="60" height="60"/>
+        <image name="btn_120_recording_del_pre" width="60" height="60"/>
+        <image name="gif_bubble_play_3" width="19" height="37"/>
         <image name="ic_32_open" width="16" height="16"/>
         <image name="ic_c_clock" width="24" height="24"/>
         <image name="ic_c_contact" width="24" height="24"/>

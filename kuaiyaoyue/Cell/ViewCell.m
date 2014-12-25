@@ -9,6 +9,7 @@
 #import "ViewCell.h"
 #import "TimeTool.h"
 #import "FileManage.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation ViewCell{
     StateView* s;
@@ -28,6 +29,8 @@
     _show_img.userInteractionEnabled = YES;
     
     _show_send.layer.cornerRadius = 3;
+    
+    _show_newview.layer.cornerRadius = 12;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shareonclick:)];
     
@@ -58,14 +61,26 @@
     long long hdtime = 0;
     NSString *topimg = nil;
     NSDate* dd = [NSDate dateWithTimeIntervalSince1970:[_info.nefclosetimestamp longLongValue]/1000];
+    
+    if ([_info.nefnumber intValue] > 0) {
+        [_show_newview setHidden:NO];
+    }else{
+        [_show_newview setHidden:YES];
+    }
+    
+    _show_newnum.text = _info.nefnumber;
+    
     if (type == 0) {
-        
+        NSArray *array = [_info.neflogo componentsSeparatedByString:@"/"];
+        topimg = [array objectAtIndex:([array count] - 1)];
+        topimg = [[FileManage sharedFileManage] getImgFile:topimg];
     }else{
         NSArray *array = [_info.nefthumb componentsSeparatedByString:@"/"];
         topimg = [array objectAtIndex:([array count] - 4)];
         topimg = [[FileManage sharedFileManage] getThumb:topimg];
         topimg = [NSString stringWithFormat:@"%@/assets/images/preview",topimg];
     }
+    
     
     UIImage *img = [[UIImage alloc]initWithContentsOfFile:topimg];
     switch (type) {
@@ -79,7 +94,11 @@
             endtime = [_info.nefclosetimestamp longLongValue]/1000;
             hdtime = [_info.neftimestamp longLongValue]/1000;
             
-            _show_img.image = img;
+            if (img == nil) {
+                [_show_img setImageWithURL:[NSURL URLWithString:_info.neflogo] placeholderImage:[UIImage imageNamed:@"icon120.png"]];
+            }else{
+                _show_img.image = img;
+            }
             
             // s:发送时间 。e:报名截止 g:活动时间
             [s setStartTime:[NSDate dateWithTimeIntervalSince1970:kstime] EndTime:[NSDate dateWithTimeIntervalSince1970:endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:hdtime]];

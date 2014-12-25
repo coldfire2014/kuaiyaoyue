@@ -33,6 +33,8 @@
 -(NSArray *)getUserdata;
 //删除历史记录
 -(BOOL)DelUserdata:(NSString *)nefid;
+//更新历史记录
+-(BOOL)UpUserdata:(NSString *)nefid;
 //获取ID是否存在历史记录，并更新
 -(BOOL)GetUpUserdata:(NSDictionary *)dic;
 //获取模板列表

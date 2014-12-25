@@ -158,6 +158,7 @@
         custom.endtime_label.text = [TimeTool getFullTimeStr:[bmendtime longLongValue]/1000];
         custom.title_edit.text = [UDObject getzdytitle];
         custom.content_edit.text = [UDObject getzdydd];
+        custom.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-custom.content_edit.text.length];
         if ([UDObject getzdymusic].length > 0) {
             mp3name = [UDObject getzdymusicname];
             custom.music_label.text = mp3name;
@@ -516,6 +517,19 @@
     return YES;
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSLog(@"%d",textView.text.length);
+    if(textView == custom.content_edit){
+        if (textView.text.length > 70) {
+            textView.text = [textView.text substringToIndex:70];
+        }
+        NSLog(@"%d",textView.text.length);
+        custom.text_label_num.text = [NSString stringWithFormat:@"剩余%d",70-textView.text.length];
+    }
+    
+    return YES;
+}
+
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
     
     [custom.editview setHidden:NO];
@@ -586,7 +600,7 @@
         NSArray *arr = [[NSArray alloc] initWithArray:addimg];
         NSString *hlarr = [arr componentsJoinedByString:@","];
         
-        [UDObject setZDYContent:topimgname zdytitle:custom.time_label.text zdydd:custom.content_edit.text zdytime:hltime zdyendtime:bmendtime zdymusic:mp3url zdymusicname:mp3name zdyimgarr:hlarr];
+        [UDObject setZDYContent:topimgname zdytitle:custom.title_edit.text zdydd:custom.content_edit.text zdytime:hltime zdyendtime:bmendtime zdymusic:mp3url zdymusicname:mp3name zdyimgarr:hlarr];
         
         [self performSegueWithIdentifier:@"preview" sender:nil];
     }
@@ -620,12 +634,12 @@
 -(void)Sendcustom:(NSString *)logo{
    
     NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
-    [HttpManage custom:[UDObject gettoken] title:custom.time_label.text content:custom.content_edit.text logo:logo music:mp3url timestamp:hltime closeTimestamp:bmendtime images:arr mid:_unquieId cb:^(BOOL isOK, NSDictionary *array) {
+    [HttpManage custom:[UDObject gettoken] title:custom.title_edit.text content:custom.content_edit.text logo:logo music:mp3url timestamp:hltime closeTimestamp:bmendtime images:arr mid:_unquieId cb:^(BOOL isOK, NSDictionary *array) {
         [SVProgressHUD dismiss];
         NSLog(@"%@",array);
         if (isOK) {
             NSString *hlarr = [arr componentsJoinedByString:@","];
-            [UDObject setZDYContent:topimgname zdytitle:custom.time_label.text zdydd:custom.content_edit.text zdytime:hltime zdyendtime:bmendtime zdymusic:mp3url zdymusicname:mp3name zdyimgarr:hlarr];
+            [UDObject setZDYContent:topimgname zdytitle:custom.title_edit.text zdydd:custom.content_edit.text zdytime:hltime zdyendtime:bmendtime zdymusic:mp3url zdymusicname:mp3name zdyimgarr:hlarr];
             [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else{

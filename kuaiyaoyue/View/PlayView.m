@@ -18,6 +18,26 @@
 }
 */
 
+- (void)awakeFromNib {
+    UIView *jd = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, 72.0/6.0)];
+    jd.backgroundColor = [UIColor whiteColor];
+    jd.tag = 900;
+    jd.center = CGPointMake(_lyyl_view.bounds.size.width/2.0, (_lyyl_view.bounds.size.height-6)/2.0);
+    [_lyyl_view addSubview:jd];
+    for (int i = 1; i < 10; i++) {
+        UIView *jl = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, 72.0/6.0)];
+        jl.backgroundColor = [[UIColor alloc] initWithWhite:1 alpha:1.0-0.05*i];
+        jl.tag = 900 + i;
+        jl.center = CGPointMake(_lyyl_view.bounds.size.width/2.0 + i*4.0, (_lyyl_view.bounds.size.height-6)/2.0);
+        [_lyyl_view addSubview:jl];
+        UIView *jr = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, 72.0/6.0)];
+        jr.backgroundColor = [[UIColor alloc] initWithWhite:1 alpha:1.0-0.05*i];
+        jr.tag = 800 + i;
+        jr.center = CGPointMake(_lyyl_view.bounds.size.width/2.0 - i*4.0, (_lyyl_view.bounds.size.height-6)/2.0);
+        [_lyyl_view addSubview:jr];
+    }
+}
+
 - (IBAction)time_onclick:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(PVDelegate:didTapAtIndex:)]){
         [self.delegate PVDelegate:self didTapAtIndex:0];}
@@ -49,4 +69,7 @@
 
 - (IBAction)lxfs_nex:(id)sender {
 }
+
+
+
 @end
