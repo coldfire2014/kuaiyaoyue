@@ -255,21 +255,27 @@
     double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
     lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;
     curCount += 0.1;
-    if (lowPassResults >=0.22) {
-       
-    }
-    else if (lowPassResults>=0.2) {
-        
-    }else if(lowPassResults>=0.15){
-        
-    }else if(lowPassResults>=0.1){
-        
-    }else if(lowPassResults>=0.5){
-        
-    }else{
-        
-    }
-    
+    [UIView animateWithDuration:0.1 animations:^{
+        for (int i = 1; i < 10; i++) {
+            if (lowPassResults >= 0.05 + (0.22-0.05)/9.0*i) {
+                UIView* l = [playview.lyyl_view viewWithTag:900+i];
+                l.alpha = 1;
+                UIView* r = [playview.lyyl_view viewWithTag:800+i];
+                r.alpha = 1;
+            }else{
+                UIView* l = [playview.lyyl_view viewWithTag:900+i];
+                l.alpha = 0;
+                UIView* r = [playview.lyyl_view viewWithTag:800+i];
+                r.alpha = 0;
+            }
+        }
+        UIView* c = [playview.lyyl_view viewWithTag:900];
+        if (lowPassResults < 0.05) {
+            c.alpha = 0;
+        } else {
+            c.alpha = 1;
+        }
+    }];
 }
 
 #pragma mark - 停止定时器
