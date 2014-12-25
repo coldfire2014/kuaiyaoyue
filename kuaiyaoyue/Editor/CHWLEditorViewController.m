@@ -408,6 +408,7 @@
     }else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
         PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
         view.type = 2;
+        view.delegate = self;
     }
 }
 
@@ -827,6 +828,9 @@
         }
     }];
 }
-
+-(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw{
+    self.unquieId = index;
+    self.nefmbdw = nefmbdw;
+}
 
 @end

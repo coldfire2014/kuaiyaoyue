@@ -109,6 +109,7 @@
 		E52760771A4BC1F100D11F5B /* ic_32_arr.png in Resources */ = {isa = PBXBuildFile; fileRef = E52760751A4BC1F100D11F5B /* ic_32_arr.png */; };
 		E52760781A4BC1F100D11F5B /* ic_c_meeting.png in Resources */ = {isa = PBXBuildFile; fileRef = E52760761A4BC1F100D11F5B /* ic_c_meeting.png */; };
 		E527607C1A4BD26800D11F5B /* TempCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E527607B1A4BD26800D11F5B /* TempCell.m */; };
+		E527607E1A4BEDB800D11F5B /* bg_bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E527607D1A4BEDB800D11F5B /* bg_bubble@2x.png */; };
 		E52D00301A43200E00817261 /* UIImageView+LBBlurredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */; };
 		E534DD721A4643B900542D67 /* ic_54_x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E534DD711A4643B900542D67 /* ic_54_x@2x.png */; };
 		E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E534DD731A464CE700542D67 /* ic_54_edit@2x.png */; };
@@ -376,6 +377,7 @@
 		E52760761A4BC1F100D11F5B /* ic_c_meeting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_c_meeting.png; sourceTree = "<group>"; };
 		E527607A1A4BD26800D11F5B /* TempCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempCell.h; sourceTree = "<group>"; };
 		E527607B1A4BD26800D11F5B /* TempCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempCell.m; sourceTree = "<group>"; };
+		E527607D1A4BEDB800D11F5B /* bg_bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_bubble@2x.png"; path = "../../../../../../Downloads/bg_bubble@2x.png"; sourceTree = "<group>"; };
 		E52D002E1A43200E00817261 /* UIImageView+LBBlurredImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LBBlurredImage.h"; sourceTree = "<group>"; };
 		E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LBBlurredImage.m"; sourceTree = "<group>"; };
 		E534DD711A4643B900542D67 /* ic_54_x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_54_x@2x.png"; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 			children = (
 				E5661A241A457CB700E4E2BC /* btn_login_1_pre.png */,
 				E5661A251A457CB700E4E2BC /* btn_login_1.png */,
+				E527607D1A4BEDB800D11F5B /* bg_bubble@2x.png */,
 				E5661A261A457CB700E4E2BC /* btn_login_2_pre.png */,
 				E5661A271A457CB700E4E2BC /* btn_login_2.png */,
 				E5661A0E1A45708C00E4E2BC /* bg_login.jpg */,
@@ -1205,6 +1208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				843DBEE41A47C5D500CDFFCB /* MoreView.xib in Resources */,
+				E527607E1A4BEDB800D11F5B /* bg_bubble@2x.png in Resources */,
 				E558D0151A47A6DA009BFC50 /* ShowData.xib in Resources */,
 				843DBEDA1A46F16600CDFFCB /* icon120.png in Resources */,
 				E5661A1C1A45708C00E4E2BC /* btn_login_qq.png in Resources */,

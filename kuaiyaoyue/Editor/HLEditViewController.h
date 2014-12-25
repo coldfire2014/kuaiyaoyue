@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HLEditViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate,UIScrollViewDelegate,UITextFieldDelegate>
+#import "PreviewViewController.h"
+@interface HLEditViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate,UIScrollViewDelegate,UITextFieldDelegate,PreviewViewControllerDelegate>
 
 @property (strong ,nonatomic) NSMutableArray *data;
 @property (strong, nonatomic) NSString *unquieId;
@@ -16,5 +16,5 @@
 
 @property (weak, nonatomic) IBOutlet UIView *send_view;
 @property (weak, nonatomic) IBOutlet UIView *sendshare_view;
-
+-(UIImage *)getimg :(NSString *) str;
 @end
