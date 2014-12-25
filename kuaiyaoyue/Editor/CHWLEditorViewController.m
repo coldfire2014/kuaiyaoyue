@@ -257,7 +257,7 @@
     curCount += 0.1;
     [UIView animateWithDuration:0.1 animations:^{
         for (int i = 1; i < 10; i++) {
-            if (lowPassResults >= 0.05 + (0.22-0.05)/9.0*i) {
+            if (lowPassResults >= 0.02 + (0.30-0.02)/9.0*i) {
                 UIView* l = [playview.lyyl_view viewWithTag:900+i];
                 l.alpha = 1;
                 UIView* r = [playview.lyyl_view viewWithTag:800+i];
@@ -270,7 +270,7 @@
             }
         }
         UIView* c = [playview.lyyl_view viewWithTag:900];
-        if (lowPassResults < 0.05) {
+        if (lowPassResults < 0.02) {
             c.alpha = 0;
         } else {
             c.alpha = 1;
