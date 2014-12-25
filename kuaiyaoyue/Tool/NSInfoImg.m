@@ -48,20 +48,43 @@
         label.numberOfLines = 0;
     }
     if (isJZ) {
-//        [label sizeToFit];
         label.textAlignment = NSTextAlignmentCenter;
-        
-//        label.center = CGPointMake(320, label.center.y);
+    }else{
+        [label sizeToFit];
+        label.textAlignment = NSTextAlignmentLeft;
+    }
+
+    [context addSubview:label];
+}
+
+- (void)setText1:(NSString*) text withRect:(CGRect)rect andSize:(CGFloat)size andColor:(UIColor*)color to:(UIImageView*) context inSingle:(BOOL) single :(BOOL)isJZ{
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:rect];
+    label.text = text;
+    //    label.font = [UIFont fontWithName:@"MicrosoftYaHei" size:size];//
+    label.font = [UIFont systemFontOfSize:size];//
+    label.backgroundColor = [UIColor clearColor];
+    //    label.backgroundColor = [UIColor blackColor];
+    label.textColor = color;
+    if (single) {
+        label.numberOfLines = 1;
+    } else {
+        label.numberOfLines = 0;
+    }
+    if (isJZ) {
+        [label sizeToFit];
+//        label.textAlignment = NSTextAlignmentCenter;
+        label.center = CGPointMake(320, label.center.y);
     }else{
         [label sizeToFit];
         label.textAlignment = NSTextAlignmentLeft;
     }
     
-    
-    
-    
     [context addSubview:label];
 }
+
+
+
 - (UIImage*)getSaveImg :(BOOL) type{
     CGImageRef imgRef = _bgImg.CGImage;
     CGFloat width = CGImageGetWidth(imgRef);
@@ -101,7 +124,17 @@
         NSString* text = [dic valueForKey:@"string"];
         NSNumber* single = (NSNumber*)[dic valueForKey:@"single"];
         NSNumber* isjz = (NSNumber*)[dic valueForKey:@"isjz"];
-        [self setText:text withRect:CGRectMake([x floatValue], [y floatValue], [width floatValue], [height floatValue]) andSize:[size floatValue] andColor:[UIColor colorWithRed:[r floatValue]/255.0 green:[g floatValue]/255.0 blue:[b floatValue]/255.0 alpha:1] to:iv inSingle:[single boolValue] :[isjz boolValue]];
+        
+        
+        if ([text compare:@"<"] == NSOrderedSame || [text compare:@">"] == NSOrderedSame ) {
+            [self setText:text withRect:CGRectMake([x floatValue], [y floatValue], [width floatValue], [height floatValue]) andSize:[size floatValue] andColor:[UIColor colorWithRed:[r floatValue]/255.0 green:[g floatValue]/255.0 blue:[b floatValue]/255.0 alpha:1] to:iv inSingle:[single boolValue] :[isjz boolValue]];
+        }else{
+            [self setText1:text withRect:CGRectMake([x floatValue], [y floatValue], [width floatValue], [height floatValue]) andSize:[size floatValue] andColor:[UIColor colorWithRed:[r floatValue]/255.0 green:[g floatValue]/255.0 blue:[b floatValue]/255.0 alpha:1] to:iv inSingle:[single boolValue] :[isjz boolValue]];
+        }
+        
+        
+        
+        
     }
     
     UIGraphicsBeginImageContext(bounds.size);

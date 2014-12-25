@@ -10,12 +10,10 @@
 #import "ZipArchive.h"
 
 #define HTTPURL @"http://test.kyy121.com/"
-//1231
 
 //#define HTTPURL @"http://10.142.59.103/"
 
 #define version @"1.0.5"
-
 
 /*
 43    //BadCredentialsException     密码不正确
@@ -26,8 +24,6 @@
 74    BalanceInsuffcientException   余额不足
 84    To cancel the solicitation    邀约已经取消
  */
-
-
 
 static NSString * const APIBaseURLString = HTTPURL;
 

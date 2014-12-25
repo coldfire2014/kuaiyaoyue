@@ -81,7 +81,6 @@
         topimg = [NSString stringWithFormat:@"%@/assets/images/preview",topimg];
     }
     
-    
     UIImage *img = [[UIImage alloc]initWithContentsOfFile:topimg];
     switch (type) {
         case 0:
@@ -142,6 +141,12 @@
         default:
             break;
     }
+    
+    if ([[TimeTool TopJZTime:dd] isEqualToString:@"已截止"]) {
+        [_show_send setBackgroundColor:[UIColor lightGrayColor]];
+        [_show_send setEnabled:NO];
+    }
+    
 }
 
 - (IBAction)send_onclick:(id)sender {

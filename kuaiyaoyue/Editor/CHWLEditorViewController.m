@@ -188,12 +188,15 @@
         [self startTimer];
         
         [playview.audio_view setHidden:NO];
+    
         [UIView animateWithDuration:0.3 animations:^{
             [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 9, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
             [playview.audio_view setAlpha:1.0];
         }];
         
         [playview.audio_img setImage:[UIImage imageNamed:@"btn_120_recordingpre"]];
+        
+        
         
     }
     if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
@@ -213,12 +216,15 @@
             [playview.audio_showview setHidden:YES];
             [playview.del_button setHidden:NO];
             playview.show_audioname.text = @"删除重录";
-        
+            
+            [playview.lyyl_view setHidden:YES];
+            [playview.tyx_label setHidden:NO];
+            [playview.gif_img setHidden:NO];
         }
         else{
             recordedFile = nil;
             audioname = @"";
-            [SVProgressHUD showErrorWithStatus:@"发送时间过短" duration:1];
+            [SVProgressHUD showErrorWithStatus:@"录音时间过短" duration:1];
             
             [UIView animateWithDuration:0.3 animations:^{
                 [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 51, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
@@ -226,7 +232,11 @@
                 
             }completion:^(BOOL finished) {
                 [playview.audio_view setHidden:YES];
+                [playview.lyyl_view setHidden:NO];
+                [playview.tyx_label setHidden:YES];
+                [playview.gif_img setHidden:YES];
             }];
+    
         }
         
         [playview.audio_img setImage:[UIImage imageNamed:@"btn_120_recording"]];
@@ -248,14 +258,14 @@
         [self stopTimer];
         [recorder stop];
         recorder = nil;
-        [SVProgressHUD showErrorWithStatus:@"发送时间太长" duration:1];
+        [SVProgressHUD showErrorWithStatus:@"录音时间过长" duration:1];
     }
     
     const double ALPHA = 0.05;
     double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
     lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;
     curCount += 0.1;
-    [UIView animateWithDuration:0.1 animations:^{
+//    [UIView animateWithDuration:0.1 animations:^{
         for (int i = 1; i < 10; i++) {
             if (lowPassResults >= 0.02 + (0.30-0.02)/9.0*i) {
                 UIView* l = [playview.lyyl_view viewWithTag:900+i];
@@ -275,7 +285,7 @@
         } else {
             c.alpha = 1;
         }
-    }];
+//    }];
 }
 
 #pragma mark - 停止定时器
@@ -376,6 +386,11 @@
             [playview.audio_view setHidden:NO];
             [playview.audio_showview setHidden:YES];
             [playview.del_button setHidden:NO];
+            
+            [playview.lyyl_view setHidden:YES];
+            [playview.tyx_label setHidden:NO];
+            [playview.gif_img setHidden:NO];
+            
             playview.show_audioname.text = @"删除重录";
         }
         
@@ -587,8 +602,13 @@
             
         }completion:^(BOOL finished) {
             [playview.audio_view setHidden:YES];
+            [playview.lyyl_view setHidden:NO];
+            [playview.tyx_label setHidden:YES];
+            [playview.gif_img setHidden:YES];
         }];
-
+        
+        lowPassResults = 0;
+        
     }
 }
 
@@ -662,7 +682,7 @@
             textView.text = [textView.text substringToIndex:70];
         }
         NSLog(@"%d",textView.text.length);
-        playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d",70-textView.text.length];
+        playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
     }
     
     return YES;
@@ -677,26 +697,26 @@
     if (player == nil)
     {
         NSLog(@"ERror creating player: %@", [playerError description]);
-    }
-    //    player.delegate = self;
-    if([player isPlaying])
-    {
-        [player pause];
-    }
-    //If the track is not player, play the track and change the play button to "Pause"
-    else
-    {
-        [player play];
-        
-        playview.gif_img.animationImages = [NSArray arrayWithObjects:
-                                          [UIImage imageNamed:@"bubble_play_1"],
-                                          [UIImage imageNamed:@"bubble_play_2"],
-                                          [UIImage imageNamed:@"bubble_play_3"],
-                                          nil];
-        
-        playview.gif_img.animationDuration = 1.25;
-        playview.gif_img.animationRepeatCount = 0;
-        [playview.gif_img startAnimating];
+    }else{
+        if([player isPlaying])
+        {
+            [player pause];
+        }
+        //If the track is not player, play the track and change the play button to "Pause"
+        else
+        {
+            [player play];
+            
+            playview.gif_img.animationImages = [NSArray arrayWithObjects:
+                                                [UIImage imageNamed:@"bubble_play_1"],
+                                                [UIImage imageNamed:@"bubble_play_2"],
+                                                [UIImage imageNamed:@"bubble_play_3"],
+                                                nil];
+            
+            playview.gif_img.animationDuration = 1.25;
+            playview.gif_img.animationRepeatCount = 0;
+            [playview.gif_img startAnimating];
+        }
     }
 }
 
