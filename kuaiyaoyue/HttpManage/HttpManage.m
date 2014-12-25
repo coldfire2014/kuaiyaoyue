@@ -608,9 +608,13 @@ closeTimestamp:(NSString *)closeTimestamp
  token:"fasdfadsf-adsfasdfasd..."     //token
  unquieId:"1"    //记录编号
  */
-+(void)cleanNumber: (void(^)(BOOL isOK ,NSDictionary *array))callback{
++(void)cleanNumber:(NSString *)unquieId token:(NSString *)token cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
+    
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefNumber/cleanNumber.aspx"];
-    [[AFConnectionAPIClient sharedClient] POST:url parameters:nil success:^(AFHTTPRequestOperation * operation, id JSON) {
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            unquieId,@"unquieId",token,@"token",nil];
+    
+    [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *array = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];

@@ -213,8 +213,7 @@
             [playview.audio_showview setHidden:YES];
             [playview.del_button setHidden:NO];
             playview.show_audioname.text = @"删除重录";
-            
-            
+        
         }
         else{
             recordedFile = nil;

@@ -24,6 +24,7 @@
 @property long index;
 
 @property (weak, nonatomic) IBOutlet UILabel *show_newnum;
+@property (weak, nonatomic) IBOutlet UIView *show_newview;
 
 @property CGFloat widht;
 

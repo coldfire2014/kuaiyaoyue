@@ -389,7 +389,22 @@
     datatime = [info.neftimestamp longLongValue]/1000;
     maxnum = info.neftotal;
     
+    int num = [info.nefnumber intValue];
+    if (num > 0) {
+        [self cleanNumber];
+    }
     [self performSegueWithIdentifier:@"detail" sender:nil];
+    
+    
+    
+}
+
+-(void)cleanNumber{
+    [HttpManage cleanNumber:uniqueId token:[UDObject gettoken] cb:^(BOOL isOK, NSDictionary *array) {
+        if (isOK) {
+            [[DataBaseManage getDataBaseManage] UpUserdata:uniqueId];
+        }
+    }];
 }
 
 //写滑动监听
