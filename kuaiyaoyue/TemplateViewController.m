@@ -147,7 +147,7 @@
     btnView.tag = 302;
     btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 12.0);
 //    btnView.layer.transform = CATransform3DMakeRotation(-M_PI*2.0-M_PI_4,0,0,1);
-    [self.view addSubview:btnView];
+    [bgView addSubview:btnView];
     
     UITapGestureRecognizer* tapEdit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(edit)];
     [btnView addGestureRecognizer:tapEdit];
@@ -170,16 +170,17 @@
     
     loading.center = _tempList.center;
     [self.view bringSubviewToFront:loading];
-    [loading startAnimating];
+//    [loading startAnimating];
     isloading = YES;
 }
 - (void)viewDidAppear:(BOOL)animated{
     //showList加载数据完成后调用
     [TalkingData trackPageBegin:@"模板选择页"];
+    
     if (isloading) {
         isloading = NO;
-        [_tempList reloadOther];
-        [loading stopAnimating];
+        [_tempList showList];
+//        [loading stopAnimating];
     }
 }
 
@@ -204,7 +205,7 @@
     
     data = [[DataBaseManage getDataBaseManage] GetTemplate:neftypeId];
     [_tempList reloadViews];
-    [_tempList showList];//进厂动画
+//    [_tempList showList];//进厂动画
     [self didShowItemAtIndex:0];
     
 }
@@ -323,16 +324,19 @@
     
     nowColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
     nowkColor = [UIColor colorWithRed:red green:green blue:blue alpha:0.2];
-    btnView.backgroundColor = nowColor;
-    mbtitle.textColor = nowColor;
-    mbid.textColor = nowColor;
-    mbtotle.text = [[NSString alloc] initWithFormat:@"/%d",data.count];
-    mbid.text = [[NSString alloc] initWithFormat:@"%d",index+1];
-    if ([_type isEqualToString:@"hunli"]) {
-        mbtitle.text = [[NSString alloc] initWithFormat:@"%@",info.nefname];
-    }else{
-        mbtitle.text = @"";
-    }
+    [UIView animateWithDuration:0.4 animations:^{
+        btnView.backgroundColor = nowColor;
+        mbtitle.textColor = nowColor;
+        mbid.textColor = nowColor;
+        mbtotle.text = [[NSString alloc] initWithFormat:@"/%d",data.count];
+        mbid.text = [[NSString alloc] initWithFormat:@"%d",index+1];
+        if ([_type isEqualToString:@"hunli"]) {
+            mbtitle.text = [[NSString alloc] initWithFormat:@"%@",info.nefname];
+        }else{
+            mbtitle.text = @"";
+        }
+    }];
+    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{

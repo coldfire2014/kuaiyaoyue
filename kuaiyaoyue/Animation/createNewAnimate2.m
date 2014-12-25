@@ -153,6 +153,8 @@
         UIView* coverView = [fromView.view viewWithTag:299];
         UIView* bgView = [fromView.view viewWithTag:301];
         CreateBtn* btnView = (CreateBtn*)[fromView.view viewWithTag:302];
+        [btnView removeFromSuperview];
+        [fromView.view addSubview:btnView];
         btnView.layer.transform = CATransform3DMakeRotation(3.0*M_PI_4,0,0,1);
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             bgView.alpha = 0;
