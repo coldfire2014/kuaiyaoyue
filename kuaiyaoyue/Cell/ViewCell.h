@@ -23,6 +23,7 @@
 @property (weak, nonatomic) Userdata *info;
 @property long index;
 
+@property (weak, nonatomic) IBOutlet UILabel *show_newnum;
 
 @property CGFloat widht;
 

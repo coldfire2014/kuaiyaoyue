@@ -12,7 +12,7 @@
 #define HTTPURL @"http://test.kyy121.com/"
 //1231
 
-//#define HTTPURL @"http://10.142.59.103/";
+//#define HTTPURL @"http://10.142.59.103/"
 
 #define version @"1.0.5"
 

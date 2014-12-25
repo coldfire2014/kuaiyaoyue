@@ -74,7 +74,13 @@
     
     [self loaddata];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tsmessage) name:@"message" object:nil];
+}
 
+-(void)tsmessage{
+    [self GetRecord];
 }
 
 -(void)GetRecord{

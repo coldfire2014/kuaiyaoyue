@@ -36,9 +36,16 @@
 - (IBAction)address_next:(id)sender;
 - (IBAction)lxr_next:(id)sender;
 - (IBAction)lxfs_nex:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *gif_img;
+@property (weak, nonatomic) IBOutlet UIImageView *audio_img;
+
+@property (weak, nonatomic) IBOutlet UILabel *text_label_num;
 
 @property (nonatomic, weak) id<PVDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *show_audioname;
+@property (weak, nonatomic) IBOutlet UIView *lyyl_view;
 
+@property (weak, nonatomic) IBOutlet UILabel *tyx_label;
 @end
 @protocol PVDelegate <NSObject>
 

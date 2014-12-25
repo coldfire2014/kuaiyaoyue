@@ -187,6 +187,14 @@
         //启动计时器
         [self startTimer];
         
+        [playview.audio_view setHidden:NO];
+        [UIView animateWithDuration:0.3 animations:^{
+            [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 9, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
+            [playview.audio_view setAlpha:1.0];
+        }];
+        
+        [playview.audio_img setImage:[UIImage imageNamed:@"btn_120_recordingpre"]];
+        
     }
     if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
         
@@ -202,13 +210,27 @@
         //上传音频
         if (curCount >= 1) {
             [playview.audio_view setHidden:NO];
+            [playview.audio_showview setHidden:YES];
             [playview.del_button setHidden:NO];
+            playview.show_audioname.text = @"删除重录";
+            
+            
         }
         else{
             recordedFile = nil;
             audioname = @"";
             [SVProgressHUD showErrorWithStatus:@"发送时间过短" duration:1];
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 51, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
+                [playview.audio_view setAlpha:0.0];
+                
+            }completion:^(BOOL finished) {
+                [playview.audio_view setHidden:YES];
+            }];
         }
+        
+        [playview.audio_img setImage:[UIImage imageNamed:@"btn_120_recording"]];
     }
 }
 
@@ -234,6 +256,20 @@
     double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
     lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;
     curCount += 0.1;
+    if (lowPassResults >=0.22) {
+       
+    }
+    else if (lowPassResults>=0.2) {
+        
+    }else if(lowPassResults>=0.15){
+        
+    }else if(lowPassResults>=0.1){
+        
+    }else if(lowPassResults>=0.5){
+        
+    }else{
+        
+    }
     
 }
 
@@ -295,6 +331,8 @@
     playview.xlfs_edit.delegate = self;
     playview.show_summary.delegate = self;
     
+    playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-playview.show_summary.text.length];
+    
     gridview = playview.girdview;
     gridview.delegate = self;
     gridview.dataSource = self;
@@ -327,8 +365,13 @@
             NSArray *array = [[UDObject getwlaudio] componentsSeparatedByString:@"/"];
             audioname = [array objectAtIndex:([array count] - 1)];
             recordedFile = [[FileManage sharedFileManage] GetYPFile:audioname];
+        
+            [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 9, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
+            [playview.audio_view setAlpha:1.0];
             [playview.audio_view setHidden:NO];
+            [playview.audio_showview setHidden:YES];
             [playview.del_button setHidden:NO];
+            playview.show_audioname.text = @"删除重录";
         }
         
         NSArray *arr = [[UDObject getwlimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
@@ -529,8 +572,16 @@
     }else if (type == 3){
         recordedFile = nil;
         audioname = @"";
-        [playview.audio_view setHidden:YES];
+        [playview.audio_showview setHidden:NO];
         [playview.del_button setHidden:YES];
+        playview.show_audioname.text = @"长按录制";
+        [UIView animateWithDuration:0.3 animations:^{
+            [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 51, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
+            [playview.audio_view setAlpha:0.0];
+            
+        }completion:^(BOOL finished) {
+            [playview.audio_view setHidden:YES];
+        }];
 
     }
 }
@@ -598,6 +649,19 @@
     return YES;
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSLog(@"%d",textView.text.length);
+    if(textView == playview.show_summary){
+        if (textView.text.length > 70) {
+            textView.text = [textView.text substringToIndex:70];
+        }
+        NSLog(@"%d",textView.text.length);
+        playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d",70-textView.text.length];
+    }
+    
+    return YES;
+}
+
 -(void)AudioPlay{
     NSError *playerError;
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: recordedFile] error:&playerError];
@@ -617,6 +681,24 @@
     else
     {
         [player play];
+        
+        playview.gif_img.animationImages = [NSArray arrayWithObjects:
+                                          [UIImage imageNamed:@"bubble_play_1"],
+                                          [UIImage imageNamed:@"bubble_play_2"],
+                                          [UIImage imageNamed:@"bubble_play_3"],
+                                          nil];
+        
+        playview.gif_img.animationDuration = 1.25;
+        playview.gif_img.animationRepeatCount = 0;
+        [playview.gif_img startAnimating];
+    }
+}
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+    if (flag) {
+        [playview.gif_img stopAnimating];
+        [playview.gif_img setImage:[UIImage imageNamed:@"bubble_play_3"]];
+        
     }
 }
 

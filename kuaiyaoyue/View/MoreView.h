@@ -34,6 +34,7 @@
 @property (nonatomic, weak) id<MVDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIView *bottom_view;
 
+@property (weak, nonatomic) IBOutlet UILabel *text_label_num;
 
 @property (weak, nonatomic) IBOutlet UIView *editview;
 

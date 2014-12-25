@@ -37,4 +37,6 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(CVDelegate:didTapAtIndex:)]){
         [self.delegate CVDelegate:self didTapAtIndex:2];}
 }
+- (IBAction)title_next:(id)sender {
+}
 @end

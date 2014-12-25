@@ -90,6 +90,8 @@
     if (application.applicationState == UIApplicationStateActive){
     }else{
     }
+    
+    
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

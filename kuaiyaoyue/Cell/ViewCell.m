@@ -29,6 +29,8 @@
     
     _show_send.layer.cornerRadius = 3;
     
+    _show_newnum.layer.cornerRadius = 12;
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shareonclick:)];
     
     [_show_img addGestureRecognizer:tap];
@@ -58,14 +60,23 @@
     long long hdtime = 0;
     NSString *topimg = nil;
     NSDate* dd = [NSDate dateWithTimeIntervalSince1970:[_info.nefclosetimestamp longLongValue]/1000];
+    
+    
+//    if (_info.nef) {
+//        <#statements#>
+//    }
+    
     if (type == 0) {
-        
+        NSArray *array = [_info.neflogo componentsSeparatedByString:@"/"];
+        topimg = [array objectAtIndex:([array count] - 1)];
+        topimg = [[FileManage sharedFileManage] getImgFile:topimg];
     }else{
         NSArray *array = [_info.nefthumb componentsSeparatedByString:@"/"];
         topimg = [array objectAtIndex:([array count] - 4)];
         topimg = [[FileManage sharedFileManage] getThumb:topimg];
         topimg = [NSString stringWithFormat:@"%@/assets/images/preview",topimg];
     }
+    
     
     UIImage *img = [[UIImage alloc]initWithContentsOfFile:topimg];
     switch (type) {
