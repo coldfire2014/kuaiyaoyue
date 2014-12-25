@@ -657,5 +657,7 @@
         }
     }];
 }
-
-@end
+-(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw{
+    self.unquieId = index;
+    self.nefmbdw = nefmbdw;
+}@end

@@ -8,7 +8,8 @@
 
 #import "PreviewViewController.h"
 #import "UDObject.h"
-
+#import "FileManage.h"
+#import "TalkingData.h"
 @interface PreviewViewController ()
 
 @end
@@ -38,15 +39,33 @@
     [self.view addSubview:tempView];
 }
 -(void)didSelectTemplate:(Template*)items{
-    NSLog(@"Template%@",items);
+    [TalkingData trackEvent:@"更换模版预览"];
+//    NSLog(@"Template%@",items);
+    [self.delegate didSelectID:[[NSString alloc] initWithFormat:@"%@",items.nefid] andNefmbdw:items.nefmbdw];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *urlpath = [documentsDirectory stringByAppendingString:items.nefmbdw];
+    UIImage *bgimg = [self.delegate getimg:urlpath];
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    [UDObject setMbimg:[NSString stringWithFormat:@"../Image/%@",uuid]];
+    [UIImageJPEGRepresentation(bgimg,0.8) writeToFile:imgpath atomically:YES];
+    [self reloadweb];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [TalkingData trackPageEnd:@"生成前预览"];
+    tempView.alpha = 0;
+}
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [TalkingData trackPageBegin:@"生成前预览"];
     [self reloadweb];
 }
 
@@ -72,7 +91,7 @@
     [_webview stringByEvaluatingJavaScriptFromString:[self changevalue]];
     [UIView animateWithDuration:0.4 animations:^{
         _webview.alpha = 1;
-        tempView.alpha = 0;
+        tempView.alpha = 1;
     }];
 }
 

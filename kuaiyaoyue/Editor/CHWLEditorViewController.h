@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CHWLEditorViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate,UIScrollViewDelegate,UITextFieldDelegate,UITextViewDelegate>
+#import "PreviewViewController.h"
+@interface CHWLEditorViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate,UIScrollViewDelegate,UITextFieldDelegate,UITextViewDelegate,PreviewViewControllerDelegate>
 
 @property (strong, nonatomic) NSString *unquieId;
 @property (strong, nonatomic) NSString *nefmbdw;
 
 @property (weak, nonatomic) IBOutlet UIView *send_view;
 @property (weak, nonatomic) IBOutlet UIView *sendshare_view;
-
+-(UIImage *)getimg :(NSString *) str;
 @end
