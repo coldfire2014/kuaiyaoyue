@@ -106,6 +106,9 @@
 		84FE0BC31A42D0AD005A9599 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0BC21A42D0AD005A9599 /* Template.m */; };
 		84FE0BC61A42D32C005A9599 /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0BC51A42D32C005A9599 /* Info.m */; };
 		E524FF3B1A3ED9A5002E7DC0 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */; };
+		E52760771A4BC1F100D11F5B /* ic_32_arr.png in Resources */ = {isa = PBXBuildFile; fileRef = E52760751A4BC1F100D11F5B /* ic_32_arr.png */; };
+		E52760781A4BC1F100D11F5B /* ic_c_meeting.png in Resources */ = {isa = PBXBuildFile; fileRef = E52760761A4BC1F100D11F5B /* ic_c_meeting.png */; };
+		E527607C1A4BD26800D11F5B /* TempCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E527607B1A4BD26800D11F5B /* TempCell.m */; };
 		E52D00301A43200E00817261 /* UIImageView+LBBlurredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */; };
 		E534DD721A4643B900542D67 /* ic_54_x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E534DD711A4643B900542D67 /* ic_54_x@2x.png */; };
 		E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E534DD731A464CE700542D67 /* ic_54_edit@2x.png */; };
@@ -369,6 +372,10 @@
 		84FE0BC51A42D32C005A9599 /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
 		E524FF391A3ED9A5002E7DC0 /* TemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateCell.h; sourceTree = "<group>"; };
 		E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateCell.m; sourceTree = "<group>"; };
+		E52760751A4BC1F100D11F5B /* ic_32_arr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_32_arr.png; sourceTree = "<group>"; };
+		E52760761A4BC1F100D11F5B /* ic_c_meeting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_c_meeting.png; sourceTree = "<group>"; };
+		E527607A1A4BD26800D11F5B /* TempCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempCell.h; sourceTree = "<group>"; };
+		E527607B1A4BD26800D11F5B /* TempCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempCell.m; sourceTree = "<group>"; };
 		E52D002E1A43200E00817261 /* UIImageView+LBBlurredImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LBBlurredImage.h"; sourceTree = "<group>"; };
 		E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LBBlurredImage.m"; sourceTree = "<group>"; };
 		E534DD711A4643B900542D67 /* ic_54_x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_54_x@2x.png"; sourceTree = "<group>"; };
@@ -581,6 +588,9 @@
 		844825F31A31A4BB0018240E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E52760791A4BD1D400D11F5B /* ChangeTempView */,
+				E52760751A4BC1F100D11F5B /* ic_32_arr.png */,
+				E52760761A4BC1F100D11F5B /* ic_c_meeting.png */,
 				846C1B9B1A45592900B59A18 /* ShowData.h */,
 				846C1B9C1A45592900B59A18 /* ShowData.m */,
 				846C1B9E1A45593C00B59A18 /* ShowData.xib */,
@@ -596,8 +606,6 @@
 				844CC5861A491CAE00A34186 /* CustomView.h */,
 				844CC5871A491CAE00A34186 /* CustomView.m */,
 				844CC5891A491CBA00A34186 /* CustomView.xib */,
-				E57333AB1A4B9848006425C3 /* ChangeTempView.h */,
-				E57333AC1A4B9848006425C3 /* ChangeTempView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -973,6 +981,17 @@
 			path = ShareLinb;
 			sourceTree = "<group>";
 		};
+		E52760791A4BD1D400D11F5B /* ChangeTempView */ = {
+			isa = PBXGroup;
+			children = (
+				E57333AB1A4B9848006425C3 /* ChangeTempView.h */,
+				E57333AC1A4B9848006425C3 /* ChangeTempView.m */,
+				E527607A1A4BD26800D11F5B /* TempCell.h */,
+				E527607B1A4BD26800D11F5B /* TempCell.m */,
+			);
+			name = ChangeTempView;
+			sourceTree = "<group>";
+		};
 		E52D002D1A431FEA00817261 /* blur */ = {
 			isa = PBXGroup;
 			children = (
@@ -1202,6 +1221,7 @@
 				843DBEDC1A46FA2600CDFFCB /* icon57.png in Resources */,
 				844CC5831A48F94D00A34186 /* PlayView.xib in Resources */,
 				84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */,
+				E52760781A4BC1F100D11F5B /* ic_c_meeting.png in Resources */,
 				84B446C41A32B3D000546859 /* MJRefresh.bundle in Resources */,
 				E5590CC71A469CAB0080F3B1 /* card_r.png in Resources */,
 				E5661A1E1A45708C00E4E2BC /* btn_login_weixin.png in Resources */,
@@ -1218,6 +1238,7 @@
 				E5661A1D1A45708C00E4E2BC /* btn_login_weixin_pre.png in Resources */,
 				E541B3341A43DE2A006F89E1 /* shareView.bundle in Resources */,
 				E5590CC91A46A4120080F3B1 /* Default-568h@2x.png in Resources */,
+				E52760771A4BC1F100D11F5B /* ic_32_arr.png in Resources */,
 				E5590CC41A469CAB0080F3B1 /* card_b.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1327,6 +1348,7 @@
 				E541B3031A43C944006F89E1 /* CalHelper.m in Sources */,
 				84B446C81A32B3D000546859 /* MJRefreshHeaderView.m in Sources */,
 				84B5D1181A441C3E00C5C6E8 /* Contacts.m in Sources */,
+				E527607C1A4BD26800D11F5B /* TempCell.m in Sources */,
 				844825891A318C810018240E /* UDObject.m in Sources */,
 				843DBEE01A47BF9800CDFFCB /* MoreView.m in Sources */,
 				84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */,

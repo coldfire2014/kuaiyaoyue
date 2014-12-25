@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ChangeTempView.h"
-@interface PreviewViewController : UIViewController<UIScrollViewDelegate,UIWebViewDelegate>
-
-
+@interface PreviewViewController : UIViewController<UIScrollViewDelegate,UIWebViewDelegate,ChangeTempViewDelegate>
+{
+    ChangeTempView* tempView;
+}
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 @property int type;
 
