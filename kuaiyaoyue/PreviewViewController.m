@@ -72,7 +72,10 @@
     [TalkingData trackPageBegin:@"生成前预览"];
     [self reloadweb];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+}
 //页面加载时处理事件
 -(void)reloadweb{
     NSString *urlpath = [UDObject getWebUrl];
