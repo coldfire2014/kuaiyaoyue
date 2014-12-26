@@ -19,8 +19,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-//    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap)];
-//    [self.view addGestureRecognizer:tap];
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap)];
+    [self.view addGestureRecognizer:tap];
 //    tempView = [[ChangeTempView alloc] initWithFrame:CGRectZero];
 //    tempView.delegate = self;
 //    tempView.type = 1;//0婚礼,1商务,2玩乐,3自定义
@@ -28,6 +28,7 @@
 //    [self.view addSubview:tempView];
 }
 -(void)didTap{
+//    [[StatusBar sharedStatusBar] talkMsg:@"hahah哈哈" inTime:0.5];
 //    ShareView* share = [ShareView sharedShareView];
 //    share.fromvc = self;
 //    share.url = @"http://baidu.com";

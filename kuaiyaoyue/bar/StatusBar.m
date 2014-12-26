@@ -38,13 +38,13 @@
         self.backgroundColor = [UIColor clearColor];
         self.alpha = 1;
         self.hidden = NO;
-        bk = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width, 0, self.frame.size.width, 20)];
+        bk = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
         bk.backgroundColor =[[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
-        bk.layer.cornerRadius = 10.0;
+//        bk.layer.cornerRadius = 10.0;
         [self addSubview:bk];
-        msg1 = [[UILabel alloc] initWithFrame:CGRectMake(7, 0, 140, 20)];
+        msg1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 20)];
         msg1.font = [UIFont systemFontOfSize:13.0];
-        msg1.textAlignment = NSTextAlignmentLeft;
+        msg1.textAlignment = NSTextAlignmentCenter;
         msg1.textColor = [UIColor whiteColor];
         msg1.backgroundColor = [UIColor clearColor];
         msg1.text = @"";
@@ -68,24 +68,25 @@
 }
 - (void)talkMsg:(NSString*)msg inTime:(double)time{
     self.alpha = 1.0;
-    msg1.frame = CGRectMake( msg1.frame.origin.x,  msg1.frame.origin.y, self.frame.size.width, msg1.frame.size.height);
     msg1.text = msg;
-    [msg1 sizeToFit];
-    msg1.frame = CGRectMake( msg1.frame.origin.x,  msg1.frame.origin.y, msg1.frame.size.width, 20.0);
-    CGFloat ww = msg1.frame.size.width + 16.0;
-    bk.frame = CGRectMake(self.frame.size.width-ww, 0, self.frame.size.width, 20);
-    
-    CAKeyframeAnimation* moveAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-    moveAnim.values = [[NSArray alloc] initWithObjects:
-                       [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width*1.5, 10.0)],
-                       [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width*1.5-ww-12.0, 10.0)],
-                       [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width*1.5-ww+6.0, 10.0)],
-                       [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width*1.5-ww, 10.0)],nil];
-    moveAnim.removedOnCompletion = YES;
-    moveAnim.duration = 0.5;
-    moveAnim.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut];
-    moveAnim.fillMode = kCAFillModeForwards;
-    [bk.layer addAnimation:moveAnim forKey:@"s"];
+    CATransform3D t = CATransform3DIdentity;
+    t.m34 = -1.0/300.0;
+    bk.layer.transform = CATransform3DTranslate(t, 0, -10, 10);
+    bk.layer.transform = CATransform3DRotate(bk.layer.transform, M_PI_2, 1, 0, 0);
+    [UIView animateWithDuration:0.5 animations:^{
+        bk.layer.transform = t;
+    }];
+//    CAKeyframeAnimation* moveAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+//    moveAnim.values = [[NSArray alloc] initWithObjects:
+//                       [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width*1.5, 10.0)],
+//                       [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width*1.5-ww-12.0, 10.0)],
+//                       [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width*1.5-ww+6.0, 10.0)],
+//                       [NSValue valueWithCGPoint:CGPointMake(self.frame.size.width*1.5-ww, 10.0)],nil];
+//    moveAnim.removedOnCompletion = YES;
+//    moveAnim.duration = 0.5;
+//    moveAnim.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut];
+//    moveAnim.fillMode = kCAFillModeForwards;
+//    [bk.layer addAnimation:moveAnim forKey:@"s"];
     [self goout:0.5+time];
 }
 
