@@ -31,7 +31,7 @@
     _webview.scalesPageToFit = YES;
     _webview.delegate = self;
     _webview.alpha = 0;
-    tempView = [[ChangeTempView alloc] initWithFrame:CGRectZero];
+    tempView = [[ChangeTempView alloc] initWithFrame:self.view.frame];
     tempView.delegate = self;
     tempView.type = _type;//0婚礼,1商务,2玩乐,3自定义
     [tempView loadDate];
@@ -45,6 +45,8 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *urlpath = [documentsDirectory stringByAppendingString:items.nefmbdw];
+    NSString *zipurl = [documentsDirectory stringByAppendingPathComponent:items.nefzipurl];
+    [UDObject setWebUrl:zipurl];
     UIImage *bgimg = [self.delegate getimg:urlpath];
     CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
     NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
@@ -53,6 +55,8 @@
     [UDObject setMbimg:[NSString stringWithFormat:@"../Image/%@",uuid]];
     [UIImageJPEGRepresentation(bgimg,0.8) writeToFile:imgpath atomically:YES];
     [self reloadweb];
+    
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

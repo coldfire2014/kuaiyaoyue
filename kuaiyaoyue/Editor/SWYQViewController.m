@@ -264,6 +264,7 @@
         view.delegate = self;
     }else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
         PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
+        view.delegate = self;
         view.type = 1;
     }
 }
