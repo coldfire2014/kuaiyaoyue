@@ -31,7 +31,7 @@
     // Do any additional setup after loading the view.
     self.delegate = self;
     self.dataSource = self;
-    
+    self.title = @"返回";
     UIViewController* start = [self viewControllerAtIndex:0];
     NSArray* arr = [[NSArray alloc] initWithObjects:start, nil];
     [self setViewControllers:arr direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
@@ -45,12 +45,28 @@
                                              selector: @selector(sdwx:)
                                                  name: @"MSG_SDWX"
                                                object: nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(regme)
+                                                 name: @"MSG_Regme"
+                                               object: nil];
+    //MSG_Regme
 }
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [self.navigationController.navigationBar setHidden:YES];
+}
+
 -(void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_PTLOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_Regme" object:nil];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 -(void)login{
@@ -63,8 +79,14 @@
 }
 
 -(void)ptlogin{
-    [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
-    [self j_spring_security_check:@"12345678" password:@"1234567"];
+//    [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
+//    [self j_spring_security_check:@"12345678" password:@"1234567"];
+    [self performSegueWithIdentifier:@"login" sender:nil];
+    
+}
+
+-(void)regme{
+    [self performSegueWithIdentifier:@"registra" sender:nil];
 }
 
 

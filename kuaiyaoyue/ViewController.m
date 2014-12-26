@@ -51,7 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.title = @"主页";
+    self.title = @"返回";
     [self setupRefresh];
     is_chose = YES;
     CreateBtn* btnView = [[CreateBtn alloc] initWithFrame:CGRectMake(0, 0, 47, 47)];
@@ -264,6 +264,8 @@
     [TalkingData trackPageEnd:@"首页"];
 }
 - (void)viewWillAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController.navigationBar setHidden:YES];
     [self GetRecord];
 }

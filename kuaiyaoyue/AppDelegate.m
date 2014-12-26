@@ -14,6 +14,8 @@
 #import "PCHeader.h"
 #import "StatusBar.h"
 #import "TalkingData.h"
+#import "SMS_SDK/SMS_SDK.h"
+
 @interface AppDelegate (){
     BOOL is_xz;
     TencentOAuth* _tencentOAuth;
@@ -41,6 +43,7 @@
     }
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     [WXApi registerApp:@"wx06ea6c3bc82c99ac" withDescription:@"sdyydome"];
@@ -48,6 +51,8 @@
                                             andDelegate:self];
     [TalkingData setExceptionReportEnabled:YES];
     [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"appStore"];
+    
+    [SMS_SDK registerApp:@"25a64c839b5f" withSecret:@"9a639150fcb464d9a1c1ab926648ca3f"];
     
     return YES;
 }

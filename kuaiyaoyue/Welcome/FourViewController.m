@@ -120,7 +120,8 @@
     }];
 }
 -(void)regme{
-    [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
+//    [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_Regme" object:nil];
 }
 -(void)login{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_PTLOGIN" object:nil];
