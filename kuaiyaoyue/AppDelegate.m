@@ -137,7 +137,7 @@
                                 previewImageURL:[NSURL URLWithString:previewImageUrl]];
     SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObj];
     //将内容分享到qq
-    QQApiSendResultCode sent = [QQApiInterface sendReq:req];
+    [QQApiInterface sendReq:req];
     //将内容分享到qzone
 //    QQApiSendResultCode sent = [QQApiInterface SendReqToQZone:req];
 }
@@ -156,7 +156,7 @@
     //将内容分享到qq
 //    QQApiSendResultCode sent = [QQApiInterface sendReq:req];
     //将内容分享到qzone
-    QQApiSendResultCode sent = [QQApiInterface SendReqToQZone:req];
+    [QQApiInterface SendReqToQZone:req];
 }
 - (void)tencentDidLogin
 {
@@ -165,9 +165,9 @@
     {
         // 记录登录用户的OpenID、Token以及过期时间
 //        _labelAccessToken.text = _tencentOAuth.accessToken;
-        NSString* token = [_tencentOAuth accessToken] ;
-        NSString* openid = [_tencentOAuth openId] ;
-        NSDate* expirationDate = [_tencentOAuth expirationDate] ;
+//        NSString* token = [_tencentOAuth accessToken] ;
+//        NSString* openid = [_tencentOAuth openId] ;
+//        NSDate* expirationDate = [_tencentOAuth expirationDate] ;
         if ([_tencentOAuth getUserInfo]) {
             
         }else{
@@ -225,7 +225,7 @@
         NSString *timestamp = template.neftimestamp;
         [self maxtemplate :timestamp];
         
-        NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+//        NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
 //        NSString *uptime = [userInfo objectForKey:@"uptime"];
 //        if (uptime.length > 0) {
 //            timestamp = uptime;

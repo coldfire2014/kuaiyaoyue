@@ -647,7 +647,6 @@
                     <connections>
                         <outlet property="send_view" destination="GVO-vc-hmr" id="K1N-5Z-Ne5"/>
                         <outlet property="sendshare_view" destination="d8X-j1-RCw" id="mLI-5B-U0l"/>
-                        <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="cEa-HE-o2s"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="72F-Gw-hpx"/>
                         <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="TVF-8g-g97"/>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="Dsl-9A-YOu"/>
@@ -953,7 +952,6 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈阿克苏将很快的骄傲和SD卡灰色空间对话框231哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈阿克苏将很快的骄傲和SD卡灰色空间对话框231" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZB-WP-k5x">
                                                             <rect key="frame" x="8" y="8" width="568" height="63"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="63" id="2Rd-Ag-DNH"/>
                                                                 <constraint firstAttribute="width" constant="568" id="wJX-z6-0Wx"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -968,10 +966,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="gZB-WP-k5x" firstAttribute="leading" secondItem="ElL-Un-WZe" secondAttribute="leading" constant="8" id="6ym-0b-4xM"/>
-                                                        <constraint firstItem="gZB-WP-k5x" firstAttribute="top" secondItem="ElL-Un-WZe" secondAttribute="top" constant="8" id="Co0-tW-dl2"/>
                                                         <constraint firstAttribute="height" constant="79" id="e5l-Yd-RrD"/>
-                                                        <constraint firstAttribute="centerX" secondItem="gZB-WP-k5x" secondAttribute="centerX" id="mFv-sc-R7T"/>
+                                                        <constraint firstAttribute="centerX" secondItem="gZB-WP-k5x" secondAttribute="centerX" id="hDh-oS-K6a"/>
+                                                        <constraint firstAttribute="centerY" secondItem="gZB-WP-k5x" secondAttribute="centerY" id="kXR-7u-v9B"/>
+                                                        <constraint firstItem="gZB-WP-k5x" firstAttribute="leading" secondItem="ElL-Un-WZe" secondAttribute="leading" constant="8" id="t3k-5w-QSS"/>
+                                                        <constraint firstItem="gZB-WP-k5x" firstAttribute="top" secondItem="ElL-Un-WZe" secondAttribute="top" constant="8" id="yNj-LP-L2p"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o7y-gb-HqZ">
@@ -1442,31 +1441,12 @@
                         <segue destination="vz3-vm-ap6" kind="show" identifier="menu" id="ZGs-xJ-ADz"/>
                         <segue destination="Dq2-pa-Aad" kind="show" identifier="detail" id="Fgy-C4-1g4"/>
                         <segue destination="CGi-4z-ltL" kind="show" identifier="setting" id="i5v-z0-JBk"/>
-                        <segue destination="3qL-Uv-rZn" kind="modal" identifier="share" id="Wm9-pS-VoE"/>
                         <segue destination="JmL-wg-bJy" kind="show" identifier="showurl" id="INB-X6-GBE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LvK-JD-UgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-779" y="589"/>
-        </scene>
-        <!--Share View Controller-->
-        <scene sceneID="hNU-tV-LhW">
-            <objects>
-                <viewController id="3qL-Uv-rZn" customClass="ShareViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="v0j-nn-77X"/>
-                        <viewControllerLayoutGuide type="bottom" id="K7a-QC-wzG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="IdI-XS-Fla">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GiA-Ip-6q9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1466" y="1829"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="kT8-qd-CSr">
@@ -1794,6 +1774,7 @@
         <scene sceneID="fzz-aq-ed2">
             <objects>
                 <navigationController id="CSc-oh-Bvr" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eUj-xa-OMT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2210,8 +2191,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="左滑" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhB-zK-ZG8">
-                                <rect key="frame" x="282" y="289" width="34" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="左滑" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhB-zK-ZG8">
+                                <rect key="frame" x="283" y="289.5" width="34" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -2257,8 +2238,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="2y5-RI-bqS"/>
         <segue reference="X3g-3s-8JD"/>
-        <segue reference="bym-b5-cxi"/>
         <segue reference="luI-zA-BtH"/>
-        <segue reference="fps-RF-Hk5"/>
+        <segue reference="bym-b5-cxi"/>
+        <segue reference="72F-Gw-hpx"/>
     </inferredMetricsTieBreakers>
 </document>
