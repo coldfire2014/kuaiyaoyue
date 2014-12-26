@@ -128,19 +128,22 @@ static NSString * const APIBaseURLString = HTTPURL;
 mobilePhone:”18557164825”,           //手机号
 password:1235456                     //用户密码
  */
-+(void)register:(NSString *)mobilePhone password:(NSString *)password cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback{
++(void)phoneregister:(NSString *)mobilePhone password:(NSString *)password cb:(void(^)(BOOL isOK ,NSMutableArray *dic))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                         mobilePhone,@"mobilePhone",password,@"password",
                             @"ios",@"equipment",version,@"version",nil];
+    
+    NSLog(@"%@",params);
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUser/register.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
-        NSMutableArray *array = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
-        callback(YES,array);
+        NSMutableArray *dic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+        callback(YES,dic);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
-        NSLog(@"error-%@",error);
+        NSString *html = operation.responseString;
+        NSLog(@"error-%@-%@",error,operation);
         callback(NO,nil);
     }];
 }

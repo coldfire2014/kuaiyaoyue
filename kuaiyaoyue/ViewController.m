@@ -253,18 +253,20 @@
 
 
 -(void)headview{
-    
     _show_img.layer.masksToBounds = YES;
     _show_img.layer.cornerRadius = 34;
     _showview_img.layer.cornerRadius = 36;
     
 }
+
 -(void)viewDidAppear:(BOOL)animated{
     [TalkingData trackPageBegin:@"首页"];
 }
+
 -(void)viewWillDisappear:(BOOL)animated{
     [TalkingData trackPageEnd:@"首页"];
 }
+
 - (void)viewWillAppear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

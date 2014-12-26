@@ -47,7 +47,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [self.navigationController.navigationBar setHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }

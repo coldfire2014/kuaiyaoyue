@@ -41,7 +41,7 @@
 //获取所有音乐列表
 +(void)getAll:(NSString *)timestamp cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback;
 //注册
-+(void)register:(NSString *)mobilePhone password:(NSString *)password cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback;
++(void)phoneregister:(NSString *)mobilePhone password:(NSString *)password cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback;
 //用户登录
 +(void)j_spring_security_check:(NSString *)mobilePhone
                       password:(NSString *)password

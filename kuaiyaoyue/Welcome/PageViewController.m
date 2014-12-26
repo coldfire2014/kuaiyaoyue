@@ -36,6 +36,7 @@
     NSArray* arr = [[NSArray alloc] initWithObjects:start, nil];
     [self setViewControllers:arr direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
+
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:@"MSG_LOGIN" object:nil];
@@ -56,8 +57,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self.navigationController.navigationBar setHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{

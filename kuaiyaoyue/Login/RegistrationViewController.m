@@ -48,7 +48,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [self.navigationController.navigationBar setHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
@@ -89,7 +88,6 @@
     if (phone.length > 0 && dq.length > 0) {
         if (secondsCountDown == 0) {
             [self sendmessage:phone :dq];
-            [self djs];
         }
     }else{
         [[StatusBar sharedStatusBar] talkMsg:@"手机号和区号不能为空" inTime:0.51];
@@ -103,36 +101,62 @@
     [SMS_SDK getVerifyCodeByPhoneNumber:phone AndZone:dq result:^(enum SMS_GetVerifyCodeResponseState state) {
         if (1==state) {
             NSLog(@"block 获取验证码成功");
-            
+            [self djs];
         }
         else if(0==state)
         {
+            [[StatusBar sharedStatusBar] talkMsg:@"获取验证码失败" inTime:0.51];
         }
         else if (SMS_ResponseStateMaxVerifyCode==state)
         {
+            [[StatusBar sharedStatusBar] talkMsg:@"获取验证码失败" inTime:0.51];
         }
         else if(SMS_ResponseStateGetVerifyCodeTooOften==state)
         {
+            [[StatusBar sharedStatusBar] talkMsg:@"获取验证码失败" inTime:0.51];
         }
     }];
 }
 
--(void)getmessgae:(NSString *)yzm{
-    
+-(void)getmessgae:(NSString *)yzm :(NSString *) mobilePhone :(NSString *) password{
     [SMS_SDK commitVerifyCode:yzm result:^(enum SMS_ResponseState state) {
         if (1==state) {
             NSLog(@"block 验证成功");
+            [self phoneregister:mobilePhone :password];
         }
         else if(0==state)
         {
-            NSLog(@"block 验证失败");
+            [[StatusBar sharedStatusBar] talkMsg:@"短信验证失败" inTime:0.51];
         }
     }];
 }
 
+-(void)phoneregister:(NSString *) mobilePhone :(NSString *) password{
+    [SVProgressHUD showWithStatus:@"注册中" maskType:(SVProgressHUDMaskTypeBlack)];
+    [HttpManage phoneregister:mobilePhone password:password cb:^(BOOL isOK, NSMutableArray *array) {
+        [SVProgressHUD dismiss];
+        if (isOK) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"注册失败" inTime:0.51];
+        }
+    }];
+}
 
 - (IBAction)login_onclick:(id)sender {
-    [self getmessgae:_dx_edit.text];
+    NSString *mobilePhone = _phone_num.text;
+    NSString *password = _password_edit.text;
+    NSString *passwordsure = _password_sureedit.text;
+    NSString *yzm = _dx_edit.text;
+    if (mobilePhone.length > 0 && password.length > 0 && passwordsure.length > 0 && yzm.length > 0) {
+        if ([passwordsure isEqualToString:password]) {
+            [self getmessgae:yzm :mobilePhone :password];
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"2次输入的密码不相同" inTime:0.51];
+        }
+    }else{
+        [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.51];
+    }
 }
 
 - (IBAction)phone_next:(id)sender {
@@ -148,8 +172,10 @@
 }
 
 - (IBAction)surepassword_next:(id)sender {
+    
 }
 
 - (IBAction)dq_next:(id)sender {
+    
 }
 @end
