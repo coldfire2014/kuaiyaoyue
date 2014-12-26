@@ -146,32 +146,32 @@
 
 }
 //定下字体后用label得到字的高宽，然后去算具体怎么换行
--(void)setText:(NSString*) text withX:(CGFloat)x andY:(CGFloat)y andSize:(CGFloat)size andR:(CGFloat)r G:(CGFloat)g B:(CGFloat)b to:(CGContextRef) context{
-    
-    UniChar *characters;
-    CGGlyph *glyphs;
-    CFIndex count;
-    
-    CTFontRef ctFont = CTFontCreateWithName(CFSTR("STHeitiSC-Light"), size, NULL);
-    CTFontDescriptorRef ctFontDesRef = CTFontCopyFontDescriptor(ctFont);
-    CGFontRef cgFont = CTFontCopyGraphicsFont(ctFont,&ctFontDesRef );
-    CGContextSetFont(context, cgFont);
-    CFNumberRef pointSizeRef = (CFNumberRef)CTFontDescriptorCopyAttribute(ctFontDesRef,kCTFontSizeAttribute);
-    CGFloat fontSize;
-    CFNumberGetValue(pointSizeRef, kCFNumberCGFloatType,&fontSize);
-    CGContextSetFontSize(context, fontSize);
-    count = CFStringGetLength((CFStringRef)text);
-    characters = (UniChar *)malloc(sizeof(UniChar) * count);
-    glyphs = (CGGlyph *)malloc(sizeof(CGGlyph) * count);
-    CFStringGetCharacters((CFStringRef)text, CFRangeMake(0, count), characters);
-    CTFontGetGlyphsForCharacters(ctFont, characters, glyphs, count);
-    CGContextSetRGBFillColor (context, r/255.0, g/255.0, b/255.0, 1);
-//    CGContextSetTextDrawingMode();
-    CGContextShowGlyphsAtPoint(context, x, y, glyphs, text.length);
-    
-    free(characters);
-    free(glyphs);
-}
+//-(void)setText:(NSString*) text withX:(CGFloat)x andY:(CGFloat)y andSize:(CGFloat)size andR:(CGFloat)r G:(CGFloat)g B:(CGFloat)b to:(CGContextRef) context{
+//    
+//    UniChar *characters;
+//    CGGlyph *glyphs;
+//    CFIndex count;
+//    
+//    CTFontRef ctFont = CTFontCreateWithName(CFSTR("STHeitiSC-Light"), size, NULL);
+//    CTFontDescriptorRef ctFontDesRef = CTFontCopyFontDescriptor(ctFont);
+//    CGFontRef cgFont = CTFontCopyGraphicsFont(ctFont,&ctFontDesRef );
+//    CGContextSetFont(context, cgFont);
+//    CFNumberRef pointSizeRef = (CFNumberRef)CTFontDescriptorCopyAttribute(ctFontDesRef,kCTFontSizeAttribute);
+//    CGFloat fontSize;
+//    CFNumberGetValue(pointSizeRef, kCFNumberCGFloatType,&fontSize);
+//    CGContextSetFontSize(context, fontSize);
+//    count = CFStringGetLength((CFStringRef)text);
+//    characters = (UniChar *)malloc(sizeof(UniChar) * count);
+//    glyphs = (CGGlyph *)malloc(sizeof(CGGlyph) * count);
+//    CFStringGetCharacters((CFStringRef)text, CFRangeMake(0, count), characters);
+//    CTFontGetGlyphsForCharacters(ctFont, characters, glyphs, count);
+//    CGContextSetRGBFillColor (context, r/255.0, g/255.0, b/255.0, 1);
+////    CGContextSetTextDrawingMode();
+//    CGContextShowGlyphsAtPoint(context, x, y, glyphs, text.length);
+//    
+//    free(characters);
+//    free(glyphs);
+//}
 
 #pragma 中文时间
 +(NSString*)getFullTimeStr:(long long)time{

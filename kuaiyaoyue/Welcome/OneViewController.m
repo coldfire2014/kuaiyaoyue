@@ -18,7 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+//    UIView* v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 22)];
+//    v.backgroundColor = [[UIColor alloc] initWithRed:1 green:0 blue:0 alpha:1];
+//    [self.view addSubview:v];
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap)];
     [self.view addGestureRecognizer:tap];
 //    tempView = [[ChangeTempView alloc] initWithFrame:CGRectZero];

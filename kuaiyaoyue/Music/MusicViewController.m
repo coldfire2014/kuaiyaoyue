@@ -93,9 +93,9 @@
      }];
 }
 
--(void)downYP:(NSString *) name :(NSString *)url{
-    BOOL is_bd = [[FileManage sharedFileManage] ISYPFile:name];
-    NSString *file  = [[FileManage sharedFileManage] GetYPFile:name];
+-(void)downYP:(NSString *)ypname :(NSString *)url{
+    BOOL is_bd = [[FileManage sharedFileManage] ISYPFile:ypname];
+    NSString *file  = [[FileManage sharedFileManage] GetYPFile:ypname];
     if (!is_bd) {
         [HttpManage DownMusic:url filepath:file cb:^(BOOL isOK) {
             addnum++;
