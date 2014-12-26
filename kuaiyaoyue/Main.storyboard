@@ -19,6 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <segue destination="Ltv-6U-l87" kind="show" identifier="showTemplate" id="ELY-CD-8Dq"/>
                         <segue destination="8mc-rE-7os" kind="show" identifier="zdyedit" id="X3g-3s-8JD"/>
@@ -41,6 +42,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <segue destination="oWB-DN-aF8" kind="show" identifier="hledit" id="Oey-PZ-F9W"/>
                         <segue destination="7YK-37-kxW" kind="show" identifier="swedit" id="keJ-rR-p7N"/>
@@ -2242,9 +2244,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="I0j-Cp-NYv"/>
-        <segue reference="X3g-3s-8JD"/>
-        <segue reference="72F-Gw-hpx"/>
-        <segue reference="luI-zA-BtH"/>
+        <segue reference="ztp-xN-fnN"/>
+        <segue reference="cFn-3V-9M3"/>
         <segue reference="bym-b5-cxi"/>
+        <segue reference="72F-Gw-hpx"/>
     </inferredMetricsTieBreakers>
 </document>

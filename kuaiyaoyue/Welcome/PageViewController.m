@@ -58,7 +58,6 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 //    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self.navigationController.navigationBar setHidden:YES];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
