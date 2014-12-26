@@ -122,7 +122,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController.navigationBar setHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

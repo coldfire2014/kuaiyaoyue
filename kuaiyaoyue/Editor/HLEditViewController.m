@@ -182,7 +182,7 @@
     [super viewWillAppear:animated];
     is_yl = YES;
     [self.navigationController.navigationBar setHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 
 -(void)initImgData{

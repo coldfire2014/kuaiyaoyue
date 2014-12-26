@@ -226,7 +226,7 @@
     [super viewWillAppear:animated];
     is_yl = YES;
     [self.navigationController.navigationBar setHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     
     //    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, -1000)];
 }
