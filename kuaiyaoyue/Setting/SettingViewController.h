@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingViewController : UIViewController
+{
+    BOOL weibo;
+}
 - (IBAction)checkupdata_onclick:(id)sender;
 - (IBAction)ghp_onclick:(id)sender;
 - (IBAction)gl_onclick:(id)sender;

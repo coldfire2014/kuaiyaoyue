@@ -35,7 +35,7 @@
     [self.navigationItem setTitleView:label];
     [self.navigationController.navigationBar setTintColor:color];
     
-    _xhd_view.layer.cornerRadius = 6.0;
+    _xhd_view.layer.cornerRadius = 4.0;
     _tc_view.userInteractionEnabled = YES;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(exit:)];
@@ -71,21 +71,21 @@
 */
 
 - (IBAction)checkupdata_onclick:(id)sender {
+    //攻略
+}
+
+- (IBAction)ghp_onclick:(id)sender {
+    
     if (![_xhd_view isHidden]) {
         
     }else{
         [[StatusBar sharedStatusBar] talkMsg:@"目前为最新版本" inTime:0.51];
     }
-}
-
-- (IBAction)ghp_onclick:(id)sender {
     
-    
-      [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=APPID&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=APPID&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
 }
 
 - (IBAction)gl_onclick:(id)sender {
-    
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
 }
 
 - (IBAction)gw_onclick:(id)sender {
@@ -94,30 +94,37 @@
 }
 
 - (IBAction)wb_onclick:(id)sender {
-    
-}
-
-- (IBAction)gzh_onclick:(id)sender {
+    weibo = YES;
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = @"快邀约";
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"微信号“快邀约”已复制到剪切板。您可以到微信中关注我们,是否打开微信" message:@"需重新登录" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"关注微博" message:@"微博“快邀约”已复制到剪切板。您可以到微博中关注我们,是否打开微博" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.delegate = self;
     [alert show];
 }
 
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (IBAction)gzh_onclick:(id)sender {
+    weibo = NO;
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = @"快邀约";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"关注公众号" message:@"微信号“快邀约”已复制到剪切板。您可以到微信中关注我们,是否打开微信" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.delegate = self;
+    [alert show];
     
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSURL *url;
     switch (buttonIndex) {
         case 0:
-            
-//            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-//            re.bText = NO;
-//            req.message = @"";
-//            req.scene = WXSceneTimeline;
-            
-            
             break;
         case 1:
-            
+            if (weibo) {
+                url = [NSURL URLWithString:@"http://weibo.com/"];//跳微博
+
+            } else {
+                url = [NSURL URLWithString:@"weixin:"];//跳微信
+            }
+            [[UIApplication sharedApplication] openURL:url];
             break;
         default:
             break;
