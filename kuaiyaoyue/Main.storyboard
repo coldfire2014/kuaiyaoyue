@@ -246,7 +246,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NIu-AU-8lp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="k5C-ix-clb">
-                        <rect key="frame" x="0.0" y="64" width="600" height="556"/>
+                        <rect key="frame" x="0.0" y="44" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ISU-r4-dqO">
@@ -1774,7 +1774,6 @@
         <scene sceneID="fzz-aq-ed2">
             <objects>
                 <navigationController id="CSc-oh-Bvr" sceneMemberID="viewController">
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eUj-xa-OMT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1794,9 +1793,9 @@
         <scene sceneID="59c-pD-L0a">
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qHT-nQ-aXb" customClass="PageViewController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="ylI-Uf-NFX"/>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <segue destination="eGG-ps-HQp" kind="custom" identifier="wel2main" customClass="w2mainSegue" id="I0j-Cp-NYv"/>
                         <segue destination="Aah-1p-LT9" kind="show" identifier="login" id="djN-Hm-cgS"/>
@@ -1876,7 +1875,7 @@
                         <viewControllerLayoutGuide type="bottom" id="tuB-lD-luw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="t7O-k3-0Da">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                        <rect key="frame" x="0.0" y="44" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajv-If-2gg">
@@ -2236,10 +2235,10 @@
         <image name="img_g" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2y5-RI-bqS"/>
+        <segue reference="I0j-Cp-NYv"/>
         <segue reference="X3g-3s-8JD"/>
+        <segue reference="72F-Gw-hpx"/>
         <segue reference="luI-zA-BtH"/>
         <segue reference="bym-b5-cxi"/>
-        <segue reference="72F-Gw-hpx"/>
     </inferredMetricsTieBreakers>
 </document>
