@@ -1466,8 +1466,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Copyright © 2014 kyy121.com,All Rights Reserved." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqI-mr-fbt">
-                                <rect key="frame" x="169" y="505" width="265" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2014 kyy121.com,All Rights Reserved." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqI-mr-fbt">
+                                <rect key="frame" x="168" y="505" width="264.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="11Q-70-h26"/>
                                 </constraints>
@@ -1628,7 +1628,7 @@
                                                         <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XR-nb-Pht">
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7XR-nb-Pht">
                                                         <rect key="frame" x="77" y="8" width="8" height="8"/>
                                                         <color key="backgroundColor" red="1" green="0.34509803921568627" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
@@ -1677,10 +1677,10 @@
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
+                                                        <exclude reference="APn-ng-UIS"/>
                                                         <exclude reference="FLf-Fp-wse"/>
                                                         <exclude reference="HPG-W0-KLX"/>
                                                         <exclude reference="VqZ-tN-WJ6"/>
-                                                        <exclude reference="APn-ng-UIS"/>
                                                         <exclude reference="TLF-aX-DK7"/>
                                                     </mask>
                                                 </variation>
