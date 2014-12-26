@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIView *showtm;
 @property (weak, nonatomic) IBOutlet UILabel *show_toptitle;
 - (IBAction)del_onclick:(id)sender;
+- (IBAction)setting_onclick:(id)sender;
 
 @end
 

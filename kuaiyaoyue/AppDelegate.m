@@ -54,6 +54,8 @@
     
     [SMS_SDK registerApp:@"25a64c839b5f" withSecret:@"9a639150fcb464d9a1c1ab926648ca3f"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onebyone) name:@"onebyone" object:nil];
+    
     return YES;
 }
 
@@ -307,12 +309,8 @@
                     
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"账号以过期" message:@"需重新登录" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                     [alert show];
+                    [self onebyone];
                     
-                    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-                    [window makeKeyAndVisible];
-                    _window = window;
-                    _window.rootViewController = [storyBoard instantiateInitialViewController];
                     
                 }
             }else{
@@ -320,6 +318,17 @@
             }
         }];
     }
+}
+
+-(void)onebyone{
+   
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [window makeKeyAndVisible];
+    _window = window;
+    _window.rootViewController = [storyBoard instantiateInitialViewController];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DOWNLOAD_DONE" object:nil];
 }
 
 

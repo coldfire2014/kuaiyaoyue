@@ -448,6 +448,10 @@
     is_chose = !is_chose;
 }
 
+- (IBAction)setting_onclick:(id)sender {
+    [self performSegueWithIdentifier:@"setting" sender:nil];
+}
+
 // 是否可编辑
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingViewController : UIViewController
+- (IBAction)checkupdata_onclick:(id)sender;
+- (IBAction)ghp_onclick:(id)sender;
+- (IBAction)gl_onclick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *tc_view;
+- (IBAction)gw_onclick:(id)sender;
+- (IBAction)wb_onclick:(id)sender;
+- (IBAction)gzh_onclick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *xhd_view;
 
 @end

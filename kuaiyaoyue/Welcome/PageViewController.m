@@ -58,7 +58,6 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 //    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self.navigationController.navigationBar setHidden:YES];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
@@ -67,7 +66,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_PTLOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_Regme" object:nil];
-//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 -(void)login{
