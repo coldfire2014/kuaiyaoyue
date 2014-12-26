@@ -31,7 +31,7 @@
     _webview.scalesPageToFit = YES;
     _webview.delegate = self;
     _webview.alpha = 0;
-    tempView = [[ChangeTempView alloc] initWithFrame:CGRectZero];
+    tempView = [[ChangeTempView alloc] initWithFrame:self.view.frame];
     tempView.delegate = self;
     tempView.type = _type;//0婚礼,1商务,2玩乐,3自定义
     [tempView loadDate];

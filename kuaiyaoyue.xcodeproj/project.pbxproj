@@ -382,7 +382,6 @@
 		E52760761A4BC1F100D11F5B /* ic_c_meeting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_c_meeting.png; sourceTree = "<group>"; };
 		E527607A1A4BD26800D11F5B /* TempCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempCell.h; sourceTree = "<group>"; };
 		E527607B1A4BD26800D11F5B /* TempCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempCell.m; sourceTree = "<group>"; };
-		E527607D1A4BEDB800D11F5B /* bg_bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_bubble@2x.png"; path = "../../../../../../Downloads/bg_bubble@2x.png"; sourceTree = "<group>"; };
 		E52D002E1A43200E00817261 /* UIImageView+LBBlurredImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LBBlurredImage.h"; sourceTree = "<group>"; };
 		E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LBBlurredImage.m"; sourceTree = "<group>"; };
 		E534DD711A4643B900542D67 /* ic_54_x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_54_x@2x.png"; sourceTree = "<group>"; };
@@ -525,7 +524,6 @@
 			children = (
 				E5661A241A457CB700E4E2BC /* btn_login_1_pre.png */,
 				E5661A251A457CB700E4E2BC /* btn_login_1.png */,
-				E527607D1A4BEDB800D11F5B /* bg_bubble@2x.png */,
 				E5661A261A457CB700E4E2BC /* btn_login_2_pre.png */,
 				E5661A271A457CB700E4E2BC /* btn_login_2.png */,
 				E5661A0E1A45708C00E4E2BC /* bg_login.jpg */,
