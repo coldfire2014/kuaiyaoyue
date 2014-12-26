@@ -70,8 +70,8 @@
     self.alpha = 1.0;
     msg1.text = msg;
     CATransform3D t = CATransform3DIdentity;
-    t.m34 = -1.0/300.0;
-    bk.layer.transform = CATransform3DTranslate(t, 0, -10, 10);
+    t.m34 = -1.0/900.0;
+    bk.layer.transform = CATransform3DTranslate(t, 0, -10, -10);
     bk.layer.transform = CATransform3DRotate(bk.layer.transform, M_PI_2, 1, 0, 0);
     [UIView animateWithDuration:0.5 animations:^{
         bk.layer.transform = t;
