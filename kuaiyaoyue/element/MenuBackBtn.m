@@ -30,24 +30,28 @@
         one.backgroundColor = [UIColor clearColor];
         one.layer.borderColor = [[UIColor alloc] initWithRed:253.0/255.0 green:127.0/255.0 blue:36.0/255.0 alpha:1.0].CGColor;
         one.layer.borderWidth = 1.0;
+        one.tag = 1001;
         [self addSubview:one];
         
         UIView* two = [[UIView alloc] initWithFrame:CGRectMake(22.0 + 18.0/2.0+1.0, 18.0, 18.0/2.0-1.0, 22.0/2.0-1.0)];
         two.backgroundColor = [UIColor clearColor];
         two.layer.borderColor = [[UIColor alloc] initWithRed:77.0/255.0 green:110.0/255.0 blue:214.0/255.0 alpha:1.0].CGColor;
         two.layer.borderWidth = 1.0;
+        two.tag = 1002;
         [self addSubview:two];
         
         UIView* three = [[UIView alloc] initWithFrame:CGRectMake(22.0, 18.0 + 22.0/2.0+1.0, 18.0/2.0-1.0, 22.0/2.0-1.0)];
         three.backgroundColor = [UIColor clearColor];
         three.layer.borderColor = [[UIColor alloc] initWithRed:251.0/255.0 green:105.0/255.0 blue:151.0/255.0 alpha:1.0].CGColor;
         three.layer.borderWidth = 1.0;
+        three.tag = 1003;
         [self addSubview:three];
         
         UIView* four = [[UIView alloc] initWithFrame:CGRectMake(22.0 + 18.0/2.0+1.0, 18.0 + 22.0/2.0+1.0, 18.0/2.0-1.0, 22.0/2.0-1.0)];
         four.backgroundColor = [UIColor clearColor];
         four.layer.borderColor = [[UIColor alloc] initWithRed:51.0/255.0 green:212.0/255.0 blue:101.0/255.0 alpha:1.0].CGColor;
         four.layer.borderWidth = 1.0;
+        four.tag = 1004;
         [self addSubview:four];
         
         if ([type compare:@"cihe"] == NSOrderedSame) {
