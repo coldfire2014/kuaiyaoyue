@@ -381,6 +381,8 @@
     cell.widht = self.view.frame.size.width;
     cell.info = [data objectAtIndex:[indexPath row]];
     cell.delegate = self;
+    
+    cell.index = [indexPath row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -542,9 +544,9 @@
     Userdata *user = [data objectAtIndex:index];
     switch (user.neftype) {
         case 0:
-//            title = [NSString stringWithFormat:@"%@&%@ 婚礼",user.nefgroom,user.nefbride];
-//            msg = [NSString stringWithFormat:@"%@ %@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
-//            url = user.nefurl;
+            title = [NSString stringWithFormat:@"%@",user.neftitle];
+            msg = [NSString stringWithFormat:@"%@",user.nefcontent];
+            url = user.nefurl;
             break;
         case 1:
             title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
