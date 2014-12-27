@@ -147,7 +147,7 @@
     btnView.tag = 302;
     btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 12.0);
 //    btnView.layer.transform = CATransform3DMakeRotation(-M_PI*2.0-M_PI_4,0,0,1);
-    [bgView addSubview:btnView];
+    [self.view addSubview:btnView];
     
     UITapGestureRecognizer* tapEdit = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(edit)];
     [btnView addGestureRecognizer:tapEdit];
