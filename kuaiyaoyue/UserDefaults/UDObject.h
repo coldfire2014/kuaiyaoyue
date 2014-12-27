@@ -13,6 +13,11 @@
 +(NSString *) getOPEN;
 +(void)setOPEN;
 
++(void)setXM:(NSString *)xm;
++(NSString *)getXM;
++(void)setLXFS:(NSString *)lxfs;
++(NSString *)getLXFS;
+
 +(void)setUserInfo:(NSString *) Account userName:(NSString *) userName token:(NSString *)token;
 +(NSString *)getAccount;
 +(NSString *)getuserName;

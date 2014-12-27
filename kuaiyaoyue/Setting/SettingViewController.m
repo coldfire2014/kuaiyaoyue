@@ -25,7 +25,7 @@
     // Do any additional setup after loading the view.
     
     //asdas
-    
+    self.title = @"返回";
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
     label.text = @"设置";
@@ -77,7 +77,7 @@
 - (IBAction)ghp_onclick:(id)sender {
     
     if (![_xhd_view isHidden]) {
-        
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
     }else{
         [[StatusBar sharedStatusBar] talkMsg:@"目前为最新版本" inTime:0.51];
     }
@@ -140,8 +140,6 @@
             if (![version isEqualToString:@"1.0.4"]) {
                 [_xhd_view setHidden:NO];
             }
-        }else{
-           
         }
     }];
 }
@@ -163,4 +161,7 @@
     }];
 }
 
+- (IBAction)userinfo_onclick:(id)sender {
+    [self performSegueWithIdentifier:@"userinfo" sender:nil];
+}
 @end

@@ -101,6 +101,11 @@
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editviewonclick:)];
     
     [moreview.editview addGestureRecognizer:tap2];
+    
+    
+    moreview.xlr_edit.text = [UDObject getXM];
+    moreview.xlfs_edit.text = [UDObject getLXFS];
+    
 }
 
 - (void)editviewonclick:(UITapGestureRecognizer *)gr{

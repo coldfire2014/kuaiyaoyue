@@ -20,5 +20,6 @@
 - (IBAction)wb_onclick:(id)sender;
 - (IBAction)gzh_onclick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *xhd_view;
+- (IBAction)userinfo_onclick:(id)sender;
 
 @end

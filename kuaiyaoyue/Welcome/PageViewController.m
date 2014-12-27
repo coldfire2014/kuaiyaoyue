@@ -99,6 +99,7 @@
         [SVProgressHUD dismiss];
         if (isOK) {
             [UDObject setUserInfo:name userName:name token:[dic objectForKey:@"token"]];
+            [UDObject setXM:name];
              [self performSegueWithIdentifier:@"wel2main" sender:nil];
         }else{
             [[StatusBar sharedStatusBar] talkMsg:@"登陆失败了，再试一次吧。" inTime:0.5];

@@ -102,6 +102,7 @@
             [UDObject setUserInfo:username userName:@"" token:token];
             [self performSegueWithIdentifier:@"wel2main" sender:nil];
             [[StatusBar sharedStatusBar] talkMsg:@"登录成功" inTime:0.51];
+            [UDObject setLXFS:username];
         }else{
             [[StatusBar sharedStatusBar] talkMsg:@"登录失败" inTime:0.51];
         }
