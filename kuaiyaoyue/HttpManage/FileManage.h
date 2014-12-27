@@ -13,6 +13,7 @@
 @property (nonatomic ,strong) NSString *dirDirectory;
 @property (nonatomic ,strong) NSString* imgDirectory;
 @property (nonatomic ,strong) NSString* audioDirectory;
+@property (nonatomic ,strong) NSString* musicFiles;
 
 
 + (FileManage *)sharedFileManage;
