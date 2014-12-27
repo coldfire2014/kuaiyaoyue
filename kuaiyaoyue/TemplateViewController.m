@@ -53,12 +53,13 @@
     } else {
         bgCover = [[UIColor alloc] initWithWhite:0.9 alpha:0.95];
     }
+    bk.tag = 289;
     [self.view addSubview:bk];
     UIView* bgView = [[UIView alloc] initWithFrame:self.view.bounds];
     bgView.backgroundColor = bgCover;
     bgView.layer.opacity = 1;
     bgView.tag = 301;
-    [self.view addSubview:bgView];
+    [bk addSubview:bgView];
     //    这段兼容ios6
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
     
@@ -91,7 +92,7 @@
     [mbtitle setTextColor:[[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0  blue:88.0/255.0  alpha:1.0]];
     [mbtitle setBackgroundColor:[UIColor clearColor]];
     [mbtitle setText:@""];
-    [self.view addSubview:mbtitle];
+    [bk addSubview:mbtitle];
     UILabel* mbtotle = [[UILabel alloc] initWithFrame:CGRectMake(0, _tempList.frame.origin.y-14.0, _tempList.itemSize.width,14.0)];
     mbtotle.tag = 502;
     mbtotle.center = CGPointMake(mainScreenFrame.size.width/2.0, mbtotle.center.y);
@@ -101,7 +102,7 @@
     [mbtotle setTextColor:[[UIColor alloc] initWithWhite:0.2 alpha:1.0]];
     [mbtotle setBackgroundColor:[UIColor clearColor]];
     [mbtotle setText:@""];
-    [self.view addSubview:mbtotle];
+    [bk addSubview:mbtotle];
     UILabel* mbid = [[UILabel alloc] initWithFrame:CGRectMake(0, _tempList.frame.origin.y-21.0, _tempList.itemSize.width-40,21.0)];//50
     mbid.tag = 503;
     mbid.center = CGPointMake(mainScreenFrame.size.width/2.0, mbid.center.y);
@@ -111,7 +112,7 @@
     [mbid setTextColor:[[UIColor alloc] initWithWhite:0.2 alpha:1.0]];
     [mbid setBackgroundColor:[UIColor clearColor]];
     [mbid setText:@""];
-    [self.view addSubview:mbid];
+    [bk addSubview:mbid];
 //    
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 20.0+subTap, mainScreenFrame.size.width,54.0)];
     [title setFont:[UIFont systemFontOfSize:20]];
@@ -129,10 +130,11 @@
         [title setText:@"自定义"];
     }
     
-    [self.view addSubview:title];
+    [bk addSubview:title];
 
     myImageView* backall = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 54.0/2.0, 54.0/2.0) andImageName:@"ic_54_x@2x" withScale:2.0];
     backall.center = CGPointMake(mainScreenFrame.size.width-31.0, 20.0+subTap + 29.0);
+    backall.tag = 304;
     [self.view addSubview:backall];
     UITapGestureRecognizer* panall = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backAll)];
     [backall addGestureRecognizer:panall];
