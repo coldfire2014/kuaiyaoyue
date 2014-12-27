@@ -129,6 +129,10 @@
     }
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editviewonclick:)];
     [playview.editview addGestureRecognizer:tap2];
+    
+    
+    playview.xlr_edit.text = [UDObject getXM];
+    playview.xlfs_edit.text = [UDObject getLXFS];
 }
 
 - (void)editviewonclick:(UITapGestureRecognizer *)gr{

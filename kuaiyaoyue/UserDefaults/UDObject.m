@@ -8,13 +8,26 @@
 
 #import "UDObject.h"
 
-
 @implementation UDObject
 
-
++(void)setXM:(NSString *)xm{
+    [[NSUserDefaults standardUserDefaults] setValue:xm forKey:@"XM"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(NSString *)getXM{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"XM"];
+}
++(void)setLXFS:(NSString *)lxfs{
+    [[NSUserDefaults standardUserDefaults] setValue:lxfs forKey:@"LXFS"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(NSString *)getLXFS{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"LXFS"];
+}
 +(NSString *)getOPEN{
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"OPEN"];
 }
+
 
 +(void)setOPEN{
     [[NSUserDefaults standardUserDefaults] setValue:@"true" forKey:@"OPEN"];

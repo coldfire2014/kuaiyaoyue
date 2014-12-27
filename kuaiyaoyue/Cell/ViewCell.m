@@ -146,6 +146,10 @@
     if ([[TimeTool TopJZTime:dd] isEqualToString:@"已截止"]) {
         [_show_send setBackgroundColor:[UIColor lightGrayColor]];
         [_show_send setEnabled:NO];
+    }else{
+        [_show_send setEnabled:YES];
+        UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+        [_show_send setBackgroundColor:color];
     }
     
 }
