@@ -205,11 +205,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_login.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Z1y-ui-ZhT">
-                                <rect key="frame" x="-20" y="-268" width="640" height="1136"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_login.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Z1y-ui-ZhT">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1136" id="2TO-zc-g8v"/>
                                     <constraint firstAttribute="width" constant="640" id="ZKw-qW-soT"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2TO-zc-g8v"/>
+                                        <exclude reference="ZKw-qW-soT"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_login.png" translatesAutoresizingMaskIntoConstraints="NO" id="gJp-T8-2EM">
+                                <rect key="frame" x="221" y="94" width="159" height="172"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="159" id="Iya-h5-NXt"/>
+                                    <constraint firstAttribute="height" constant="172" id="mgV-k6-QR4"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -217,6 +230,10 @@
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="Z1y-ui-ZhT" secondAttribute="centerY" id="ade-Nu-gfT"/>
                             <constraint firstAttribute="centerX" secondItem="Z1y-ui-ZhT" secondAttribute="centerX" id="d0K-M3-oKz"/>
+                            <constraint firstAttribute="centerX" secondItem="gJp-T8-2EM" secondAttribute="centerX" id="g7d-ry-SyZ"/>
+                            <constraint firstItem="Z1y-ui-ZhT" firstAttribute="leading" secondItem="QbX-ru-Kse" secondAttribute="leading" id="paF-Rc-zYY"/>
+                            <constraint firstItem="Z1y-ui-ZhT" firstAttribute="top" secondItem="QbX-ru-Kse" secondAttribute="top" id="pkp-go-Pdz"/>
+                            <constraint firstAttribute="centerY" secondItem="gJp-T8-2EM" secondAttribute="centerY" constant="120" id="zGC-Y5-mgX"/>
                         </constraints>
                     </view>
                     <connections>
@@ -3139,7 +3156,7 @@
     </scenes>
     <resources>
         <image name="bg_list.jpg" width="640" height="360"/>
-        <image name="bg_login.jpg" width="640" height="1136"/>
+        <image name="bg_login.jpg" width="320" height="568"/>
         <image name="bg_top.jpg" width="640" height="202"/>
         <image name="ic_32_arr" width="16" height="16"/>
         <image name="ic_32_clock" width="16" height="16"/>
@@ -3164,6 +3181,7 @@
         <image name="icon120.png" width="120" height="120"/>
         <image name="img_g" width="22" height="22"/>
         <image name="logo.png" width="100" height="100"/>
+        <image name="logo_login.png" width="159" height="172"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ztp-xN-fnN"/>
