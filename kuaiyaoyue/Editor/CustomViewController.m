@@ -388,9 +388,9 @@
     }else if (type == 2){
         [self performSegueWithIdentifier:@"music" sender:nil];
     }else if (type == 3){
-        if (custom.show_top_img.image != nil) {
-            [self SendPECropView:custom.show_top_img.image];
-        }else{
+//        if (custom.show_top_img.image != nil) {
+//            [self SendPECropView:custom.show_top_img.image];
+//        }else{
             UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"照一照" otherButtonTitles:@"从相册中", nil ];
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
                 [as showInView:self.view];
@@ -400,7 +400,7 @@
                 isHead = YES;
                 [self performSegueWithIdentifier:@"imgSelect" sender:nil];
             }
-        }
+//        }
     }
 }
 
