@@ -5,7 +5,7 @@
       "idiom" : "iphone",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "1F55FA0E-6076-4FE9-A69A-50D71A6F4B08.png",
+      "filename" : "2x.png",
       "scale" : "2x"
     },
     {
@@ -22,7 +22,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "73359B56-889F-41A5-87F0-9C631ADA846A.png",
+      "filename" : "ipad2.png",
       "scale" : "1x"
     },
     {
@@ -37,7 +37,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "img_0852.png",
+      "filename" : "ipad4.png",
       "scale" : "2x"
     },
     {

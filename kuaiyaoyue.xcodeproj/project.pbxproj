@@ -123,7 +123,6 @@
 		E52760781A4BC1F100D11F5B /* ic_c_meeting.png in Resources */ = {isa = PBXBuildFile; fileRef = E52760761A4BC1F100D11F5B /* ic_c_meeting.png */; };
 		E527607C1A4BD26800D11F5B /* TempCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E527607B1A4BD26800D11F5B /* TempCell.m */; };
 		E52D00301A43200E00817261 /* UIImageView+LBBlurredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */; };
-		E53286F91A4FBD6E00FC4BB0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E53286F81A4FBD6E00FC4BB0 /* Default-568h@2x.png */; };
 		E534DD721A4643B900542D67 /* ic_54_x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E534DD711A4643B900542D67 /* ic_54_x@2x.png */; };
 		E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E534DD731A464CE700542D67 /* ic_54_edit@2x.png */; };
 		E541617E1A43E2B20077A89D /* waitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E541617D1A43E2B20077A89D /* waitingView.m */; };
@@ -181,6 +180,7 @@
 		E577FC2F1A356E66009ED66D /* perviewImg.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC291A356E66009ED66D /* perviewImg.m */; };
 		E577FC301A356E66009ED66D /* picViewAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC2B1A356E66009ED66D /* picViewAnimate.m */; };
 		E577FC331A356EFB009ED66D /* imgSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC321A356EFB009ED66D /* imgSegue.m */; };
+		E5CFEEA81A4FD3D0006537C2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFEEA71A4FD3D0006537C2 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -407,7 +407,6 @@
 		E527607B1A4BD26800D11F5B /* TempCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempCell.m; sourceTree = "<group>"; };
 		E52D002E1A43200E00817261 /* UIImageView+LBBlurredImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LBBlurredImage.h"; sourceTree = "<group>"; };
 		E52D002F1A43200E00817261 /* UIImageView+LBBlurredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LBBlurredImage.m"; sourceTree = "<group>"; };
-		E53286F81A4FBD6E00FC4BB0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E534DD711A4643B900542D67 /* ic_54_x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_54_x@2x.png"; sourceTree = "<group>"; };
 		E534DD731A464CE700542D67 /* ic_54_edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_54_edit@2x.png"; sourceTree = "<group>"; };
 		E541617C1A43E2B20077A89D /* waitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = waitingView.h; path = bar/waitingView.h; sourceTree = "<group>"; };
@@ -500,6 +499,7 @@
 		E577FC2B1A356E66009ED66D /* picViewAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = picViewAnimate.m; path = pic/picViewAnimate.m; sourceTree = "<group>"; };
 		E577FC311A356EFB009ED66D /* imgSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgSegue.h; path = pic/imgSegue.h; sourceTree = "<group>"; };
 		E577FC321A356EFB009ED66D /* imgSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = imgSegue.m; path = pic/imgSegue.m; sourceTree = "<group>"; };
+		E5CFEEA71A4FD3D0006537C2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "kuaiyaoyue/Images.xcassets/LaunchImage.launchimage/Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -792,7 +792,7 @@
 		84E842501A2EDF6B00A401A0 = {
 			isa = PBXGroup;
 			children = (
-				E53286F81A4FBD6E00FC4BB0 /* Default-568h@2x.png */,
+				E5CFEEA71A4FD3D0006537C2 /* Default-568h@2x.png */,
 				84B4738D1A30069900A21457 /* Frameworks */,
 				84E8425B1A2EDF6B00A401A0 /* kuaiyaoyue */,
 				84E842781A2EDF6C00A401A0 /* kuaiyaoyueTests */,
@@ -1223,7 +1223,7 @@
 				TargetAttributes = {
 					84E842581A2EDF6B00A401A0 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = PSEU9Z2979;
+						DevelopmentTeam = E68S9675TU;
 					};
 					84E842741A2EDF6C00A401A0 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1268,6 +1268,7 @@
 				84E8426D1A2EDF6B00A401A0 /* Images.xcassets in Resources */,
 				8460DDD31A4E73A50031416E /* Main.storyboard in Resources */,
 				849D66801A484887004EF00F /* HLEditView.xib in Resources */,
+				E5CFEEA81A4FD3D0006537C2 /* Default-568h@2x.png in Resources */,
 				E5590CC61A469CAB0080F3B1 /* card_o.png in Resources */,
 				E5661A1B1A45708C00E4E2BC /* btn_login_qq_pre.png in Resources */,
 				E5661A2B1A457CB700E4E2BC /* btn_login_2.png in Resources */,
@@ -1280,7 +1281,6 @@
 				E5661A1E1A45708C00E4E2BC /* btn_login_weixin.png in Resources */,
 				E558D0191A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E5661A281A457CB700E4E2BC /* btn_login_1_pre.png in Resources */,
-				E53286F91A4FBD6E00FC4BB0 /* Default-568h@2x.png in Resources */,
 				E541B32E1A43DC9E006F89E1 /* imgBar.bundle in Resources */,
 				8431E9081A4D24AA00E9B0EE /* logo@2x.png in Resources */,
 				84FE0B881A426C71005A9599 /* PhotoCell.xib in Resources */,
@@ -1589,7 +1589,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Xiamen NEF Network Technology Co., Ltd. (PSEU9Z2979)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xiamen NEF Network Technology Co., Ltd. (PSEU9Z2979)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
