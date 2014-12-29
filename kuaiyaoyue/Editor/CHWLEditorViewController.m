@@ -24,6 +24,7 @@
 #import "StatusBar.h"
 #import "PlayView.h"
 #import "PreviewViewController.h"
+#import "TalkingData.h"
 
 @interface CHWLEditorViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,PVDelegate,AVAudioPlayerDelegate>{
     BOOL is_yl;
@@ -444,6 +445,7 @@
     //preview
     is_yl = NO;
     [self SendUp];
+    [TalkingData trackEvent:@"预览" label:@"吃货玩乐"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -452,8 +454,13 @@
     is_yl = YES;
     [self.navigationController.navigationBar setHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    
+    [TalkingData trackPageBegin:@"吃喝玩乐编辑"];
     //    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, -1000)];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [TalkingData trackPageEnd:@"吃喝玩乐编辑"];
 }
 
 -(void)initImgData{
@@ -648,19 +655,19 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-    if (textField == playview.jh_edit || textField == playview.xlr_edit) {
-        if (textField.text.length > 10) {
-            textField.text = [textField.text substringToIndex:10];
-        }
-    }else if (textField == playview.address_edit){
-        if (textField.text.length > 30) {
-            textField.text = [textField.text substringToIndex:30];
-        }
-    }else if (textField == playview.xlfs_edit){
-        if (textField.text.length > 11) {
-            textField.text = [textField.text substringToIndex:11];
-        }
-    }
+//    if (textField == playview.jh_edit || textField == playview.xlr_edit) {
+//        if (textField.text.length > 10) {
+//            textField.text = [textField.text substringToIndex:10];
+//        }
+//    }else if (textField == playview.address_edit){
+//        if (textField.text.length > 30) {
+//            textField.text = [textField.text substringToIndex:30];
+//        }
+//    }else if (textField == playview.xlfs_edit){
+//        if (textField.text.length > 11) {
+//            textField.text = [textField.text substringToIndex:11];
+//        }
+//    }
     return YES;
 }
 
@@ -682,10 +689,10 @@
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     NSLog(@"%d",textView.text.length);
     if(textView == playview.show_summary){
-        if (textView.text.length > 70) {
-            textView.text = [textView.text substringToIndex:70];
-        }
-        NSLog(@"%d",textView.text.length);
+//        if (textView.text.length > 70) {
+//            textView.text = [textView.text substringToIndex:70];
+//        }
+//        NSLog(@"%d",textView.text.length);
         playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
     }
     
@@ -704,7 +711,9 @@
     }else{
         if([player isPlaying])
         {
-            [player pause];
+            [player stop];
+            [playview.gif_img stopAnimating];
+            [playview.gif_img setImage:[UIImage imageNamed:@"bubble_play_3"]];
         }
         //If the track is not player, play the track and change the play button to "Pause"
         else
@@ -748,6 +757,27 @@
     xxfs_name = playview.xlfs_edit.text;
     
     if (jh_name.length > 0 && address_name.length > 0 && hltime.length > 0 && bmendtime.length > 0 && xlr_name.length > 0 && xxfs_name.length > 0) {
+        if (jh_name.length > 11) {
+            [[StatusBar sharedStatusBar] talkMsg:@"活动名称不得超过11个字" inTime:0.5];
+            return;
+        }
+        if (address_name.length > 20) {
+            [[StatusBar sharedStatusBar] talkMsg:@"地址不得超过20个字" inTime:0.5];
+            return;
+        }
+        if (xlr_name.length > 5) {
+            [[StatusBar sharedStatusBar] talkMsg:@"联系人不得超过5个字" inTime:0.5];
+            return;
+        }
+        if (xxfs_name.length > 17) {
+            [[StatusBar sharedStatusBar] talkMsg:@"联系方式不得超过17个字" inTime:0.5];
+            return;
+        }
+        if (playview.text_label_num.text.length > 70) {
+            [[StatusBar sharedStatusBar] talkMsg:@"活动简介不得超过70个字" inTime:0.5];
+            return;
+        }
+        
         [self setbg];
     }else{
         [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.5];

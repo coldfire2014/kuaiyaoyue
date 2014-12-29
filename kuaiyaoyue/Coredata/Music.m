@@ -2,7 +2,7 @@
 //  Music.m
 //  kuaiyaoyue
 //
-//  Created by DavidWang on 14/12/4.
+//  Created by DavidWang on 14/12/29.
 //  Copyright (c) 2014年 davidwang. All rights reserved.
 //
 
@@ -11,9 +11,10 @@
 
 @implementation Music
 
+@dynamic nefname;
 @dynamic neftypeid;
 @dynamic nefurl;
-@dynamic nefname;
 @dynamic timestamp;
+@dynamic uniqueId;
 
 @end

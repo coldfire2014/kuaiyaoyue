@@ -62,6 +62,7 @@
     }
     return self;
 }
+
 - (void)viewInorOut{
     UIView* arr = [self viewWithTag:302];
     [UIView animateWithDuration:0.4 animations:^{
@@ -74,6 +75,7 @@
         }
     }];
 }
+
 -(void)loadDate{
     UITableView* table = (UITableView*)[self viewWithTag:101];
     //0婚礼,1商务,2玩乐,3自定义
@@ -95,6 +97,7 @@
         [table reloadData];
     }
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [data count];

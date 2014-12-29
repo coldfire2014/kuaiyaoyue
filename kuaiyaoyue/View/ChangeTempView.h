@@ -18,7 +18,7 @@
 {
     NSArray* data;
 }
-@property  int type;
+@property int type;
 @property (nonatomic,weak) id<ChangeTempViewDelegate> delegate;
 -(void)loadDate;
 @end

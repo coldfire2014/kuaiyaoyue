@@ -14,7 +14,7 @@
 
 +(void)Unzip{
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-    NSString *is_open = [userInfo valueForKey:@"DYC"];
+    NSString *is_open = [userInfo valueForKey:@"DYC2"];
     if ([is_open length] > 0){
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
@@ -24,12 +24,12 @@
         if ([[NSFileManager defaultManager] fileExistsAtPath:testDirectory]) {
             
         }else{
-             NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
+             NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"2.zip"];
             [HttpManage unzip:zipPath filename:testDirectory];
         }
         
     }else{
-        NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
+        NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"2.zip"];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
@@ -37,7 +37,7 @@
         
         [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
         [HttpManage unzip:zipPath filename:testDirectory];
-        [userInfo setValue:@"YES" forKey:@"DYC"];
+        [userInfo setValue:@"YES" forKey:@"DYC2"];
         [userInfo synchronize];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ZIP_DONE" object:nil];

@@ -78,7 +78,7 @@
         NSArray *array = [_info.nefthumb componentsSeparatedByString:@"/"];
         topimg = [array objectAtIndex:([array count] - 4)];
         topimg = [[FileManage sharedFileManage] getThumb:topimg];
-        topimg = [NSString stringWithFormat:@"%@/assets/images/preview",topimg];
+        topimg = [NSString stringWithFormat:@"%@/assets/images/thumb",topimg];
     }
     
     UIImage *img = [[UIImage alloc]initWithContentsOfFile:topimg];

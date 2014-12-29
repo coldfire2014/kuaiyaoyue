@@ -94,7 +94,7 @@
     NSDictionary *dictionary = [notification userInfo];
     NSString *name = [dictionary objectForKey:@"nickname"];
     NSString *opneid = [dictionary objectForKey:@"openid"];
-    [SVProgressHUD show];
+    [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
     [HttpManage registers:name userPwd:@"123456" phoneId:[UDObject getTSID] openId:opneid cb:^(BOOL isOK, NSDictionary *dic) {
         [SVProgressHUD dismiss];
         if (isOK) {

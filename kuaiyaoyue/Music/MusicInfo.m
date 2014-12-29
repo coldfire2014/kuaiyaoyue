@@ -10,10 +10,11 @@
 
 @implementation MusicInfo
 
--(MusicInfo *)SetMusicValue:(BOOL) state : (NSString *) title :(NSString *) url{
+-(MusicInfo *)SetMusicValue:(BOOL) state : (NSString *) title :(NSString *) url :(NSString *)uniqueId{
     _state = state;
     _title = title;
     _url = url;
+    _uniqueId = uniqueId;
     return self;
 }
 

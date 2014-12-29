@@ -57,9 +57,7 @@
     _endtime_view.layer.cornerRadius = 21;
     _cancel_view.layer.cornerRadius = 21;
     
-    
     _tableView.separatorStyle = NO;
-    
     
     NSString* name = @"ShowData";
     show = [[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] firstObject];
@@ -280,12 +278,14 @@
 }
 
 - (IBAction)endtime_onclick:(id)sender {
+    [TalkingData trackEvent:@"修改截至时间"];
     [UIView animateWithDuration:0.4f animations:^{
         show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
     }];
 }
 
 - (IBAction)cancel_onclick:(id)sender {
+    [TalkingData trackEvent:@"删除邀约"];
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"取消后，链接会失效哦！\n列表中也会自动删除" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消",nil];
     alert.alertViewStyle=UIAlertViewStyleDefault;
     [alert show];

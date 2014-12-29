@@ -71,8 +71,9 @@
     }else{
         timestamp = @"-1";
     }
-    
+    [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
     [HttpManage getAll:timestamp cb:^(BOOL isOK, NSMutableArray *array) {
+        [SVProgressHUD dismiss];
          if (isOK) {
              NSLog(@"%@",array);
              tjnum = [array count];
@@ -81,7 +82,7 @@
                  for (int i = 0; i < [array count]; i++) {
                      NSDictionary *dic = [array objectAtIndex:i];
                      [[DataBaseManage getDataBaseManage] setMusic:dic];
-                     [self downYP:[dic objectForKey:@"name"] :[dic objectForKey:@"url"]];
+                     [self downYP:[dic objectForKey:@"uniqueId"] :[dic objectForKey:@"url"]];
                  }
              }else{
                  [SVProgressHUD dismiss];
@@ -117,7 +118,7 @@
 -(void)showdid {
     NSArray *arr = [[DataBaseManage getDataBaseManage] getMusic:_typeid];
     for (Music *music in arr) {
-        MusicInfo *info = [[MusicInfo alloc] SetMusicValue:NO :music.nefname :music.nefurl];
+        MusicInfo *info = [[MusicInfo alloc] SetMusicValue:NO :music.nefname :music.nefurl :music.uniqueId];
         [data addObject:info];
     }
     [_tableView reloadData];
@@ -163,7 +164,7 @@
     num = [indexPath row];
     [_tableView reloadData];
     
-    NSString *file  = [[FileManage sharedFileManage] GetYPFile:info.title];
+    NSString *file  = [[FileManage sharedFileManage] GetYPFile:info.uniqueId];
     [self AudioPlay:file];
 }
 
