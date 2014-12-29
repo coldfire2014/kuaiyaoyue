@@ -21,9 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    myImageView* bg = [[myImageView alloc] initWithFrame:self.view.bounds andImageName:@"bg_login.jpg" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    myImageView* bg = [[myImageView alloc] initWithFrame:self.view.bounds andImageName:@"bg_login@2x.jpg" withScale:2.0 andAlign:UIImgAlignmentCenter];
     [self.view addSubview:bg];
-    myImageView* logo = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 318.0/2.0, 344.0/2.0) andImageName:@"logo_login" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    myImageView* logo = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 318.0/2.0, 344.0/2.0) andImageName:@"logo_login@2x" withScale:2.0 andAlign:UIImgAlignmentCenter];
     logo.center = CGPointMake(self.view.bounds.size.width/2.0, (self.view.bounds.size.height - 478.0/2.0)/2.0);
     [self.view addSubview:logo];
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 164.0/2.0, self.view.bounds.size.width, 1.0)];

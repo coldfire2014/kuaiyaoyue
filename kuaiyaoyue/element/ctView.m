@@ -33,7 +33,7 @@
     UISwipeGestureRecognizer *swipe2Gesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(btnSwipe:)];
     swipe2Gesture.direction = UISwipeGestureRecognizerDirectionUp;
     [bk addGestureRecognizer:swipe2Gesture];
-    
+
     UISwipeGestureRecognizer *swipe3Gesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(btnSwipe:)];
     swipe3Gesture.direction = UISwipeGestureRecognizerDirectionLeft;
     [bk addGestureRecognizer:swipe3Gesture];
@@ -43,22 +43,28 @@
     
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(btnTap:)];
     [bk addGestureRecognizer:tapGesture];
+    
+    [tapGesture requireGestureRecognizerToFail:swipeGesture];
+    [tapGesture requireGestureRecognizerToFail:swipe2Gesture];
+    [tapGesture requireGestureRecognizerToFail:swipe3Gesture];
+    [tapGesture requireGestureRecognizerToFail:swipe4Gesture];
     return bk;
+    
 }
 -(int)getIndex{
     return currentItemIndex;
 }
 
 -(void)btnTap:(UITapGestureRecognizer *)recognizer{
-    UIView* webbg0 = [self viewWithTag:990 + currentItemIndex];
-    CGPoint p = [recognizer locationInView:webbg0];
-    if (p.x>0 && p.y>0) {
-        if ([_delegate respondsToSelector:@selector(didSelectItemAtIndex:)]) {
-            [_delegate didSelectItemAtIndex:currentItemIndex];
-        } else {
-            NSLog(@"Not respondsToSelector:@selector(didSelectItemAtIndex:)");
-        }
-    }
+//    UIView* webbg0 = [self viewWithTag:990 + currentItemIndex];
+//    CGPoint p = [recognizer locationInView:webbg0];
+//    if (p.x>0 && p.y>0) {
+//        if ([_delegate respondsToSelector:@selector(didSelectItemAtIndex:)]) {
+//            [_delegate didSelectItemAtIndex:currentItemIndex];
+//        } else {
+//            NSLog(@"Not respondsToSelector:@selector(didSelectItemAtIndex:)");
+//        }
+//    }
 }
 -(void)reloadViews{
     if ([_delegate respondsToSelector:@selector(numberOfItems)]) {

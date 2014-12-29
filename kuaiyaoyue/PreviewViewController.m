@@ -98,7 +98,11 @@
     [_webview stringByEvaluatingJavaScriptFromString:[self changevalue]];
     [UIView animateWithDuration:0.4 animations:^{
         _webview.alpha = 1;
-        tempView.alpha = 1;
+        if(self.type == 3){
+            tempView.alpha = 0;
+        }else{
+            tempView.alpha = 1;
+        }
     }];
 }
 
