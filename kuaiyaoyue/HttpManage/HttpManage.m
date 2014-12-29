@@ -11,7 +11,7 @@
 
 #define HTTPURL @"http://test.kyy121.com/"
 
-//#define HTTPURL @"http://10.142.59.103/"
+//#define HTTPURL @"http://192.168.1.183/"
 
 #define version @"1.0.5"
 
@@ -143,8 +143,18 @@ password:1235456                     //用户密码
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSString *html = operation.responseString;
-        NSLog(@"error-%@-%@",error,operation);
-        callback(NO,nil);
+        if (html != nil) {
+            NSData* resData1=[html dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resData1 options:NSJSONReadingMutableLeaves error:nil];
+            NSDictionary *error = [dic objectForKey:@"error"];
+            int code = [[error objectForKey:@"code"] intValue];
+            if (code == 64) {
+                callback(NO,@"账号已注册");
+            }
+        }else{
+            callback(NO,nil);
+        }
+        
     }];
 }
 
@@ -193,9 +203,14 @@ password:1235456                     //用户密码
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSLog(@"error-%@",error);
-        
-        callback(NO,nil);
-        
+        NSString *html = operation.responseString;
+        if (html != nil) {
+            NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+            callback(NO,resultDic);
+        }else{
+            callback(NO,nil);
+        }
     }];
     
 }
@@ -355,7 +370,7 @@ password:1235456                     //用户密码
 +(void)templateRenewal:(NSString *)timestamp cb:(void(^)(BOOL isOK ,NSMutableArray *array))callback{
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            timestamp,@"timestamp",nil];
+                            timestamp,@"timestamp",@"ios",@"equipment",version,@"version",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefTemplate/templateRenewal.aspx"];
     
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
@@ -574,7 +589,7 @@ closeTimestamp:(NSString *)closeTimestamp
 +(void)deleteRecords:(NSString *)unquieId
                   cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            unquieId,@"unquieId",nil];
+                            unquieId,@"unquieId",@"ios",@"equipment",version,@"version",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUserData/deleteRecords.aspx"];
     NSLog(@"%@",params);
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
@@ -597,7 +612,7 @@ closeTimestamp:(NSString *)closeTimestamp
 +(void)remove:(NSString *)uniqueIds
            cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            uniqueIds,@"uniqueIds",nil];
+                            uniqueIds,@"uniqueIds",@"ios",@"equipment",version,@"version",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefUserData/remove.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
@@ -620,7 +635,7 @@ closeTimestamp:(NSString *)closeTimestamp
     
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefNumber/cleanNumber.aspx"];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            unquieId,@"unquieId",token,@"token",nil];
+                            unquieId,@"unquieId",token,@"token",@"ios",@"equipment",version,@"version",nil];
     
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
@@ -647,7 +662,7 @@ closeTimestamp:(NSString *)closeTimestamp
             model:(NSString *)model
                cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            token,@"token",type,@"type",content,@"content",model,@"model",nil];
+                            token,@"token",type,@"type",content,@"content",model,@"model",@"ios",@"equipment",version,@"version",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefSuggestion/suggestion.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;

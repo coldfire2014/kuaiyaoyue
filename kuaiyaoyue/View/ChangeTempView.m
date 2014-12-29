@@ -63,6 +63,7 @@
     }
     return self;
 }
+
 - (void)viewInorOut{
     UIView* arr = [self viewWithTag:302];
     [UIView animateWithDuration:0.4 animations:^{
@@ -75,6 +76,7 @@
         }
     }];
 }
+
 -(void)loadDate{
     NSLog(@"%d--%d",self.type,_type);
     UITableView* table = (UITableView*)[self viewWithTag:101];
@@ -99,6 +101,7 @@
         [table reloadData];
     }
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [data count];

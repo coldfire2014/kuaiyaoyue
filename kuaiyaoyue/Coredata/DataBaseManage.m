@@ -405,6 +405,7 @@ static NSManagedObjectContext *context = nil;
     music.nefname = [dic objectForKey:@"name"];
     music.nefurl = [dic objectForKey:@"url"];
     music.timestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
+    music.uniqueId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"uniqueId"]];
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);

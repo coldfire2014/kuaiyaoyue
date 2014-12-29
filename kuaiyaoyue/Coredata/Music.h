@@ -2,7 +2,7 @@
 //  Music.h
 //  kuaiyaoyue
 //
-//  Created by DavidWang on 14/12/4.
+//  Created by DavidWang on 14/12/29.
 //  Copyright (c) 2014年 davidwang. All rights reserved.
 //
 
@@ -12,9 +12,10 @@
 
 @interface Music : NSManagedObject
 
+@property (nonatomic, retain) NSString * nefname;
 @property (nonatomic, retain) NSString * neftypeid;
 @property (nonatomic, retain) NSString * nefurl;
-@property (nonatomic, retain) NSString * nefname;
 @property (nonatomic, retain) NSString * timestamp;
+@property (nonatomic, retain) NSString * uniqueId;
 
 @end

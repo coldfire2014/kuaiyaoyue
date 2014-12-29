@@ -25,6 +25,7 @@
 #import "CustomView.h"
 #import "PECropViewController.h"
 #import "PreviewViewController.h"
+#import "TalkingData.h"
 
 @interface CustomViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,CVDelegate,PECropViewControllerDelegate>{
     BOOL is_yl;
@@ -62,7 +63,7 @@
     self.title = @"返回";
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    label.text = @"快邀约";
+    label.text = @"编辑";
     [label sizeToFit];
     label.textColor = color;
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
@@ -219,6 +220,7 @@
     //preview
     is_yl = NO;
     [self SendUp];
+    [TalkingData trackEvent:@"预览" label:@"自定义"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -227,8 +229,13 @@
     is_yl = YES;
     [self.navigationController.navigationBar setHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    
+    [TalkingData trackPageBegin:@"自定义编辑"];
     //    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, -1000)];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [TalkingData trackPageEnd:@"自定义编辑"];
 }
 
 -(void)initImgData{
@@ -532,23 +539,23 @@
     custom.music_label.text = name;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
-    if (textField == custom.title_edit) {
-        if (textField.text.length > 10) {
-            textField.text = [textField.text substringToIndex:10];
-        }
-    }
-    return YES;
-}
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+//    
+//    if (textField == custom.title_edit) {
+//        if (textField.text.length > 10) {
+//            textField.text = [textField.text substringToIndex:10];
+//        }
+//    }
+//    return YES;
+//}
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     NSLog(@"%d",textView.text.length);
     if(textView == custom.content_edit){
-        if (textView.text.length > 70) {
-            textView.text = [textView.text substringToIndex:70];
-        }
-        NSLog(@"%d",textView.text.length);
+//        if (textView.text.length > 70) {
+//            textView.text = [textView.text substringToIndex:70];
+//        }
+//        NSLog(@"%d",textView.text.length);
         custom.text_label_num.text = [NSString stringWithFormat:@"剩余%d",70-textView.text.length];
     }
     
@@ -574,6 +581,16 @@
     NSString *zdycontent = custom.content_edit.text;
 
     if (zdytitle.length > 0 && zdycontent.length > 0 && hltime.length > 0 && bmendtime.length > 0 && custom.show_top_img.image != nil && data.count -1 > 0 && mp3url.length > 0) {
+        if (zdytitle.length > 11) {
+            [[StatusBar sharedStatusBar] talkMsg:@"标题不得超过1个字" inTime:0.5];
+            return;
+        }
+        if (zdycontent.length >70) {
+            [[StatusBar sharedStatusBar] talkMsg:@"导读不得超过70个字" inTime:0.5];
+            return;
+        }
+        
+        
         [self upmbdt:custom.show_top_img.image];
     }else{
         [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.5];
@@ -599,7 +616,7 @@
                 if ([data count] - 1 > 0) {
                     row_index = 0;
                     GridInfo *info = [data objectAtIndex:row_index];
-                    [self postupload:info.img :URL] ;
+                    [self postupload:info.img :URL];
                 }else{
                     [self Sendcustom:URL];
                 }
@@ -618,7 +635,10 @@
                 NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
                 [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
                 
-                [UIImageJPEGRepresentation(info.img,0.8) writeToFile:imgpath atomically:YES];
+                CGSize size = CGSizeMake(120, 120);
+                UIImage *img = [self imageWithImageSimple:info.img scaledToSize:size];
+                
+                [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
             }
         }
         

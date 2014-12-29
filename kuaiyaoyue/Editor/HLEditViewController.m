@@ -24,6 +24,7 @@
 #import "MusicViewController.h"
 #import "HLEditView.h"
 #import "PreviewViewController.h"
+#import "TalkingData.h"
 
 @interface HLEditViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,HLEVDelegate>{
     int count;
@@ -49,6 +50,8 @@
     NSString *mp3name;
     
     BOOL is_yl;
+    
+    BOOL is_bcfs;
 
 }
 
@@ -62,7 +65,7 @@
     self.title = @"返回";
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    label.text = @"快邀约";
+    label.text = @"编辑";
     [label sizeToFit];
     label.textColor = color;
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
@@ -105,6 +108,7 @@
     //preview
     is_yl = NO;
     [self SendUp];
+    [TalkingData trackEvent:@"预览" label:@"婚礼"];
 }
 
 -(void)addview{
@@ -183,6 +187,12 @@
     is_yl = YES;
     [self.navigationController.navigationBar setHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [TalkingData trackPageBegin:@"婚礼编辑"];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [TalkingData trackPageEnd:@"婚礼编辑"];
 }
 
 -(void)initImgData{
@@ -413,26 +423,28 @@
     return YES;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
-    if (textField == hlev.xl_edit || textField ==hlev.xn_edit) {
-        if (textField.text.length > 10) {
-            textField.text = [textField.text substringToIndex:10];
-        }
-    }else if (textField == hlev.address_edit){
-        if (textField.text.length > 30) {
-            textField.text = [textField.text substringToIndex:30];
-        }
-    }
-    return YES;
-}
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+//    
+//    if (textField == hlev.xl_edit || textField ==hlev.xn_edit) {
+//        if (textField.text.length > 10) {
+//            textField.text = [textField.text substringToIndex:10];
+//        }
+//    }else if (textField == hlev.address_edit){
+//        if (textField.text.length > 30) {
+//            textField.text = [textField.text substringToIndex:30];
+//        }
+//    }
+//    return YES;
+//}
 
 - (void)send_onclick:(UITapGestureRecognizer *)gr{
+    is_bcfs = NO;
     [self SendUp];
 }
 
 - (void)sendandshare_onclick:(UITapGestureRecognizer *)gr{
-    
+    is_bcfs = YES;
+    [self SendUp];
 }
 
 - (void)MVCDelegate:(MusicViewController *)cell didTapAtIndex:(NSString *) url :(NSString *)name{
@@ -448,7 +460,15 @@
     address_name = hlev.address_edit.text;
     
     if (xl_name.length > 0 && xn_name.length > 0 && hltime.length > 0 && bmendtime.length > 0 && address_name.length > 0) {
-        [self setbg];
+        if (xl_name.length < 5 && xn_name.length < 5) {
+            if (address_name.length < 20) {
+                [self setbg];
+            }else{
+                [[StatusBar sharedStatusBar] talkMsg:@"地址不能超过20个字" inTime:0.5];
+            }
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"新娘和新娘名字不能超过5个字" inTime:0.5];
+        }
     }else{
         [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.5];
     }
@@ -607,6 +627,11 @@
             [UDObject setHLContent:xl_name xn_name:xn_name hltime:hltime bmendtime:bmendtime address_name:address_name music:musicUrl musicname:mp3name imgarr:hlarr];
             [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
             [self.navigationController popToRootViewControllerAnimated:YES];
+            if (is_bcfs) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:dic];
+            }else{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:dic];
+            }
             
         }else{
             [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];

@@ -13,7 +13,8 @@
 @property BOOL state;
 @property (strong ,nonatomic) NSString *title;
 @property (strong ,nonatomic) NSString *url;
+@property (strong ,nonatomic) NSString *uniqueId;
 
--(MusicInfo *)SetMusicValue:(BOOL) state : (NSString *) title :(NSString *) url;
+-(MusicInfo *)SetMusicValue:(BOOL) state : (NSString *) title :(NSString *) url :(NSString *)uniqueId;
 
 @end

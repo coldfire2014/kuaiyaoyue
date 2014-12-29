@@ -138,7 +138,12 @@
         if (isOK) {
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"注册失败" inTime:0.51];
+            if (array != nil) {
+                NSString *message = (NSString *)array;
+                [[StatusBar sharedStatusBar] talkMsg:message inTime:0.51];
+            }else{
+                [[StatusBar sharedStatusBar] talkMsg:@"注册失败" inTime:0.51];
+            }
         }
     }];
 }

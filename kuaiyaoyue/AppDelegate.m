@@ -246,11 +246,12 @@
 //                        NSLog(@"哈哈哈-%@",uptime);
 //                    }}}
 //        }];
+        
     }else{
         is_xz = YES;
         [self maxtemplate :@"-1"];
     }
-//    [self checkToken];
+    [self checkToken];
 }
 
 -(void)maxtemplate:(NSString *)timestamp{
@@ -298,20 +299,14 @@
                 if ([[dic objectForKey:@"result"] isEqualToString:@"success"]) {
                     
                 }else{
+                    [[StatusBar sharedStatusBar] talkMsg:@"账号以过期" inTime:0.5];
+                    [UDObject setHLContent:@"" xn_name:@"" hltime:@"" bmendtime:@"" address_name:@"" music:@"" musicname:@"" imgarr:@""];
+                    [UDObject setSWContent:@"" swtime:@"" swbmendtime:@"" address_name:@"" swxlr_name:@"" swxlfs_name:@"" swhd_name:@"" music:@"" musicname:@"" imgarr:@""];
+                    [UDObject setWLContent:@"" wltime:@"" wlbmendtime:@"" wladdress_name:@"" wllxr_name:@"" wllxfs_name:@"" wlts_name:@"" wlaudio:@"" wlimgarr:@""];
+                    [UDObject setZDYContent:@"" zdytitle:@"" zdydd:@"" zdytime:@"" zdyendtime:@"" zdymusic:@"" zdymusicname:@"" zdyimgarr:@""];
+                    [UDObject setUserInfo:@"" userName:@"" token:@""];
                     
-//                    [DataBase DelUserdataALL:_managedObjectContext];
-//                    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-//                    [userInfo setObject:@"" forKey:@"phone"];
-//                    [userInfo setObject:@"" forKey:@"hlopen"];
-//                    [userInfo setObject:@"" forKey:@"userid"];
-//                    [userInfo setObject:@"" forKey:@"fjopen"];
-//                    [userInfo synchronize];
-                    
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"账号以过期" message:@"需重新登录" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-                    [alert show];
                     [self onebyone];
-                    
-                    
                 }
             }else{
                 
@@ -461,7 +456,13 @@
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"kuaiyaoyue.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    
+    NSDictionary *optionsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],
+                                       NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES],
+                                       NSInferMappingModelAutomaticallyOption, nil];
+    
+    
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:optionsDictionary error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";

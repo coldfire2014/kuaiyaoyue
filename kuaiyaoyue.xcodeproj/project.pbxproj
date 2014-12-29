@@ -65,7 +65,8 @@
 		848BF4791A43254B0002A1B1 /* Userdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 848BF4781A43254B0002A1B1 /* Userdata.m */; };
 		849D667E1A484875004EF00F /* HLEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D667D1A484875004EF00F /* HLEditView.m */; };
 		849D66801A484887004EF00F /* HLEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849D667F1A484887004EF00F /* HLEditView.xib */; };
-		84AF51C51A4EAB9C004F31CF /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = 84AF51C41A4EAB9C004F31CF /* 1.zip */; };
+		84AC9E291A514B62009E3241 /* 2.zip in Resources */ = {isa = PBXBuildFile; fileRef = 84AC9E281A514B62009E3241 /* 2.zip */; };
+		84AC9E2C1A51571A009E3241 /* Music.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AC9E2B1A51571A009E3241 /* Music.m */; };
 		84B446C41A32B3D000546859 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84B446B41A32B3D000546859 /* MJRefresh.bundle */; };
 		84B446C51A32B3D000546859 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446B71A32B3D000546859 /* MJRefreshBaseView.m */; };
 		84B446C61A32B3D000546859 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446B91A32B3D000546859 /* MJRefreshConst.m */; };
@@ -78,7 +79,6 @@
 		84B446D41A32BD7000546859 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446D31A32BD7000546859 /* ShareViewController.m */; };
 		84B473881A2FFEC800A21457 /* FileManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B473871A2FFEC800A21457 /* FileManage.m */; };
 		84B473A51A30372A00A21457 /* DataBaseManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B473A41A30372A00A21457 /* DataBaseManage.m */; };
-		84B473A81A3050C100A21457 /* Music.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B473A71A3050C100A21457 /* Music.m */; };
 		84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84B473AA1A30572F00A21457 /* SVProgressHUD.bundle */; };
 		84B473AE1A30572F00A21457 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B473AC1A30572F00A21457 /* SVProgressHUD.m */; };
 		84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5A4781A3EC9C200C55200 /* TimeTool.m */; };
@@ -298,7 +298,9 @@
 		849D667C1A484875004EF00F /* HLEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEditView.h; sourceTree = "<group>"; };
 		849D667D1A484875004EF00F /* HLEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEditView.m; sourceTree = "<group>"; };
 		849D667F1A484887004EF00F /* HLEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLEditView.xib; sourceTree = "<group>"; };
-		84AF51C41A4EAB9C004F31CF /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 1.zip; sourceTree = "<group>"; };
+		84AC9E281A514B62009E3241 /* 2.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 2.zip; sourceTree = "<group>"; };
+		84AC9E2A1A51571A009E3241 /* Music.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Music.h; sourceTree = "<group>"; };
+		84AC9E2B1A51571A009E3241 /* Music.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Music.m; sourceTree = "<group>"; };
 		84B446B41A32B3D000546859 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		84B446B51A32B3D000546859 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		84B446B61A32B3D000546859 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -323,8 +325,6 @@
 		84B473871A2FFEC800A21457 /* FileManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManage.m; sourceTree = "<group>"; };
 		84B473A31A30372A00A21457 /* DataBaseManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseManage.h; sourceTree = "<group>"; };
 		84B473A41A30372A00A21457 /* DataBaseManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseManage.m; sourceTree = "<group>"; };
-		84B473A61A3050C100A21457 /* Music.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Music.h; sourceTree = "<group>"; };
-		84B473A71A3050C100A21457 /* Music.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Music.m; sourceTree = "<group>"; };
 		84B473AA1A30572F00A21457 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		84B473AB1A30572F00A21457 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		84B473AC1A30572F00A21457 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
@@ -757,8 +757,6 @@
 			children = (
 				84B473A31A30372A00A21457 /* DataBaseManage.h */,
 				84B473A41A30372A00A21457 /* DataBaseManage.m */,
-				84B473A61A3050C100A21457 /* Music.h */,
-				84B473A71A3050C100A21457 /* Music.m */,
 				84FE0BC11A42D0AD005A9599 /* Template.h */,
 				84FE0BC21A42D0AD005A9599 /* Template.m */,
 				84FE0BC41A42D32C005A9599 /* Info.h */,
@@ -769,6 +767,8 @@
 				84B5D1171A441C3E00C5C6E8 /* Contacts.m */,
 				846C1BA91A45734900B59A18 /* Fixeds.h */,
 				846C1BAA1A45734900B59A18 /* Fixeds.m */,
+				84AC9E2A1A51571A009E3241 /* Music.h */,
+				84AC9E2B1A51571A009E3241 /* Music.m */,
 			);
 			path = Coredata;
 			sourceTree = "<group>";
@@ -916,7 +916,7 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
-				84AF51C41A4EAB9C004F31CF /* 1.zip */,
+				84AC9E281A514B62009E3241 /* 2.zip */,
 				8431E9071A4D24AA00E9B0EE /* logo@2x.png */,
 				8474A4AB1A4BB28A00C2E489 /* bubble_play_1@2x.png */,
 				8474A4AC1A4BB28A00C2E489 /* bubble_play_2@2x.png */,
@@ -1295,6 +1295,7 @@
 				84B446C41A32B3D000546859 /* MJRefresh.bundle in Resources */,
 				E5590CC71A469CAB0080F3B1 /* card_r.png in Resources */,
 				E5661A1E1A45708C00E4E2BC /* btn_login_weixin.png in Resources */,
+				84AC9E291A514B62009E3241 /* 2.zip in Resources */,
 				E558D0191A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E5661A281A457CB700E4E2BC /* btn_login_1_pre.png in Resources */,
 				E541B32E1A43DC9E006F89E1 /* imgBar.bundle in Resources */,
@@ -1305,7 +1306,6 @@
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,
 				8474A4B01A4BB28A00C2E489 /* bubble_play_3@2x.png in Resources */,
 				E5661A2A1A457CB700E4E2BC /* btn_login_2_pre.png in Resources */,
-				84AF51C51A4EAB9C004F31CF /* 1.zip in Resources */,
 				8442288C1A4A518300583893 /* PEPhotoCropEditor.bundle in Resources */,
 				E5661A231A45708C00E4E2BC /* logo_login@2x.png in Resources */,
 				E5661A191A45708C00E4E2BC /* bg_login@2x.jpg in Resources */,
@@ -1367,7 +1367,6 @@
 				E577FC0C1A356C80009ED66D /* AssetHelper.m in Sources */,
 				844825F21A31A48A0018240E /* SWYQViewController.m in Sources */,
 				E541617E1A43E2B20077A89D /* waitingView.m in Sources */,
-				84B473A81A3050C100A21457 /* Music.m in Sources */,
 				84E842CA1A2EFDCB00A401A0 /* UIProgressView+AFNetworking.m in Sources */,
 				844825FD1A31B3C40018240E /* SettingViewController.m in Sources */,
 				8442288A1A4A518300583893 /* PECropView.m in Sources */,
@@ -1425,6 +1424,7 @@
 				84B5D1181A441C3E00C5C6E8 /* Contacts.m in Sources */,
 				E527607C1A4BD26800D11F5B /* TempCell.m in Sources */,
 				844825891A318C810018240E /* UDObject.m in Sources */,
+				84AC9E2C1A51571A009E3241 /* Music.m in Sources */,
 				843DBEE01A47BF9800CDFFCB /* MoreView.m in Sources */,
 				84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */,
 				84E842CB1A2EFDCB00A401A0 /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -1616,7 +1616,7 @@
 				);
 				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e889649d-5273-48c0-80bb-3baec87f1f20";
+				PROVISIONING_PROFILE = "7cc2b366-7e0a-44d7-abfc-deed0b62d6ef";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
