@@ -246,8 +246,11 @@
     return mainCell;
 }
 -(void)edit{
-    [TalkingData trackEvent:@"点击编辑按钮"];
     int index = [_tempList getIndex];
+    [self didSelectItemAtIndex:index];
+    
+}
+-(void)didSelectItemAtIndex:(int)index{
     Template *info = [data objectAtIndex:index];
     unquieId = [NSString stringWithFormat:@"%@",info.nefid];
     nefmbdw = info.nefmbdw;
@@ -265,51 +268,19 @@
         case 2:
             [self performSegueWithIdentifier:@"swedit" sender:nil];
             [TalkingData trackEvent:@"编辑模板" label:[[NSString alloc] initWithFormat:@"商务编辑-%@",info.nefname]];
-            //             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
+//             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         case 3:
             [self performSegueWithIdentifier:@"chedit" sender:nil];
             [TalkingData trackEvent:@"吃喝玩乐模板" label:[[NSString alloc] initWithFormat:@"吃喝玩乐编辑-%@",info.nefname]];
-            //             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
+//             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         case 4:
-            [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
+             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         default:
             break;
     }
-}
--(void)didSelectItemAtIndex:(int)index{
-//    Template *info = [data objectAtIndex:index];
-//    unquieId = [NSString stringWithFormat:@"%@",info.nefid];
-//    nefmbdw = info.nefmbdw;
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    NSString *zipurl = [documentsDirectory stringByAppendingPathComponent:info.nefzipurl];
-//    [UDObject setWebUrl:zipurl];
-//    //选中事件
-//    int type = [neftypeId intValue];
-//    switch (type) {
-//        case 1:
-//            [self performSegueWithIdentifier:@"hledit" sender:nil];
-//            [TalkingData trackEvent:@"编辑模板" label:[[NSString alloc] initWithFormat:@"婚礼编辑-%@",info.nefname]];
-//            break;
-//        case 2:
-//            [self performSegueWithIdentifier:@"swedit" sender:nil];
-//            [TalkingData trackEvent:@"编辑模板" label:[[NSString alloc] initWithFormat:@"商务编辑-%@",info.nefname]];
-////             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
-//            break;
-//        case 3:
-//            [self performSegueWithIdentifier:@"chedit" sender:nil];
-//            [TalkingData trackEvent:@"吃喝玩乐模板" label:[[NSString alloc] initWithFormat:@"吃喝玩乐编辑-%@",info.nefname]];
-////             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
-//            break;
-//        case 4:
-//             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
-//            break;
-//        default:
-//            break;
-//    }
 }
 -(void)didShowItemAtIndex:(int)index{
     UIView* btnView = [self.view viewWithTag:302];

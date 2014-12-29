@@ -22,22 +22,24 @@
     if (self) {
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor clearColor];
-        UIView* btn = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.size.width-44, self.bounds.size.height-66, 44, 44)];
+        UIView* btn = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.size.width-44, self.bounds.size.height-71, 44, 49)];
         btn.backgroundColor = [UIColor clearColor];
-        UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 40)];
-        bg.backgroundColor = [[UIColor alloc] initWithWhite:0.7 alpha:0.5];
-        bg.center = CGPointMake(btn.bounds.size.width/2.0-8.0, btn.bounds.size.height/2.0);
-        bg.layer.cornerRadius = 5.0;
-        bg.layer.borderWidth = 1.5;
-        bg.layer.borderColor = [[UIColor alloc] initWithWhite:0.4 alpha:0.6].CGColor;
+        myImageView* bg = [[myImageView alloc] initWithFrame:CGRectMake(12, 0, 32, 49) andImageName:@"btn_sidebar" withScale:2.0];
+        
+//        UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 40)];
+//        bg.backgroundColor = [[UIColor alloc] initWithWhite:0.7 alpha:0.5];
+//        bg.center = CGPointMake(btn.bounds.size.width/2.0-8.0, btn.bounds.size.height/2.0);
+//        bg.layer.cornerRadius = 5.0;
+//        bg.layer.borderWidth = 1.5;
+//        bg.layer.borderColor = [[UIColor alloc] initWithWhite:0.4 alpha:0.6].CGColor;
         [btn addSubview:bg];
-        myImageView* arr = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 16, 16) andImageName:@"ic_32_arr" withScale:2.0];
-        arr.tag = 302;
-        arr.center = CGPointMake(bg.bounds.size.width/2.0+3, 10);
-        [bg addSubview:arr];
-        myImageView* tp = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 16, 16) andImageName:@"ic_c_meeting" withScale:2.0];
-        tp.center = CGPointMake(bg.bounds.size.width/2.0+6, 30);
-        [bg addSubview:tp];
+//        myImageView* arr = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 16, 16) andImageName:@"ic_32_arr" withScale:2.0];
+//        arr.tag = 302;
+//        arr.center = CGPointMake(bg.bounds.size.width/2.0+3, 10);
+//        [bg addSubview:arr];
+//        myImageView* tp = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 16, 16) andImageName:@"ic_c_meeting" withScale:2.0];
+//        tp.center = CGPointMake(bg.bounds.size.width/2.0+6, 30);
+//        [bg addSubview:tp];
         [self addSubview:btn];
         
         UITapGestureRecognizer* didTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewInorOut)];
@@ -53,11 +55,11 @@
         
         [self addSubview:table];
         UIView* line1 = [[UIView alloc] initWithFrame:CGRectMake(120-33.5, 0, 1.5, self.bounds.size.height)];
-        line1.backgroundColor = [[UIColor alloc] initWithWhite:0.4 alpha:0.6];
+        line1.backgroundColor = [[UIColor alloc] initWithWhite:0.1 alpha:0.8];
         [self addSubview:line1];
-        UIView* line2 = [[UIView alloc] initWithFrame:CGRectMake(120-33.5, btn.frame.origin.y+bg.frame.origin.y+1, 1.5, bg.bounds.size.height-2)];
-        line2.backgroundColor = [UIColor whiteColor];
-        [self addSubview:line2];
+//        UIView* line2 = [[UIView alloc] initWithFrame:CGRectMake(120-33.5, btn.frame.origin.y+bg.frame.origin.y+1, 1.5, bg.bounds.size.height-2)];
+//        line2.backgroundColor = [UIColor whiteColor];
+//        [self addSubview:line2];
     }
     return self;
 }
