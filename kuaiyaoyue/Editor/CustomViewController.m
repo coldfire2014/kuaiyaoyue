@@ -388,61 +388,109 @@
     }else if (type == 2){
         [self performSegueWithIdentifier:@"music" sender:nil];
     }else if (type == 3){
-//        if (custom.show_top_img.image != nil) {
-//            [self SendPECropView:custom.show_top_img.image];
-//        }else{
-            UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"照一照" otherButtonTitles:@"从相册中", nil ];
-            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            if (custom.show_top_img.image != nil) {
+                UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"修改这张" otherButtonTitles:@"从相册选取",@"照一张", nil ];
+                as.tag = 999;
                 [as showInView:self.view];
             } else {
-//                [as showFromRect:CGRectMake(self.view.frame.size.width-70, 70, 100, 100) inView:self.view animated:YES];
-                m_count = 1;
-                isHead = YES;
-                [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+                UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"从相册选取" otherButtonTitles:@"照一张", nil ];
+                as.tag = 998;
+                [as showInView:self.view];
             }
-//        }
+        } else {
+//            UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"照一照" otherButtonTitles:@"从相册中", nil ];
+//            [as showFromRect:CGRectMake(self.view.frame.size.width-70, 70, 100, 100) inView:self.view animated:YES];
+            m_count = 1;
+            isHead = YES;
+            [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+        }
     }
 }
 
 #pragma mark ----------ActionSheet 按钮点击-------------
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    switch (buttonIndex) {
-        case 0:
-        {
-            UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
-            [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-            [imgPicker setDelegate:self];
-            [imgPicker setAllowsEditing:NO];
-            [self.navigationController presentViewController:imgPicker animated:YES completion:^{
+    if (actionSheet.tag == 998) {
+        switch (buttonIndex) {
+            case 0:
+            {
                 
-            }];
-        }
-            break;
-        case 1:
-        {
-            UIImagePickerController *galleryPickerController = [[UIImagePickerController alloc] init];
-            galleryPickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            galleryPickerController.delegate = self;
-            
-            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                if ([actionSheet isVisible]) {
-                    [actionSheet removeFromSuperview];
-                    m_count = 1;
-                    isHead = YES;
-                    [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+                UIImagePickerController *galleryPickerController = [[UIImagePickerController alloc] init];
+                galleryPickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                galleryPickerController.delegate = self;
+                
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    if ([actionSheet isVisible]) {
+                        [actionSheet removeFromSuperview];
+                        m_count = 1;
+                        isHead = YES;
+                        [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+                    }
+                }else{
+                    [self presentViewController:galleryPickerController animated:YES completion:nil];
                 }
-            }else{
-                [self presentViewController:galleryPickerController animated:YES completion:nil];
             }
-            
-            break;
+                break;
+            case 1:
+            {
+                UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
+                [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+                [imgPicker setDelegate:self];
+                [imgPicker setAllowsEditing:NO];
+                [self.navigationController presentViewController:imgPicker animated:YES completion:^{
+                    
+                }];
+                
+                break;
+            }
+            case 2:
+                
+                break;
+            default:
+                break;
         }
-        case 2:
-            
-            break;
-        default:
-            break;
+    } else {
+        switch (buttonIndex) {
+            case 0:
+            {
+                [self SendPECropView:custom.show_top_img.image];
+                
+            }
+                break;
+            case 1:
+            {
+                UIImagePickerController *galleryPickerController = [[UIImagePickerController alloc] init];
+                galleryPickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                galleryPickerController.delegate = self;
+                
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    if ([actionSheet isVisible]) {
+                        [actionSheet removeFromSuperview];
+                        m_count = 1;
+                        isHead = YES;
+                        [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+                    }
+                }else{
+                    [self presentViewController:galleryPickerController animated:YES completion:nil];
+                }
+                
+                break;
+            }
+            case 2:
+            {
+                UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
+                [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+                [imgPicker setDelegate:self];
+                [imgPicker setAllowsEditing:NO];
+                [self.navigationController presentViewController:imgPicker animated:YES completion:^{
+                    
+                }];
+            }
+                break;
+            default:
+                break;
+        }
     }
 }
 
