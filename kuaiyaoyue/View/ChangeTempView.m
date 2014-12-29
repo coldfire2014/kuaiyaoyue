@@ -58,7 +58,6 @@
         UIView* line2 = [[UIView alloc] initWithFrame:CGRectMake(120-33.5, btn.frame.origin.y+bg.frame.origin.y+1, 1.5, bg.bounds.size.height-2)];
         line2.backgroundColor = [UIColor whiteColor];
         [self addSubview:line2];
-        [self loadDate];
     }
     return self;
 }
@@ -75,6 +74,7 @@
     }];
 }
 -(void)loadDate{
+    NSLog(@"%d--%d",self.type,_type);
     UITableView* table = (UITableView*)[self viewWithTag:101];
     //0婚礼,1商务,2玩乐,3自定义
     NSString* neftypeId = @"";
@@ -90,7 +90,9 @@
     
     data = [[DataBaseManage getDataBaseManage] GetTemplate:neftypeId];
     if (data.count < 2) {
+        data = [[NSArray alloc] init];
         self.alpha = 0;
+        [table reloadData];
     } else {
         [table reloadData];
     }

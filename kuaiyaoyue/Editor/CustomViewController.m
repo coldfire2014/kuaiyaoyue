@@ -384,7 +384,7 @@
         if (custom.show_top_img.image != nil) {
             [self SendPECropView:custom.show_top_img.image];
         }else{
-            UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"媒体功能" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"照一照" otherButtonTitles:@"从相册中", nil ];
+            UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"照一照" otherButtonTitles:@"从相册中", nil ];
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
                 [as showInView:self.view];
             } else {
