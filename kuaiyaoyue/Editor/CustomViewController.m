@@ -419,6 +419,14 @@
             [self performSegueWithIdentifier:@"imgSelect" sender:nil];
         }else if(actionSheet.tag == 999 && buttonIndex == 0){
             [self SendPECropView:custom.show_top_img.image];
+        }else if ((actionSheet.tag == 998 && buttonIndex == 1) || (actionSheet.tag == 999 && buttonIndex == 2)){
+            UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
+            [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [imgPicker setDelegate:self];
+            [imgPicker setAllowsEditing:NO];
+            [self.navigationController presentViewController:imgPicker animated:YES completion:^{
+                
+            }];
         }
     }
 }
@@ -446,14 +454,20 @@
                 break;
             case 1:
             {
-                UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
-                [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-                [imgPicker setDelegate:self];
-                [imgPicker setAllowsEditing:NO];
-                [self.navigationController presentViewController:imgPicker animated:YES completion:^{
-                    
-                }];
-                
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    if ([actionSheet isVisible]) {
+                        [actionSheet dismissWithClickedButtonIndex:1 animated:NO];
+                        
+                    }
+                }else{
+                    UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
+                    [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+                    [imgPicker setDelegate:self];
+                    [imgPicker setAllowsEditing:NO];
+                    [self.navigationController presentViewController:imgPicker animated:YES completion:^{
+                        
+                    }];
+                }
                 break;
             }
             case 2:
@@ -493,13 +507,20 @@
             }
             case 2:
             {
-                UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
-                [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-                [imgPicker setDelegate:self];
-                [imgPicker setAllowsEditing:NO];
-                [self.navigationController presentViewController:imgPicker animated:YES completion:^{
-                    
-                }];
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    if ([actionSheet isVisible]) {
+                        [actionSheet dismissWithClickedButtonIndex:2 animated:NO];
+                        
+                    }
+                }else{
+                    UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
+                    [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+                    [imgPicker setDelegate:self];
+                    [imgPicker setAllowsEditing:NO];
+                    [self.navigationController presentViewController:imgPicker animated:YES completion:^{
+                        
+                    }];
+                }
             }
                 break;
             default:

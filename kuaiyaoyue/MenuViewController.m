@@ -227,7 +227,7 @@
     
     if ([segue.identifier compare:@"zdyedit"] == NSOrderedSame){
         
-        NSArray *data = [[DataBaseManage getDataBaseManage] GetTemplate:@"4"];
+        NSArray *data = [[DataBaseManage getDataBaseManage] GetTemplate:@"3"];
         Template *info = [data objectAtIndex:0];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
