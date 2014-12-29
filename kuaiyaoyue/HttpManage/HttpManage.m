@@ -193,6 +193,7 @@ password:1235456                     //用户密码
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSLog(@"error-%@",error);
+        
         callback(NO,nil);
         
     }];
@@ -210,11 +211,13 @@ password:1235456                     //用户密码
          phoneId:(NSString *)phoneId
           openId:(NSString *)openId
               cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
+    
     if (phoneId.length >0) {
         
     }else{
         phoneId = @"-1";
     }
+
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             userName,@"userName",userPwd,@"userPwd",
                             phoneId,@"phoneId",openId,@"openId",
@@ -459,7 +462,9 @@ closeTimestamp:(NSString *)closeTimestamp
         callback(YES,array);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
-        NSLog(@"error-%@",error);
+        
+        NSString *html = operation.responseString;
+        NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
 }
@@ -729,7 +734,7 @@ closeTimestamp:(NSString *)closeTimestamp
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:HTTPURL]];
     [manager POST:@"invitation/nozzle/NefImages/upload.aspx" parameters:nil timeout:11 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData *data = [NSData dataWithContentsOfFile: file];
-        [formData appendPartWithFileData:data name:@"files" fileName:@"cs.wav" mimeType:@"audio/wav"];
+        [formData appendPartWithFileData:data name:@"files" fileName:name mimeType:@"audio/wav"];
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);

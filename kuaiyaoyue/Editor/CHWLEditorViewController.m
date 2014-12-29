@@ -91,6 +91,9 @@
     
     [self addview];
     
+    playview.xlr_edit.text = [UDObject getXM];
+    playview.xlfs_edit.text = [UDObject getLXFS];
+    
     UINib *nib = [UINib nibWithNibName:NSStringFromClass([PhotoCell class]) bundle:nil];
     [gridview registerNib:nib forCellWithReuseIdentifier:@"PhotoCell"];
     [self getHistorical];
@@ -130,9 +133,6 @@
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editviewonclick:)];
     [playview.editview addGestureRecognizer:tap2];
     
-    
-    playview.xlr_edit.text = [UDObject getXM];
-    playview.xlfs_edit.text = [UDObject getLXFS];
 }
 
 - (void)editviewonclick:(UITapGestureRecognizer *)gr{
@@ -179,7 +179,7 @@
         NSString *str = [formatter stringFromDate:[NSDate date]];
         audioname = [NSString stringWithFormat:@"audio%@.wav", str];
         
-        recordedFile = [[FileManage sharedFileManage] GetYPFile:audioname];
+        recordedFile = [[FileManage sharedFileManage] GetYPFile1:audioname];
         
         recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath: recordedFile] settings:[self getAudioRecorderSettingDict] error:nil];
         
@@ -383,7 +383,7 @@
         if ([UDObject getwlaudio].length > 0) {
             NSArray *array = [[UDObject getwlaudio] componentsSeparatedByString:@"/"];
             audioname = [array objectAtIndex:([array count] - 1)];
-            recordedFile = [[FileManage sharedFileManage] GetYPFile:audioname];
+            recordedFile = [[FileManage sharedFileManage] GetYPFile1:audioname];
         
             [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 9, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
             [playview.audio_view setAlpha:1.0];

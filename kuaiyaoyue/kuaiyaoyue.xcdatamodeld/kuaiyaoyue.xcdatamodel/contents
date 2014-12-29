@@ -82,10 +82,10 @@
     </entity>
     <elements>
         <element name="Contacts" positionX="-54" positionY="135" width="128" height="133"/>
+        <element name="Fixeds" positionX="-54" positionY="135" width="128" height="148"/>
         <element name="Info" positionX="-54" positionY="108" width="128" height="180"/>
         <element name="Music" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="Template" positionX="-63" positionY="9" width="128" height="255"/>
         <element name="Userdata" positionX="-54" positionY="117" width="128" height="465"/>
-        <element name="Fixeds" positionX="-54" positionY="135" width="128" height="148"/>
     </elements>
 </model>

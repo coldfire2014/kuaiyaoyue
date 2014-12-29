@@ -65,7 +65,7 @@
 		848BF4791A43254B0002A1B1 /* Userdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 848BF4781A43254B0002A1B1 /* Userdata.m */; };
 		849D667E1A484875004EF00F /* HLEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D667D1A484875004EF00F /* HLEditView.m */; };
 		849D66801A484887004EF00F /* HLEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849D667F1A484887004EF00F /* HLEditView.xib */; };
-		84AF51C31A4E9B60004F31CF /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = 84AF51C21A4E9B60004F31CF /* 1.zip */; };
+		84AF51C51A4EAB9C004F31CF /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = 84AF51C41A4EAB9C004F31CF /* 1.zip */; };
 		84B446C41A32B3D000546859 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84B446B41A32B3D000546859 /* MJRefresh.bundle */; };
 		84B446C51A32B3D000546859 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446B71A32B3D000546859 /* MJRefreshBaseView.m */; };
 		84B446C61A32B3D000546859 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446B91A32B3D000546859 /* MJRefreshConst.m */; };
@@ -293,7 +293,7 @@
 		849D667C1A484875004EF00F /* HLEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEditView.h; sourceTree = "<group>"; };
 		849D667D1A484875004EF00F /* HLEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEditView.m; sourceTree = "<group>"; };
 		849D667F1A484887004EF00F /* HLEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLEditView.xib; sourceTree = "<group>"; };
-		84AF51C21A4E9B60004F31CF /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 1.zip; sourceTree = "<group>"; };
+		84AF51C41A4EAB9C004F31CF /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 1.zip; sourceTree = "<group>"; };
 		84B446B41A32B3D000546859 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		84B446B51A32B3D000546859 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		84B446B61A32B3D000546859 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -903,7 +903,7 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
-				84AF51C21A4E9B60004F31CF /* 1.zip */,
+				84AF51C41A4EAB9C004F31CF /* 1.zip */,
 				8431E9071A4D24AA00E9B0EE /* logo@2x.png */,
 				8474A4AB1A4BB28A00C2E489 /* bubble_play_1@2x.png */,
 				8474A4AC1A4BB28A00C2E489 /* bubble_play_2@2x.png */,
@@ -1285,7 +1285,7 @@
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,
 				8474A4B01A4BB28A00C2E489 /* bubble_play_3@2x.png in Resources */,
 				E5661A2A1A457CB700E4E2BC /* btn_login_2_pre.png in Resources */,
-				84AF51C31A4E9B60004F31CF /* 1.zip in Resources */,
+				84AF51C51A4EAB9C004F31CF /* 1.zip in Resources */,
 				8442288C1A4A518300583893 /* PEPhotoCropEditor.bundle in Resources */,
 				E5661A231A45708C00E4E2BC /* logo_login.png in Resources */,
 				E5661A191A45708C00E4E2BC /* bg_login.jpg in Resources */,

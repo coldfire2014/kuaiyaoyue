@@ -67,6 +67,7 @@
     if ([arr count] > 0) {
         Music *music = [arr objectAtIndex:[arr count] -1];
         timestamp = music.timestamp;
+        NSLog(@"music-%@",music);
     }else{
         timestamp = @"-1";
     }
@@ -104,11 +105,17 @@
                 [self showdid];
             }
         }];
+    }else{
+         addnum++;
+        if (addnum == tjnum) {
+            [SVProgressHUD dismiss];
+            [self showdid];
+        }
     }
 }
 
 -(void)showdid {
-    NSArray *arr = [[DataBaseManage getDataBaseManage] getMusic];
+    NSArray *arr = [[DataBaseManage getDataBaseManage] getMusic:_typeid];
     for (Music *music in arr) {
         MusicInfo *info = [[MusicInfo alloc] SetMusicValue:NO :music.nefname :music.nefurl];
         [data addObject:info];
@@ -164,6 +171,7 @@
 -(void)AudioPlay:(NSString *)recordedFile{
     NSError *playerError;
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: recordedFile] error:&playerError];
+    NSLog(@"%@",[NSURL fileURLWithPath: recordedFile]);
     [player prepareToPlay];
 //    player.volume = 10.0f;
     player.delegate = self;

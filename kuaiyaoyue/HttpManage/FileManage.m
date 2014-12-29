@@ -41,6 +41,7 @@
     // 创建目录
     self.imgDirectory = [_dirDirectory stringByAppendingPathComponent:@"Image"];
     self.audioDirectory = [_dirDirectory stringByAppendingPathComponent:@"Audio"];
+    self.musicFiles = [_dirDirectory stringByAppendingPathComponent:@"musicFiles"];
     
     if (![fileManager fileExistsAtPath:self.imgDirectory]) {
         [fileManager createDirectoryAtPath:self.imgDirectory withIntermediateDirectories:YES attributes:nil error:nil];
@@ -58,11 +59,17 @@
 
 -(NSString *)GetYPFile:(NSString *) name{
     [self CreateFile];
+    name = [NSString stringWithFormat:@"%@.mp3",name];
+    return [self.musicFiles stringByAppendingPathComponent:name];
+}
+-(NSString *)GetYPFile1:(NSString *) name{
+    [self CreateFile];
     return [self.audioDirectory stringByAppendingPathComponent:name];
 }
 
 -(BOOL) ISYPFile:(NSString *)name{
-    NSString *filepath = [self.audioDirectory stringByAppendingPathComponent:name];
+    name = [NSString stringWithFormat:@"%@.mp3",name];
+    NSString *filepath = [self.musicFiles stringByAppendingPathComponent:name];
     return [[NSFileManager defaultManager] fileExistsAtPath:filepath];
 }
 
