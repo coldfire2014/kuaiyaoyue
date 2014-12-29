@@ -390,7 +390,7 @@
     }else if (type == 3){
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             if (custom.show_top_img.image != nil) {
-                UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"修改这张" otherButtonTitles:@"从相册选取",@"照一张", nil ];
+                UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"修改头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"修改这张" otherButtonTitles:@"从相册选取",@"照一张", nil ];
                 as.tag = 999;
                 [as showInView:self.view];
             } else {
@@ -399,11 +399,26 @@
                 [as showInView:self.view];
             }
         } else {
-//            UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"照一照" otherButtonTitles:@"从相册中", nil ];
-//            [as showFromRect:CGRectMake(self.view.frame.size.width-70, 70, 100, 100) inView:self.view animated:YES];
+            if (custom.show_top_img.image != nil) {
+                UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"修改头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"修改这张" otherButtonTitles:@"从相册选取",@"照一张", nil ];
+                as.tag = 999;
+                [as showFromRect:CGRectMake(self.view.frame.size.width-70, 70, 100, 100) inView:self.view animated:YES];
+            } else {
+                UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择一张头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"从相册选取" otherButtonTitles:@"照一张", nil ];
+                as.tag = 998;
+                [as showFromRect:CGRectMake(self.view.frame.size.width-70, 70, 100, 100) inView:self.view animated:YES];
+            }
+        }
+    }
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if ((actionSheet.tag == 998 && buttonIndex == 0) || (actionSheet.tag == 999 && buttonIndex == 1)) {
             m_count = 1;
             isHead = YES;
             [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+        }else if(actionSheet.tag == 999 && buttonIndex == 0){
+            [self SendPECropView:custom.show_top_img.image];
         }
     }
 }
@@ -415,17 +430,14 @@
         switch (buttonIndex) {
             case 0:
             {
-                
                 UIImagePickerController *galleryPickerController = [[UIImagePickerController alloc] init];
                 galleryPickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 galleryPickerController.delegate = self;
                 
                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                     if ([actionSheet isVisible]) {
-                        [actionSheet removeFromSuperview];
-                        m_count = 1;
-                        isHead = YES;
-                        [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+                        [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+                        
                     }
                 }else{
                     [self presentViewController:galleryPickerController animated:YES completion:nil];
@@ -454,8 +466,13 @@
         switch (buttonIndex) {
             case 0:
             {
-                [self SendPECropView:custom.show_top_img.image];
-                
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    if ([actionSheet isVisible]) {
+                        [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+                    }
+                }else{
+                    [self SendPECropView:custom.show_top_img.image];
+                }
             }
                 break;
             case 1:
@@ -466,10 +483,7 @@
                 
                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                     if ([actionSheet isVisible]) {
-                        [actionSheet removeFromSuperview];
-                        m_count = 1;
-                        isHead = YES;
-                        [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+                        [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
                     }
                 }else{
                     [self presentViewController:galleryPickerController animated:YES completion:nil];
