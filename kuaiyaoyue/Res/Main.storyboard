@@ -205,29 +205,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App封面" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYy-NX-OoU">
-                                <rect key="frame" x="266" y="289" width="68" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_login.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Z1y-ui-ZhT">
+                                <rect key="frame" x="-20" y="-268" width="640" height="1136"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="nGI-s0-vKR"/>
-                                    <constraint firstAttribute="width" constant="68" id="wFM-JC-kre"/>
+                                    <constraint firstAttribute="height" constant="1136" id="2TO-zc-g8v"/>
+                                    <constraint firstAttribute="width" constant="640" id="ZKw-qW-soT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="努力加载中。。。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dos-hv-bIg">
-                                <rect key="frame" x="232" y="318" width="136" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="cYy-NX-OoU" secondAttribute="centerX" id="0rJ-b9-ka7"/>
-                            <constraint firstAttribute="centerY" secondItem="cYy-NX-OoU" secondAttribute="centerY" id="Z7o-Wp-fjY"/>
-                            <constraint firstAttribute="centerX" secondItem="Dos-hv-bIg" secondAttribute="centerX" id="Zuh-0A-Suu"/>
-                            <constraint firstItem="Dos-hv-bIg" firstAttribute="top" secondItem="cYy-NX-OoU" secondAttribute="bottom" constant="8" id="vyp-DK-L6Z"/>
+                            <constraint firstAttribute="centerY" secondItem="Z1y-ui-ZhT" secondAttribute="centerY" id="ade-Nu-gfT"/>
+                            <constraint firstAttribute="centerX" secondItem="Z1y-ui-ZhT" secondAttribute="centerX" id="d0K-M3-oKz"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1467,7 +1456,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2014 kyy121.com,All Rights Reserved." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqI-mr-fbt">
-                                <rect key="frame" x="168" y="505" width="264.5" height="21"/>
+                                <rect key="frame" x="168" y="505" width="265" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="11Q-70-h26"/>
                                 </constraints>
@@ -2281,8 +2270,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="x1E-4h-C3D"/>
                                         <exclude reference="dNB-ud-dVb"/>
+                                        <exclude reference="x1E-4h-C3D"/>
                                         <exclude reference="Gcp-6S-Qkz"/>
                                         <exclude reference="XcZ-gr-JG6"/>
                                         <exclude reference="UHY-Q0-MPn"/>
@@ -3150,6 +3139,7 @@
     </scenes>
     <resources>
         <image name="bg_list.jpg" width="640" height="360"/>
+        <image name="bg_login.jpg" width="640" height="1136"/>
         <image name="bg_top.jpg" width="640" height="202"/>
         <image name="ic_32_arr" width="16" height="16"/>
         <image name="ic_32_clock" width="16" height="16"/>
@@ -3176,10 +3166,10 @@
         <image name="logo.png" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2y5-RI-bqS"/>
         <segue reference="ztp-xN-fnN"/>
+        <segue reference="D53-YK-KM5"/>
         <segue reference="cFn-3V-9M3"/>
-        <segue reference="72F-Gw-hpx"/>
         <segue reference="bym-b5-cxi"/>
+        <segue reference="72F-Gw-hpx"/>
     </inferredMetricsTieBreakers>
 </document>
