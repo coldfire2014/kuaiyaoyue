@@ -49,7 +49,7 @@
     NSString *mp3name;
     
     BOOL is_yl;
-    
+
 }
 
 @end
