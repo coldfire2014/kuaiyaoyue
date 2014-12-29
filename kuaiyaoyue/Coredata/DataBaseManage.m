@@ -401,7 +401,7 @@ static NSManagedObjectContext *context = nil;
 
 -(void)setMusic:(NSDictionary *) dic{
     Music *music = [NSEntityDescription insertNewObjectForEntityForName:@"Music" inManagedObjectContext:context];
-    music.neftypeid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"uniqueId"]];
+    music.neftypeid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"typeId"]];
     music.nefname = [dic objectForKey:@"name"];
     music.nefurl = [dic objectForKey:@"url"];
     music.timestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
@@ -412,12 +412,20 @@ static NSManagedObjectContext *context = nil;
     }
 }
 
+-(NSArray *)getMusic:(NSString *)typeid{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Music"];
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(neftypeid = %@)",typeid];
+    [request setPredicate:predict];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    return fetchedObjects;
+}
+
 -(NSArray *)getMusic{
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Music"];
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
     return fetchedObjects;
-    
 }
 
 @end

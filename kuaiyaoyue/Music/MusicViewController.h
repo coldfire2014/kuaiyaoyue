@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) id<MVCDelegate> delegate;
+@property (nonatomic, strong) NSString *typeid;
 @end
 @protocol MVCDelegate <NSObject>
 

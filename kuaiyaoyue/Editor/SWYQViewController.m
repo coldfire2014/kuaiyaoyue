@@ -83,6 +83,9 @@
     
     [self addview];
     
+    moreview.xlr_edit.text = [UDObject getXM];
+    moreview.xlfs_edit.text = [UDObject getLXFS];
+    
     UINib *nib = [UINib nibWithNibName:NSStringFromClass([PhotoCell class]) bundle:nil];
     [gridview registerNib:nib forCellWithReuseIdentifier:@"PhotoCell"];
     [self getHistorical];
@@ -103,8 +106,7 @@
     [moreview.editview addGestureRecognizer:tap2];
     
     
-    moreview.xlr_edit.text = [UDObject getXM];
-    moreview.xlfs_edit.text = [UDObject getLXFS];
+    
     
 }
 
@@ -267,6 +269,8 @@
     }else if ([segue.identifier compare:@"music"] == NSOrderedSame){
         MusicViewController *view = (MusicViewController*)segue.destinationViewController;
         view.delegate = self;
+        view.typeid = @"2";
+        
     }else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
         PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
         view.delegate = self;

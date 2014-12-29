@@ -210,6 +210,7 @@
     }else if ([segue.identifier compare:@"music"] == NSOrderedSame){
         MusicViewController *view = (MusicViewController*)segue.destinationViewController;
         view.delegate = self;
+        view.typeid = @"1";
     }
     //preview
     else if ([segue.identifier compare:@"preview"] == NSOrderedSame){

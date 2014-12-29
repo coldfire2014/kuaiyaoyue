@@ -62,6 +62,10 @@
     name = [NSString stringWithFormat:@"%@.mp3",name];
     return [self.musicFiles stringByAppendingPathComponent:name];
 }
+-(NSString *)GetYPFile1:(NSString *) name{
+    [self CreateFile];
+    return [self.audioDirectory stringByAppendingPathComponent:name];
+}
 
 -(BOOL) ISYPFile:(NSString *)name{
     name = [NSString stringWithFormat:@"%@.mp3",name];

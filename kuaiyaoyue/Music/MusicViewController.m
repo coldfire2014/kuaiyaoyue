@@ -67,6 +67,7 @@
     if ([arr count] > 0) {
         Music *music = [arr objectAtIndex:[arr count] -1];
         timestamp = music.timestamp;
+        NSLog(@"music-%@",music);
     }else{
         timestamp = @"-1";
     }
@@ -114,7 +115,7 @@
 }
 
 -(void)showdid {
-    NSArray *arr = [[DataBaseManage getDataBaseManage] getMusic];
+    NSArray *arr = [[DataBaseManage getDataBaseManage] getMusic:_typeid];
     for (Music *music in arr) {
         MusicInfo *info = [[MusicInfo alloc] SetMusicValue:NO :music.nefname :music.nefurl];
         [data addObject:info];
