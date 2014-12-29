@@ -73,7 +73,7 @@
     audioname = @"";
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    label.text = @"快邀约";
+    label.text = @"编辑";
     [label sizeToFit];
     label.textColor = color;
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];

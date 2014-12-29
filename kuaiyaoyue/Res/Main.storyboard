@@ -1457,6 +1457,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="P6j-Tv-CNi"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>

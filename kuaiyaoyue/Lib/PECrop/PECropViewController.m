@@ -29,6 +29,8 @@
     self.cropView = [[PECropView alloc] initWithFrame:contentView.bounds];
     [contentView addSubview:self.cropView];
     
+    
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
     
      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(done:)];

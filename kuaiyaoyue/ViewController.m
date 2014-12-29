@@ -92,44 +92,46 @@
 }
 
 -(void)bcfs{
-    Userdata *user = [data objectAtIndex:0];
-    switch (user.neftype) {
-        case 0:
-            title = [NSString stringWithFormat:@"%@",user.neftitle];
-            msg = [NSString stringWithFormat:@"%@",user.nefcontent];
-            url = user.nefurl;
-            thumb = user.neflogo;
-            break;
-        case 1:
-            title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
-            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
-            url = user.nefurl;
-            thumb = user.nefthumb;
-            break;
-        case 2:
-            title = [NSString stringWithFormat:@"%@",user.nefpartyname];
-            msg = [NSString stringWithFormat:@"%@ %@ %@",@"",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
-            url = user.nefurl;
-            thumb = user.nefthumb;
-            break;
-            
-        default:
-            break;
-    }
     
-    ShareView* share = [ShareView sharedShareView];
-    share.fromvc = self;
-    share.url = url;
-    share.msg = msg;
-    share.title = title;
-    share.imgUrl = @"http://pp.myapp.com/ma_icon/0/icon_11251614_19813241_1418702475/96";
-//    UIImage* img = cell.show_img.image;
-//    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
-    [share show];
-
+//    Userdata *user = [data objectAtIndex:0];
+//    switch (user.neftype) {
+//        case 0:
+//            title = [NSString stringWithFormat:@"%@",user.neftitle];
+//            msg = [NSString stringWithFormat:@"%@",user.nefcontent];
+//            url = user.nefurl;
+//            thumb = user.neflogo;
+//            break;
+//        case 1:
+//            title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
+//            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+//            url = user.nefurl;
+//            thumb = user.nefthumb;
+//            break;
+//        case 2:
+//            title = [NSString stringWithFormat:@"%@",user.nefpartyname];
+//            msg = [NSString stringWithFormat:@"%@ %@ %@",@"",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+//            url = user.nefurl;
+//            thumb = user.nefthumb;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    
+//    ShareView* share = [ShareView sharedShareView];
+//    share.fromvc = self;
+//    share.url = url;
+//    share.msg = msg;
+//    share.title = title;
+//    share.imgUrl = thumb;
+////    UIImage* img = cell.show_img.image;
+////    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+//    [share show];
+    
 }
 
 -(void)fs{
+    
 }
 
 -(void)tsmessage{
