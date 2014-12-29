@@ -244,7 +244,7 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier compare:@"imgSelect"] == NSOrderedSame ) {
         ImgCollectionViewController* des = (ImgCollectionViewController*)segue.destinationViewController;
-        des.maxCount = count;
+        des.maxCount = m_count;
         des.needAnimation = NO;
         des.delegate = self;
     }else if ([segue.identifier compare:@"music"] == NSOrderedSame){
@@ -306,6 +306,8 @@
     GridInfo *info = [data objectAtIndex:[indexPath row]];
     if (!info.is_open) {
         [self.view endEditing:NO];
+        m_count = count;
+        isHead = NO;
         [self performSegueWithIdentifier:@"imgSelect" sender:nil];
     }else{
     }
@@ -323,31 +325,39 @@
 }
 
 -(void)didSelectAssets:(NSArray*)items{
-    NSLog(@"%@",items);
-    for (int i = 0; i < items.count; i++)
-    {
-        ALAsset* al = [items objectAtIndex:i];
-        UIImage *img = [assert getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
-        GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
-        [data addObject:info];
-    }
-    
-    for (int j = 0;j< [data count] ; j++) {
-        GridInfo *info = [data objectAtIndex:j];
-        if (!info.is_open) {
-            [data removeObject:info];
+    if(isHead){
+        if (items.count>0) {
+            ALAsset* al = [items objectAtIndex:0];
+            UIImage* userHeadImage = [assert getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
+            [self SendPECropView:userHeadImage];
         }
+    }else{
+        NSLog(@"%@",items);
+        for (int i = 0; i < items.count; i++)
+        {
+            ALAsset* al = [items objectAtIndex:i];
+            UIImage *img = [assert getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
+            GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
+            [data addObject:info];
+        }
+        
+        for (int j = 0;j< [data count] ; j++) {
+            GridInfo *info = [data objectAtIndex:j];
+            if (!info.is_open) {
+                [data removeObject:info];
+            }
+        }
+        
+        GridInfo *info = [[GridInfo alloc] initWithDictionary:NO :nil];
+        [data addObject:info];
+        [gridview reloadData];
+        count -= items.count;
+        
+        //   [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
+        [UIView animateWithDuration:0.3 animations:^{
+            [self sethigh];
+        }];
     }
-    
-    GridInfo *info = [[GridInfo alloc] initWithDictionary:NO :nil];
-    [data addObject:info];
-    [gridview reloadData];
-    count -= items.count;
-    
-    //   [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
-    [UIView animateWithDuration:0.3 animations:^{
-        [self sethigh];
-    }];
 }
 
 - (void)CVDelegate:(CustomView *)cell didTapAtIndex:(int) type{
@@ -374,10 +384,16 @@
             [self SendPECropView:custom.show_top_img.image];
         }else{
             UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"媒体功能" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"照一照" otherButtonTitles:@"从相册中", nil ];
-            [as showInView:[UIApplication sharedApplication].keyWindow];
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+                [as showInView:self.view];
+            } else {
+//                [as showFromRect:CGRectMake(self.view.frame.size.width-70, 70, 100, 100) inView:self.view animated:YES];
+                m_count = 1;
+                isHead = YES;
+                [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+            }
         }
     }
-
 }
 
 #pragma mark ----------ActionSheet 按钮点击-------------
@@ -397,12 +413,20 @@
             break;
         case 1:
         {
-            UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
-            [imgPicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-            [imgPicker setDelegate:self];
-            [imgPicker setAllowsEditing:NO];
-            [self.navigationController presentViewController:imgPicker animated:YES completion:^{
-            }];
+            UIImagePickerController *galleryPickerController = [[UIImagePickerController alloc] init];
+            galleryPickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            galleryPickerController.delegate = self;
+            
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                if ([actionSheet isVisible]) {
+                    [actionSheet removeFromSuperview];
+                    m_count = 1;
+                    isHead = YES;
+                    [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+                }
+            }else{
+                [self presentViewController:galleryPickerController animated:YES completion:nil];
+            }
             
             break;
         }

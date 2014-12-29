@@ -168,7 +168,7 @@ password:1235456                     //用户密码
     if (phoneId.length >0) {
         
     }else{
-        phoneId = @"3";
+        phoneId = @"-1";
     }
    
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -210,7 +210,11 @@ password:1235456                     //用户密码
          phoneId:(NSString *)phoneId
           openId:(NSString *)openId
               cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
-
+    if (phoneId.length >0) {
+        
+    }else{
+        phoneId = @"-1";
+    }
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             userName,@"userName",userPwd,@"userPwd",
                             phoneId,@"phoneId",openId,@"openId",
