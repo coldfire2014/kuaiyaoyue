@@ -7,7 +7,7 @@
 //
 
 #import "TwoViewController.h"
-
+#import "myImageView.h"
 @interface TwoViewController ()
 
 @end
@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    myImageView* bg = [[myImageView alloc] initWithFrame:self.view.bounds andImageName:@"2w.jpg" withScale:2.0 andAlign:UIImgAlignmentCenter];
+    [self.view addSubview:bg];
 }
 
 - (void)didReceiveMemoryWarning {
