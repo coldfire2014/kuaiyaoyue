@@ -330,7 +330,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hD9-ag-T6l">
-                                    <rect key="frame" x="98" y="12" width="190" height="21"/>
+                                    <rect key="frame" x="97.999999357524672" y="12" width="190" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -346,6 +346,24 @@
                                         <action selector="music_onclick:" destination="iN0-l3-epB" eventType="touchUpInside" id="LSN-Qv-aNP"/>
                                     </connections>
                                 </button>
+                                <view hidden="YES" contentMode="scaleToFill" id="OZ5-3Q-RMB">
+                                    <rect key="frame" x="276" y="0.0" width="44" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" id="gUA-sf-mIW">
+                                            <rect key="frame" x="20" y="14" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="T5.png" id="mLl-9i-IIr">
+                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -380,10 +398,11 @@
                 <outlet property="address_edit" destination="Aza-7w-CxJ" id="BGE-mv-xTe"/>
                 <outlet property="bmtime_label" destination="8Z6-3D-KoJ" id="5o6-Ds-aHq"/>
                 <outlet property="bottom_view" destination="3pY-F9-lYq" id="XW5-Xl-6qJ"/>
+                <outlet property="del_music_view" destination="OZ5-3Q-RMB" id="say-yA-qEo"/>
                 <outlet property="editview" destination="14G-ga-prt" id="7SO-JT-0ff"/>
                 <outlet property="girdview" destination="nvj-tp-Erb" id="Vp1-qT-S9b"/>
                 <outlet property="jh_edit" destination="CE3-og-40Y" id="zfa-1I-NW9"/>
-                <outlet property="music_view" destination="Af9-8r-skG" id="D6p-BY-sh3"/>
+                <outlet property="mv" destination="gUA-sf-mIW" id="IoN-ER-MGY"/>
                 <outlet property="show_music" destination="hD9-ag-T6l" id="Ejx-Vg-O9c"/>
                 <outlet property="show_summary" destination="QaE-a0-hel" id="gar-2j-Vq8"/>
                 <outlet property="text_label_num" destination="m7c-Fl-m9T" id="VEP-De-IrY"/>
@@ -395,6 +414,7 @@
         </view>
     </objects>
     <resources>
+        <image name="T5.png" width="56" height="56"/>
         <image name="ic_32_arr" width="16" height="16"/>
         <image name="ic_32_open" width="16" height="16"/>
         <image name="ic_c_clock" width="24" height="24"/>

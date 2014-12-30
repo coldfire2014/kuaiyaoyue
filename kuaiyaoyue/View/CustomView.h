@@ -29,7 +29,9 @@
 @property (weak, nonatomic) IBOutlet UIView *editview;
 @property (weak, nonatomic) IBOutlet UILabel *text_label_num;
 
+@property (weak, nonatomic) IBOutlet UIView *mv;
 @property (nonatomic, weak) id<CVDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIView *del_music_view;
 
 @end
 @protocol CVDelegate <NSObject>

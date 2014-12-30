@@ -37,10 +37,52 @@
     [tempView loadDate];
     tempView.alpha = 0;
     [self.view addSubview:tempView];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(rightonclick)];
+    
 }
+
+-(void)rightonclick{
+     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+         UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
+                                        delegate:self
+                               cancelButtonTitle:@"取消"
+                          destructiveButtonTitle:nil
+                               otherButtonTitles:@"生成", @"生成并发送", nil];
+    
+         [sheet showInView:self.view];
+     }else{
+         UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                            delegate:self
+                                                   cancelButtonTitle:@"取消"
+                                              destructiveButtonTitle:nil
+                                                   otherButtonTitles:@"生成", @"生成并发送", nil];
+         [sheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+     }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            [self.navigationController popViewControllerAnimated:YES];
+            [self.delegate didSendType:0];
+            
+            break;
+        case 1:
+            [self.navigationController popViewControllerAnimated:YES];
+            [self.delegate didSendType:1];
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+
 -(void)didSelectTemplate:(Template*)items{
     [TalkingData trackEvent:@"更换模版预览"];
-//    NSLog(@"Template%@",items);
     [self.delegate didSelectID:[[NSString alloc] initWithFormat:@"%@",items.nefid] andNefmbdw:items.nefmbdw];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -58,24 +100,29 @@
     
 
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [TalkingData trackPageEnd:@"生成前预览"];
     tempView.alpha = 0;
 }
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [TalkingData trackPageBegin:@"生成前预览"];
     [self reloadweb];
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
+
 //页面加载时处理事件
 -(void)reloadweb{
     NSString *urlpath = [UDObject getWebUrl];
@@ -117,7 +164,12 @@
         }else{
             arr = [[NSArray alloc] init];
         }
-        NSString *musicUrl = [NSString stringWithFormat:@"../Audio/%@",[UDObject gethlmusicname]];
+        
+        NSString *musicname = [UDObject gethlmusic];
+        NSArray *array = [musicname componentsSeparatedByString:@"/"];
+        musicname = [array objectAtIndex:([array count] - 1)];
+        
+        NSString *musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
         
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                [UDObject getaddress_name],@"address",
@@ -134,7 +186,10 @@
         }else{
             arr = [[NSArray alloc] init];
         }
-        NSString *musicUrl = [NSString stringWithFormat:@"../Audio/%@",[UDObject getsw_musicname]];
+        NSString *musicname = [UDObject getsw_music];
+        NSArray *array = [musicname componentsSeparatedByString:@"/"];
+        musicname = [array objectAtIndex:([array count] - 1)];
+        NSString *musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                [UDObject getswaddress_name],@"address",
                arr,@"images",
@@ -152,6 +207,7 @@
         }else{
             arr = [[NSArray alloc] init];
         }
+        
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                [UDObject getwladdress_name],@"address",
                arr,@"images",
@@ -169,7 +225,11 @@
             arr = [[NSArray alloc] init];
         }
         
-        NSString *musicUrl = [NSString stringWithFormat:@"../Audio/%@",[UDObject getzdymusicname]];
+        NSString *musicname = [UDObject getzdymusic];
+        NSArray *array = [musicname componentsSeparatedByString:@"/"];
+        musicname = [array objectAtIndex:([array count] - 1)];
+        
+        NSString *musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                musicUrl,@"musicUrl",
                arr,@"images",

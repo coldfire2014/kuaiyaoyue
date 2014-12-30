@@ -11,10 +11,11 @@
 @protocol PreviewViewControllerDelegate <NSObject>
 
 -(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw;
+-(void)didSendType:(int) type;
 @optional
 -(UIImage *)getimg :(NSString *) str;
 @end
-@interface PreviewViewController : UIViewController<UIScrollViewDelegate,UIWebViewDelegate,ChangeTempViewDelegate>
+@interface PreviewViewController : UIViewController<UIScrollViewDelegate,UIWebViewDelegate,ChangeTempViewDelegate,UIActionSheetDelegate>
 {
     ChangeTempView* tempView;
 }

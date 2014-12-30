@@ -27,7 +27,7 @@
 #import "PreviewViewController.h"
 #import "TalkingData.h"
 
-@interface CustomViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,CVDelegate,PECropViewControllerDelegate>{
+@interface CustomViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,CVDelegate,PECropViewControllerDelegate,PreviewViewControllerDelegate>{
     BOOL is_yl;
     int count;
     CustomView *custom;
@@ -166,6 +166,7 @@
             mp3name = [UDObject getzdymusicname];
             custom.music_label.text = mp3name;
             mp3url = [UDObject getzdymusic];
+            [custom.del_music_view setHidden:NO];
         }
         NSArray *arr = [[UDObject getzdyimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
         NSString *name = @"";
@@ -262,6 +263,7 @@
         view.typeid = @"4";
     }else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
         PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
+        view.delegate = self;
         view.type = 3;
     }
 }
@@ -412,6 +414,11 @@
                 [as showFromRect:CGRectMake(self.view.frame.size.width-70, 70, 100, 100) inView:self.view animated:YES];
             }
         }
+    }else if (type == 4){
+        mp3url = @"";
+        mp3name = @"";
+        custom.music_label.text = @"";
+        [custom.del_music_view setHidden:YES];
     }
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
@@ -629,6 +636,7 @@
     mp3url = url;
     mp3name = name;
     custom.music_label.text = name;
+    [custom.del_music_view setHidden:NO];
 }
 
 //- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -648,7 +656,7 @@
 //            textView.text = [textView.text substringToIndex:70];
 //        }
 //        NSLog(@"%d",textView.text.length);
-        custom.text_label_num.text = [NSString stringWithFormat:@"剩余%d",70-textView.text.length];
+        custom.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
     }
     
     return YES;
@@ -676,7 +684,7 @@
 
     if (zdytitle.length > 0 && zdycontent.length > 0 && hltime.length > 0 && bmendtime.length > 0 && custom.show_top_img.image != nil && data.count -1 > 0 && mp3url.length > 0) {
         if (zdytitle.length > 11) {
-            [[StatusBar sharedStatusBar] talkMsg:@"标题不得超过1个字" inTime:0.5];
+            [[StatusBar sharedStatusBar] talkMsg:@"标题不得超过11个字" inTime:0.5];
             return;
         }
         if (zdycontent.length >70) {
@@ -827,6 +835,18 @@
         
         }
     }];
+}
+
+-(void)didSendType:(int) type{
+    if (type == 0) {
+        is_yl = YES;
+        is_bcfs = NO;
+        [self SendUp];
+    }else{
+        is_yl = YES;
+        is_bcfs = YES;
+        [self SendUp];
+    }
 }
 
 @end

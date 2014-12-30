@@ -158,6 +158,7 @@
             mp3name = [UDObject gethlmusicname];
             hlev.music_label.text = mp3name;
             mp3url = [UDObject gethlmusic];
+            [hlev.del_music_view setHidden:NO];
         }
         NSArray *arr = [[UDObject gethlimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
         NSString *name = @"";
@@ -389,6 +390,11 @@
         }
     }else if (type == 2){
         [self performSegueWithIdentifier:@"music" sender:nil];
+    }else if (type == 3){
+        mp3url = @"";
+        mp3name = @"";
+        hlev.music_label.text = @"";
+        [hlev.del_music_view setHidden:YES];
     }
 }
 
@@ -401,7 +407,6 @@
             }else{
                 [[StatusBar sharedStatusBar] talkMsg:@"婚礼时间不能小于报名截止时间" inTime:0.5];
             }
-            
         }else{
             bmendtime = timebh;
             hlev.bmend_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
@@ -454,6 +459,7 @@
     mp3url = url;
     mp3name = name;
     hlev.music_label.text = name;
+    [hlev.del_music_view setHidden:NO];
 }
 
 
@@ -628,6 +634,7 @@
             NSArray *arr = [[NSArray alloc] initWithArray:addimg];
             NSString *hlarr = [arr componentsJoinedByString:@","];
             [UDObject setHLContent:xl_name xn_name:xn_name hltime:hltime bmendtime:bmendtime address_name:address_name music:musicUrl musicname:mp3name imgarr:hlarr];
+            
             [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
             [self GetRecord];
         }else{
@@ -678,6 +685,18 @@
 -(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw{
     self.unquieId = index;
     self.nefmbdw = nefmbdw;
+}
+
+-(void)didSendType:(int) type{
+    if (type == 0) {
+        is_yl = YES;
+        is_bcfs = NO;
+        [self SendUp];
+    }else{
+        is_yl = YES;
+        is_bcfs = YES;
+        [self SendUp];
+    }
 }
 
 @end

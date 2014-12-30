@@ -18,6 +18,21 @@
 }
 */
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    _mv.layer.cornerRadius = 8.0;
+    _mv.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(del_onclick:)];
+    [_del_music_view addGestureRecognizer:tap];
+    
+}
+
+-(void)del_onclick:(UITapGestureRecognizer *)gr{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(HLEVDelegate:didTapAtIndex:)]){
+        [self.delegate HLEVDelegate:self didTapAtIndex:3];}
+}
+
 - (IBAction)xl_next:(id)sender {
 }
 

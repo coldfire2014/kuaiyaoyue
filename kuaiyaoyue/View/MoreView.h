@@ -30,6 +30,8 @@
 - (IBAction)jh_next:(id)sender;
 - (IBAction)time_onclick:(id)sender;
 - (IBAction)bmtime_onclick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *del_music_view;
+@property (weak, nonatomic) IBOutlet UIView *mv;
 
 @property (nonatomic, weak) id<MVDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIView *bottom_view;

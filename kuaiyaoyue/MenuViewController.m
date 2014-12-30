@@ -239,7 +239,7 @@
             view.unquieId = [NSString stringWithFormat:@"%@",info.nefid];
         }else{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"getmax" object:self userInfo:nil];
-            [[StatusBar sharedStatusBar] talkMsg:@"自定义模板未下载" inTime:0.5];
+            [[StatusBar sharedStatusBar] talkMsg:@"模板正在下载中..." inTime:1];
         }
     }else{
         TemplateViewController* des = (TemplateViewController*)segue.destinationViewController;

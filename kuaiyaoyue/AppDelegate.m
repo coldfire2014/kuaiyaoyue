@@ -18,6 +18,7 @@
 
 @interface AppDelegate (){
     BOOL is_xz;
+    BOOL is_add;
     TencentOAuth* _tencentOAuth;
 }
 
@@ -56,7 +57,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onebyone) name:@"onebyone" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getmaxtemplate) name:@"getmax" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getmaxtemplate:) name:@"getmax" object:nil];
     
     return YES;
 }
@@ -221,11 +222,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQZoneshare:) name:@"QQZONE_SENDTO" object:nil];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    [self getmaxtemplate];
+    [self getmaxtemplate:YES];
     [self checkToken];
 }
 
--(void)getmaxtemplate{
+-(void)getmaxtemplate:(BOOL)state{
+    is_add = state;
     NSArray *fetchedObjects = [[DataBaseManage getDataBaseManage] QueryTemplate];
     NSLog(@"%lu",(unsigned long)[fetchedObjects count]);
     if ([fetchedObjects count] != 0) {
@@ -272,6 +274,10 @@
                 [[DataBaseManage getDataBaseManage] AddTemplate:resultDic];
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:@"DOWNLOAD_DONE" object:nil];
+            if (!is_add) {
+                [[StatusBar sharedStatusBar] talkMsg:@"模板加载完成..." inTime:0.5];
+            }
+            
         }
         else{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"DOWNLOAD_DONE" object:nil];

@@ -293,6 +293,24 @@
                                 <action selector="music_onclick:" destination="iN0-l3-epB" eventType="touchUpInside" id="fuM-ro-6O6"/>
                             </connections>
                         </button>
+                        <view hidden="YES" contentMode="scaleToFill" id="S67-NQ-iq5">
+                            <rect key="frame" x="276" y="0.0" width="44" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" id="vr1-pD-j55">
+                                    <rect key="frame" x="20" y="14" width="16" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="T5.png" id="N7B-BB-YG1">
+                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -308,11 +326,13 @@
             <connections>
                 <outlet property="bottom_view" destination="hWs-Df-qFg" id="9wN-eu-y2u"/>
                 <outlet property="content_edit" destination="dWo-e6-jmG" id="Upq-gI-WWR"/>
+                <outlet property="del_music_view" destination="S67-NQ-iq5" id="EDE-mc-Pgz"/>
                 <outlet property="editview" destination="xii-Ks-XzN" id="8Bh-VN-DVr"/>
                 <outlet property="endtime_label" destination="ref-eh-ecH" id="umB-Rh-602"/>
                 <outlet property="gridview" destination="flG-Ef-BIr" id="W8X-E0-UgV"/>
                 <outlet property="music_label" destination="GfY-KZ-saq" id="uuo-Kk-mEh"/>
                 <outlet property="music_view" destination="ony-kD-FQK" id="euo-XR-WGg"/>
+                <outlet property="mv" destination="vr1-pD-j55" id="BGH-BV-QJD"/>
                 <outlet property="show_top_img" destination="9TT-kb-phf" id="a3E-dA-XLw"/>
                 <outlet property="text_label_num" destination="nIg-xi-5wu" id="CBF-dS-KVX"/>
                 <outlet property="time_label" destination="Tvy-op-xmP" id="DcP-dm-iBE"/>
@@ -322,6 +342,7 @@
         </view>
     </objects>
     <resources>
+        <image name="T5.png" width="56" height="56"/>
         <image name="ic_32_arr" width="16" height="16"/>
         <image name="ic_c_clock" width="24" height="24"/>
         <image name="ic_c_location" width="24" height="24"/>

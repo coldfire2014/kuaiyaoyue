@@ -174,13 +174,13 @@
         moreview.xlr_edit.text = [UDObject getswxlr_name];
         moreview.xlfs_edit.text = [UDObject getswxlfs_name];
         moreview.show_summary.text = [UDObject getswhd_name];
-        
-        moreview.show_summary.text = [NSString stringWithFormat:@"剩余%d",70-moreview.show_summary.text.length];
+        moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-moreview.show_summary.text.length];
         
         if ([UDObject getsw_music].length > 0) {
             mp3name = [UDObject getsw_musicname];
             moreview.show_music.text = mp3name;
             mp3url = [UDObject getsw_music];
+            [moreview.del_music_view setHidden:NO];
         }
         NSArray *arr = [[UDObject getsw_imgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
         NSString *name = @"";
@@ -402,6 +402,11 @@
         }
     }else if (type == 2){
         [self performSegueWithIdentifier:@"music" sender:nil];
+    }else if (type == 3){
+        mp3url = @"";
+        mp3name = @"";
+        moreview.show_music.text = @"";
+        [moreview.del_music_view setHidden:YES];
     }
 }
 
@@ -430,6 +435,7 @@
     mp3url = url;
     mp3name = name;
     moreview.show_music.text = name;
+    [moreview.del_music_view setHidden:NO];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -500,6 +506,7 @@
 }
 
 - (void)sendandshare_onclick:(UITapGestureRecognizer *)gr{
+    is_yl = YES;
     is_bcfs = YES;
     [self SendUp];
 }
@@ -748,4 +755,19 @@
 -(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw{
     self.unquieId = index;
     self.nefmbdw = nefmbdw;
-}@end
+}
+
+-(void)didSendType:(int) type{
+    if (type == 0) {
+        is_yl = YES;
+        is_bcfs = NO;
+        [self SendUp];
+    }else{
+        is_yl = YES;
+        is_bcfs = YES;
+        [self SendUp];
+    }
+}
+
+
+@end

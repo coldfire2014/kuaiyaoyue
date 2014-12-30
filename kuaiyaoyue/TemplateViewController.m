@@ -213,7 +213,7 @@
         [self didShowItemAtIndex:0];
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"getmax" object:self userInfo:nil];
-        [[StatusBar sharedStatusBar] talkMsg:@"自定义模板未下载完成" inTime:0.5];
+        [[StatusBar sharedStatusBar] talkMsg:@"模板正在下载中..." inTime:0.5];
     }
 }
 

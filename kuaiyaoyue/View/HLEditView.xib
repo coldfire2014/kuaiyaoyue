@@ -239,6 +239,24 @@
                                 <action selector="music_onclick:" destination="iN0-l3-epB" eventType="touchUpInside" id="vB8-dN-uow"/>
                             </connections>
                         </button>
+                        <view hidden="YES" contentMode="scaleToFill" id="RVp-L4-7Hk">
+                            <rect key="frame" x="276" y="0.0" width="44" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" id="Gmb-u8-eHV">
+                                    <rect key="frame" x="20" y="14" width="16" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="T5.png" id="4dD-yH-WH4">
+                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -285,9 +303,11 @@
                 <outlet property="address_edit" destination="dnZ-Qs-hbN" id="kSo-dm-Joh"/>
                 <outlet property="bmend_label" destination="vL4-pf-rOa" id="agE-b1-s3O"/>
                 <outlet property="bottomview" destination="YJN-uM-yVM" id="QU7-TX-052"/>
+                <outlet property="del_music_view" destination="RVp-L4-7Hk" id="rBR-MO-Td8"/>
                 <outlet property="gridview" destination="JdH-IO-hbu" id="swu-sR-4jh"/>
                 <outlet property="hltime_label" destination="ZBf-l2-Nr5" id="TM3-Sx-G2n"/>
                 <outlet property="music_label" destination="rhO-cf-Xjy" id="WLt-P6-KeH"/>
+                <outlet property="mv" destination="Gmb-u8-eHV" id="e2b-NR-T8K"/>
                 <outlet property="xl_edit" destination="jza-6p-L99" id="Cg3-kV-Ust"/>
                 <outlet property="xn_edit" destination="g1D-Zb-C86" id="xqv-xm-5Ut"/>
             </connections>
@@ -295,6 +315,7 @@
         </view>
     </objects>
     <resources>
+        <image name="T5.png" width="56" height="56"/>
         <image name="ic_32_arr" width="16" height="16"/>
         <image name="ic_c_clock" width="24" height="24"/>
         <image name="ic_c_lady" width="24" height="24"/>

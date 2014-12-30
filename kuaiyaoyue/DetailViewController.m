@@ -37,6 +37,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+   
+    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
     label.text = @"快邀约";
     [label sizeToFit];
@@ -66,8 +68,9 @@
     show.backgroundColor = [UIColor clearColor];
     [self.view addSubview:show];
 
+    [show.picker setDate:[NSDate dateWithTimeIntervalSince1970:_endtime]];
     [show.picker setMinimumDate:[NSDate date]];
-    NSDate *enddate=[NSDate dateWithTimeIntervalSince1970:_endtime];
+    NSDate *enddate=[NSDate dateWithTimeIntervalSince1970:_datatime];
     [show.picker setMaximumDate:enddate];
 }
 
@@ -121,6 +124,7 @@
 {
     [self.navigationController.navigationBar setHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {

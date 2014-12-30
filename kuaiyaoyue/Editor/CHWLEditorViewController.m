@@ -203,8 +203,6 @@
         
         [playview.audio_img setImage:[UIImage imageNamed:@"btn_120_recordingpre"]];
         
-        
-        
     }
     if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
         
@@ -382,6 +380,7 @@
         playview.xlr_edit.text = [UDObject getwllxr_name];
         playview.xlfs_edit.text = [UDObject getwllxfs_name];
         playview.show_summary.text = [UDObject getwlts_name];
+        playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-playview.show_summary.text.length];
         
         if ([UDObject getwlaudio].length > 0) {
             NSArray *array = [[UDObject getwlaudio] componentsSeparatedByString:@"/"];
@@ -1024,6 +1023,18 @@
 -(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw{
     self.unquieId = index;
     self.nefmbdw = nefmbdw;
+}
+
+-(void)didSendType:(int) type{
+    if (type == 0) {
+        is_yl = YES;
+        is_bcfs = NO;
+        [self SendUp];
+    }else{
+        is_yl = YES;
+        is_bcfs = YES;
+        [self SendUp];
+    }
 }
 
 @end

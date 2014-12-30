@@ -26,7 +26,9 @@
 - (IBAction)bmtime_onclick:(id)sender;
 - (IBAction)address_next:(id)sender;
 - (IBAction)music_onclick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *mv;
 
+@property (weak, nonatomic) IBOutlet UIView *del_music_view;
 @property (nonatomic, weak) id<HLEVDelegate> delegate;
 @end
 @protocol HLEVDelegate <NSObject>

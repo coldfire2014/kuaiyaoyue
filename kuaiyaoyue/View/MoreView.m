@@ -18,6 +18,21 @@
 }
 */
 
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    _mv.layer.cornerRadius = 8.0;
+    _mv.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(del_onclick:)];
+    
+    [_del_music_view addGestureRecognizer:tap];
+}
+
+-(void)del_onclick:(UITapGestureRecognizer *)gr{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(MVDelegate:didTapAtIndex:)]){
+        [self.delegate MVDelegate:self didTapAtIndex:3];}
+}
+
 - (IBAction)music_onclick:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(MVDelegate:didTapAtIndex:)]){
         [self.delegate MVDelegate:self didTapAtIndex:2];}
