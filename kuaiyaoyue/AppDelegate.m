@@ -53,7 +53,7 @@
     [TalkingData setExceptionReportEnabled:YES];
     [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"appStore"];
     
-    [SMS_SDK registerApp:@"25a64c839b5f" withSecret:@"9a639150fcb464d9a1c1ab926648ca3f"];
+    [SMS_SDK registerApp:@"4ec26c11eca2" withSecret:@"e80f13299bf5581e40ed33e2d8350cae"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onebyone) name:@"onebyone" object:nil];
     
