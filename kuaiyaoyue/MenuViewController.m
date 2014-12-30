@@ -228,15 +228,19 @@
     if ([segue.identifier compare:@"zdyedit"] == NSOrderedSame){
         
         NSArray *data = [[DataBaseManage getDataBaseManage] GetTemplate:@"3"];
-        Template *info = [data objectAtIndex:0];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *zipurl = [documentsDirectory stringByAppendingPathComponent:info.nefzipurl];
-        [UDObject setWebUrl:zipurl];
-        NSLog(@"%@",[NSString stringWithFormat:@"%@",info.nefid]);
-        CustomViewController *view = (CustomViewController*)segue.destinationViewController;
-        view.unquieId = [NSString stringWithFormat:@"%@",info.nefid];
-        
+        if (data.count > 0) {
+            Template *info = [data objectAtIndex:0];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *zipurl = [documentsDirectory stringByAppendingPathComponent:info.nefzipurl];
+            [UDObject setWebUrl:zipurl];
+            NSLog(@"%@",[NSString stringWithFormat:@"%@",info.nefid]);
+            CustomViewController *view = (CustomViewController*)segue.destinationViewController;
+            view.unquieId = [NSString stringWithFormat:@"%@",info.nefid];
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"getmax" object:self userInfo:nil];
+            [[StatusBar sharedStatusBar] talkMsg:@"自定义模板未下载" inTime:0.5];
+        }
     }else{
         TemplateViewController* des = (TemplateViewController*)segue.destinationViewController;
         des.bgimg = (UIImage*)self.bgimg;

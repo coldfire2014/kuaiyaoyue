@@ -23,6 +23,7 @@
 #import "StatusBar.h"
 #import "ShareView.h"
 #import "ShowWebViewController.h"
+#import "FileManage.h"
 
 @interface ViewController ()<VCDelegate,DVCDelegate>{
     NSMutableArray *data;
@@ -92,46 +93,57 @@
 }
 
 -(void)bcfs{
+    [self loaddata];
+    Userdata *user = [data objectAtIndex:0];
+    switch (user.neftype) {
+        case 0:
+            title = [NSString stringWithFormat:@"%@",user.neftitle];
+            msg = [NSString stringWithFormat:@"%@",user.nefcontent];
+            url = user.nefurl;
+            thumb = user.neflogo;
+            break;
+        case 1:
+            title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
+            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            url = user.nefurl;
+            thumb = user.nefthumb;
+            break;
+        case 2:
+            title = [NSString stringWithFormat:@"%@",user.nefpartyname];
+            msg = [NSString stringWithFormat:@"%@ %@ %@",@"",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            url = user.nefurl;
+            thumb = user.nefthumb;
+            break;
+            
+        default:
+            break;
+    }
+    NSString *topimg = nil;
+    if (user.neftype == 0) {
+        NSArray *array = [user.neflogo componentsSeparatedByString:@"/"];
+        topimg = [array objectAtIndex:([array count] - 1)];
+        topimg = [[FileManage sharedFileManage] getImgFile:topimg];
+    }else{
+        NSArray *array = [user.nefthumb componentsSeparatedByString:@"/"];
+        topimg = [array objectAtIndex:([array count] - 4)];
+        topimg = [[FileManage sharedFileManage] getThumb:topimg];
+        topimg = [NSString stringWithFormat:@"%@/assets/images/thumb",topimg];
+    }
     
-//    Userdata *user = [data objectAtIndex:0];
-//    switch (user.neftype) {
-//        case 0:
-//            title = [NSString stringWithFormat:@"%@",user.neftitle];
-//            msg = [NSString stringWithFormat:@"%@",user.nefcontent];
-//            url = user.nefurl;
-//            thumb = user.neflogo;
-//            break;
-//        case 1:
-//            title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
-//            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
-//            url = user.nefurl;
-//            thumb = user.nefthumb;
-//            break;
-//        case 2:
-//            title = [NSString stringWithFormat:@"%@",user.nefpartyname];
-//            msg = [NSString stringWithFormat:@"%@ %@ %@",@"",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
-//            url = user.nefurl;
-//            thumb = user.nefthumb;
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//    
-//    ShareView* share = [ShareView sharedShareView];
-//    share.fromvc = self;
-//    share.url = url;
-//    share.msg = msg;
-//    share.title = title;
-//    share.imgUrl = thumb;
-////    UIImage* img = cell.show_img.image;
-////    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
-//    [share show];
+    ShareView* share = [ShareView sharedShareView];
+    share.fromvc = self;
+    share.url = url;
+    share.msg = msg;
+    share.title = title;
+    share.imgUrl = thumb;
+    UIImage *img = [[UIImage alloc]initWithContentsOfFile:topimg];
+    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+    [share show];
     
 }
 
 -(void)fs{
-    
+    [self loaddata];
 }
 
 -(void)tsmessage{
@@ -139,7 +151,7 @@
 }
 
 -(void)GetRecord{
-    [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" cb:^(BOOL isOK, NSDictionary *array) {
+    [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" size:@"30" cb:^(BOOL isOK, NSDictionary *array) {
         NSLog(@"%@",array);
         if (isOK) {
             NSArray *customList = [array objectForKey:@"customList"];
@@ -174,7 +186,7 @@
     if ([data count] > 29) {
         Userdata *user = [data objectAtIndex:[data count]];
         NSString* timestamp = user.nefdate;
-        [HttpManage multiHistory:[UDObject gettoken] timestamp:timestamp cb:^(BOOL isOK, NSDictionary *array) {
+        [HttpManage multiHistory:[UDObject gettoken] timestamp:timestamp size:@"30" cb:^(BOOL isOK, NSDictionary *array) {
             NSLog(@"%@",array);
             if (isOK) {
                 NSArray *customList = [array objectForKey:@"customList"];

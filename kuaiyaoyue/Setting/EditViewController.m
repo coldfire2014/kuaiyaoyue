@@ -39,6 +39,7 @@
     
     _content_edit.delegate = self;
     
+    [_content_edit becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {

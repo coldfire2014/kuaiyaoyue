@@ -159,7 +159,7 @@
             hlev.music_label.text = mp3name;
             mp3url = [UDObject gethlmusic];
         }
-        NSArray *arr = [[UDObject getsw_imgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        NSArray *arr = [[UDObject gethlimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
         NSString *name = @"";
         if ([arr count] > 0) {
             name = [arr objectAtIndex:0];
@@ -372,10 +372,9 @@
     if (type == 0) {
         time_type = YES;
         [self.view endEditing:NO];
+        [show.picker setMaximumDate:nil];
         [UIView animateWithDuration:0.4f animations:^{
                     [show setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//            CGFloat h = show.frame.size.height;
-//            show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height-h/2.0);
         }];
     }else if (type == 1){
         [self.view endEditing:NO];
@@ -396,15 +395,19 @@
 - (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
     if (timebh != nil) {
         if (time_type) {
-            hltime = timebh;
-            hlev.hltime_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
+            if (timebh > bmendtime) {
+                hltime = timebh;
+                hlev.hltime_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
+            }else{
+                [[StatusBar sharedStatusBar] talkMsg:@"婚礼时间不能小于报名截止时间" inTime:0.5];
+            }
+            
         }else{
             bmendtime = timebh;
             hlev.bmend_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
         }
     }
     [UIView animateWithDuration:0.4f animations:^{
-//        show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height*3.0/2.0);
         [show setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
     }];
 }
@@ -626,18 +629,51 @@
             NSString *hlarr = [arr componentsJoinedByString:@","];
             [UDObject setHLContent:xl_name xn_name:xn_name hltime:hltime bmendtime:bmendtime address_name:address_name music:musicUrl musicname:mp3name imgarr:hlarr];
             [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            if (is_bcfs) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:dic];
-            }else{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:dic];
-            }
-            
+            [self GetRecord];
         }else{
             [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
         }
     }];
 }
+
+-(void)GetRecord{
+    [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" size:@"1" cb:^(BOOL isOK, NSDictionary *array) {
+        NSLog(@"%@",array);
+        if (isOK) {
+            NSArray *customList = [array objectForKey:@"customList"];
+            for (NSDictionary *dic in customList) {
+                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                if (!is_bcz) {
+                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:0];
+                }
+            }
+            NSArray *marryList = [array objectForKey:@"marryList"];
+            for (NSDictionary *dic in marryList) {
+                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                if (!is_bcz) {
+                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:1];
+                }
+            }
+            NSArray *partyList = [array objectForKey:@"partyList"];
+            for (NSDictionary *dic in partyList) {
+                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                if (!is_bcz) {
+                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:2];
+                }
+            }
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            if (is_bcfs) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
+            }else{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
+            }
+        }else{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
+        }
+    }];
+}
+
 
 -(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw{
     self.unquieId = index;

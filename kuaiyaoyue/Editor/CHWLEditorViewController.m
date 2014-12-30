@@ -60,6 +60,8 @@
     NSString *xlr_name;
     NSString *xxfs_name;
     NSString *wxts_name;
+    
+    BOOL is_bcfs;
 }
 
 @end
@@ -584,6 +586,7 @@
     if (type == 0) {
         time_type = YES;
         [self.view endEditing:NO];
+        [show.picker setMaximumDate:nil];
         [UIView animateWithDuration:0.4f animations:^{
             show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
         }];
@@ -626,8 +629,13 @@
 - (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
     if (timebh != nil) {
         if (time_type) {
-            hltime = timebh;
-            playview.time_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
+            if (timebh > bmendtime) {
+                hltime = timebh;
+                playview.time_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
+            }else{
+                [[StatusBar sharedStatusBar] talkMsg:@"时间不能小于报名截止时间" inTime:0.5];
+            }
+            
         }else{
             bmendtime = timebh;
             playview.bmtime_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
@@ -742,11 +750,13 @@
 }
 
 - (void)send_onclick:(UITapGestureRecognizer *)gr{
+    is_bcfs = NO;
     [self SendUp];
 }
 
 - (void)sendandshare_onclick:(UITapGestureRecognizer *)gr{
-    
+    is_bcfs = YES;
+    [self SendUp];
 }
 
 
@@ -962,13 +972,55 @@
             [UDObject setWLContent:partyName wltime:timestamp wlbmendtime:closetime wladdress_name:address wllxr_name:inviter wllxfs_name:telephone wlts_name:description wlaudio:audioname wlimgarr:hlarr];
             
             [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self GetRecord];
+            
             
         }else{
             [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
         }
     }];
 }
+
+-(void)GetRecord{
+    [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" size:@"1" cb:^(BOOL isOK, NSDictionary *array) {
+        NSLog(@"%@",array);
+        if (isOK) {
+            NSArray *customList = [array objectForKey:@"customList"];
+            for (NSDictionary *dic in customList) {
+                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                if (!is_bcz) {
+                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:0];
+                }
+            }
+            NSArray *marryList = [array objectForKey:@"marryList"];
+            for (NSDictionary *dic in marryList) {
+                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                if (!is_bcz) {
+                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:1];
+                }
+            }
+            NSArray *partyList = [array objectForKey:@"partyList"];
+            for (NSDictionary *dic in partyList) {
+                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                if (!is_bcz) {
+                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:2];
+                }
+            }
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            if (is_bcfs) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
+            }else{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
+            }
+        }else{
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
+            
+        }
+    }];
+}
+
 -(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw{
     self.unquieId = index;
     self.nefmbdw = nefmbdw;

@@ -127,6 +127,7 @@ closeTimestamp:(NSString *)closeTimestamp
 //查询历史记录
 +(void)multiHistory:(NSString *)token
                timestamp:(NSString *)timestamp
+               size:(NSString *)size
                  cb:(void(^)(BOOL isOK ,NSDictionary *array))callback;
 
 //历史记录删除单个

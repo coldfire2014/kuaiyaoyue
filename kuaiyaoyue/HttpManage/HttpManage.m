@@ -427,7 +427,8 @@ closeTimestamp:(NSString *)closeTimestamp
         callback(YES,array);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
-        NSLog(@"error-%@",error);
+        NSString *html = operation.responseString;
+        NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
 
@@ -559,12 +560,13 @@ closeTimestamp:(NSString *)closeTimestamp
  */
 +(void)multiHistory:(NSString *)token
                timestamp:(NSString *)timestamp
+               size:(NSString *)size
                  cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                         token,@"token",timestamp,@"timestamp",
                         @"ios",@"equipment",version,@"version",
-                        @"30",@"size",nil];
+                        size,@"size",nil];
     
     NSLog(@"%@",params);
     

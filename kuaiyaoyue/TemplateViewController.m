@@ -207,10 +207,14 @@
     }
     
     data = [[DataBaseManage getDataBaseManage] GetTemplate:neftypeId];
-    [_tempList reloadViews];
-//    [_tempList showList];//进厂动画
-    [self didShowItemAtIndex:0];
-    
+    if (data.count > 0) {
+        [_tempList reloadViews];
+        //    [_tempList showList];//进厂动画
+        [self didShowItemAtIndex:0];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"getmax" object:self userInfo:nil];
+        [[StatusBar sharedStatusBar] talkMsg:@"自定义模板未下载完成" inTime:0.5];
+    }
 }
 
 - (void)backAll{

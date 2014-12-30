@@ -2,7 +2,7 @@
 //  Music.h
 //  kuaiyaoyue
 //
-//  Created by DavidWang on 14/12/29.
+//  Created by DavidWang on 14/12/30.
 //  Copyright (c) 2014年 davidwang. All rights reserved.
 //
 
@@ -17,5 +17,6 @@
 @property (nonatomic, retain) NSString * nefurl;
 @property (nonatomic, retain) NSString * timestamp;
 @property (nonatomic, retain) NSString * uniqueId;
+@property (nonatomic, retain) NSString * nefa;
 
 @end

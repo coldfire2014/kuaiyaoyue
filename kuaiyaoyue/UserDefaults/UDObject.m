@@ -133,7 +133,6 @@
 +(NSString *)gethlmusicname{
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"hl_musicname"];
 }
-
 +(NSString *)gethlimgarr{
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"hl_imgarr"];
 }
