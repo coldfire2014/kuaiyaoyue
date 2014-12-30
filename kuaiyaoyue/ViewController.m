@@ -54,7 +54,6 @@
 
 - (void)viewDidLoad {
     
-    //修改
     is_bcfs = NO;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
