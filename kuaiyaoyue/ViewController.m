@@ -653,6 +653,8 @@
         share.title = title;
         share.imgUrl = thumb;
         UIImage* img = cell.show_img.image;
+        
+        
         share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
         [share show];
         [TalkingData trackEvent:@"发送"];
