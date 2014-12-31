@@ -92,6 +92,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fs) name:@"MSG_FS" object:nil];
     emptyImg = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 456.0/2.0,431.0/2.0) andImageName:@"img_empty_homeb" withScale:2.0 ];
     emptyImg.alpha = 0;
+    emptyImg.center = CGPointMake(btnView.center.x, btnView.center.y-47.0/2.0-431.0/4.0);
     [self.view addSubview:emptyImg];
     [_bg_view setHidden:YES];
 }
