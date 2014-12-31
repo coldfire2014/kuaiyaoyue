@@ -248,7 +248,8 @@ password:1235456                     //用户密码
         callback(YES,array);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
-        NSLog(@"error-%@",error);
+        NSString *html = operation.responseString;
+        NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
 }
