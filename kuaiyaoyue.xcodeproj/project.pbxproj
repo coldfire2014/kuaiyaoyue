@@ -161,6 +161,13 @@
 		E55F5A031A36A64800B0D587 /* modelListAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59FF1A36A64800B0D587 /* modelListAnimate.m */; };
 		E55F5A081A36FA9100B0D587 /* MenuBackBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F5A071A36FA9100B0D587 /* MenuBackBtn.m */; };
 		E55F5A0B1A3702E000B0D587 /* EditBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F5A0A1A3702E000B0D587 /* EditBtn.m */; };
+		E565ECC01A52C90100679BAE /* SiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E565ECBF1A52C90100679BAE /* SiViewController.m */; };
+		E565ECC61A52CDB900679BAE /* 1w.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E565ECC11A52CDB900679BAE /* 1w.jpg */; };
+		E565ECC71A52CDB900679BAE /* 2w.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E565ECC21A52CDB900679BAE /* 2w.jpg */; };
+		E565ECC81A52CDB900679BAE /* 3w.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E565ECC31A52CDB900679BAE /* 3w.jpg */; };
+		E565ECC91A52CDB900679BAE /* 4w.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E565ECC41A52CDB900679BAE /* 4w.jpg */; };
+		E565ECCA1A52CDB900679BAE /* btn5s.png in Resources */ = {isa = PBXBuildFile; fileRef = E565ECC51A52CDB900679BAE /* btn5s.png */; };
+		E565ECCC1A538EA100679BAE /* img_empty_homeb.png in Resources */ = {isa = PBXBuildFile; fileRef = E565ECCB1A538EA100679BAE /* img_empty_homeb.png */; };
 		E5661A191A45708C00E4E2BC /* bg_login@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5661A0E1A45708C00E4E2BC /* bg_login@2x.jpg */; };
 		E5661A1B1A45708C00E4E2BC /* btn_login_qq_pre.png in Resources */ = {isa = PBXBuildFile; fileRef = E5661A101A45708C00E4E2BC /* btn_login_qq_pre.png */; };
 		E5661A1C1A45708C00E4E2BC /* btn_login_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = E5661A111A45708C00E4E2BC /* btn_login_qq.png */; };
@@ -476,6 +483,14 @@
 		E55F5A071A36FA9100B0D587 /* MenuBackBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuBackBtn.m; path = element/MenuBackBtn.m; sourceTree = "<group>"; };
 		E55F5A091A3702E000B0D587 /* EditBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditBtn.h; path = element/EditBtn.h; sourceTree = "<group>"; };
 		E55F5A0A1A3702E000B0D587 /* EditBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditBtn.m; path = element/EditBtn.m; sourceTree = "<group>"; };
+		E565ECBE1A52C90100679BAE /* SiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiViewController.h; sourceTree = "<group>"; };
+		E565ECBF1A52C90100679BAE /* SiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiViewController.m; sourceTree = "<group>"; };
+		E565ECC11A52CDB900679BAE /* 1w.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1w.jpg; sourceTree = "<group>"; };
+		E565ECC21A52CDB900679BAE /* 2w.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2w.jpg; sourceTree = "<group>"; };
+		E565ECC31A52CDB900679BAE /* 3w.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3w.jpg; sourceTree = "<group>"; };
+		E565ECC41A52CDB900679BAE /* 4w.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4w.jpg; sourceTree = "<group>"; };
+		E565ECC51A52CDB900679BAE /* btn5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn5s.png; sourceTree = "<group>"; };
+		E565ECCB1A538EA100679BAE /* img_empty_homeb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_empty_homeb.png; sourceTree = "<group>"; };
 		E5661A0E1A45708C00E4E2BC /* bg_login@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_login@2x.jpg"; sourceTree = "<group>"; };
 		E5661A101A45708C00E4E2BC /* btn_login_qq_pre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_login_qq_pre.png; sourceTree = "<group>"; };
 		E5661A111A45708C00E4E2BC /* btn_login_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_login_qq.png; sourceTree = "<group>"; };
@@ -563,6 +578,11 @@
 		844825731A31535A0018240E /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
+				E565ECC11A52CDB900679BAE /* 1w.jpg */,
+				E565ECC21A52CDB900679BAE /* 2w.jpg */,
+				E565ECC31A52CDB900679BAE /* 3w.jpg */,
+				E565ECC41A52CDB900679BAE /* 4w.jpg */,
+				E565ECC51A52CDB900679BAE /* btn5s.png */,
 				E5661A241A457CB700E4E2BC /* btn_login_1_pre.png */,
 				E5661A251A457CB700E4E2BC /* btn_login_1.png */,
 				E5661A261A457CB700E4E2BC /* btn_login_2_pre.png */,
@@ -585,6 +605,8 @@
 				844825811A31867A0018240E /* ThreeViewController.m */,
 				844825831A3186820018240E /* FourViewController.h */,
 				844825841A3186820018240E /* FourViewController.m */,
+				E565ECBE1A52C90100679BAE /* SiViewController.h */,
+				E565ECBF1A52C90100679BAE /* SiViewController.m */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -919,6 +941,7 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				E565ECCB1A538EA100679BAE /* img_empty_homeb.png */,
 				84AC9E281A514B62009E3241 /* 2.zip */,
 				8431E9071A4D24AA00E9B0EE /* logo@2x.png */,
 				8474A4AB1A4BB28A00C2E489 /* bubble_play_1@2x.png */,
@@ -1274,9 +1297,11 @@
 			files = (
 				843DBEE41A47C5D500CDFFCB /* MoreView.xib in Resources */,
 				8474A4AE1A4BB28A00C2E489 /* bubble_play_1@2x.png in Resources */,
+				E565ECCA1A52CDB900679BAE /* btn5s.png in Resources */,
 				E558D0151A47A6DA009BFC50 /* ShowData.xib in Resources */,
 				8474A4AF1A4BB28A00C2E489 /* bubble_play_2@2x.png in Resources */,
 				843DBEDA1A46F16600CDFFCB /* icon120.png in Resources */,
+				E565ECC61A52CDB900679BAE /* 1w.jpg in Resources */,
 				E5661A1C1A45708C00E4E2BC /* btn_login_qq.png in Resources */,
 				E5661A291A457CB700E4E2BC /* btn_login_1.png in Resources */,
 				844CC58A1A491CBA00A34186 /* CustomView.xib in Resources */,
@@ -1295,17 +1320,21 @@
 				843DBEDC1A46FA2600CDFFCB /* icon57.png in Resources */,
 				844CC5831A48F94D00A34186 /* PlayView.xib in Resources */,
 				84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */,
+				E565ECC81A52CDB900679BAE /* 3w.jpg in Resources */,
 				E52760781A4BC1F100D11F5B /* ic_c_meeting.png in Resources */,
 				84B446C41A32B3D000546859 /* MJRefresh.bundle in Resources */,
 				E5590CC71A469CAB0080F3B1 /* card_r.png in Resources */,
 				E5661A1E1A45708C00E4E2BC /* btn_login_weixin.png in Resources */,
 				84AC9E291A514B62009E3241 /* 2.zip in Resources */,
+				E565ECC91A52CDB900679BAE /* 4w.jpg in Resources */,
 				84B208831A5296E1008549B0 /* T5.png in Resources */,
+				E565ECC71A52CDB900679BAE /* 2w.jpg in Resources */,
 				E558D0191A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E5661A281A457CB700E4E2BC /* btn_login_1_pre.png in Resources */,
 				E541B32E1A43DC9E006F89E1 /* imgBar.bundle in Resources */,
 				8431E9081A4D24AA00E9B0EE /* logo@2x.png in Resources */,
 				E56786FF1A50F38100308A4B /* Default-Portrait@2x~ipad.png in Resources */,
+				E565ECCC1A538EA100679BAE /* img_empty_homeb.png in Resources */,
 				E56787031A5153E700308A4B /* btn_sidebar.png in Resources */,
 				84FE0B881A426C71005A9599 /* PhotoCell.xib in Resources */,
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,
@@ -1421,6 +1450,7 @@
 				E577FC301A356E66009ED66D /* picViewAnimate.m in Sources */,
 				8448258D1A318FBE0018240E /* ViewCell.m in Sources */,
 				84E842C61A2EFDCB00A401A0 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				E565ECC01A52C90100679BAE /* SiViewController.m in Sources */,
 				84E842D71A2F0E9E00A401A0 /* MusicInfo.m in Sources */,
 				84E842BD1A2EFDCB00A401A0 /* AFHTTPRequestOperationManager.m in Sources */,
 				844825821A31867A0018240E /* ThreeViewController.m in Sources */,
@@ -1571,7 +1601,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yangbing wu (6Y35J7EFD4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yangbing wu (6Y35J7EFD4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

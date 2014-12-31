@@ -41,7 +41,7 @@
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:@"MSG_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ptlogin) name:@"MSG_PTLOGIN" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gologin) name:@"MSG_GO_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(sdwx:)
                                                  name: @"MSG_SDWX"
@@ -62,10 +62,16 @@
 
 -(void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_GO_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_PTLOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_Regme" object:nil];
+}
+-(void)gologin{
+    UIViewController* start = [self viewControllerAtIndex:4];
+    NSArray *arr = [[NSArray alloc] initWithObjects:start, nil];
+    [self setViewControllers:arr direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
 }
 
 -(void)login{
@@ -113,7 +119,7 @@
 }
 
 -(UIViewController *)viewControllerAtIndex:(NSInteger) index{
-    if ((index < 0) || (index >= 4)) {
+    if ((index < 0) || (index >= 5)) {
         return nil;
     }
     UIViewController *dataViewController = nil;
@@ -124,6 +130,8 @@
     } else if (2 == index) {
         dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ThreeViewController"];
     } else if (3 == index) {
+        dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SiViewController"];
+    } else if (4 == index) {
         dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FourViewController"];
     } else {
         return nil;
@@ -140,8 +148,10 @@
         return 1;
     } else if ([str isEqualToString:@"ThreeViewController"]) {
         return 2;
-    } else if ([str isEqualToString:@"FourViewController"]) {
+    } else if ([str isEqualToString:@"SiViewController"]) {
         return 3;
+    }  else if ([str isEqualToString:@"FourViewController"]) {
+        return 4;
     } else {
         return NSNotFound;
     }

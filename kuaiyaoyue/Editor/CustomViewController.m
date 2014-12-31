@@ -58,7 +58,9 @@
 @end
 
 @implementation CustomViewController
-
+-(void)didSelectID:(NSString *)index andNefmbdw:(NSString *)nefmbdw{
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
