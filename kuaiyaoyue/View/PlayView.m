@@ -75,4 +75,10 @@
 
 
 
+- (IBAction)long_onclick:(id)sender {
+    if ([_show_audioname.text isEqualToString:@"删除重录"]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(PVDelegate:didTapAtIndex:)]){
+            [self.delegate PVDelegate:self didTapAtIndex:3];}
+    }
+}
 @end
