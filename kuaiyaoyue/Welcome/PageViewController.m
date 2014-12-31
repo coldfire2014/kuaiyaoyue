@@ -64,8 +64,9 @@
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_GO_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_PTLOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_Regme" object:nil];
 }
 -(void)gologin{
@@ -104,6 +105,7 @@
     [HttpManage registers:name userPwd:@"123456" phoneId:[UDObject getTSID] openId:opneid cb:^(BOOL isOK, NSDictionary *dic) {
         [SVProgressHUD dismiss];
         if (isOK) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
             [UDObject setUserInfo:name userName:name token:[dic objectForKey:@"token"]];
             [UDObject setXM:name];
              [self performSegueWithIdentifier:@"wel2main" sender:nil];
