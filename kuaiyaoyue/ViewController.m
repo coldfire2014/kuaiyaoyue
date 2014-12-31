@@ -46,6 +46,7 @@
     NSString *weburl;
     
     BOOL is_bcfs;
+    
 }
 
 @end
@@ -275,12 +276,20 @@
 -(void)loaddata{
     data = [[NSMutableArray alloc] init];
     NSArray *arr = [[DataBaseManage getDataBaseManage] getUserdata];
-    for (Userdata *user in arr) {
-        [data addObject:user];
+    if ([arr count] > 0) {
+        [_bg_view setHidden:YES];
+        for (Userdata *user in arr) {
+            [data addObject:user];
+        }
+        run = 0;
+        [self showToptitle];
+        [_tableview reloadData];
+    }else{
+        [_bg_view setHidden:NO];
+        _show_toptitle.text = @"您还没有发起邀约哦，点击加号开始吧！";
     }
-    run = 0;
-    [self showToptitle];
-    [_tableview reloadData];
+    
+    
 }
 
 //0自定义，1婚礼，2趴体
@@ -383,6 +392,8 @@
         view.datatime = datatime;
         view.endtime = endtime;
         view.delegate = self;
+        view.index = [index_path row];
+        
     }else if ([segue.identifier compare:@"showurl"] == NSOrderedSame){
         ShowWebViewController *view = (ShowWebViewController*)segue.destinationViewController;
         view.weburl = weburl;
@@ -544,6 +555,13 @@
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 [[DataBaseManage getDataBaseManage] DelUserdata:userdata.nefid];
                 [[StatusBar sharedStatusBar] talkMsg:@"删除成功" inTime:0.51];
+                if ([data count] >0) {
+                    [_bg_view setHidden:YES];
+                    [self showToptitle];
+                }else{
+                    [_bg_view setHidden:NO];
+                    _show_toptitle.text = @"您还没有发起邀约哦，点击加号开始吧！";
+                }
             }else{
                 [[StatusBar sharedStatusBar] talkMsg:@"删除失败" inTime:0.51];
             }
@@ -659,10 +677,68 @@
             [_tableview deleteRowsAtIndexPaths:@[index_path] withRowAnimation:UITableViewRowAnimationFade];
             [[DataBaseManage getDataBaseManage] DelUserdata:nefid];
             [[StatusBar sharedStatusBar] talkMsg:@"删除成功" inTime:0.51];
+            if ([data count] >0) {
+                [_bg_view setHidden:YES];
+                [self showToptitle];
+            }else{
+                [_bg_view setHidden:NO];
+                _show_toptitle.text = @"您还没有发起邀约哦，点击加号开始吧！";
+            }
+            
         }else{
             [[StatusBar sharedStatusBar] talkMsg:@"删除失败" inTime:0.51];
         }
     }];
+}
+
+- (void)ShareDelegate:(int) index{
+    Userdata *user = [data objectAtIndex:index];
+    switch (user.neftype) {
+        case 0:
+            title = [NSString stringWithFormat:@"%@",user.neftitle];
+            msg = [NSString stringWithFormat:@"%@",user.nefcontent];
+            url = user.nefurl;
+            thumb = user.neflogo;
+            break;
+        case 1:
+            title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
+            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            url = user.nefurl;
+            thumb = user.nefthumb;
+            break;
+        case 2:
+            title = [NSString stringWithFormat:@"%@",user.nefpartyname];
+            msg = [NSString stringWithFormat:@"%@ %@ %@",@"",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            url = user.nefurl;
+            thumb = user.nefthumb;
+            break;
+            
+        default:
+            break;
+    }
+    NSString *topimg = nil;
+    if (user.neftype == 0) {
+        NSArray *array = [user.neflogo componentsSeparatedByString:@"/"];
+        topimg = [array objectAtIndex:([array count] - 1)];
+        topimg = [[FileManage sharedFileManage] getImgFile:topimg];
+    }else{
+        NSArray *array = [user.nefthumb componentsSeparatedByString:@"/"];
+        topimg = [array objectAtIndex:([array count] - 4)];
+        topimg = [[FileManage sharedFileManage] getThumb:topimg];
+        topimg = [NSString stringWithFormat:@"%@/assets/images/thumb",topimg];
+    }
+    
+    
+    ShareView* share = [ShareView sharedShareView];
+    share.fromvc = self;
+    share.url = url;
+    share.msg = msg;
+    share.title = title;
+    share.imgUrl = thumb;
+    UIImage* img = [[UIImage alloc]initWithContentsOfFile:topimg];
+    share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+    [share show];
+    [TalkingData trackEvent:@"发送"];
 }
 
 @end

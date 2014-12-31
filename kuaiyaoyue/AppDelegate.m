@@ -53,7 +53,7 @@
     [TalkingData setExceptionReportEnabled:YES];
     [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"appStore"];
     
-    [SMS_SDK registerApp:@"25a64c839b5f" withSecret:@"9a639150fcb464d9a1c1ab926648ca3f"];
+    [SMS_SDK registerApp:@"4ec26c11eca2" withSecret:@"e80f13299bf5581e40ed33e2d8350cae"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onebyone) name:@"onebyone" object:nil];
     
@@ -236,25 +236,25 @@
         NSString *timestamp = template.neftimestamp;
         [self maxtemplate :timestamp];
         
-        //        NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-        //        NSString *uptime = [userInfo objectForKey:@"uptime"];
-        //        if (uptime.length > 0) {
-        //            timestamp = uptime;
-        //        }
-        //        [HttpManage templateRenewal:timestamp cb:^(BOOL isOK, NSArray *array) {
-        //            if (isOK) {
-        //                for (int i = 0; i < [array count]; i++) {
-        //                    NSDictionary *dic = [array objectAtIndex:i];
-        //                    BOOL is = [[DataBaseManage getDataBaseManage] UpdataInfo:dic];
-        //                    if (i == ([array count]-1) && is) {
-        //                        NSDictionary *dic1 = [array objectAtIndex:0];
-        //
-        //                        NSString *uptime = [dic1 objectForKey:@"renewal"];
-        //                        [userInfo setObject:uptime forKey:@"uptime"];
-        //                        [userInfo synchronize];
-        //                        NSLog(@"哈哈哈-%@",uptime);
-        //                    }}}
-        //        }];
+//                NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+//                NSString *uptime = [userInfo objectForKey:@"uptime"];
+//                if (uptime.length > 0) {
+//                    timestamp = uptime;
+//                }
+//                [HttpManage templateRenewal:timestamp cb:^(BOOL isOK, NSArray *array) {
+//                    if (isOK) {
+//                        for (int i = 0; i < [array count]; i++) {
+//                            NSDictionary *dic = [array objectAtIndex:i];
+//                            BOOL is = [[DataBaseManage getDataBaseManage] UpdataInfo:dic];
+//                            if (i == ([array count]-1) && is) {
+//                                NSDictionary *dic1 = [array objectAtIndex:0];
+//        
+//                                NSString *uptime = [dic1 objectForKey:@"renewal"];
+//                                [userInfo setObject:uptime forKey:@"uptime"];
+//                                [userInfo synchronize];
+//                                NSLog(@"哈哈哈-%@",uptime);
+//                            }}}
+//                }];
         
     }else{
         is_xz = YES;

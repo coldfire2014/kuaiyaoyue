@@ -106,6 +106,12 @@
 
 -(void)initData{
     data = [[DataBaseManage getDataBaseManage] GetContacts:_uniqueId];
+    if (data.count > 0) {
+        [_bg_view setHidden:YES];
+    }else{
+        [_bg_view setHidden:NO];
+    }
+    
     [_tableView reloadData];
     [_tableView headerEndRefreshing];
 }
@@ -332,4 +338,8 @@
     [TalkingData trackPageEnd:@"报名列表"];
 }
 
+- (IBAction)bg_onclick:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+    [_delegate ShareDelegate:_index];
+}
 @end
