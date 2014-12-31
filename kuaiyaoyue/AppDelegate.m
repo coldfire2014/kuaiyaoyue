@@ -15,6 +15,7 @@
 #import "StatusBar.h"
 #import "TalkingData.h"
 #import "SMS_SDK/SMS_SDK.h"
+#import "PCHeader.h"
 
 @interface AppDelegate (){
     BOOL is_xz;
@@ -224,6 +225,33 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     [self getmaxtemplate:YES];
     [self checkToken];
+    
+    [HttpManage edition:@"ios" cb:^(BOOL isOK, NSString *URL) {
+        if (![URL isEqualToString:version]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"版本需更新" message:@"目前版本不是最新版本，请点击更新" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"版本更新", nil];
+            [alert show];
+        }
+    }];
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 0:
+            
+            break;
+        case 1:
+            [self tzurl];
+            break;
+        default:
+            break;
+    }
+    
+}
+
+-(void)tzurl{
+    NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/kuai-yao-yue-qing-song-zuo/id927884233?mt=8"];
+    [[UIApplication sharedApplication]openURL:url];
 }
 
 -(void)getmaxtemplate:(BOOL)state{
