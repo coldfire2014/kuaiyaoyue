@@ -93,6 +93,7 @@
     emptyImg = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 456.0/2.0,431.0/2.0) andImageName:@"img_empty_homeb" withScale:2.0 ];
     emptyImg.alpha = 0;
     [self.view addSubview:emptyImg];
+    [_bg_view setHidden:YES];
 }
 
 -(void)bcfs{
@@ -279,20 +280,12 @@
 -(void)loaddata{
     data = [[NSMutableArray alloc] init];
     NSArray *arr = [[DataBaseManage getDataBaseManage] getUserdata];
-    if ([arr count] > 0) {
-        [_bg_view setHidden:YES];
-        for (Userdata *user in arr) {
-            [data addObject:user];
-        }
-        run = 0;
-        [self showToptitle];
-        [_tableview reloadData];
-    }else{
-        [_bg_view setHidden:NO];
-        _show_toptitle.text = @"您还没有发起邀约哦，点击加号开始吧！";
+    for (Userdata *user in arr) {
+        [data addObject:user];
     }
-    
-    
+    run = 0;
+    [self showToptitle];
+    [_tableview reloadData];
 }
 
 //0自定义，1婚礼，2趴体
@@ -324,10 +317,13 @@
     if([data count] > 0){
         NSString *toptitle = [NSString stringWithFormat:@"共%d个邀约,%d个正在进行……",[data count],runtime];
         _show_toptitle.text = toptitle;
+        emptyImg.alpha = 0;
     }else{
         NSString *toptitle = [NSString stringWithFormat:@"您还没有发起邀请哦，点击加号开始吧！"];
         _show_toptitle.text = toptitle;
-        
+        [UIView animateWithDuration:0.3 animations:^{
+            emptyImg.alpha = 1;
+        }];
     }
 }
 
@@ -562,13 +558,7 @@
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 [[DataBaseManage getDataBaseManage] DelUserdata:userdata.nefid];
                 [[StatusBar sharedStatusBar] talkMsg:@"删除成功" inTime:0.51];
-                if ([data count] >0) {
-                    [_bg_view setHidden:YES];
-                    [self showToptitle];
-                }else{
-                    [_bg_view setHidden:NO];
-                    _show_toptitle.text = @"您还没有发起邀约哦，点击加号开始吧！";
-                }
+                [self showToptitle];
             }else{
                 [[StatusBar sharedStatusBar] talkMsg:@"删除失败" inTime:0.51];
             }
@@ -684,13 +674,7 @@
             [_tableview deleteRowsAtIndexPaths:@[index_path] withRowAnimation:UITableViewRowAnimationFade];
             [[DataBaseManage getDataBaseManage] DelUserdata:nefid];
             [[StatusBar sharedStatusBar] talkMsg:@"删除成功" inTime:0.51];
-            if ([data count] >0) {
-                [_bg_view setHidden:YES];
-                [self showToptitle];
-            }else{
-                [_bg_view setHidden:NO];
-                _show_toptitle.text = @"您还没有发起邀约哦，点击加号开始吧！";
-            }
+            [self showToptitle];
             
         }else{
             [[StatusBar sharedStatusBar] talkMsg:@"删除失败" inTime:0.51];
