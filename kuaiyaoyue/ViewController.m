@@ -80,7 +80,11 @@
     //滑动监听
 //    _tableview.contentInset = UIEdgeInsetsMake(-20, 0 ,0, 0);
 //   [_tableview setContentOffset:CGPointMake(0, -196) animated:YES];
-    
+    emptyImg = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 456.0/2.0,431.0/2.0) andImageName:@"img_empty_homeb" withScale:2.0 ];
+    emptyImg.alpha = 0;
+    emptyImg.center = CGPointMake(btnView.center.x, btnView.center.y-47.0/2.0-431.0/4.0);
+    [self.view addSubview:emptyImg];
+    [_bg_view setHidden:YES];
     [self loaddata];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
@@ -90,11 +94,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bcfs) name:@"MSG_BCFS" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fs) name:@"MSG_FS" object:nil];
-    emptyImg = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 456.0/2.0,431.0/2.0) andImageName:@"img_empty_homeb" withScale:2.0 ];
-    emptyImg.alpha = 0;
-    emptyImg.center = CGPointMake(btnView.center.x, btnView.center.y-47.0/2.0-431.0/4.0);
-    [self.view addSubview:emptyImg];
-    [_bg_view setHidden:YES];
+
 }
 
 -(void)bcfs{
