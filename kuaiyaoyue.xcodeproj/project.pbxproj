@@ -167,6 +167,7 @@
 		E565ECC81A52CDB900679BAE /* 3w.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E565ECC31A52CDB900679BAE /* 3w.jpg */; };
 		E565ECC91A52CDB900679BAE /* 4w.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E565ECC41A52CDB900679BAE /* 4w.jpg */; };
 		E565ECCA1A52CDB900679BAE /* btn5s.png in Resources */ = {isa = PBXBuildFile; fileRef = E565ECC51A52CDB900679BAE /* btn5s.png */; };
+		E565ECCC1A538EA100679BAE /* img_empty_homeb.png in Resources */ = {isa = PBXBuildFile; fileRef = E565ECCB1A538EA100679BAE /* img_empty_homeb.png */; };
 		E5661A191A45708C00E4E2BC /* bg_login@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5661A0E1A45708C00E4E2BC /* bg_login@2x.jpg */; };
 		E5661A1B1A45708C00E4E2BC /* btn_login_qq_pre.png in Resources */ = {isa = PBXBuildFile; fileRef = E5661A101A45708C00E4E2BC /* btn_login_qq_pre.png */; };
 		E5661A1C1A45708C00E4E2BC /* btn_login_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = E5661A111A45708C00E4E2BC /* btn_login_qq.png */; };
@@ -489,6 +490,7 @@
 		E565ECC31A52CDB900679BAE /* 3w.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3w.jpg; sourceTree = "<group>"; };
 		E565ECC41A52CDB900679BAE /* 4w.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4w.jpg; sourceTree = "<group>"; };
 		E565ECC51A52CDB900679BAE /* btn5s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn5s.png; sourceTree = "<group>"; };
+		E565ECCB1A538EA100679BAE /* img_empty_homeb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_empty_homeb.png; sourceTree = "<group>"; };
 		E5661A0E1A45708C00E4E2BC /* bg_login@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_login@2x.jpg"; sourceTree = "<group>"; };
 		E5661A101A45708C00E4E2BC /* btn_login_qq_pre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_login_qq_pre.png; sourceTree = "<group>"; };
 		E5661A111A45708C00E4E2BC /* btn_login_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_login_qq.png; sourceTree = "<group>"; };
@@ -939,6 +941,7 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				E565ECCB1A538EA100679BAE /* img_empty_homeb.png */,
 				84AC9E281A514B62009E3241 /* 2.zip */,
 				8431E9071A4D24AA00E9B0EE /* logo@2x.png */,
 				8474A4AB1A4BB28A00C2E489 /* bubble_play_1@2x.png */,
@@ -1331,6 +1334,7 @@
 				E541B32E1A43DC9E006F89E1 /* imgBar.bundle in Resources */,
 				8431E9081A4D24AA00E9B0EE /* logo@2x.png in Resources */,
 				E56786FF1A50F38100308A4B /* Default-Portrait@2x~ipad.png in Resources */,
+				E565ECCC1A538EA100679BAE /* img_empty_homeb.png in Resources */,
 				E56787031A5153E700308A4B /* btn_sidebar.png in Resources */,
 				84FE0B881A426C71005A9599 /* PhotoCell.xib in Resources */,
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,

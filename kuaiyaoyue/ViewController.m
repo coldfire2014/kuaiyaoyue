@@ -14,7 +14,7 @@
 #import "MenuViewController.h"
 #import "TalkingData.h"
 #import "TimeTool.h"
-
+#import "myImageView.h"
 #import "HttpManage.h"
 #import "UDObject.h"
 #import "DataBaseManage.h"
@@ -42,7 +42,7 @@
     NSString *title;
     NSString *thumb;
     NSIndexPath *index_path;
-    
+    myImageView* emptyImg;
     NSString *weburl;
     
     BOOL is_bcfs;
@@ -89,6 +89,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bcfs) name:@"MSG_BCFS" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fs) name:@"MSG_FS" object:nil];
+    emptyImg = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 456.0/2.0,431.0/2.0) andImageName:@"img_empty_homeb" withScale:2.0 ];
+    emptyImg.alpha = 0;
+    [self.view addSubview:emptyImg];
 }
 
 -(void)bcfs{
@@ -309,10 +312,14 @@
             runtime++;
         }
     }
-    
-    NSString *toptitle = [NSString stringWithFormat:@"共%d个邀约,%d个正在进行....",[data count],runtime];
-    _show_toptitle.text = toptitle;
-
+    if([data count] > 0){
+        NSString *toptitle = [NSString stringWithFormat:@"共%d个邀约,%d个正在进行……",[data count],runtime];
+        _show_toptitle.text = toptitle;
+    }else{
+        NSString *toptitle = [NSString stringWithFormat:@"您还没有发起邀请哦，点击加号开始吧！"];
+        _show_toptitle.text = toptitle;
+        
+    }
 }
 
 
