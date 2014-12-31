@@ -227,9 +227,11 @@
     [self checkToken];
     
     [HttpManage edition:@"ios" cb:^(BOOL isOK, NSString *URL) {
-        if (![URL isEqualToString:version]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"版本需更新" message:@"目前版本不是最新版本，请点击更新" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"版本更新", nil];
-            [alert show];
+        if (isOK) {
+            if (![URL isEqualToString:version]) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"版本需更新" message:@"目前版本不是最新版本，请点击更新" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"版本更新", nil];
+                [alert show];
+            }
         }
     }];
 }
