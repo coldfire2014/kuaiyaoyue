@@ -1499,11 +1499,17 @@
                             <constraint firstItem="Jg0-Ey-fJj" firstAttribute="top" secondItem="x75-Wk-NQM" secondAttribute="top" constant="100" id="bUp-Tw-Ah0"/>
                             <constraint firstItem="Jg0-Ey-fJj" firstAttribute="leading" secondItem="x75-Wk-NQM" secondAttribute="leading" id="dSv-Z1-br6"/>
                             <constraint firstItem="Aes-o2-gCr" firstAttribute="leading" secondItem="x75-Wk-NQM" secondAttribute="leading" id="duG-l7-D9L"/>
+                            <constraint firstItem="X5t-Q5-YDK" firstAttribute="top" secondItem="Aes-o2-gCr" secondAttribute="bottom" id="h3o-ub-KSD"/>
                             <constraint firstItem="X5t-Q5-YDK" firstAttribute="top" secondItem="x75-Wk-NQM" secondAttribute="top" constant="100" id="jnJ-C7-Gef"/>
                             <constraint firstAttribute="centerX" secondItem="Aes-o2-gCr" secondAttribute="centerX" id="qYA-rn-mfr"/>
                             <constraint firstItem="X5t-Q5-YDK" firstAttribute="leading" secondItem="x75-Wk-NQM" secondAttribute="leading" id="swz-yE-t9Z"/>
                             <constraint firstAttribute="centerX" secondItem="Jg0-Ey-fJj" secondAttribute="centerX" id="xa7-a0-Pxo"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="h3o-ub-KSD"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="P6j-Tv-CNi"/>
@@ -1538,7 +1544,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2014 kyy121.com,All Rights Reserved." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqI-mr-fbt">
-                                <rect key="frame" x="168" y="505" width="265" height="21"/>
+                                <rect key="frame" x="168" y="505" width="264.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="11Q-70-h26"/>
                                 </constraints>
@@ -1857,11 +1863,11 @@
                                                             <constraint firstAttribute="width" constant="16" id="vVC-dY-Cxu"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="攻略" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdn-rk-H3a">
-                                                        <rect key="frame" x="18" y="9" width="30" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="意见反馈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdn-rk-H3a">
+                                                        <rect key="frame" x="18" y="9" width="60" height="18"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="18" id="Rsk-NM-D7a"/>
-                                                            <constraint firstAttribute="width" constant="30" id="y1z-k9-4iv"/>
+                                                            <constraint firstAttribute="height" constant="18" id="mCc-tf-qiU"/>
+                                                            <constraint firstAttribute="width" constant="60" id="txy-Az-cnh"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
@@ -1890,13 +1896,13 @@
                                                     <constraint firstItem="DM1-WC-c18" firstAttribute="top" secondItem="7Sw-hO-G0m" secondAttribute="top" id="0xt-mS-NB9"/>
                                                     <constraint firstAttribute="centerY" secondItem="DM1-WC-c18" secondAttribute="centerY" id="6qH-27-WVr"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="879-HQ-F4Q"/>
+                                                    <constraint firstItem="pdn-rk-H3a" firstAttribute="leading" secondItem="7Sw-hO-G0m" secondAttribute="leading" constant="18" id="9fv-BB-Y6w"/>
                                                     <constraint firstAttribute="centerY" secondItem="h91-8g-4bO" secondAttribute="centerY" id="CMB-Ki-bW2"/>
                                                     <constraint firstAttribute="bottom" secondItem="DM1-WC-c18" secondAttribute="bottom" id="DFe-pn-yRg"/>
                                                     <constraint firstAttribute="height" constant="36" id="MST-hP-69R"/>
                                                     <constraint firstAttribute="centerX" secondItem="DM1-WC-c18" secondAttribute="centerX" id="QcC-mO-tVv"/>
-                                                    <constraint firstItem="pdn-rk-H3a" firstAttribute="leading" secondItem="7Sw-hO-G0m" secondAttribute="leading" constant="18" id="Wch-2h-tXQ"/>
+                                                    <constraint firstAttribute="centerY" secondItem="pdn-rk-H3a" secondAttribute="centerY" id="d5P-iX-KTj"/>
                                                     <constraint firstAttribute="trailing" secondItem="h91-8g-4bO" secondAttribute="trailing" constant="18" id="p1e-uG-7tD"/>
-                                                    <constraint firstAttribute="centerY" secondItem="pdn-rk-H3a" secondAttribute="centerY" id="rWY-Rz-gb9"/>
                                                     <constraint firstAttribute="trailing" secondItem="DM1-WC-c18" secondAttribute="trailing" id="zmQ-Pz-LEC"/>
                                                 </constraints>
                                                 <variation key="default">
