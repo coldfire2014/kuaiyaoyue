@@ -30,7 +30,7 @@
     
     _show_send.layer.cornerRadius = 3;
     
-    _show_newview.layer.cornerRadius = 12;
+    _show_newview.layer.cornerRadius = 9;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shareonclick:)];
     
