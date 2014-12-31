@@ -149,7 +149,7 @@ password:1235456                     //用户密码
             NSDictionary *error = [dic objectForKey:@"error"];
             int code = [[error objectForKey:@"code"] intValue];
             if (code == 64) {
-                callback(NO,@"账号已注册");
+                callback(NO,[[NSMutableArray alloc] initWithObjects:@"账号已注册", nil]);
             }
         }else{
             callback(NO,nil);
