@@ -2176,7 +2176,7 @@
                         <outlet property="tc_view" destination="zLo-gm-YbM" id="chj-ub-JBm"/>
                         <outlet property="xhd_view" destination="7XR-nb-Pht" id="gJ2-AQ-Zdj"/>
                         <segue destination="4pi-b7-OVq" kind="show" identifier="gywm" id="T7k-hV-0tb"/>
-                        <segue destination="NGi-QC-EkY" kind="show" identifier="yjfk" id="jzy-89-ebb"/>
+                        <segue destination="NGi-QC-EkY" kind="show" identifier="YJFK" id="jzy-89-ebb"/>
                         <segue destination="hHf-7l-VLm" kind="show" identifier="gljs" id="L00-LH-sK8"/>
                         <segue destination="VXA-Nt-HoH" kind="show" identifier="userinfo" id="6R1-6N-TI1"/>
                     </connections>
@@ -2644,12 +2644,46 @@
                     <view key="view" contentMode="scaleToFill" id="BXq-x5-7nO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqh-w3-FQx">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sz4-OX-5eB">
+                                        <rect key="frame" x="10" y="10" width="580" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="Pji-qz-Pre"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <action selector="content_next:" destination="NGi-QC-EkY" eventType="editingDidEndOnExit" id="L00-c6-TKX"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="sz4-OX-5eB" firstAttribute="leading" secondItem="eqh-w3-FQx" secondAttribute="leading" constant="10" id="65H-iV-xLs"/>
+                                    <constraint firstItem="sz4-OX-5eB" firstAttribute="top" secondItem="eqh-w3-FQx" secondAttribute="top" constant="10" id="8fS-W4-xn7"/>
+                                    <constraint firstAttribute="trailing" secondItem="sz4-OX-5eB" secondAttribute="trailing" constant="10" id="H2Y-jX-ehC"/>
+                                    <constraint firstAttribute="height" constant="100" id="SH6-3J-AAX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="eqh-w3-FQx" secondAttribute="trailing" id="1Iw-1B-Spn"/>
+                            <constraint firstAttribute="centerX" secondItem="eqh-w3-FQx" secondAttribute="centerX" id="HgX-6o-qIn"/>
+                            <constraint firstItem="eqh-w3-FQx" firstAttribute="leading" secondItem="BXq-x5-7nO" secondAttribute="leading" id="gbL-dt-CT8"/>
+                            <constraint firstItem="eqh-w3-FQx" firstAttribute="top" secondItem="DZV-sz-U6Y" secondAttribute="bottom" id="qzD-dq-XXK"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="content_edit" destination="sz4-OX-5eB" id="FUT-a9-aXt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tse-fG-IZr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1214" y="2267"/>
+            <point key="canvasLocation" x="-905" y="2177"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="9ll-Qc-2cY">

@@ -333,6 +333,7 @@
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [window makeKeyAndVisible];
     _window = window;
+    _window.backgroundColor = [UIColor blackColor];
     _window.rootViewController = [storyBoard instantiateInitialViewController];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DOWNLOAD_DONE" object:nil];

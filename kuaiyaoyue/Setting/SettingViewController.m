@@ -71,7 +71,9 @@
 */
 
 - (IBAction)checkupdata_onclick:(id)sender {
-    //攻略
+    //意见反馈
+    [self performSegueWithIdentifier:@"YJFK" sender:nil];
+
 }
 
 - (IBAction)ghp_onclick:(id)sender {

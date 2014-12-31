@@ -10,4 +10,7 @@
 
 @interface YJFKViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *content_edit;
+- (IBAction)content_next:(id)sender;
+
 @end
