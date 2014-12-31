@@ -658,6 +658,12 @@
 //        }
 //        NSLog(@"%d",textView.text.length);
         custom.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
+        int num = 70 - textView.text.length;
+        if (num > 0) {
+            [custom.text_label_num setTextColor:[UIColor lightGrayColor]];
+        }else{
+            [custom.text_label_num setTextColor:[UIColor redColor]];
+        }
     }
     
     return YES;
@@ -708,6 +714,8 @@
     NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     addimg = [[NSMutableArray alloc] init];
     topimgname = [NSString stringWithFormat:@"../Image/%@",uuid];
+    CGSize size = CGSizeMake(120, 120);
+    img = [self imageWithImageSimple:img scaledToSize:size];
     [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
     
     if (is_yl) {
@@ -738,10 +746,7 @@
                 NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
                 [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
                 
-                CGSize size = CGSizeMake(120, 120);
-                UIImage *img = [self imageWithImageSimple:info.img scaledToSize:size];
-                
-                [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+                [UIImageJPEGRepresentation(info.img,0.8) writeToFile:imgpath atomically:YES];
             }
         }
         

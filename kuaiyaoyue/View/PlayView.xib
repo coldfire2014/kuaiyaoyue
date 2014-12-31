@@ -36,7 +36,7 @@
                             <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入活动名称" minimumFontSize="17" id="qs3-Us-Gu8">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入名称,请不要超过11字" minimumFontSize="17" id="qs3-Us-Gu8">
                             <rect key="frame" x="104" y="0.0" width="216" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -335,6 +335,17 @@
                                     <color key="textColor" red="1" green="0.34509803921568627" blue="0.50588235294117645" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mon-ea-6dZ">
+                                    <rect key="frame" x="137" y="113" width="46" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="long_onclick:" destination="iN0-l3-epB" eventType="touchUpInside" id="aAI-V8-dwf"/>
+                                    </connections>
+                                </button>
                                 <view hidden="YES" alpha="0.0" contentMode="scaleToFill" id="EjS-SV-Rkb">
                                     <rect key="frame" x="116" y="51" width="88" height="38"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>

@@ -701,6 +701,12 @@
 //        }
 //        NSLog(@"%d",textView.text.length);
         playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
+        int num = 70 - textView.text.length;
+        if (num > 0) {
+            [playview.text_label_num setTextColor:[UIColor lightGrayColor]];
+        }else{
+            [playview.text_label_num setTextColor:[UIColor redColor]];
+        }
     }
     
     return YES;
