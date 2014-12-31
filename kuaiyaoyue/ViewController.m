@@ -54,7 +54,6 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    
     is_bcfs = NO;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -65,8 +64,6 @@
     btnView.tag = 99;
     btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 12.0);
     [self.view addSubview:btnView];
-    
-    //s
     
     UITapGestureRecognizer* pan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didPan)];
     [btnView addGestureRecognizer:pan];//160*220
