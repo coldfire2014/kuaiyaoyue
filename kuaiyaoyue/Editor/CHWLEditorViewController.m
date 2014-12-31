@@ -713,10 +713,12 @@
 
 -(void)AudioPlay{
     NSError *playerError;
-    player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: recordedFile] error:&playerError];
-    [player prepareToPlay];
-    player.volume = 10.0f;
-    player.delegate = self;
+    if (player == nil) {
+        player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: recordedFile] error:&playerError];
+        [player prepareToPlay];
+        player.volume = 10.0f;
+        player.delegate = self;
+    }
     if (player == nil)
     {
         NSLog(@"ERror creating player: %@", [playerError description]);
@@ -731,7 +733,6 @@
         else
         {
             [player play];
-            
             playview.gif_img.animationImages = [NSArray arrayWithObjects:
                                                 [UIImage imageNamed:@"bubble_play_1"],
                                                 [UIImage imageNamed:@"bubble_play_2"],
@@ -874,7 +875,7 @@
     NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     addimg = [[NSMutableArray alloc] init];
     [UDObject setMbimg:[NSString stringWithFormat:@"../Image/%@",uuid]];
-    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+    [UIImageJPEGRepresentation(img,0.3) writeToFile:imgpath atomically:YES];
     
     if (is_yl) {
         [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
@@ -923,7 +924,7 @@
                         uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
                         NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
                         [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
-                        [UIImageJPEGRepresentation(info.img,0.8) writeToFile:imgpath atomically:YES];
+                        [UIImageJPEGRepresentation(info.img,0.3) writeToFile:imgpath atomically:YES];
                     }
                 }
                 NSArray *arr = [[NSArray alloc] initWithArray:addimg];
@@ -941,7 +942,7 @@
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
     NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
-    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+    [UIImageJPEGRepresentation(img,0.3) writeToFile:imgpath atomically:YES];
     [HttpManage uploadTP:img name:uuid  cb:^(BOOL isOK, NSString *arry) {
         if (isOK) {
             //解析服务器图片名称

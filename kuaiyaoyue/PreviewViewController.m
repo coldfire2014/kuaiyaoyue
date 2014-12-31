@@ -10,6 +10,8 @@
 #import "UDObject.h"
 #import "FileManage.h"
 #import "TalkingData.h"
+#import "TimeTool.h"
+
 @interface PreviewViewController ()
 
 @end
@@ -170,12 +172,17 @@
         musicname = [array objectAtIndex:([array count] - 1)];
         
         NSString *musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+        NSString *title = [NSString stringWithFormat:@"%@ & %@",[UDObject getxl_name],[UDObject getxn_name]];
+        NSString *timestamp = [TimeTool getFullTimeStr:[[UDObject gethltime] longLongValue]/1000];
+        
         
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                [UDObject getaddress_name],@"address",
                arr,@"images",
                [UDObject getMbimg],@"backgroundImage",
                musicUrl,@"musicUrl",
+               title,@"title",
+               timestamp,@"timestamp",
                nil];
         
     }else if (_type == 1){
@@ -190,6 +197,8 @@
         NSArray *array = [musicname componentsSeparatedByString:@"/"];
         musicname = [array objectAtIndex:([array count] - 1)];
         NSString *musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+        NSString *timestamp = [TimeTool getFullTimeStr:[[UDObject getswtime] longLongValue]/1000];
+        
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                [UDObject getswaddress_name],@"address",
                arr,@"images",
@@ -197,6 +206,8 @@
                musicUrl,@"tape",
                [UDObject getswxlr_name],@"contact",
                [UDObject getswxlfs_name],@"telephone",
+               [UDObject getswhd_name],@"title",
+               timestamp,@"timestamp",
                nil];
     
     }else if (_type == 2){
@@ -207,6 +218,7 @@
         }else{
             arr = [[NSArray alloc] init];
         }
+        NSString *timestamp = [TimeTool getFullTimeStr:[[UDObject gewltime] longLongValue]/1000];
         
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                [UDObject getwladdress_name],@"address",
@@ -215,6 +227,8 @@
                [UDObject getwlaudio],@"tape",
                [UDObject getwllxr_name],@"contact",
                [UDObject getwllxfs_name],@"telephone",
+               [UDObject getwljh_name],@"title",
+               timestamp,@"timestamp",
                nil];
     }else if (_type == 3){
         NSString *img = [UDObject getzdyimgarr];
@@ -228,11 +242,13 @@
         NSString *musicname = [UDObject getzdymusic];
         NSArray *array = [musicname componentsSeparatedByString:@"/"];
         musicname = [array objectAtIndex:([array count] - 1)];
-        
+        NSString *timestamp = [TimeTool getFullTimeStr:[[UDObject getzdytime] longLongValue]/1000];
         NSString *musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                musicUrl,@"musicUrl",
                arr,@"images",
+               [UDObject getzdytitle],@"title",
+               timestamp,@"timestamp",
                nil];
     }
     

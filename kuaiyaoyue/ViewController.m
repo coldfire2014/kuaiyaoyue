@@ -244,6 +244,7 @@
                 for (NSDictionary *dic in partyList) {
                     Userdata *userdata = [[Userdata alloc] init];
                     userdata.nefid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"unquieId"]];
+                    userdata.nefgroom = [dic objectForKey:@"contact"];
                     userdata.nefinviter = [dic objectForKey:@"inviter"];
                     userdata.nefaddress = [dic objectForKey:@"address"];
                     NSArray *arr = [dic objectForKey:@"images"];
@@ -637,7 +638,7 @@
             break;
         case 2:
             title = [NSString stringWithFormat:@"%@",user.nefpartyname];
-            msg = [NSString stringWithFormat:@"%@ %@ %@",@"",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            msg = [NSString stringWithFormat:@"%@ %@ %@",user.nefgroom,[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;
@@ -702,7 +703,7 @@
             break;
         case 2:
             title = [NSString stringWithFormat:@"%@",user.nefpartyname];
-            msg = [NSString stringWithFormat:@"%@ %@ %@",@"",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            msg = [NSString stringWithFormat:@"%@ %@ %@",user.nefgroom,[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;

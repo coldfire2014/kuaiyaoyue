@@ -252,6 +252,7 @@ static NSManagedObjectContext *context = nil;
             userdata.nefimages = @"";
         }
         userdata.neftape = [dic objectForKey:@"tape"];
+        userdata.nefgroom = [dic objectForKey:@"contact"];
         userdata.neftimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
         userdata.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
         userdata.nefdescription = [dic objectForKey:@"description"];

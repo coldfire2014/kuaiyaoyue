@@ -554,7 +554,7 @@
     NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     addimg = [[NSMutableArray alloc] init];
     [UDObject setMbimg:[NSString stringWithFormat:@"../Image/%@",uuid]];
-    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+    [UIImageJPEGRepresentation(img,0.3) writeToFile:imgpath atomically:YES];
     
     if (is_yl) {
         [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
@@ -583,7 +583,7 @@
                 NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
                 uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
                 NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
-                [UIImageJPEGRepresentation(info.img,0.8) writeToFile:imgpath atomically:YES];
+                [UIImageJPEGRepresentation(info.img,0.3) writeToFile:imgpath atomically:YES];
                 [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
             }
         }
@@ -602,7 +602,7 @@
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
     NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
-    [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
+    [UIImageJPEGRepresentation(img,0.3) writeToFile:imgpath atomically:YES];
     [HttpManage uploadTP:img name:uuid  cb:^(BOOL isOK, NSString *arry) {
         if (isOK) {
             //解析服务器图片名称
