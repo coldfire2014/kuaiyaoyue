@@ -714,12 +714,12 @@
     NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     addimg = [[NSMutableArray alloc] init];
     topimgname = [NSString stringWithFormat:@"../Image/%@",uuid];
-    CGSize size = CGSizeMake(120, 120);
-    img = [self imageWithImageSimple:img scaledToSize:size];
     [UIImageJPEGRepresentation(img,0.8) writeToFile:imgpath atomically:YES];
     
     if (is_yl) {
         [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
+        CGSize size = CGSizeMake(120, 120);
+        img = [self imageWithImageSimple:img scaledToSize:size];
         [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
             NSLog(@"%@",URL);
             if (isOK) {
