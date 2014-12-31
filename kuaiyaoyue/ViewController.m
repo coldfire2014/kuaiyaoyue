@@ -88,7 +88,6 @@
     [self loaddata];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tsmessage) name:@"message" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bcfs) name:@"MSG_BCFS" object:nil];
