@@ -153,7 +153,7 @@ closeTimestamp:(NSString *)closeTimestamp
 +(void)uploadYP:(NSString *) file name:(NSString *)name cb:(void (^)(BOOL isOK, NSString *URL))callback;
 
 //版本查询
-+(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, NSDictionary *URL))callback;
++(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, NSString *URL))callback;
 
 //查询报名人数
 +(void)renewal:(NSString *)uniqueId timestamp:(NSString *) timestamp size:(NSString *)size cb:(void (^)(BOOL isOK, NSMutableArray *URL))callback;

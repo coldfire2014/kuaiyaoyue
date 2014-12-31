@@ -12,7 +12,7 @@
 #import "UDObject.h"
 #import "AppDelegate.h"
 #import "WXApi.h"
-
+#import "PCHeader.h"
 
 @interface SettingViewController ()
 
@@ -135,11 +135,10 @@
 }
 
 -(void)edition{
-    [HttpManage edition:@"ios" cb:^(BOOL isOK, NSDictionary *URL) {
+    [HttpManage edition:@"ios" cb:^(BOOL isOK, NSString *URL) {
         if (isOK) {
             NSLog(@"%@",URL);
-            NSString *version = [URL objectForKey:@"version"];
-            if (![version isEqualToString:@"1.0.4"]) {
+            if (![URL isEqualToString:version]) {
                 [_xhd_view setHidden:NO];
             }
         }

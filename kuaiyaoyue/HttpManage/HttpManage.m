@@ -8,13 +8,7 @@
 
 #import "HttpManage.h"
 #import "ZipArchive.h"
-
-#define HTTPURL @"http://test.kyy121.com/"
-
-//#define HTTPURL @"http://192.168.1.183/"
-
-#define version @"1.0.5"
-
+#import "PCHeader.h"
 /*
 43    //BadCredentialsException     密码不正确
 53    VerificationTimeoutException    验证码超时
@@ -773,15 +767,16 @@ closeTimestamp:(NSString *)closeTimestamp
  type:"ios"
  */
 
-+(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, NSDictionary *URL))callback{
++(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, NSString *URL))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            type,@"type",nil];
+                            type,@"type",@"ios",@"equipment",version,@"version",nil];
+    
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefEdition/edition.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *array = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
-        callback(YES,array);
+        callback(YES,[array objectForKey:@"version"]);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSLog(@"error-%@",error);
