@@ -9,6 +9,7 @@
 #import "HttpManage.h"
 #import "ZipArchive.h"
 #import "PCHeader.h"
+#import "FileManage.h"
 /*
 43    //BadCredentialsException     密码不正确
 53    VerificationTimeoutException    验证码超时
@@ -721,7 +722,7 @@ closeTimestamp:(NSString *)closeTimestamp
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:HTTPURL]];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefImages/upload.aspx"];
     [manager POST:url parameters:nil timeout:9 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        NSData* jtdata = UIImageJPEGRepresentation(image,0.3);
+        NSData* jtdata = UIImageJPEGRepresentation(image,C_JPEG_SIZE);
         [formData appendPartWithFileData:jtdata name:@"files" fileName:name mimeType:@"image/jpeg"];
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {

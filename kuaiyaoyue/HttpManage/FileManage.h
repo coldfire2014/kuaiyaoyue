@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#define C_JPEG_SIZE 0.5
 @interface FileManage : NSObject
 
 @property (nonatomic ,strong) NSString *dirDirectory;

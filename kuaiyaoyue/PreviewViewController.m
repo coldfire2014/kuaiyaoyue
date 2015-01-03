@@ -97,9 +97,11 @@
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
     NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     [UDObject setMbimg:[NSString stringWithFormat:@"../Image/%@",uuid]];
-    [UIImageJPEGRepresentation(bgimg,0.8) writeToFile:imgpath atomically:YES];
+    [UIImageJPEGRepresentation(bgimg,C_JPEG_SIZE) writeToFile:imgpath atomically:YES];
     [self reloadweb];
-    
+//    NSFileManager* manager = [NSFileManager defaultManager];
+//    unsigned long long size = [[manager attributesOfItemAtPath:imgpath error:nil] fileSize];
+//    NSLog(@"%llu",size);
 
 }
 
