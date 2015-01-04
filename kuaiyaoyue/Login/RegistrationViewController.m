@@ -49,6 +49,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -57,12 +58,7 @@
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     }
 }
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
-}
--(BOOL)prefersStatusBarHidden{
-    return NO;
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -147,7 +143,10 @@
     [HttpManage phoneregister:mobilePhone password:password cb:^(BOOL isOK, NSMutableArray *array) {
         [SVProgressHUD dismiss];
         if (isOK) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [SVProgressHUD showWithStatus:@"登录中" maskType:(SVProgressHUDMaskTypeBlack)];
+            [self j_spring_security_check:mobilePhone password:password];
+            
+//            [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
             if (array != nil) {
                 NSString *message = (NSString *)[array objectAtIndex:0];
@@ -158,6 +157,22 @@
         }
     }];
 }
+
+-(void)j_spring_security_check:(NSString *)username password:(NSString *)password{
+    [HttpManage j_spring_security_check:username password:password phoneId:[UDObject getTSID] j_username:username j_password:password isJson:@"true" cb:^(BOOL isOK, NSDictionary *dic) {
+        [SVProgressHUD dismiss];
+        if (isOK) {
+            NSString *token = [dic objectForKey:@"token"];
+            [UDObject setUserInfo:username userName:@"" token:token];
+            [self performSegueWithIdentifier:@"wel2main" sender:nil];
+            [[StatusBar sharedStatusBar] talkMsg:@"登录成功" inTime:0.51];
+            [UDObject setLXFS:username];
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"登录失败" inTime:0.51];
+        }
+    }];
+}
+
 
 - (IBAction)login_onclick:(id)sender {
     NSString *mobilePhone = _phone_num.text;
@@ -174,6 +189,7 @@
         [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.51];
     }
 }
+
 
 - (IBAction)phone_next:(id)sender {
     [_dx_edit becomeFirstResponder];

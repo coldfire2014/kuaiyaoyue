@@ -39,6 +39,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *text_label_num;
 
 @property (weak, nonatomic) IBOutlet UIView *editview;
+- (IBAction)cb_onclick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *cb_button;
 
 @end
 @protocol MVDelegate <NSObject>

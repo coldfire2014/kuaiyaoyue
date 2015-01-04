@@ -40,7 +40,7 @@
    
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    label.text = @"快邀约";
+    label.text = self.title;
     [label sizeToFit];
     label.textColor = [[UIColor alloc] initWithRed:1 green:1 blue:1 alpha:1.0];
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
@@ -125,15 +125,11 @@
     
     [_headview addSubview:s];
 }
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
--(BOOL)prefersStatusBarHidden{
-    return NO;
-}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [self.navigationController.navigationBar setHidden:NO];
 }
 
@@ -337,10 +333,6 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self prefersStatusBarHidden];
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }
     [TalkingData trackPageBegin:@"报名列表"];
 }
 -(void)viewWillDisappear:(BOOL)animated{

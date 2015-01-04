@@ -55,6 +55,7 @@
     NSString *mp3name;
     
     BOOL is_bcfs;
+    BOOL is_bottom;
 }
 
 @end
@@ -64,6 +65,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    is_bottom = YES;
     self.title = @"返回";
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
@@ -107,9 +109,6 @@
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editviewonclick:)];
     
     [moreview.editview addGestureRecognizer:tap2];
-    
-    
-    
     
 }
 
@@ -245,25 +244,17 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self prefersStatusBarHidden];
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     is_yl = YES;
     [self.navigationController.navigationBar setHidden:NO];
     [TalkingData trackPageBegin:@"商务编辑"];
 //    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, -1000)];
 }
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
-}
--(BOOL)prefersStatusBarHidden{
-    return NO;
-}
+
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [TalkingData trackPageEnd:@"商务编辑"];
@@ -417,13 +408,37 @@
         mp3name = @"";
         moreview.show_music.text = @"";
         [moreview.del_music_view setHidden:YES];
+    }else if (type == 4){
+        //关
+        if (is_bottom) {
+            [moreview.bottom_view setHidden:NO];
+            [UIView animateWithDuration:0.3 animations:^{
+                [moreview.bottom_view setAlpha:1.0];
+                [moreview.cb_button setImage:[UIImage imageNamed:@"ic_32_close"] forState:UIControlStateNormal];
+            } completion:^(BOOL finished) {
+                
+            }];
+            
+        }
+        //开
+        else{
+            [UIView animateWithDuration:0.3 animations:^{
+                [moreview.bottom_view setAlpha:0.0];
+                [moreview.cb_button setImage:[UIImage imageNamed:@"ic_32_open"] forState:UIControlStateNormal];
+            } completion:^(BOOL finished) {
+                [moreview.bottom_view setHidden:YES];
+            }];
+            
+            
+        }
+        is_bottom = !is_bottom;
     }
 }
 
 - (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
     if (timebh != nil) {
         if (time_type) {
-            if (timebh > bmendtime) {
+            if ([timebh longLongValue] > [bmendtime longLongValue]) {
                 hltime = timebh;
                 moreview.time_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
             }else{
@@ -497,12 +512,43 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    NSLog(@"%d",textView.text.length);
-    if(textView == moreview.show_summary){
-//        if (textView.text.length > 70) {
-//            textView.text = [textView.text substringToIndex:70];
+//    NSLog(@"%d",textView.text.length);
+//    NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage];
+//     if ([lang isEqualToString:@"zh-Hans"]) {
+//         if(textView == moreview.show_summary){
+//         UITextRange *selectedRange = [textView markedTextRange];
+//         //获取高亮部分
+//         UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
+//         // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+//         if (!position) {
+//             moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
+//             int num = 70 - textView.text.length;
+//             if (num > 0) {
+//                 [moreview.text_label_num setTextColor:[UIColor lightGrayColor]];
+//             }else{
+//                 [moreview.text_label_num setTextColor:[UIColor redColor]];
+//             }
+//         }
 //        }
-//        NSLog(@"%d",textView.text.length);
+//         
+//     }else{
+//         if(textView == moreview.show_summary){
+//             moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
+//             int num = 70 - textView.text.length;
+//             if (num > 0) {
+//                 [moreview.text_label_num setTextColor:[UIColor lightGrayColor]];
+//             }else{
+//                 [moreview.text_label_num setTextColor:[UIColor redColor]];
+//             }
+//         }
+//     }
+    
+    
+    return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView{
+    if(textView == moreview.show_summary){
         moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
         int num = 70 - textView.text.length;
         if (num > 0) {
@@ -511,8 +557,7 @@
             [moreview.text_label_num setTextColor:[UIColor redColor]];
         }
     }
-    
-    return YES;
+
 }
 
 - (void)send_onclick:(UITapGestureRecognizer *)gr{

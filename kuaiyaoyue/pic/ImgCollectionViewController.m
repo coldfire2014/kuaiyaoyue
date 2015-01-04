@@ -191,6 +191,8 @@ static NSString * const fIdentifier = @"imgcellf";
 {
     [self resignFirstResponder];
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    
 }
 
 - (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event

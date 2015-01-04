@@ -254,11 +254,24 @@
                             <state key="normal" image="ic_32_open">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="cb_onclick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ig3-jE-YJJ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4Fs-Af-HHk">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cb_onclick:" destination="iN0-l3-epB" eventType="touchUpInside" id="fvV-uw-bMp"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" id="3pY-F9-lYq">
+                <view hidden="YES" alpha="0.0" contentMode="scaleToFill" id="3pY-F9-lYq">
                     <rect key="frame" x="0.0" y="355" width="320" height="290"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -398,6 +411,7 @@
                 <outlet property="address_edit" destination="Aza-7w-CxJ" id="BGE-mv-xTe"/>
                 <outlet property="bmtime_label" destination="8Z6-3D-KoJ" id="5o6-Ds-aHq"/>
                 <outlet property="bottom_view" destination="3pY-F9-lYq" id="XW5-Xl-6qJ"/>
+                <outlet property="cb_button" destination="Ima-y4-P8r" id="TMh-xP-PJp"/>
                 <outlet property="del_music_view" destination="OZ5-3Q-RMB" id="say-yA-qEo"/>
                 <outlet property="editview" destination="14G-ga-prt" id="7SO-JT-0ff"/>
                 <outlet property="girdview" destination="nvj-tp-Erb" id="Vp1-qT-S9b"/>

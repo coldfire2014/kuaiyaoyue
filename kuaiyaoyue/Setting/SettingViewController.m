@@ -47,22 +47,13 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self prefersStatusBarHidden];
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [self edition];
-}
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
-}
--(BOOL)prefersStatusBarHidden{
-    return NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -147,8 +138,7 @@
 -(void)edition{
     [HttpManage edition:@"ios" cb:^(BOOL isOK, NSString *URL) {
         if (isOK) {
-            NSLog(@"%@",URL);
-            if (![URL isEqualToString:version]) {
+            if (![URL isEqualToString:@"failure"]) {
                 [_xhd_view setHidden:NO];
             }
         }

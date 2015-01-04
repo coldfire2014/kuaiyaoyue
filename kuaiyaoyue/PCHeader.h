@@ -13,8 +13,11 @@
 
 #define ISIOS8LATER [[[UIDevice currentDevice] systemVersion] floatValue]>=8
 
-#define HTTPURL @"http://test.kyy121.com/"
+#define HTTPURL @"http://appkyy.kyy121.com/"
+//#define HTTPURL @"http://test.kyy121.com/"
 //#define HTTPURL @"http://192.168.1.183/"
 #define version @"4"
 
+
+//hahah 
 #endif

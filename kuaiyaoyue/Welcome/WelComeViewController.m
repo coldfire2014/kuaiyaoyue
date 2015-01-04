@@ -21,24 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    myImageView* bg = [[myImageView alloc] initWithFrame:self.view.bounds andImageName:@"bg_login.jpg" withScale:2.0 andAlign:UIImgAlignmentCenter];
-//    [self.view addSubview:bg];
-//    myImageView* logo = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 318.0/2.0, 344.0/2.0) andImageName:@"logo_login" withScale:2.0 andAlign:UIImgAlignmentCenter];
-//    logo.center = CGPointMake(self.view.bounds.size.width/2.0, (self.view.bounds.size.height - 478.0/2.0)/2.0);
-//    [self.view addSubview:logo];
 }
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
--(BOOL)prefersStatusBarHidden{
-    return NO;
-}
-
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     downloadDone = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneZip) name:@"ZIP_DONE" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneDownload) name:@"DOWNLOAD_DONE" object:nil];
@@ -75,10 +62,6 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self prefersStatusBarHidden];
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }
     [TalkingData trackPageBegin:@"加载页面"];
     NSString *name = nil;
     if ([[UDObject gettoken] length] > 0) {

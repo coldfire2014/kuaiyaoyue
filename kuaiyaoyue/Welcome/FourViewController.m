@@ -11,7 +11,7 @@
 #import "myImageView.h"
 #import "StatusBar.h"
 #import <TencentOpenAPI/TencentOAuth.h>
-//#import "ten"
+#import "TalkingData.h"
 @interface FourViewController ()
 
 @end
@@ -72,6 +72,7 @@
 }
 */
 -(void)WXTap:(UIGestureRecognizer*)g{
+    [TalkingData trackEvent:@"微信登陆"];
     myImageView* btn = (myImageView*)[self.view viewWithTag:102];
     [UIView animateWithDuration:0.1 animations:^{
         [btn changeWithImageName:@"btn_login_weixin_pre" withScale:2.0];
@@ -84,6 +85,7 @@
     }];
 }
 -(void)QQTap:(UIGestureRecognizer*)g{
+    [TalkingData trackEvent:@"QQ登陆"];
     myImageView* btn = (myImageView*)[self.view viewWithTag:101];
     [UIView animateWithDuration:0.1 animations:^{
         [btn changeWithImageName:@"btn_login_qq_pre" withScale:2.0];
@@ -96,6 +98,7 @@
     }];
 }
 -(void)DLTap:(UIGestureRecognizer*)g{
+    [TalkingData trackEvent:@"手机登陆"];
     myImageView* btn = (myImageView*)[self.view viewWithTag:103];
     [UIView animateWithDuration:0.1 animations:^{
         [btn changeWithImageName:@"btn_login_1_pre" withScale:2.0];
@@ -108,6 +111,7 @@
     }];
 }
 -(void)ZCTap:(UIGestureRecognizer*)g{
+    [TalkingData trackEvent:@"手机注册"];
     myImageView* btn = (myImageView*)[self.view viewWithTag:104];
     [UIView animateWithDuration:0.1 animations:^{
         [btn changeWithImageName:@"btn_login_2_pre" withScale:2.0];

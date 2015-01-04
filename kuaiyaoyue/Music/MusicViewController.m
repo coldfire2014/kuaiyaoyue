@@ -16,6 +16,7 @@
 #import "DataBaseManage.h"
 #import "Music.h"
 #import "SVProgressHUD.h"
+#import "TalkingData.h"
 
 @interface MusicViewController ()<AVAudioPlayerDelegate>{
     NSMutableArray *data;
@@ -167,8 +168,13 @@
     NSString *file  = [[FileManage sharedFileManage] GetYPFile:info.uniqueId];
     [self AudioPlay:file];
 }
-
-
+-(void)viewWillAppear:(BOOL)animated{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [TalkingData trackPageBegin:@"音乐选择页"];
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [TalkingData trackPageEnd:@"音乐选择页"];
+}
 -(void)AudioPlay:(NSString *)recordedFile{
     NSError *playerError;
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: recordedFile] error:&playerError];

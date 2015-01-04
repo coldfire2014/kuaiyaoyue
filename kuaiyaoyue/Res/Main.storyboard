@@ -1467,6 +1467,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="send_obutton" destination="rHP-dE-E9u" id="eBH-KX-nDz"/>
                                             <outlet property="show_endtime" destination="gzt-54-GfR" id="jhB-DJ-eXZ"/>
                                             <outlet property="show_hdtime" destination="37Z-L5-sMo" id="G40-Ur-8gZ"/>
                                             <outlet property="show_img" destination="eIE-P2-GYe" id="Fir-In-aBn"/>
@@ -1671,7 +1672,7 @@
                                                             <constraint firstAttribute="width" constant="96" id="rVE-vA-qMr"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
                                                             <mask key="constraints">

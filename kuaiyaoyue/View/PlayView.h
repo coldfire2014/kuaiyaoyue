@@ -44,6 +44,8 @@
 @property (nonatomic, weak) id<PVDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *show_audioname;
 @property (weak, nonatomic) IBOutlet UIView *lyyl_view;
+@property (weak, nonatomic) IBOutlet UIButton *cb_button;
+- (IBAction)cb_onclick:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *tyx_label;
 @end
