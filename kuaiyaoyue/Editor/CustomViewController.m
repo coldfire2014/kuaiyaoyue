@@ -227,7 +227,9 @@
     [self SendUp];
     [TalkingData trackEvent:@"预览" label:@"自定义"];
 }
-
+-(void)didBack{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

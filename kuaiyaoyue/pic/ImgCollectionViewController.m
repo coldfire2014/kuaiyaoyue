@@ -202,6 +202,9 @@ static NSString * const fIdentifier = @"imgcellf";
     }
 }
 -(void)back{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didBack)]){
+        [self.delegate didBack];
+    }
     isShow = NO;
     if (self.needAnimation) {
         ImgNavBar* bar = (ImgNavBar*)[self.view viewWithTag: 501];

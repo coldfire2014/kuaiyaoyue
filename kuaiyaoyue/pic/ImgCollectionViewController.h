@@ -21,7 +21,7 @@
 //    imgView.delegate = imgs as PicInput
 //}
 @protocol ImgCollectionViewDelegate <NSObject>
-
+-(void)didBack;
 -(void)didSelectAssets:(NSArray*)items;
 @optional
 -(NSMutableArray*)ownAssets;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ImgCollectionViewController.h"
-@interface WelComeViewController : UIViewController<UIViewControllerTransitioningDelegate,ImgCollectionViewDelegate>
+@interface WelComeViewController : UIViewController<UIViewControllerTransitioningDelegate>
 {
     BOOL zipDone;
     BOOL downloadDone;

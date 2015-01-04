@@ -467,7 +467,9 @@
     [super viewDidDisappear:animated];
     [TalkingData trackPageEnd:@"吃喝玩乐编辑"];
 }
-
+-(void)didBack{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+}
 -(void)initImgData{
     GridInfo *info = [[GridInfo alloc] initWithDictionary:NO :nil];
     [data addObject:info];

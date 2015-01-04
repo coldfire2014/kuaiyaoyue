@@ -9,7 +9,7 @@
         <!--Menu View Controller-->
         <scene sceneID="3NB-yP-pQN">
             <objects>
-                <viewController id="vz3-vm-ap6" customClass="MenuViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="vz3-vm-ap6" customClass="MenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="USf-yC-xQn"/>
                         <viewControllerLayoutGuide type="bottom" id="fpt-kf-Yci"/>
@@ -19,7 +19,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <segue destination="Ltv-6U-l87" kind="show" identifier="showTemplate" id="ELY-CD-8Dq"/>
                         <segue destination="8mc-rE-7os" kind="show" identifier="zdyedit" id="X3g-3s-8JD"/>
@@ -32,7 +31,7 @@
         <!--Template View Controller-->
         <scene sceneID="nPx-XQ-722">
             <objects>
-                <viewController id="Ltv-6U-l87" customClass="TemplateViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="Ltv-6U-l87" customClass="TemplateViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qev-Fb-ggw"/>
                         <viewControllerLayoutGuide type="bottom" id="pCv-Ue-nFj"/>
@@ -42,7 +41,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <segue destination="oWB-DN-aF8" kind="show" identifier="hledit" id="Oey-PZ-F9W"/>
                         <segue destination="7YK-37-kxW" kind="show" identifier="swedit" id="keJ-rR-p7N"/>
@@ -58,7 +56,7 @@
         <!--Preview View Controller-->
         <scene sceneID="adG-aU-C4Y">
             <objects>
-                <viewController id="NFc-c8-4fs" customClass="PreviewViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="NFc-c8-4fs" customClass="PreviewViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JGQ-2l-EXA"/>
                         <viewControllerLayoutGuide type="bottom" id="RCa-aZ-6PV"/>
@@ -91,7 +89,7 @@
         <!--Music View Controller-->
         <scene sceneID="qCk-ie-AhB">
             <objects>
-                <viewController id="ZdD-SR-5tS" customClass="MusicViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="ZdD-SR-5tS" customClass="MusicViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LLr-Ka-ZKH"/>
                         <viewControllerLayoutGuide type="bottom" id="naS-Yi-FfW"/>
@@ -196,7 +194,7 @@
         <!--Wel Come View Controller-->
         <scene sceneID="uSu-Jy-KTK">
             <objects>
-                <viewController id="wbj-gc-hIR" customClass="WelComeViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="wbj-gc-hIR" customClass="WelComeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bzz-zj-Ykj"/>
                         <viewControllerLayoutGuide type="bottom" id="fWt-Fd-hpE"/>
@@ -248,17 +246,17 @@
         <!--Login View Controller-->
         <scene sceneID="WvV-j7-NaL">
             <objects>
-                <viewController id="Aah-1p-LT9" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="Aah-1p-LT9" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kto-Fn-6QA"/>
                         <viewControllerLayoutGuide type="bottom" id="NIu-AU-8lp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="k5C-ix-clb">
-                        <rect key="frame" x="0.0" y="44" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ISU-r4-dqO">
-                                <rect key="frame" x="0.0" y="18" width="600" height="86"/>
+                                <rect key="frame" x="0.0" y="82" width="600" height="86"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WcW-VB-be0">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
@@ -354,7 +352,7 @@
                                 </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Suj-uB-dAJ">
-                                <rect key="frame" x="24" y="122" width="552" height="42"/>
+                                <rect key="frame" x="24" y="186" width="552" height="42"/>
                                 <color key="backgroundColor" red="1" green="0.34509803921568627" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="Zbr-5Y-OTA"/>
@@ -395,8 +393,7 @@
         <!--Navigation Controller-->
         <scene sceneID="MTB-7H-V4B">
             <objects>
-                <navigationController id="eGG-ps-HQp" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" id="eGG-ps-HQp" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tzC-ZW-bac">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -421,7 +418,7 @@
         <!--Edit View Controller-->
         <scene sceneID="xLx-1A-8aO">
             <objects>
-                <viewController id="oWB-DN-aF8" customClass="HLEditViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="oWB-DN-aF8" customClass="HLEditViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cxH-64-xWW"/>
                         <viewControllerLayoutGuide type="bottom" id="Ag0-OY-pzz"/>
@@ -544,7 +541,7 @@
         <!--Custom View Controller-->
         <scene sceneID="Gl5-hD-dEh">
             <objects>
-                <viewController id="8mc-rE-7os" customClass="CustomViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="8mc-rE-7os" customClass="CustomViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VJo-Vh-PKu"/>
                         <viewControllerLayoutGuide type="bottom" id="Bt7-01-0pf"/>
@@ -692,7 +689,7 @@
         <!--Detail View Controller-->
         <scene sceneID="zp0-jQ-aiI">
             <objects>
-                <viewController id="Dq2-pa-Aad" customClass="DetailViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="Dq2-pa-Aad" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eKY-o0-WRq"/>
                         <viewControllerLayoutGuide type="bottom" id="QhT-Vt-Wnl"/>
@@ -1103,7 +1100,7 @@
         <!--Show Web View Controller-->
         <scene sceneID="yau-6J-ig7">
             <objects>
-                <viewController id="JmL-wg-bJy" customClass="ShowWebViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="JmL-wg-bJy" customClass="ShowWebViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pD8-1s-kAm"/>
                         <viewControllerLayoutGuide type="bottom" id="JLx-RE-16g"/>
@@ -1136,7 +1133,7 @@
         <!--View Controller-->
         <scene sceneID="VGg-Og-T4r">
             <objects>
-                <viewController id="TWI-rP-7Mz" customClass="ViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="TWI-rP-7Mz" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jHc-O0-CXD"/>
                         <viewControllerLayoutGuide type="bottom" id="3P0-pR-epE"/>
@@ -1512,7 +1509,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="P6j-Tv-CNi"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
@@ -2438,17 +2434,17 @@
         <!--Edit View Controller-->
         <scene sceneID="f5s-4Y-8YA">
             <objects>
-                <viewController id="NbM-Ob-c0w" customClass="EditViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="NbM-Ob-c0w" customClass="EditViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8n8-rb-QmN"/>
                         <viewControllerLayoutGuide type="bottom" id="9kz-bg-K0r"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ICX-fg-a4Q">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRF-bh-qn9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="100"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KxI-7D-yS7">
                                         <rect key="frame" x="10" y="10" width="580" height="80"/>
@@ -2490,7 +2486,7 @@
         <!--View Controller-->
         <scene sceneID="cGd-ef-BGK">
             <objects>
-                <viewController id="7YK-37-kxW" customClass="SWYQViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="7YK-37-kxW" customClass="SWYQViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hCx-ud-kEA"/>
                         <viewControllerLayoutGuide type="bottom" id="dWn-3k-TfM"/>
@@ -2619,13 +2615,13 @@
         <!--View Controller-->
         <scene sceneID="f6e-k2-jXy">
             <objects>
-                <viewController id="4pi-b7-OVq" customClass="GYWMViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="4pi-b7-OVq" customClass="GYWMViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xik-fs-aQA"/>
                         <viewControllerLayoutGuide type="bottom" id="est-wN-tAY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xYP-LL-hDu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2637,17 +2633,17 @@
         <!--View Controller-->
         <scene sceneID="tRe-0R-Oeg">
             <objects>
-                <viewController id="NGi-QC-EkY" customClass="YJFKViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="NGi-QC-EkY" customClass="YJFKViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DZV-sz-U6Y"/>
                         <viewControllerLayoutGuide type="bottom" id="tdH-oK-4po"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BXq-x5-7nO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqh-w3-FQx">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="100"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sz4-OX-5eB">
                                         <rect key="frame" x="10" y="10" width="580" height="80"/>
@@ -2689,13 +2685,13 @@
         <!--View Controller-->
         <scene sceneID="9ll-Qc-2cY">
             <objects>
-                <viewController id="hHf-7l-VLm" customClass="GLJSViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="hHf-7l-VLm" customClass="GLJSViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fvT-We-AZd"/>
                         <viewControllerLayoutGuide type="bottom" id="Udh-Ma-TU6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kmi-32-rpv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2707,7 +2703,7 @@
         <!--Editor View Controller-->
         <scene sceneID="VM7-Ku-gMc">
             <objects>
-                <viewController id="B8p-9i-iFV" customClass="CHWLEditorViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="B8p-9i-iFV" customClass="CHWLEditorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="osh-3B-G1Y"/>
                         <viewControllerLayoutGuide type="bottom" id="nYb-Wv-wL8"/>
@@ -2823,8 +2819,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fzz-aq-ed2">
             <objects>
-                <navigationController id="CSc-oh-Bvr" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" id="CSc-oh-Bvr" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eUj-xa-OMT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2843,8 +2838,7 @@
         <!--Page View Controller-->
         <scene sceneID="59c-pD-L0a">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qHT-nQ-aXb" customClass="PageViewController" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" extendedLayoutIncludesOpaqueBars="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qHT-nQ-aXb" customClass="PageViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ylI-Uf-NFX"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
@@ -2860,7 +2854,7 @@
         <!--Two View Controller-->
         <scene sceneID="bes-xm-kQw">
             <objects>
-                <viewController storyboardIdentifier="TwoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RKI-CS-Mam" customClass="TwoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TwoViewController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RKI-CS-Mam" customClass="TwoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kfv-tA-jvf"/>
                         <viewControllerLayoutGuide type="bottom" id="mUc-ri-QsU"/>
@@ -2890,7 +2884,7 @@
         <!--Three View Controller-->
         <scene sceneID="rIm-Gr-S0u">
             <objects>
-                <viewController storyboardIdentifier="ThreeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Wb-7H-Wkc" customClass="ThreeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThreeViewController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Wb-7H-Wkc" customClass="ThreeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rvn-pG-RgB"/>
                         <viewControllerLayoutGuide type="bottom" id="g2q-9r-YF5"/>
@@ -2920,17 +2914,17 @@
         <!--Registration View Controller-->
         <scene sceneID="IAD-pZ-WLM">
             <objects>
-                <viewController id="GlX-fs-GUc" customClass="RegistrationViewController" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="GlX-fs-GUc" customClass="RegistrationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NTH-Kt-7nJ"/>
                         <viewControllerLayoutGuide type="bottom" id="tuB-lD-luw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="t7O-k3-0Da">
-                        <rect key="frame" x="0.0" y="44" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajv-If-2gg">
-                                <rect key="frame" x="0.0" y="18" width="600" height="86"/>
+                                <rect key="frame" x="0.0" y="82" width="600" height="86"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LwE-Fv-4FJ">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
@@ -3057,7 +3051,7 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZVl-LG-UwO">
-                                <rect key="frame" x="0.0" y="116" width="600" height="86"/>
+                                <rect key="frame" x="0.0" y="180" width="600" height="86"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLi-aM-dZq">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
@@ -3145,7 +3139,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XT7-0c-fgQ">
-                                <rect key="frame" x="24" y="220" width="552" height="42"/>
+                                <rect key="frame" x="24" y="284" width="552" height="42"/>
                                 <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="J25-OK-Uaf"/>
@@ -3173,7 +3167,6 @@
                             <constraint firstItem="ZVl-LG-UwO" firstAttribute="leading" secondItem="t7O-k3-0Da" secondAttribute="leading" id="bbR-g6-JcN"/>
                         </constraints>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="dq_edit" destination="gJg-Zp-Pv7" id="kvv-VN-MjO"/>
                         <outlet property="dx_edit" destination="lqV-Hh-bfX" id="Ae2-vh-8f8"/>
@@ -3191,7 +3184,7 @@
         <!--Si View Controller-->
         <scene sceneID="6hF-a4-ZUS">
             <objects>
-                <viewController storyboardIdentifier="SiViewController" id="FSF-Z1-LDK" customClass="SiViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SiViewController" extendedLayoutIncludesOpaqueBars="YES" id="FSF-Z1-LDK" customClass="SiViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jgl-th-2Z3"/>
                         <viewControllerLayoutGuide type="bottom" id="Nkd-KX-LDc"/>
@@ -3209,7 +3202,7 @@
         <!--Four View Controller-->
         <scene sceneID="e94-Qg-lUa">
             <objects>
-                <viewController storyboardIdentifier="FourViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gzh-W5-rRm" customClass="FourViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FourViewController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gzh-W5-rRm" customClass="FourViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="01Q-rA-3rs"/>
                         <viewControllerLayoutGuide type="bottom" id="M1N-mw-hQn"/>
@@ -3250,7 +3243,7 @@
         <!--One View Controller-->
         <scene sceneID="bPp-6s-f0Y">
             <objects>
-                <viewController storyboardIdentifier="OneViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lGn-Se-Jy8" customClass="OneViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OneViewController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lGn-Se-Jy8" customClass="OneViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oLb-0y-aiV"/>
                         <viewControllerLayoutGuide type="bottom" id="nFY-aW-ibY"/>
@@ -3309,10 +3302,10 @@
         <image name="logo_login.png" width="159" height="172"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2y5-RI-bqS"/>
-        <segue reference="X3g-3s-8JD"/>
-        <segue reference="HVf-vj-jq7"/>
-        <segue reference="qae-G8-0oD"/>
+        <segue reference="I0j-Cp-NYv"/>
+        <segue reference="ztp-xN-fnN"/>
         <segue reference="22X-oD-zs7"/>
+        <segue reference="Tpj-6l-Acb"/>
+        <segue reference="fpr-vR-MAe"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -87,10 +87,10 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier compare:@"imgSelect"] == NSOrderedSame ) {
-        ImgCollectionViewController* des = (ImgCollectionViewController*)segue.destinationViewController;
-        des.maxCount = 2;
-        des.needAnimation = YES;
-        des.delegate = self;
+//        ImgCollectionViewController* des = (ImgCollectionViewController*)segue.destinationViewController;
+//        des.maxCount = 2;
+//        des.needAnimation = YES;
+//        des.delegate = self;
     } else {
 //        createViewController* des = (createViewController*)segue.destinationViewController;
 //        des.bgimg = (UIImage*)sender;
