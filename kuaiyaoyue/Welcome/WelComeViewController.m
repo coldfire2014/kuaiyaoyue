@@ -28,6 +28,12 @@
 //    logo.center = CGPointMake(self.view.bounds.size.width/2.0, (self.view.bounds.size.height - 478.0/2.0)/2.0);
 //    [self.view addSubview:logo];
 }
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+-(BOOL)prefersStatusBarHidden{
+    return NO;
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     
@@ -69,6 +75,10 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
     [TalkingData trackPageBegin:@"加载页面"];
     NSString *name = nil;
     if ([[UDObject gettoken] length] > 0) {

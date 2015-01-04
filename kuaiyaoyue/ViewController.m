@@ -334,16 +334,24 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
     [TalkingData trackPageBegin:@"首页"];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [TalkingData trackPageEnd:@"首页"];
 }
-
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+-(BOOL)prefersStatusBarHidden{
+    return NO;
+}
 - (void)viewWillAppear:(BOOL)animated{
-//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [self.navigationController.navigationBar setHidden:YES];
     [self GetRecord];
 }
