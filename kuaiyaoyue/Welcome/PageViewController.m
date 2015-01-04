@@ -39,10 +39,7 @@
 
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self prefersStatusBarHidden];
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:@"MSG_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ptlogin) name:@"MSG_PTLOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gologin) name:@"MSG_GO_LOGIN" object:nil];
@@ -57,14 +54,10 @@
                                                object: nil];
     //MSG_Regme
 }
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
--(BOOL)prefersStatusBarHidden{
-    return NO;
-}
+
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
@@ -95,7 +88,6 @@
 //    [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
 //    [self j_spring_security_check:@"12345678" password:@"1234567"];
     [self performSegueWithIdentifier:@"login" sender:nil];
-    
 }
 
 -(void)regme{

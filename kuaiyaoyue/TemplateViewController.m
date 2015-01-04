@@ -177,10 +177,6 @@
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self prefersStatusBarHidden];
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }
     //showList加载数据完成后调用
     [TalkingData trackPageBegin:@"模板选择页"];
     
@@ -190,17 +186,13 @@
 //        [loading stopAnimating];
     }
 }
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
-}
--(BOOL)prefersStatusBarHidden{
-    return NO;
-}
+
 -(void)viewWillDisappear:(BOOL)animated{
     [TalkingData trackPageEnd:@"模板选择页"];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [self.navigationController.navigationBar setHidden:YES];
 }
 

@@ -19,15 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    label.text = @"预览";
+    label.text = @"浏览";
     [label sizeToFit];
-    label.textColor = [[UIColor alloc] initWithRed:1 green:1 blue:1 alpha:1.0];
+    label.textColor = color;
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
     [self.navigationItem setTitleView:label];
     
-    UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     [self.navigationController.navigationBar setTintColor:color];
     _webview.scalesPageToFit = YES;
     _webview.delegate = self;
@@ -38,12 +38,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleDefault;
-}
--(BOOL)prefersStatusBarHidden{
-    return NO;
-}
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
@@ -54,6 +49,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [self.navigationController.navigationBar setHidden:NO];
     [TalkingData trackPageBegin:@"生成后预览"];
     [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];

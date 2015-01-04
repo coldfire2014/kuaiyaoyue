@@ -36,7 +36,7 @@
     int run;
     UITableViewCellEditingStyle selectEditingStyle;
     BOOL is_chose;
-    
+    NSString *detailTitle;
     NSString *url;
     NSString *msg;
     NSString *title;
@@ -335,24 +335,16 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self prefersStatusBarHidden];
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }
     [TalkingData trackPageBegin:@"首页"];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [TalkingData trackPageEnd:@"首页"];
 }
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
--(BOOL)prefersStatusBarHidden{
-    return NO;
-}
+
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [self GetRecord];
 }
 
@@ -402,7 +394,7 @@
         view.endtime = endtime;
         view.delegate = self;
         view.index = [index_path row];
-        
+        view.title = detailTitle;
     }else if ([segue.identifier compare:@"showurl"] == NSOrderedSame){
         ShowWebViewController *view = (ShowWebViewController*)segue.destinationViewController;
         view.weburl = weburl;
@@ -481,6 +473,14 @@
     datatime = [info.neftimestamp longLongValue]/1000;
     maxnum = info.neftotal;
     
+    if (info.neftype == 0) {
+        detailTitle = [[NSString alloc] initWithFormat:@"%@",info.neftitle];
+    } else if(info.neftype == 1){
+        detailTitle = [[NSString alloc] initWithFormat:@"%@&%@ 婚礼",info.nefgroom,info.nefbride];
+    }else{
+        detailTitle = [[NSString alloc] initWithFormat:@"%@",info.nefpartyname];
+    }
+//    detailTitle = info.nef
     int num = [info.nefnumber intValue];
     if (num > 0) {
         [self cleanNumber];

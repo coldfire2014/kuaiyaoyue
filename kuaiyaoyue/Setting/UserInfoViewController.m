@@ -43,6 +43,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     _xm_label.text = [UDObject getXM];
     _xlfs_label.text = [UDObject getLXFS];
 }
