@@ -2838,7 +2838,8 @@
         <!--Page View Controller-->
         <scene sceneID="59c-pD-L0a">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" extendedLayoutIncludesOpaqueBars="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qHT-nQ-aXb" customClass="PageViewController" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qHT-nQ-aXb" customClass="PageViewController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="ylI-Uf-NFX"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
@@ -3304,8 +3305,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="I0j-Cp-NYv"/>
         <segue reference="ztp-xN-fnN"/>
-        <segue reference="22X-oD-zs7"/>
-        <segue reference="Tpj-6l-Acb"/>
-        <segue reference="fpr-vR-MAe"/>
+        <segue reference="fps-RF-Hk5"/>
+        <segue reference="bym-b5-cxi"/>
+        <segue reference="luI-zA-BtH"/>
     </inferredMetricsTieBreakers>
 </document>
