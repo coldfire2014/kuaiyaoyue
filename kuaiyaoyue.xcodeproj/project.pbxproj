@@ -194,6 +194,7 @@
 		E577FC2F1A356E66009ED66D /* perviewImg.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC291A356E66009ED66D /* perviewImg.m */; };
 		E577FC301A356E66009ED66D /* picViewAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC2B1A356E66009ED66D /* picViewAnimate.m */; };
 		E577FC331A356EFB009ED66D /* imgSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC321A356EFB009ED66D /* imgSegue.m */; };
+		E57EF5BC1A593F41003E5794 /* UINavigationController+StatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = E57EF5BB1A593F41003E5794 /* UINavigationController+StatusBarStyle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -527,6 +528,8 @@
 		E577FC2B1A356E66009ED66D /* picViewAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = picViewAnimate.m; path = pic/picViewAnimate.m; sourceTree = "<group>"; };
 		E577FC311A356EFB009ED66D /* imgSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgSegue.h; path = pic/imgSegue.h; sourceTree = "<group>"; };
 		E577FC321A356EFB009ED66D /* imgSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = imgSegue.m; path = pic/imgSegue.m; sourceTree = "<group>"; };
+		E57EF5BA1A593F41003E5794 /* UINavigationController+StatusBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+StatusBarStyle.h"; sourceTree = "<group>"; };
+		E57EF5BB1A593F41003E5794 /* UINavigationController+StatusBarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+StatusBarStyle.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -607,6 +610,8 @@
 				844825841A3186820018240E /* FourViewController.m */,
 				E565ECBE1A52C90100679BAE /* SiViewController.h */,
 				E565ECBF1A52C90100679BAE /* SiViewController.m */,
+				E57EF5BA1A593F41003E5794 /* UINavigationController+StatusBarStyle.h */,
+				E57EF5BB1A593F41003E5794 /* UINavigationController+StatusBarStyle.m */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -1442,6 +1447,7 @@
 				E55F59F71A36A26300B0D587 /* MainNavigationControllerDelegate.m in Sources */,
 				84E8425F1A2EDF6B00A401A0 /* main.m in Sources */,
 				84E842C71A2EFDCB00A401A0 /* UIAlertView+AFNetworking.m in Sources */,
+				E57EF5BC1A593F41003E5794 /* UINavigationController+StatusBarStyle.m in Sources */,
 				E55F5A001A36A64800B0D587 /* createNewAnimate.m in Sources */,
 				E55F59F11A368AC800B0D587 /* CreateBtn.m in Sources */,
 				84E842CC1A2EFDCB00A401A0 /* UIWebView+AFNetworking.m in Sources */,
