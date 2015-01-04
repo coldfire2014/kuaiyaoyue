@@ -15,6 +15,7 @@
 
 //#define HTTPURL @"http://appkyy.kyy121.com/"
 #define HTTPURL @"http://test.kyy121.com/"
+//#define HTTPURL @"http://192.168.1.183/"
 #define version @"4"
 
 #endif
