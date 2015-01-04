@@ -769,15 +769,14 @@ closeTimestamp:(NSString *)closeTimestamp
  */
 
 +(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, NSString *URL))callback{
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            type,@"type",@"ios",@"equipment",version,@"version",nil];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",nil];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefEdition/edition.aspx"];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *array = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
-        callback(YES,[array objectForKey:@"version"]);
+        callback(YES,[array objectForKey:@"result"]);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSLog(@"error-%@",error);

@@ -81,4 +81,9 @@
             [self.delegate PVDelegate:self didTapAtIndex:3];}
     }
 }
+- (IBAction)cb_onclick:(id)sender {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(PVDelegate:didTapAtIndex:)]){
+        [self.delegate PVDelegate:self didTapAtIndex:4];}
+}
 @end

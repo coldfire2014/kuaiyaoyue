@@ -111,7 +111,7 @@
             break;
         case 2:
             title = [NSString stringWithFormat:@"%@",user.nefpartyname];
-            msg = [NSString stringWithFormat:@"%@ %@ %@",@"",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            msg = [NSString stringWithFormat:@"%@ %@ %@",user.nefgroom,[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;

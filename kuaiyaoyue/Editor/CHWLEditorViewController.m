@@ -62,6 +62,7 @@
     NSString *wxts_name;
     
     BOOL is_bcfs;
+    BOOL is_bottom;
 }
 
 @end
@@ -71,6 +72,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    is_bottom = YES;
     self.title = @"返回";
     audioname = @"";
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
@@ -622,13 +624,37 @@
         
         lowPassResults = 0;
         
+    }else if (type == 4){
+        //关
+        if (is_bottom) {
+            [playview.bottom_view setHidden:NO];
+            [UIView animateWithDuration:0.3 animations:^{
+                [playview.bottom_view setAlpha:1.0];
+                [playview.cb_button setImage:[UIImage imageNamed:@"ic_32_close"] forState:UIControlStateNormal];
+            } completion:^(BOOL finished) {
+                
+            }];
+            
+        }
+        //开
+        else{
+            [UIView animateWithDuration:0.3 animations:^{
+                [playview.bottom_view setAlpha:0.0];
+                [playview.cb_button setImage:[UIImage imageNamed:@"ic_32_open"] forState:UIControlStateNormal];
+            } completion:^(BOOL finished) {
+                [playview.bottom_view setHidden:YES];
+            }];
+            
+            
+        }
+        is_bottom = !is_bottom;
     }
 }
 
 - (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
     if (timebh != nil) {
         if (time_type) {
-            if (timebh > bmendtime) {
+            if ([timebh longLongValue] > [bmendtime longLongValue]) {
                 hltime = timebh;
                 playview.time_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
             }else{
@@ -693,14 +719,31 @@
     return YES;
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    NSLog(@"%d",textView.text.length);
-    if(textView == playview.show_summary){
-//        if (textView.text.length > 70) {
-//            textView.text = [textView.text substringToIndex:70];
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+//    NSLog(@"%d",textView.text.length);
+//    if(textView == playview.show_summary){
+////        if (textView.text.length > 70) {
+////            textView.text = [textView.text substringToIndex:70];
+////        }
+////        NSLog(@"%d",textView.text.length);
+//    playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
+//        int num = 70 - textView.text.length;
+//        if (num > 0) {
+//            [playview.text_label_num setTextColor:[UIColor lightGrayColor]];
+//        }else{
+//            [playview.text_label_num setTextColor:[UIColor redColor]];
 //        }
-//        NSLog(@"%d",textView.text.length);
-    playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
+//    }
+//    return YES;
+//}
+
+- (void)textViewDidChange:(UITextView *)textView{
+    if(textView == playview.show_summary){
+        //        if (textView.text.length > 70) {
+        //            textView.text = [textView.text substringToIndex:70];
+        //        }
+        //        NSLog(@"%d",textView.text.length);
+        playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
         int num = 70 - textView.text.length;
         if (num > 0) {
             [playview.text_label_num setTextColor:[UIColor lightGrayColor]];
@@ -708,7 +751,6 @@
             [playview.text_label_num setTextColor:[UIColor redColor]];
         }
     }
-    return YES;
 }
 
 -(void)AudioPlay{

@@ -91,7 +91,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     // 处理推送消息
-    NSLog(@"userinfo:%@",userInfo);
+//    NSLog(@"userinfo:%@",userInfo);
     NSLog(@"收到推送消息:%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
     //注册(第一步)
     NSNotification *ntfc  =[NSNotification notificationWithName:@"message" object:nil];
@@ -101,12 +101,10 @@
     if (application.applicationState == UIApplicationStateActive){
     }else{
     }
-    
-    
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"Registfail%@",error);
+//    NSLog(@"Registfail%@",error);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -130,6 +128,7 @@
 -(void)QQLogin:(NSNotification*)noc{
     [_tencentOAuth authorize:[NSArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo", @"add_t", nil] inSafari:NO];
 }
+
 -(void)QQshare:(NSNotification*)noc{
     NSDictionary* dic = (NSDictionary*)noc.object;
     NSString *utf8String = [dic valueForKey:@"url"];
@@ -198,7 +197,7 @@
     }
 }
 - (void)responseDidReceived:(APIResponse*)response forMessage:(NSString *)message{
-    NSLog(@"response=%@,message=%@",response,message);
+//    NSLog(@"response=%@,message=%@",response,message);
 }
 -(void)tencentDidNotLogin:(BOOL)cancelled
 {
@@ -228,7 +227,7 @@
     
     [HttpManage edition:@"ios" cb:^(BOOL isOK, NSString *URL) {
         if (isOK) {
-            if (![URL isEqualToString:version]) {
+            if (![URL isEqualToString:@"failure"]) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"版本需更新" message:@"目前版本不是最新版本，请点击更新" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"版本更新", nil];
                 [alert show];
             }
@@ -259,20 +258,22 @@
 -(void)getmaxtemplate:(BOOL)state{
     is_add = state;
     NSArray *fetchedObjects = [[DataBaseManage getDataBaseManage] QueryTemplate];
-    NSLog(@"%lu",(unsigned long)[fetchedObjects count]);
+//    NSLog(@"%lu",(unsigned long)[fetchedObjects count]);
     if ([fetchedObjects count] != 0) {
         is_xz = NO;
         Template *template = [fetchedObjects objectAtIndex:0];
         NSString *timestamp = template.neftimestamp;
         [self maxtemplate :timestamp];
         
-//                NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-//                NSString *uptime = [userInfo objectForKey:@"uptime"];
-//                if (uptime.length > 0) {
-//                    timestamp = uptime;
-//                }
-//                [HttpManage templateRenewal:timestamp cb:^(BOOL isOK, NSArray *array) {
-//                    if (isOK) {
+                NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+                NSString *uptime = [userInfo objectForKey:@"uptime"];
+                if (uptime.length > 0) {
+                    timestamp = uptime;
+                }
+        
+                [HttpManage templateRenewal:timestamp cb:^(BOOL isOK, NSArray *array) {
+                    if (isOK) {
+                        NSLog(@"啦啦啦啦-%@",array);
 //                        for (int i = 0; i < [array count]; i++) {
 //                            NSDictionary *dic = [array objectAtIndex:i];
 //                            BOOL is = [[DataBaseManage getDataBaseManage] UpdataInfo:dic];
@@ -283,8 +284,9 @@
 //                                [userInfo setObject:uptime forKey:@"uptime"];
 //                                [userInfo synchronize];
 //                                NSLog(@"哈哈哈-%@",uptime);
-//                            }}}
-//                }];
+//                            }}
+                    }
+                }];
         
     }else{
         is_xz = YES;
@@ -294,7 +296,7 @@
 
 -(void)maxtemplate:(NSString *)timestamp{
     [HttpManage template:timestamp size:@"-1" cb:^(BOOL isOK, NSMutableArray *array) {
-        NSLog(@"%@",array);
+//        NSLog(@"%@",array);
         if (isOK) {
             for (int i = 0; i < [array count]; i++) {
                 NSDictionary *resultDic = [array objectAtIndex:i];
@@ -380,7 +382,7 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     //    return  [WXApi handleOpenURL:url delegate:self];
-    NSLog(@"%@",url);
+//    NSLog(@"%@",url);
     return [WXApi handleOpenURL:url delegate:self] || [TencentOAuth HandleOpenURL:url];
 }
 
@@ -398,7 +400,7 @@
 //}
 -(void) onReq:(BaseReq*)req
 {
-    NSLog(@"req-%@",req);
+//    NSLog(@"req-%@",req);
 }
 
 //回调
@@ -434,7 +436,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (data) {
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                NSLog(@"%@",dic);
+//                NSLog(@"%@",dic);
                 [self getUserInfo:[dic objectForKey:@"access_token"] :[dic objectForKey:@"openid"]];
             }
         });

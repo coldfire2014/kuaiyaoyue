@@ -137,8 +137,7 @@
 -(void)edition{
     [HttpManage edition:@"ios" cb:^(BOOL isOK, NSString *URL) {
         if (isOK) {
-            NSLog(@"%@",URL);
-            if (![URL isEqualToString:version]) {
+            if (![URL isEqualToString:@"failure"]) {
                 [_xhd_view setHidden:NO];
             }
         }

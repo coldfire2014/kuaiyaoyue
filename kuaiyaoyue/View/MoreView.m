@@ -55,10 +55,18 @@
 - (IBAction)address_next:(id)sender {
     
 }
+
 - (IBAction)xlr_next:(id)sender {
     
 }
+
 - (IBAction)xlfs_next:(id)sender {
     
 }
+
+- (IBAction)cb_onclick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(MVDelegate:didTapAtIndex:)]){
+        [self.delegate MVDelegate:self didTapAtIndex:4];}
+}
+
 @end
