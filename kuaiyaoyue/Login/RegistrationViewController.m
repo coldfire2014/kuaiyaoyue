@@ -49,9 +49,20 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
+}
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
+}
+-(BOOL)prefersStatusBarHidden{
+    return NO;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -139,7 +150,7 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
             if (array != nil) {
-                NSString *message = (NSString *)array;
+                NSString *message = (NSString *)[array objectAtIndex:0];
                 [[StatusBar sharedStatusBar] talkMsg:message inTime:0.51];
             }else{
                 [[StatusBar sharedStatusBar] talkMsg:@"注册失败" inTime:0.51];

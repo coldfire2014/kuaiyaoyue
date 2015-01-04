@@ -44,8 +44,6 @@
           UIRemoteNotificationTypeSound)];
     }
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     [WXApi registerApp:@"wx06ea6c3bc82c99ac" withDescription:@"sdyydome"];

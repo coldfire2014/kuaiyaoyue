@@ -243,17 +243,27 @@
     [self SendUp];
     [TalkingData trackEvent:@"预览” label:@”商务"];
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        [self prefersStatusBarHidden];
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     is_yl = YES;
     [self.navigationController.navigationBar setHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [TalkingData trackPageBegin:@"商务编辑"];
 //    [_scrollview setContentSize:CGSizeMake(_scrollview.frame.size.width, -1000)];
 }
-
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
+}
+-(BOOL)prefersStatusBarHidden{
+    return NO;
+}
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [TalkingData trackPageEnd:@"商务编辑"];
