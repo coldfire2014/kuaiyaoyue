@@ -13,7 +13,7 @@
 #import "AppDelegate.h"
 #import "WXApi.h"
 #import "PCHeader.h"
-
+#import "TalkingData.h"
 @interface SettingViewController ()
 
 @end
@@ -73,30 +73,32 @@
 
 - (IBAction)checkupdata_onclick:(id)sender {
     //意见反馈
+    [TalkingData trackEvent:@"查看攻略"];
     [self performSegueWithIdentifier:@"YJFK" sender:nil];
 
 }
 
 - (IBAction)ghp_onclick:(id)sender {
-    
+    [TalkingData trackEvent:@"点击更新"];
     if (![_xhd_view isHidden]) {
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
     }else{
         [[StatusBar sharedStatusBar] talkMsg:@"目前为最新版本" inTime:0.51];
     }
-    
 }
 
 - (IBAction)gl_onclick:(id)sender {
+    [TalkingData trackEvent:@"评论"];
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
 }
 
 - (IBAction)gw_onclick:(id)sender {
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.kyy121.com/"]];
-    
+    [TalkingData trackEvent:@"官网"];
 }
 
 - (IBAction)wb_onclick:(id)sender {
+    [TalkingData trackEvent:@"关注微博"];
     weibo = YES;
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = @"快邀约";
@@ -106,6 +108,7 @@
 }
 
 - (IBAction)gzh_onclick:(id)sender {
+    [TalkingData trackEvent:@"关注公众号"];
     weibo = NO;
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = @"快邀约";
@@ -146,6 +149,7 @@
 }
 
 -(void)exit{
+    [TalkingData trackEvent:@"退出登录"];
     [HttpManage logout:[UDObject gettoken] cb:^(BOOL isOK, NSDictionary *array) {
         if (isOK) {
             [UDObject setHLContent:@"" xn_name:@"" hltime:@"" bmendtime:@"" address_name:@"" music:@"" musicname:@"" imgarr:@""];
@@ -163,6 +167,7 @@
 }
 
 - (IBAction)userinfo_onclick:(id)sender {
+    [TalkingData trackEvent:@"个人信息修改"];
     [self performSegueWithIdentifier:@"userinfo" sender:nil];
 }
 @end
