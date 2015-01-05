@@ -184,20 +184,21 @@
 
 -(void)getBottomRecord{
     if ([data count] > 29) {
-        Userdata *user = [data objectAtIndex:[data count]];
+        Userdata *user = [data objectAtIndex:[data count] - 1];
         NSString* timestamp = user.nefdate;
         [HttpManage multiHistory:[UDObject gettoken] timestamp:timestamp size:@"30" cb:^(BOOL isOK, NSDictionary *array) {
             NSLog(@"%@",array);
             if (isOK) {
                 NSArray *customList = [array objectForKey:@"customList"];
                 for (NSDictionary *dic in customList) {
-                    Userdata *userdata = [[Userdata alloc] init];
+                    Userdata *userdata = [data objectAtIndex:0];
                     userdata.neftitle = [dic objectForKey:@"title"];
                     userdata.neflogo = [dic objectForKey:@"logo"];
                     userdata.nefmusic = [dic objectForKey:@"music"];
                     userdata.nefcontent = [dic objectForKey:@"content"];
-                    userdata.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
+                    userdata.neftimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
                     userdata.nefdate = [NSString stringWithFormat:@"%@",[dic objectForKey:@"date"]];
+                    userdata.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
                     userdata.neftemplateurl = [dic objectForKey:@"templateUrl"];
                     userdata.nefurl = [dic objectForKey:@"url"];
                     userdata.neftypeId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"typeId"]];
@@ -210,7 +211,7 @@
                 }
                 NSArray *marryList = [array objectForKey:@"marryList"];
                 for (NSDictionary *dic in marryList) {
-                    Userdata *userdata = [[Userdata alloc] init];
+                    Userdata *userdata = [data objectAtIndex:0];
                     userdata.nefid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"unquieId"]];
                     userdata.nefbride = [dic objectForKey:@"bride"];
                     userdata.nefgroom = [dic objectForKey:@"groom"];
@@ -232,14 +233,15 @@
                     userdata.nefthumb = [NSString stringWithFormat:@"%@",[dic objectForKey:@"thumb"]];
                     userdata.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
                     userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
+                    userdata.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
                     userdata.neftype = 1;
                     [data addObject:userdata];
                 }
                 NSArray *partyList = [array objectForKey:@"partyList"];
                 for (NSDictionary *dic in partyList) {
-                    Userdata *userdata = [[Userdata alloc] init];
+                    Userdata *userdata = [data objectAtIndex:0];
+                    
                     userdata.nefid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"unquieId"]];
-                    userdata.nefgroom = [dic objectForKey:@"contact"];
                     userdata.nefinviter = [dic objectForKey:@"inviter"];
                     userdata.nefaddress = [dic objectForKey:@"address"];
                     NSArray *arr = [dic objectForKey:@"images"];
@@ -249,6 +251,7 @@
                         userdata.nefimages = @"";
                     }
                     userdata.neftape = [dic objectForKey:@"tape"];
+                    userdata.nefgroom = [dic objectForKey:@"contact"];
                     userdata.neftimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
                     userdata.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
                     userdata.nefdescription = [dic objectForKey:@"description"];

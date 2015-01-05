@@ -207,7 +207,6 @@ static NSManagedObjectContext *context = nil;
         userdata.neftimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
         userdata.nefdate = [NSString stringWithFormat:@"%@",[dic objectForKey:@"date"]];
         userdata.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
-        userdata.nefdate = [NSString stringWithFormat:@"%@",[dic objectForKey:@"date"]];
         userdata.neftemplateurl = [dic objectForKey:@"templateUrl"];
         userdata.nefurl = [dic objectForKey:@"url"];
         userdata.neftypeId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"typeId"]];
@@ -288,6 +287,7 @@ static NSManagedObjectContext *context = nil;
     NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
     [request setSortDescriptors: sortDescriptors];
     NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefAccount = %@)",[UDObject getAccount]];
+    
     [request setPredicate:predict];
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
