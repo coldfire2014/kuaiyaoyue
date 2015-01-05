@@ -180,7 +180,7 @@
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
     NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDateComponents * component=[calendar components:unitFlags fromDate:date];
-    int weekday= [component weekday];
+    NSInteger weekday= [component weekday];
     
     NSString * daystr=nil;
     switch (weekday) {
@@ -209,7 +209,7 @@
             break;
     }
     
-    NSString * string=[NSString stringWithFormat:@"%04d年%02d月%02d日 星期%@ %02d:%02d",[component year],[component month],[component day],daystr,[component hour],[component minute]];
+    NSString * string=[NSString stringWithFormat:@"%04ld年%02ld月%02ld日 星期%@ %02ld:%02ld",(long)[component year],(long)[component month],(long)[component day],daystr,(long)[component hour],(long)[component minute]];
     return string;
 }
 + (NSString*)getXinqi:(long long)time{

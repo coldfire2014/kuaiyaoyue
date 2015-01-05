@@ -312,7 +312,7 @@
         }
     }
     if([data count] > 0){
-        NSString *toptitle = [NSString stringWithFormat:@"共%d个邀约,%d个正在进行……",[data count],runtime];
+        NSString *toptitle = [NSString stringWithFormat:@"共%lu个邀约,%d个正在进行……",(unsigned long)[data count],runtime];
         _show_toptitle.text = toptitle;
         emptyImg.alpha = 0;
     }else{
@@ -689,7 +689,7 @@
     }];
 }
 
-- (void)ShareDelegate:(int) index{
+- (void)ShareDelegate:(NSInteger) index{
     Userdata *user = [data objectAtIndex:index];
     switch (user.neftype) {
         case 0:

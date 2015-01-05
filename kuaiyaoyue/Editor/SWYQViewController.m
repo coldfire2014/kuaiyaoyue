@@ -173,8 +173,9 @@
         moreview.xlr_edit.text = [UDObject getswxlr_name];
         moreview.xlfs_edit.text = [UDObject getswxlfs_name];
         moreview.show_summary.text = [UDObject getswhd_name];
-        moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-moreview.show_summary.text.length];
-        int num = 70 - moreview.show_summary.text.length;
+        unsigned long num = 70 - moreview.show_summary.text.length;
+        moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%lu字",num];
+        
         if (num > 0) {
             [moreview.text_label_num setTextColor:[UIColor lightGrayColor]];
         }else{
@@ -530,8 +531,8 @@
 //         UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
 //         // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
 //         if (!position) {
-//             moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
-//             int num = 70 - textView.text.length;
+//    unsigned long num = 70 - moreview.show_summary.text.length;
+//    moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%lu字",num];
 //             if (num > 0) {
 //                 [moreview.text_label_num setTextColor:[UIColor lightGrayColor]];
 //             }else{
@@ -558,8 +559,8 @@
 
 - (void)textViewDidChange:(UITextView *)textView{
     if(textView == moreview.show_summary){
-        moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
-        int num = 70 - textView.text.length;
+        unsigned long num = 70 - textView.text.length;
+        moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%lu字",num];
         if (num > 0) {
             [moreview.text_label_num setTextColor:[UIColor lightGrayColor]];
         }else{

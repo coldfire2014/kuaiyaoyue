@@ -28,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIView *bg_view;
 - (IBAction)bg_onclick:(id)sender;
 
-@property int index;
+@property NSInteger index;
 
 @property (nonatomic, weak) id<DVCDelegate> delegate;
 
@@ -36,6 +36,6 @@
 @protocol DVCDelegate <NSObject>
 
 - (void)DVCDelegate:(DetailViewController *)cell didTapAtIndex:(NSString *) nefid;
-- (void)ShareDelegate:(int) index;
+- (void)ShareDelegate:(NSInteger) index;
 
 @end

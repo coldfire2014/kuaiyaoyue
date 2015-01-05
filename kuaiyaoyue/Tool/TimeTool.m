@@ -60,7 +60,7 @@
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
     NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDateComponents * component=[calendar components:unitFlags fromDate:date];
-    int weekday= [component weekday];
+    NSInteger weekday= [component weekday];
     
     NSString * daystr=nil;
     switch (weekday) {
@@ -90,7 +90,7 @@
     }
     
 //    NSString * string=[NSString stringWithFormat:@"%04d/%02d/%02d %02d:%02ld:%02ld",[component year],[component month],[component day],[component hour],(long)[component minute],(long)[component second]];
-    NSString * string=[NSString stringWithFormat:@"%04d-%02d-%02d %02d:%02ld",[component year],[component month],[component day],[component hour],(long)[component minute]];
+    NSString * string=[NSString stringWithFormat:@"%04ld-%02ld-%02ld %02ld:%02ld",(long)[component year],(long)[component month],(long)[component day],(long)[component hour],(long)[component minute]];
     return string;
 }
 

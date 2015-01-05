@@ -163,7 +163,8 @@
         custom.endtime_label.text = [TimeTool getFullTimeStr:[bmendtime longLongValue]/1000];
         custom.title_edit.text = [UDObject getzdytitle];
         custom.content_edit.text = [UDObject getzdydd];
-        custom.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-custom.content_edit.text.length];
+        unsigned long tc = 70-custom.content_edit.text.length;
+        custom.text_label_num.text = [NSString stringWithFormat:@"剩余%lu字",tc];
         if ([UDObject getzdymusic].length > 0) {
             mp3name = [UDObject getzdymusicname];
             custom.music_label.text = mp3name;
@@ -655,14 +656,14 @@
 //}
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    NSLog(@"%d",textView.text.length);
+    NSLog(@"%lu",(unsigned long)textView.text.length);
     if(textView == custom.content_edit){
 //        if (textView.text.length > 70) {
 //            textView.text = [textView.text substringToIndex:70];
 //        }
 //        NSLog(@"%d",textView.text.length);
-        custom.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
-        int num = 70 - textView.text.length;
+        unsigned long num = 70-textView.text.length;
+        custom.text_label_num.text = [NSString stringWithFormat:@"剩余%lu字",num];
         if (num > 0) {
             [custom.text_label_num setTextColor:[UIColor lightGrayColor]];
         }else{

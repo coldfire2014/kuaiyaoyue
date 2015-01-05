@@ -352,8 +352,8 @@
     playview.xlr_edit.delegate = self;
     playview.xlfs_edit.delegate = self;
     playview.show_summary.delegate = self;
-    
-    playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-playview.show_summary.text.length];
+    unsigned long tc = 70-playview.show_summary.text.length;
+    playview.text_label_num.text = [NSString stringWithFormat:@"剩余%lu字",tc];
     
     gridview = playview.girdview;
     gridview.delegate = self;
@@ -382,8 +382,8 @@
         playview.xlr_edit.text = [UDObject getwllxr_name];
         playview.xlfs_edit.text = [UDObject getwllxfs_name];
         playview.show_summary.text = [UDObject getwlts_name];
-        playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-playview.show_summary.text.length];
-        int num = 70 - playview.show_summary.text.length;
+        unsigned long num = 70-playview.show_summary.text.length;
+        playview.text_label_num.text = [NSString stringWithFormat:@"剩余%lu字",num];
         if (num > 0) {
             [playview.text_label_num setTextColor:[UIColor lightGrayColor]];
         }else{
@@ -737,9 +737,9 @@
 ////        if (textView.text.length > 70) {
 ////            textView.text = [textView.text substringToIndex:70];
 ////        }
-////        NSLog(@"%d",textView.text.length);
-//    playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
-//        int num = 70 - textView.text.length;
+//unsigned long num = 70-playview.show_summary.text.length;
+//playview.text_label_num.text = [NSString stringWithFormat:@"剩余%lu字",num];
+
 //        if (num > 0) {
 //            [playview.text_label_num setTextColor:[UIColor lightGrayColor]];
 //        }else{
@@ -755,8 +755,8 @@
         //            textView.text = [textView.text substringToIndex:70];
         //        }
         //        NSLog(@"%d",textView.text.length);
-        playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-textView.text.length];
-        int num = 70 - textView.text.length;
+        unsigned long num = 70-textView.text.length;
+        playview.text_label_num.text = [NSString stringWithFormat:@"剩余%lu字",num];
         if (num > 0) {
             [playview.text_label_num setTextColor:[UIColor lightGrayColor]];
         }else{
