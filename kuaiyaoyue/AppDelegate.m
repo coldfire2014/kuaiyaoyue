@@ -263,36 +263,34 @@
         NSString *timestamp = template.neftimestamp;
         [self maxtemplate :timestamp];
         
-                NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-                NSString *uptime = [userInfo objectForKey:@"uptime"];
-                if (uptime.length > 0) {
-                    
-                }else{
-                   uptime = @"-1";
-                }
-        
-                [HttpManage templateRenewal:uptime cb:^(BOOL isOK, NSArray *array) {
-                    if (isOK) {
-                        NSLog(@"啦啦啦啦-%@",array);
-                        for (int i = 0; i < [array count]; i++) {
-                            NSDictionary *dic = [array objectAtIndex:i];
-                            NSString *renewalType = [dic objectForKey:@"renewalType"];
-                            if ([renewalType isEqualToString:@"coordinate"]) {
-                                [[DataBaseManage getDataBaseManage] UpdataInfo:dic];
-                            }else{
-                                
-                            }
-//                            BOOL is = [[DataBaseManage getDataBaseManage] UpdataInfo:dic];
-//                            if (i == ([array count]-1) && is) {
+//                NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+//                NSString *uptime = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"uptime"]];
+//                if (uptime.length > 0) {
+//                    
+//                }else{
+//                   uptime = timestamp;
+//                }
+//        
+//                [HttpManage templateRenewal:uptime cb:^(BOOL isOK, NSArray *array) {
+//                    if (isOK) {
+//                        NSLog(@"啦啦啦啦-%@",array);
+//                        for (int i = 0; i < [array count]; i++) {
+//                            NSDictionary *dic = [array objectAtIndex:i];
+//                            NSString *renewalType = [dic objectForKey:@"renewalType"];
+//                            if ([renewalType isEqualToString:@"coordinate"]) {
+//                                [[DataBaseManage getDataBaseManage] UpdataInfo:dic];
+//                            }else{
+//                                
+//                            }
+//                            if (i == ([array count]-1)) {
 //                                NSDictionary *dic1 = [array objectAtIndex:0];
 //                                NSString *uptime = [dic1 objectForKey:@"renewal"];
 //                                [userInfo setObject:uptime forKey:@"uptime"];
 //                                [userInfo synchronize];
-//                                NSLog(@"哈哈哈-%@",uptime);
 //                            }
-                        }
-                    }
-                }];
+//                        }
+//                    }
+//                }];
         
     }else{
         is_xz = YES;
