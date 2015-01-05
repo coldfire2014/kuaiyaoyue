@@ -511,7 +511,7 @@
 		E57333AC1A4B9848006425C3 /* ChangeTempView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTempView.m; sourceTree = "<group>"; };
 		E577FC081A356C80009ED66D /* AssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
 		E577FC091A356C80009ED66D /* AssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetHelper.m; sourceTree = "<group>"; };
-		E577FC0A1A356C80009ED66D /* myImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myImageView.h; sourceTree = "<group>"; };
+		E577FC0A1A356C80009ED66D /* myImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = myImageView.h; path = ../Lib/myImageView.h; sourceTree = "<group>"; };
 		E577FC0B1A356C80009ED66D /* myImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myImageView.m; sourceTree = "<group>"; };
 		E577FC0E1A356D57009ED66D /* StatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusBar.h; path = bar/StatusBar.h; sourceTree = "<group>"; };
 		E577FC0F1A356D57009ED66D /* StatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusBar.m; path = bar/StatusBar.m; sourceTree = "<group>"; };
@@ -607,6 +607,7 @@
 				844825841A3186820018240E /* FourViewController.m */,
 				E565ECBE1A52C90100679BAE /* SiViewController.h */,
 				E565ECBF1A52C90100679BAE /* SiViewController.m */,
+				E577FC0A1A356C80009ED66D /* myImageView.h */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -928,7 +929,6 @@
 				84FE0B8F1A4289B0005A9599 /* ShareLinb */,
 				E577FC081A356C80009ED66D /* AssetHelper.h */,
 				E577FC091A356C80009ED66D /* AssetHelper.m */,
-				E577FC0A1A356C80009ED66D /* myImageView.h */,
 				E577FC0B1A356C80009ED66D /* myImageView.m */,
 				84B446B31A32B3D000546859 /* MJRefresh */,
 				84B473A91A30572F00A21457 /* SVProgressHUD */,
@@ -1598,7 +1598,7 @@
 		84E842801A2EDF6C00A401A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1618,7 +1618,12 @@
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/ShareLinb",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/TalkingData",
 				);
-				OTHER_LDFLAGS = "-fobjc-arc";
+				OTHER_CFLAGS = (
+					"-Xclang",
+					"-fobjc-runtime-has-weak",
+				);
+				OTHER_CPLUSPLUSFLAGS = "";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9651ac9d-9de1-43b9-8554-c922263f07dd";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1629,7 +1634,7 @@
 		84E842811A2EDF6C00A401A0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xiamen NEF Network Technology Co., Ltd. (PSEU9Z2979)";
@@ -1649,7 +1654,12 @@
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/ShareLinb",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/TalkingData",
 				);
-				OTHER_LDFLAGS = "-fobjc-arc";
+				OTHER_CFLAGS = (
+					"-Xclang",
+					"-fobjc-runtime-has-weak",
+				);
+				OTHER_CPLUSPLUSFLAGS = "";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e889649d-5273-48c0-80bb-3baec87f1f20";
 				TARGETED_DEVICE_FAMILY = "1,2";
