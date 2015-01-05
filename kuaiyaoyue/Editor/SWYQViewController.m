@@ -240,7 +240,7 @@
     //preview
     is_yl = NO;
     [self SendUp];
-    [TalkingData trackEvent:@"预览” label:@”商务"];
+    [TalkingData trackEvent:@"预览" label:@"商务"];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
