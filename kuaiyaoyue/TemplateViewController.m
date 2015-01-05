@@ -232,12 +232,12 @@
     // Dispose of any resources that can be recreated.
 }
 
--(int)numberOfItems{
+-(NSInteger)numberOfItems{
     //列表元素个数哈哈
     return [data count];
 }
 
--(UIView*)cellForItemAtIndex:(int)index{
+-(UIView*)cellForItemAtIndex:(NSInteger)index{
     Template *info = [data objectAtIndex:index];
     NSString *nefmbbg = info.nefmbbg;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
@@ -251,11 +251,11 @@
     return mainCell;
 }
 -(void)edit{
-    int index = [_tempList getIndex];
+    NSInteger index = [_tempList getIndex];
     [self didSelectItemAtIndex:index];
     
 }
--(void)didSelectItemAtIndex:(int)index{
+-(void)didSelectItemAtIndex:(NSInteger)index{
     Template *info = [data objectAtIndex:index];
     unquieId = [NSString stringWithFormat:@"%@",info.nefid];
     nefmbdw = info.nefmbdw;
@@ -287,7 +287,7 @@
             break;
     }
 }
--(void)didShowItemAtIndex:(int)index{
+-(void)didShowItemAtIndex:(NSInteger)index{
     UIView* btnView = [self.view viewWithTag:302];
     UILabel* mbtitle = (UILabel*)[self.view viewWithTag:501];
     UILabel* mbtotle = (UILabel*)[self.view viewWithTag:502];
@@ -315,8 +315,8 @@
         btnView.backgroundColor = nowColor;
         mbtitle.textColor = nowColor;
         mbid.textColor = nowColor;
-        mbtotle.text = [[NSString alloc] initWithFormat:@"/%d",data.count];
-        mbid.text = [[NSString alloc] initWithFormat:@"%d",index+1];
+        mbtotle.text = [[NSString alloc] initWithFormat:@"/%lu",(unsigned long)data.count];
+        mbid.text = [[NSString alloc] initWithFormat:@"%ld",index+1l];
         if ([_type isEqualToString:@"hunli"]) {
             mbtitle.text = [[NSString alloc] initWithFormat:@"%@",info.nefname];
         }else{

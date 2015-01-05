@@ -173,8 +173,8 @@
         moreview.xlr_edit.text = [UDObject getswxlr_name];
         moreview.xlfs_edit.text = [UDObject getswxlfs_name];
         moreview.show_summary.text = [UDObject getswhd_name];
-        unsigned long num = 70 - moreview.show_summary.text.length;
-        moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%lu字",num];
+        long num = 70 - moreview.show_summary.text.length;
+        moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%ld字",num];
         
         if (num > 0) {
             [moreview.text_label_num setTextColor:[UIColor lightGrayColor]];
@@ -559,8 +559,8 @@
 
 - (void)textViewDidChange:(UITextView *)textView{
     if(textView == moreview.show_summary){
-        unsigned long num = 70 - textView.text.length;
-        moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%lu字",num];
+        long num = 70 - textView.text.length;
+        moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%ld字",num];
         if (num > 0) {
             [moreview.text_label_num setTextColor:[UIColor lightGrayColor]];
         }else{

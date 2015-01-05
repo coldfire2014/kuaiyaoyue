@@ -51,7 +51,7 @@
     return bk;
     
 }
--(int)getIndex{
+-(NSInteger)getIndex{
     return currentItemIndex;
 }
 
@@ -107,7 +107,7 @@
                 NSLog(@"Not respondsToSelector:@selector(cellForItemAtIndex:)");
             }
         }
-        for (int i = itemCount - 2; i<itemCount; i++) {
+        for (NSInteger i = itemCount - 2; i<itemCount; i++) {
             if(i<4){
                 continue;
             }
@@ -124,7 +124,7 @@
         }
     }
 }
--(void)loadViewat:(int)i{
+-(void)loadViewat:(NSInteger)i{
     UIView* bk = [self viewWithTag:101];
     if ([_delegate respondsToSelector:@selector(cellForItemAtIndex:)]) {
         UIView *webbg0 = [_delegate cellForItemAtIndex:i];
@@ -220,7 +220,7 @@
     BOOL isIn = YES;
     if(recognizer.direction==UISwipeGestureRecognizerDirectionUp || recognizer.direction==UISwipeGestureRecognizerDirectionRight) {
         if (currentItemIndex <= 0) {
-            currentItemIndex = itemCount - 1;
+            currentItemIndex = itemCount - 1l;
         }else{
             currentItemIndex--;
         }
@@ -267,25 +267,25 @@
     
     [self scrollToItemAtIndex:currentItemIndex animated:YES inOrout:NO];
 }
--(void)scrollToItemAtIndex:(int)index animated:(BOOL)animate inOrout:(BOOL)isIn{
+-(void)scrollToItemAtIndex:(NSInteger)index animated:(BOOL)animate inOrout:(BOOL)isIn{
     UIView* contentView = [self viewWithTag:101];
     currentItemIndex =  index;
-    int rigth = currentItemIndex + 4;
+    NSInteger rigth = currentItemIndex + 4l;
     if (rigth > itemCount) {
         rigth = itemCount;
     }
-    int left = currentItemIndex - 2;
+    NSInteger left = currentItemIndex - 2l;
     if (left < 0) {
         left = 0;
     }
-    for (int i = currentItemIndex;i < rigth;i++)
+    for (NSInteger i = currentItemIndex;i < rigth;i++)
     {
         UIView *view = [contentView viewWithTag:990 + i];
         if (view == nil) {
             [self loadViewat:i];
         }
     }
-    for (int i = left;i < currentItemIndex;i++)
+    for (NSInteger i = left;i < currentItemIndex;i++)
     {
         UIView *view = [contentView viewWithTag:990 + i];
         if (view == nil) {

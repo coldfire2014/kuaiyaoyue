@@ -10,25 +10,25 @@
 
 @protocol ctViewDelegate <NSObject>
 
--(int)numberOfItems;
--(UIView*)cellForItemAtIndex:(int)index;
--(void)didSelectItemAtIndex:(int)index;
--(void)didShowItemAtIndex:(int)index;
+-(NSInteger)numberOfItems;
+-(UIView*)cellForItemAtIndex:(NSInteger)index;
+-(void)didSelectItemAtIndex:(NSInteger)index;
+-(void)didShowItemAtIndex:(NSInteger)index;
 
 @end
 @interface ctView : UIView
 {
-    int itemCount;
-    int currentItemIndex;
-    float numberOfVisibleItems;
+    NSInteger itemCount;
+    NSInteger currentItemIndex;
+    double numberOfVisibleItems;
     
-    float itemHeight;
+    double itemHeight;
     
-    float perspective;
-    float panTotal;
+    double perspective;
+    double panTotal;
     CGPoint previousTranslation;
     CGPoint firstTranslation;
-    float yt;
+    double yt;
 }
 @property (nonatomic, assign) CGSize itemSize;
 @property (nonatomic, assign) CGFloat radius;
@@ -36,7 +36,7 @@
 -(void)reloadViews;
 -(void)reloadOther;
 -(void)showList;
--(int)getIndex;
+-(NSInteger)getIndex;
 -(void)left;
 -(void)right;
 @end
