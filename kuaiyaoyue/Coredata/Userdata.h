@@ -41,4 +41,6 @@
 @property (nonatomic, retain) NSString * nefAccount;
 @property (nonatomic) int16_t neftype;
 
+
+
 @end

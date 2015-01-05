@@ -63,7 +63,7 @@
 		8474A4AF1A4BB28A00C2E489 /* bubble_play_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8474A4AC1A4BB28A00C2E489 /* bubble_play_2@2x.png */; };
 		8474A4B01A4BB28A00C2E489 /* bubble_play_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8474A4AD1A4BB28A00C2E489 /* bubble_play_3@2x.png */; };
 		848BF4791A43254B0002A1B1 /* Userdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 848BF4781A43254B0002A1B1 /* Userdata.m */; };
-		8498EED41A5A765A007819A7 /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = 8498EED31A5A765A007819A7 /* 1.zip */; };
+		8498EED61A5A9328007819A7 /* 2.zip in Resources */ = {isa = PBXBuildFile; fileRef = 8498EED51A5A9328007819A7 /* 2.zip */; };
 		849D667E1A484875004EF00F /* HLEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D667D1A484875004EF00F /* HLEditView.m */; };
 		849D66801A484887004EF00F /* HLEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849D667F1A484887004EF00F /* HLEditView.xib */; };
 		84B208811A5233ED008549B0 /* Music.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B208801A5233ED008549B0 /* Music.m */; };
@@ -303,7 +303,7 @@
 		8474A4AD1A4BB28A00C2E489 /* bubble_play_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_play_3@2x.png"; sourceTree = "<group>"; };
 		848BF4771A43254B0002A1B1 /* Userdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Userdata.h; sourceTree = "<group>"; };
 		848BF4781A43254B0002A1B1 /* Userdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Userdata.m; sourceTree = "<group>"; };
-		8498EED31A5A765A007819A7 /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 1.zip; sourceTree = "<group>"; };
+		8498EED51A5A9328007819A7 /* 2.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 2.zip; sourceTree = "<group>"; };
 		849D667C1A484875004EF00F /* HLEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEditView.h; sourceTree = "<group>"; };
 		849D667D1A484875004EF00F /* HLEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEditView.m; sourceTree = "<group>"; };
 		849D667F1A484887004EF00F /* HLEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLEditView.xib; sourceTree = "<group>"; };
@@ -941,7 +941,7 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
-				8498EED31A5A765A007819A7 /* 1.zip */,
+				8498EED51A5A9328007819A7 /* 2.zip */,
 				E565ECCB1A538EA100679BAE /* img_empty_homeb.png */,
 				8431E9071A4D24AA00E9B0EE /* logo@2x.png */,
 				8474A4AB1A4BB28A00C2E489 /* bubble_play_1@2x.png */,
@@ -1339,7 +1339,7 @@
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,
 				8474A4B01A4BB28A00C2E489 /* bubble_play_3@2x.png in Resources */,
 				E5661A2A1A457CB700E4E2BC /* btn_login_2_pre.png in Resources */,
-				8498EED41A5A765A007819A7 /* 1.zip in Resources */,
+				8498EED61A5A9328007819A7 /* 2.zip in Resources */,
 				8442288C1A4A518300583893 /* PEPhotoCropEditor.bundle in Resources */,
 				E5661A231A45708C00E4E2BC /* logo_login@2x.png in Resources */,
 				E5661A191A45708C00E4E2BC /* bg_login@2x.jpg in Resources */,
@@ -1601,8 +1601,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: xiamen NEF Network Technology Co.Ltd";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: xiamen NEF Network Technology Co.Ltd";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yangbing wu (6Y35J7EFD4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yangbing wu (6Y35J7EFD4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/Tencent",
@@ -1625,7 +1625,7 @@
 				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7cc2b366-7e0a-44d7-abfc-deed0b62d6ef";
+				PROVISIONING_PROFILE = "9b1b3929-17ef-4fee-8991-43875eb59fd5";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1638,7 +1638,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: xiamen NEF Network Technology Co.Ltd";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xiamen NEF Network Technology Co., Ltd. (PSEU9Z2979)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: xiamen NEF Network Technology Co.Ltd";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/Tencent",

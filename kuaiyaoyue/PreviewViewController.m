@@ -171,10 +171,14 @@
         }
         
         NSString *musicname = [UDObject gethlmusic];
-        NSArray *array = [musicname componentsSeparatedByString:@"/"];
-        musicname = [array objectAtIndex:([array count] - 1)];
+        NSString *musicUrl = @"";
+        if (musicname.length > 0) {
+            NSArray *array = [musicname componentsSeparatedByString:@"/"];
+            musicname = [array objectAtIndex:([array count] - 1)];
+            musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+        }
         
-        NSString *musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+        
         NSString *title = [NSString stringWithFormat:@"%@ & %@",[UDObject getxl_name],[UDObject getxn_name]];
         NSString *timestamp = [TimeTool getFullTimeStr:[[UDObject gethltime] longLongValue]/1000];
         
@@ -197,9 +201,13 @@
             arr = [[NSArray alloc] init];
         }
         NSString *musicname = [UDObject getsw_music];
-        NSArray *array = [musicname componentsSeparatedByString:@"/"];
-        musicname = [array objectAtIndex:([array count] - 1)];
-        NSString *musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+        NSString *musicUrl = @"";
+        if (musicname.length > 0) {
+            NSArray *array = [musicname componentsSeparatedByString:@"/"];
+            musicname = [array objectAtIndex:([array count] - 1)];
+            musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+        }
+        
         NSString *timestamp = [TimeTool getFullTimeStr:[[UDObject getswtime] longLongValue]/1000];
         
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -222,12 +230,16 @@
             arr = [[NSArray alloc] init];
         }
         NSString *timestamp = [TimeTool getFullTimeStr:[[UDObject gewltime] longLongValue]/1000];
+        NSString *audio = [UDObject getwlaudio];
+        if ([audio isEqualToString:@"../Audio/"]) {
+            audio = @"";
+        }
         
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                [UDObject getwladdress_name],@"address",
                arr,@"images",
                [UDObject getMbimg],@"backgroundImage",
-               [UDObject getwlaudio],@"tape",
+               audio,@"tape",
                [UDObject getwllxr_name],@"contact",
                [UDObject getwllxfs_name],@"telephone",
                [UDObject getwljh_name],@"title",
@@ -243,10 +255,16 @@
         }
         
         NSString *musicname = [UDObject getzdymusic];
-        NSArray *array = [musicname componentsSeparatedByString:@"/"];
-        musicname = [array objectAtIndex:([array count] - 1)];
+        NSString *musicUrl = @"";
+        if (musicname.length > 0) {
+            NSArray *array = [musicname componentsSeparatedByString:@"/"];
+            musicname = [array objectAtIndex:([array count] - 1)];
+            musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+        }
         NSString *timestamp = [TimeTool getFullTimeStr:[[UDObject getzdytime] longLongValue]/1000];
-        NSString *musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+        
+        
+        
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                musicUrl,@"musicUrl",
                arr,@"images",
