@@ -224,7 +224,7 @@
 }
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
-    [TalkingData trackEvent:@"返回新建"];
+    [TalkingData trackEvent:@"返回新建菜单"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -268,16 +268,16 @@
     switch (type) {
         case 1:
             [self performSegueWithIdentifier:@"hledit" sender:nil];
-            [TalkingData trackEvent:@"编辑模板" label:[[NSString alloc] initWithFormat:@"婚礼编辑-%@",info.nefname]];
+            [TalkingData trackEvent:@"编辑内容" label:[[NSString alloc] initWithFormat:@"婚礼-%@",info.nefname]];
             break;
         case 2:
             [self performSegueWithIdentifier:@"swedit" sender:nil];
-            [TalkingData trackEvent:@"编辑模板" label:[[NSString alloc] initWithFormat:@"商务编辑-%@",info.nefname]];
+            [TalkingData trackEvent:@"编辑内容" label:[[NSString alloc] initWithFormat:@"商务-%@",info.nefname]];
 //             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         case 3:
             [self performSegueWithIdentifier:@"chedit" sender:nil];
-            [TalkingData trackEvent:@"吃喝玩乐模板" label:[[NSString alloc] initWithFormat:@"吃喝玩乐编辑-%@",info.nefname]];
+            [TalkingData trackEvent:@"编辑内容" label:[[NSString alloc] initWithFormat:@"吃喝玩乐-%@",info.nefname]];
 //             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         case 4:

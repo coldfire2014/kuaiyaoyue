@@ -468,6 +468,7 @@
 
 
 -(void)SendUp{
+    
     xl_name = hlev.xl_edit.text;
     xn_name = hlev.xn_edit.text;
     address_name = hlev.address_edit.text;
@@ -561,6 +562,11 @@
     [UIImageJPEGRepresentation(img,C_JPEG_SIZE) writeToFile:imgpath atomically:YES];
     
     if (is_yl) {
+        if(is_bcfs){
+            [TalkingData trackEvent:@"生成并发送"];
+        }else{
+            [TalkingData trackEvent:@"生成"];
+        }
         [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
         [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
             NSLog(@"%@",URL);

@@ -721,6 +721,11 @@
     [UIImageJPEGRepresentation(img,C_JPEG_SIZE) writeToFile:imgpath atomically:YES];
     
     if (is_yl) {
+        if(is_bcfs){
+            [TalkingData trackEvent:@"生成并发送"];
+        }else{
+            [TalkingData trackEvent:@"生成"];
+        }
         [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
         CGSize size = CGSizeMake(120, 120);
         img = [self imageWithImageSimple:img scaledToSize:size];

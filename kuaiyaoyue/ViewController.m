@@ -662,7 +662,7 @@
         
         share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
         [share show];
-        [TalkingData trackEvent:@"发送"];
+        [TalkingData trackEvent:@"按钮发送"];
     }else{
         weburl = user.nefurl;
         [self performSegueWithIdentifier:@"showurl" sender:nil];

@@ -200,24 +200,24 @@
 - (void)didTapOne{
     self.tapID = 401;
     [self performSegueWithIdentifier:@"showTemplate" sender:@"cihe"];
-    [TalkingData trackEvent:@"点击吃喝玩乐"];
+    [TalkingData trackEvent:@"开启吃喝玩乐编辑"];
 }
 - (void)didTapTwo{
     self.tapID = 402;
     [self performSegueWithIdentifier:@"showTemplate" sender:@"sanwu"];
-    [TalkingData trackEvent:@"点击商务"];
+    [TalkingData trackEvent:@"开启商务编辑"];
 }
 - (void)didTapThree{
     self.tapID = 403;
     [self performSegueWithIdentifier:@"showTemplate" sender:@"hunli"];
-    [TalkingData trackEvent:@"点击婚礼"];
+    [TalkingData trackEvent:@"开启婚礼编辑"];
 }
 - (void)didTapFour{
     self.tapID = 404;
 //    [self performSegueWithIdentifier:@"showTemplate" sender:@"zdy"];
     [self performSegueWithIdentifier:@"zdyedit" sender:nil];
 //     [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步其他模块。" inTime:0.51];
-    [TalkingData trackEvent:@"点击自定义"];
+    [TalkingData trackEvent:@"开启自定义编辑"];
 }
 
 #pragma mark - Navigation
