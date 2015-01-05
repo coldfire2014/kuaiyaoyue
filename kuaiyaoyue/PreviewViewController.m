@@ -209,7 +209,7 @@
                musicUrl,@"tape",
                [UDObject getswxlr_name],@"contact",
                [UDObject getswxlfs_name],@"telephone",
-               [UDObject getswhd_name],@"title",
+               [UDObject getjhname],@"title",
                timestamp,@"timestamp",
                nil];
     

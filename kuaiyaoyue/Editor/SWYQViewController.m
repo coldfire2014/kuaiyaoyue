@@ -174,6 +174,12 @@
         moreview.xlfs_edit.text = [UDObject getswxlfs_name];
         moreview.show_summary.text = [UDObject getswhd_name];
         moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-moreview.show_summary.text.length];
+        int num = 70 - moreview.show_summary.text.length;
+        if (num > 0) {
+            [moreview.text_label_num setTextColor:[UIColor lightGrayColor]];
+        }else{
+            [moreview.text_label_num setTextColor:[UIColor redColor]];
+        }
         
         if ([UDObject getsw_music].length > 0) {
             mp3name = [UDObject getsw_musicname];
@@ -598,7 +604,7 @@
             [[StatusBar sharedStatusBar] talkMsg:@"联系方式不得超过17个字" inTime:0.5];
             return;
         }
-        if (moreview.text_label_num.text.length > 70) {
+        if (moreview.show_summary.text.length > 70) {
             [[StatusBar sharedStatusBar] talkMsg:@"活动简介不得超过70个字" inTime:0.5];
             return;
         }

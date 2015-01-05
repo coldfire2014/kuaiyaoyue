@@ -383,6 +383,14 @@
         playview.xlfs_edit.text = [UDObject getwllxfs_name];
         playview.show_summary.text = [UDObject getwlts_name];
         playview.text_label_num.text = [NSString stringWithFormat:@"剩余%d字",70-playview.show_summary.text.length];
+        int num = 70 - playview.show_summary.text.length;
+        if (num > 0) {
+            [playview.text_label_num setTextColor:[UIColor lightGrayColor]];
+        }else{
+            [playview.text_label_num setTextColor:[UIColor redColor]];
+        }
+        
+        
         
         if ([UDObject getwlaudio].length > 0) {
             NSArray *array = [[UDObject getwlaudio] componentsSeparatedByString:@"/"];
@@ -834,11 +842,10 @@
             [[StatusBar sharedStatusBar] talkMsg:@"联系方式不得超过17个字" inTime:0.5];
             return;
         }
-        if (playview.text_label_num.text.length > 70) {
+        if (playview.show_summary.text.length > 70) {
             [[StatusBar sharedStatusBar] talkMsg:@"活动简介不得超过70个字" inTime:0.5];
             return;
         }
-        
         [self setbg];
     }else{
         [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.5];
