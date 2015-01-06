@@ -51,7 +51,7 @@ static NSManagedObjectContext *context = nil;
     template.nefname = [resultDic objectForKey:@"name"];
     template.nefthumburl = [NSString stringWithFormat:@"%@",[resultDic objectForKey:@"thumbUrl"]];
     template.neftimestamp = [NSString stringWithFormat:@"%@",[resultDic objectForKey:@"timestamp"]];
-    NSLog(@"%@",[resultDic objectForKey:@"timestamp"]);
+//    NSLog(@"%@",[resultDic objectForKey:@"timestamp"]);
     template.neftypeId = [resultDic objectForKey:@"type"];
     template.nefurl = [NSString stringWithFormat:@"%@",[resultDic objectForKey:@"url"]];
     template.nefbackground = [NSString stringWithFormat:@"%@",[resultDic objectForKey:@"background"]];
@@ -358,9 +358,9 @@ static NSManagedObjectContext *context = nil;
 
 -(NSArray *)GetTemplate:(NSString *) neftypeId{
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Template"];
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"neftimestamp" ascending:YES];
-    NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
-    [request setSortDescriptors: sortDescriptors];
+//    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"neftimestamp" ascending:YES];
+//    NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
+//    [request setSortDescriptors: sortDescriptors];
     NSPredicate *predict = [NSPredicate predicateWithFormat:@"(neftypeId = %@)",neftypeId];
     [request setPredicate:predict];
     NSError *error;

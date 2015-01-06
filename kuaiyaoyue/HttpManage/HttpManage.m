@@ -104,7 +104,7 @@ static NSString * const APIBaseURLString = HTTPURL;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             timestamp,@"timestamp",@"ios",@"equipment",version,@"version",nil];
     NSString *url = [NSString stringWithFormat:@"%@%@",HTTPURL,@"invitation/nozzle/NefMusic/getAll.aspx"];
-    NSLog(@"params-%@",params);
+//    NSLog(@"params-%@",params);
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
