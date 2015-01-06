@@ -22,6 +22,9 @@
 -(NSArray *)QueryTemplate;
 //添加模板内容
 -(BOOL)AddTemplate:(NSDictionary *) resultDic;
+//更新模板
+-(BOOL)UpTemplate:(NSDictionary *) resultDic;
+
 //更新Info表
 -(BOOL)UpdataInfo :(NSDictionary *)dic;
 //获取Info表

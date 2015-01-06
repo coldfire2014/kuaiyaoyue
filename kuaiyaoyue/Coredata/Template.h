@@ -2,8 +2,8 @@
 //  Template.h
 //  kuaiyaoyue
 //
-//  Created by DavidWang on 14/12/18.
-//  Copyright (c) 2014年 davidwang. All rights reserved.
+//  Created by DavidWang on 15/1/6.
+//  Copyright (c) 2015年 davidwang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -20,11 +20,12 @@
 @property (nonatomic, retain) NSString * nefmbbg;
 @property (nonatomic, retain) NSString * nefmbdw;
 @property (nonatomic, retain) NSString * nefname;
+@property (nonatomic, retain) NSString * nefpreview;
 @property (nonatomic, retain) NSString * nefthumburl;
 @property (nonatomic, retain) NSString * neftimestamp;
 @property (nonatomic, retain) NSNumber * neftypeId;
 @property (nonatomic, retain) NSString * nefurl;
 @property (nonatomic, retain) NSString * nefzipurl;
-@property (nonatomic, retain) NSString * nefpreview;
+@property (nonatomic, retain) NSNumber * nefsort;
 
 @end

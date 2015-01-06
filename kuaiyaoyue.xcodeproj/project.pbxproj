@@ -85,6 +85,7 @@
 		84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5A4781A3EC9C200C55200 /* TimeTool.m */; };
 		84B5D1151A43C44700C5C6E8 /* ZipDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5D1141A43C44700C5C6E8 /* ZipDown.m */; };
 		84B5D1181A441C3E00C5C6E8 /* Contacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5D1171A441C3E00C5C6E8 /* Contacts.m */; };
+		84D530281A5BCE3600C4ED73 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D530271A5BCE3600C4ED73 /* Template.m */; };
 		84E8425F1A2EDF6B00A401A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E8425E1A2EDF6B00A401A0 /* main.m */; };
 		84E842621A2EDF6B00A401A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E842611A2EDF6B00A401A0 /* AppDelegate.m */; };
 		84E842651A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84E842631A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld */; };
@@ -117,7 +118,6 @@
 		84FE0B8C1A426E6B005A9599 /* GridInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0B8B1A426E6B005A9599 /* GridInfo.m */; };
 		84FE0B931A4289B0005A9599 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FE0B901A4289B0005A9599 /* libWeChatSDK.a */; };
 		84FE0B991A42C963005A9599 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84FE0B981A42C963005A9599 /* libz.dylib */; };
-		84FE0BC31A42D0AD005A9599 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0BC21A42D0AD005A9599 /* Template.m */; };
 		84FE0BC61A42D32C005A9599 /* Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE0BC51A42D32C005A9599 /* Info.m */; };
 		E524FF3B1A3ED9A5002E7DC0 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E524FF3A1A3ED9A5002E7DC0 /* TemplateCell.m */; };
 		E52760771A4BC1F100D11F5B /* ic_32_arr.png in Resources */ = {isa = PBXBuildFile; fileRef = E52760751A4BC1F100D11F5B /* ic_32_arr.png */; };
@@ -344,6 +344,9 @@
 		84B5D1141A43C44700C5C6E8 /* ZipDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipDown.m; sourceTree = "<group>"; };
 		84B5D1161A441C3E00C5C6E8 /* Contacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contacts.h; sourceTree = "<group>"; };
 		84B5D1171A441C3E00C5C6E8 /* Contacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contacts.m; sourceTree = "<group>"; };
+		84D530221A5BCD4300C4ED73 /* kuaiyaoyue 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "kuaiyaoyue 3.xcdatamodel"; sourceTree = "<group>"; };
+		84D530261A5BCE3600C4ED73 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
+		84D530271A5BCE3600C4ED73 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Template.m; sourceTree = "<group>"; };
 		84E842591A2EDF6B00A401A0 /* kuaiyaoyue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kuaiyaoyue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E8425D1A2EDF6B00A401A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E8425E1A2EDF6B00A401A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -409,8 +412,6 @@
 		84FE0B911A4289B0005A9599 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		84FE0B921A4289B0005A9599 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		84FE0B981A42C963005A9599 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		84FE0BC11A42D0AD005A9599 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
-		84FE0BC21A42D0AD005A9599 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Template.m; sourceTree = "<group>"; };
 		84FE0BC41A42D32C005A9599 /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
 		84FE0BC51A42D32C005A9599 /* Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Info.m; sourceTree = "<group>"; };
 		E524FF391A3ED9A5002E7DC0 /* TemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateCell.h; sourceTree = "<group>"; };
@@ -783,8 +784,6 @@
 			children = (
 				84B473A31A30372A00A21457 /* DataBaseManage.h */,
 				84B473A41A30372A00A21457 /* DataBaseManage.m */,
-				84FE0BC11A42D0AD005A9599 /* Template.h */,
-				84FE0BC21A42D0AD005A9599 /* Template.m */,
 				84FE0BC41A42D32C005A9599 /* Info.h */,
 				84FE0BC51A42D32C005A9599 /* Info.m */,
 				848BF4771A43254B0002A1B1 /* Userdata.h */,
@@ -795,6 +794,8 @@
 				846C1BAA1A45734900B59A18 /* Fixeds.m */,
 				84B2087F1A5233ED008549B0 /* Music.h */,
 				84B208801A5233ED008549B0 /* Music.m */,
+				84D530261A5BCE3600C4ED73 /* Template.h */,
+				84D530271A5BCE3600C4ED73 /* Template.m */,
 			);
 			path = Coredata;
 			sourceTree = "<group>";
@@ -1375,6 +1376,7 @@
 				8460DDD91A4E7CC60031416E /* EditViewController.m in Sources */,
 				84FE0BC61A42D32C005A9599 /* Info.m in Sources */,
 				E55F59EE1A36894B00B0D587 /* StateView.m in Sources */,
+				84D530281A5BCE3600C4ED73 /* Template.m in Sources */,
 				846C1BA51A45706000B59A18 /* LunarCalendar.m in Sources */,
 				8448257F1A31865E0018240E /* TwoViewController.m in Sources */,
 				84E842C41A2EFDCB00A401A0 /* AFURLSessionManager.m in Sources */,
@@ -1473,7 +1475,6 @@
 				844228901A4ABF8F00583893 /* ShowWebViewController.m in Sources */,
 				844825E51A31A1AE0018240E /* TemplateViewController.m in Sources */,
 				84B446C51A32B3D000546859 /* MJRefreshBaseView.m in Sources */,
-				84FE0BC31A42D0AD005A9599 /* Template.m in Sources */,
 				84FE0B8C1A426E6B005A9599 /* GridInfo.m in Sources */,
 				84E842C01A2EFDCB00A401A0 /* AFSecurityPolicy.m in Sources */,
 				E55F5A031A36A64800B0D587 /* modelListAnimate.m in Sources */,
@@ -1736,10 +1737,11 @@
 		84E842631A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				84D530221A5BCD4300C4ED73 /* kuaiyaoyue 3.xcdatamodel */,
 				84B2087E1A523384008549B0 /* kuaiyaoyue 2.xcdatamodel */,
 				84E842641A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodel */,
 			);
-			currentVersion = 84B2087E1A523384008549B0 /* kuaiyaoyue 2.xcdatamodel */;
+			currentVersion = 84D530221A5BCD4300C4ED73 /* kuaiyaoyue 3.xcdatamodel */;
 			path = kuaiyaoyue.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -22,5 +22,6 @@
 -(BOOL) ISYPFile:(NSString *)name;
 -(NSString *)getImgFile:(NSString *)name;
 -(NSString *)getThumb:(NSString *)name;
+-(NSString *)getImgPath:(NSString *)name;
 
 @end

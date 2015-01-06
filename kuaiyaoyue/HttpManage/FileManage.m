@@ -78,4 +78,10 @@
     return [self.dirDirectory stringByAppendingPathComponent:name];
 }
 
+-(NSString *)getImgPath:(NSString *)name{
+    [self CreateFile];
+    return [_dirDirectory stringByAppendingPathComponent:name];
+}
+
+
 @end

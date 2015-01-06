@@ -46,6 +46,7 @@
         <attribute name="nefmbdw" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nefname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nefpreview" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nefsort" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="nefthumburl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="neftimestamp" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="neftypeId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -87,7 +88,7 @@
         <element name="Fixeds" positionX="-54" positionY="135" width="128" height="148"/>
         <element name="Info" positionX="-54" positionY="108" width="128" height="180"/>
         <element name="Music" positionX="-63" positionY="-18" width="128" height="133"/>
-        <element name="Template" positionX="-63" positionY="9" width="128" height="253"/>
+        <element name="Template" positionX="-63" positionY="9" width="128" height="270"/>
         <element name="Userdata" positionX="-54" positionY="117" width="128" height="465"/>
     </elements>
 </model>

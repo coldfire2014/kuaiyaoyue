@@ -35,6 +35,9 @@
 + (void)unzip:(NSString*)filePath filename:(NSString *) filename;
 //下载ZIP包
 + (void)postdownload :(NSString *)URL :(NSString *)zipname;
+//下载图片
+//下载
++ (BOOL)postdownloadimg : (NSString *)url : (NSString *)filepath;
 
 //下载音乐
 +(void)DownMusic:(NSString *) url filepath:(NSString *) filepath cb:(void(^)(BOOL isOK))callback;

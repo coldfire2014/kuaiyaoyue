@@ -49,6 +49,8 @@ static NSManagedObjectContext *context = nil;
     template.nefbackcolor = [resultDic objectForKey:@"backColor"];
     template.nefintegral = [resultDic objectForKey:@"integral"];
     template.nefname = [resultDic objectForKey:@"name"];
+    template.nefsort = [resultDic objectForKey:@"sort"];
+    
     template.nefthumburl = [NSString stringWithFormat:@"%@",[resultDic objectForKey:@"thumbUrl"]];
     template.neftimestamp = [NSString stringWithFormat:@"%@",[resultDic objectForKey:@"timestamp"]];
 //    NSLog(@"%@",[resultDic objectForKey:@"timestamp"]);
@@ -87,6 +89,28 @@ static NSManagedObjectContext *context = nil;
     if (![context save:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
+    }
+    return YES;
+}
+
+-(BOOL)UpTemplate:(NSDictionary *) dic{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Template"];
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefid = %@)",[dic objectForKey:@"unquieId"]];
+    [request setPredicate:predict];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    if ([fetchedObjects count] > 0) {
+        for (int i = 0; i <[fetchedObjects count] ; i++) {
+            Template *template = [fetchedObjects objectAtIndex:i];
+            template.nefsort = [dic objectForKey:@"sort"];
+            if (![context save:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+                return NO;
+            }
+        }
+    }else{
+        return NO;
     }
     return YES;
 }
@@ -358,9 +382,9 @@ static NSManagedObjectContext *context = nil;
 
 -(NSArray *)GetTemplate:(NSString *) neftypeId{
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Template"];
-//    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"neftimestamp" ascending:YES];
-//    NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
-//    [request setSortDescriptors: sortDescriptors];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"nefsort" ascending:YES];
+    NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
+    [request setSortDescriptors: sortDescriptors];
     NSPredicate *predict = [NSPredicate predicateWithFormat:@"(neftypeId = %@)",neftypeId];
     [request setPredicate:predict];
     NSError *error;

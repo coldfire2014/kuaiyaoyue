@@ -2,8 +2,8 @@
 //  Template.m
 //  kuaiyaoyue
 //
-//  Created by DavidWang on 14/12/18.
-//  Copyright (c) 2014年 davidwang. All rights reserved.
+//  Created by DavidWang on 15/1/6.
+//  Copyright (c) 2015年 davidwang. All rights reserved.
 //
 
 #import "Template.h"
@@ -19,11 +19,12 @@
 @dynamic nefmbbg;
 @dynamic nefmbdw;
 @dynamic nefname;
+@dynamic nefpreview;
 @dynamic nefthumburl;
 @dynamic neftimestamp;
 @dynamic neftypeId;
 @dynamic nefurl;
 @dynamic nefzipurl;
-@dynamic nefpreview;
+@dynamic nefsort;
 
 @end

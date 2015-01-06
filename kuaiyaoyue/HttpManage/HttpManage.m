@@ -702,16 +702,33 @@ closeTimestamp:(NSString *)closeTimestamp
     AFURLConnectionOperation *operation =   [[AFHTTPRequestOperation alloc] initWithRequest:request];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *testDirectory = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"sdyy"];
+    
+    
     NSString *filePath = [testDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.zip",zipname]];
     operation.outputStream = [NSOutputStream outputStreamToFileAtPath:filePath append:NO];
     [operation setCompletionBlock:^{
         NSLog(@"downloadComplete!");
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
             NSLog(@"存在");
-//            [self unzip:filePath :testDirectory];
+            [self unzip:filePath filename:testDirectory];
         }
     }];
     [operation start];
+}
+
+//下载
++ (BOOL)postdownloadimg : (NSString *)url : (NSString *)filepath;
+{
+    //下载图片
+    NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    AFURLConnectionOperation *operation =   [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:filepath append:NO];
+    [operation setCompletionBlock:^{
+    }];
+    
+    [operation start];
+    
+    return YES;
 }
 
 
