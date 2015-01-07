@@ -33,7 +33,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.windowLevel = UIWindowLevelAlert + 2.0;
-        self.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.5];
+        self.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.2];
         self.alpha = 1;
         self.hidden = NO;
         CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
@@ -45,15 +45,15 @@
         }
         self.frame = mainScreenFrame;
         myImageView* backall = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 54.0/2.0, 54.0/2.0) andImageName:@"ic_54_x@2x" withScale:2.0];
-        backall.center = CGPointMake(mainScreenFrame.size.width-31.0, 20.0+subTap + 29.0);
+        backall.center = CGPointMake(mainScreenFrame.size.width-31.0, 20.0+subTap + 24.0);
         backall.tag = 304;
         [self addSubview:backall];
         UITapGestureRecognizer* panall = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backAll)];
         [backall addGestureRecognizer:panall];
         
-        UIView* bk = [[UIView alloc] initWithFrame:CGRectMake(0, 0.0, mainScreenFrame.size.width-188,88.0)];
+        UIView* bk = [[UIView alloc] initWithFrame:CGRectMake(0, 0.0, mainScreenFrame.size.width-158,88.0)];
         bk.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0);
-        bk.backgroundColor = [[UIColor alloc] initWithWhite:0.7 alpha:0.8];
+        bk.backgroundColor = [[UIColor alloc] initWithWhite:0.8 alpha:0.8];
         bk.layer.cornerRadius = 8;
         [self addSubview:bk];
         

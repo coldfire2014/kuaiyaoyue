@@ -58,7 +58,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onebyone) name:@"onebyone" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getmaxtemplate:) name:@"getmax" object:nil];
-    
+    [self getmaxtemplate:YES];
     return YES;
 }
 
@@ -107,23 +107,7 @@
 //    NSLog(@"Registfail%@",error);
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQ_LOGIN" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQ_SENDTO" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQZONE_SENDTO" object:nil];
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    
-}
 
 -(void)QQLogin:(NSNotification*)noc{
     [_tencentOAuth authorize:[NSArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo", @"add_t", nil] inSafari:NO];
@@ -216,13 +200,40 @@
 {
     [[StatusBar sharedStatusBar] talkMsg:@"无网络连接，请设置网络。" inTime:0.5];
 }
+- (void)applicationWillResignActive:(UIApplication *)application {
+    
+    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQ_LOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQ_SENDTO" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQZONE_SENDTO" object:nil];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+}
+- (void)application:(UIApplication *)application willChangeStatusBarFrame:(CGRect)newStatusBarFrame{
+    
+}
+- (void)application:(UIApplication *)application didChangeStatusBarFrame:(CGRect)oldStatusBarFrame{
+    
+}
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+}
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQLogin:) name:@"QQ_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQshare:) name:@"QQ_SENDTO" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQZoneshare:) name:@"QQZONE_SENDTO" object:nil];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    [self getmaxtemplate:YES];
+
     [self checkToken];
     
     [HttpManage edition:@"ios" cb:^(BOOL isOK, NSString *URL) {

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 @import MessageUI;
 @interface OneViewController : UIViewController
-
+{
+    UIWebView *phoneCallWebView;
+}
 @end

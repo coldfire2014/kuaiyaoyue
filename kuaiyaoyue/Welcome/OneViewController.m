@@ -33,7 +33,13 @@
 //    [self.view addSubview:tempView];
 }
 -(void)didTap{
-    [[waitingView sharedwaitingView] waitByMsg:@"努力加载" haveCancel:YES];
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",@"15160079101"]];
+    if ( !phoneCallWebView ) {
+        phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的View 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
+    }
+    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    
+//    [[waitingView sharedwaitingView] waitByMsg:@"努力加载" haveCancel:YES];
 //    [[waitingView sharedwaitingView] startWait];
 //    [[StatusBar sharedStatusBar] talkMsg:@"hahah哈哈" inTime:0.5];
 //    ShareView* share = [ShareView sharedShareView];
@@ -56,7 +62,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//-(void)viewWillAppear:(BOOL)animated{
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+//}
+//-(void)viewDidAppear:(BOOL)animated{
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+//}
 /*
 #pragma mark - Navigation
 

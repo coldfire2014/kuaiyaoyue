@@ -164,6 +164,8 @@ static NSString * const fIdentifier = @"imgcellf";
 - (void) setNowCount:(NSInteger)count{
     ImgToolBar* bar = (ImgToolBar*)[self.view viewWithTag: 502];
     [bar okCount:count];
+    ImgNavBar* bar2 = (ImgNavBar*)[self.view viewWithTag: 501];
+    [bar2 okCount:count];
 }
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

@@ -1253,7 +1253,7 @@
 				TargetAttributes = {
 					84E842581A2EDF6B00A401A0 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = PSEU9Z2979;
+						DevelopmentTeam = E68S9675TU;
 					};
 					84E842741A2EDF6C00A401A0 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1591,7 +1591,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yangbing wu (6Y35J7EFD4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/Tencent",
@@ -1614,7 +1614,7 @@
 				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9651ac9d-9de1-43b9-8554-c922263f07dd";
+				PROVISIONING_PROFILE = "9b1b3929-17ef-4fee-8991-43875eb59fd5";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1650,7 +1650,7 @@
 				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e889649d-5273-48c0-80bb-3baec87f1f20";
+				PROVISIONING_PROFILE = "7cc2b366-7e0a-44d7-abfc-deed0b62d6ef";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
