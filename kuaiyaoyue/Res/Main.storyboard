@@ -895,10 +895,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXl-wy-Tmr">
-                                                            <rect key="frame" x="552" y="14" width="27" height="27"/>
+                                                            <rect key="frame" x="552" y="5.5" width="44" height="44"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="27" id="ACg-2W-Vs7"/>
-                                                                <constraint firstAttribute="height" constant="27" id="WWH-b8-Upx"/>
+                                                                <constraint firstAttribute="width" constant="44" id="LYM-R2-dhR"/>
+                                                                <constraint firstAttribute="height" constant="44" id="fbH-Pj-rsh"/>
                                                             </constraints>
                                                             <state key="normal" image="ic_54_call">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -910,10 +910,10 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFk-yG-f6j">
-                                                            <rect key="frame" x="505" y="14" width="27" height="27"/>
+                                                            <rect key="frame" x="503" y="5.5" width="44" height="44"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="27" id="cc4-X0-Ged"/>
-                                                                <constraint firstAttribute="height" constant="27" id="onv-jw-Spz"/>
+                                                                <constraint firstAttribute="height" constant="44" id="4Yc-MM-HLT"/>
+                                                                <constraint firstAttribute="width" constant="44" id="Ykv-5T-m4k"/>
                                                             </constraints>
                                                             <state key="normal" image="ic_54_message"/>
                                                             <state key="disabled" image="ic_54_message_dis"/>
@@ -935,16 +935,16 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="hXl-wy-Tmr" firstAttribute="leading" secondItem="MFk-yG-f6j" secondAttribute="trailing" constant="20" id="5C4-47-WwH"/>
+                                                        <constraint firstAttribute="centerY" secondItem="hXl-wy-Tmr" secondAttribute="centerY" id="Bdc-mo-naP"/>
                                                         <constraint firstAttribute="width" constant="600" id="Evr-k0-mKa"/>
                                                         <constraint firstItem="HEt-Km-qu7" firstAttribute="leading" secondItem="Xhd-zd-iI0" secondAttribute="leading" constant="8" id="GR8-Ee-Hij"/>
+                                                        <constraint firstItem="hXl-wy-Tmr" firstAttribute="leading" secondItem="MFk-yG-f6j" secondAttribute="trailing" constant="5" id="I4e-6F-g2e"/>
                                                         <constraint firstItem="MeK-oc-Dvp" firstAttribute="leading" secondItem="HEt-Km-qu7" secondAttribute="trailing" constant="9" id="L4b-P7-6Kg"/>
-                                                        <constraint firstItem="hXl-wy-Tmr" firstAttribute="top" secondItem="Xhd-zd-iI0" secondAttribute="top" constant="14" id="WvJ-53-kCY"/>
-                                                        <constraint firstItem="MFk-yG-f6j" firstAttribute="top" secondItem="Xhd-zd-iI0" secondAttribute="top" constant="14" id="bfg-j2-1ka"/>
-                                                        <constraint firstAttribute="trailing" secondItem="hXl-wy-Tmr" secondAttribute="trailing" constant="21" id="dk1-DH-mAu"/>
                                                         <constraint firstAttribute="centerY" secondItem="HEt-Km-qu7" secondAttribute="centerY" id="hUJ-JR-7rJ"/>
                                                         <constraint firstAttribute="centerY" secondItem="MeK-oc-Dvp" secondAttribute="centerY" id="koe-t3-Dha"/>
+                                                        <constraint firstAttribute="centerY" secondItem="MFk-yG-f6j" secondAttribute="centerY" id="kq2-rW-oUq"/>
                                                         <constraint firstAttribute="height" constant="55" id="rdG-Nl-fxV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="hXl-wy-Tmr" secondAttribute="trailing" constant="4" id="wFF-kJ-4JM"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">

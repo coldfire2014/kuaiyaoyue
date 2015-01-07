@@ -18,14 +18,14 @@
 #import "StatusBar.h"
 #import "ShowData.h"
 #import "waitingView.h"
-
+#import "UIPhoneWindow.h"
 @interface DetailViewController ()<DVCCellDelegate,SDDelegate>{
     BOOL isopen;
     NSInteger selectRow;
     NSArray *data;
     BigStateView* s;
     NSString *dateAndTime;
-    UIWebView *phoneCallWebView;
+//    UIWebView *phoneCallWebView;
     ShowData *show;
     
 }
@@ -39,11 +39,11 @@
     // Do any additional setup after loading the view.
     
    
-    
+    UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
     label.text = self.title;
     [label sizeToFit];
-    label.textColor = [[UIColor alloc] initWithRed:1 green:1 blue:1 alpha:1.0];
+    label.textColor = color;
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
     [self.navigationItem setTitleView:label];
     
@@ -55,7 +55,7 @@
     [self setupRefresh];
     [self renewal];
     
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTintColor:color];
     
     _endtime_view.layer.cornerRadius = 21;
     _cancel_view.layer.cornerRadius = 21;
@@ -131,7 +131,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [self.navigationController.navigationBar setHidden:NO];
 }
 
@@ -280,13 +280,28 @@
     NSLog(@"%@",phone);
     [self makeACall:phone];
 }
-
+- (UIImage *)imageFromView:(UIView *)view
+{
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    CALayer *layer = [delegate.window layer];
+        
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, 0.0);
+    [layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
 -(void)makeACall :(NSString *) phoneNum{
-    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
-    if ( !phoneCallWebView ) {
-        phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的View 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
-    }
-    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    
+    UIImage *snapshotImage = [self imageFromView:self.view];
+    [[UIPhoneWindow sharedwaitingView] callPhone:phoneNum andBK:snapshotImage];
+//    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
+//    if ( !phoneCallWebView ) {
+//        phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的View 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
+//    }
+//    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
 }
 
 - (IBAction)endtime_onclick:(id)sender {

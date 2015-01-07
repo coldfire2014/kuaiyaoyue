@@ -12,6 +12,7 @@
 #import "StatusBar.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "TalkingData.h"
+#import "waitingView.h"
 @interface FourViewController ()
 
 @end
@@ -134,9 +135,11 @@
 }
 -(void)loginQQ{
 //    [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
+    [[waitingView sharedwaitingView] startWait];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"QQ_LOGIN" object:nil];
 }
 -(void)loginwx{
+    [[waitingView sharedwaitingView] startWait];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_LOGIN" object:nil];
 }
 - (IBAction)login_onclick:(id)sender {

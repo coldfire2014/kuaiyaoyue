@@ -136,6 +136,7 @@
 		E54851D81A35AF0500590E5C /* coverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D71A35AF0500590E5C /* coverSegue.m */; };
 		E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DA1A35AF5C00590E5C /* coverAnimation.m */; };
 		E54851DE1A35B08800590E5C /* w2mainSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DD1A35B08800590E5C /* w2mainSegue.m */; };
+		E54F3EC91A5CEB5C005EB25A /* UIPhoneWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E54F3EC81A5CEB5C005EB25A /* UIPhoneWindow.m */; };
 		E5573F951A4303A9006AAB8F /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F8B1A4303A9006AAB8F /* ioapi.c */; };
 		E5573F961A4303A9006AAB8F /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F8D1A4303A9006AAB8F /* mztools.c */; };
 		E5573F971A4303A9006AAB8F /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F8F1A4303A9006AAB8F /* unzip.c */; };
@@ -442,6 +443,8 @@
 		E54851DA1A35AF5C00590E5C /* coverAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = coverAnimation.m; sourceTree = "<group>"; };
 		E54851DC1A35B08800590E5C /* w2mainSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = w2mainSegue.h; sourceTree = "<group>"; };
 		E54851DD1A35B08800590E5C /* w2mainSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = w2mainSegue.m; sourceTree = "<group>"; };
+		E54F3EC71A5CEB5C005EB25A /* UIPhoneWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPhoneWindow.h; sourceTree = "<group>"; };
+		E54F3EC81A5CEB5C005EB25A /* UIPhoneWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPhoneWindow.m; sourceTree = "<group>"; };
 		E5573F871A430118006AAB8F /* PCHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCHeader.h; sourceTree = "<group>"; };
 		E5573F8A1A4303A9006AAB8F /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		E5573F8B1A4303A9006AAB8F /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
@@ -1169,6 +1172,8 @@
 		E577FC041A356BB9009ED66D /* bar */ = {
 			isa = PBXGroup;
 			children = (
+				E54F3EC71A5CEB5C005EB25A /* UIPhoneWindow.h */,
+				E54F3EC81A5CEB5C005EB25A /* UIPhoneWindow.m */,
 				E541617C1A43E2B20077A89D /* waitingView.h */,
 				E541617D1A43E2B20077A89D /* waitingView.m */,
 				E577FC0E1A356D57009ED66D /* StatusBar.h */,
@@ -1386,6 +1391,7 @@
 				84E842911A2EEA1300A401A0 /* MusicViewController.m in Sources */,
 				844825851A3186820018240E /* FourViewController.m in Sources */,
 				E55F5A011A36A64800B0D587 /* createNewAnimate1.m in Sources */,
+				E54F3EC91A5CEB5C005EB25A /* UIPhoneWindow.m in Sources */,
 				844CC5881A491CAE00A34186 /* CustomView.m in Sources */,
 				84E842C11A2EFDCB00A401A0 /* AFURLConnectionOperation.m in Sources */,
 				E577FC0C1A356C80009ED66D /* AssetHelper.m in Sources */,

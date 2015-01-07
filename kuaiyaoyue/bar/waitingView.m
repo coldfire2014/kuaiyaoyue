@@ -53,7 +53,7 @@
         
         UIView* bk = [[UIView alloc] initWithFrame:CGRectMake(0, 0.0, mainScreenFrame.size.width-158,88.0)];
         bk.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0);
-        bk.backgroundColor = [[UIColor alloc] initWithWhite:0.8 alpha:0.8];
+        bk.backgroundColor = [[UIColor alloc] initWithWhite:0.4 alpha:0.8];
         bk.layer.cornerRadius = 8;
         [self addSubview:bk];
         
@@ -105,10 +105,11 @@
     } else {
         loading.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0);
     }
+    [loading startAnimating];
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 1;
     } completion:^(BOOL finished) {
-        [loading startAnimating];
+        
     }];
 }
 @end

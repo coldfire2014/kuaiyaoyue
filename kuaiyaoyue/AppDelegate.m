@@ -227,7 +227,8 @@
     
 }
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_PHONE_BACK" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQLogin:) name:@"QQ_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQshare:) name:@"QQ_SENDTO" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQZoneshare:) name:@"QQZONE_SENDTO" object:nil];
@@ -454,7 +455,6 @@
     }else{
         if (resp.errCode == 0) {
             SendAuthResp *req = (SendAuthResp *)resp;
-            [[waitingView sharedwaitingView] startWait];
             [self getAccess_token:req.code];
         }else{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"nowx" object:self];
@@ -494,11 +494,12 @@
         NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (data) {
-                [[waitingView sharedwaitingView] stopWait];
+                
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_SDWX" object:self userInfo:dic];
             }
             else{
+                [[waitingView sharedwaitingView] stopWait];
                 [[StatusBar sharedStatusBar] talkMsg:@"微信登陆失败了，再试一次吧。" inTime:0.5];
             }
         });
