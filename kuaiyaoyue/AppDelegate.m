@@ -227,7 +227,7 @@
     
 }
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_PHONE_BACK" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQLogin:) name:@"QQ_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQshare:) name:@"QQ_SENDTO" object:nil];
