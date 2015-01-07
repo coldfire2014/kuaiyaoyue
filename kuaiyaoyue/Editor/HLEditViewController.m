@@ -587,13 +587,14 @@
         }];
     }else{
         if ([_data count] - 1 > 0) {
-            for (int i = 0; i<[_data count] - 1; i++) {
+            for (int i = 0; i < [_data count] - 1; i++) {
                 GridInfo *info = [_data objectAtIndex:i];
                 CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
                 NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
                 uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
                 NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
                 [UIImageJPEGRepresentation(info.img,C_JPEG_SIZE) writeToFile:imgpath atomically:YES];
+                
                 [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
             }
         }

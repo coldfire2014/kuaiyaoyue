@@ -263,8 +263,6 @@
         }
         NSString *timestamp = [TimeTool getFullTimeStr:[[UDObject getzdytime] longLongValue]/1000];
         
-        
-        
         dic = [[NSDictionary alloc] initWithObjectsAndKeys:
                musicUrl,@"musicUrl",
                arr,@"images",

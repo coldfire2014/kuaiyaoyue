@@ -367,6 +367,7 @@ static NSManagedObjectContext *context = nil;
     NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
     if ([fetchedObjects count] > 0) {
         Userdata *user = [fetchedObjects objectAtIndex:0];
+        user.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
         user.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
         user.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
         if (![context save:&error]) {
