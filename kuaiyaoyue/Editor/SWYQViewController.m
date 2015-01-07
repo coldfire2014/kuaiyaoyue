@@ -755,8 +755,7 @@
             row_index ++;
             if (row_index > [data count] - 2) {
                 NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
-                [self party:moreview.jh_edit.text :moreview.xlr_edit.text :moreview.xlfs_edit.text :moreview.address_edit.text :arr :@"" :hltime :bmendtime :moreview.show_summary.text :URL :_unquieId :mp3url];
-                
+                [self party:moreview.jh_edit.text :moreview.xlr_edit.text :moreview.xlfs_edit.text :moreview.address_edit.text :arr :@"没有录音" :hltime :bmendtime :moreview.show_summary.text :URL :_unquieId :mp3url];
             }else{
                 GridInfo *info = [data objectAtIndex:row_index];
                 [self postupload:info.img :URL];
@@ -773,7 +772,7 @@
         musicUrl = @"";
     }
     [[waitingView sharedwaitingView] changeWord:@"正在努力制作中……"];
-    [HttpManage party:[UDObject gettoken] partyName:partyName inviter:inviter telephone:(NSString *)telephone address:address images:images tape:tape timestamp:timestamp closetime:closetime description:description background:background mid:unquieId cb:^(BOOL isOK, NSDictionary *array) {
+    [HttpManage party:[UDObject gettoken] partyName:partyName inviter:inviter telephone:(NSString *)telephone address:address images:images tape:musicUrl timestamp:timestamp closetime:closetime description:description background:background mid:unquieId cb:^(BOOL isOK, NSDictionary *array) {
         if (isOK) {
             NSArray *arr = [[NSArray alloc] initWithArray:addimg];
             NSString *hlarr = [arr componentsJoinedByString:@","];

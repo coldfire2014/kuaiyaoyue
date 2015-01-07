@@ -160,11 +160,13 @@
         if ([_tencentOAuth getUserInfo]) {
             
         }else{
+            [[waitingView sharedwaitingView] stopWait];
             [[StatusBar sharedStatusBar] talkMsg:@"获取QQ用户数据失败。" inTime:0.5];
         }
     }
     else
     {
+        [[waitingView sharedwaitingView] stopWait];
         [[StatusBar sharedStatusBar] talkMsg:@"未能成功使用QQ登陆。" inTime:0.5];
 //        _labelAccessToken.text = @"登录不成功 没有获取accesstoken";
     }
@@ -187,17 +189,20 @@
 {
     if (cancelled)
     {
+        [[waitingView sharedwaitingView] stopWait];
         [[StatusBar sharedStatusBar] talkMsg:@"QQ登陆失败。" inTime:0.5];
 //        _labelTitle.text = @"用户取消登录";
     }
     else
     {
+        [[waitingView sharedwaitingView] stopWait];
         [[StatusBar sharedStatusBar] talkMsg:@"QQ登陆失败了，再试一次吧。" inTime:0.5];
 //        _labelTitle.text = @"登录失败";
     }
 }
 -(void)tencentDidNotNetWork
 {
+    [[waitingView sharedwaitingView] stopWait];
     [[StatusBar sharedStatusBar] talkMsg:@"无网络连接，请设置网络。" inTime:0.5];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -457,7 +462,8 @@
             SendAuthResp *req = (SendAuthResp *)resp;
             [self getAccess_token:req.code];
         }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"nowx" object:self];
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"微信登陆失败了，再试一次吧。" inTime:0.5];
         }
     }
 }
@@ -477,6 +483,9 @@
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
 //                NSLog(@"%@",dic);
                 [self getUserInfo:[dic objectForKey:@"access_token"] :[dic objectForKey:@"openid"]];
+            }else{
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"微信登陆失败了，再试一次吧。" inTime:0.5];
             }
         });
     });
