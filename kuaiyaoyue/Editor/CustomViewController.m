@@ -709,11 +709,11 @@
 
     if (zdytitle.length > 0 && zdycontent.length > 0 && hltime.length > 0 && bmendtime.length > 0 && custom.show_top_img.image != nil && data.count -1 > 0 && mp3url.length > 0) {
         if (zdytitle.length > 11) {
-            [[StatusBar sharedStatusBar] talkMsg:@"标题不得超过11个字" inTime:0.5];
+            [[StatusBar sharedStatusBar] talkMsg:@"标题不得超过11个字" inTime:1.5];
             return;
         }
         if (zdycontent.length >50) {
-            [[StatusBar sharedStatusBar] talkMsg:@"导读不得超过50个字" inTime:0.5];
+            [[StatusBar sharedStatusBar] talkMsg:@"导读不得超过50个字" inTime:1.5];
             return;
         }
         

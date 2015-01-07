@@ -478,13 +478,13 @@
             if (address_name.length < 20) {
                 [self setbg];
             }else{
-                [[StatusBar sharedStatusBar] talkMsg:@"地址不能超过20个字" inTime:0.5];
+                [[StatusBar sharedStatusBar] talkMsg:@"地址不能超过20个字" inTime:1.5];
             }
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"新娘和新娘名字不能超过5个字" inTime:0.5];
+            [[StatusBar sharedStatusBar] talkMsg:@"新娘和新娘名字不能超过5个字" inTime:1.5];
         }
     }else{
-        [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.5];
+        [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:1.5];
     }
     
 }

@@ -828,28 +828,28 @@
     
     if (jh_name.length > 0 && address_name.length > 0 && hltime.length > 0 && bmendtime.length > 0 && xlr_name.length > 0 && xxfs_name.length > 0) {
         if (jh_name.length > 11) {
-            [[StatusBar sharedStatusBar] talkMsg:@"活动名称不得超过11个字" inTime:0.5];
+            [[StatusBar sharedStatusBar] talkMsg:@"活动名称不得超过11个字" inTime:1.5];
             return;
         }
         if (address_name.length > 20) {
-            [[StatusBar sharedStatusBar] talkMsg:@"地址不得超过20个字" inTime:0.5];
+            [[StatusBar sharedStatusBar] talkMsg:@"地址不得超过20个字" inTime:1.5];
             return;
         }
         if (xlr_name.length > 5) {
-            [[StatusBar sharedStatusBar] talkMsg:@"联系人不得超过5个字" inTime:0.5];
+            [[StatusBar sharedStatusBar] talkMsg:@"联系人不得超过5个字" inTime:1.5];
             return;
         }
         if (xxfs_name.length > 17) {
-            [[StatusBar sharedStatusBar] talkMsg:@"联系方式不得超过17个字" inTime:0.5];
+            [[StatusBar sharedStatusBar] talkMsg:@"联系方式不得超过17个字" inTime:1.5];
             return;
         }
         if (playview.show_summary.text.length > 70) {
-            [[StatusBar sharedStatusBar] talkMsg:@"活动简介不得超过70个字" inTime:0.5];
+            [[StatusBar sharedStatusBar] talkMsg:@"活动简介不得超过70个字" inTime:1.5];
             return;
         }
         [self setbg];
     }else{
-        [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.5];
+        [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:1.5];
     }
     
 }
