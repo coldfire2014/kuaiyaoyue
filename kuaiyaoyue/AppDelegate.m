@@ -44,9 +44,6 @@
           UIRemoteNotificationTypeBadge |
           UIRemoteNotificationTypeSound)];
     }
-    
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    
     [WXApi registerApp:@"wx06ea6c3bc82c99ac" withDescription:@"sdyydome"];
     _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1103283068"
                                             andDelegate:self];
