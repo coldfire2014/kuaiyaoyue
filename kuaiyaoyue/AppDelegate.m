@@ -22,7 +22,6 @@
     BOOL is_xz;
     BOOL is_add;
     TencentOAuth* _tencentOAuth;
-    
 }
 
 @end
