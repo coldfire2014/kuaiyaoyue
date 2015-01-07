@@ -392,10 +392,8 @@
         }else{
             [playview.text_label_num setTextColor:[UIColor redColor]];
         }
-        
-        
-        
-        if ([UDObject getwlaudio].length > 0) {
+    
+        if ([UDObject getwlaudio].length > 0 && ![[UDObject getwlaudio] isEqualToString:@"../Audio/"]) {
             NSArray *array = [[UDObject getwlaudio] componentsSeparatedByString:@"/"];
             audioname = [array objectAtIndex:([array count] - 1)];
             recordedFile = [[FileManage sharedFileManage] GetYPFile1:audioname];

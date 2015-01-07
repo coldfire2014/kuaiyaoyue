@@ -383,7 +383,7 @@
                 if ([[dic objectForKey:@"result"] isEqualToString:@"success"]) {
                     
                 }else{
-                    [[StatusBar sharedStatusBar] talkMsg:@"账号以过期" inTime:0.5];
+                    [[StatusBar sharedStatusBar] talkMsg:@"账号已过期" inTime:0.5];
                     [UDObject setHLContent:@"" xn_name:@"" hltime:@"" bmendtime:@"" address_name:@"" music:@"" musicname:@"" imgarr:@""];
                     [UDObject setSWContent:@"" swtime:@"" swbmendtime:@"" address_name:@"" swxlr_name:@"" swxlfs_name:@"" swhd_name:@"" music:@"" musicname:@"" imgarr:@""];
                     [UDObject setWLContent:@"" wltime:@"" wlbmendtime:@"" wladdress_name:@"" wllxr_name:@"" wllxfs_name:@"" wlts_name:@"" wlaudio:@"" wlimgarr:@""];
