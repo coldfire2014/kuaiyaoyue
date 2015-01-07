@@ -24,6 +24,7 @@
 #import "ShareView.h"
 #import "ShowWebViewController.h"
 #import "FileManage.h"
+#import "waitingView.h"
 
 @interface ViewController ()<VCDelegate,DVCDelegate>{
     NSMutableArray *data;
@@ -556,9 +557,9 @@
     if (editingStyle==UITableViewCellEditingStyleDelete) {
         
         Userdata *userdata = [data objectAtIndex:indexPath.row];
-        [SVProgressHUD showWithStatus:@"删除中" maskType:SVProgressHUDMaskTypeBlack];
+        [[waitingView sharedwaitingView] startWait];
         [HttpManage deleteRecords:userdata.nefid cb:^(BOOL isOK, NSDictionary *array) {
-            [SVProgressHUD dismiss];
+            [[waitingView sharedwaitingView] stopWait];
             if (isOK) {
                 // 从数据源中删除
                 [data removeObjectAtIndex:indexPath.row];
@@ -674,9 +675,9 @@
 
 - (void)DVCDelegate:(DetailViewController *)cell didTapAtIndex:(NSString *) nefid{
     [TalkingData trackEvent:@"删除邀约"];
-    [SVProgressHUD showWithStatus:@"删除中" maskType:SVProgressHUDMaskTypeBlack];
+    [[waitingView sharedwaitingView] startWait];
     [HttpManage deleteRecords:nefid cb:^(BOOL isOK, NSDictionary *array) {
-        [SVProgressHUD dismiss];
+        [[waitingView sharedwaitingView] stopWait];
         if (isOK) {
             // 从数据源中删除
             [data removeObjectAtIndex:index_path.row];

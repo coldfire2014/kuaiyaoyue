@@ -9,7 +9,7 @@
 #import "YJFKViewController.h"
 #import "StatusBar.h"
 #import "HttpManage.h"
-#import "SVProgressHUD.h"
+#import "waitingView.h"
 #import "UDObject.h"
 
 @interface YJFKViewController ()
@@ -38,20 +38,20 @@
 -(void)right{
     NSString *content = _content_edit.text;
     if (content.length > 0) {
-        [SVProgressHUD showWithStatus:@"提交中" maskType:SVProgressHUDMaskTypeBlack];
+        [[waitingView sharedwaitingView] waitByMsg:@"正在接收你的意见……" haveCancel:NO];
         NSString *model = [[UIDevice currentDevice] model];
         [HttpManage suggestion:[UDObject gettoken] type:@"1" content:content model:model cb:^(BOOL isOK, NSDictionary *array) {
-            [SVProgressHUD dismiss];
+            [[waitingView sharedwaitingView] stopWait];
             if (isOK) {
                 [[StatusBar sharedStatusBar] talkMsg:@"谢谢您的反馈" inTime:0.51];
                 [self.navigationController popViewControllerAnimated:YES];
             }else{
-                [[StatusBar sharedStatusBar] talkMsg:@"提交失败" inTime:0.51];
+                [[StatusBar sharedStatusBar] talkMsg:@"失败了，再试试吧。" inTime:0.51];
             }
         }];
 
     }else{
-        [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.51];
+        [[StatusBar sharedStatusBar] talkMsg:@"写点什么吧" inTime:0.51];
     }
 }
 

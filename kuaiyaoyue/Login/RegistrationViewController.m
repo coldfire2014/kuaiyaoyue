@@ -9,7 +9,7 @@
 #import "RegistrationViewController.h"
 #import "SMS_SDK/SMS_SDK.h"
 #import "HttpManage.h"
-#import "SVProgressHUD.h"
+#import "waitingView.h"
 #import "StatusBar.h"
 #import "UDObject.h"
 
@@ -139,20 +139,21 @@
 }
 
 -(void)phoneregister:(NSString *) mobilePhone :(NSString *) password{
-    [SVProgressHUD showWithStatus:@"注册中" maskType:(SVProgressHUDMaskTypeBlack)];
+    [[waitingView sharedwaitingView] waitByMsg:@"正在注册账号……" haveCancel:NO];
     [HttpManage phoneregister:mobilePhone password:password cb:^(BOOL isOK, NSMutableArray *array) {
-        [SVProgressHUD dismiss];
+        
         if (isOK) {
-            [SVProgressHUD showWithStatus:@"登录中" maskType:(SVProgressHUDMaskTypeBlack)];
+            [[waitingView sharedwaitingView] changeWord:@"自动登录中……"];
             [self j_spring_security_check:mobilePhone password:password];
             
 //            [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
+            [[waitingView sharedwaitingView] stopWait];
             if (array != nil) {
                 NSString *message = (NSString *)[array objectAtIndex:0];
                 [[StatusBar sharedStatusBar] talkMsg:message inTime:0.51];
             }else{
-                [[StatusBar sharedStatusBar] talkMsg:@"注册失败" inTime:0.51];
+                [[StatusBar sharedStatusBar] talkMsg:@"注册失败了，再试试吧" inTime:0.51];
             }
         }
     }];
@@ -160,15 +161,15 @@
 
 -(void)j_spring_security_check:(NSString *)username password:(NSString *)password{
     [HttpManage j_spring_security_check:username password:password phoneId:[UDObject getTSID] j_username:username j_password:password isJson:@"true" cb:^(BOOL isOK, NSDictionary *dic) {
-        [SVProgressHUD dismiss];
+        [[waitingView sharedwaitingView] stopWait];
         if (isOK) {
             NSString *token = [dic objectForKey:@"token"];
             [UDObject setUserInfo:username userName:@"" token:token];
             [self performSegueWithIdentifier:@"wel2main" sender:nil];
-            [[StatusBar sharedStatusBar] talkMsg:@"登录成功" inTime:0.51];
             [UDObject setLXFS:username];
+            [[StatusBar sharedStatusBar] talkMsg:@"成功登录" inTime:0.31];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"登录失败" inTime:0.51];
+            [[StatusBar sharedStatusBar] talkMsg:@"登录失败了，再试一下吧。" inTime:0.51];
         }
     }];
 }

@@ -8,7 +8,6 @@
 
 #import "ZipDown.h"
 #import "HttpManage.h"
-#import "SVProgressHUD.h"
 
 @implementation ZipDown
 

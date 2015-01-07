@@ -9,7 +9,7 @@
 
 #import "LoginViewController.h"
 #import "HttpManage.h"
-#import "SVProgressHUD.h"
+#import "waitingView.h"
 #import "StatusBar.h"
 #import "UDObject.h"
 
@@ -88,7 +88,7 @@
     NSString *username = _phone_edit.text;
     NSString *password = _password_edit.text;
     if (username.length > 0 && password.length > 0) {
-        [SVProgressHUD showWithStatus:@"登录中" maskType:SVProgressHUDMaskTypeBlack];
+        [[waitingView sharedwaitingView] waitByMsg:@"正在登录" haveCancel:NO];
         [self.view endEditing:NO];
         [self j_spring_security_check:username password:password];
     }else{
@@ -98,15 +98,15 @@
 
 -(void)j_spring_security_check:(NSString *)username password:(NSString *)password{
     [HttpManage j_spring_security_check:username password:password phoneId:[UDObject getTSID] j_username:username j_password:password isJson:@"true" cb:^(BOOL isOK, NSDictionary *dic) {
-        [SVProgressHUD dismiss];
+        [[waitingView sharedwaitingView] stopWait];
         if (isOK) {
             NSString *token = [dic objectForKey:@"token"];
             [UDObject setUserInfo:username userName:@"" token:token];
             [self performSegueWithIdentifier:@"wel2main" sender:nil];
-            [[StatusBar sharedStatusBar] talkMsg:@"登录成功" inTime:0.51];
             [UDObject setLXFS:username];
+            [[StatusBar sharedStatusBar] talkMsg:@"成功登录" inTime:0.31];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"登录失败" inTime:0.51];
+            [[StatusBar sharedStatusBar] talkMsg:@"登录失败了，再试一下吧。" inTime:0.51];
         }
     }];
 }

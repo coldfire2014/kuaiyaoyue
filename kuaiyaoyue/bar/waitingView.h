@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface waitingView : UIWindow
+@interface waitingView : UIWindow{
+    UIActivityIndicatorView* loading;
+}
 + (waitingView *)sharedwaitingView;
+- (void)startWait;
+- (void)stopWait;
+- (void)changeWord:(NSString*)msg;
+- (void)waitByMsg:(NSString*)msg haveCancel:(BOOL)cancel;
 @end

@@ -15,7 +15,7 @@
 #import "HttpManage.h"
 #import "DataBaseManage.h"
 #import "Music.h"
-#import "SVProgressHUD.h"
+#import "waitingView.h"
 #import "TalkingData.h"
 
 @interface MusicViewController ()<AVAudioPlayerDelegate>{
@@ -72,25 +72,25 @@
     }else{
         timestamp = @"-1";
     }
-    [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
+    [[waitingView sharedwaitingView] waitByMsg:@"音乐列表努力加载中……" haveCancel:NO];
     [HttpManage getAll:timestamp cb:^(BOOL isOK, NSMutableArray *array) {
-        [SVProgressHUD dismiss];
-         if (isOK) {
+        if (isOK) {
              NSLog(@"%@",array);
              tjnum = [array count];
              if (tjnum > 0) {
-                 [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
+                 [[waitingView sharedwaitingView] changeWord:@"真在为您下载新的音乐……"];
                  for (int i = 0; i < [array count]; i++) {
                      NSDictionary *dic = [array objectAtIndex:i];
                      [[DataBaseManage getDataBaseManage] setMusic:dic];
                      [self downYP:[dic objectForKey:@"uniqueId"] :[dic objectForKey:@"url"]];
                  }
              }else{
-                 [SVProgressHUD dismiss];
+                 [[waitingView sharedwaitingView] stopWait];
                  [self showdid];
              }
              
          }else{
+             [[waitingView sharedwaitingView] stopWait];
              [self showdid];
          }
      }];
@@ -103,14 +103,14 @@
         [HttpManage DownMusic:url filepath:file cb:^(BOOL isOK) {
             addnum++;
             if (addnum == tjnum) {
-                [SVProgressHUD dismiss];
+                [[waitingView sharedwaitingView] stopWait];
                 [self showdid];
             }
         }];
     }else{
          addnum++;
         if (addnum == tjnum) {
-            [SVProgressHUD dismiss];
+            [[waitingView sharedwaitingView] stopWait];
             [self showdid];
         }
     }

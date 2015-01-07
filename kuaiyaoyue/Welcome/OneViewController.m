@@ -7,9 +7,9 @@
 //
 
 #import "OneViewController.h"
-#import "ShareView.h"
-#import "StatusBar.h"
+#import "waitingView.h"
 #import "myImageView.h"
+
 @interface OneViewController ()
 
 @end
@@ -33,6 +33,8 @@
 //    [self.view addSubview:tempView];
 }
 -(void)didTap{
+    [[waitingView sharedwaitingView] waitByMsg:@"努力加载" haveCancel:YES];
+//    [[waitingView sharedwaitingView] startWait];
 //    [[StatusBar sharedStatusBar] talkMsg:@"hahah哈哈" inTime:0.5];
 //    ShareView* share = [ShareView sharedShareView];
 //    share.fromvc = self;
@@ -48,44 +50,7 @@
 //-(void)didSelectTemplate:(Template*)items{
 //    NSLog(@"Template%@",items);
 //}
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
-    if (MFMailComposeResultSent == result || MFMailComposeResultSaved == result) {
-        [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
-    } else {
-        [[StatusBar sharedStatusBar] talkMsg:@"消息未发送。" inTime:0.51];
-    }
-    [controller dismissViewControllerAnimated:YES completion:^{
-        ShareView* share = [ShareView sharedShareView];
-        share.fromvc = self;
-        share.url = @"http://baidu.com";
-        share.msg = @"lailai";
-        share.title = @"haha";
-        share.imgUrl = @"http://pp.myapp.com/ma_icon/0/icon_11251614_19813241_1418702475/96";
-        NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
-        UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"T4" ofType:@"png"]];
-        share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
-        [share show];
-    }];
-}
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
-    if (result == MessageComposeResultSent) {
-        [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
-    } else {
-        [[StatusBar sharedStatusBar] talkMsg:@"消息未发送。" inTime:0.51];
-    }
-    [controller dismissViewControllerAnimated:YES completion:^{
-        ShareView* share = [ShareView sharedShareView];
-        share.fromvc = self;
-        share.url = @"http://baidu.com";
-        share.msg = @"lailai";
-        share.title = @"haha";
-        share.imgUrl = @"http://pp.myapp.com/ma_icon/0/icon_11251614_19813241_1418702475/96";
-        NSBundle* bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"imgBar" ofType:@"bundle"]];
-        UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"T4" ofType:@"png"]];
-        share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
-        [share show];
-    }];
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

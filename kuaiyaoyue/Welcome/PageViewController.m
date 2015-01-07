@@ -15,11 +15,10 @@
 #import "coverAnimation.h"
 #import "HttpManage.h"
 #import "UDObject.h"
-#import "SVProgressHUD.h"
 #import "DataBaseManage.h"
 #import "UDObject.h"
 #import "StatusBar.h"
-
+#import "waitingView.h"
 @interface PageViewController ()
 
 @end
@@ -100,9 +99,9 @@
     NSDictionary *dictionary = [notification userInfo];
     NSString *name = [dictionary objectForKey:@"nickname"];
     NSString *opneid = [dictionary objectForKey:@"openid"];
-    [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
+    [[waitingView sharedwaitingView] startWait];
     [HttpManage registers:name userPwd:@"123456" phoneId:[UDObject getTSID] openId:opneid cb:^(BOOL isOK, NSDictionary *dic) {
-        [SVProgressHUD dismiss];
+        [[waitingView sharedwaitingView] stopWait];
         if (isOK) {
             [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
             [UDObject setUserInfo:name userName:name token:[dic objectForKey:@"token"]];
@@ -207,19 +206,7 @@
 }
 */
 
--(void)j_spring_security_check:(NSString *)username password:(NSString *)password{
-    [HttpManage j_spring_security_check:username password:password phoneId:[UDObject getTSID] j_username:username j_password:password isJson:@"true" cb:^(BOOL isOK, NSDictionary *dic) {
-        [SVProgressHUD dismiss];
-        if (isOK) {
-            NSString *token = [dic objectForKey:@"token"];
-            [UDObject setUserInfo:username userName:@"" token:token];
-            [self performSegueWithIdentifier:@"wel2main" sender:nil];
-            [[StatusBar sharedStatusBar] talkMsg:@"登录成功" inTime:0.51];
-        }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"登录失败" inTime:0.51];
-        }
-    }];
-}
+
 
 
 @end

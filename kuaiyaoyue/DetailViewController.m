@@ -17,6 +17,7 @@
 #import "Contacts.h"
 #import "StatusBar.h"
 #import "ShowData.h"
+#import "waitingView.h"
 
 @interface DetailViewController ()<DVCCellDelegate,SDDelegate>{
     BOOL isopen;
@@ -313,9 +314,9 @@
 
 - (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
     if (timebh != nil) {
-        [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
+        [[waitingView sharedwaitingView] startWait];
         [HttpManage dueDate:_uniqueId timestamp:timebh cb:^(BOOL isOK, NSDictionary *array) {
-            [SVProgressHUD dismiss];
+            [[waitingView sharedwaitingView] stopWait];
             if (isOK) {
                 _endtime = [timebh longLongValue]/1000;
                 [s setStartTime:[NSDate dateWithTimeIntervalSince1970:_starttime] EndTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:_datatime]];

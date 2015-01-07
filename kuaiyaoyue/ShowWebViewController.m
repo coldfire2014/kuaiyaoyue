@@ -8,7 +8,7 @@
 
 #import "ShowWebViewController.h"
 #import "TalkingData.h"
-#import "SVProgressHUD.h"
+#import "waitingView.h"
 
 @interface ShowWebViewController ()
 
@@ -41,10 +41,6 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self prefersStatusBarHidden];
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    }
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -52,24 +48,31 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [self.navigationController.navigationBar setHidden:NO];
     [TalkingData trackPageBegin:@"生成后预览"];
-    [SVProgressHUD showWithStatus:@"加载中" maskType:SVProgressHUDMaskTypeBlack];
+    [[waitingView sharedwaitingView] waitByMsg:@"正在努力为您加载中……" haveCancel:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopLoad) name:@"MSG_STOP_WAITING" object:nil];
 }
 -(void)viewDidDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_STOP_WAITING" object:nil];
     [super viewDidDisappear:animated];
     [TalkingData trackPageEnd:@"生成后预览"];
 }
-
+-(void)stopLoad{
+    [self.webview stopLoading];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 //页面加载时处理事件
 -(void)reloadweb{
     NSURL *url =[NSURL URLWithString:_weburl];
     NSURLRequest *request =[NSURLRequest requestWithURL:url];
     [_webview loadRequest:request];
 }
-
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    [[waitingView sharedwaitingView] stopWait];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 //页面加载完成，导航条显示，预览图隐藏，
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    [SVProgressHUD dismiss];
-    
+    [[waitingView sharedwaitingView] stopWait];
 }
 
 /*

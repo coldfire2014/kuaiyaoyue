@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "WXApi.h"
-#import "SVProgressHUD.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentMessageObject.h>

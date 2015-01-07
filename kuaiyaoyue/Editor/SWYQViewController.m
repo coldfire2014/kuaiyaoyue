@@ -25,7 +25,7 @@
 #import "MusicViewController.h"
 #import "PreviewViewController.h"
 #import "TalkingData.h"
-
+#import "waitingView.h"
 @interface SWYQViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,MVDelegate>{
     BOOL is_yl;
     int count;
@@ -702,7 +702,7 @@
         }else{
             [TalkingData trackEvent:@"生成"];
         }
-        [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
+        [[waitingView sharedwaitingView] waitByMsg:@"正在上传素材，请稍候。" haveCancel:NO];
         [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
             NSLog(@"%@",URL);
             if (isOK) {
@@ -716,8 +716,8 @@
                     [self party:moreview.jh_edit.text :moreview.xlr_edit.text :moreview.xlfs_edit.text :moreview.address_edit.text :arr :@"" :hltime :bmendtime :moreview.show_summary.text :URL :_unquieId :mp3url];
                 }
             }else{
-                [SVProgressHUD dismiss];
-                [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
             }
         }];
     }else{
@@ -762,8 +762,8 @@
                 [self postupload:info.img :URL];
             }
         }else{
-            [SVProgressHUD dismiss];
-            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
         }
     }];
 }
@@ -772,7 +772,7 @@
     if (musicUrl.length > 0) {}else{
         musicUrl = @"";
     }
-    [SVProgressHUD dismiss];
+    [[waitingView sharedwaitingView] changeWord:@"正在努力制作中……"];
     [HttpManage party:[UDObject gettoken] partyName:partyName inviter:inviter telephone:(NSString *)telephone address:address images:images tape:tape timestamp:timestamp closetime:closetime description:description background:background mid:unquieId cb:^(BOOL isOK, NSDictionary *array) {
         if (isOK) {
             NSArray *arr = [[NSArray alloc] initWithArray:addimg];
@@ -780,11 +780,12 @@
             
             [UDObject setSWContent:partyName swtime:timestamp swbmendtime:closetime address_name:address swxlr_name:inviter swxlfs_name:telephone swhd_name:description music:musicUrl musicname:mp3name imgarr:hlarr];
             
-            [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
             [self GetRecord];
-            
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"成功生成" inTime:0.3];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
         }
     }];
 }

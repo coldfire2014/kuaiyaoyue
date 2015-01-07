@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 @import MessageUI;
-@interface OneViewController : UIViewController<MFMessageComposeViewControllerDelegate,MFMailComposeViewControllerDelegate>
+@interface OneViewController : UIViewController
 
 @end

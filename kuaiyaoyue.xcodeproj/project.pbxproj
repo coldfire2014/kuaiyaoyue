@@ -80,8 +80,6 @@
 		84B446D41A32BD7000546859 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B446D31A32BD7000546859 /* ShareViewController.m */; };
 		84B473881A2FFEC800A21457 /* FileManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B473871A2FFEC800A21457 /* FileManage.m */; };
 		84B473A51A30372A00A21457 /* DataBaseManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B473A41A30372A00A21457 /* DataBaseManage.m */; };
-		84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84B473AA1A30572F00A21457 /* SVProgressHUD.bundle */; };
-		84B473AE1A30572F00A21457 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B473AC1A30572F00A21457 /* SVProgressHUD.m */; };
 		84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5A4781A3EC9C200C55200 /* TimeTool.m */; };
 		84B5D1151A43C44700C5C6E8 /* ZipDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5D1141A43C44700C5C6E8 /* ZipDown.m */; };
 		84B5D1181A441C3E00C5C6E8 /* Contacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B5D1171A441C3E00C5C6E8 /* Contacts.m */; };
@@ -134,6 +132,7 @@
 		E541B32E1A43DC9E006F89E1 /* imgBar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E541B32B1A43DC9E006F89E1 /* imgBar.bundle */; };
 		E541B32F1A43DC9E006F89E1 /* ImgNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E541B32D1A43DC9E006F89E1 /* ImgNavBar.m */; };
 		E541B3341A43DE2A006F89E1 /* shareView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E541B3331A43DE2A006F89E1 /* shareView.bundle */; };
+		E5472F911A5C2477002FE15C /* ImgToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E5472F901A5C2477002FE15C /* ImgToolBar.m */; };
 		E54851D81A35AF0500590E5C /* coverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D71A35AF0500590E5C /* coverSegue.m */; };
 		E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DA1A35AF5C00590E5C /* coverAnimation.m */; };
 		E54851DE1A35B08800590E5C /* w2mainSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DD1A35B08800590E5C /* w2mainSegue.m */; };
@@ -335,9 +334,6 @@
 		84B473871A2FFEC800A21457 /* FileManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManage.m; sourceTree = "<group>"; };
 		84B473A31A30372A00A21457 /* DataBaseManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseManage.h; sourceTree = "<group>"; };
 		84B473A41A30372A00A21457 /* DataBaseManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseManage.m; sourceTree = "<group>"; };
-		84B473AA1A30572F00A21457 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		84B473AB1A30572F00A21457 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		84B473AC1A30572F00A21457 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		84B5A4771A3EC9C200C55200 /* TimeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTool.h; sourceTree = "<group>"; };
 		84B5A4781A3EC9C200C55200 /* TimeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTool.m; sourceTree = "<group>"; };
 		84B5D1131A43C44700C5C6E8 /* ZipDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipDown.h; sourceTree = "<group>"; };
@@ -438,6 +434,8 @@
 		E541B32C1A43DC9E006F89E1 /* ImgNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImgNavBar.h; path = pic/ImgNavBar.h; sourceTree = "<group>"; };
 		E541B32D1A43DC9E006F89E1 /* ImgNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImgNavBar.m; path = pic/ImgNavBar.m; sourceTree = "<group>"; };
 		E541B3331A43DE2A006F89E1 /* shareView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = shareView.bundle; path = bar/shareView.bundle; sourceTree = "<group>"; };
+		E5472F8F1A5C2477002FE15C /* ImgToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImgToolBar.h; path = pic/ImgToolBar.h; sourceTree = "<group>"; };
+		E5472F901A5C2477002FE15C /* ImgToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImgToolBar.m; path = pic/ImgToolBar.m; sourceTree = "<group>"; };
 		E54851D61A35AF0500590E5C /* coverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coverSegue.h; sourceTree = "<group>"; };
 		E54851D71A35AF0500590E5C /* coverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = coverSegue.m; sourceTree = "<group>"; };
 		E54851D91A35AF5C00590E5C /* coverAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coverAnimation.h; sourceTree = "<group>"; };
@@ -800,16 +798,6 @@
 			path = Coredata;
 			sourceTree = "<group>";
 		};
-		84B473A91A30572F00A21457 /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				84B473AA1A30572F00A21457 /* SVProgressHUD.bundle */,
-				84B473AB1A30572F00A21457 /* SVProgressHUD.h */,
-				84B473AC1A30572F00A21457 /* SVProgressHUD.m */,
-			);
-			path = SVProgressHUD;
-			sourceTree = "<group>";
-		};
 		84B5A4761A3EC9B100C55200 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -932,7 +920,6 @@
 				E577FC091A356C80009ED66D /* AssetHelper.m */,
 				E577FC0B1A356C80009ED66D /* myImageView.m */,
 				84B446B31A32B3D000546859 /* MJRefresh */,
-				84B473A91A30572F00A21457 /* SVProgressHUD */,
 				84E842961A2EFDCB00A401A0 /* AFNetworking */,
 				84E842AA1A2EFDCB00A401A0 /* UIKit+AFNetworking */,
 			);
@@ -1211,6 +1198,8 @@
 				E577FC291A356E66009ED66D /* perviewImg.m */,
 				E577FC2A1A356E66009ED66D /* picViewAnimate.h */,
 				E577FC2B1A356E66009ED66D /* picViewAnimate.m */,
+				E5472F8F1A5C2477002FE15C /* ImgToolBar.h */,
+				E5472F901A5C2477002FE15C /* ImgToolBar.m */,
 			);
 			name = pic;
 			sourceTree = "<group>";
@@ -1320,7 +1309,6 @@
 				E5661A2B1A457CB700E4E2BC /* btn_login_2.png in Resources */,
 				843DBEDC1A46FA2600CDFFCB /* icon57.png in Resources */,
 				844CC5831A48F94D00A34186 /* PlayView.xib in Resources */,
-				84B473AD1A30572F00A21457 /* SVProgressHUD.bundle in Resources */,
 				E565ECC81A52CDB900679BAE /* 3w.jpg in Resources */,
 				E52760781A4BC1F100D11F5B /* ic_c_meeting.png in Resources */,
 				84B446C41A32B3D000546859 /* MJRefresh.bundle in Resources */,
@@ -1408,11 +1396,11 @@
 				8442288A1A4A518300583893 /* PECropView.m in Sources */,
 				E524FF3B1A3ED9A5002E7DC0 /* TemplateCell.m in Sources */,
 				8442288B1A4A518300583893 /* PECropViewController.m in Sources */,
-				84B473AE1A30572F00A21457 /* SVProgressHUD.m in Sources */,
 				84B446C91A32B3D000546859 /* UIScrollView+MJExtension.m in Sources */,
 				84E842D31A2F087A00A401A0 /* HttpManage.m in Sources */,
 				846C1BAB1A45734900B59A18 /* Fixeds.m in Sources */,
 				84B473A51A30372A00A21457 /* DataBaseManage.m in Sources */,
+				E5472F911A5C2477002FE15C /* ImgToolBar.m in Sources */,
 				E5573F971A4303A9006AAB8F /* unzip.c in Sources */,
 				E55F5A021A36A64800B0D587 /* createNewAnimate2.m in Sources */,
 				844826061A31B6E30018240E /* YJFKViewController.m in Sources */,

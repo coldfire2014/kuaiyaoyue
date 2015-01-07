@@ -25,7 +25,7 @@
 #import "PlayView.h"
 #import "PreviewViewController.h"
 #import "TalkingData.h"
-
+#import "waitingView.h"
 @interface CHWLEditorViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,PVDelegate,AVAudioPlayerDelegate>{
     BOOL is_yl;
     int count;
@@ -171,7 +171,7 @@
 
 //长按事件的实现方法
 - (void) LongPressed1:(UILongPressGestureRecognizer *)gestureRecognizer {
-    [SVProgressHUD dismissWithError:@"请打开麦克风" afterDelay:1];
+    [[StatusBar sharedStatusBar] talkMsg:@"请在设置中开启麦克风。" inTime:1.0];
 }
 
 //长按事件的实现方法
@@ -231,7 +231,7 @@
         else{
             recordedFile = nil;
             audioname = @"";
-            [SVProgressHUD showErrorWithStatus:@"录音时间过短" duration:1];
+            [[StatusBar sharedStatusBar] talkMsg:@"录音时间太短了。" inTime:1.0];
             
             [UIView animateWithDuration:0.3 animations:^{
                 [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 51, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
@@ -249,7 +249,9 @@
         [playview.audio_img setImage:[UIImage imageNamed:@"btn_120_recording"]];
     }
 }
-
+- (void)stopRecorder{
+    [[waitingView sharedwaitingView] stopWait];
+}
 #pragma mark - 启动定时器
 - (void)startTimer{
     timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(levelTimer:) userInfo:nil repeats:YES];
@@ -265,7 +267,8 @@
         [self stopTimer];
         [recorder stop];
         recorder = nil;
-        [SVProgressHUD showErrorWithStatus:@"录音时间过长" duration:1];
+        [[waitingView sharedwaitingView] waitByMsg:@"最多只能录30秒哦。" haveCancel:YES];
+        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(stopRecorder) userInfo:nil repeats:NO];
     }
     
     const double ALPHA = 0.05;
@@ -936,7 +939,7 @@
         }else{
             [TalkingData trackEvent:@"生成"];
         }
-        [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
+        [[waitingView sharedwaitingView] waitByMsg:@"正在上传素材，请稍候。" haveCancel:NO];
         [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
             NSLog(@"%@",URL);
             if (isOK) {
@@ -954,8 +957,8 @@
                                 [self party:playview.jh_edit.text :playview.xlr_edit.text :playview.xlfs_edit.text :playview.address_edit.text :arr :@"" :hltime :bmendtime :playview.show_summary.text :URL :_unquieId :URL1];
                             }
                         }else{
-                            [SVProgressHUD dismiss];
-                            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+                            [[waitingView sharedwaitingView] stopWait];
+                            [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
                         }
                     }];
                 }else{
@@ -969,8 +972,8 @@
                     }
                 }
             }else{
-                [SVProgressHUD dismiss];
-                [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
             }
         }];
     }else{
@@ -1015,15 +1018,14 @@
                 [self postupload:info.img :URL :URL1];
             }
         }else{
-            [SVProgressHUD dismiss];
-            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
         }
     }];
 }
 
 -(void)party:(NSString *) partyName :(NSString *)inviter :(NSString *)telephone :(NSString *)address :(NSArray *)images :(NSString *) tape :(NSString *) timestamp :(NSString *) closetime :(NSString *) description :(NSString *) background :(NSString *) unquieId :(NSString *)musicUrl{
-    
-    [SVProgressHUD dismiss];
+    [[waitingView sharedwaitingView] changeWord:@"正在努力制作中……"];
     [HttpManage party:[UDObject gettoken] partyName:partyName inviter:inviter telephone:(NSString *)telephone address:address images:images tape:musicUrl timestamp:timestamp closetime:closetime description:description background:background mid:unquieId cb:^(BOOL isOK, NSDictionary *array) {
         if (isOK) {
             NSArray *arr = [[NSArray alloc] initWithArray:addimg];
@@ -1033,13 +1035,12 @@
                 audioname = [NSString stringWithFormat:@"../Audio/%@",audioname];
             }
             [UDObject setWLContent:partyName wltime:timestamp wlbmendtime:closetime wladdress_name:address wllxr_name:inviter wllxfs_name:telephone wlts_name:description wlaudio:audioname wlimgarr:hlarr];
-            
-            [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
             [self GetRecord];
-            
-            
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"成功生成" inTime:0.3];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
         }
     }];
 }

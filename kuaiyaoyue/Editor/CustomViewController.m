@@ -26,7 +26,7 @@
 #import "PECropViewController.h"
 #import "PreviewViewController.h"
 #import "TalkingData.h"
-
+#import "waitingView.h"
 @interface CustomViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,CVDelegate,PECropViewControllerDelegate,PreviewViewControllerDelegate>{
     BOOL is_yl;
     int count;
@@ -740,7 +740,7 @@
         }else{
             [TalkingData trackEvent:@"生成"];
         }
-        [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
+        [[waitingView sharedwaitingView] waitByMsg:@"正在上传素材，请稍候。" haveCancel:NO];
         CGSize size = CGSizeMake(120, 120);
         img = [self imageWithImageSimple:img scaledToSize:size];
         [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
@@ -755,8 +755,8 @@
                     [self Sendcustom:URL];
                 }
             }else{
-                [SVProgressHUD dismiss];
-                [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
             }
         }];
     }else{
@@ -801,26 +801,26 @@
                 [self postupload:info.img :URL];
             }
         }else{
-            [SVProgressHUD dismiss];
-            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
         }
     }];
 }
 
 -(void)Sendcustom:(NSString *)logo{
-   
+    [[waitingView sharedwaitingView] changeWord:@"正在努力制作中……"];
     NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
     [HttpManage custom:[UDObject gettoken] title:custom.title_edit.text content:custom.content_edit.text logo:logo music:mp3url timestamp:hltime closeTimestamp:bmendtime images:arr mid:_unquieId cb:^(BOOL isOK, NSDictionary *array) {
-        [SVProgressHUD dismiss];
         NSLog(@"%@",array);
         if (isOK) {
             NSString *hlarr = [arr componentsJoinedByString:@","];
             [UDObject setZDYContent:topimgname zdytitle:custom.title_edit.text zdydd:custom.content_edit.text zdytime:hltime zdyendtime:bmendtime zdymusic:mp3url zdymusicname:mp3name zdyimgarr:hlarr];
-            [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
             [self GetRecord];
-            
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"成功生成" inTime:0.3];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
         }
     }];
 }

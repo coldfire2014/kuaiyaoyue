@@ -11,6 +11,7 @@
 #import "imgGroupView.h"
 #import "myImageView.h"
 #import "ImgNavBar.h"
+#import "ImgToolBar.h"
 @interface ImgCollectionViewController ()
 
 @end
@@ -52,6 +53,11 @@ static NSString * const fIdentifier = @"imgcellf";
     bar.tag = 501;
     [self.view addSubview:bar];
     [self.view bringSubviewToFront:bar];
+    
+    ImgToolBar* bar2 = [[ImgToolBar alloc] initWithFrame:CGRectMake(0, h - 88.0/2.0, w, 88.0/2.0)];
+    bar2.tag = 502;
+    [self.view addSubview:bar2];
+    [self.view bringSubviewToFront:bar2];
     //加了已经有的数量
     if (nil != [self.collectionView indexPathsForSelectedItems]) {
         [self setNowCount:[self.collectionView indexPathsForSelectedItems].count];
@@ -156,7 +162,7 @@ static NSString * const fIdentifier = @"imgcellf";
     [self setNowCount:[count integerValue]];
 }
 - (void) setNowCount:(NSInteger)count{
-    ImgNavBar* bar = (ImgNavBar*)[self.view viewWithTag: 501];
+    ImgToolBar* bar = (ImgToolBar*)[self.view viewWithTag: 502];
     [bar okCount:count];
 }
 -(void) viewDidAppear:(BOOL)animated{

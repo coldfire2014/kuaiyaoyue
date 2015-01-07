@@ -25,7 +25,7 @@
 #import "HLEditView.h"
 #import "PreviewViewController.h"
 #import "TalkingData.h"
-
+#import "waitingView.h"
 @interface HLEditViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,HLEVDelegate>{
     int count;
     NSMutableArray *imgdata;
@@ -567,7 +567,7 @@
         }else{
             [TalkingData trackEvent:@"生成"];
         }
-        [SVProgressHUD showWithStatus:@"加载中.." maskType:SVProgressHUDMaskTypeBlack];
+        [[waitingView sharedwaitingView] waitByMsg:@"正在上传素材，请稍候。" haveCancel:NO];
         [HttpManage uploadTP:img name:uuid cb:^(BOOL isOK, NSString *URL) {
             NSLog(@"%@",URL);
             if (isOK) {
@@ -581,8 +581,8 @@
                     [self marry:_unquieId :xn_name :xl_name :address_name :arr :hltime :URL :mp3url :bmendtime];
                 }
             }else{
-                [SVProgressHUD dismiss];
-                [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
             }
         }];
     }else{
@@ -627,8 +627,8 @@
                 [self postuploadHL:info.img :URL];
             }
         }else{
-            [SVProgressHUD dismiss];
-            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
         }
     }];
 }
@@ -637,18 +637,18 @@
     if (musicUrl.length > 0) {}else{
         musicUrl = @"";
     }
-    
-    [SVProgressHUD dismiss];
+    [[waitingView sharedwaitingView] changeWord:@"正在努力制作中……"];
     [HttpManage marry:[UDObject gettoken] bride:bride groom:groom address:address location:nil images:images timestamp:timestamp background:background musicUrl:musicUrl closeTimestamp:closeTimestamp mid:unquieId cb:^(BOOL isOK, NSDictionary *dic) {
         if (isOK) {
             NSArray *arr = [[NSArray alloc] initWithArray:addimg];
             NSString *hlarr = [arr componentsJoinedByString:@","];
             [UDObject setHLContent:xl_name xn_name:xn_name hltime:hltime bmendtime:bmendtime address_name:address_name music:musicUrl musicname:mp3name imgarr:hlarr];
-            
-            [[StatusBar sharedStatusBar] talkMsg:@"已生成" inTime:0.5];
             [self GetRecord];
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"成功生成" inTime:0.3];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"生成失败" inTime:0.5];
+            [[waitingView sharedwaitingView] stopWait];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
         }
     }];
 }

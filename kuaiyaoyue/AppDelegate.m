@@ -17,7 +17,7 @@
 #import "SMS_SDK/SMS_SDK.h"
 #import "PCHeader.h"
 #import "FileManage.h"
-
+#import "waitingView.h"
 @interface AppDelegate (){
     BOOL is_xz;
     BOOL is_add;
@@ -443,7 +443,7 @@
     }else{
         if (resp.errCode == 0) {
             SendAuthResp *req = (SendAuthResp *)resp;
-            [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
+            [[waitingView sharedwaitingView] startWait];
             [self getAccess_token:req.code];
         }else{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"nowx" object:self];
@@ -483,7 +483,7 @@
         NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (data) {
-                [SVProgressHUD dismiss];
+                [[waitingView sharedwaitingView] stopWait];
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_SDWX" object:self userInfo:dic];
             }
