@@ -755,7 +755,7 @@
             row_index ++;
             if (row_index > [data count] - 2) {
                 NSArray *arr = [[NSArray alloc] initWithArray:imgdata];
-                [self party:moreview.jh_edit.text :moreview.xlr_edit.text :moreview.xlfs_edit.text :moreview.address_edit.text :arr : :hltime :bmendtime :moreview.show_summary.text :URL :_unquieId :mp3url];
+                [self party:moreview.jh_edit.text :moreview.xlr_edit.text :moreview.xlfs_edit.text :moreview.address_edit.text :arr :@"" :hltime :bmendtime :moreview.show_summary.text :URL :_unquieId :mp3url];
                 
             }else{
                 GridInfo *info = [data objectAtIndex:row_index];
