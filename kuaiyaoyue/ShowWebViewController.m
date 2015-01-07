@@ -9,7 +9,7 @@
 #import "ShowWebViewController.h"
 #import "TalkingData.h"
 #import "waitingView.h"
-
+#import "StatusBar.h"
 @interface ShowWebViewController ()
 
 @end
@@ -27,6 +27,8 @@
     label.textColor = color;
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
     [self.navigationItem setTitleView:label];
+    
+    
     
     [self.navigationController.navigationBar setTintColor:color];
     _webview.scalesPageToFit = YES;
@@ -48,7 +50,6 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [self.navigationController.navigationBar setHidden:NO];
     [TalkingData trackPageBegin:@"生成后预览"];
-    [[waitingView sharedwaitingView] waitByMsg:@"正在努力为您加载中……" haveCancel:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopLoad) name:@"MSG_STOP_WAITING" object:nil];
 }
 -(void)viewDidDisappear:(BOOL)animated{
@@ -58,21 +59,27 @@
 }
 -(void)stopLoad{
     [self.webview stopLoading];
-    [self.navigationController popViewControllerAnimated:YES];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(reloadweb)];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 //页面加载时处理事件
 -(void)reloadweb{
+    self.navigationItem.rightBarButtonItem = nil;
+    [[waitingView sharedwaitingView] waitByMsg:@"正在努力为您加载中……" haveCancel:YES];
     NSURL *url =[NSURL URLWithString:_weburl];
     NSURLRequest *request =[NSURLRequest requestWithURL:url];
     [_webview loadRequest:request];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [[waitingView sharedwaitingView] stopWait];
-    [self.navigationController popViewControllerAnimated:YES];
+    [[StatusBar sharedStatusBar] talkMsg:@"页面加载失败了" inTime:0.5];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(reloadweb)];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 //页面加载完成，导航条显示，预览图隐藏，
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [[waitingView sharedwaitingView] stopWait];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(reloadweb)];
 }
 
 /*
