@@ -895,7 +895,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXl-wy-Tmr">
-                                                            <rect key="frame" x="552" y="5.5" width="44" height="44"/>
+                                                            <rect key="frame" x="552" y="5" width="44" height="44"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="44" id="LYM-R2-dhR"/>
                                                                 <constraint firstAttribute="height" constant="44" id="fbH-Pj-rsh"/>
@@ -910,7 +910,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFk-yG-f6j">
-                                                            <rect key="frame" x="503" y="5.5" width="44" height="44"/>
+                                                            <rect key="frame" x="503" y="5" width="44" height="44"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="4Yc-MM-HLT"/>
                                                                 <constraint firstAttribute="width" constant="44" id="Ykv-5T-m4k"/>
@@ -955,12 +955,12 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ElL-Un-WZe">
                                                     <rect key="frame" x="8" y="56" width="584" height="79"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈阿克苏将很快的骄傲和SD卡灰色空间对话框231哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈阿克苏将很快的骄傲和SD卡灰色空间对话框231" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZB-WP-k5x">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈阿克苏将很快的骄傲和SD卡灰色空间对话框231哈哈哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈阿克苏将很快的骄傲和SD卡灰色空间对话框231" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZB-WP-k5x">
                                                             <rect key="frame" x="8" y="8" width="568" height="63"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="568" id="wJX-z6-0Wx"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="default">
@@ -3176,6 +3176,7 @@
                         <outlet property="password_sureedit" destination="9Oi-2W-U6x" id="ELy-X8-Xlh"/>
                         <outlet property="phone_num" destination="cBm-ms-kS0" id="3RR-gb-5b3"/>
                         <outlet property="yzm_button" destination="nwr-wW-FuP" id="rkk-SV-WG7"/>
+                        <segue destination="eGG-ps-HQp" kind="custom" identifier="wel2main" customClass="w2mainSegue" id="qme-kc-Frs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i0O-SA-dxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3303,10 +3304,10 @@
         <image name="logo_login.png" width="159" height="172"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="I0j-Cp-NYv"/>
+        <segue reference="qme-kc-Frs"/>
         <segue reference="ztp-xN-fnN"/>
-        <segue reference="fps-RF-Hk5"/>
         <segue reference="bym-b5-cxi"/>
         <segue reference="luI-zA-BtH"/>
+        <segue reference="fps-RF-Hk5"/>
     </inferredMetricsTieBreakers>
 </document>
