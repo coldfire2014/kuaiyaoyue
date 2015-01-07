@@ -704,12 +704,14 @@
             break;
         case 1:
             title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
+            
             msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;
         case 2:
             title = [NSString stringWithFormat:@"%@",user.nefpartyname];
+            
             msg = [NSString stringWithFormat:@"%@ %@ %@ %@",user.nefgroom,[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress,user.nefdescription];
             url = user.nefurl;
             thumb = user.nefthumb;
