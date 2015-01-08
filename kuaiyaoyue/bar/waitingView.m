@@ -95,6 +95,23 @@
     UILabel *add = (UILabel*)[self viewWithTag:305];
     add.text = msg;
 }
+- (void)WarningByMsg:(NSString*)msg haveCancel:(BOOL)cancel{
+    UIView* btn = [self viewWithTag:304];
+    btn.hidden = !cancel;
+    UILabel *add = (UILabel*)[self viewWithTag:305];
+    add.text = msg;
+    if (msg.length > 0) {
+        loading.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0-15);
+    } else {
+        loading.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0);
+    }
+    [loading startAnimating];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.alpha = 1;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
 - (void)waitByMsg:(NSString*)msg haveCancel:(BOOL)cancel{
     UIView* btn = [self viewWithTag:304];
     btn.hidden = !cancel;

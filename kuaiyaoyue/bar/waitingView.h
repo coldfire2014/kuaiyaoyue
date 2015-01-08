@@ -15,5 +15,6 @@
 - (void)startWait;
 - (void)stopWait;
 - (void)changeWord:(NSString*)msg;
+- (void)WarningByMsg:(NSString*)msg haveCancel:(BOOL)cancel;
 - (void)waitByMsg:(NSString*)msg haveCancel:(BOOL)cancel;
 @end

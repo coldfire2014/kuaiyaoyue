@@ -63,6 +63,8 @@
     
     BOOL is_bcfs;
     BOOL is_bottom;
+    
+    BOOL is_audio;
 }
 
 @end
@@ -72,6 +74,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    is_audio = YES;
     is_bottom = YES;
     self.title = @"返回";
     audioname = @"";
@@ -135,6 +138,7 @@
             }
         }];
     }
+    
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(editviewonclick:)];
     [playview.editview addGestureRecognizer:tap2];
     
@@ -177,34 +181,36 @@
 //长按事件的实现方法
 - (void) LongPressed:(UILongPressGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        curCount = 0;
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setLocale:[NSLocale currentLocale]];
-        [formatter setDateFormat:@"yyyyMMddHHmmss"];
-        NSString *str = [formatter stringFromDate:[NSDate date]];
-        audioname = [NSString stringWithFormat:@"audio%@.wav", str];
-        
-        recordedFile = [[FileManage sharedFileManage] GetYPFile1:audioname];
-        
-        recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath: recordedFile] settings:[self getAudioRecorderSettingDict] error:nil];
-        
-        recorder.meteringEnabled = YES;
-        [recorder prepareToRecord];
-        [recorder record];
-        player = nil;
-        
-        //启动计时器
-        [self startTimer];
-        
-        [playview.audio_view setHidden:NO];
-    
-        [UIView animateWithDuration:0.3 animations:^{
-            [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 9, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
-            [playview.audio_view setAlpha:1.0];
-        }];
-        
-        [playview.audio_img setImage:[UIImage imageNamed:@"btn_120_recordingpre"]];
-        
+        if (is_audio) {
+            curCount = 0;
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setLocale:[NSLocale currentLocale]];
+            [formatter setDateFormat:@"yyyyMMddHHmmss"];
+            NSString *str = [formatter stringFromDate:[NSDate date]];
+            audioname = [NSString stringWithFormat:@"audio%@.wav", str];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                recordedFile = [[FileManage sharedFileManage] GetYPFile1:audioname];
+                recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath: recordedFile] settings:[self getAudioRecorderSettingDict] error:nil];
+                recorder.meteringEnabled = YES;
+                [recorder prepareToRecord];
+                [recorder record];
+            });
+            
+            
+            player = nil;
+            
+            //启动计时器
+            [self startTimer];
+            
+            [playview.audio_view setHidden:NO];
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 9, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
+                [playview.audio_view setAlpha:1.0];
+            }];
+            
+            [playview.audio_img setImage:[UIImage imageNamed:@"btn_120_recordingpre"]];
+        }
     }
     if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
         
@@ -212,6 +218,7 @@
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         
         NSLog(@"curCount-%f",curCount);
+        if (is_audio) {
         [self stopTimer];
         
         [recorder stop];
@@ -229,9 +236,11 @@
             [playview.gif_img setHidden:NO];
         }
         else{
+            is_audio = NO;
+            [[waitingView sharedwaitingView] WarningByMsg:@"录音时间太短了" haveCancel:NO];
             recordedFile = nil;
             audioname = @"";
-            [[StatusBar sharedStatusBar] talkMsg:@"录音时间太短了。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"录音时间太短了。" inTime:1.0];
             
             [UIView animateWithDuration:0.3 animations:^{
                 [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 51, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
@@ -243,15 +252,26 @@
                 [playview.tyx_label setHidden:YES];
                 [playview.gif_img setHidden:YES];
             }];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                is_audio = YES;
+                [[waitingView sharedwaitingView] stopWait];
+            });
     
         }
         
         [playview.audio_img setImage:[UIImage imageNamed:@"btn_120_recording"]];
+        }
     }
 }
+
+
+
 - (void)stopRecorder{
     [[waitingView sharedwaitingView] stopWait];
 }
+
+
 #pragma mark - 启动定时器
 - (void)startTimer{
     timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(levelTimer:) userInfo:nil repeats:YES];
