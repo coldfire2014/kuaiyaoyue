@@ -338,9 +338,9 @@
                 [s setStartTime:[NSDate dateWithTimeIntervalSince1970:_starttime] EndTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:_datatime]];
                 NSDate *enddate=[NSDate dateWithTimeIntervalSince1970:_endtime];
                 [show.picker setMaximumDate:enddate];
-                [[StatusBar sharedStatusBar] talkMsg:@"修改成功" inTime:0.51];
+                [[StatusBar sharedStatusBar] talkMsg:@"修改成功" inTime:1.01];
             }else{
-                [[StatusBar sharedStatusBar] talkMsg:@"修改失败" inTime:0.51];
+                [[StatusBar sharedStatusBar] talkMsg:@"修改失败" inTime:1.51];
             }
         }];
     }

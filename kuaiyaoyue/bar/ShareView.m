@@ -535,7 +535,7 @@
 -(void)copyWithMsg:(NSString*)msg{
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.string = msg;
-    [[StatusBar sharedStatusBar] talkMsg:@"已复制到剪贴板。" inTime:0.51];
+    [[StatusBar sharedStatusBar] talkMsg:@"已复制到剪贴板。" inTime:1.51];
 }
 
 -(void)shareQQZoneWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(NSString*)img{
@@ -563,7 +563,7 @@
             [self.fromvc presentViewController:mailPicker animated:YES completion:nil];
         }];
     }else{
-        [[StatusBar sharedStatusBar] talkMsg:@"您还没有设置iOS邮件账户。" inTime:1.01];
+        [[StatusBar sharedStatusBar] talkMsg:@"您还没有设置iOS邮件账户。" inTime:1.51];
     }
 }
 
