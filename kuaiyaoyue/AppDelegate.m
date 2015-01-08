@@ -320,6 +320,7 @@
                                 [HttpManage postdownloadimg:thumbUrl :tname];
                                 
                             }
+                            
                             if (i == ([array count]-1)) {
                                 NSDictionary *dic1 = [array objectAtIndex:0];
                                 NSString *uptime = [dic1 objectForKey:@"renewal"];
