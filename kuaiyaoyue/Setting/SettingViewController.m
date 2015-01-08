@@ -14,6 +14,8 @@
 #import "WXApi.h"
 #import "PCHeader.h"
 #import "TalkingData.h"
+#import "ShowWebViewController.h"
+
 @interface SettingViewController ()
 
 @end
@@ -61,20 +63,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier compare:@"showurl"] == NSOrderedSame){
+        ShowWebViewController *view = (ShowWebViewController*)segue.destinationViewController;
+        [view initContent:@"攻略" weburl:@"http://www.baidu.com"];
+    }
 }
-*/
+
 
 - (IBAction)checkupdata_onclick:(id)sender {
     //意见反馈
     [TalkingData trackEvent:@"查看攻略"];
-    [self performSegueWithIdentifier:@"YJFK" sender:nil];
+//    [self performSegueWithIdentifier:@"YJFK" sender:nil];
+    [self performSegueWithIdentifier:@"showurl" sender:nil];
 
 }
 

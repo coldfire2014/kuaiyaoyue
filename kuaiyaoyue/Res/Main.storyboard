@@ -1860,7 +1860,7 @@
                                                             <constraint firstAttribute="width" constant="16" id="vVC-dY-Cxu"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="意见反馈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdn-rk-H3a">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="攻略" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdn-rk-H3a">
                                                         <rect key="frame" x="18" y="9" width="60" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="18" id="mCc-tf-qiU"/>

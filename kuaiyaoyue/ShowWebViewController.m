@@ -21,19 +21,23 @@
     // Do any additional setup after loading the view.
     _webview.scalesPageToFit = YES;
     _webview.delegate = self;
-}
-
--(void)initContent:(NSString *)name weburl:(NSString *)weburl{
-    _weburl = weburl;
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    label.text = name;
+    label.text = _name;
     [label sizeToFit];
     label.textColor = color;
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
     [self.navigationItem setTitleView:label];
+    
     [self.navigationController.navigationBar setTintColor:color];
+    
     [self reloadweb];
+    
+}
+
+-(void)initContent:(NSString *)name weburl:(NSString *)weburl{
+    _weburl = weburl;
+    _name = name;
 }
 
 - (void)didReceiveMemoryWarning {
