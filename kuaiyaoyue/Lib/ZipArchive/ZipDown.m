@@ -15,7 +15,6 @@
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
     NSString *is_open = [userInfo valueForKey:@"DYC3"];
     if ([is_open length] > 0){
-        
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
@@ -26,7 +25,6 @@
              NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"3.zip"];
             [HttpManage unzip:zipPath filename:testDirectory];
         }
-        
     }else{
         NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"3.zip"];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
