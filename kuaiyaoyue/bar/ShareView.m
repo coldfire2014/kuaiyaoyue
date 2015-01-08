@@ -555,13 +555,15 @@
         mailPicker.mailComposeDelegate = self.fromvc;
         
         //设置主题
-        [mailPicker setSubject: @"title"];
+        [mailPicker setSubject: title];
         NSString *emailBody = [[NSString alloc] initWithFormat:@"%@\n%@",des,url];
         [mailPicker setMessageBody:emailBody isHTML:NO];
         [self changeHidden:YES completion:^(BOOL finished){
             self.frame = CGRectZero;
             [self.fromvc presentViewController:mailPicker animated:YES completion:nil];
         }];
+    }else{
+        [[StatusBar sharedStatusBar] talkMsg:@"您还没有设置iOS邮件账户。" inTime:1.01];
     }
 }
 
