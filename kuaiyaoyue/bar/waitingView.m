@@ -76,6 +76,7 @@
         [gth setTextColor:[[UIColor alloc] initWithWhite:1.0 alpha:1.0]];
         [gth setBackgroundColor:[UIColor clearColor]];
         [gth setText:@"!"];
+        gth.alpha = 0;
         gth.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0-15);
         [self addSubview:gth];
         loading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -106,6 +107,10 @@
 - (void)changeWord:(NSString*)msg{
     UILabel *add = (UILabel*)[self viewWithTag:305];
     add.text = msg;
+}
+- (void)WarningByMsg:(NSString*)msg haveCancel:(BOOL)cancel inTime:(double)time{
+    [self WarningByMsg:msg haveCancel:cancel];
+    [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(stopWait) userInfo:nil repeats:NO];
 }
 - (void)WarningByMsg:(NSString*)msg haveCancel:(BOOL)cancel{
     UIView* btn = [self viewWithTag:304];
