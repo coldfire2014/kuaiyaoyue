@@ -400,7 +400,7 @@
         view.title = detailTitle;
     }else if ([segue.identifier compare:@"showurl"] == NSOrderedSame){
         ShowWebViewController *view = (ShowWebViewController*)segue.destinationViewController;
-        view.weburl = weburl;
+        [view initContent:@"预览" weburl:weburl];
     }
 }
 - (void)didReceiveMemoryWarning {

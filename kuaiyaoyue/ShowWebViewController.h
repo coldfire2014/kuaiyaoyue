@@ -11,5 +11,6 @@
 @interface ShowWebViewController : UIViewController<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 @property (strong ,nonatomic) NSString *weburl;
+-(void)initContent:(NSString *)name weburl:(NSString *)weburl;
 
 @end

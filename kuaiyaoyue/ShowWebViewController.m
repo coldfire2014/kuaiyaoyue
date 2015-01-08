@@ -19,20 +19,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _webview.scalesPageToFit = YES;
+    _webview.delegate = self;
+}
+
+-(void)initContent:(NSString *)name weburl:(NSString *)weburl{
+    _weburl = weburl;
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
-    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    label.text = @"浏览";
+    label.text = name;
     [label sizeToFit];
     label.textColor = color;
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
     [self.navigationItem setTitleView:label];
-    
-    
-    
     [self.navigationController.navigationBar setTintColor:color];
-    _webview.scalesPageToFit = YES;
-    _webview.delegate = self;
     [self reloadweb];
 }
 
@@ -62,6 +62,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(reloadweb)];
 //    [self.navigationController popViewControllerAnimated:YES];
 }
+
 //页面加载时处理事件
 -(void)reloadweb{
     self.navigationItem.rightBarButtonItem = nil;
@@ -70,12 +71,14 @@
     NSURLRequest *request =[NSURLRequest requestWithURL:url];
     [_webview loadRequest:request];
 }
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [[waitingView sharedwaitingView] stopWait];
     [[StatusBar sharedStatusBar] talkMsg:@"页面加载失败了" inTime:0.5];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(reloadweb)];
 //    [self.navigationController popViewControllerAnimated:YES];
 }
+
 //页面加载完成，导航条显示，预览图隐藏，
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [[waitingView sharedwaitingView] stopWait];
