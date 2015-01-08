@@ -68,6 +68,16 @@
         add.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0+25);
         [self addSubview:add];
         
+        UILabel *gth = [[UILabel alloc] initWithFrame:CGRectMake(0, 0.0, mainScreenFrame.size.width,mainScreenFrame.size.width)];
+        gth.tag = 604;
+        [gth setFont:[UIFont fontWithName:@"TimesNewRomanPS-BoldMT" size:44]];
+        [gth setTextAlignment:NSTextAlignmentCenter];
+        [gth setLineBreakMode:NSLineBreakByClipping];
+        [gth setTextColor:[[UIColor alloc] initWithWhite:1.0 alpha:1.0]];
+        [gth setBackgroundColor:[UIColor clearColor]];
+        [gth setText:@"!"];
+        gth.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0-15);
+        [self addSubview:gth];
         loading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [self addSubview: loading];
         
@@ -84,10 +94,12 @@
     [self waitByMsg:@"" haveCancel:NO];
 }
 - (void)stopWait{
-    
+    UIView* gth = [self viewWithTag:604];
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 0;
+        gth.alpha = 0;
     } completion:^(BOOL finished) {
+        
         [loading stopAnimating];
     }];
 }
@@ -105,9 +117,12 @@
     } else {
         loading.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0);
     }
-    [loading startAnimating];
+    UIView* gth = [self viewWithTag:604];
+    gth.alpha = 1;
+//    [loading startAnimating];
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 1;
+        
     } completion:^(BOOL finished) {
         
     }];
