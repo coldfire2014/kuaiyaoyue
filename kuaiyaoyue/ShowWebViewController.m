@@ -101,8 +101,7 @@
         NSString* hurl = [rurl substringToIndex:r.location];
         NSString* title_c = [rurl substringFromIndex: r.location+1];
         NSArray* title_a = [title_c componentsSeparatedByString:@"="];
-        
-        newtitel = [title_a objectAtIndex:1];
+        newtitel = [[title_a objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         newurl = [[NSString alloc] initWithFormat:@"http:%@",hurl];
         
         [self performSegueWithIdentifier:@"showurl" sender:nil];
