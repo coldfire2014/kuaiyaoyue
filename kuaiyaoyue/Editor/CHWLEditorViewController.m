@@ -1055,7 +1055,7 @@
             [UDObject setWLContent:partyName wltime:timestamp wlbmendtime:closetime wladdress_name:address wllxr_name:inviter wllxfs_name:telephone wlts_name:description wlaudio:audioname wlimgarr:hlarr];
             [self GetRecord];
             [[waitingView sharedwaitingView] stopWait];
-            [[StatusBar sharedStatusBar] talkMsg:@"成功生成" inTime:0.3];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
         }else{
             [[waitingView sharedwaitingView] stopWait];
             [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];

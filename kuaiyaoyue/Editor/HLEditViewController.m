@@ -646,7 +646,7 @@
             [UDObject setHLContent:xl_name xn_name:xn_name hltime:hltime bmendtime:bmendtime address_name:address_name music:musicUrl musicname:mp3name imgarr:hlarr];
             [self GetRecord];
             [[waitingView sharedwaitingView] stopWait];
-            [[StatusBar sharedStatusBar] talkMsg:@"成功生成" inTime:0.3];
+            [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
         }else{
             [[waitingView sharedwaitingView] stopWait];
             [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.5];
