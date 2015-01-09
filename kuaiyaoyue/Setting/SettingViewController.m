@@ -72,7 +72,7 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier compare:@"showurl"] == NSOrderedSame){
         ShowWebViewController *view = (ShowWebViewController*)segue.destinationViewController;
-        [view initContent:@"攻略" weburl:@"http://www.baidu.com"];
+        [view initContent:@"探秘快邀约2.0" weburl:@"http://appkyy.kyy121.com/invitation/static/gospel.html"];
     }
 }
 
