@@ -10,7 +10,10 @@
 #import "TalkingData.h"
 #import "waitingView.h"
 #import "StatusBar.h"
-@interface ShowWebViewController ()
+@interface ShowWebViewController (){
+    NSString *newtitel;
+    NSString *newurl;
+}
 
 @end
 
@@ -90,14 +93,40 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(reloadweb)];
 }
 
-/*
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSString* rurl=[[request URL] resourceSpecifier];
+    NSString* scheme = [[request URL] scheme];
+    if ([scheme hasPrefix:@"goto"]) {
+        NSRange r = [rurl rangeOfString:@"?"];
+        NSString* hurl = [rurl substringToIndex:r.location];
+        NSString* title_c = [rurl substringFromIndex: r.location+1];
+        NSArray* title_a = [title_c componentsSeparatedByString:@"="];
+        
+        newtitel = [title_a objectAtIndex:1];
+        newurl = [[NSString alloc] initWithFormat:@"http:%@",hurl];
+        
+        [self performSegueWithIdentifier:@"showurl" sender:nil];
+        //
+        //用newURL跳转新的 浏览器 title是标题
+        //
+        return NO;
+    }
+    return YES; // 继续对本次请求进行导航
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier compare:@"showurl"] == NSOrderedSame){
+        ShowWebViewController *view = (ShowWebViewController*)segue.destinationViewController;
+        [view initContent:newtitel weburl:newurl];
+    }
+    
 }
-*/
+
 
 @end

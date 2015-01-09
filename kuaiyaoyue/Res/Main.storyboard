@@ -1098,6 +1098,40 @@
             <point key="canvasLocation" x="-779" y="-82"/>
         </scene>
         <!--Show Web View Controller-->
+        <scene sceneID="okV-KS-XRj">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="z95-gO-IAg" customClass="ShowWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5C5-1P-lHB"/>
+                        <viewControllerLayoutGuide type="bottom" id="RNn-a8-q19"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r5B-dE-AQL">
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1l-VK-3ji">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="R1l-VK-3ji" firstAttribute="top" secondItem="r5B-dE-AQL" secondAttribute="top" id="H9E-hc-exO"/>
+                            <constraint firstItem="R1l-VK-3ji" firstAttribute="leading" secondItem="r5B-dE-AQL" secondAttribute="leading" id="NG3-ur-HXV"/>
+                            <constraint firstItem="RNn-a8-q19" firstAttribute="top" secondItem="R1l-VK-3ji" secondAttribute="bottom" id="WY6-Vd-qFW"/>
+                            <constraint firstAttribute="trailing" secondItem="R1l-VK-3ji" secondAttribute="trailing" id="ZIE-fb-NSJ"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="webview" destination="R1l-VK-3ji" id="wn5-Bj-B7b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vq2-BU-HE9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1528" y="-773"/>
+        </scene>
+        <!--Show Web View Controller-->
         <scene sceneID="yau-6J-ig7">
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="JmL-wg-bJy" customClass="ShowWebViewController" sceneMemberID="viewController">
@@ -1124,11 +1158,12 @@
                     </view>
                     <connections>
                         <outlet property="webview" destination="6BA-i6-S2b" id="Uxp-TD-FOE"/>
+                        <segue destination="z95-gO-IAg" kind="show" identifier="showurl" id="Cvb-OG-tWV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EzV-gl-PPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1550" y="135"/>
+            <point key="canvasLocation" x="-1544" y="157"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="VGg-Og-T4r">
@@ -1526,7 +1561,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LvK-JD-UgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-792" y="589"/>
+            <point key="canvasLocation" x="-868" y="369"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="kT8-qd-CSr">
@@ -3306,10 +3341,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qme-kc-Frs"/>
+        <segue reference="fGE-I1-vLQ"/>
         <segue reference="ztp-xN-fnN"/>
-        <segue reference="luI-zA-BtH"/>
         <segue reference="fps-RF-Hk5"/>
         <segue reference="bym-b5-cxi"/>
-        <segue reference="fGE-I1-vLQ"/>
+        <segue reference="luI-zA-BtH"/>
     </inferredMetricsTieBreakers>
 </document>
