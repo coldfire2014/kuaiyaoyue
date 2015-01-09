@@ -743,7 +743,6 @@
     UIImage* img = [[UIImage alloc]initWithContentsOfFile:topimg];
     share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
     [share show];
-    [TalkingData trackEvent:@"发送"];
 }
 
 @end
