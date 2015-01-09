@@ -54,7 +54,6 @@
 		8460DDD61A4E78A70031416E /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460DDD51A4E78A70031416E /* UserInfoViewController.m */; };
 		8460DDD91A4E7CC60031416E /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460DDD81A4E7CC60031416E /* EditViewController.m */; };
 		846195591A31DA8700FDF2CA /* GridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 846195581A31DA8700FDF2CA /* GridCell.m */; };
-		846558C81A5F73FC001AFC08 /* 3.zip in Resources */ = {isa = PBXBuildFile; fileRef = 846558C71A5F73FC001AFC08 /* 3.zip */; };
 		846C1B9D1A45592900B59A18 /* ShowData.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1B9C1A45592900B59A18 /* ShowData.m */; };
 		846C1BA21A45704100B59A18 /* NSInfoImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA11A45704100B59A18 /* NSInfoImg.m */; };
 		846C1BA51A45706000B59A18 /* LunarCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA41A45706000B59A18 /* LunarCalendar.m */; };
@@ -194,6 +193,7 @@
 		E577FC2F1A356E66009ED66D /* perviewImg.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC291A356E66009ED66D /* perviewImg.m */; };
 		E577FC301A356E66009ED66D /* picViewAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC2B1A356E66009ED66D /* picViewAnimate.m */; };
 		E577FC331A356EFB009ED66D /* imgSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC321A356EFB009ED66D /* imgSegue.m */; };
+		E57A11231A5FB71100FFF733 /* 3.zip in Resources */ = {isa = PBXBuildFile; fileRef = E57A11221A5FB71100FFF733 /* 3.zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,7 +287,6 @@
 		8460DDD81A4E7CC60031416E /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		846195571A31DA8700FDF2CA /* GridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCell.h; sourceTree = "<group>"; };
 		846195581A31DA8700FDF2CA /* GridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridCell.m; sourceTree = "<group>"; };
-		846558C71A5F73FC001AFC08 /* 3.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 3.zip; sourceTree = "<group>"; };
 		846C1B9B1A45592900B59A18 /* ShowData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowData.h; sourceTree = "<group>"; };
 		846C1B9C1A45592900B59A18 /* ShowData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowData.m; sourceTree = "<group>"; };
 		846C1B9E1A45593C00B59A18 /* ShowData.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowData.xib; sourceTree = "<group>"; };
@@ -529,6 +528,7 @@
 		E577FC2B1A356E66009ED66D /* picViewAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = picViewAnimate.m; path = pic/picViewAnimate.m; sourceTree = "<group>"; };
 		E577FC311A356EFB009ED66D /* imgSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgSegue.h; path = pic/imgSegue.h; sourceTree = "<group>"; };
 		E577FC321A356EFB009ED66D /* imgSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = imgSegue.m; path = pic/imgSegue.m; sourceTree = "<group>"; };
+		E57A11221A5FB71100FFF733 /* 3.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 3.zip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -932,7 +932,7 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
-				846558C71A5F73FC001AFC08 /* 3.zip */,
+				E57A11221A5FB71100FFF733 /* 3.zip */,
 				E565ECCB1A538EA100679BAE /* img_empty_homeb.png */,
 				8431E9071A4D24AA00E9B0EE /* logo@2x.png */,
 				8474A4AB1A4BB28A00C2E489 /* bubble_play_1@2x.png */,
@@ -1258,7 +1258,7 @@
 				TargetAttributes = {
 					84E842581A2EDF6B00A401A0 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = E68S9675TU;
+						DevelopmentTeam = PSEU9Z2979;
 					};
 					84E842741A2EDF6C00A401A0 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1305,7 +1305,7 @@
 				E5590CC51A469CAB0080F3B1 /* card_g.png in Resources */,
 				84E8426D1A2EDF6B00A401A0 /* Images.xcassets in Resources */,
 				E56786FD1A50F38100308A4B /* Default@2x.png in Resources */,
-				846558C81A5F73FC001AFC08 /* 3.zip in Resources */,
+				E57A11231A5FB71100FFF733 /* 3.zip in Resources */,
 				8460DDD31A4E73A50031416E /* Main.storyboard in Resources */,
 				849D66801A484887004EF00F /* HLEditView.xib in Resources */,
 				E56786F91A50EA0500308A4B /* Default-568h@2x.png in Resources */,
@@ -1596,8 +1596,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yangbing wu (6Y35J7EFD4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yangbing wu (6Y35J7EFD4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wu yangbing (864362N2QY)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/Tencent",
@@ -1620,7 +1620,7 @@
 				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9b1b3929-17ef-4fee-8991-43875eb59fd5";
+				PROVISIONING_PROFILE = "eac00dfb-80b7-4abd-8799-adbaa32e4a28";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1632,8 +1632,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: xiamen NEF Network Technology Co.Ltd";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: xiamen NEF Network Technology Co.Ltd";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xiamen NEF Network Technology Co., Ltd. (PSEU9Z2979)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/Tencent",
@@ -1656,7 +1656,7 @@
 				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7cc2b366-7e0a-44d7-abfc-deed0b62d6ef";
+				PROVISIONING_PROFILE = "e889649d-5273-48c0-80bb-3baec87f1f20";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
