@@ -23,6 +23,7 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"返回";
     _webview.scalesPageToFit = YES;
     _webview.delegate = self;
     UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
