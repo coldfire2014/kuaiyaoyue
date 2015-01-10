@@ -19,10 +19,10 @@
         img.tag = 202;
         [self addSubview:img];
         CGFloat w = frame.size.height / 4.0;
-        UIView *btn = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w*1.6, w*1.6)];
-        btn.backgroundColor = [[UIColor alloc] initWithWhite:0.5 alpha:0];
-        btn.center = CGPointMake(3.2*w, 0.8*w);
-        UIView* bg = [[UIView alloc] initWithFrame: CGRectMake(w*0.3, w*0.3,  w,  w)];
+        UIView *btn = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w*2.0, w*2.0)];
+        btn.backgroundColor = [[UIColor alloc] initWithWhite:0.5 alpha:0.0];
+        btn.center = CGPointMake(3.0*w, w);
+        UIView* bg = [[UIView alloc] initWithFrame: CGRectMake(w*0.7, w*0.3,  w,  w)];
         bg.backgroundColor = [[UIColor alloc] initWithWhite:0.5 alpha:0.5];
         bg.layer.cornerRadius = (w/2.0);
         [btn addSubview:bg];
@@ -50,7 +50,7 @@
         gs.layer.transform = CATransform3DTranslate(gs.layer.transform, 0.0, w/8.0, 0);
         [bg addSubview:gs];
         
-        bg.layer.transform = CATransform3DRotate(btn.layer.transform, -M_PI_4, 0, 0, 1);
+        bg.layer.transform = CATransform3DRotate(bg.layer.transform, -M_PI_4, 0, 0, 1);
         btn.tag=201;
         [self addSubview:btn];
         UITapGestureRecognizer* panGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didtap)];

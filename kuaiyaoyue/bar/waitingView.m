@@ -51,7 +51,8 @@
         UITapGestureRecognizer* panall = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backAll)];
         [backall addGestureRecognizer:panall];
         
-        UIView* bk = [[UIView alloc] initWithFrame:CGRectMake(0, 0.0, mainScreenFrame.size.width-158,88.0)];
+        UIView* bk = [[UIView alloc] initWithFrame:CGRectMake(0, 0.0, 148,88.0)];
+        bk.tag = 303;
         bk.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0);
         bk.backgroundColor = [[UIColor alloc] initWithWhite:0.4 alpha:0.8];
         bk.layer.cornerRadius = 8;
@@ -117,6 +118,7 @@
     btn.hidden = !cancel;
     UILabel *add = (UILabel*)[self viewWithTag:305];
     add.text = msg;
+    CGSize s = [add sizeThatFits:add.bounds.size];
     if (msg.length > 0) {
         loading.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0-15);
     } else {
@@ -125,6 +127,12 @@
     UIView* gth = [self viewWithTag:604];
     gth.alpha = 1;
 //    [loading startAnimating];
+    UIView* bk = [self viewWithTag:303];
+    if (s.width + 44.0 > 148.0) {
+        bk.bounds = CGRectMake(0, 0, s.width + 44.0, 88.0);
+    } else {
+        bk.bounds = CGRectMake(0, 0, 148.0, 88.0);
+    }
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 1;
         
@@ -135,8 +143,16 @@
 - (void)waitByMsg:(NSString*)msg haveCancel:(BOOL)cancel{
     UIView* btn = [self viewWithTag:304];
     btn.hidden = !cancel;
+    UIView* bk = [self viewWithTag:303];
+    bk.bounds = CGRectMake(0, 0, 148.0, 88.0);
     UILabel *add = (UILabel*)[self viewWithTag:305];
     add.text = msg;
+    CGSize s = [add sizeThatFits:add.bounds.size];
+    if (s.width + 44.0 > 148.0) {
+        bk.bounds = CGRectMake(0, 0, s.width + 44.0, 88.0);
+    } else {
+        bk.bounds = CGRectMake(0, 0, 148.0, 88.0);
+    }
     if (msg.length > 0) {
         loading.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0-15);
     } else {
