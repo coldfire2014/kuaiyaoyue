@@ -9,6 +9,8 @@
 #import "waitingView.h"
 #import "myImageView.h"
 #import "PCHeader.h"
+
+#import <ImageIO/ImageIO.h>
 @implementation waitingView
 
 /*
@@ -56,6 +58,7 @@
         bk.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0);
         bk.backgroundColor = [[UIColor alloc] initWithWhite:0.4 alpha:0.8];
         bk.layer.cornerRadius = 8;
+//        bk.alpha = 0;
         [self addSubview:bk];
         
         UILabel *add = [[UILabel alloc] initWithFrame:CGRectMake(0, 0.0, mainScreenFrame.size.width,20.0)];
@@ -80,6 +83,41 @@
         gth.alpha = 0;
         gth.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0-15);
         [self addSubview:gth];
+////        {
+//            NSString *gifFilePath = [[NSBundle mainBundle] pathForResource:@"loading" ofType:@"gif"];
+//            NSData *gifData = [NSData dataWithContentsOfFile: gifFilePath];
+//            NSMutableArray *frames = nil;
+//            CGImageSourceRef src = CGImageSourceCreateWithData((CFDataRef)CFBridgingRetain(gifData), NULL);
+//            double total = 0;
+//            NSTimeInterval gifAnimationDuration;
+//            if (src) {
+//                size_t l = CGImageSourceGetCount(src);
+//                if (l > 1){
+//                    frames = [NSMutableArray arrayWithCapacity: l];
+//                    for (size_t i = 0; i < l; i++) {
+//                        CGImageRef img = CGImageSourceCreateImageAtIndex(src, i, NULL);
+//                        //                CGImageRef img2 = [UIImage imageWithCGImage:img scale:2 orientation:UIImageOrientationUp].CGImage;
+//                        NSDictionary *dict = (NSDictionary *)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(src, 0, NULL));
+//                        if (dict){
+//                            NSDictionary *tmpdict = [dict objectForKey: @"{GIF}"];
+//                            total += [[tmpdict objectForKey: @"DelayTime"] doubleValue] * 50;
+//                        }
+//                        if (img) {
+//                            [frames addObject: [UIImage imageWithCGImage: img]];
+//                            //                    CGImageRelease(img2);
+//                            CGImageRelease(img);
+//                        }
+//                    }
+//                }
+//            }
+////        }
+//        loading = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 132.0 , 18.0)];
+//        loading.animationImages = frames;
+//        
+//        loading.animationDuration = 35.0*0.03;
+//        loading.animationRepeatCount = 0;
+        
+        
         loading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [self addSubview: loading];
         
@@ -101,7 +139,7 @@
         self.alpha = 0;
         gth.alpha = 0;
     } completion:^(BOOL finished) {
-        
+        loading.alpha = 0;
         [loading stopAnimating];
     }];
 }
@@ -158,6 +196,7 @@
     } else {
         loading.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0);
     }
+    loading.alpha = 1;
     [loading startAnimating];
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 1;

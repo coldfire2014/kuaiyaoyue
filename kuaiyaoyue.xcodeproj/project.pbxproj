@@ -135,6 +135,7 @@
 		E54851D81A35AF0500590E5C /* coverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851D71A35AF0500590E5C /* coverSegue.m */; };
 		E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DA1A35AF5C00590E5C /* coverAnimation.m */; };
 		E54851DE1A35B08800590E5C /* w2mainSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DD1A35B08800590E5C /* w2mainSegue.m */; };
+		E54889871A6125E1008EA808 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = E54889861A6125E1008EA808 /* loading.gif */; };
 		E54F3EC91A5CEB5C005EB25A /* UIPhoneWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E54F3EC81A5CEB5C005EB25A /* UIPhoneWindow.m */; };
 		E5573F951A4303A9006AAB8F /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F8B1A4303A9006AAB8F /* ioapi.c */; };
 		E5573F961A4303A9006AAB8F /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F8D1A4303A9006AAB8F /* mztools.c */; };
@@ -444,6 +445,7 @@
 		E54851DA1A35AF5C00590E5C /* coverAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = coverAnimation.m; sourceTree = "<group>"; };
 		E54851DC1A35B08800590E5C /* w2mainSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = w2mainSegue.h; sourceTree = "<group>"; };
 		E54851DD1A35B08800590E5C /* w2mainSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = w2mainSegue.m; sourceTree = "<group>"; };
+		E54889861A6125E1008EA808 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		E54F3EC71A5CEB5C005EB25A /* UIPhoneWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPhoneWindow.h; sourceTree = "<group>"; };
 		E54F3EC81A5CEB5C005EB25A /* UIPhoneWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPhoneWindow.m; sourceTree = "<group>"; };
 		E5573F871A430118006AAB8F /* PCHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCHeader.h; sourceTree = "<group>"; };
@@ -1190,6 +1192,7 @@
 		E577FC041A356BB9009ED66D /* bar */ = {
 			isa = PBXGroup;
 			children = (
+				E54889861A6125E1008EA808 /* loading.gif */,
 				E54F3EC71A5CEB5C005EB25A /* UIPhoneWindow.h */,
 				E54F3EC81A5CEB5C005EB25A /* UIPhoneWindow.m */,
 				E541617C1A43E2B20077A89D /* waitingView.h */,
@@ -1318,6 +1321,7 @@
 				E565ECC61A52CDB900679BAE /* 1w.jpg in Resources */,
 				E5661A1C1A45708C00E4E2BC /* btn_login_qq.png in Resources */,
 				E5661A291A457CB700E4E2BC /* btn_login_1.png in Resources */,
+				E54889871A6125E1008EA808 /* loading.gif in Resources */,
 				844CC58A1A491CBA00A34186 /* CustomView.xib in Resources */,
 				E534DD721A4643B900542D67 /* ic_54_x@2x.png in Resources */,
 				E56787021A5153E700308A4B /* btn_sidebar_pre.png in Resources */,

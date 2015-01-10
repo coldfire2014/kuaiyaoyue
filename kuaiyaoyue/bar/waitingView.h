@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface waitingView : UIWindow{
+//    UIImageView* loading;
     UIActivityIndicatorView* loading;
 }
 + (waitingView *)sharedwaitingView;
