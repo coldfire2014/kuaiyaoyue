@@ -35,6 +35,11 @@ static NSString * const fIdentifier = @"imgcellf";
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    
+    UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    
+    
     // Register cell classes
     [self.collectionView registerClass:[ImgCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self.collectionView registerClass:[imgGroupView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:hIdentifier];
@@ -349,6 +354,16 @@ static NSString * const fIdentifier = @"imgcellf";
 }
 -(CGSize) collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(m_w, m_w);
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 2.0;
+}
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    UIEdgeInsets top = {0,0,0,0};
+    return top;
 }
 /*
 // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
