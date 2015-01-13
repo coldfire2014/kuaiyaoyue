@@ -52,6 +52,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 -(void)viewDidAppear:(BOOL)animated{
+    [SMS_SDK enableAppContactFriends:NO];
     [super viewDidAppear:animated];
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         [self prefersStatusBarHidden];

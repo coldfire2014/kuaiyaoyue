@@ -49,10 +49,10 @@
                                             andDelegate:self];
     [TalkingData setExceptionReportEnabled:YES];
     [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"AppStore"];
-    //    [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"inhouse"];
-    //    [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"91shouji"];
+//        [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"inhouse"];
+//        [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"91shouji"];
     [SMS_SDK registerApp:@"4ec26c11eca2" withSecret:@"e80f13299bf5581e40ed33e2d8350cae"];
-    [SMS_SDK enableAppContactFriends:NO];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onebyone) name:@"onebyone" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getmaxtemplate:) name:@"getmax" object:nil];
