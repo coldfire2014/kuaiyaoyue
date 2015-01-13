@@ -86,21 +86,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier compare:@"imgSelect"] == NSOrderedSame ) {
-//        ImgCollectionViewController* des = (ImgCollectionViewController*)segue.destinationViewController;
-//        des.maxCount = 2;
-//        des.needAnimation = YES;
-//        des.delegate = self;
-    } else {
-//        createViewController* des = (createViewController*)segue.destinationViewController;
-//        des.bgimg = (UIImage*)sender;
-    }
+
 }
 
 
 - (IBAction)onclick:(id)sender {
 //    [self performSegueWithIdentifier:@"main" sender:nil];
-    [self performSegueWithIdentifier:@"imgSelect" sender:nil];
 
 }
 -(void)didSelectAssets:(NSArray*)items{

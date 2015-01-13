@@ -31,7 +31,7 @@
         UITapGestureRecognizer* tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(RightTap)];
         [btnRight addGestureRecognizer:tap2 ];
         UILabel* lbl_OK = [[UILabel alloc] initWithFrame:btnRight.bounds];
-        lbl_OK.font = [UIFont boldSystemFontOfSize:20];
+        lbl_OK.font = [UIFont boldSystemFontOfSize:18];
         lbl_OK.text = @"确定";
         lbl_OK.textAlignment = NSTextAlignmentCenter;
         lbl_OK.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];

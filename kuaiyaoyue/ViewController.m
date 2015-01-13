@@ -22,7 +22,7 @@
 #import "DetailViewController.h"
 #import "StatusBar.h"
 #import "ShareView.h"
-#import "ShowWebViewController.h"
+#import "WebViewController.h"
 #import "FileManage.h"
 #import "waitingView.h"
 
@@ -44,10 +44,8 @@
     NSString *thumb;
     NSIndexPath *index_path;
     myImageView* emptyImg;
-    NSString *weburl;
-    
     BOOL is_bcfs;
-    
+
 }
 @end
 
@@ -399,8 +397,6 @@
         view.index = [index_path row];
         view.title = detailTitle;
     }else if ([segue.identifier compare:@"showurl"] == NSOrderedSame){
-        ShowWebViewController *view = (ShowWebViewController*)segue.destinationViewController;
-        [view initContent:@"预览" weburl:weburl];
         
     }
 }
@@ -668,9 +664,16 @@
         [share show];
         [TalkingData trackEvent:@"按钮发送"];
     }else{
-        weburl = user.nefurl;
-        [self performSegueWithIdentifier:@"showurl" sender:nil];
         [TalkingData trackEvent:@"查看邀约"];
+        WebViewController *view = [[WebViewController alloc] init];
+        view.name = @"浏览";
+        view.weburl = user.nefurl;
+        view.viewTitle = @"生成后预览";
+        view.modalPresentationStyle = UIModalPresentationFullScreen;
+        view.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:view animated:YES completion:^{
+            
+        }];
     }
 }
 

@@ -36,9 +36,13 @@ static NSString * const fIdentifier = @"imgcellf";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     
-    UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+//    UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+//    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     
+    
+//    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 128.0/2.0, w, h-128.0/2.0) collectionViewLayout:flowLayout];
+    
+    [self.view addSubview:self.collectionView];
     
     // Register cell classes
     [self.collectionView registerClass:[ImgCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -48,6 +52,8 @@ static NSString * const fIdentifier = @"imgcellf";
     self.collectionView.backgroundColor = [[UIColor alloc] initWithWhite:1.0 alpha:0.9];
     self.collectionView.frame = CGRectMake(0, 128.0/2.0, w, h-128.0/2.0);
     assert = ASSETHELPER;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
     
     [self initDate];
     assert.bReverse = YES;
@@ -360,11 +366,7 @@ static NSString * const fIdentifier = @"imgcellf";
 minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return 2.0;
 }
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    UIEdgeInsets top = {0,0,0,0};
-    return top;
-}
+
 /*
 // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {

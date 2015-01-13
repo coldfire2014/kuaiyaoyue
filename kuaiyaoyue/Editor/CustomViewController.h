@@ -11,7 +11,6 @@
 @interface CustomViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate,UIScrollViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     BOOL isHead;
-    int m_count;
 }
 @property (strong, nonatomic) NSString *unquieId;
 

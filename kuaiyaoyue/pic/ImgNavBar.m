@@ -47,7 +47,9 @@
         [bk addSubview:btnRight];
         UITapGestureRecognizer* tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(RightTap)];
         [btnRight addGestureRecognizer:tap2 ];
-        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-0.5, self.frame.size.width, 0.5)];
+        line.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.5];
+        [self addSubview:line];
     }
     return self;
 }

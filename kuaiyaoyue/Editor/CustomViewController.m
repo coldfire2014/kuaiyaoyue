@@ -260,10 +260,10 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier compare:@"imgSelect"] == NSOrderedSame ) {
-        ImgCollectionViewController* des = (ImgCollectionViewController*)segue.destinationViewController;
-        des.maxCount = m_count;
-        des.needAnimation = NO;
-        des.delegate = self;
+//        ImgCollectionViewController* des = (ImgCollectionViewController*)segue.destinationViewController;
+//        des.maxCount = m_count;
+//        des.needAnimation = NO;
+//        des.delegate = self;
     }else if ([segue.identifier compare:@"music"] == NSOrderedSame){
         MusicViewController *view = (MusicViewController*)segue.destinationViewController;
         view.delegate = self;
@@ -325,9 +325,19 @@
     GridInfo *info = [data objectAtIndex:[indexPath row]];
     if (!info.is_open) {
         [self.view endEditing:NO];
-        m_count = count;
         isHead = NO;
-        [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+        UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        flowLayout.minimumInteritemSpacing = 0.0;
+        ImgCollectionViewController* des = [[ImgCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
+        des.maxCount = count;
+        des.needAnimation = NO;
+        des.delegate = self;
+        //        des.transitioningDelegate = self;
+        des.modalPresentationStyle = UIModalPresentationCustom;
+        [self presentViewController:des animated:YES completion:^{
+            
+        }];
     }else{
     }
 }
@@ -431,9 +441,19 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         if ((actionSheet.tag == 998 && buttonIndex == 0) || (actionSheet.tag == 999 && buttonIndex == 1)) {
-            m_count = 1;
             isHead = YES;
-            [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+            UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            flowLayout.minimumInteritemSpacing = 0.0;
+            ImgCollectionViewController* des = [[ImgCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
+            des.maxCount = 1;
+            des.needAnimation = NO;
+            des.delegate = self;
+            //        des.transitioningDelegate = self;
+            des.modalPresentationStyle = UIModalPresentationCustom;
+            [self presentViewController:des animated:YES completion:^{
+                
+            }];
         }else if(actionSheet.tag == 999 && buttonIndex == 0){
             [self SendPECropView:custom.show_top_img.image];
         }else if ((actionSheet.tag == 998 && buttonIndex == 1) || (actionSheet.tag == 999 && buttonIndex == 2)){

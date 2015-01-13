@@ -529,7 +529,6 @@
                         <outlet property="sendshare_view" destination="8xB-m9-g0o" id="M5U-ri-zIz"/>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="luI-zA-BtH"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="fps-RF-Hk5"/>
-                        <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="bym-b5-cxi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giO-uz-hMR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -652,37 +651,12 @@
                         <outlet property="send_view" destination="GVO-vc-hmr" id="K1N-5Z-Ne5"/>
                         <outlet property="sendshare_view" destination="d8X-j1-RCw" id="mLI-5B-U0l"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="72F-Gw-hpx"/>
-                        <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="TVF-8g-g97"/>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="Dsl-9A-YOu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJx-Xq-q9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1614" y="-905"/>
-        </scene>
-        <!--Img Collection View Controller-->
-        <scene sceneID="Scc-gB-SCU">
-            <objects>
-                <collectionViewController id="eGo-cX-lU3" customClass="ImgCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="H9K-2q-oFi">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="0.0" id="Ou7-6b-lOZ">
-                            <size key="itemSize" width="0.0" height="0.0"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="eGo-cX-lU3" id="7Bk-H3-EhY"/>
-                            <outlet property="delegate" destination="eGo-cX-lU3" id="EzR-jk-Gpn"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nsK-Bk-e2O" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2492" y="-373"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="zp0-jQ-aiI">
@@ -1095,74 +1069,6 @@
             </objects>
             <point key="canvasLocation" x="-764" y="1686"/>
         </scene>
-        <!--Show Web View Controller-->
-        <scene sceneID="okV-KS-XRj">
-            <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="z95-gO-IAg" customClass="ShowWebViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5C5-1P-lHB"/>
-                        <viewControllerLayoutGuide type="bottom" id="RNn-a8-q19"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="r5B-dE-AQL">
-                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1l-VK-3ji">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="R1l-VK-3ji" firstAttribute="top" secondItem="r5B-dE-AQL" secondAttribute="top" id="H9E-hc-exO"/>
-                            <constraint firstItem="R1l-VK-3ji" firstAttribute="leading" secondItem="r5B-dE-AQL" secondAttribute="leading" id="NG3-ur-HXV"/>
-                            <constraint firstItem="RNn-a8-q19" firstAttribute="top" secondItem="R1l-VK-3ji" secondAttribute="bottom" id="WY6-Vd-qFW"/>
-                            <constraint firstAttribute="trailing" secondItem="R1l-VK-3ji" secondAttribute="trailing" id="ZIE-fb-NSJ"/>
-                        </constraints>
-                    </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <connections>
-                        <outlet property="webview" destination="R1l-VK-3ji" id="wn5-Bj-B7b"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vq2-BU-HE9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1536" y="-1381"/>
-        </scene>
-        <!--Show Web View Controller-->
-        <scene sceneID="yau-6J-ig7">
-            <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="JmL-wg-bJy" customClass="ShowWebViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pD8-1s-kAm"/>
-                        <viewControllerLayoutGuide type="bottom" id="JLx-RE-16g"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="R7p-5y-t7w">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6BA-i6-S2b">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="6BA-i6-S2b" firstAttribute="leading" secondItem="R7p-5y-t7w" secondAttribute="leading" id="5iC-cv-Nht"/>
-                            <constraint firstItem="6BA-i6-S2b" firstAttribute="top" secondItem="R7p-5y-t7w" secondAttribute="top" id="CmB-kG-4kC"/>
-                            <constraint firstItem="JLx-RE-16g" firstAttribute="top" secondItem="6BA-i6-S2b" secondAttribute="bottom" id="iPt-YX-xhD"/>
-                            <constraint firstAttribute="trailing" secondItem="6BA-i6-S2b" secondAttribute="trailing" id="vsx-Xq-gfc"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="webview" destination="6BA-i6-S2b" id="Uxp-TD-FOE"/>
-                        <segue destination="z95-gO-IAg" kind="show" identifier="showurl" id="Cvb-OG-tWV"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EzV-gl-PPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1536" y="-675"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="VGg-Og-T4r">
             <objects>
@@ -1554,7 +1460,6 @@
                         <segue destination="vz3-vm-ap6" kind="show" identifier="menu" id="ZGs-xJ-ADz"/>
                         <segue destination="Dq2-pa-Aad" kind="show" identifier="detail" id="Fgy-C4-1g4"/>
                         <segue destination="CGi-4z-ltL" kind="show" identifier="setting" id="i5v-z0-JBk"/>
-                        <segue destination="JmL-wg-bJy" kind="show" identifier="showurl" id="INB-X6-GBE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LvK-JD-UgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2207,7 +2112,6 @@
                         <outlet property="xhd_view" destination="7XR-nb-Pht" id="gJ2-AQ-Zdj"/>
                         <segue destination="NGi-QC-EkY" kind="show" identifier="YJFK" id="jzy-89-ebb"/>
                         <segue destination="VXA-Nt-HoH" kind="show" identifier="userinfo" id="6R1-6N-TI1"/>
-                        <segue destination="JmL-wg-bJy" kind="show" identifier="showurl" id="fGE-I1-vLQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p0d-wm-YFN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2637,7 +2541,6 @@
                         <outlet property="sendshare_view" destination="2sm-aR-GzP" id="IDo-ap-Isz"/>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="qae-G8-0oD"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="22X-oD-zs7"/>
-                        <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="HVf-vj-jq7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5t-0h-DdR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2805,7 +2708,6 @@
                         <outlet property="send_view" destination="GQw-Y7-Wu1" id="KLK-Jo-gur"/>
                         <outlet property="sendshare_view" destination="LjE-pN-okC" id="afr-Ui-ImP"/>
                         <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="Tpj-6l-Acb"/>
-                        <segue destination="eGo-cX-lU3" kind="custom" identifier="imgSelect" customClass="imgSegue" id="fpr-vR-MAe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6r-ai-m5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3301,9 +3203,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qme-kc-Frs"/>
-        <segue reference="22X-oD-zs7"/>
-        <segue reference="fpr-vR-MAe"/>
         <segue reference="Tpj-6l-Acb"/>
-        <segue reference="fGE-I1-vLQ"/>
+        <segue reference="22X-oD-zs7"/>
     </inferredMetricsTieBreakers>
 </document>

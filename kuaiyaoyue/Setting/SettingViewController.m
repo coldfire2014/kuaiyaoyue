@@ -14,7 +14,7 @@
 #import "WXApi.h"
 #import "PCHeader.h"
 #import "TalkingData.h"
-#import "ShowWebViewController.h"
+#import "WebViewController.h"
 
 @interface SettingViewController ()
 
@@ -70,10 +70,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier compare:@"showurl"] == NSOrderedSame){
-        ShowWebViewController *view = (ShowWebViewController*)segue.destinationViewController;
-        [view initContent:@"探秘快邀约2.0" weburl:@"http://appkyy.kyy121.com/invitation/static/gospel.html"];
-    }
+//    if ([segue.identifier compare:@"showurl"] == NSOrderedSame){
+    
+//    }
 }
 
 
@@ -81,8 +80,15 @@
     //意见反馈
     [TalkingData trackEvent:@"查看攻略"];
 //    [self performSegueWithIdentifier:@"YJFK" sender:nil];
-    [self performSegueWithIdentifier:@"showurl" sender:nil];
-
+    WebViewController *view = [[WebViewController alloc] init];
+    view.name = @"探秘快邀约";
+    view.weburl = @"http://appkyy.kyy121.com/invitation/static/gospel.html";
+    view.viewTitle = @"攻略";
+    view.modalPresentationStyle = UIModalPresentationFullScreen;
+    view.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:view animated:YES completion:^{
+        
+    }];
 }
 
 - (IBAction)ghp_onclick:(id)sender {

@@ -511,10 +511,10 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier compare:@"imgSelect"] == NSOrderedSame ) {
-        ImgCollectionViewController* des = (ImgCollectionViewController*)segue.destinationViewController;
-        des.maxCount = count;
-        des.needAnimation = NO;
-        des.delegate = self;
+//        ImgCollectionViewController* des = (ImgCollectionViewController*)segue.destinationViewController;
+//        des.maxCount = count;
+//        des.needAnimation = NO;
+//        des.delegate = self;
     }else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
         PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
         view.type = 2;
@@ -572,7 +572,18 @@
     GridInfo *info = [data objectAtIndex:[indexPath row]];
     if (!info.is_open) {
         [self.view endEditing:NO];
-        [self performSegueWithIdentifier:@"imgSelect" sender:nil];
+        UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        flowLayout.minimumInteritemSpacing = 0.0;
+        ImgCollectionViewController* des = [[ImgCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
+        des.maxCount = count;
+        des.needAnimation = NO;
+        des.delegate = self;
+        //        des.transitioningDelegate = self;
+        des.modalPresentationStyle = UIModalPresentationCustom;
+        [self presentViewController:des animated:YES completion:^{
+            
+        }];
     }else{
     }
 }

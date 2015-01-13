@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface WebNavBar : UIView
-
+-(void)reflashShow:(BOOL)isShow;
+-(void)closeShow:(BOOL)isShow;
+-(void)setTitle:(NSString*)title;
 @end

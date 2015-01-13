@@ -25,7 +25,6 @@
 		8442288B1A4A518300583893 /* PECropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844228851A4A518300583893 /* PECropViewController.m */; };
 		8442288C1A4A518300583893 /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 844228861A4A518300583893 /* PEPhotoCropEditor.bundle */; };
 		8442288D1A4A518300583893 /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 844228881A4A518300583893 /* PEResizeControl.m */; };
-		844228901A4ABF8F00583893 /* ShowWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8442288F1A4ABF8F00583893 /* ShowWebViewController.m */; };
 		844825761A31536C0018240E /* WelComeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825751A31536C0018240E /* WelComeViewController.m */; };
 		844825791A31588C0018240E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844825781A31588C0018240E /* PageViewController.m */; };
 		8448257C1A3186520018240E /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448257B1A3186520018240E /* OneViewController.m */; };
@@ -195,7 +194,6 @@
 		E577FC2E1A356E66009ED66D /* imgGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC271A356E66009ED66D /* imgGroupView.m */; };
 		E577FC2F1A356E66009ED66D /* perviewImg.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC291A356E66009ED66D /* perviewImg.m */; };
 		E577FC301A356E66009ED66D /* picViewAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC2B1A356E66009ED66D /* picViewAnimate.m */; };
-		E577FC331A356EFB009ED66D /* imgSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC321A356EFB009ED66D /* imgSegue.m */; };
 		E57A11231A5FB71100FFF733 /* 3.zip in Resources */ = {isa = PBXBuildFile; fileRef = E57A11221A5FB71100FFF733 /* 3.zip */; };
 /* End PBXBuildFile section */
 
@@ -235,8 +233,6 @@
 		844228861A4A518300583893 /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PEPhotoCropEditor.bundle; sourceTree = "<group>"; };
 		844228871A4A518300583893 /* PEResizeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEResizeControl.h; sourceTree = "<group>"; };
 		844228881A4A518300583893 /* PEResizeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEResizeControl.m; sourceTree = "<group>"; };
-		8442288E1A4ABF8F00583893 /* ShowWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWebViewController.h; sourceTree = "<group>"; };
-		8442288F1A4ABF8F00583893 /* ShowWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWebViewController.m; sourceTree = "<group>"; };
 		844825741A31536C0018240E /* WelComeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelComeViewController.h; sourceTree = "<group>"; };
 		844825751A31536C0018240E /* WelComeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelComeViewController.m; sourceTree = "<group>"; };
 		844825771A31588C0018240E /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
@@ -534,8 +530,6 @@
 		E577FC291A356E66009ED66D /* perviewImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = perviewImg.m; path = pic/perviewImg.m; sourceTree = "<group>"; };
 		E577FC2A1A356E66009ED66D /* picViewAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picViewAnimate.h; path = pic/picViewAnimate.h; sourceTree = "<group>"; };
 		E577FC2B1A356E66009ED66D /* picViewAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = picViewAnimate.m; path = pic/picViewAnimate.m; sourceTree = "<group>"; };
-		E577FC311A356EFB009ED66D /* imgSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imgSegue.h; path = pic/imgSegue.h; sourceTree = "<group>"; };
-		E577FC321A356EFB009ED66D /* imgSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = imgSegue.m; path = pic/imgSegue.m; sourceTree = "<group>"; };
 		E57A11221A5FB71100FFF733 /* 3.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 3.zip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -881,8 +875,6 @@
 				844825F51A31A4D20018240E /* PreviewViewController.m */,
 				844825FE1A31B3F40018240E /* DetailViewController.h */,
 				844825FF1A31B3F40018240E /* DetailViewController.m */,
-				8442288E1A4ABF8F00583893 /* ShowWebViewController.h */,
-				8442288F1A4ABF8F00583893 /* ShowWebViewController.m */,
 				8460DDD21A4E73A50031416E /* Main.storyboard */,
 				84E842631A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld */,
 				84E8425C1A2EDF6B00A401A0 /* Supporting Files */,
@@ -1212,8 +1204,6 @@
 				E541B32B1A43DC9E006F89E1 /* imgBar.bundle */,
 				E541B32C1A43DC9E006F89E1 /* ImgNavBar.h */,
 				E541B32D1A43DC9E006F89E1 /* ImgNavBar.m */,
-				E577FC311A356EFB009ED66D /* imgSegue.h */,
-				E577FC321A356EFB009ED66D /* imgSegue.m */,
 				E577FC221A356E66009ED66D /* ImgCollectionViewCell.h */,
 				E577FC231A356E66009ED66D /* ImgCollectionViewCell.m */,
 				E577FC241A356E66009ED66D /* ImgCollectionViewController.h */,
@@ -1400,7 +1390,6 @@
 				84E842651A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld in Sources */,
 				E5573F991A4303A9006AAB8F /* ZipArchive.mm in Sources */,
 				844825F91A31A9BA0018240E /* CustomViewController.m in Sources */,
-				E577FC331A356EFB009ED66D /* imgSegue.m in Sources */,
 				E5573F961A4303A9006AAB8F /* mztools.c in Sources */,
 				84E842951A2EEA2A00A401A0 /* MusicTableViewCell.m in Sources */,
 				844826091A31B6F90018240E /* GLJSViewController.m in Sources */,
@@ -1491,7 +1480,6 @@
 				E577FC2C1A356E66009ED66D /* ImgCollectionViewCell.m in Sources */,
 				844826031A31B6D80018240E /* GYWMViewController.m in Sources */,
 				846195591A31DA8700FDF2CA /* GridCell.m in Sources */,
-				844228901A4ABF8F00583893 /* ShowWebViewController.m in Sources */,
 				844825E51A31A1AE0018240E /* TemplateViewController.m in Sources */,
 				84B446C51A32B3D000546859 /* MJRefreshBaseView.m in Sources */,
 				84FE0B8C1A426E6B005A9599 /* GridInfo.m in Sources */,
