@@ -670,7 +670,7 @@
         view.weburl = user.nefurl;
         view.viewTitle = @"生成后预览";
         view.modalPresentationStyle = UIModalPresentationFullScreen;
-        view.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:view animated:YES completion:^{
             
         }];

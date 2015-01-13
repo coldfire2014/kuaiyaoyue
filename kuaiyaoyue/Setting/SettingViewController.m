@@ -85,7 +85,7 @@
     view.weburl = @"http://appkyy.kyy121.com/invitation/static/gospel.html";
     view.viewTitle = @"攻略";
     view.modalPresentationStyle = UIModalPresentationFullScreen;
-    view.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:view animated:YES completion:^{
         
     }];
