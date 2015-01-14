@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserInfoViewController : UIViewController
-- (IBAction)xm_onclick:(id)sender;
-- (IBAction)lxfs_onclick:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *xm_label;
-@property (weak, nonatomic) IBOutlet UILabel *xlfs_label;
-
+@interface UserInfoViewController : UIViewController<UITextFieldDelegate>
+@property (strong, nonatomic) UILabel *xm_label;
+@property (strong, nonatomic) UILabel *xlfs_label;
+@property (strong, nonatomic) UITextField *content_edit;
+@property (nonatomic) int info_chage;
+@property (nonatomic) int info_length;
 @end

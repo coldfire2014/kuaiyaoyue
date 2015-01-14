@@ -127,12 +127,11 @@
     if ([scheme hasPrefix:@"goto"]) {
         NSRange r = [rurl rangeOfString:@"?"];
         NSString* hurl = [rurl substringToIndex:r.location];
-        NSString* title_c = [rurl substringFromIndex: r.location+1];
-        NSArray* title_a = [title_c componentsSeparatedByString:@"="];
-        NSString* newtitel = [[title_a objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        WebNavBar* bar = (WebNavBar*)[self.view viewWithTag: 501];
+//        NSString* title_c = [rurl substringFromIndex: r.location+1];
+//        NSArray* title_a = [title_c componentsSeparatedByString:@"="];
+//        NSString* newtitel = [[title_a objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        WebNavBar* bar = (WebNavBar*)[self.view viewWithTag: 501];
 //        [bar setTitle:newtitel];
-        
         NSString* newurl = [[NSString alloc] initWithFormat:@"http:%@",hurl];
         NSURL *url =[NSURL URLWithString:newurl];
         NSURLRequest *request =[NSURLRequest requestWithURL:url];

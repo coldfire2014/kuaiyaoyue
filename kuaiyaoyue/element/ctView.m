@@ -190,9 +190,7 @@
 }
 -(CATransform3D)transformForItemView:(UIView *)view withOffset:(CGFloat)offset
 {
-    
     perspective = -1.0f/90.0f;//透视
-    
     CATransform3D transform = CATransform3DIdentity;
     transform.m34 = perspective;
     if (offset == -1 || offset == itemCount - 1) {
@@ -203,7 +201,6 @@
         if (offset < 0) {
             int a = (int)offset % (int)itemCount;
             offset = itemCount + a;
-
         }
         if (offset >= numberOfVisibleItems) {
             view.alpha = 0;

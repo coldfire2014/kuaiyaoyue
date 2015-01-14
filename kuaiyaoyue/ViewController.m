@@ -25,6 +25,7 @@
 #import "WebViewController.h"
 #import "FileManage.h"
 #import "waitingView.h"
+#import "SettingViewController.h"
 
 @interface ViewController ()<VCDelegate,DVCDelegate>{
     NSMutableArray *data;
@@ -486,9 +487,6 @@
         [self cleanNumber];
     }
     [self performSegueWithIdentifier:@"detail" sender:nil];
-    
-    
-    
 }
 
 -(void)cleanNumber{
@@ -533,7 +531,14 @@
 }
 
 - (IBAction)setting_onclick:(id)sender {
-    [self performSegueWithIdentifier:@"setting" sender:nil];
+    [TalkingData trackEvent:@"点击设置"];
+    SettingViewController* setting = [[SettingViewController alloc] init];
+    setting.modalPresentationStyle = UIModalPresentationFullScreen;
+    setting.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:setting animated:YES completion:^{
+        
+    }];
+//    [self performSegueWithIdentifier:@"setting" sender:nil];
 }
 
 // 是否可编辑
