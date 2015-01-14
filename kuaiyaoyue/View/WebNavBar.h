@@ -12,4 +12,6 @@
 -(void)reflashShow:(BOOL)isShow;
 -(void)closeShow:(BOOL)isShow;
 -(void)setTitle:(NSString*)title;
+-(void)setRight:(NSString*)title;
+
 @end

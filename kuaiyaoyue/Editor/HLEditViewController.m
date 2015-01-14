@@ -229,9 +229,9 @@
     }
     //preview
     else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
-        PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
-        view.type = 0;
-        view.delegate = self;
+//        PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
+//        view.type = 0;
+//        view.delegate = self;
     }
 }
 
@@ -612,7 +612,14 @@
         NSArray *arr = [[NSArray alloc] initWithArray:addimg];
         NSString *hlarr = [arr componentsJoinedByString:@","];
         [UDObject setHLContent:xl_name xn_name:xn_name hltime:hltime bmendtime:bmendtime address_name:address_name music:mp3url musicname:mp3name imgarr:hlarr];
-        [self performSegueWithIdentifier:@"preview" sender:nil];
+        PreviewViewController *view = [[PreviewViewController alloc] init];
+        view.type = 0;
+        view.delegate = self;
+        view.modalPresentationStyle = UIModalPresentationFullScreen;
+        view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentViewController:view animated:YES completion:^{
+            
+        }];
     }
 }
 

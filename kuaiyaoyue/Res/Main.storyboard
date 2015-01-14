@@ -51,39 +51,6 @@
             </objects>
             <point key="canvasLocation" x="696" y="583"/>
         </scene>
-        <!--Preview View Controller-->
-        <scene sceneID="adG-aU-C4Y">
-            <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="NFc-c8-4fs" customClass="PreviewViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JGQ-2l-EXA"/>
-                        <viewControllerLayoutGuide type="bottom" id="RCa-aZ-6PV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="V97-ay-kbg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uce-70-erm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="uce-70-erm" firstAttribute="top" secondItem="V97-ay-kbg" secondAttribute="top" id="ILv-bY-t3P"/>
-                            <constraint firstItem="RCa-aZ-6PV" firstAttribute="top" secondItem="uce-70-erm" secondAttribute="bottom" id="KZf-Yq-DhQ"/>
-                            <constraint firstItem="uce-70-erm" firstAttribute="leading" secondItem="V97-ay-kbg" secondAttribute="leading" id="brl-cc-hLF"/>
-                            <constraint firstAttribute="trailing" secondItem="uce-70-erm" secondAttribute="trailing" id="umu-Z3-jKw"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="webview" destination="uce-70-erm" id="sCZ-qV-5yn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ln4-5M-Day" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2492" y="1316"/>
-        </scene>
         <!--Music View Controller-->
         <scene sceneID="qCk-ie-AhB">
             <objects>
@@ -527,7 +494,6 @@
                     <connections>
                         <outlet property="send_view" destination="STb-Px-NQ2" id="bUO-8d-SrA"/>
                         <outlet property="sendshare_view" destination="8xB-m9-g0o" id="M5U-ri-zIz"/>
-                        <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="luI-zA-BtH"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="fps-RF-Hk5"/>
                     </connections>
                 </viewController>
@@ -651,7 +617,6 @@
                         <outlet property="send_view" destination="GVO-vc-hmr" id="K1N-5Z-Ne5"/>
                         <outlet property="sendshare_view" destination="d8X-j1-RCw" id="mLI-5B-U0l"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="72F-Gw-hpx"/>
-                        <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="Dsl-9A-YOu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJx-Xq-q9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1585,7 +1550,6 @@
                     <connections>
                         <outlet property="send_view" destination="Si2-qB-hvF" id="agO-wM-wqv"/>
                         <outlet property="sendshare_view" destination="2sm-aR-GzP" id="IDo-ap-Isz"/>
-                        <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="qae-G8-0oD"/>
                         <segue destination="ZdD-SR-5tS" kind="show" identifier="music" id="22X-oD-zs7"/>
                     </connections>
                 </viewController>
@@ -1701,7 +1665,6 @@
                     <connections>
                         <outlet property="send_view" destination="GQw-Y7-Wu1" id="KLK-Jo-gur"/>
                         <outlet property="sendshare_view" destination="LjE-pN-okC" id="afr-Ui-ImP"/>
-                        <segue destination="NFc-c8-4fs" kind="show" identifier="preview" id="Tpj-6l-Acb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6r-ai-m5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2195,7 +2158,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qme-kc-Frs"/>
-        <segue reference="Tpj-6l-Acb"/>
         <segue reference="22X-oD-zs7"/>
     </inferredMetricsTieBreakers>
 </document>

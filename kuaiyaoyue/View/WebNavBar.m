@@ -48,6 +48,7 @@
         UITapGestureRecognizer* tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(RightTap)];
         [btnRight addGestureRecognizer:tap2 ];
         UILabel* lbl_OKr = [[UILabel alloc] initWithFrame:btnRight.bounds];
+        lbl_OKr.tag = 106;
         lbl_OKr.font = [UIFont systemFontOfSize:18];
         lbl_OKr.text = @"刷新";
         lbl_OKr.textAlignment = NSTextAlignmentCenter;
@@ -106,6 +107,10 @@
         btn.alpha = 0;
     }
 
+}
+-(void)setRight:(NSString*)title{
+    UILabel* lbl = (UILabel*)[self viewWithTag:106];
+    lbl.text = title;
 }
 -(void)setTitle:(NSString*)title{
     UILabel* lbl = (UILabel*)[self viewWithTag:105];

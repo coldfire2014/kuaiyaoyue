@@ -12,6 +12,7 @@
 #import "SettingNavBar.h"
 #import "TalkingData.h"
 #import "myImageView.h"
+#import "StatusBar.h"
 @interface UserInfoViewController (){
     int is_chage;
 }
@@ -204,7 +205,14 @@
     // Pass the selected object to the new view controller.
 }
 -(void)save{
-    
+    if (self.content_edit.text.length > self.info_length) {
+        if (self.info_chage == 0) {
+            [[StatusBar sharedStatusBar] talkMsg:@"请不要输入操过20个字。" inTime:1.5];
+        } else {
+            [[StatusBar sharedStatusBar] talkMsg:@"请不要输入操过17个字。" inTime:1.5];
+        }
+        return;
+    }
     NSString *content = self.content_edit.text;
     [self.content_edit resignFirstResponder];
     if (content.length > 0) {

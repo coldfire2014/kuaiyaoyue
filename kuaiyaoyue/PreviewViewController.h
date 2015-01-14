@@ -19,7 +19,7 @@
 {
     ChangeTempView* tempView;
 }
-@property (weak, nonatomic) IBOutlet UIWebView *webview;
+@property (strong, nonatomic) UIWebView *webview;
 @property int type;
 @property (nonatomic, strong) NSString* unquieId;
 @property (nonatomic, weak) id<PreviewViewControllerDelegate> delegate;

@@ -516,9 +516,7 @@
 //        des.needAnimation = NO;
 //        des.delegate = self;
     }else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
-        PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
-        view.type = 2;
-        view.delegate = self;
+        
     }
 }
 
@@ -1006,23 +1004,30 @@
             }
         }];
     }else{
-            if ([data count] - 1 > 0) {
-                    for (int i = 0; i<[data count] - 1; i++) {
-                        GridInfo *info = [data objectAtIndex:i];
-                        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-                        NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
-                        uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
-                        NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
-                        [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
-                        [UIImageJPEGRepresentation(info.img,C_JPEG_SIZE) writeToFile:imgpath atomically:YES];
-                    }
-                }
-                NSArray *arr = [[NSArray alloc] initWithArray:addimg];
-                NSString *hlarr = [arr componentsJoinedByString:@","];
-                NSString *audioname1 = [NSString stringWithFormat:@"../Audio/%@",audioname];
+        if ([data count] - 1 > 0) {
+            for (int i = 0; i<[data count] - 1; i++) {
+                GridInfo *info = [data objectAtIndex:i];
+                CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+                NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+                uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+                NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+                [addimg addObject:[NSString stringWithFormat:@"../Image/%@",uuid]];
+                [UIImageJPEGRepresentation(info.img,C_JPEG_SIZE) writeToFile:imgpath atomically:YES];
+            }
+        }
+        NSArray *arr = [[NSArray alloc] initWithArray:addimg];
+        NSString *hlarr = [arr componentsJoinedByString:@","];
+        NSString *audioname1 = [NSString stringWithFormat:@"../Audio/%@",audioname];
         
-                [UDObject setWLContent:playview.jh_edit.text wltime:hltime wlbmendtime:bmendtime wladdress_name:playview.address_edit.text wllxr_name:playview.xlr_edit.text wllxfs_name:playview.xlfs_edit.text wlts_name:playview.show_summary.text wlaudio:audioname1 wlimgarr:hlarr];
-                [self performSegueWithIdentifier:@"preview" sender:nil];
+        [UDObject setWLContent:playview.jh_edit.text wltime:hltime wlbmendtime:bmendtime wladdress_name:playview.address_edit.text wllxr_name:playview.xlr_edit.text wllxfs_name:playview.xlfs_edit.text wlts_name:playview.show_summary.text wlaudio:audioname1 wlimgarr:hlarr];
+        PreviewViewController *view = [[PreviewViewController alloc] init];
+        view.type = 2;
+        view.delegate = self;
+        view.modalPresentationStyle = UIModalPresentationFullScreen;
+        view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentViewController:view animated:YES completion:^{
+            
+        }];
     }
 }
 

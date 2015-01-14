@@ -11,7 +11,7 @@
 #import "FileManage.h"
 #import "TalkingData.h"
 #import "TimeTool.h"
-
+#import "WebNavBar.h"
 @interface PreviewViewController ()
 
 @end
@@ -22,17 +22,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    label.text = @"预览";
-    [label sizeToFit];
-    label.textColor = color;
-    label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
-    [self.navigationItem setTitleView:label];
+    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    CGFloat h = [UIScreen mainScreen].bounds.size.height;
+    self.view.frame = [UIScreen mainScreen].bounds;
+    self.webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 128.0/2.0, w, h-128.0/2.0)];
+    self.webview.scalesPageToFit = YES;
+    self.webview.delegate = self;
+    [self.view addSubview:self.webview];
+    WebNavBar* bar = [[WebNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 128.0/2.0)];
+    bar.tag = 501;
+    [bar setTitle:@"预览"];
+    [bar setRight:@"完成"];
+    [self.view addSubview:bar];
+    [self.view bringSubviewToFront:bar];
     
-    _webview.scalesPageToFit = YES;
-    _webview.delegate = self;
-    _webview.alpha = 0;
     tempView = [[ChangeTempView alloc] initWithFrame:self.view.frame];
     tempView.delegate = self;
     tempView.type = _type;//0婚礼,1商务,2玩乐,3自定义
@@ -40,7 +43,7 @@
     tempView.alpha = 0;
     [self.view addSubview:tempView];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(rightonclick)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(rightonclick)];
     
 }
 
@@ -67,19 +70,22 @@
 {
     switch (buttonIndex) {
         case 0:
-            [self.navigationController popViewControllerAnimated:YES];
-            [self.delegate didSendType:0];
-            
+        {
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self.delegate didSendType:0];
+            }];
             break;
+        }
         case 1:
-            [self.navigationController popViewControllerAnimated:YES];
-            [self.delegate didSendType:1];
+        {
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self.delegate didSendType:1];
+            }];
             break;
-            
+        }
         default:
             break;
     }
-    
 }
 
 
@@ -114,19 +120,40 @@
     [super viewWillDisappear:animated];
     [TalkingData trackPageEnd:@"生成前预览"];
     tempView.alpha = 0;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_BACK" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_CLOSE" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_WEB_REFLASH" object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [TalkingData trackPageBegin:@"生成前预览"];
     [self reloadweb];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rightonclick) name:@"MSG_WEB_REFLASH" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:@"MSG_CLOSE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(back) name:@"MSG_BACK" object:nil];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    
 }
-
+-(void)back{
+    if(!self.webview.canGoBack){
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }else{
+        [self.webview goBack];
+    }
+}
+-(void)close{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
 
 //页面加载时处理事件
 -(void)reloadweb{
@@ -148,6 +175,12 @@
 //页面加载完成，导航条显示，预览图隐藏，
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [_webview stringByEvaluatingJavaScriptFromString:[self changevalue]];
+    WebNavBar* bar = (WebNavBar*)[self.view viewWithTag: 501];
+    if(self.webview.canGoBack){
+        [bar closeShow:YES];
+    }else{
+        [bar closeShow:NO];
+    }
     [UIView animateWithDuration:0.4 animations:^{
         _webview.alpha = 1;
         if(self.type == 3){
