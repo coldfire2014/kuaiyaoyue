@@ -11,8 +11,6 @@
 		8431E8FA1A4D01AF00E9B0EE /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8431E8F91A4D01AF00E9B0EE /* RegistrationViewController.m */; };
 		8431E8FC1A4D12C300E9B0EE /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8431E8FB1A4D12C300E9B0EE /* SMS_SDK.framework */; };
 		8431E8FE1A4D15F400E9B0EE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8431E8FD1A4D15F400E9B0EE /* MessageUI.framework */; };
-		8431E9001A4D15FB00E9B0EE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8431E8FF1A4D15FB00E9B0EE /* AddressBook.framework */; };
-		8431E9021A4D15FE00E9B0EE /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8431E9011A4D15FE00E9B0EE /* AddressBookUI.framework */; };
 		8431E9041A4D160F00E9B0EE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8431E9031A4D160F00E9B0EE /* libicucore.dylib */; };
 		8431E9061A4D161900E9B0EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8431E9051A4D161900E9B0EE /* CoreGraphics.framework */; };
 		8431E9081A4D24AA00E9B0EE /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8431E9071A4D24AA00E9B0EE /* logo.png */; };
@@ -213,8 +211,6 @@
 		8431E8F91A4D01AF00E9B0EE /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 		8431E8FB1A4D12C300E9B0EE /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		8431E8FD1A4D15F400E9B0EE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		8431E8FF1A4D15FB00E9B0EE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		8431E9011A4D15FE00E9B0EE /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		8431E9031A4D160F00E9B0EE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		8431E9051A4D161900E9B0EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8431E9071A4D24AA00E9B0EE /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -536,8 +532,6 @@
 			files = (
 				8431E9061A4D161900E9B0EE /* CoreGraphics.framework in Frameworks */,
 				8431E9041A4D160F00E9B0EE /* libicucore.dylib in Frameworks */,
-				8431E9021A4D15FE00E9B0EE /* AddressBookUI.framework in Frameworks */,
-				8431E9001A4D15FB00E9B0EE /* AddressBook.framework in Frameworks */,
 				8431E8FE1A4D15F400E9B0EE /* MessageUI.framework in Frameworks */,
 				84FE0B991A42C963005A9599 /* libz.dylib in Frameworks */,
 				E558D0221A47D14A009BFC50 /* CoreTelephony.framework in Frameworks */,
@@ -766,8 +760,6 @@
 			children = (
 				8431E9051A4D161900E9B0EE /* CoreGraphics.framework */,
 				8431E9031A4D160F00E9B0EE /* libicucore.dylib */,
-				8431E9011A4D15FE00E9B0EE /* AddressBookUI.framework */,
-				8431E8FF1A4D15FB00E9B0EE /* AddressBook.framework */,
 				8431E8FD1A4D15F400E9B0EE /* MessageUI.framework */,
 				E558D0211A47D14A009BFC50 /* CoreTelephony.framework */,
 				E558D01F1A47D130009BFC50 /* libsqlite3.dylib */,
