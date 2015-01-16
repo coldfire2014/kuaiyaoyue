@@ -87,9 +87,8 @@
 }
 -(void)stopLoad{
     [self.webview stopLoading];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(reloadweb)];
-    //    [self.navigationController popViewControllerAnimated:YES];
+    WebNavBar* bar = (WebNavBar*)[self.view viewWithTag: 501];
+    [bar reflashShow:YES];
 }
 
 //页面加载时处理事件

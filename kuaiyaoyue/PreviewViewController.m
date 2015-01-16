@@ -41,10 +41,7 @@
     tempView.type = _type;//0婚礼,1商务,2玩乐,3自定义
     [tempView loadDate];
     tempView.alpha = 0;
-    [self.view addSubview:tempView];
-    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(rightonclick)];
-    
+    [self.view addSubview:tempView];    
 }
 
 -(void)rightonclick{
