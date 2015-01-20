@@ -331,7 +331,7 @@
 		84D530221A5BCD4300C4ED73 /* kuaiyaoyue 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "kuaiyaoyue 3.xcdatamodel"; sourceTree = "<group>"; };
 		84D530261A5BCE3600C4ED73 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
 		84D530271A5BCE3600C4ED73 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Template.m; sourceTree = "<group>"; };
-		84E842591A2EDF6B00A401A0 /* kuaiyaoyue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kuaiyaoyue.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84E842591A2EDF6B00A401A0 /* 快邀约.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "快邀约.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E8425D1A2EDF6B00A401A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84E8425E1A2EDF6B00A401A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84E842601A2EDF6B00A401A0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -821,7 +821,7 @@
 		84E8425A1A2EDF6B00A401A0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84E842591A2EDF6B00A401A0 /* kuaiyaoyue.app */,
+				84E842591A2EDF6B00A401A0 /* 快邀约.app */,
 				84E842751A2EDF6C00A401A0 /* kuaiyaoyueTests.xctest */,
 			);
 			name = Products;
@@ -1223,7 +1223,7 @@
 			);
 			name = kuaiyaoyue;
 			productName = kuaiyaoyue;
-			productReference = 84E842591A2EDF6B00A401A0 /* kuaiyaoyue.app */;
+			productReference = 84E842591A2EDF6B00A401A0 /* 快邀约.app */;
 			productType = "com.apple.product-type.application";
 		};
 		84E842741A2EDF6C00A401A0 /* kuaiyaoyueTests */ = {
@@ -1616,7 +1616,7 @@
 				);
 				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "快邀约";
 				PROVISIONING_PROFILE = "eac00dfb-80b7-4abd-8799-adbaa32e4a28";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1652,7 +1652,7 @@
 				);
 				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "快邀约";
 				PROVISIONING_PROFILE = "e889649d-5273-48c0-80bb-3baec87f1f20";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
