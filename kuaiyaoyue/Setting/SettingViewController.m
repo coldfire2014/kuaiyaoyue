@@ -296,7 +296,7 @@
     //    [self performSegueWithIdentifier:@"YJFK" sender:nil];
     WebViewController *view = [[WebViewController alloc] init];
     view.name = @"探秘快邀约";
-    view.weburl = @"http://appkyy.kyy121.com/invitation/static/gospel.html";
+    view.weburl = [NSString stringWithFormat:@"%@%@",HTTPURL,@"static/gospel.html"];
     view.viewTitle = @"攻略";
     view.modalPresentationStyle = UIModalPresentationFullScreen;
     view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
