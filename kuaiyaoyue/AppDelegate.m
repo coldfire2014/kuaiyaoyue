@@ -48,7 +48,7 @@
     _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1103283068"
                                             andDelegate:self];
     [TalkingData setExceptionReportEnabled:YES];
-    [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"AppStore"];
+    [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:ChannelId];
 //        [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"inhouse"];
 //        [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"91shouji"];
     [SMS_SDK registerApp:@"4ec26c11eca2" withSecret:@"e80f13299bf5581e40ed33e2d8350cae"];

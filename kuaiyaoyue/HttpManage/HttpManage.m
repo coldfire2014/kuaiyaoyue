@@ -10,6 +10,7 @@
 #import "ZipArchive.h"
 #import "PCHeader.h"
 #import "FileManage.h"
+#import "UDObject.h"
 /*
 43    //BadCredentialsException     密码不正确
 53    VerificationTimeoutException    验证码超时
@@ -371,6 +372,15 @@ closeTimestamp:(NSString *)closeTimestamp
                             @"ios",@"equipment",version,@"version",
                             nil];
     
+    if ([YINGLOUURL compare:@""] != NSOrderedSame) {
+        NSString* ylid = [UDObject getYLID];
+        params = [NSDictionary dictionaryWithObjectsAndKeys:
+                  token,@"token",bride,@"bride",groom,@"groom",
+                  address,@"address",images,@"images",
+                  ylid,@"studioId",timestamp,@"timestamp",background,@"background",musicUrl,@"musicUrl",closeTimestamp,@"closeTimestamp",
+                  @"ios",@"equipment",version,@"version",
+                  nil];
+    }
     NSString *url = [NSString stringWithFormat:@"nozzle/NefUserData/marry/%@.aspx",mid];
     [[AFConnectionAPIClient sharedClient] POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         callback(YES,JSON);

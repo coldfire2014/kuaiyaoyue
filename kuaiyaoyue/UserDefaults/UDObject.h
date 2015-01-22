@@ -13,6 +13,9 @@
 +(NSString *) getOPEN;
 +(void)setOPEN;
 
++(void) setYLID:(NSString *) ylid;
++(NSString *)getYLID;
+
 +(void)setXM:(NSString *)xm;
 +(NSString *)getXM;
 +(void)setLXFS:(NSString *)lxfs;

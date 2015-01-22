@@ -12,7 +12,7 @@
 #import "waitingView.h"
 #import "StatusBar.h"
 #import "UDObject.h"
-
+#import "PCHeader.h"
 @interface LoginViewController ()
 
 @end
@@ -102,6 +102,10 @@
         if (isOK) {
             NSString *token = [dic objectForKey:@"token"];
             [UDObject setUserInfo:username userName:@"" token:token];
+            NSString* url = YINGLOUURL;
+            if([url compare:HTTPURL] == NSOrderedSame){
+                [UDObject setYLID:@"1"];
+            }
             [self performSegueWithIdentifier:@"wel2main" sender:nil];
             [UDObject setLXFS:username];
             [[StatusBar sharedStatusBar] talkMsg:@"成功登录" inTime:0.31];

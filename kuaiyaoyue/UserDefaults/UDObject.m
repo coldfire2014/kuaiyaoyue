@@ -40,7 +40,13 @@
     [[NSUserDefaults standardUserDefaults] setValue:token forKey:@"token"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-
++(void) setYLID:(NSString *) ylid{
+    [[NSUserDefaults standardUserDefaults] setValue:ylid forKey:@"ylid"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(NSString *)getYLID{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"ylid"];
+}
 +(void) setTSID:(NSString *) tsid{
     [[NSUserDefaults standardUserDefaults] setValue:tsid forKey:@"tsid"];
     [[NSUserDefaults standardUserDefaults] synchronize];
