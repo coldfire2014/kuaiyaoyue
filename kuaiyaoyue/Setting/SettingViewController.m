@@ -17,7 +17,7 @@
 #import "WebViewController.h"
 #import "SettingNavBar.h"
 #import "myImageView.h"
-
+#import "DataBaseManage.h"
 #import "UserInfoViewController.h"
 @interface SettingViewController ()
 
@@ -349,6 +349,7 @@
     [TalkingData trackEvent:@"退出登录"];
     [HttpManage logout:[UDObject gettoken] cb:^(BOOL isOK, NSDictionary *array) {
         if (isOK) {
+            [[DataBaseManage getDataBaseManage] CleanUserdata];
             [UDObject setHLContent:@"" xn_name:@"" hltime:@"" bmendtime:@"" address_name:@"" music:@"" musicname:@"" imgarr:@""];
             [UDObject setSWContent:@"" swtime:@"" swbmendtime:@"" address_name:@"" swxlr_name:@"" swxlfs_name:@"" swhd_name:@"" music:@"" musicname:@"" imgarr:@""];
             [UDObject setWLContent:@"" wltime:@"" wlbmendtime:@"" wladdress_name:@"" wllxr_name:@"" wllxfs_name:@"" wlts_name:@"" wlaudio:@"" wlimgarr:@""];

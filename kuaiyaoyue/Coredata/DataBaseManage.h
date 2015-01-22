@@ -37,6 +37,8 @@
 -(NSArray *)getUserdata;
 //删除历史记录
 -(BOOL)DelUserdata:(NSString *)nefid;
+//情况历史记录
+-(BOOL)CleanUserdata;
 //更新历史记录
 -(BOOL)UpUserdata:(NSString *)nefid;
 //获取ID是否存在历史记录，并更新

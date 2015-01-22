@@ -317,7 +317,26 @@ static NSManagedObjectContext *context = nil;
     NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
     return fetchedObjects;
 }
-
+-(BOOL)CleanUserdata{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Userdata" inManagedObjectContext:context]];
+    //删除谁的条件在这里配置；
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefAccount = %@)",[UDObject getAccount]];
+    [fetchRequest setPredicate:predict];
+    NSError* error = nil;
+    NSArray* results = [context executeFetchRequest:fetchRequest error:&error];
+    if ([results count] > 0) {
+        for(Userdata * item in results){
+            [context deleteObject:item];
+        }
+    }
+    if (![context save:&error])
+    {
+        NSLog(@"error:%@",error);
+        return NO;
+    }
+    return YES;
+}
 -(BOOL)DelUserdata:(NSString *)nefid{
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"Userdata" inManagedObjectContext:context]];
