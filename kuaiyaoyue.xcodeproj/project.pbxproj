@@ -191,7 +191,7 @@
 		E577FC2E1A356E66009ED66D /* imgGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC271A356E66009ED66D /* imgGroupView.m */; };
 		E577FC2F1A356E66009ED66D /* perviewImg.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC291A356E66009ED66D /* perviewImg.m */; };
 		E577FC301A356E66009ED66D /* picViewAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC2B1A356E66009ED66D /* picViewAnimate.m */; };
-		E57A11231A5FB71100FFF733 /* 3.zip in Resources */ = {isa = PBXBuildFile; fileRef = E57A11221A5FB71100FFF733 /* 3.zip */; };
+		E59F85081A70DEE3000B1E61 /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = E59F85061A70DEE3000B1E61 /* 1.zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -522,7 +522,7 @@
 		E577FC291A356E66009ED66D /* perviewImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = perviewImg.m; path = pic/perviewImg.m; sourceTree = "<group>"; };
 		E577FC2A1A356E66009ED66D /* picViewAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picViewAnimate.h; path = pic/picViewAnimate.h; sourceTree = "<group>"; };
 		E577FC2B1A356E66009ED66D /* picViewAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = picViewAnimate.m; path = pic/picViewAnimate.m; sourceTree = "<group>"; };
-		E57A11221A5FB71100FFF733 /* 3.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 3.zip; sourceTree = "<group>"; };
+		E59F85061A70DEE3000B1E61 /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = 1.zip; path = ../../../zipdir/1.zip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -917,8 +917,8 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				E59F85061A70DEE3000B1E61 /* 1.zip */,
 				E560D64A1A65630400843E38 /* arr32.png */,
-				E57A11221A5FB71100FFF733 /* 3.zip */,
 				E565ECCB1A538EA100679BAE /* img_empty_homeb.png */,
 				8431E9071A4D24AA00E9B0EE /* logo.png */,
 				8474A4AB1A4BB28A00C2E489 /* bubble_play_1@2x.png */,
@@ -1304,7 +1304,6 @@
 				E5590CC51A469CAB0080F3B1 /* card_g.png in Resources */,
 				84E8426D1A2EDF6B00A401A0 /* Images.xcassets in Resources */,
 				E56786FD1A50F38100308A4B /* Default@2x.png in Resources */,
-				E57A11231A5FB71100FFF733 /* 3.zip in Resources */,
 				8460DDD31A4E73A50031416E /* Main.storyboard in Resources */,
 				849D66801A484887004EF00F /* HLEditView.xib in Resources */,
 				E56786F91A50EA0500308A4B /* Default-568h@2x.png in Resources */,
@@ -1332,6 +1331,7 @@
 				84FE0B881A426C71005A9599 /* PhotoCell.xib in Resources */,
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,
 				8474A4B01A4BB28A00C2E489 /* bubble_play_3@2x.png in Resources */,
+				E59F85081A70DEE3000B1E61 /* 1.zip in Resources */,
 				E5661A2A1A457CB700E4E2BC /* btn_login_2_pre.png in Resources */,
 				8442288C1A4A518300583893 /* PEPhotoCropEditor.bundle in Resources */,
 				E5661A231A45708C00E4E2BC /* logo_login@2x.png in Resources */,

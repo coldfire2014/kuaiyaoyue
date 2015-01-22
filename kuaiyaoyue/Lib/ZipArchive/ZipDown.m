@@ -8,33 +8,27 @@
 
 #import "ZipDown.h"
 #import "HttpManage.h"
-
+#import "PCHeader.h"
 @implementation ZipDown
 
 +(void)Unzip{
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-    NSString *is_open = [userInfo valueForKey:@"DYC3"];
+    NSString *is_open = [userInfo valueForKey:UZIP];
+    NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
     if ([is_open length] > 0){
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
         
-        if ([[NSFileManager defaultManager] fileExistsAtPath:testDirectory]) {
-            
-        }else{
-             NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"3.zip"];
-            [HttpManage unzip:zipPath filename:testDirectory];
-        }
     }else{
-        NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"3.zip"];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        
+        if ([fileManager fileExistsAtPath:testDirectory]) {
+            [fileManager removeItemAtPath:testDirectory error:nil];
+        }
         [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
         [HttpManage unzip:zipPath filename:testDirectory];
-        [userInfo setValue:@"YES" forKey:@"DYC3"];
+        [userInfo setValue:@"YES" forKey:UZIP];
         [userInfo synchronize];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ZIP_DONE" object:nil];
