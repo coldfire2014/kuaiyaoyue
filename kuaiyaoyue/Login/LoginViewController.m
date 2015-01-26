@@ -139,7 +139,7 @@
             [UDObject setUserInfo:username userName:@"" token:token];
             NSString* url = YINGLOUURL;
             if([url compare:HTTPURL] == NSOrderedSame){
-                [UDObject setYLID:@"1"];
+                [UDObject setYLID:[dic objectForKey:@"studioId"]];
             }
 //            [self performSegueWithIdentifier:@"wel2main" sender:nil];
             [UDObject setLXFS:username];
