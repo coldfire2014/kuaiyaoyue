@@ -191,6 +191,8 @@
 		E577FC2E1A356E66009ED66D /* imgGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC271A356E66009ED66D /* imgGroupView.m */; };
 		E577FC2F1A356E66009ED66D /* perviewImg.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC291A356E66009ED66D /* perviewImg.m */; };
 		E577FC301A356E66009ED66D /* picViewAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC2B1A356E66009ED66D /* picViewAnimate.m */; };
+		E5826F261A7624100055189B /* modelSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E5826F251A7624100055189B /* modelSegue.m */; };
+		E5826F291A76244C0055189B /* loginSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E5826F281A76244C0055189B /* loginSegue.m */; };
 		E59F85081A70DEE3000B1E61 /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = E59F85061A70DEE3000B1E61 /* 1.zip */; };
 /* End PBXBuildFile section */
 
@@ -522,6 +524,10 @@
 		E577FC291A356E66009ED66D /* perviewImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = perviewImg.m; path = pic/perviewImg.m; sourceTree = "<group>"; };
 		E577FC2A1A356E66009ED66D /* picViewAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = picViewAnimate.h; path = pic/picViewAnimate.h; sourceTree = "<group>"; };
 		E577FC2B1A356E66009ED66D /* picViewAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = picViewAnimate.m; path = pic/picViewAnimate.m; sourceTree = "<group>"; };
+		E5826F241A7624100055189B /* modelSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modelSegue.h; sourceTree = "<group>"; };
+		E5826F251A7624100055189B /* modelSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = modelSegue.m; sourceTree = "<group>"; };
+		E5826F271A76244C0055189B /* loginSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginSegue.h; sourceTree = "<group>"; };
+		E5826F281A76244C0055189B /* loginSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginSegue.m; sourceTree = "<group>"; };
 		E59F85061A70DEE3000B1E61 /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = 1.zip; path = ../../../zipdir/1.zip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1095,6 +1101,10 @@
 				E54851D71A35AF0500590E5C /* coverSegue.m */,
 				E54851DC1A35B08800590E5C /* w2mainSegue.h */,
 				E54851DD1A35B08800590E5C /* w2mainSegue.m */,
+				E5826F241A7624100055189B /* modelSegue.h */,
+				E5826F251A7624100055189B /* modelSegue.m */,
+				E5826F271A76244C0055189B /* loginSegue.h */,
+				E5826F281A76244C0055189B /* loginSegue.m */,
 			);
 			name = Segue;
 			sourceTree = "<group>";
@@ -1362,6 +1372,7 @@
 				84B5D1151A43C44700C5C6E8 /* ZipDown.m in Sources */,
 				E577FC101A356D57009ED66D /* StatusBar.m in Sources */,
 				E55F59F41A36967D00B0D587 /* BigStateView.m in Sources */,
+				E5826F291A76244C0055189B /* loginSegue.m in Sources */,
 				8460DDD61A4E78A70031416E /* UserInfoViewController.m in Sources */,
 				84B446C61A32B3D000546859 /* MJRefreshConst.m in Sources */,
 				84B446C71A32B3D000546859 /* MJRefreshFooterView.m in Sources */,
@@ -1452,6 +1463,7 @@
 				E560D64E1A6564D900843E38 /* SettingNavBar.m in Sources */,
 				84B5D1181A441C3E00C5C6E8 /* Contacts.m in Sources */,
 				E527607C1A4BD26800D11F5B /* TempCell.m in Sources */,
+				E5826F261A7624100055189B /* modelSegue.m in Sources */,
 				844825891A318C810018240E /* UDObject.m in Sources */,
 				84B208811A5233ED008549B0 /* Music.m in Sources */,
 				843DBEE01A47BF9800CDFFCB /* MoreView.m in Sources */,

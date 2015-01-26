@@ -22,18 +22,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIColor *color = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    label.text = @"登录";
-    [label sizeToFit];
-    label.textColor = color;
-    label.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
-    [self.navigationItem setTitleView:label];
-    [self.navigationController.navigationBar setTintColor:color];
+    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 128.0/2.0)];
+    navView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.95];
+    [self.view addSubview:navView];
     
+    UIView* btnLeft = [[UIView alloc] initWithFrame:CGRectMake(8.0, 20.0, 44.0, 44.0)];
+    btnLeft.tag = 102;
+    [navView addSubview:btnLeft];
+    UITapGestureRecognizer* tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(back)];
+    [btnLeft addGestureRecognizer:tap1 ];
+    UILabel* lbl_OK = [[UILabel alloc] initWithFrame:btnLeft.bounds];
+    lbl_OK.font = [UIFont systemFontOfSize:18];
+    lbl_OK.text = @"返回";
+    lbl_OK.textAlignment = NSTextAlignmentCenter;
+    lbl_OK.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+    [btnLeft addSubview:lbl_OK];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, navView.frame.size.height-0.5, navView.frame.size.width, 0.5)];
+    line.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.5];
+    [navView addSubview:line];
+    
+    UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectMake(100.0, 20.0, navView.frame.size.width - 200.0, 44.0)];
+    lbl.tag = 105;
+    lbl.font = [UIFont systemFontOfSize:20];
+    lbl.text = @"登录";
+    lbl.textAlignment = NSTextAlignmentCenter;
+    lbl.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+    [navView addSubview:lbl];
+
     _login_button.layer.cornerRadius = 5.0;
     
-
+    if ([YINGLOUURL compare:@""] != NSOrderedSame) {
+        _password_edit.text = @"*该账户有影楼提供并激活。";
+        _password_edit.enabled = NO;
+        _password_edit.secureTextEntry = NO;
+        _password_edit.textColor = [UIColor redColor];
+        _password_img.hidden = YES;
+        
+    } else {
+    }
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewonclick:)];
     
     [self.view addGestureRecognizer:tap2];
@@ -87,6 +115,10 @@
 -(void)login{
     NSString *username = _phone_edit.text;
     NSString *password = _password_edit.text;
+    if ([YINGLOUURL compare:@""] != NSOrderedSame) {
+        password = @"1234567";
+    } else {
+    }
     if (username.length > 0 && password.length > 0) {
         [[waitingView sharedwaitingView] waitByMsg:@"正在登录" haveCancel:NO];
         [self.view endEditing:NO];
@@ -95,7 +127,10 @@
         [[StatusBar sharedStatusBar] talkMsg:@"账号密码不能为空" inTime:0.51];
     }
 }
-
+-(void)back{
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
+}
 -(void)j_spring_security_check:(NSString *)username password:(NSString *)password{
     [HttpManage j_spring_security_check:username password:password phoneId:[UDObject getTSID] j_username:username j_password:password isJson:@"true" cb:^(BOOL isOK, NSDictionary *dic) {
         [[waitingView sharedwaitingView] stopWait];
@@ -106,9 +141,12 @@
             if([url compare:HTTPURL] == NSOrderedSame){
                 [UDObject setYLID:@"1"];
             }
-            [self performSegueWithIdentifier:@"wel2main" sender:nil];
+//            [self performSegueWithIdentifier:@"wel2main" sender:nil];
             [UDObject setLXFS:username];
             [[StatusBar sharedStatusBar] talkMsg:@"成功登录" inTime:0.31];
+            [self dismissViewControllerAnimated:YES completion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_LOGIN_DONE" object:nil];
+            }];
         }else{
             [[StatusBar sharedStatusBar] talkMsg:@"登录失败了，再试一下吧。" inTime:0.51];
         }

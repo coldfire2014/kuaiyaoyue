@@ -106,7 +106,13 @@
 }
 
 
-
+-(void)WXLogin:(NSNotification*)noc{
+    SendAuthReq* req =[[SendAuthReq alloc ] init];
+    req.scope = @"snsapi_userinfo" ;
+    req.state = @"com.nef" ;
+    //第三方向微信终端发送一个SendAuthReq消息结构
+    [WXApi sendReq:req];
+}
 -(void)QQLogin:(NSNotification*)noc{
     [_tencentOAuth authorize:[NSArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo", @"add_t", nil] inSafari:NO];
 }
@@ -209,6 +215,7 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQ_LOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"WX_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQ_SENDTO" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"QQZONE_SENDTO" object:nil];
 }
@@ -232,6 +239,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_PHONE_BACK" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(WXLogin:) name:@"WX_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQLogin:) name:@"QQ_LOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQshare:) name:@"QQ_SENDTO" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQZoneshare:) name:@"QQZONE_SENDTO" object:nil];

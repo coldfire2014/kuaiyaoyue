@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FourViewController : UIViewController
-- (IBAction)login_onclick:(id)sender;
+@interface FourViewController : UIViewController<UIViewControllerTransitioningDelegate>
 
 @end

@@ -43,7 +43,7 @@
         if ([[UDObject gettoken] length] > 0) {
             name = @"main";
         }else{
-            name = @"wel";
+            name = @"allnew";
         }
         [self performSegueWithIdentifier:name sender:nil];
     }
@@ -55,7 +55,7 @@
         if ([[UDObject gettoken] length] > 0) {
             name = @"main";
         }else{
-            name = @"wel";
+            name = @"allnew";
         }
         [self performSegueWithIdentifier:name sender:nil];
     }
@@ -68,7 +68,7 @@
         zipDone = YES;
         name = @"main";
     }else{
-        name = @"wel";
+        name = @"allnew";
         zipDone = NO;
         [ZipDown Unzip];
     }
@@ -89,9 +89,7 @@
 
 }
 
-
 - (IBAction)onclick:(id)sender {
-//    [self performSegueWithIdentifier:@"main" sender:nil];
 
 }
 -(void)didSelectAssets:(NSArray*)items{

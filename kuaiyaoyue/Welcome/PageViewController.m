@@ -11,6 +11,7 @@
 #import "TwoViewController.h"
 #import "ThreeViewController.h"
 #import "FourViewController.h"
+#import "SiViewController.h"
 #import "WXApi.h"
 #import "coverAnimation.h"
 #import "HttpManage.h"
@@ -19,6 +20,7 @@
 #import "UDObject.h"
 #import "StatusBar.h"
 #import "waitingView.h"
+#import "PCHeader.h"
 @interface PageViewController ()
 
 @end
@@ -38,20 +40,8 @@
 
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:@"MSG_LOGIN" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ptlogin) name:@"MSG_PTLOGIN" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gologin) name:@"MSG_GO_LOGIN" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(sdwx:)
-                                                 name: @"MSG_SDWX"
-                                               object: nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(regme)
-                                                 name: @"MSG_Regme"
-                                               object: nil];
-    //MSG_Regme
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginDine) name:@"MSG_LOGIN_DONE" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -62,56 +52,20 @@
 -(void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_GO_LOGIN" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_PTLOGIN" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_Regme" object:nil];
 }
 -(void)gologin{
-    UIViewController* start = [self viewControllerAtIndex:4];
-    NSArray *arr = [[NSArray alloc] initWithObjects:start, nil];
-    [self setViewControllers:arr direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-}
-
--(void)login{
-//    [self performSegueWithIdentifier:@"wel2main" sender:nil];
-    SendAuthReq* req =[[SendAuthReq alloc ] init];
-    req.scope = @"snsapi_userinfo" ;
-    req.state = @"com.nef" ;
-    //第三方向微信终端发送一个SendAuthReq消息结构
-    [WXApi sendReq:req];
-}
-
--(void)ptlogin{
-//    [SVProgressHUD showWithStatus:@"" maskType:SVProgressHUDMaskTypeBlack];
-//    [self j_spring_security_check:@"12345678" password:@"1234567"];
-    [self performSegueWithIdentifier:@"login" sender:nil];
-}
-
--(void)regme{
-    [self performSegueWithIdentifier:@"registra" sender:nil];
-}
-
-
--(void)sdwx :(NSNotification*)notification{
+//    commonLogin
     
-    NSDictionary *dictionary = [notification userInfo];
-    NSString *name = [dictionary objectForKey:@"nickname"];
-    NSString *opneid = [dictionary objectForKey:@"openid"];
-    [HttpManage registers:name userPwd:@"123456" phoneId:[UDObject getTSID] openId:opneid cb:^(BOOL isOK, NSDictionary *dic) {
-        [[waitingView sharedwaitingView] stopWait];
-        if (isOK) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
-            [UDObject setUserInfo:name userName:name token:[dic objectForKey:@"token"]];
-            [UDObject setXM:name];
-             [self performSegueWithIdentifier:@"wel2main" sender:nil];
-        }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"登陆失败了，再试一次吧。" inTime:0.5];
-        }
-    }];
+    if ([YINGLOUURL compare:@""] != NSOrderedSame) {
+        [self performSegueWithIdentifier:@"login" sender:nil];
+    } else {
+        [self performSegueWithIdentifier:@"commonLogin" sender:nil];
+    }
 }
-
+-(void)loginDine{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN_DONE" object:nil];
+    [self performSegueWithIdentifier:@"wel2main" sender:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -123,15 +77,14 @@
     }
     UIViewController *dataViewController = nil;
     if (index == 0) {
-        dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OneViewController"];
+//        dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OneViewController"];
+        dataViewController = [[OneViewController alloc] init];
     } else if (1 == index) {
-        dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TwoViewController"];
+        dataViewController = [[TwoViewController alloc] init];
     } else if (2 == index) {
-        dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ThreeViewController"];
+        dataViewController = [[ThreeViewController alloc] init];
     } else if (3 == index) {
-        dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SiViewController"];
-    } else if (4 == index) {
-        dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FourViewController"];
+        dataViewController = [[SiViewController alloc] init];
     } else {
         return nil;
     }
@@ -149,12 +102,9 @@
         return 2;
     } else if ([str isEqualToString:@"SiViewController"]) {
         return 3;
-    }  else if ([str isEqualToString:@"FourViewController"]) {
-        return 4;
     } else {
         return NSNotFound;
     }
-
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
@@ -194,7 +144,8 @@
 //    NSString* name = [presented.classForCoder description];
 //    NSRange r = [name rangeOfString:@"createViewController"];
     coverAnimation* ca = [[coverAnimation alloc] initWithPresent:YES];
-    return ca;}
+    return ca;
+}
 /*
 #pragma mark - Navigation
 

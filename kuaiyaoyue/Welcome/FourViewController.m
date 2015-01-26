@@ -13,6 +13,8 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "TalkingData.h"
 #import "waitingView.h"
+#import "HttpManage.h"
+#import "coverAnimation.h"
 @interface FourViewController ()
 
 @end
@@ -61,6 +63,35 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
+}
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginDine) name:@"MSG_LOGIN_DONE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(sdwx:)
+                                                 name: @"MSG_SDWX"
+                                               object: nil];
+    //MSG_Regme
+}
+-(void)sdwx :(NSNotification*)notification{
+    NSDictionary *dictionary = [notification userInfo];
+    NSString *name = [dictionary objectForKey:@"nickname"];
+    NSString *opneid = [dictionary objectForKey:@"openid"];
+    [HttpManage registers:name userPwd:@"123456" phoneId:[UDObject getTSID] openId:opneid cb:^(BOOL isOK, NSDictionary *dic) {
+        [[waitingView sharedwaitingView] stopWait];
+        if (isOK) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
+            [UDObject setUserInfo:name userName:name token:[dic objectForKey:@"token"]];
+            [UDObject setXM:name];
+            [self performSegueWithIdentifier:@"wel2main" sender:nil];
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"登陆失败了，再试一次吧。" inTime:0.5];
+        }
+    }];
 }
 
 /*
@@ -125,30 +156,33 @@
     }];
 }
 -(void)regme{
-//    [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_Regme" object:nil];
+    [self performSegueWithIdentifier:@"registra" sender:nil];
 }
 -(void)login{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_PTLOGIN" object:nil];
-    
-//    [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
+    [self performSegueWithIdentifier:@"login" sender:nil];
 }
 -(void)loginQQ{
-//    [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步微信登陆。" inTime:0.51];
     [[waitingView sharedwaitingView] waitByMsg:@"请稍候……" haveCancel:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"QQ_LOGIN" object:nil];
 }
 -(void)loginwx{
     [[waitingView sharedwaitingView] waitByMsg:@"请稍候……" haveCancel:NO];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_LOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"WX_LOGIN" object:nil];
 }
-- (IBAction)login_onclick:(id)sender {
-//    [UDObject setOPEN];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_LOGIN" object:nil];
-//    [self performSegueWithIdentifier:@"wel2main" sender:nil];
-    
-   
+-(void)loginDine{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN_DONE" object:nil];
+    [self performSegueWithIdentifier:@"wel2main" sender:nil];
 }
-
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+    //    NSRange r = [[dismissed.classForCoder description] rangeOfString:@"createViewController"];
+    coverAnimation* ca = [[coverAnimation alloc] initWithPresent:NO];
+    return ca;
+}
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+    //    NSString* name = [presented.classForCoder description];
+    //    NSRange r = [name rangeOfString:@"createViewController"];
+    coverAnimation* ca = [[coverAnimation alloc] initWithPresent:YES];
+    return ca;
+}
 
 @end

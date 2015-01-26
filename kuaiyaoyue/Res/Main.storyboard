@@ -201,12 +201,12 @@
                     </view>
                     <connections>
                         <segue destination="eGG-ps-HQp" kind="custom" identifier="main" customClass="coverSegue" id="D53-YK-KM5"/>
-                        <segue destination="CSc-oh-Bvr" kind="custom" identifier="wel" customClass="coverSegue" id="Nhj-kF-NbX"/>
+                        <segue destination="qHT-nQ-aXb" kind="custom" identifier="allnew" customClass="coverSegue" id="qQi-wG-Yfi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TkI-tn-yyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3174" y="-467"/>
+            <point key="canvasLocation" x="-1486" y="-989"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WvV-j7-NaL">
@@ -338,22 +338,21 @@
                             <constraint firstItem="ISU-r4-dqO" firstAttribute="leading" secondItem="k5C-ix-clb" secondAttribute="leading" id="dGp-WT-zTh"/>
                             <constraint firstAttribute="centerX" secondItem="ISU-r4-dqO" secondAttribute="centerX" id="omS-Fj-Ome"/>
                             <constraint firstAttribute="centerX" secondItem="Suj-uB-dAJ" secondAttribute="centerX" id="rO2-x4-Ip3"/>
-                            <constraint firstItem="ISU-r4-dqO" firstAttribute="top" secondItem="kto-Fn-6QA" secondAttribute="bottom" constant="18" id="tVb-fl-gMB"/>
+                            <constraint firstItem="ISU-r4-dqO" firstAttribute="top" secondItem="kto-Fn-6QA" secondAttribute="bottom" constant="62" id="tVb-fl-gMB"/>
                             <constraint firstItem="Suj-uB-dAJ" firstAttribute="leading" secondItem="k5C-ix-clb" secondAttribute="leading" constant="24" id="uWZ-Gg-uOs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rFj-EM-222"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="login_button" destination="Suj-uB-dAJ" id="EGG-9R-0qq"/>
                         <outlet property="password_edit" destination="XPg-z1-BRZ" id="ueh-ln-3yh"/>
+                        <outlet property="password_img" destination="NLL-7s-xv0" id="OJv-lg-05u"/>
                         <outlet property="phone_edit" destination="yA0-ts-jQ5" id="L6X-wp-rGs"/>
-                        <segue destination="eGG-ps-HQp" kind="custom" identifier="wel2main" customClass="w2mainSegue" id="2y5-RI-bqS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xrH-v6-td9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2378" y="2140"/>
+            <point key="canvasLocation" x="-2168" y="583"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MTB-7H-V4B">
@@ -1671,25 +1670,6 @@
             </objects>
             <point key="canvasLocation" x="1614" y="1934"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fzz-aq-ed2">
-            <objects>
-                <navigationController extendedLayoutIncludesOpaqueBars="YES" id="CSc-oh-Bvr" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eUj-xa-OMT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="9db-Js-dIT">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="qHT-nQ-aXb" kind="relationship" relationship="rootViewController" id="tSe-qM-K7i"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aHd-iU-sEH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3174" y="583"/>
-        </scene>
         <!--Page View Controller-->
         <scene sceneID="59c-pD-L0a">
             <objects>
@@ -1699,73 +1679,13 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <segue destination="eGG-ps-HQp" kind="custom" identifier="wel2main" customClass="w2mainSegue" id="I0j-Cp-NYv"/>
-                        <segue destination="Aah-1p-LT9" kind="show" identifier="login" id="djN-Hm-cgS"/>
-                        <segue destination="GlX-fs-GUc" kind="show" identifier="registra" id="x0k-BG-fMs"/>
+                        <segue destination="Aah-1p-LT9" kind="custom" identifier="login" customClass="modelSegue" id="djN-Hm-cgS"/>
+                        <segue destination="gzh-W5-rRm" kind="custom" identifier="commonLogin" customClass="loginSegue" id="k5J-tT-INq"/>
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6QQ-pv-uh8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2378" y="583"/>
-        </scene>
-        <!--Two View Controller-->
-        <scene sceneID="bes-xm-kQw">
-            <objects>
-                <viewController storyboardIdentifier="TwoViewController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RKI-CS-Mam" customClass="TwoViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kfv-tA-jvf"/>
-                        <viewControllerLayoutGuide type="bottom" id="mUc-ri-QsU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fd6-dU-b4c">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="继续左滑" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qn-s0-44H">
-                                <rect key="frame" x="266" y="290" width="68" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="5Qn-s0-44H" secondAttribute="centerX" id="5Pu-Is-Cpe"/>
-                            <constraint firstAttribute="centerY" secondItem="5Qn-s0-44H" secondAttribute="centerY" id="i7f-rf-cYK"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yEP-ZL-ZGu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3670" y="1995"/>
-        </scene>
-        <!--Three View Controller-->
-        <scene sceneID="rIm-Gr-S0u">
-            <objects>
-                <viewController storyboardIdentifier="ThreeViewController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Wb-7H-Wkc" customClass="ThreeViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rvn-pG-RgB"/>
-                        <viewControllerLayoutGuide type="bottom" id="g2q-9r-YF5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vvE-XA-CWZ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="再滑一下" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6I-Vc-5h2">
-                                <rect key="frame" x="266" y="289" width="68" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="g6I-Vc-5h2" secondAttribute="centerX" id="lYc-ET-l5W"/>
-                            <constraint firstAttribute="centerY" secondItem="g6I-Vc-5h2" secondAttribute="centerY" id="luP-Gw-tK5"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gGc-wj-rMO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3670" y="2718"/>
+            <point key="canvasLocation" x="-2862" y="-249"/>
         </scene>
         <!--Registration View Controller-->
         <scene sceneID="IAD-pZ-WLM">
@@ -2018,7 +1938,7 @@
                             <constraint firstAttribute="centerX" secondItem="XT7-0c-fgQ" secondAttribute="centerX" id="R4W-Vz-4K0"/>
                             <constraint firstItem="ajv-If-2gg" firstAttribute="leading" secondItem="t7O-k3-0Da" secondAttribute="leading" id="RtV-8b-bbf"/>
                             <constraint firstAttribute="centerX" secondItem="ZVl-LG-UwO" secondAttribute="centerX" id="S2Z-SA-uc8"/>
-                            <constraint firstItem="ajv-If-2gg" firstAttribute="top" secondItem="NTH-Kt-7nJ" secondAttribute="bottom" constant="18" id="W3g-UU-XvU"/>
+                            <constraint firstItem="ajv-If-2gg" firstAttribute="top" secondItem="NTH-Kt-7nJ" secondAttribute="bottom" constant="62" id="W3g-UU-XvU"/>
                             <constraint firstAttribute="centerX" secondItem="ajv-If-2gg" secondAttribute="centerX" id="atP-K3-4rI"/>
                             <constraint firstItem="ZVl-LG-UwO" firstAttribute="leading" secondItem="t7O-k3-0Da" secondAttribute="leading" id="bbR-g6-JcN"/>
                         </constraints>
@@ -2031,38 +1951,11 @@
                         <outlet property="password_sureedit" destination="9Oi-2W-U6x" id="ELy-X8-Xlh"/>
                         <outlet property="phone_num" destination="cBm-ms-kS0" id="3RR-gb-5b3"/>
                         <outlet property="yzm_button" destination="nwr-wW-FuP" id="rkk-SV-WG7"/>
-                        <segue destination="eGG-ps-HQp" kind="custom" identifier="wel2main" customClass="w2mainSegue" id="qme-kc-Frs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i0O-SA-dxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2378" y="1354"/>
-        </scene>
-        <!--Si View Controller-->
-        <scene sceneID="6hF-a4-ZUS">
-            <objects>
-                <viewController storyboardIdentifier="SiViewController" extendedLayoutIncludesOpaqueBars="YES" id="FSF-Z1-LDK" customClass="SiViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Jgl-th-2Z3"/>
-                        <viewControllerLayoutGuide type="bottom" id="Nkd-KX-LDc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AKR-1J-ybW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="最后了" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9h-yQ-vQi">
-                                <rect key="frame" x="279" y="289" width="51" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LrI-at-3ug" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3038" y="1275"/>
+            <point key="canvasLocation" x="-2862" y="583"/>
         </scene>
         <!--Four View Controller-->
         <scene sceneID="e94-Qg-lUa">
@@ -2100,40 +1993,15 @@
                             <constraint firstAttribute="centerX" secondItem="zI1-S4-Ill" secondAttribute="centerX" id="mAe-aP-0dz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="GlX-fs-GUc" kind="custom" identifier="registra" customClass="modelSegue" id="qQz-Vq-Yob"/>
+                        <segue destination="eGG-ps-HQp" kind="custom" identifier="wel2main" customClass="w2mainSegue" id="YHF-b3-vtH"/>
+                        <segue destination="Aah-1p-LT9" kind="custom" identifier="login" customClass="modelSegue" id="3uQ-GY-alJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t17-MA-Kjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3010" y="2718"/>
-        </scene>
-        <!--One View Controller-->
-        <scene sceneID="bPp-6s-f0Y">
-            <objects>
-                <viewController storyboardIdentifier="OneViewController" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lGn-Se-Jy8" customClass="OneViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oLb-0y-aiV"/>
-                        <viewControllerLayoutGuide type="bottom" id="nFY-aW-ibY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="TVG-ox-21j">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="左滑" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhB-zK-ZG8">
-                                <rect key="frame" x="283" y="290" width="34" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="QhB-zK-ZG8" secondAttribute="centerX" id="aAI-7P-aPx"/>
-                            <constraint firstAttribute="centerY" secondItem="QhB-zK-ZG8" secondAttribute="centerY" id="iCN-9h-peh"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zT9-hy-MNb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3670" y="1275"/>
+            <point key="canvasLocation" x="-2168" y="-249"/>
         </scene>
     </scenes>
     <resources>
@@ -2165,7 +2033,8 @@
         <image name="logo_login.png" width="159" height="172"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="I0j-Cp-NYv"/>
+        <segue reference="D53-YK-KM5"/>
+        <segue reference="djN-Hm-cgS"/>
         <segue reference="22X-oD-zs7"/>
     </inferredMetricsTieBreakers>
 </document>
