@@ -14,14 +14,15 @@
 
 //#define YINGLOU @"YINGLOU"
 #ifdef YINGLOU
-    #define YINGLOUURL @"http://appkyy.kyy121.com/studio/"
-    #define HTTPURL @"http://appkyy.kyy121.com/studio/"
+    #define YINGLOUURL @"http://test.kyy121.com/studio/"
+    #define HTTPURL @"http://test.kyy121.com/studio/"
     #define ChannelId @"Studio"
     #define UZIP @"ZIPS201"
 #else
     #define YINGLOUURL @""
     #define HTTPURL @"http://appkyy.kyy121.com/invitation/"
-    #define ChannelId @"AppStore"
+//    #define ChannelId @"AppStore"
+    #define ChannelId @"inhouse"
     #define UZIP @"ZIP201"
 #endif
 //#define HTTPURL @"http://test.kyy121.com/"
