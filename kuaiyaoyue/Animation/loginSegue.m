@@ -12,7 +12,7 @@
 -(void) perform{
     UIViewController* src = self.sourceViewController;
     UIViewController* des = self.destinationViewController;
-    des.modalPresentationStyle = UIModalPresentationFormSheet;
+    des.modalPresentationStyle = UIModalPresentationFullScreen;
     des.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 //    des.transitioningDelegate = src;
     [src presentViewController:des animated:YES completion:^{

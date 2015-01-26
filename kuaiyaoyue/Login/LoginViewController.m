@@ -22,12 +22,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
-    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 128.0/2.0)];
+    CGFloat w = self.phone_edit.superview.bounds.size.width;
+    CGFloat top = 20.0;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        top = 0.0;
+    }
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0 + top)];
     navView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.95];
     [self.view addSubview:navView];
     
-    UIView* btnLeft = [[UIView alloc] initWithFrame:CGRectMake(8.0, 20.0, 44.0, 44.0)];
+    UIView* btnLeft = [[UIView alloc] initWithFrame:CGRectMake(8.0, top, 44.0, 44.0)];
     btnLeft.tag = 102;
     [navView addSubview:btnLeft];
     UITapGestureRecognizer* tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(back)];
@@ -43,7 +47,7 @@
     line.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.5];
     [navView addSubview:line];
     
-    UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectMake(100.0, 20.0, navView.frame.size.width - 200.0, 44.0)];
+    UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectMake(100.0, top, navView.frame.size.width - 200.0, 44.0)];
     lbl.tag = 105;
     lbl.font = [UIFont systemFontOfSize:20];
     lbl.text = @"登录";
