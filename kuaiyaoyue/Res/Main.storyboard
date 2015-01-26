@@ -26,7 +26,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hij-Rl-7gw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-44" y="589"/>
+            <point key="canvasLocation" x="-46" y="583"/>
         </scene>
         <!--Template View Controller-->
         <scene sceneID="nPx-XQ-722">
@@ -353,7 +353,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xrH-v6-td9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2370" y="2140"/>
+            <point key="canvasLocation" x="-2378" y="2140"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MTB-7H-V4B">
@@ -1032,7 +1032,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNg-W4-FhB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-764" y="1686"/>
+            <point key="canvasLocation" x="-750" y="1318"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="VGg-Og-T4r">
@@ -1688,7 +1688,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHd-iU-sEH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3174" y="589"/>
+            <point key="canvasLocation" x="-3174" y="583"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="59c-pD-L0a">
@@ -1705,7 +1705,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6QQ-pv-uh8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2378" y="589"/>
+            <point key="canvasLocation" x="-2378" y="583"/>
         </scene>
         <!--Two View Controller-->
         <scene sceneID="bes-xm-kQw">
@@ -2049,6 +2049,14 @@
                     <view key="view" contentMode="scaleToFill" id="AKR-1J-ybW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="最后了" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9h-yQ-vQi">
+                                <rect key="frame" x="279" y="289" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -2157,7 +2165,7 @@
         <image name="logo_login.png" width="159" height="172"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qme-kc-Frs"/>
+        <segue reference="I0j-Cp-NYv"/>
         <segue reference="22X-oD-zs7"/>
     </inferredMetricsTieBreakers>
 </document>
