@@ -91,10 +91,6 @@
     // Pass the selected object to the new view controller.
 
 }
-
-- (IBAction)onclick:(id)sender {
-
-}
 -(void)didSelectAssets:(NSArray*)items{
     
     for (ALAsset* asset in items) {

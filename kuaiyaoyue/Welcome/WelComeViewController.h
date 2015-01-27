@@ -13,5 +13,4 @@
     BOOL zipDone;
     BOOL downloadDone;
 }
-- (IBAction)onclick:(id)sender;
 @end
