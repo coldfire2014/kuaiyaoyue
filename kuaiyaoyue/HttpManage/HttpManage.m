@@ -314,6 +314,7 @@ password:1235456                     //用户密码
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             timestamp,@"timestamp",size,@"size",@"ios",@"equipment",version,@"version",nil];
     [[AFConnectionAPIClient sharedClient] POST:@"nozzle/NefTemplate/template.aspx" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
+        NSString *html = operation.responseString;
         callback(YES,JSON);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {

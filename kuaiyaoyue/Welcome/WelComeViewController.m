@@ -28,11 +28,8 @@
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     downloadDone = NO;
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneZip) name:@"ZIP_DONE" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneDownload) name:@"DOWNLOAD_DONE" object:nil];
-    [delegate updateMata];
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [TalkingData trackPageEnd:@"加载页面"];
@@ -68,12 +65,15 @@
     [super viewDidAppear:animated];
     [TalkingData trackPageBegin:@"加载页面"];
     NSString *name = nil;
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     if ([[UDObject gettoken] length] > 0) {
         zipDone = YES;
         name = @"main";
+        [delegate updateMata];
     }else{
         name = @"allnew";
         zipDone = NO;
+        [delegate updateMata];
         [ZipDown Unzip];
     }
 }
@@ -82,7 +82,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - Navigation
 

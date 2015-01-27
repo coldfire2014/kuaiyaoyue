@@ -184,6 +184,8 @@
 		E56787031A5153E700308A4B /* btn_sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = E56787011A5153E700308A4B /* btn_sidebar.png */; };
 		E56863AB1A7720B500DB6EA4 /* musicController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56863AA1A7720B500DB6EA4 /* musicController.m */; };
 		E56863AE1A77213000DB6EA4 /* templateController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56863AD1A77213000DB6EA4 /* templateController.m */; };
+		E56863B11A772CD200DB6EA4 /* music.json in Resources */ = {isa = PBXBuildFile; fileRef = E56863B01A772CD200DB6EA4 /* music.json */; };
+		E56863B31A77327600DB6EA4 /* template.json in Resources */ = {isa = PBXBuildFile; fileRef = E56863B21A77327600DB6EA4 /* template.json */; };
 		E57333AD1A4B9848006425C3 /* ChangeTempView.m in Sources */ = {isa = PBXBuildFile; fileRef = E57333AC1A4B9848006425C3 /* ChangeTempView.m */; };
 		E577FC0C1A356C80009ED66D /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC091A356C80009ED66D /* AssetHelper.m */; };
 		E577FC0D1A356C80009ED66D /* myImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC0B1A356C80009ED66D /* myImageView.m */; };
@@ -512,6 +514,8 @@
 		E56863AA1A7720B500DB6EA4 /* musicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = musicController.m; path = Controller/musicController.m; sourceTree = "<group>"; };
 		E56863AC1A77213000DB6EA4 /* templateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = templateController.h; path = Controller/templateController.h; sourceTree = "<group>"; };
 		E56863AD1A77213000DB6EA4 /* templateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = templateController.m; path = Controller/templateController.m; sourceTree = "<group>"; };
+		E56863B01A772CD200DB6EA4 /* music.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = music.json; path = Controller/music.json; sourceTree = "<group>"; };
+		E56863B21A77327600DB6EA4 /* template.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = template.json; sourceTree = "<group>"; };
 		E57333AB1A4B9848006425C3 /* ChangeTempView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeTempView.h; sourceTree = "<group>"; };
 		E57333AC1A4B9848006425C3 /* ChangeTempView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTempView.m; sourceTree = "<group>"; };
 		E577FC081A356C80009ED66D /* AssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
@@ -1176,6 +1180,8 @@
 				E56863AA1A7720B500DB6EA4 /* musicController.m */,
 				E56863AC1A77213000DB6EA4 /* templateController.h */,
 				E56863AD1A77213000DB6EA4 /* templateController.m */,
+				E56863B01A772CD200DB6EA4 /* music.json */,
+				E56863B21A77327600DB6EA4 /* template.json */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1325,12 +1331,14 @@
 			files = (
 				843DBEE41A47C5D500CDFFCB /* MoreView.xib in Resources */,
 				8474A4AE1A4BB28A00C2E489 /* bubble_play_1@2x.png in Resources */,
+				E56863B31A77327600DB6EA4 /* template.json in Resources */,
 				E565ECCA1A52CDB900679BAE /* btn5s.png in Resources */,
 				E558D0151A47A6DA009BFC50 /* ShowData.xib in Resources */,
 				8474A4AF1A4BB28A00C2E489 /* bubble_play_2@2x.png in Resources */,
 				843DBEDA1A46F16600CDFFCB /* icon120.png in Resources */,
 				E565ECC61A52CDB900679BAE /* 1w.jpg in Resources */,
 				E5661A1C1A45708C00E4E2BC /* btn_login_qq.png in Resources */,
+				E56863B11A772CD200DB6EA4 /* music.json in Resources */,
 				E5661A291A457CB700E4E2BC /* btn_login_1.png in Resources */,
 				E54889871A6125E1008EA808 /* loading.gif in Resources */,
 				844CC58A1A491CBA00A34186 /* CustomView.xib in Resources */,
