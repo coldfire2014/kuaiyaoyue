@@ -7,7 +7,7 @@
 //
 
 #import "MusicTableViewCell.h"
-
+#import "PCHeader.h"
 @implementation MusicTableViewCell
 
 - (void)awakeFromNib {
@@ -26,7 +26,11 @@
     gs.layer.transform = CATransform3DTranslate(gs.layer.transform, 0.0, w/8.0, 0);
     [self.show_status addSubview:gs];
     self.show_status.layer.transform = CATransform3DRotate(self.show_status.layer.transform, -M_PI_4, 0, 0, 1);
-    self.show_status.layer.transform = CATransform3DTranslate(self.show_status.layer.transform, -8.0, -16.0, 0);
+    if (ISIOS8LATER) {
+        self.show_status.layer.transform = CATransform3DTranslate(self.show_status.layer.transform, -2.0, -6.0, 0);
+    }else{
+        self.show_status.layer.transform = CATransform3DTranslate(self.show_status.layer.transform, -8.0, -16.0, 0);
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

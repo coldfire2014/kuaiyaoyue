@@ -296,7 +296,7 @@
     //    [self performSegueWithIdentifier:@"YJFK" sender:nil];
     WebViewController *view = [[WebViewController alloc] init];
     view.name = @"探秘快邀约";
-    view.weburl = [NSString stringWithFormat:@"%@%@",HTTPURL,@"static/gospel.html"];
+    view.weburl = @"http://appkyy.kyy121.com/invitation/static/gospel.html";
     view.viewTitle = @"攻略";
     view.modalPresentationStyle = UIModalPresentationFullScreen;
     view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -309,7 +309,7 @@
     [TalkingData trackEvent:@"点击更新"];
     UIView* gx = [self.view viewWithTag: 610];
     if (![gx isHidden]) {
-        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:STOREDIR]];
     }else{
         [[StatusBar sharedStatusBar] talkMsg:@"目前为最新版本" inTime:0.51];
     }
@@ -317,7 +317,7 @@
 
 - (void)pl {
     [TalkingData trackEvent:@"评论"];
-    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"]];
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:STOREDIR]];
 }
 
 - (void)gw {

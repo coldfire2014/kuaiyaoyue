@@ -22,10 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    CGFloat w = self.phone_edit.superview.bounds.size.width;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
     CGFloat top = 20.0;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         top = 0.0;
+        w = 540;
+        if (ISIOS8LATER) {
+            w = self.phone_edit.superview.bounds.size.width;
+        }
     }
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0 + top)];
     navView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.95];
