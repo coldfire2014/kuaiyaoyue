@@ -13,6 +13,7 @@
 #import "ZipDown.h"
 #import "TalkingData.h"
 #import "myImageView.h"
+#import "AppDelegate.h"
 @interface WelComeViewController ()
 
 @end
@@ -27,8 +28,11 @@
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     downloadDone = NO;
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneZip) name:@"ZIP_DONE" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneDownload) name:@"DOWNLOAD_DONE" object:nil];
+    [delegate updateMata];
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [TalkingData trackPageEnd:@"加载页面"];

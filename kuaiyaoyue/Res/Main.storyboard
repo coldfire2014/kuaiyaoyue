@@ -73,7 +73,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uMQ-2L-TC0" id="Nrp-UT-iI4">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_g" translatesAutoresizingMaskIntoConstraints="NO" id="OuK-Nq-LZi">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OuK-Nq-LZi">
                                                     <rect key="frame" x="9" y="11" width="22" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="22" id="Imq-Ou-Apy"/>
@@ -81,14 +81,14 @@
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6A-Ig-nxu">
-                                                    <rect key="frame" x="9" y="42" width="582" height="1"/>
+                                                    <rect key="frame" x="37" y="42" width="556" height="1"/>
                                                     <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="Ez9-yx-GMJ"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pm4-ov-mJV">
-                                                    <rect key="frame" x="40" y="12" width="520" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="哈哈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pm4-ov-mJV">
+                                                    <rect key="frame" x="40" y="13" width="520" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -97,7 +97,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="y6A-Ig-nxu" secondAttribute="bottom" constant="0.5" id="3c9-0G-9iq"/>
                                                 <constraint firstAttribute="centerX" secondItem="Pm4-ov-mJV" secondAttribute="centerX" id="CMf-si-Con"/>
-                                                <constraint firstItem="y6A-Ig-nxu" firstAttribute="leading" secondItem="Nrp-UT-iI4" secondAttribute="leading" constant="9" id="GoI-7M-bl7"/>
+                                                <constraint firstItem="y6A-Ig-nxu" firstAttribute="leading" secondItem="Nrp-UT-iI4" secondAttribute="leading" constant="37" id="GoI-7M-bl7"/>
                                                 <constraint firstItem="Pm4-ov-mJV" firstAttribute="leading" secondItem="OuK-Nq-LZi" secondAttribute="trailing" constant="9" id="GxQ-Ku-01V"/>
                                                 <constraint firstItem="Pm4-ov-mJV" firstAttribute="leading" secondItem="OuK-Nq-LZi" secondAttribute="trailing" constant="16" id="JW2-Ot-y2i"/>
                                                 <constraint firstAttribute="centerY" secondItem="Pm4-ov-mJV" secondAttribute="centerY" id="MFo-RK-kTN"/>
@@ -106,7 +106,7 @@
                                                 <constraint firstItem="OuK-Nq-LZi" firstAttribute="leading" secondItem="Nrp-UT-iI4" secondAttribute="leading" constant="9" id="dno-YW-LHF"/>
                                                 <constraint firstItem="OuK-Nq-LZi" firstAttribute="leading" secondItem="Nrp-UT-iI4" secondAttribute="leading" constant="9" id="eD2-Nu-op2"/>
                                                 <constraint firstItem="OuK-Nq-LZi" firstAttribute="leading" secondItem="Nrp-UT-iI4" secondAttribute="leading" constant="9" id="hFo-j3-kjL"/>
-                                                <constraint firstAttribute="centerX" secondItem="y6A-Ig-nxu" secondAttribute="centerX" id="jLh-7A-Vhl"/>
+                                                <constraint firstAttribute="centerX" secondItem="y6A-Ig-nxu" secondAttribute="centerX" constant="-15" id="jLh-7A-Vhl"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -2029,7 +2029,6 @@
         <image name="ic_login_phone" width="19" height="19"/>
         <image name="icon120.png" width="120" height="120"/>
         <image name="img_empty_namelist" width="104" height="105"/>
-        <image name="img_g" width="22" height="22"/>
         <image name="logo_login.png" width="159" height="172"/>
     </resources>
     <inferredMetricsTieBreakers>

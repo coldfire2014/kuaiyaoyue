@@ -45,7 +45,8 @@
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     _tableView.separatorStyle = NO;
-    [self inData];
+//    [self inData];
+    [self showdid];
 }
 
 - (void)leftBarBtnClicked:(id)sender
@@ -60,70 +61,14 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)inData{
-    
-    data = [[NSMutableArray alloc] init];
-    NSString *timestamp = nil;
-    NSArray *arr = [[DataBaseManage getDataBaseManage] getMusic];
-    if ([arr count] > 0) {
-        Music *music = [arr objectAtIndex:[arr count] -1];
-        timestamp = music.timestamp;
-        NSLog(@"music-%@",music);
-    }else{
-        timestamp = @"-1";
-    }
-    [[waitingView sharedwaitingView] waitByMsg:@"音乐列表努力加载中……" haveCancel:NO];
-    [HttpManage getAll:timestamp cb:^(BOOL isOK, NSMutableArray *array) {
-        if (isOK) {
-             NSLog(@"%@",array);
-             tjnum = [array count];
-             if (tjnum > 0) {
-                 [[waitingView sharedwaitingView] changeWord:@"真在为您下载新的音乐……"];
-                 for (int i = 0; i < [array count]; i++) {
-                     NSDictionary *dic = [array objectAtIndex:i];
-                     [[DataBaseManage getDataBaseManage] setMusic:dic];
-                     [self downYP:[dic objectForKey:@"uniqueId"] :[dic objectForKey:@"url"]];
-                 }
-             }else{
-                 [[waitingView sharedwaitingView] stopWait];
-                 [self showdid];
-             }
-             
-         }else{
-             [[waitingView sharedwaitingView] stopWait];
-             [self showdid];
-         }
-     }];
-}
-
--(void)downYP:(NSString *)ypname :(NSString *)url{
-    BOOL is_bd = [[FileManage sharedFileManage] ISYPFile:ypname];
-    NSString *file  = [[FileManage sharedFileManage] GetYPFile:ypname];
-    if (!is_bd) {
-        [HttpManage DownMusic:url filepath:file cb:^(BOOL isOK) {
-            addnum++;
-            if (addnum == tjnum) {
-                [[waitingView sharedwaitingView] stopWait];
-                [self showdid];
-            }
-        }];
-    }else{
-         addnum++;
-        if (addnum == tjnum) {
-            [[waitingView sharedwaitingView] stopWait];
-            [self showdid];
-        }
-    }
-}
-
 -(void)showdid {
+    data = [[NSMutableArray alloc] init];
     NSArray *arr = [[DataBaseManage getDataBaseManage] getMusic:_typeid];
     for (Music *music in arr) {
         MusicInfo *info = [[MusicInfo alloc] SetMusicValue:NO :music.nefname :music.nefurl :music.uniqueId];
         [data addObject:info];
     }
     [_tableView reloadData];
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -166,7 +111,8 @@
     [_tableView reloadData];
     
     NSString *file  = [[FileManage sharedFileManage] GetYPFile:info.uniqueId];
-    [self AudioPlay:file];
+    [NSThread detachNewThreadSelector:@selector(AudioPlay:) toTarget:self withObject:file];
+//    [self AudioPlay:file];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];

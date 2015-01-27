@@ -8,16 +8,14 @@
 
 #import "AppDelegate.h"
 #import "UDObject.h"
-#import "DataBaseManage.h"
-#import "Template.h"
 #import "HttpManage.h"
-#import "PCHeader.h"
 #import "StatusBar.h"
 #import "TalkingData.h"
 #import "SMS_SDK/SMS_SDK.h"
 #import "PCHeader.h"
-#import "FileManage.h"
 #import "waitingView.h"
+#import "musicController.h"
+#import "templateController.h"
 @interface AppDelegate (){
     BOOL is_xz;
     BOOL is_add;
@@ -54,12 +52,14 @@
     [SMS_SDK registerApp:@"4ec26c11eca2" withSecret:@"e80f13299bf5581e40ed33e2d8350cae"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onebyone) name:@"onebyone" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getmaxtemplate:) name:@"getmax" object:nil];
-    [self getmaxtemplate:YES];
     return YES;
 }
-
+- (void)updateMata{
+    musicController* music = [[musicController alloc] init];
+    [music update];
+    templateController* template = [[templateController alloc] init];
+    [template update];
+}
 #ifdef __IPHONE_8_0
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
@@ -224,7 +224,7 @@
     
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    
+    [self updateMata];
 }
 - (void)application:(UIApplication *)application willChangeStatusBarFrame:(CGRect)newStatusBarFrame{
     
@@ -245,14 +245,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQZoneshare:) name:@"QQZONE_SENDTO" object:nil];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-
-    [self checkToken];
     
+    [self checkToken];
     [HttpManage edition:@"ios" cb:^(BOOL isOK, NSString *URL) {
         if (isOK) {
             if (![URL isEqualToString:@"failure"]) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"版本需更新" message:@"目前版本不是最新版本，请点击更新" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"版本更新", nil];
                 [alert show];
+            }else{
+                
             }
         }
     }];
@@ -276,101 +277,6 @@
 -(void)tzurl{
     NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/kuai-yao-yue-qing-song-zuo/id927884233?mt=8"];
     [[UIApplication sharedApplication]openURL:url];
-}
-
--(void)getmaxtemplate:(BOOL)state{
-    is_add = state;
-    NSArray *fetchedObjects = [[DataBaseManage getDataBaseManage] QueryTemplate];
-//    NSLog(@"%lu",(unsigned long)[fetchedObjects count]);
-    if ([fetchedObjects count] != 0) {
-        is_xz = NO;
-        Template *template = [fetchedObjects objectAtIndex:0];
-        NSString *timestamp = template.neftimestamp;
-        [self maxtemplate :timestamp];
-        NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-        NSString *uptime = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"uptime"]];
-        if (uptime.length > 0 && ![uptime isEqualToString:@"(null)"]) {
-        }else{
-            uptime = timestamp;
-        }
-        [HttpManage templateRenewal:uptime cb:^(BOOL isOK, NSArray *array) {
-            if (isOK) {
-                NSLog(@"啦啦啦啦-%@",array);
-                for (int i = 0; i < [array count]; i++) {
-                    NSDictionary *dic = [array objectAtIndex:i];
-                    [[DataBaseManage getDataBaseManage] UpTemplate:dic];
-                    NSString *renewalType = [dic objectForKey:@"renewalType"];
-                    if ([renewalType isEqualToString:@"coordinate"]) {
-                        [[DataBaseManage getDataBaseManage] UpdataInfo:dic];
-                    }else{
-                        NSString *background = [dic objectForKey:@"background"];
-                        NSString *thumbUrl = [dic objectForKey:@"preview"];
-                        NSString *preview = [dic objectForKey:@"thumbUrl"];
-                        NSArray *array = [background componentsSeparatedByString:@"/"];
-                        NSString *bname = [array objectAtIndex:([array count] - 4)];
-                        NSString *name = [NSString stringWithFormat:@"%@/assets/images/base",bname];
-                        name = [[FileManage sharedFileManage] getImgPath:name];
-                        NSString *pname = [NSString stringWithFormat:@"%@/assets/images/preview",bname];
-                        pname = [[FileManage sharedFileManage] getImgPath:pname];
-                        NSString *tname = [NSString stringWithFormat:@"%@/assets/images/thumb",bname];
-                        tname = [[FileManage sharedFileManage] getImgPath:tname];
-                        [HttpManage postdownloadimg:background :name];
-                        [HttpManage postdownloadimg:preview :pname];
-                        [HttpManage postdownloadimg:thumbUrl :tname];
-                    }
-                    if (i == ([array count]-1)) {
-                        NSDictionary *dic1 = [array objectAtIndex:0];
-                        NSString *uptime = [dic1 objectForKey:@"renewal"];
-                        [userInfo setObject:uptime forKey:@"uptime"];
-                        [userInfo synchronize];
-                    }
-                }
-            }
-        }];
-    }else{
-        is_xz = YES;
-        [self maxtemplate :@"-1"];
-    }
-}
-
--(void)maxtemplate:(NSString *)timestamp{
-    [HttpManage template:timestamp size:@"-1" cb:^(BOOL isOK, NSMutableArray *array) {
-        NSLog(@"%@",array);
-        if (isOK) {
-            for (int i = 0; i < [array count]; i++) {
-                NSDictionary *resultDic = [array objectAtIndex:i];
-                if (is_xz) {
-                    [self zip:[resultDic objectForKey:@"zipUrl"] :[NSString stringWithFormat:@"%d",i]];
-                }
-                [[DataBaseManage getDataBaseManage] AddTemplate:resultDic];
-            }
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"DOWNLOAD_DONE" object:nil];
-            if (!is_add) {
-                [[StatusBar sharedStatusBar] talkMsg:@"模板加载完成..." inTime:0.5];
-            }
-        }
-        else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"DOWNLOAD_DONE" object:nil];
-        }
-    }];
-}
-
--(void)zip : (NSString *)zip :(NSString *) i{
-    if ([zip length] > 0) {
-        NSArray *array = [zip componentsSeparatedByString:@"/"];
-        NSString *name = [NSString stringWithFormat:@"%@",[array objectAtIndex:([array count]- 1)]];
-        NSArray *array1 = [name componentsSeparatedByString:@"."];
-        NSString *name1 = [NSString stringWithFormat:@"%@",[array1 objectAtIndex:([array1 count]- 2)]];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
-        [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-        NSString *path = [testDirectory stringByAppendingPathComponent:name1];
-        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            [HttpManage postdownload:zip :name1];
-        }
-    }
 }
 
 -(void)checkToken{
