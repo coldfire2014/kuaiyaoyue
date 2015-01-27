@@ -186,6 +186,7 @@
 		E56863AE1A77213000DB6EA4 /* templateController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56863AD1A77213000DB6EA4 /* templateController.m */; };
 		E56863B11A772CD200DB6EA4 /* music.json in Resources */ = {isa = PBXBuildFile; fileRef = E56863B01A772CD200DB6EA4 /* music.json */; };
 		E56863B31A77327600DB6EA4 /* template.json in Resources */ = {isa = PBXBuildFile; fileRef = E56863B21A77327600DB6EA4 /* template.json */; };
+		E5732B7F1A77C8880072143B /* DatetimeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E5732B7E1A77C8880072143B /* DatetimeInput.m */; };
 		E57333AD1A4B9848006425C3 /* ChangeTempView.m in Sources */ = {isa = PBXBuildFile; fileRef = E57333AC1A4B9848006425C3 /* ChangeTempView.m */; };
 		E577FC0C1A356C80009ED66D /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC091A356C80009ED66D /* AssetHelper.m */; };
 		E577FC0D1A356C80009ED66D /* myImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E577FC0B1A356C80009ED66D /* myImageView.m */; };
@@ -516,6 +517,8 @@
 		E56863AD1A77213000DB6EA4 /* templateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = templateController.m; path = Controller/templateController.m; sourceTree = "<group>"; };
 		E56863B01A772CD200DB6EA4 /* music.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = music.json; path = Controller/music.json; sourceTree = "<group>"; };
 		E56863B21A77327600DB6EA4 /* template.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = template.json; sourceTree = "<group>"; };
+		E5732B7D1A77C8880072143B /* DatetimeInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatetimeInput.h; path = bar/DatetimeInput.h; sourceTree = "<group>"; };
+		E5732B7E1A77C8880072143B /* DatetimeInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatetimeInput.m; path = bar/DatetimeInput.m; sourceTree = "<group>"; };
 		E57333AB1A4B9848006425C3 /* ChangeTempView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeTempView.h; sourceTree = "<group>"; };
 		E57333AC1A4B9848006425C3 /* ChangeTempView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTempView.m; sourceTree = "<group>"; };
 		E577FC081A356C80009ED66D /* AssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetHelper.h; sourceTree = "<group>"; };
@@ -1221,6 +1224,8 @@
 				E541B3281A43DC3E006F89E1 /* ShareView.h */,
 				E541B3291A43DC3E006F89E1 /* ShareView.m */,
 				E541B3331A43DE2A006F89E1 /* shareView.bundle */,
+				E5732B7D1A77C8880072143B /* DatetimeInput.h */,
+				E5732B7E1A77C8880072143B /* DatetimeInput.m */,
 			);
 			name = bar;
 			sourceTree = "<group>";
@@ -1506,6 +1511,7 @@
 				84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */,
 				84E842CB1A2EFDCB00A401A0 /* UIRefreshControl+AFNetworking.m in Sources */,
 				849D667E1A484875004EF00F /* HLEditView.m in Sources */,
+				E5732B7F1A77C8880072143B /* DatetimeInput.m in Sources */,
 				8431E8FA1A4D01AF00E9B0EE /* RegistrationViewController.m in Sources */,
 				E55AD89D1A60D51A00DB2771 /* WebViewController.m in Sources */,
 				E5573F951A4303A9006AAB8F /* ioapi.c in Sources */,

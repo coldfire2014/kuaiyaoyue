@@ -18,7 +18,7 @@
     #define HTTPURL YINGLOUURL
     #define ChannelId @"Studio"
     #define UZIP @"ZIPS201"
-    #define STOREDIR @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
+    #define STOREDIR @"http://www.kyy121.com/"
 #else
     #define YINGLOUURL @""
     #define HTTPURL @"http://appkyy.kyy121.com/invitation/"
