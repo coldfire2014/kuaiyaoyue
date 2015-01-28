@@ -148,7 +148,9 @@
             NSString* url = YINGLOUURL;
             if([url compare:HTTPURL] == NSOrderedSame){
                 [UDObject setYLID:[dic objectForKey:@"studioId"]];
-                [UDObject setXM:[dic objectForKey:@"name"]];
+                if(nil != [dic objectForKey:@"name"] && [[[dic objectForKey:@"name"] description] compare:@"null"] != NSOrderedSame){
+                    [UDObject setXM:[dic objectForKey:@"name"]];
+                }
             }
 //            [self performSegueWithIdentifier:@"wel2main" sender:nil];
             [UDObject setLXFS:username];
