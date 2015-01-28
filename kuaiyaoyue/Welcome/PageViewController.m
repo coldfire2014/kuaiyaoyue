@@ -55,13 +55,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_GO_LOGIN" object:nil];
 }
 -(void)gologin{
-//    commonLogin
-    [[DatetimeInput sharedDatetimeInput] show];
-//    if ([YINGLOUURL compare:@""] != NSOrderedSame) {
-//        [self performSegueWithIdentifier:@"login" sender:nil];
-//    } else {
-//        [self performSegueWithIdentifier:@"commonLogin" sender:nil];
-//    }
+    if ([YINGLOUURL compare:@""] != NSOrderedSame) {
+        [self performSegueWithIdentifier:@"login" sender:nil];
+    } else {
+        [self performSegueWithIdentifier:@"commonLogin" sender:nil];
+    }
 }
 -(void)loginDine{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN_DONE" object:nil];

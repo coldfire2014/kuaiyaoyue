@@ -95,9 +95,13 @@
     oneDatePicker.date = ntime;
     if (nil != max) {
         oneDatePicker.maximumDate = max;
+    }else{
+        oneDatePicker.maximumDate = nil;
     }
     if (nil != min) {
         oneDatePicker.minimumDate = min;
+    }else{
+        oneDatePicker.minimumDate = nil;
     }
 }
 -(void)ok{

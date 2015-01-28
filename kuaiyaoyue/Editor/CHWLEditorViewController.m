@@ -626,6 +626,7 @@
             itime = [NSDate dateWithTimeIntervalSince1970:[hltime doubleValue]/1000.0];
         }
         [[DatetimeInput sharedDatetimeInput] setTime:itime andMaxTime:nil andMinTime:[NSDate date]];
+        [DatetimeInput sharedDatetimeInput].time_delegate = self;
         [[DatetimeInput sharedDatetimeInput] show];
     }else if (type == 1){
         [self.view endEditing:NO];
@@ -637,6 +638,7 @@
             time_type = NO;
             NSDate * date=[NSDate dateWithTimeIntervalSince1970:([hltime doubleValue]/1000.0)];
             [[DatetimeInput sharedDatetimeInput] setTime:itime andMaxTime:date andMinTime:[NSDate date]];
+            [DatetimeInput sharedDatetimeInput].time_delegate = self;
             [[DatetimeInput sharedDatetimeInput] show];
         }else{
             [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动时间。" inTime:0.8];
@@ -684,8 +686,6 @@
             } completion:^(BOOL finished) {
                 [playview.bottom_view setHidden:YES];
             }];
-            
-            
         }
         is_bottom = !is_bottom;
     }
@@ -693,7 +693,8 @@
 - (BOOL)didSelectDateTime:(NSTimeInterval)time{
     if (time_type) {
         if (time*1000.0 > [bmendtime doubleValue]) {
-            hltime = [[NSString alloc] initWithFormat:@"%f",time*1000.0];
+            NSArray* time_s = [[[NSString alloc] initWithFormat:@"%f",time*1000.0] componentsSeparatedByString:@"."];
+            hltime = [time_s objectAtIndex:0];
             playview.time_label.text = [TimeTool getFullTimeStr:time];
             return YES;
         }else{
@@ -701,7 +702,8 @@
             return NO;
         }
     } else {
-        bmendtime = [[NSString alloc] initWithFormat:@"%f",time*1000.0];
+        NSArray* time_s = [[[NSString alloc] initWithFormat:@"%f",time*1000.0] componentsSeparatedByString:@"."];
+        bmendtime = [time_s objectAtIndex:0];
         playview.bmtime_label.text = [TimeTool getFullTimeStr:time];
         return YES;
     }

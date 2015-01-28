@@ -293,6 +293,7 @@
 - (IBAction)endtime_onclick:(id)sender {
     [TalkingData trackEvent:@"修改截至时间"];
     [[DatetimeInput sharedDatetimeInput] setTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andMaxTime:[NSDate dateWithTimeIntervalSince1970:_datatime] andMinTime:[NSDate date]];
+    [DatetimeInput sharedDatetimeInput].time_delegate = self;
     [[DatetimeInput sharedDatetimeInput] show];
 }
 
@@ -314,7 +315,8 @@
 }
 - (BOOL)didSelectDateTime:(NSTimeInterval)time{
     [[waitingView sharedwaitingView] startWait];
-    [HttpManage dueDate:_uniqueId timestamp:[[NSString alloc] initWithFormat:@"%f",time*1000.0] cb:^(BOOL isOK, NSDictionary *array) {
+    NSArray* time_s = [[[NSString alloc] initWithFormat:@"%f",time*1000.0] componentsSeparatedByString:@"."];
+    [HttpManage dueDate:_uniqueId timestamp:[time_s objectAtIndex:0] cb:^(BOOL isOK, NSDictionary *array) {
         [[waitingView sharedwaitingView] stopWait];
         if (isOK) {
             _endtime = time;
