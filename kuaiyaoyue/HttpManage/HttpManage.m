@@ -663,7 +663,7 @@ closeTimestamp:(NSString *)closeTimestamp
  */
 +(void)uploadTP:(UIImage *) image name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback{
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
-    [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:9 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:12 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData* jtdata = UIImageJPEGRepresentation(image,C_JPEG_SIZE);
         [formData appendPartWithFileData:jtdata name:@"files" fileName:name mimeType:@"image/jpeg"];
         
@@ -684,7 +684,7 @@ closeTimestamp:(NSString *)closeTimestamp
 +(void)uploadYP :(NSString *)file name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback{
     
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
-    [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:11 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:20 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData *data = [NSData dataWithContentsOfFile: file];
         [formData appendPartWithFileData:data name:@"files" fileName:name mimeType:@"audio/wav"];
         
