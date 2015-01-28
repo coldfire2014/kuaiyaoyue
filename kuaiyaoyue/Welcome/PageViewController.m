@@ -21,6 +21,7 @@
 #import "StatusBar.h"
 #import "waitingView.h"
 #import "PCHeader.h"
+#import "DatetimeInput.h"
 @interface PageViewController ()
 
 @end
@@ -55,12 +56,12 @@
 }
 -(void)gologin{
 //    commonLogin
-    
-    if ([YINGLOUURL compare:@""] != NSOrderedSame) {
-        [self performSegueWithIdentifier:@"login" sender:nil];
-    } else {
-        [self performSegueWithIdentifier:@"commonLogin" sender:nil];
-    }
+    [[DatetimeInput sharedDatetimeInput] show];
+//    if ([YINGLOUURL compare:@""] != NSOrderedSame) {
+//        [self performSegueWithIdentifier:@"login" sender:nil];
+//    } else {
+//        [self performSegueWithIdentifier:@"commonLogin" sender:nil];
+//    }
 }
 -(void)loginDine{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN_DONE" object:nil];

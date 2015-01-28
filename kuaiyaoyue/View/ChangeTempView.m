@@ -136,16 +136,6 @@
     
     Template *info = [data objectAtIndex:[indexPath row]];
     [self.delegate didSelectTemplate:info];
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    index_path = indexPath;
-//    Userdata *info = [data objectAtIndex:[indexPath row]];
-//    uniqueId = info.nefid;
-//    starttime = [info.nefdate longLongValue]/1000;
-//    endtime = [info.nefclosetimestamp longLongValue]/1000;
-//    datatime = [info.neftimestamp longLongValue]/1000;
-//    maxnum = info.neftotal;
-//    
-//    [self performSegueWithIdentifier:@"detail" sender:nil];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

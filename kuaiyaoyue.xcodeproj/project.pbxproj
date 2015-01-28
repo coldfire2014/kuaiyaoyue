@@ -48,7 +48,6 @@
 		8460DDD31A4E73A50031416E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8460DDD21A4E73A50031416E /* Main.storyboard */; };
 		8460DDD61A4E78A70031416E /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460DDD51A4E78A70031416E /* UserInfoViewController.m */; };
 		846195591A31DA8700FDF2CA /* GridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 846195581A31DA8700FDF2CA /* GridCell.m */; };
-		846C1B9D1A45592900B59A18 /* ShowData.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1B9C1A45592900B59A18 /* ShowData.m */; };
 		846C1BA21A45704100B59A18 /* NSInfoImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA11A45704100B59A18 /* NSInfoImg.m */; };
 		846C1BA51A45706000B59A18 /* LunarCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA41A45706000B59A18 /* LunarCalendar.m */; };
 		846C1BA81A45706B00B59A18 /* JBCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C1BA71A45706B00B59A18 /* JBCalendar.m */; };
@@ -136,7 +135,6 @@
 		E5573F971A4303A9006AAB8F /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F8F1A4303A9006AAB8F /* unzip.c */; };
 		E5573F981A4303A9006AAB8F /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F911A4303A9006AAB8F /* zip.c */; };
 		E5573F991A4303A9006AAB8F /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = E5573F941A4303A9006AAB8F /* ZipArchive.mm */; };
-		E558D0151A47A6DA009BFC50 /* ShowData.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C1B9E1A45593C00B59A18 /* ShowData.xib */; };
 		E558D0191A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E558D0171A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		E558D01A1A47CDE8009BFC50 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E558D0181A47CDE8009BFC50 /* TencentOpenAPI.framework */; };
 		E558D0201A47D130009BFC50 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E558D01F1A47D130009BFC50 /* libsqlite3.dylib */; };
@@ -282,9 +280,6 @@
 		8460DDD51A4E78A70031416E /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		846195571A31DA8700FDF2CA /* GridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCell.h; sourceTree = "<group>"; };
 		846195581A31DA8700FDF2CA /* GridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridCell.m; sourceTree = "<group>"; };
-		846C1B9B1A45592900B59A18 /* ShowData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowData.h; sourceTree = "<group>"; };
-		846C1B9C1A45592900B59A18 /* ShowData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowData.m; sourceTree = "<group>"; };
-		846C1B9E1A45593C00B59A18 /* ShowData.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowData.xib; sourceTree = "<group>"; };
 		846C1BA01A45704100B59A18 /* NSInfoImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSInfoImg.h; sourceTree = "<group>"; };
 		846C1BA11A45704100B59A18 /* NSInfoImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSInfoImg.m; sourceTree = "<group>"; };
 		846C1BA31A45706000B59A18 /* LunarCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunarCalendar.h; sourceTree = "<group>"; };
@@ -662,9 +657,6 @@
 				E52760791A4BD1D400D11F5B /* ChangeTempView */,
 				E52760751A4BC1F100D11F5B /* ic_32_arr.png */,
 				E52760761A4BC1F100D11F5B /* ic_c_meeting.png */,
-				846C1B9B1A45592900B59A18 /* ShowData.h */,
-				846C1B9C1A45592900B59A18 /* ShowData.m */,
-				846C1B9E1A45593C00B59A18 /* ShowData.xib */,
 				849D667C1A484875004EF00F /* HLEditView.h */,
 				849D667D1A484875004EF00F /* HLEditView.m */,
 				849D667F1A484887004EF00F /* HLEditView.xib */,
@@ -1338,7 +1330,6 @@
 				8474A4AE1A4BB28A00C2E489 /* bubble_play_1@2x.png in Resources */,
 				E56863B31A77327600DB6EA4 /* template.json in Resources */,
 				E565ECCA1A52CDB900679BAE /* btn5s.png in Resources */,
-				E558D0151A47A6DA009BFC50 /* ShowData.xib in Resources */,
 				8474A4AF1A4BB28A00C2E489 /* bubble_play_2@2x.png in Resources */,
 				843DBEDA1A46F16600CDFFCB /* icon120.png in Resources */,
 				E565ECC61A52CDB900679BAE /* 1w.jpg in Resources */,
@@ -1481,7 +1472,6 @@
 				E57333AD1A4B9848006425C3 /* ChangeTempView.m in Sources */,
 				841728AB1A40385800272A0C /* DVCCell.m in Sources */,
 				84FE0B871A426C71005A9599 /* PhotoCell.m in Sources */,
-				846C1B9D1A45592900B59A18 /* ShowData.m in Sources */,
 				84E842681A2EDF6B00A401A0 /* ViewController.m in Sources */,
 				E55F59F71A36A26300B0D587 /* MainNavigationControllerDelegate.m in Sources */,
 				84E8425F1A2EDF6B00A401A0 /* main.m in Sources */,

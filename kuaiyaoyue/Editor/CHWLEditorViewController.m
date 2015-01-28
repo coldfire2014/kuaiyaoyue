@@ -12,7 +12,7 @@
 #import "PhotoCell.h"
 #import "picViewAnimate.h"
 #import "ImgCollectionViewController.h"
-#import "ShowData.h"
+#import "DatetimeInput.h"
 #import "TimeTool.h"
 #import "FileManage.h"
 #import "DataBaseManage.h"
@@ -26,7 +26,7 @@
 #import "PreviewViewController.h"
 #import "TalkingData.h"
 #import "waitingView.h"
-@interface CHWLEditorViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,PVDelegate,AVAudioPlayerDelegate>{
+@interface CHWLEditorViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,datetimeInputDelegate,PVDelegate,AVAudioPlayerDelegate>{
     BOOL is_yl;
     int count;
     PlayView *playview;
@@ -34,7 +34,6 @@
     int row_index;
     
     AssetHelper* assert;
-    ShowData *show;
     NSString *hltime;
     NSString *bmendtime;
     BOOL time_type;
@@ -384,13 +383,6 @@
     scrollview.delegate = self;
     [scrollview addSubview:playview];
     [scrollview setContentSize:CGSizeMake(scrollview.frame.size.width, 790)];
-    
-    NSString* name = @"ShowData";
-    show = [[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] firstObject];
-    show.delegate = self;
-    show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height*3.0/2.0);
-    show.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:show];
 }
 
 -(void)getHistorical{
@@ -399,8 +391,8 @@
         playview.jh_edit.text = [UDObject getwljh_name];
         hltime = [UDObject gewltime];
         bmendtime = [UDObject getwlbmendtime];
-        playview.time_label.text = [TimeTool getFullTimeStr:[hltime longLongValue]/1000];
-        playview.bmtime_label.text = [TimeTool getFullTimeStr:[bmendtime longLongValue]/1000];
+        playview.time_label.text = [TimeTool getFullTimeStr:[hltime doubleValue]/1000.0];
+        playview.bmtime_label.text = [TimeTool getFullTimeStr:[bmendtime doubleValue]/1000.0];
         playview.address_edit.text = [UDObject getwladdress_name];
         playview.xlr_edit.text = [UDObject getwllxr_name];
         playview.xlfs_edit.text = [UDObject getwllxfs_name];
@@ -629,19 +621,25 @@
     if (type == 0) {
         time_type = YES;
         [self.view endEditing:NO];
-        [show.picker setMaximumDate:nil];
-        [UIView animateWithDuration:0.4f animations:^{
-            show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
-        }];
+        NSDate* itime = [NSDate date];
+        if (hltime != nil) {
+            itime = [NSDate dateWithTimeIntervalSince1970:[hltime doubleValue]/1000.0];
+        }
+        [[DatetimeInput sharedDatetimeInput] setTime:itime andMaxTime:nil andMinTime:[NSDate date]];
+        [[DatetimeInput sharedDatetimeInput] show];
     }else if (type == 1){
         [self.view endEditing:NO];
+        NSDate* itime = [NSDate date];
+        if (bmendtime != nil) {
+            itime = [NSDate dateWithTimeIntervalSince1970:[bmendtime doubleValue]/1000.0];
+        }
         if (hltime != nil) {
             time_type = NO;
-            NSDate * date=[NSDate dateWithTimeIntervalSince1970:([hltime longLongValue]/1000)];
-            [show.picker setMaximumDate:date];
-            [UIView animateWithDuration:0.4f animations:^{
-                show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
-            }];
+            NSDate * date=[NSDate dateWithTimeIntervalSince1970:([hltime doubleValue]/1000.0)];
+            [[DatetimeInput sharedDatetimeInput] setTime:itime andMaxTime:date andMinTime:[NSDate date]];
+            [[DatetimeInput sharedDatetimeInput] show];
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动时间。" inTime:0.8];
         }
     }else if (type == 2){
         if (recordedFile.length > 0) {
@@ -692,27 +690,22 @@
         is_bottom = !is_bottom;
     }
 }
-
-- (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
-    if (timebh != nil) {
-        if (time_type) {
-            if ([timebh longLongValue] > [bmendtime longLongValue]) {
-                hltime = timebh;
-                playview.time_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
-            }else{
-                [[StatusBar sharedStatusBar] talkMsg:@"时间不能小于报名截止时间" inTime:0.5];
-            }
-            
+- (BOOL)didSelectDateTime:(NSTimeInterval)time{
+    if (time_type) {
+        if (time*1000.0 > [bmendtime doubleValue]) {
+            hltime = [[NSString alloc] initWithFormat:@"%f",time*1000.0];
+            playview.time_label.text = [TimeTool getFullTimeStr:time];
+            return YES;
         }else{
-            bmendtime = timebh;
-            playview.bmtime_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
+            [[StatusBar sharedStatusBar] talkMsg:@"活动时间不能小于报名截止时间" inTime:0.8];
+            return NO;
         }
+    } else {
+        bmendtime = [[NSString alloc] initWithFormat:@"%f",time*1000.0];
+        playview.bmtime_label.text = [TimeTool getFullTimeStr:time];
+        return YES;
     }
-    [UIView animateWithDuration:0.4f animations:^{
-        show.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
-    }];
 }
-
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];

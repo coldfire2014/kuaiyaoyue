@@ -51,7 +51,7 @@
         bk.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
         [bg2 addSubview:bk];
         oneDatePicker.center = CGPointMake(bk.bounds.size.width/2.0, bk.bounds.size.height/2.0 + 22.0);
-//        [oneDatePicker addTarget:self action:@selector(oneDatePickerValueChanged:) forControlEvents:UIControlEventValueChanged]; // 添加监听器
+        [oneDatePicker addTarget:self action:@selector(DatePickerValueChanged:) forControlEvents:UIControlEventValueChanged]; // 添加监听器
         oneDatePicker.tag = 899;
         [bk addSubview:oneDatePicker];
         UITapGestureRecognizer* tapOther = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
@@ -87,13 +87,23 @@
     }
     return self;
 }
--(void)setMaxTime:(NSDate*)max andMinTime:(NSDate*)min{
+- (void)DatePickerValueChanged:(UIDatePicker *) sender {
+    self.time = [sender date];
+}
+-(void)setTime:(NSDate*)ntime andMaxTime:(NSDate*)max andMinTime:(NSDate*)min{
     UIDatePicker* oneDatePicker = (UIDatePicker*)[self viewWithTag:899];
-    oneDatePicker.maximumDate = max;
-    oneDatePicker.minimumDate = min;
+    oneDatePicker.date = ntime;
+    if (nil != max) {
+        oneDatePicker.maximumDate = max;
+    }
+    if (nil != min) {
+        oneDatePicker.minimumDate = min;
+    }
 }
 -(void)ok{
-    [self hide];
+    if ([self.time_delegate didSelectDateTime:[self.time timeIntervalSince1970]]) {
+        [self hide];
+    }
 }
 -(void)hide{
     UIView* bg = [self viewWithTag:799];

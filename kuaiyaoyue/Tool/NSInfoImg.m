@@ -174,7 +174,7 @@
 //}
 
 #pragma 中文时间
-+(NSString*)getFullTimeStr:(long long)time{
++(NSString*)getFullTimeStr:(NSTimeInterval)time{
     NSDate * date=[NSDate dateWithTimeIntervalSince1970:time];
     NSCalendar * calendar=[[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
@@ -212,12 +212,12 @@
     NSString * string=[NSString stringWithFormat:@"%04ld年%02ld月%02ld日 星期%@ %02ld:%02ld",(long)[component year],(long)[component month],(long)[component day],daystr,(long)[component hour],(long)[component minute]];
     return string;
 }
-+ (NSString*)getXinqi:(long long)time{
++ (NSString*)getXinqi:(NSTimeInterval)time{
     NSString* data = [NSInfoImg getFullTimeStr:time];
     NSArray* arr = [data componentsSeparatedByString:@" "];
     return [arr objectAtIndex:1];
 }
-+ (NSString*)getdatezh:(long long)time{
++ (NSString*)getdatezh:(NSTimeInterval)time{
     NSString* data = [NSInfoImg getFullTimeStr:time];
     NSArray* arr = [data componentsSeparatedByString:@" "];
     NSString* string = [arr objectAtIndex:0];
@@ -232,7 +232,7 @@
     return min;
 }
 
-+ (NSString*)gettimezh:(long long)time{
++ (NSString*)gettimezh:(NSTimeInterval)time{
     NSString* data = [NSInfoImg getFullTimeStr:time];
     NSArray* arr = [data componentsSeparatedByString:@" "];
     NSString* string = [arr objectAtIndex:2];
@@ -316,7 +316,7 @@
     }
     return min;
 }
-+ (NSString*)nlWithint:(long long)time{
++ (NSString*)nlWithint:(NSTimeInterval)time{
     NSString* data = [NSInfoImg getFullTimeStr:time];
     NSArray* arr = [data componentsSeparatedByString:@" "];
     NSString* string = [arr objectAtIndex:0];

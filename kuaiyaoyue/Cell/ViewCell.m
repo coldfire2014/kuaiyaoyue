@@ -56,11 +56,11 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     int type = _info.neftype;
-    long long kstime = 0;
-    long long endtime = 0;
-    long long hdtime = 0;
+    NSTimeInterval kstime = 0;
+    NSTimeInterval endtime = 0;
+    NSTimeInterval hdtime = 0;
     NSString *topimg = nil;
-    NSDate* dd = [NSDate dateWithTimeIntervalSince1970:[_info.nefclosetimestamp longLongValue]/1000];
+    NSDate* dd = [NSDate dateWithTimeIntervalSince1970:[_info.nefclosetimestamp doubleValue]/1000.0];
     
     if ([_info.nefnumber intValue] > 0) {
         [_show_newview setHidden:NO];
@@ -87,12 +87,12 @@
             _show_title.text = _info.neftitle;
             
             _show_endtime.text = [NSString stringWithFormat:@"报名截止: %@",[TimeTool TopJZTime:dd]];
-            _show_hdtime.text = [NSString stringWithFormat:@"活动时间: %@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
+            _show_hdtime.text = [NSString stringWithFormat:@"活动时间: %@",[TimeTool getFullTimeStr:[_info.neftimestamp doubleValue]/1000.0]];
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
             
-            kstime = [_info.nefdate longLongValue]/1000;
-            endtime = [_info.nefclosetimestamp longLongValue]/1000;
-            hdtime = [_info.neftimestamp longLongValue]/1000;
+            kstime = [_info.nefdate doubleValue]/1000.0;
+            endtime = [_info.nefclosetimestamp doubleValue]/1000.0;
+            hdtime = [_info.neftimestamp doubleValue]/1000.0;
             
             if (img == nil) {
 
@@ -108,14 +108,14 @@
         case 1:
             _show_title.text = [NSString stringWithFormat:@"%@&%@ 婚礼",_info.nefgroom,_info.nefbride];
             _show_endtime.text = [NSString stringWithFormat:@"报名截止: %@",[TimeTool TopJZTime:dd]];
-            _show_hdtime.text = [NSString stringWithFormat:@"活动时间: %@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
+            _show_hdtime.text = [NSString stringWithFormat:@"活动时间: %@",[TimeTool getFullTimeStr:[_info.neftimestamp doubleValue]/1000.0]];
             _show_img.image = img;
             
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
             
-            kstime = [_info.nefdate longLongValue]/1000;
-            endtime = [_info.nefclosetimestamp longLongValue]/1000;
-            hdtime = [_info.neftimestamp longLongValue]/1000;
+            kstime = [_info.nefdate doubleValue]/1000.0;
+            endtime = [_info.nefclosetimestamp doubleValue]/1000.0;
+            hdtime = [_info.neftimestamp doubleValue]/1000.0;
             
             // s:发送时间 。e:报名截止 g:活动时间
             [s setStartTime:[NSDate dateWithTimeIntervalSince1970:kstime] EndTime:[NSDate dateWithTimeIntervalSince1970:endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:hdtime]];
@@ -125,12 +125,12 @@
         case 2:
             _show_title.text = _info.nefpartyname;
             _show_endtime.text = [NSString stringWithFormat:@"报名截止: %@",[TimeTool TopJZTime:dd]];
-            _show_hdtime.text = [NSString stringWithFormat:@"活动时间: %@",[TimeTool getFullTimeStr:[_info.neftimestamp longLongValue]/1000]];
+            _show_hdtime.text = [NSString stringWithFormat:@"活动时间: %@",[TimeTool getFullTimeStr:[_info.neftimestamp doubleValue]/1000.0]];
             [s setState:StateGoing withAll:_info.neftotal andAdd:@""];
             
-            kstime = [_info.nefdate longLongValue]/1000;
-            endtime = [_info.nefclosetimestamp longLongValue]/1000;
-            hdtime = [_info.neftimestamp longLongValue]/1000;
+            kstime = [_info.nefdate doubleValue]/1000.0;
+            endtime = [_info.nefclosetimestamp doubleValue]/1000.0;
+            hdtime = [_info.neftimestamp doubleValue]/1000.0;
             
             _show_img.image = img;
             

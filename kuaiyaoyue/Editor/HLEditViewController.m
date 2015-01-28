@@ -11,7 +11,7 @@
 #import "PhotoCell.h"
 #import "picViewAnimate.h"
 #import "ImgCollectionViewController.h"
-#import "ShowData.h"
+#import "DatetimeInput.h"
 #import "TimeTool.h"
 #import "FileManage.h"
 #import "DataBaseManage.h"
@@ -26,7 +26,7 @@
 #import "PreviewViewController.h"
 #import "TalkingData.h"
 #import "waitingView.h"
-@interface HLEditViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,SDDelegate,MVCDelegate,HLEVDelegate>{
+@interface HLEditViewController ()<PhotoCellDelegate,ImgCollectionViewDelegate,datetimeInputDelegate,MVCDelegate,HLEVDelegate>{
     int count;
     NSMutableArray *imgdata;
     //
@@ -34,7 +34,6 @@
     int row_index;
     
     AssetHelper* assert;
-    ShowData *show;
     NSString *hltime;
     NSString *bmendtime;
     BOOL time_type;
@@ -133,13 +132,6 @@
     
     [scrollview setContentSize:CGSizeMake(scrollview.frame.size.width, 665)];
     
-    NSString* name = @"ShowData";
-    show = [[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] firstObject];
-    show.delegate = self;
-    show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height*3.0/2.0);
-    show.backgroundColor = [UIColor clearColor];
-    
-    [self.view addSubview:show];
 }
 
 -(void)getHistorical{
@@ -151,8 +143,8 @@
         hlev.xn_edit.text = [UDObject getxn_name];
         hltime = [UDObject gethltime];
         bmendtime = [UDObject getbmendtime];
-        hlev.hltime_label.text = [TimeTool getFullTimeStr:[hltime longLongValue]/1000];
-        hlev.bmend_label.text = [TimeTool getFullTimeStr:[bmendtime longLongValue]/1000];
+        hlev.hltime_label.text = [TimeTool getFullTimeStr:[hltime doubleValue]/1000.0];
+        hlev.bmend_label.text = [TimeTool getFullTimeStr:[bmendtime doubleValue]/1000.0];
         hlev.address_edit.text = [UDObject getaddress_name];
         if ([UDObject gethlmusic].length > 0) {
             mp3name = [UDObject gethlmusicname];
@@ -388,21 +380,27 @@
     if (type == 0) {
         time_type = YES;
         [self.view endEditing:NO];
-        [show.picker setMaximumDate:nil];
-        [UIView animateWithDuration:0.4f animations:^{
-                    [show setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        }];
+        NSDate* itime = [NSDate date];
+        if (hltime != nil) {
+            itime = [NSDate dateWithTimeIntervalSince1970:[hltime doubleValue]/1000.0];
+        }
+        [[DatetimeInput sharedDatetimeInput] setTime:itime andMaxTime:nil andMinTime:[NSDate date]];
+        [[DatetimeInput sharedDatetimeInput] show];
     }else if (type == 1){
         [self.view endEditing:NO];
+        NSDate* itime = [NSDate date];
+        if (bmendtime != nil) {
+            itime = [NSDate dateWithTimeIntervalSince1970:[bmendtime doubleValue]/1000.0];
+        }
         if (hltime != nil) {
             time_type = NO;
-            NSDate * date=[NSDate dateWithTimeIntervalSince1970:([hltime longLongValue]/1000)];
-            [show.picker setMaximumDate:date];
-            [UIView animateWithDuration:0.4f animations:^{
-                CGFloat h = show.frame.size.height;
-                show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height-h/2.0);
-            }];
+            NSDate * date=[NSDate dateWithTimeIntervalSince1970:([hltime doubleValue]/1000.0)];
+            [[DatetimeInput sharedDatetimeInput] setTime:itime andMaxTime:date andMinTime:[NSDate date]];
+            [[DatetimeInput sharedDatetimeInput] show];
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入婚礼时间。" inTime:0.8];
         }
+        
     }else if (type == 2){
         [self performSegueWithIdentifier:@"music" sender:nil];
     }else if (type == 3){
@@ -412,26 +410,22 @@
         [hlev.del_music_view setHidden:YES];
     }
 }
-
-- (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
-    if (timebh != nil) {
-        if (time_type) {
-            if (timebh > bmendtime) {
-                hltime = timebh;
-                hlev.hltime_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
-            }else{
-                [[StatusBar sharedStatusBar] talkMsg:@"婚礼时间不能小于报名截止时间" inTime:0.5];
-            }
+- (BOOL)didSelectDateTime:(NSTimeInterval)time{
+    if (time_type) {
+        if (time*1000.0 > [bmendtime doubleValue]) {
+            hltime = [[NSString alloc] initWithFormat:@"%f",time*1000.0];
+            hlev.hltime_label.text = [TimeTool getFullTimeStr:time];
+            return YES;
         }else{
-            bmendtime = timebh;
-            hlev.bmend_label.text = [TimeTool getFullTimeStr:[timebh longLongValue]/1000];
+            [[StatusBar sharedStatusBar] talkMsg:@"婚礼时间不能小于报名截止时间" inTime:0.8];
+            return NO;
         }
+    } else {
+        bmendtime = [[NSString alloc] initWithFormat:@"%f",time*1000.0];
+        hlev.bmend_label.text = [TimeTool getFullTimeStr:time];
+        return YES;
     }
-    [UIView animateWithDuration:0.4f animations:^{
-        [show setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
-    }];
 }
-
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];

@@ -16,18 +16,15 @@
 #import "DataBaseManage.h"
 #import "Contacts.h"
 #import "StatusBar.h"
-#import "ShowData.h"
+#import "DatetimeInput.h"
 #import "waitingView.h"
 #import "UIPhoneWindow.h"
-@interface DetailViewController ()<DVCCellDelegate,SDDelegate>{
+@interface DetailViewController ()<DVCCellDelegate,datetimeInputDelegate>{
     BOOL isopen;
     NSInteger selectRow;
     NSArray *data;
     BigStateView* s;
     NSString *dateAndTime;
-//    UIWebView *phoneCallWebView;
-    ShowData *show;
-    
 }
 
 @end
@@ -61,18 +58,6 @@
     _cancel_view.layer.cornerRadius = 21;
     
     _tableView.separatorStyle = NO;
-    
-    NSString* name = @"ShowData";
-    show = [[[NSBundle mainBundle] loadNibNamed:name owner:self options:nil] firstObject];
-    show.delegate = self;
-    show.center = CGPointMake( self.view.frame.size.width/2.0,  self.view.frame.size.height*3.0/2.0);
-    show.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:show];
-
-    [show.picker setDate:[NSDate dateWithTimeIntervalSince1970:_endtime]];
-    [show.picker setMinimumDate:[NSDate date]];
-    NSDate *enddate=[NSDate dateWithTimeIntervalSince1970:_datatime];
-    [show.picker setMaximumDate:enddate];
 }
 
 -(void)changeHight{
@@ -307,9 +292,8 @@
 
 - (IBAction)endtime_onclick:(id)sender {
     [TalkingData trackEvent:@"修改截至时间"];
-    [UIView animateWithDuration:0.4f animations:^{
-        show.frame = CGRectMake(self.view.frame.origin.x, 0, self.view.frame.size.width, self.view.frame.size.height);
-    }];
+    [[DatetimeInput sharedDatetimeInput] setTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andMaxTime:[NSDate dateWithTimeIntervalSince1970:_datatime] andMinTime:[NSDate date]];
+    [[DatetimeInput sharedDatetimeInput] show];
 }
 
 - (IBAction)cancel_onclick:(id)sender {
@@ -328,27 +312,22 @@
     }
     
 }
-
-- (void)SDDelegate:(ShowData *)cell didTapAtIndex:(NSString *) timebh{
-    if (timebh != nil) {
-        [[waitingView sharedwaitingView] startWait];
-        [HttpManage dueDate:_uniqueId timestamp:timebh cb:^(BOOL isOK, NSDictionary *array) {
-            [[waitingView sharedwaitingView] stopWait];
-            if (isOK) {
-                _endtime = [timebh longLongValue]/1000;
-                [s setStartTime:[NSDate dateWithTimeIntervalSince1970:_starttime] EndTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:_datatime]];
-                NSDate *enddate=[NSDate dateWithTimeIntervalSince1970:_endtime];
-                [show.picker setMaximumDate:enddate];
-                [[StatusBar sharedStatusBar] talkMsg:@"修改成功" inTime:1.01];
-            }else{
-                [[StatusBar sharedStatusBar] talkMsg:@"修改失败" inTime:1.51];
-            }
-        }];
-    }
-    [UIView animateWithDuration:0.4f animations:^{
-        show.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+- (BOOL)didSelectDateTime:(NSTimeInterval)time{
+    [[waitingView sharedwaitingView] startWait];
+    [HttpManage dueDate:_uniqueId timestamp:[[NSString alloc] initWithFormat:@"%f",time*1000.0] cb:^(BOOL isOK, NSDictionary *array) {
+        [[waitingView sharedwaitingView] stopWait];
+        if (isOK) {
+            _endtime = time;
+            [s setStartTime:[NSDate dateWithTimeIntervalSince1970:_starttime] EndTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:_datatime]];
+            
+            [[StatusBar sharedStatusBar] talkMsg:@"修改成功" inTime:1.01];
+        }else{
+            [[StatusBar sharedStatusBar] talkMsg:@"修改失败" inTime:1.51];
+        }
     }];
+    return YES;
 }
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [TalkingData trackPageBegin:@"报名列表"];

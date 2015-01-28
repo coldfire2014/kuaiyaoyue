@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol datetimeInputDelegate <NSObject>
+-(BOOL)didSelectDateTime:(NSTimeInterval)time;
+@end
 @interface DatetimeInput : UIWindow
 + (DatetimeInput *)sharedDatetimeInput;
 @property (nonatomic,weak) NSString* title;
+@property (nonatomic,weak) id<datetimeInputDelegate> time_delegate;
 @property (nonatomic,strong) NSDate* time;
 -(void)show;
--(void)setMaxTime:(NSDate*)max andMinTime:(NSDate*)min;
+-(void)setTime:(NSDate*)ntime andMaxTime:(NSDate*)max andMinTime:(NSDate*)min;
 @end

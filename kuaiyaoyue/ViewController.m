@@ -30,9 +30,9 @@
 @interface ViewController ()<VCDelegate,DVCDelegate>{
     NSMutableArray *data;
     NSString *uniqueId;
-    long long starttime;
-    long long endtime;
-    long long datatime;
+    NSTimeInterval starttime;
+    NSTimeInterval endtime;
+    NSTimeInterval datatime;
     NSString *maxnum;
     
     int run;
@@ -104,13 +104,13 @@
             break;
         case 1:
             title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
-            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp doubleValue]/1000.0],user.nefaddress];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;
         case 2:
             title = [NSString stringWithFormat:@"%@",user.nefpartyname];
-            msg = [NSString stringWithFormat:@"%@ %@ %@ %@",user.nefgroom,[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress,user.nefdescription];
+            msg = [NSString stringWithFormat:@"%@ %@ %@ %@",user.nefgroom,[TimeTool getFullTimeStr:[user.neftimestamp doubleValue]/1000.0],user.nefaddress,user.nefdescription];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;
@@ -291,20 +291,20 @@
 //0自定义，1婚礼，2趴体
 -(void)showToptitle{
     NSDate *datenow = [NSDate date];
-    long newdata = (long)[datenow timeIntervalSince1970];
+    NSTimeInterval newdata = (long)[datenow timeIntervalSince1970];
     int runtime = 0;
     for (int i = 0; i < [data count]; i++) {
         Userdata *info = [data objectAtIndex:i];
-        long closetime;
+        NSTimeInterval closetime;
         switch (info.neftype) {
             case 0:
-                closetime = (long)([info.nefclosetimestamp longLongValue] /1000);
+                closetime = [info.nefclosetimestamp doubleValue]/1000.0;
                 break;
             case 1:
-                closetime = (long)([info.neftimestamp longLongValue] /1000);
+                closetime = [info.neftimestamp doubleValue] /1000.0;
                 break;
             case 2:
-                closetime = (long)([info.nefclosetimestamp longLongValue] /1000);
+                closetime = [info.nefclosetimestamp doubleValue] /1000.0;
                 break;
                 
             default:
@@ -469,9 +469,9 @@
     index_path = indexPath;
     Userdata *info = [data objectAtIndex:[indexPath row]];
     uniqueId = info.nefid;
-    starttime = [info.nefdate longLongValue]/1000;
-    endtime = [info.nefclosetimestamp longLongValue]/1000;
-    datatime = [info.neftimestamp longLongValue]/1000;
+    starttime = [info.nefdate doubleValue]/1000.0;
+    endtime = [info.nefclosetimestamp doubleValue]/1000.0;
+    datatime = [info.neftimestamp doubleValue]/1000.0;
     maxnum = info.neftotal;
     
     if (info.neftype == 0) {
@@ -641,13 +641,13 @@
             break;
         case 1:
             title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
-            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp doubleValue]/1000.0],user.nefaddress];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;
         case 2:
             title = [NSString stringWithFormat:@"%@",user.nefpartyname];
-            msg = [NSString stringWithFormat:@"%@ %@ %@ %@",user.nefgroom,[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress,user.nefdescription];
+            msg = [NSString stringWithFormat:@"%@ %@ %@ %@",user.nefgroom,[TimeTool getFullTimeStr:[user.neftimestamp doubleValue]/1000.0],user.nefaddress,user.nefdescription];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;
@@ -712,14 +712,14 @@
         case 1:
             title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
             
-            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress];
+            msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp doubleValue]/1000.0],user.nefaddress];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;
         case 2:
             title = [NSString stringWithFormat:@"%@",user.nefpartyname];
             
-            msg = [NSString stringWithFormat:@"%@ %@ %@ %@",user.nefgroom,[TimeTool getFullTimeStr:[user.neftimestamp longLongValue]/1000],user.nefaddress,user.nefdescription];
+            msg = [NSString stringWithFormat:@"%@ %@ %@ %@",user.nefgroom,[TimeTool getFullTimeStr:[user.neftimestamp doubleValue]/1000.0],user.nefaddress,user.nefdescription];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;

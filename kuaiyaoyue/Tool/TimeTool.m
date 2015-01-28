@@ -54,7 +54,7 @@
     
 }
 
-+(NSString*)getFullTimeStr:(long long)time{
++(NSString*)getFullTimeStr:(NSTimeInterval)time{
     NSDate * date=[NSDate dateWithTimeIntervalSince1970:time];
     NSCalendar * calendar=[[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |

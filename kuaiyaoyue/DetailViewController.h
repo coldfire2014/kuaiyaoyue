@@ -15,9 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIView *headview;
 
 @property (weak, nonatomic) NSString *uniqueId;
-@property long long starttime;
-@property long long endtime;
-@property long long datatime;
+@property NSTimeInterval starttime;
+@property NSTimeInterval endtime;
+@property NSTimeInterval datatime;
 
 @property (weak, nonatomic) NSString *maxnum;
 @property (weak, nonatomic) IBOutlet UIView *endtime_view;
