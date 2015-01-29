@@ -149,7 +149,8 @@
             if([url compare:HTTPURL] == NSOrderedSame){
                 [UDObject setYLID:[dic objectForKey:@"studioId"]];
                 if(nil != [dic objectForKey:@"name"] && [[[dic objectForKey:@"name"] description] compare:@"null"] != NSOrderedSame){
-                    [UDObject setXM:[dic objectForKey:@"name"]];
+                    NSString* newtitel = [[dic objectForKey:@"name"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                    [UDObject setXM:newtitel];
                 }
             }
 //            [self performSegueWithIdentifier:@"wel2main" sender:nil];
