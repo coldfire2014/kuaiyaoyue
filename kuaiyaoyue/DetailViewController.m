@@ -280,14 +280,10 @@
     return img;
 }
 -(void)makeACall :(NSString *) phoneNum{
-    
-    UIImage *snapshotImage = [self imageFromView:self.view];
-    [[UIPhoneWindow sharedwaitingView] callPhone:phoneNum andBK:snapshotImage];
-//    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
-//    if ( !phoneCallWebView ) {
-//        phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的View 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
-//    }
-//    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad) {
+        UIImage *snapshotImage = [self imageFromView:self.view];
+        [[UIPhoneWindow sharedwaitingView] callPhone:phoneNum andBK:snapshotImage];
+    }
 }
 
 - (IBAction)endtime_onclick:(id)sender {

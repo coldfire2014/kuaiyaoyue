@@ -66,7 +66,25 @@
         }];
     }
 }
+-(void)updateOrientation{
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    CGRect f = [[UIScreen mainScreen] bounds];
+    CGFloat h = f.size.height-20.0;
+    CGFloat pi = (CGFloat)M_PI;
+    if (orientation == UIDeviceOrientationPortrait) {
+        self.transform = CGAffineTransformIdentity;
+    }else if (orientation == UIDeviceOrientationLandscapeLeft) {
+        self.transform = CGAffineTransformMakeRotation(pi * (90.f) / 180.0f);
+        self.frame = CGRectMake(h,0, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationLandscapeRight) {
+        self.transform = CGAffineTransformMakeRotation(pi * (-90.f) / 180.0f);
+        self.frame = CGRectMake(0,0, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
+    }
+}
+
 - (void)talkMsg:(NSString*)msg inTime:(double)time{
+    [self updateOrientation];
     self.alpha = 1.0;
     msg1.text = msg;
     CATransform3D t = CATransform3DIdentity;

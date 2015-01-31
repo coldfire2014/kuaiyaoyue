@@ -44,6 +44,22 @@
     }
     return self;
 }
+-(void)updateOrientation{
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    CGFloat pi = (CGFloat)M_PI;
+    if (orientation == UIDeviceOrientationPortrait) {
+        self.transform = CGAffineTransformIdentity;
+    }else if (orientation == UIDeviceOrientationLandscapeLeft) {
+        self.transform = CGAffineTransformMakeRotation(pi * (90.f) / 180.0f);
+        self.frame = CGRectMake(0,0, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationLandscapeRight) {
+        self.transform = CGAffineTransformMakeRotation(pi * (-90.f) / 180.0f);
+        self.frame = CGRectMake(0,0, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
+    }
+}
+
 - (void)hide{
     [UIView animateWithDuration:0.1 animations:^{
         self.alpha = 0;
@@ -51,6 +67,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_PHONE_BACK" object:nil];
 }
 - (void)callPhone:(NSString*)num andBK:(UIImage*)bk{
+    [self updateOrientation];
     UIImageView* imgbk = (UIImageView*)[self viewWithTag:302];
     imgbk.image = bk;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hide) name:@"MSG_PHONE_BACK" object:nil];

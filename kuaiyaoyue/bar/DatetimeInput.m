@@ -7,7 +7,7 @@
 //
 
 #import "DatetimeInput.h"
-
+#import "PCHeader.h"
 @implementation DatetimeInput
 
 + (DatetimeInput *)sharedDatetimeInput{
@@ -19,6 +19,27 @@
     
     return _sharedInstance;
 }
+-(void)updateOrientation{
+    CGRect f = [[UIScreen mainScreen] applicationFrame];
+    CGFloat subTap = -20;
+    if (ISIOS7LATER) {
+        f = [[UIScreen mainScreen] bounds];//568,667
+        subTap = 0;
+    }
+    self.frame = f;
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    CGFloat pi = (CGFloat)M_PI;
+    if (orientation == UIDeviceOrientationPortrait) {
+        self.transform = CGAffineTransformIdentity;
+    }else if (orientation == UIDeviceOrientationLandscapeLeft) {
+        self.transform = CGAffineTransformMakeRotation(pi * (90.f) / 180.0f);
+        self.frame = CGRectMake(-self.frame.size.width+self.frame.size.height,0, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationLandscapeRight) {
+        self.transform = CGAffineTransformMakeRotation(pi * (-90.f) / 180.0f);
+        self.frame = CGRectMake(0,self.frame.size.width-self.frame.size.height, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
+    }
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -27,8 +48,15 @@
         self.backgroundColor = [UIColor clearColor];
         self.alpha = 1;
         self.hidden = NO;
-        CGRect f = [[UIScreen mainScreen] bounds];
+        CGRect f = [[UIScreen mainScreen] applicationFrame];
+        
+        CGFloat subTap = -20;
+        if (ISIOS7LATER) {
+            f = [[UIScreen mainScreen] bounds];//568,667
+            subTap = 0;
+        }
         self.frame = f;
+        [self updateOrientation];
         UIView* bg = [[UIView alloc] initWithFrame:f];
         bg.tag = 799;
         bg.alpha = 0.0;
@@ -130,8 +158,9 @@
 }
 
 -(void)show{
-    CGRect f = [[UIScreen mainScreen] bounds];
-    self.frame = f;
+//    CGRect f = [[UIScreen mainScreen] bounds];
+//    self.frame = f;
+    [self updateOrientation];
     UIView* bg = [self viewWithTag:799];
     UIView* bg2 = [self viewWithTag:798];
     bg2.alpha = 0.0;

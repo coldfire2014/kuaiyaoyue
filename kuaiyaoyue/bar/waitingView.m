@@ -30,6 +30,21 @@
     
     return _sharedInstance;
 }
+-(void)updateOrientation{
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    CGFloat pi = (CGFloat)M_PI;
+    if (orientation == UIDeviceOrientationPortrait) {
+        self.transform = CGAffineTransformIdentity;
+    }else if (orientation == UIDeviceOrientationLandscapeLeft) {
+        self.transform = CGAffineTransformMakeRotation(pi * (90.f) / 180.0f);
+        self.frame = CGRectMake(0,0, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationLandscapeRight) {
+        self.transform = CGAffineTransformMakeRotation(pi * (-90.f) / 180.0f);
+        self.frame = CGRectMake(0,0, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
+    }
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -46,6 +61,7 @@
             subTap = 0;
         }
         self.frame = mainScreenFrame;
+        [self updateOrientation];
         myImageView* backall = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 54.0/2.0, 54.0/2.0) andImageName:@"ic_54_x@2x" withScale:2.0];
         backall.center = CGPointMake(mainScreenFrame.size.width-31.0, 20.0+subTap + 24.0);
         backall.tag = 304;
@@ -152,6 +168,7 @@
     [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(stopWait) userInfo:nil repeats:NO];
 }
 - (void)WarningByMsg:(NSString*)msg haveCancel:(BOOL)cancel{
+    [self updateOrientation];
     UIView* btn = [self viewWithTag:304];
     btn.hidden = !cancel;
     UILabel *add = (UILabel*)[self viewWithTag:305];
@@ -179,6 +196,7 @@
     }];
 }
 - (void)waitByMsg:(NSString*)msg haveCancel:(BOOL)cancel{
+    [self updateOrientation];
     UIView* btn = [self viewWithTag:304];
     btn.hidden = !cancel;
     UIView* bk = [self viewWithTag:303];

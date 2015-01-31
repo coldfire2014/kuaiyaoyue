@@ -12,6 +12,7 @@
 #import "StatusBar.h"
 #import "myImageView.h"
 #import "TalkingData.h"
+#import "PCHeader.h"
 @import Accounts;
 @implementation ShareView
 
@@ -40,8 +41,14 @@
         self.backgroundColor = [UIColor clearColor];
         self.alpha = 1;
         self.hidden = NO;
-        CGRect f = [[UIScreen mainScreen] bounds];
+        CGRect f = [[UIScreen mainScreen] applicationFrame];
+        CGFloat subTap = -20;
+        if (ISIOS7LATER) {
+            f = [[UIScreen mainScreen] bounds];//568,667
+            subTap = 0;
+        }
         self.frame = f;
+        [self updateOrientation];
         UIView* bg = [[UIView alloc] initWithFrame:f];
         bg.tag = 799;
         bg.alpha = 0.0;
@@ -216,9 +223,35 @@
     mbtitle7.center = CGPointMake(f.size.width/2.0, f.size.height-368.0/2.0 + 128.0/4.0 + 90.0/2.0 + 128.0/2.0+h);
     mbtitle8.center = CGPointMake(f.size.width/2.0+72.0/2.0+128.0/2.0, f.size.height-368.0/2.0 + 128.0/4.0 + 90.0/2.0 +128.0/2.0+h);
 }
--(void)show{
-    CGRect f = [[UIScreen mainScreen] bounds];
+-(void)updateOrientation{
+    CGRect f = [[UIScreen mainScreen] applicationFrame];
+    CGFloat subTap = -20;
+    if (ISIOS7LATER) {
+        f = [[UIScreen mainScreen] bounds];//568,667
+        subTap = 0;
+    }
     self.frame = f;
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    CGFloat pi = (CGFloat)M_PI;
+    if (orientation == UIDeviceOrientationPortrait) {
+        self.transform = CGAffineTransformIdentity;
+    }else if (orientation == UIDeviceOrientationLandscapeLeft) {
+        self.transform = CGAffineTransformMakeRotation(pi * (90.f) / 180.0f);
+        self.frame = CGRectMake(-self.frame.size.width+self.frame.size.height,0, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationLandscapeRight) {
+        self.transform = CGAffineTransformMakeRotation(pi * (-90.f) / 180.0f);
+        self.frame = CGRectMake(0,self.frame.size.width-self.frame.size.height, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
+    }
+}
+-(void)show{
+    CGRect f = [[UIScreen mainScreen] applicationFrame];
+    CGFloat subTap = -20;
+    if (ISIOS7LATER) {
+        f = [[UIScreen mainScreen] bounds];//568,667
+        subTap = 0;
+    }
+    [self updateOrientation];
     UIView* bg = [self viewWithTag:799];
     UIView* bg2 = [self viewWithTag:798];
     bg2.alpha = 0.0;
