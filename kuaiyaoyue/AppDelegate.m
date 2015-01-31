@@ -26,7 +26,12 @@
 
 @implementation AppDelegate
 //- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
-//    return UIInterfaceOrientationMaskLandscape;
+//    //    return UIInterfaceOrientationMaskLandscape;
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        return UIInterfaceOrientationMaskLandscape;
+//    }else{
+//        return UIInterfaceOrientationMaskPortrait;
+//    }
 //}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
