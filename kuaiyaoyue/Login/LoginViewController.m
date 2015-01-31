@@ -62,7 +62,7 @@
     _login_button.layer.cornerRadius = 5.0;
     
     if ([YINGLOUURL compare:@""] != NSOrderedSame) {
-        _password_edit.text = @"*该账户有影楼提供并激活。";
+        _password_edit.text = @"*该账户由影楼提供并激活。";
         _password_edit.enabled = NO;
         _password_edit.secureTextEntry = NO;
         _password_edit.textColor = [UIColor redColor];

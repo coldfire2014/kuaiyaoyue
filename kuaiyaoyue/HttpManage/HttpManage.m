@@ -663,6 +663,7 @@ closeTimestamp:(NSString *)closeTimestamp
  */
 +(void)uploadTP:(UIImage *) image name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback{
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:12 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData* jtdata = UIImageJPEGRepresentation(image,C_JPEG_SIZE);
         [formData appendPartWithFileData:jtdata name:@"files" fileName:name mimeType:@"image/jpeg"];
@@ -672,8 +673,16 @@ closeTimestamp:(NSString *)closeTimestamp
         callback(YES,[responseObject objectForKey:@"url"]);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%ld:%@",(long)[error code],[error localizedDescription]);
-        callback(NO ,@"");
+        NSData* resData=[operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+        NSDictionary *err = [resultDic objectForKey:@"error"];
+        NSString* code = [err objectForKey:@"code"];
+        if ([code longLongValue] == 34) {
+            NSString* sub_code = [err objectForKey:@"code"];
+            callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
+        } else {
+            callback(NO ,@"");
+        }
     }];
 }
 
@@ -684,6 +693,7 @@ closeTimestamp:(NSString *)closeTimestamp
 +(void)uploadYP :(NSString *)file name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback{
     
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:20 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData *data = [NSData dataWithContentsOfFile: file];
         [formData appendPartWithFileData:data name:@"files" fileName:name mimeType:@"audio/wav"];
@@ -693,8 +703,15 @@ closeTimestamp:(NSString *)closeTimestamp
         callback(YES ,[responseObject objectForKey:@"url"]);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%ld:%@",(long)[error code],[error localizedDescription]);
-        callback(NO ,@"");
+        NSData* resData=[operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+        NSDictionary *err = [resultDic objectForKey:@"error"];
+        NSString* code = [err objectForKey:@"code"];
+        if ([code longLongValue] == 33) {
+            callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
+        } else {
+            callback(NO ,@"");
+        }
     }];
 }
 
