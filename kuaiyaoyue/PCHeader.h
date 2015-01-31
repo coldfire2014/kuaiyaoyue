@@ -19,6 +19,7 @@
     #define HTTPURL YINGLOUURL
     #define ChannelId @"Studio"
     #define UZIP @"ZIPS201"
+    #define DURL @"http://fir.im/kyyStudio"
     #define STOREDIR @"http://www.kyy121.com/"
     #define PIC_URL @"http://www.kyy121.com/fss/studio/"
 #else
@@ -27,6 +28,7 @@
     #define ChannelId @"AppStore"
 //    #define ChannelId @"inhouse"
     #define UZIP @"ZIP201"
+    #define DURL @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
     #define STOREDIR @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
     #define PIC_URL @"http://www.kyy121.com/fss/invitation/"
 #endif

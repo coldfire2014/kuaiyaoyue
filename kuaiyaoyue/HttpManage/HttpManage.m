@@ -314,7 +314,6 @@ password:1235456                     //用户密码
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             timestamp,@"timestamp",size,@"size",@"ios",@"equipment",version,@"version",nil];
     [[AFConnectionAPIClient sharedClient] POST:@"nozzle/NefTemplate/template.aspx" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
-        NSString *html = operation.responseString;
         callback(YES,JSON);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
@@ -656,8 +655,6 @@ closeTimestamp:(NSString *)closeTimestamp
     
     return YES;
 }
-
-
 /*
  文件上传-图片
  */
@@ -667,19 +664,22 @@ closeTimestamp:(NSString *)closeTimestamp
     [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:12 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData* jtdata = UIImageJPEGRepresentation(image,C_JPEG_SIZE);
         [formData appendPartWithFileData:jtdata name:@"files" fileName:name mimeType:@"image/jpeg"];
-        
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
         callback(YES,[responseObject objectForKey:@"url"]);
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSData* resData=[operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
         NSDictionary *err = [resultDic objectForKey:@"error"];
         NSString* code = [err objectForKey:@"code"];
         if ([code longLongValue] == 34) {
-            NSString* sub_code = [err objectForKey:@"code"];
-            callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
+            NSArray* sub_errs = [err objectForKey:@"subErrors"];
+            NSDictionary* sub_err = [sub_errs objectAtIndex:0];
+            NSString* codes = [sub_err objectForKey:@"code"];
+            if([codes longLongValue] == 1) {
+                callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
+            }else{
+                callback(NO ,@"");
+            }
         } else {
             callback(NO ,@"");
         }
@@ -697,18 +697,22 @@ closeTimestamp:(NSString *)closeTimestamp
     [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:20 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData *data = [NSData dataWithContentsOfFile: file];
         [formData appendPartWithFileData:data name:@"files" fileName:name mimeType:@"audio/wav"];
-        
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
         callback(YES ,[responseObject objectForKey:@"url"]);
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSData* resData=[operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
         NSDictionary *err = [resultDic objectForKey:@"error"];
         NSString* code = [err objectForKey:@"code"];
-        if ([code longLongValue] == 33) {
-            callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
+        if ([code longLongValue] == 34) {
+            NSArray* sub_errs = [err objectForKey:@"subErrors"];
+            NSDictionary* sub_err = [sub_errs objectAtIndex:0];
+            NSString* codes = [sub_err objectForKey:@"code"];
+            if([codes longLongValue] == 1) {
+                callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
+            }else{
+                callback(NO ,@"");
+            }
         } else {
             callback(NO ,@"");
         }

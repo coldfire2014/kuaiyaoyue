@@ -309,7 +309,7 @@
     [TalkingData trackEvent:@"点击更新"];
     UIView* gx = [self.view viewWithTag: 610];
     if (![gx isHidden]) {
-        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:STOREDIR]];
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:DURL]];
     }else{
         [[StatusBar sharedStatusBar] talkMsg:@"目前为最新版本" inTime:0.51];
     }
