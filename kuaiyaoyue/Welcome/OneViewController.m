@@ -30,7 +30,8 @@
         h = 700.0/2.0*bili - 44.0;
     }
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        h = 700.0/2.0*bili - 64.0*bili;
+        h = 520.0/2.0*bili - 64.0*bili;
+        qq_btn.center = CGPointMake(74.0/2.0+227.0/4.0, h-59.0/4.0);
     }else{
         qq_btn.center = CGPointMake(74.0/2.0+227.0/4.0, h-59.0/4.0);
     }  

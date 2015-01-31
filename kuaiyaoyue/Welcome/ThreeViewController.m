@@ -31,8 +31,12 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         h = 700.0/2.0*bili - 64.0*bili;
     }
-    qq_btn.center = CGPointMake(74.0/2.0+227.0/4.0, h-59.0/4.0);
-    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        h = 520.0/2.0*bili - 64.0*bili;
+        qq_btn.center = CGPointMake(74.0/2.0+227.0/4.0, h-59.0/4.0);
+    }else{
+        qq_btn.center = CGPointMake(74.0/2.0+227.0/4.0, h-59.0/4.0);
+    }
     UITapGestureRecognizer* tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(QQTap)];
     [qq_btn addGestureRecognizer:tap1];
 }
