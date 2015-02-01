@@ -7,7 +7,7 @@
 //
 
 #import "StatusBar.h"
-
+#import "PCHeader.h"
 @implementation StatusBar
 
 /*
@@ -32,6 +32,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            statusBarFrame = CGRectMake(0, 0, MAX(statusBarFrame.size.height, statusBarFrame.size.width),MIN(statusBarFrame.size.height, statusBarFrame.size.width));
+        }
         statusBarFrame.size.height = (statusBarFrame.size.height == 40.0) ? 20.0:statusBarFrame.size.height;
         self.windowLevel = UIWindowLevelStatusBar + 1.0;
         self.frame = statusBarFrame;
@@ -68,7 +71,7 @@
 }
 -(void)updateOrientation{
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    CGRect f = [[UIScreen mainScreen] bounds];
+    CGRect f = IPAD_FRAME;
     CGFloat h = f.size.height-20.0;
     CGFloat pi = (CGFloat)M_PI;
     if (orientation == UIDeviceOrientationPortrait) {

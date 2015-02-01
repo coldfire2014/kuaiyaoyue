@@ -7,7 +7,7 @@
 //
 
 #import "coverAnimation.h"
-
+#import "PCHeader.h"
 @implementation coverAnimation
 - (instancetype)initWithPresent:(BOOL)p
 {
@@ -26,8 +26,12 @@
     if (isPresent) {
         [[transitionContext containerView] addSubview:toView.view];
         toView.view.alpha = 1;
-        CATransform3D t = CATransform3DIdentity;
+        CATransform3D t = fromView.view.layer.transform;
         t.m34 = -1.0/900.0;
+        BOOL i = ISIOS8LATER;
+        if(!i && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+            toView.view.frame = CGRectMake(0, 0, 768, 1024);
+        }
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             fromView.view.layer.transform = CATransform3DTranslate(t, 0, 0, 500);
             fromView.view.alpha = 0.0;

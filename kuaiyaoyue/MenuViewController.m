@@ -40,22 +40,10 @@
         bgCover = [UIColor clearColor];
     } else {
         bgCover = [[UIColor alloc] initWithWhite:0.9 alpha:0.95];
+
 //        bgCover = [UIColor clearColor];
-//        [bk setImageToBlur:self.bgimg blurRadius:10.0 completionBlock:^(NSError *error) {
-//            
-//        }];
-        
-//        GPUImagePicture *picture = [[GPUImagePicture alloc] initWithImage:img];
-//        GPUImageView *webbg2 = [[GPUImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
-//        webbg2.layer.contentsGravity = kCAGravityTop;
-//        webbg2.clipsToBounds = YES;
-//        //        webbg2.layer.cornerRadius = radiu;
-//        GPUImageGaussianBlurFilter *_blurFilter = [[GPUImageGaussianBlurFilter alloc] init];//毛玻璃
-//        _blurFilter.blurRadiusInPixels = 2.0f;
-//        [picture addTarget:_blurFilter];
-//        [_blurFilter addTarget:webbg2];
-//        [picture processImage];
-//        [self.view addSubview:webbg2];
+//        [bk setImageToBlur:self.bgimg blurRadius:10.0 completionBlock:^(NSError *error) {}];
+ 
     }
     [self.view addSubview:bk];
     UIView* bgView = [[UIView alloc] initWithFrame:self.view.bounds];

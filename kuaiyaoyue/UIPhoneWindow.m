@@ -29,11 +29,12 @@
         self.backgroundColor = [UIColor clearColor];
         self.alpha = 1;
         self.hidden = NO;
-        CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
-        
+        CGRect mainScreenFrame = [UIScreen mainScreen].bounds;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            mainScreenFrame = IPAD_FRAME;
+        }
         CGFloat subTap = -20;
         if (ISIOS7LATER) {
-            mainScreenFrame = [[UIScreen mainScreen] bounds];//568,667
             subTap = 0;
         }
         self.frame = mainScreenFrame;

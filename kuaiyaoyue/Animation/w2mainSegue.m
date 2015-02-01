@@ -8,6 +8,7 @@
 
 #import "w2mainSegue.h"
 #import "PageViewController.h"
+#import "PCHeader.h"
 @implementation w2mainSegue
 -(void) perform{
     PageViewController* src = self.sourceViewController;

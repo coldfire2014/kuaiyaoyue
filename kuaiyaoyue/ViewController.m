@@ -26,7 +26,7 @@
 #import "FileManage.h"
 #import "waitingView.h"
 #import "SettingViewController.h"
-
+#import "PCHeader.h"
 @interface ViewController ()<VCDelegate,DVCDelegate>{
     NSMutableArray *data;
     NSString *uniqueId;
@@ -61,7 +61,15 @@
     is_chose = YES;
     CreateBtn* btnView = [[CreateBtn alloc] initWithFrame:CGRectMake(0, 0, 47, 47)];
     btnView.tag = 99;
-    btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 12.0);
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if (ISIOS8LATER) {
+            btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 12.0);
+        } else {
+            btnView.center = CGPointMake(self.view.frame.size.height/2.0, self.view.frame.size.width-btnView.frame.size.height/2.0 - 12.0);
+        }
+    } else {
+        btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 12.0);
+    }
     [self.view addSubview:btnView];
     
     UITapGestureRecognizer* pan = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didPan)];

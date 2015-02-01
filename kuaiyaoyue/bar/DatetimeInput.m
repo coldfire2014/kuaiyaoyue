@@ -20,10 +20,12 @@
     return _sharedInstance;
 }
 -(void)updateOrientation{
-    CGRect f = [[UIScreen mainScreen] applicationFrame];
+    CGRect f = [UIScreen mainScreen].bounds;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        f = IPAD_FRAME;
+    }
     CGFloat subTap = -20;
     if (ISIOS7LATER) {
-        f = [[UIScreen mainScreen] bounds];//568,667
         subTap = 0;
     }
     self.frame = f;
@@ -48,11 +50,12 @@
         self.backgroundColor = [UIColor clearColor];
         self.alpha = 1;
         self.hidden = NO;
-        CGRect f = [[UIScreen mainScreen] applicationFrame];
-        
+        CGRect f = [UIScreen mainScreen].bounds;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            f = IPAD_FRAME;
+        }
         CGFloat subTap = -20;
         if (ISIOS7LATER) {
-            f = [[UIScreen mainScreen] bounds];//568,667
             subTap = 0;
         }
         self.frame = f;

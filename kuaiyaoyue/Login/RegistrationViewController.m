@@ -76,7 +76,9 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }
 }
 -(void)viewDidAppear:(BOOL)animated{
     [SMS_SDK enableAppContactFriends:NO];

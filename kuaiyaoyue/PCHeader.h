@@ -35,5 +35,5 @@
 //#define HTTPURL @"http://test.kyy121.com/"
 //#define HTTPURL @"http://10.142.59.103/"
 #define version @"4"
-
+#define IPAD_FRAME CGRectMake(0, 0, MAX([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width),MIN([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width))
 #endif

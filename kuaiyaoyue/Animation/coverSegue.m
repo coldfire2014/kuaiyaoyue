@@ -7,6 +7,7 @@
 //
 
 #import "coverSegue.h"
+#import "PCHeader.h"
 #import "WelComeViewController.h"
 @implementation coverSegue
 -(void) perform{

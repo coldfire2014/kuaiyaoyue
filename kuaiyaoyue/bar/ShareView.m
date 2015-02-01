@@ -41,10 +41,12 @@
         self.backgroundColor = [UIColor clearColor];
         self.alpha = 1;
         self.hidden = NO;
-        CGRect f = [[UIScreen mainScreen] applicationFrame];
+        CGRect f = [UIScreen mainScreen].bounds;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            f = IPAD_FRAME;
+        }
         CGFloat subTap = -20;
         if (ISIOS7LATER) {
-            f = [[UIScreen mainScreen] bounds];//568,667
             subTap = 0;
         }
         self.frame = f;
@@ -211,7 +213,10 @@
     [mbtitle8 setBackgroundColor:[UIColor clearColor]];
     [mbtitle8 setText:@"邮件"];
     [bg2 addSubview:mbtitle8];
-    CGRect f = [[UIScreen mainScreen] bounds];
+    CGRect f = [UIScreen mainScreen].bounds;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        f = IPAD_FRAME;
+    };
     CGFloat h = -12;
     mbtitle.center = CGPointMake(f.size.width/2.0-72.0/2.0-128.0/2.0, f.size.height-368.0/2.0 - 128.0/4.0 - 90.0/2.0+h);
     mbtitle1.center = CGPointMake(f.size.width/2.0, f.size.height-368.0/2.0 - 128.0/4.0 - 90.0/2.0+h);
@@ -224,10 +229,12 @@
     mbtitle8.center = CGPointMake(f.size.width/2.0+72.0/2.0+128.0/2.0, f.size.height-368.0/2.0 + 128.0/4.0 + 90.0/2.0 +128.0/2.0+h);
 }
 -(void)updateOrientation{
-    CGRect f = [[UIScreen mainScreen] applicationFrame];
+    CGRect f = [UIScreen mainScreen].bounds;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        f = IPAD_FRAME;
+    }
     CGFloat subTap = -20;
     if (ISIOS7LATER) {
-        f = [[UIScreen mainScreen] bounds];//568,667
         subTap = 0;
     }
     self.frame = f;
@@ -245,12 +252,15 @@
     }
 }
 -(void)show{
-    CGRect f = [[UIScreen mainScreen] applicationFrame];
+    CGRect f = [UIScreen mainScreen].bounds;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        f = IPAD_FRAME;
+    }
     CGFloat subTap = -20;
     if (ISIOS7LATER) {
-        f = [[UIScreen mainScreen] bounds];//568,667
         subTap = 0;
     }
+
     [self updateOrientation];
     UIView* bg = [self viewWithTag:799];
     UIView* bg2 = [self viewWithTag:798];
