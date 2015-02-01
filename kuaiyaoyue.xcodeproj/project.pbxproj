@@ -129,6 +129,7 @@
 		E54851DB1A35AF5C00590E5C /* coverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DA1A35AF5C00590E5C /* coverAnimation.m */; };
 		E54851DE1A35B08800590E5C /* w2mainSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E54851DD1A35B08800590E5C /* w2mainSegue.m */; };
 		E54889871A6125E1008EA808 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = E54889861A6125E1008EA808 /* loading.gif */; };
+		E54CD2421A7DF44C0021669B /* getImgColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E54CD2411A7DF44C0021669B /* getImgColor.m */; };
 		E54F3EC91A5CEB5C005EB25A /* UIPhoneWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E54F3EC81A5CEB5C005EB25A /* UIPhoneWindow.m */; };
 		E5573F951A4303A9006AAB8F /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F8B1A4303A9006AAB8F /* ioapi.c */; };
 		E5573F961A4303A9006AAB8F /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F8D1A4303A9006AAB8F /* mztools.c */; };
@@ -433,6 +434,8 @@
 		E54851DC1A35B08800590E5C /* w2mainSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = w2mainSegue.h; sourceTree = "<group>"; };
 		E54851DD1A35B08800590E5C /* w2mainSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = w2mainSegue.m; sourceTree = "<group>"; };
 		E54889861A6125E1008EA808 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
+		E54CD2401A7DF44C0021669B /* getImgColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getImgColor.h; sourceTree = "<group>"; };
+		E54CD2411A7DF44C0021669B /* getImgColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = getImgColor.m; sourceTree = "<group>"; };
 		E54F3EC71A5CEB5C005EB25A /* UIPhoneWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPhoneWindow.h; sourceTree = "<group>"; };
 		E54F3EC81A5CEB5C005EB25A /* UIPhoneWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPhoneWindow.m; sourceTree = "<group>"; };
 		E5573F871A430118006AAB8F /* PCHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCHeader.h; sourceTree = "<group>"; };
@@ -908,6 +911,8 @@
 				84B446B31A32B3D000546859 /* MJRefresh */,
 				84E842961A2EFDCB00A401A0 /* AFNetworking */,
 				84E842AA1A2EFDCB00A401A0 /* UIKit+AFNetworking */,
+				E54CD2401A7DF44C0021669B /* getImgColor.h */,
+				E54CD2411A7DF44C0021669B /* getImgColor.m */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -1407,6 +1412,7 @@
 				84B446C61A32B3D000546859 /* MJRefreshConst.m in Sources */,
 				84B446C71A32B3D000546859 /* MJRefreshFooterView.m in Sources */,
 				84FE0BC61A42D32C005A9599 /* Info.m in Sources */,
+				E54CD2421A7DF44C0021669B /* getImgColor.m in Sources */,
 				E55F59EE1A36894B00B0D587 /* StateView.m in Sources */,
 				84D530281A5BCE3600C4ED73 /* Template.m in Sources */,
 				846C1BA51A45706000B59A18 /* LunarCalendar.m in Sources */,
