@@ -12,7 +12,7 @@
 
 @interface MusicViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UITableView *tableView;
 @property (nonatomic, weak) id<MVCDelegate> delegate;
 @property (nonatomic, strong) NSString *typeid;
 @end

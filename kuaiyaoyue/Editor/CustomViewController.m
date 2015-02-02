@@ -257,10 +257,6 @@
 //        des.maxCount = m_count;
 //        des.needAnimation = NO;
 //        des.delegate = self;
-    }else if ([segue.identifier compare:@"music"] == NSOrderedSame){
-        MusicViewController *view = (MusicViewController*)segue.destinationViewController;
-        view.delegate = self;
-        view.typeid = @"4";
     }else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
 //        PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
 //        view.delegate = self;
@@ -409,7 +405,14 @@
             [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动时间。" inTime:0.8];
         }
     }else if (type == 2){
-        [self performSegueWithIdentifier:@"music" sender:nil];
+        MusicViewController *des = [[MusicViewController alloc] init];
+        des.delegate = self;
+        des.typeid = @"4";
+        des.modalPresentationStyle = UIModalPresentationFormSheet;
+        des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentViewController:des animated:YES completion:^{
+            
+        }];
     }else if (type == 3){
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             if (custom.show_top_img.image != nil) {

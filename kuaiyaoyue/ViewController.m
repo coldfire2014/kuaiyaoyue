@@ -541,9 +541,11 @@
 - (IBAction)setting_onclick:(id)sender {
     [TalkingData trackEvent:@"点击设置"];
     SettingViewController* setting = [[SettingViewController alloc] init];
-    setting.modalPresentationStyle = UIModalPresentationFullScreen;
-    setting.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:setting animated:YES completion:^{
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:setting];
+    [navigationController setNavigationBarHidden:YES];
+    navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:navigationController animated:YES completion:^{
         
     }];
 //    [self performSegueWithIdentifier:@"setting" sender:nil];
@@ -680,7 +682,7 @@
         view.name = @"浏览";
         view.weburl = user.nefurl;
         view.viewTitle = @"生成后预览";
-        view.modalPresentationStyle = UIModalPresentationFullScreen;
+        view.modalPresentationStyle = UIModalPresentationFormSheet;
         view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:view animated:YES completion:^{
             

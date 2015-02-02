@@ -17,7 +17,7 @@
 #import "Music.h"
 #import "waitingView.h"
 #import "TalkingData.h"
-
+#import "PCHeader.h"
 @interface MusicViewController ()<AVAudioPlayerDelegate>{
     NSMutableArray *data;
     long num;
@@ -37,23 +37,83 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
+    CGFloat top = 20.0;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        top = 0.0;
+        w = 540;
+        h = 620;
+    }
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0 + top)];
+    navView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.95];
+    [self.view addSubview:navView];
     
+    UIView* btnLeft = [[UIView alloc] initWithFrame:CGRectMake(8.0, top, 44.0, 44.0)];
+    btnLeft.tag = 102;
+    [navView addSubview:btnLeft];
+    UITapGestureRecognizer* tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(back)];
+    [btnLeft addGestureRecognizer:tap1 ];
+    UILabel* lbl_back = [[UILabel alloc] initWithFrame:btnLeft.bounds];
+    lbl_back.font = [UIFont systemFontOfSize:18];
+    lbl_back.text = @"返回";
+    lbl_back.textAlignment = NSTextAlignmentCenter;
+    lbl_back.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+    [btnLeft addSubview:lbl_back];
+    
+    UIView* btnRight = [[UIView alloc] initWithFrame:CGRectMake(w-44.0-8.0, top, 44.0, 44.0)];
+    btnRight.tag = 103;
+    [navView addSubview:btnRight];
+    UITapGestureRecognizer* tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftBarBtnClicked)];
+    [btnRight addGestureRecognizer:tap2 ];
+    UILabel* lbl_OK = [[UILabel alloc] initWithFrame:btnLeft.bounds];
+    lbl_OK.font = [UIFont systemFontOfSize:18];
+    lbl_OK.text = @"确定";
+    lbl_OK.textAlignment = NSTextAlignmentCenter;
+    lbl_OK.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+    [btnRight addSubview:lbl_OK];
+
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, navView.frame.size.height-0.5, navView.frame.size.width, 0.5)];
+    line.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.5];
+    [navView addSubview:line];
+    
+    UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectMake(100.0, top, navView.frame.size.width - 200.0, 44.0)];
+    lbl.tag = 105;
+    lbl.font = [UIFont systemFontOfSize:20];
+    lbl.text = @"选择背景音乐";
+    lbl.textAlignment = NSTextAlignmentCenter;
+    lbl.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+    [navView addSubview:lbl];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44+top, w, h-44-top)];
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tag = 110;
+    self.tableView.showsHorizontalScrollIndicator = NO;
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    [self.view addSubview:self.tableView];
     num = -1;
     addnum = 0;
-    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"选择" style:UIBarButtonItemStyleBordered target:self action:@selector(leftBarBtnClicked:)];
-    self.navigationItem.rightBarButtonItem = right;
     
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     _tableView.separatorStyle = NO;
 //    [self inData];
     [self showdid];
 }
-
-- (void)leftBarBtnClicked:(id)sender
+-(void)back{
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
+}
+- (void)leftBarBtnClicked
 {
-    [self.navigationController popViewControllerAnimated:YES];
     if (self.delegate && [self.delegate respondsToSelector:@selector(MVCDelegate:didTapAtIndex::)]){
-        [self.delegate MVCDelegate:self didTapAtIndex:URL:name];}
+        [self.delegate MVCDelegate:self didTapAtIndex:URL:name];
+    }
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,6 +131,9 @@
     [_tableView reloadData];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 43;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [data count];
@@ -78,7 +141,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"music";
+    
     MusicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[MusicTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    
     MusicInfo *info = [data objectAtIndex:[indexPath row]];
     cell.index = [indexPath row];
     if (!info.state) {

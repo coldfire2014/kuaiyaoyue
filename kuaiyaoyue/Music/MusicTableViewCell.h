@@ -11,8 +11,8 @@
 
 @interface MusicTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *show_status;
-@property (weak, nonatomic) IBOutlet UILabel *show_content;
+@property (strong, nonatomic) UIView *show_status;
+@property (strong, nonatomic) UILabel *show_content;
 @property long index;
 @property long type;
 

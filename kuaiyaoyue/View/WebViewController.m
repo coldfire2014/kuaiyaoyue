@@ -22,14 +22,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"返回";
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
-    CGFloat h = [UIScreen mainScreen].bounds.size.height;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
     self.view.frame = [UIScreen mainScreen].bounds;
-    self.webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 128.0/2.0, w, h-128.0/2.0)];
+    CGFloat top = 20.0;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        top = 0.0;
+        w = 540;
+        h = 620;
+        self.view.frame = CGRectMake(0, 0, w, h);
+    }
+    self.webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 88.0/2.0+top, w, h-88.0/2.0-top)];
     self.webview.scalesPageToFit = YES;
     self.webview.delegate = self;
+    
     [self.view addSubview:self.webview];
-    WebNavBar* bar = [[WebNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 128.0/2.0)];
+    WebNavBar* bar = [[WebNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0+top)];
     bar.tag = 501;
     [bar setTitle:self.name];
     [self.view addSubview:bar];
@@ -48,8 +56,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    [self.navigationController.navigationBar setHidden:NO];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }
     [TalkingData trackPageBegin:_viewTitle];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopLoad) name:@"MSG_STOP_WAITING" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(back) name:@"MSG_BACK" object:nil];
@@ -66,17 +75,21 @@
 }
 -(void)back{
     if(!self.webview.canGoBack){
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+        if (nil != self.navigationController) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [self dismissViewControllerAnimated:YES completion:^{}];
+        }
     }else{
         [self.webview goBack];
     }
 }
 -(void)close{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    if (nil != self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [self dismissViewControllerAnimated:YES completion:^{}];
+    }
 }
 -(void)refresh{
     [self.webview stopLoading];

@@ -27,12 +27,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
-    CGFloat h = [UIScreen mainScreen].bounds.size.height;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
     self.view.frame = [UIScreen mainScreen].bounds;
+    CGFloat top = 20.0;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        top = 0.0;
+        w = 540;
+        h = 620;
+        self.view.frame = CGRectMake(0, 0, w, h);
+    }
     self.view.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
-    SettingNavBar* bar = [[SettingNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 128.0/2.0)];
+    SettingNavBar* bar = [[SettingNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0 + top)];
     bar.tag = 501;
     [self.view addSubview:bar];
     [self.view bringSubviewToFront:bar];
@@ -165,7 +171,10 @@
 }
 -(void)zxinfo{
     UIView* btn = [self.view viewWithTag: 512];
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        w = 540;
+    }
     UIView* t_line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 0.5)];
     t_line.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [btn addSubview:t_line];
@@ -196,7 +205,10 @@
 }
 -(void)zxupdate{
     UIView* btn = [self.view viewWithTag: 513];
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        w = 540;
+    }
     UIView* t_line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 0.5)];
     t_line.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [btn addSubview:t_line];
@@ -232,7 +244,10 @@
 }
 -(void)zxpl{
     UIView* btn = [self.view viewWithTag: 514];
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        w = 540;
+    }
     UIView* t_line = [[UIView alloc] initWithFrame:CGRectMake(8.0, 0, w-16.0, 0.5)];
     t_line.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [btn addSubview:t_line];
@@ -254,7 +269,10 @@
 }
 -(void)zxintroduce{
     UIView* btn = [self.view viewWithTag: 515];
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        w = 540;
+    }
     UIView* b_line = [[UIView alloc] initWithFrame:CGRectMake(0, btn.bounds.size.height-0.5, w, 0.5)];
     b_line.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [btn addSubview:b_line];
@@ -273,7 +291,10 @@
 }
 -(void)zxexit{
     UIView* btn = [self.view viewWithTag: 516];
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        w = 540;
+    }
     UIView* t_line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 0.5)];
     t_line.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [btn addSubview:t_line];
@@ -298,11 +319,13 @@
     view.name = @"探秘快邀约";
     view.weburl = @"http://appkyy.kyy121.com/invitation/static/gospel.html";
     view.viewTitle = @"攻略";
-    view.modalPresentationStyle = UIModalPresentationFullScreen;
-    view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:view animated:YES completion:^{
-        
-    }];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        view.modalPresentationStyle = UIModalPresentationFullScreen;
+        view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentViewController:view animated:YES completion:^{}];
+    } else {
+        [self.navigationController pushViewController:view animated:YES];
+    }
 }
 
 - (void)checkupdata {
@@ -367,12 +390,12 @@
     [TalkingData trackEvent:@"个人信息修改"];
 //    [self performSegueWithIdentifier:@"userinfo" sender:nil];
     UserInfoViewController* setting = [[UserInfoViewController alloc] init];
-    setting.modalPresentationStyle = UIModalPresentationFullScreen;
-    setting.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:setting animated:YES completion:^{
-        
-    }];
-    
+//    setting.modalPresentationStyle = UIModalPresentationFullScreen;
+//    setting.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//    [self presentViewController:setting animated:YES completion:^{
+//        
+//    }];
+    [self.navigationController pushViewController:setting animated:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -383,8 +406,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(back) name:@"MSG_BACK" object:nil];
 }
 -(void)viewDidDisappear:(BOOL)animated{

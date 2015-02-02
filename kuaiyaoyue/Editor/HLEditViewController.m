@@ -214,13 +214,7 @@
 //        des.maxCount = count;
 //        des.needAnimation = NO;
 //        des.delegate = self;
-    }else if ([segue.identifier compare:@"music"] == NSOrderedSame){
-        MusicViewController *view = (MusicViewController*)segue.destinationViewController;
-        view.delegate = self;
-        view.typeid = @"1";
-    }
-    //preview
-    else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
+    }else if ([segue.identifier compare:@"preview"] == NSOrderedSame){
 //        PreviewViewController *view = (PreviewViewController*)segue.destinationViewController;
 //        view.type = 0;
 //        view.delegate = self;
@@ -404,7 +398,14 @@
         }
         
     }else if (type == 2){
-        [self performSegueWithIdentifier:@"music" sender:nil];
+        MusicViewController *des = [[MusicViewController alloc] init];
+        des.delegate = self;
+        des.typeid = @"1";
+        des.modalPresentationStyle = UIModalPresentationFormSheet;
+        des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentViewController:des animated:YES completion:^{
+            
+        }];
     }else if (type == 3){
         mp3url = @"";
         mp3name = @"";

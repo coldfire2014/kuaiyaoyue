@@ -14,13 +14,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        CGFloat top = 20.0;
+        if (frame.size.height < 128.0/2.0) {
+            top = 0;
+        }
         UIView* bk = [[UIView alloc] initWithFrame:self.bounds];
         bk.backgroundColor = [UIColor colorWithWhite:1 alpha:1.0];
         
         bk.tag = 101;
         [self addSubview:bk];
         
-        myImageView* btnLeft = [[myImageView alloc] initWithFrame:CGRectMake(8.0, 20.0, 44.0, 44.0) andImageName:@"T" withScale:2.0 andBundleName:@"imgBar"];
+        myImageView* btnLeft = [[myImageView alloc] initWithFrame:CGRectMake(8.0, top, 44.0, 44.0) andImageName:@"T" withScale:2.0 andBundleName:@"imgBar"];
         btnLeft.tag = 102;
         [bk addSubview:btnLeft];
         UITapGestureRecognizer* tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(LeftTap)];
@@ -36,7 +40,7 @@
         line.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.5];
         [self addSubview:line];
         
-        UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectMake(100.0, 20.0, bk.frame.size.width - 200.0, 44.0)];
+        UILabel* lbl = [[UILabel alloc] initWithFrame:CGRectMake(100.0, top, bk.frame.size.width - 200.0, 44.0)];
         lbl.tag = 105;
         lbl.font = [UIFont systemFontOfSize:20];
         lbl.text = @"设置";

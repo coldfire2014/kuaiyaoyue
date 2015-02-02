@@ -13,6 +13,7 @@
 #import "TalkingData.h"
 #import "myImageView.h"
 #import "StatusBar.h"
+#import "PCHeader.h"
 @interface UserInfoViewController (){
     int is_chage;
 }
@@ -24,11 +25,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
-    CGFloat h = [UIScreen mainScreen].bounds.size.height;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
     self.view.frame = [UIScreen mainScreen].bounds;
+    CGFloat top = 20.0;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        top = 0.0;
+        w = 540;
+        h = 620;
+        self.view.frame = CGRectMake(0, 0, w, h);
+    }
     self.view.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
-    SettingNavBar* bar = [[SettingNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 128.0/2.0)];
+    SettingNavBar* bar = [[SettingNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0+top)];
     bar.tag = 501;
     [bar changeTitle:@"个人信息"];
     [self.view addSubview:bar];
@@ -62,7 +70,10 @@
 
 - (void)zxname_btn{
     UIView* btn = [self.view viewWithTag: 513];
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        w = 540;
+    }
     UIView* t_line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 0.5)];
     t_line.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [btn addSubview:t_line];
@@ -91,7 +102,10 @@
 }
 - (void)zxphone_btn{
     UIView* btn = [self.view viewWithTag: 515];
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        w = 540;
+    }
     UIView* t_line = [[UIView alloc] initWithFrame:CGRectMake(0, btn.bounds.size.height-0.5, w, 0.5)];
     t_line.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [btn addSubview:t_line];
@@ -123,15 +137,16 @@
 }
 
 - (void)back{
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
+//    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [TalkingData trackPageBegin:@"个人信息修改"];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(back) name:@"MSG_BACK" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardShowNotify:) name:UIKeyboardDidShowNotification object:nil];
 }
@@ -152,7 +167,10 @@
 #pragma mark - Navigation
 - (void)zxinputView{
     UIView* btn = [self.view viewWithTag: 517];
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        w = 540;
+    }
     UIView* t_line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 0.5)];
     t_line.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.4];
     [btn addSubview:t_line];
@@ -180,22 +198,54 @@
     CGRect keyboardRect = [aValue CGRectValue];
     //将视图Y坐标进行移动，移动距离为弹出键盘的高度
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        w = 540;
+        h = 620;
+        mainScreenFrame = CGRectMake(0, 0, w, h);
+    }
     UIView* btn = [self.view viewWithTag: 517];
-    btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height-keyboardRect.size.height);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (ISIOS8LATER) {
+            btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height-keyboardRect.size.height+106);
+        } else {
+            btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height-keyboardRect.size.width+106);
+        }
+    }else{
+        btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height-keyboardRect.size.height);
+    }
 }
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        w = 540;
+        h = 620;
+        mainScreenFrame = CGRectMake(0, 0, w, h);
+    }
     UIView* btn = [self.view viewWithTag: 517];
     [UIView animateWithDuration:0.3 animations:^{
-        btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height+86.0/2.0);
+        btn.center = CGPointMake(btn.center.x, h+86.0/2.0);
     }];
     return YES;
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        w = 540;
+        h = 620;
+        mainScreenFrame = CGRectMake(0, 0, w, h-246);
+    }else{
+        mainScreenFrame = CGRectMake(0, 0, w, h-216);
+    }
+    
     UIView* btn = [self.view viewWithTag: 517];
     [UIView animateWithDuration:0.3 animations:^{
-        btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height-216.0);
+        btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height);
     }];
     return YES;
 }
