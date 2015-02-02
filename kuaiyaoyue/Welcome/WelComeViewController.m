@@ -70,6 +70,7 @@
         zipDone = YES;
         name = @"main";
         [delegate updateMata];
+        [ZipDown UnzipI];
     }else{
         name = @"allnew";
         zipDone = NO;

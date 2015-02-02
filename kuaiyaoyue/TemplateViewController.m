@@ -20,6 +20,7 @@
 #import "StatusBar.h"
 #import "CHWLEditorViewController.h"
 #import "TalkingData.h"
+#import "ZipDown.h"
 @interface TemplateViewController (){
     NSString *neftypeId;
     NSArray *data;
@@ -243,10 +244,13 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     nefmbbg = [documentsDirectory stringByAppendingString:nefmbbg];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:nefmbbg]) {
+        [ZipDown UnzipII];//markwyb
+    }
     UIImage* imgt = [[UIImage alloc]initWithContentsOfFile:nefmbbg];
     UIImage* img = [[UIImage alloc] initWithCGImage:imgt.CGImage scale:2.0 orientation:UIImageOrientationUp];
     CGRect itemRect = CGRectMake(0, 0, _tempList.itemSize.width, _tempList.itemSize.height);
-    
     TemplateCell* mainCell = [[TemplateCell alloc] initWithFrame:itemRect andImage:img];
     return mainCell;
 }

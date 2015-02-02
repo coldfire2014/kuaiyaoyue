@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ZipDown : NSObject
-
 +(void)Unzip;
-
++(void)UnzipI;
++(void)UnzipII;
 @end

@@ -10,7 +10,29 @@
 #import "HttpManage.h"
 #import "PCHeader.h"
 @implementation ZipDown
-
++(void)UnzipI{
+    NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:testDirectory]) {
+        [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+        [HttpManage unzip:zipPath filename:testDirectory];
+    }
+}
++(void)UnzipII{
+    NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:testDirectory]) {
+        [fileManager removeItemAtPath:testDirectory error:nil];
+    }
+    [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+    [HttpManage unzip:zipPath filename:testDirectory];
+}
 +(void)Unzip{
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
     NSString *is_open = [userInfo valueForKey:UZIP];
