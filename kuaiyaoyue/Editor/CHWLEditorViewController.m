@@ -469,7 +469,7 @@
     //preview
     is_yl = NO;
     [self SendUp];
-    [TalkingData trackEvent:@"预览" label:@"吃货玩乐"];
+    [TalkingData trackEvent:@"预览" label:@"吃喝玩乐"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
