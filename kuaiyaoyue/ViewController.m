@@ -280,12 +280,16 @@
 -(void)loaddata{
     data = [[NSMutableArray alloc] init];
     NSArray *arr = [[DataBaseManage getDataBaseManage] getUserdata];
-    for (Userdata *user in arr) {
-        [data addObject:user];
+    if (arr==nil || arr.count == 0) {
+        [self GetRecord];
+    } else {
+        for (Userdata *user in arr) {
+            [data addObject:user];
+        }
+        run = 0;
+        [self showToptitle];
+        [_tableview reloadData];
     }
-    run = 0;
-    [self showToptitle];
-    [_tableview reloadData];
 }
 
 //0自定义，1婚礼，2趴体
@@ -347,7 +351,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    [self GetRecord];
+//    [self GetRecord];
 }
 
 -(void)changeTimeAtTimedisplay{
