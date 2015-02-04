@@ -226,7 +226,7 @@ password:1235456                     //用户密码
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSString *html = operation.responseString;
-        NSLog(@"error-%@",html);
+//        NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
 }
@@ -247,7 +247,7 @@ password:1235456                     //用户密码
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSString *html = operation.responseString;
-        NSLog(@"error-%@-%@",error,html);
+//        NSLog(@"error-%@-%@",error,html);
         callback(NO,nil);
     }];
 }
@@ -296,7 +296,6 @@ password:1235456                     //用户密码
                             token,@"token",@"ios",@"equipment",version,@"version",nil];
     [[AFConnectionAPIClient sharedClient] POST:@"nozzle/NefToken/checkToken.aspx" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         callback(YES,JSON);
-        
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSLog(@"error-%@",error);
         callback(NO,nil);
@@ -318,7 +317,7 @@ password:1235456                     //用户密码
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSString *html = operation.responseString;
-        NSLog(@"error-%@",html);
+//        NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
     
@@ -388,7 +387,7 @@ closeTimestamp:(NSString *)closeTimestamp
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSString *html = operation.responseString;
-        NSLog(@"error-%@",html);
+//        NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
 
@@ -432,9 +431,8 @@ closeTimestamp:(NSString *)closeTimestamp
         callback(YES,JSON);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
-        
         NSString *html = operation.responseString;
-        NSLog(@"error-%@",html);
+//        NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
 }
@@ -518,7 +516,7 @@ closeTimestamp:(NSString *)closeTimestamp
         callback(YES,JSON);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
-        NSLog(@"error-%@",error.userInfo);
+        NSLog(@"error-%@",error);
         callback(NO,nil);
     }];
 }
@@ -667,20 +665,25 @@ closeTimestamp:(NSString *)closeTimestamp
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         callback(YES,[responseObject objectForKey:@"url"]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSData* resData=[operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
-        NSDictionary *err = [resultDic objectForKey:@"error"];
-        NSString* code = [err objectForKey:@"code"];
-        if ([code longLongValue] == 34) {
-            NSArray* sub_errs = [err objectForKey:@"subErrors"];
-            NSDictionary* sub_err = [sub_errs objectAtIndex:0];
-            NSString* codes = [sub_err objectForKey:@"code"];
-            if([codes longLongValue] == 1) {
-                callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
-            }else{
+        NSString* res = operation.responseString;
+        if (nil != res) {
+            NSData* resData=[res dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+            NSDictionary *err = [resultDic objectForKey:@"error"];
+            NSString* code = [err objectForKey:@"code"];
+            if ([code longLongValue] == 34) {
+                NSArray* sub_errs = [err objectForKey:@"subErrors"];
+                NSDictionary* sub_err = [sub_errs objectAtIndex:0];
+                NSString* codes = [sub_err objectForKey:@"code"];
+                if([codes longLongValue] == 1) {
+                    callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
+                }else{
+                    callback(NO ,@"");
+                }
+            } else {
                 callback(NO ,@"");
             }
-        } else {
+        }else{
             callback(NO ,@"");
         }
     }];
@@ -700,20 +703,25 @@ closeTimestamp:(NSString *)closeTimestamp
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         callback(YES ,[responseObject objectForKey:@"url"]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSData* resData=[operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
-        NSDictionary *err = [resultDic objectForKey:@"error"];
-        NSString* code = [err objectForKey:@"code"];
-        if ([code longLongValue] == 34) {
-            NSArray* sub_errs = [err objectForKey:@"subErrors"];
-            NSDictionary* sub_err = [sub_errs objectAtIndex:0];
-            NSString* codes = [sub_err objectForKey:@"code"];
-            if([codes longLongValue] == 1) {
-                callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
-            }else{
+        NSString* res = operation.responseString;
+        if (nil != res) {
+            NSData* resData=[res dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+            NSDictionary *err = [resultDic objectForKey:@"error"];
+            NSString* code = [err objectForKey:@"code"];
+            if ([code longLongValue] == 34) {
+                NSArray* sub_errs = [err objectForKey:@"subErrors"];
+                NSDictionary* sub_err = [sub_errs objectAtIndex:0];
+                NSString* codes = [sub_err objectForKey:@"code"];
+                if([codes longLongValue] == 1) {
+                    callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
+                }else{
+                    callback(NO ,@"");
+                }
+            } else {
                 callback(NO ,@"");
             }
-        } else {
+        }else{
             callback(NO ,@"");
         }
     }];

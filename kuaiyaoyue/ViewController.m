@@ -92,11 +92,11 @@
     [self loaddata];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tsmessage) name:@"message" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(GetRecord) name:@"message" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bcfs) name:@"MSG_BCFS" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fs) name:@"MSG_FS" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loaddata) name:@"MSG_FS" object:nil];
 
 }
 
@@ -148,14 +148,6 @@
     share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
     [share show];
     
-}
-
--(void)fs{
-    [self loaddata];
-}
-
--(void)tsmessage{
-    [self GetRecord];
 }
 
 -(void)GetRecord{
