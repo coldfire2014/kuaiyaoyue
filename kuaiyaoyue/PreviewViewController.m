@@ -22,21 +22,31 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
-    CGFloat h = [UIScreen mainScreen].bounds.size.height;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
     self.view.frame = [UIScreen mainScreen].bounds;
-    self.webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 128.0/2.0, w, h-128.0/2.0)];
+    CGFloat top = 20.0;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        top = 0.0;
+        w = 540;
+        h = 620;
+        self.view.frame = CGRectMake(0, 0, w, h);
+    }
+    self.webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 88.0/2.0 + top, w, h-88.0/2.0 - top)];
     self.webview.scalesPageToFit = YES;
     self.webview.delegate = self;
     [self.view addSubview:self.webview];
-    WebNavBar* bar = [[WebNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 128.0/2.0)];
+    WebNavBar* bar = [[WebNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0 + top)];
     bar.tag = 501;
     [bar setTitle:@"预览"];
     [bar setRight:@"完成"];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [bar reflashShow:NO];
+    }
     [self.view addSubview:bar];
     [self.view bringSubviewToFront:bar];
-    
-    tempView = [[ChangeTempView alloc] initWithFrame:self.view.frame];
+    CGRect frame = CGRectMake(-120+32, 88.0/2.0 + top, 120, h-88.0/2.0 - top);
+    tempView = [[ChangeTempView alloc] initWithFrame:frame];
     tempView.delegate = self;
     tempView.type = _type;//0婚礼,1商务,2玩乐,3自定义
     [tempView loadDate];

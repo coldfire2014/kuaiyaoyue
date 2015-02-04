@@ -280,7 +280,9 @@
         des.needAnimation = NO;
         des.delegate = self;
 //        des.transitioningDelegate = self;
-        des.modalPresentationStyle = UIModalPresentationCustom;
+//        des.modalPresentationStyle = UIModalPresentationCustom;
+        des.modalPresentationStyle = UIModalPresentationFormSheet;
+        des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:des animated:YES completion:^{
             
         }];
@@ -614,7 +616,7 @@
         PreviewViewController *view = [[PreviewViewController alloc] init];
         view.type = 0;
         view.delegate = self;
-        view.modalPresentationStyle = UIModalPresentationFullScreen;
+        view.modalPresentationStyle = UIModalPresentationFormSheet;
         view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:view animated:YES completion:^{
             

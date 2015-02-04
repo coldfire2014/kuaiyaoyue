@@ -13,5 +13,4 @@
 -(void)closeShow:(BOOL)isShow;
 -(void)setTitle:(NSString*)title;
 -(void)setRight:(NSString*)title;
-
 @end

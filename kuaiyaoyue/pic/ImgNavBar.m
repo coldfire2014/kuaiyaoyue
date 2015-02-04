@@ -21,6 +21,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        CGFloat top = 20.0;
+        if (frame.size.height < 128.0/2.0) {
+            top = 0;
+        }
         UIView* bk = [[UIView alloc] initWithFrame:self.bounds];
         bk.backgroundColor = [UIColor clearColor];
         CAGradientLayer* layer = [CAGradientLayer layer];
@@ -36,13 +40,13 @@
         bk.tag = 101;
         [self addSubview:bk];
         
-        myImageView* btnLeft = [[myImageView alloc] initWithFrame:CGRectMake(0, 20.0, 44.0, 44.0) andImageName:@"T3" withScale:2.0 andBundleName:@"imgBar"];
+        myImageView* btnLeft = [[myImageView alloc] initWithFrame:CGRectMake(0, top, 44.0, 44.0) andImageName:@"T3" withScale:2.0 andBundleName:@"imgBar"];
         btnLeft.tag = 102;
         [bk addSubview:btnLeft];
         UITapGestureRecognizer* tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(LeftTap)];
         [btnLeft addGestureRecognizer:tap1 ];
         
-        myImageView* btnRight = [[myImageView alloc] initWithFrame:CGRectMake(bk.frame.size.width-44.0, 20.0, 44.0, 44.0) andImageName:@"T4" withScale:2.0 andBundleName:@"imgBar"];
+        myImageView* btnRight = [[myImageView alloc] initWithFrame:CGRectMake(bk.frame.size.width-44.0, top, 44.0, 44.0) andImageName:@"T4" withScale:2.0 andBundleName:@"imgBar"];
         btnRight.tag = 103;
         [bk addSubview:btnRight];
         UITapGestureRecognizer* tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(RightTap)];

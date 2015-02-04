@@ -15,9 +15,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    CGRect br = [[UIScreen mainScreen] bounds];
-    frame = CGRectMake(-120+32, 64, 120, br.size.height-64);
-//    frame = CGRectMake(-120+32, frame.origin.y, 120, frame.size.height);
     self = [super initWithFrame:frame];
     if (self) {
         self.userInteractionEnabled = YES;

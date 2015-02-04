@@ -27,18 +27,23 @@ static NSString * const fIdentifier = @"imgcellf";
     isShow = YES;
     selectIndexs = [[NSMutableArray alloc] init];
     selectItems = [[NSMutableArray alloc] init];
-    CGFloat w = [UIScreen mainScreen].bounds.size.width;
-    CGFloat h = [UIScreen mainScreen].bounds.size.height;
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
+    self.view.frame = [UIScreen mainScreen].bounds;
+    CGFloat top = 20.0;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        top = 0.0;
+        w = 540;
+        h = 620;
+        self.view.frame = CGRectMake(0, 0, w, h);
+    }
     m_w = (w-6.0)/4.0;
     self.clearsSelectionOnViewWillAppear = YES;
-    self.view.frame = [UIScreen mainScreen].bounds;
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    
 //    UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
 //    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    
     
 //    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 128.0/2.0, w, h-128.0/2.0) collectionViewLayout:flowLayout];
     
@@ -50,7 +55,7 @@ static NSString * const fIdentifier = @"imgcellf";
     [self.collectionView registerClass:[imgGroupView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:fIdentifier];
     self.view.backgroundColor = [UIColor whiteColor];
     self.collectionView.backgroundColor = [[UIColor alloc] initWithWhite:1.0 alpha:0.9];
-    self.collectionView.frame = CGRectMake(0, 128.0/2.0, w, h-128.0/2.0);
+    self.collectionView.frame = CGRectMake(0, 88.0/2.0+top, w, h-88.0/2.0-top);
     assert = ASSETHELPER;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -60,7 +65,7 @@ static NSString * const fIdentifier = @"imgcellf";
     self.collectionView.allowsMultipleSelection = YES;
     self.collectionView.clipsToBounds = NO;
     
-    ImgNavBar* bar = [[ImgNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 128.0/2.0)];
+    ImgNavBar* bar = [[ImgNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0 + top)];
     bar.tag = 501;
     [self.view addSubview:bar];
     [self.view bringSubviewToFront:bar];

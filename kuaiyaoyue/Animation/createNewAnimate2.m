@@ -8,6 +8,7 @@
 
 #import "createNewAnimate2.h"
 #import "CreateBtn.h"
+#import "PCHeader.h"
 @implementation createNewAnimate2
 - (instancetype)initWithPresent:(BOOL)p
 {
@@ -30,7 +31,6 @@
         [[transitionContext containerView] addSubview:toView.view];
         toView.view.layer.opacity = 1.0;
         fromView.view.layer.opacity = 1.0;
-        
         CAKeyframeAnimation* anim = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
         anim.values = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:1.0],[NSNumber numberWithDouble:1.0], nil];
         anim.removedOnCompletion = NO;

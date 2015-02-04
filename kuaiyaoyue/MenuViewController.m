@@ -17,7 +17,7 @@
 #import "DataBaseManage.h"
 #import "Template.h"
 #import "UDObject.h"
-
+#import "PCHeader.h"
 @interface MenuViewController ()
 
 @end
@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"返回";
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor redColor];
     UIImageView* bk = [[UIImageView alloc] initWithImage:self.bgimg];
     
     UIVisualEffectView* all = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
@@ -40,24 +40,27 @@
         bgCover = [UIColor clearColor];
     } else {
         bgCover = [[UIColor alloc] initWithWhite:0.9 alpha:0.95];
-
 //        bgCover = [UIColor clearColor];
 //        [bk setImageToBlur:self.bgimg blurRadius:10.0 completionBlock:^(NSError *error) {}];
- 
     }
     [self.view addSubview:bk];
-    UIView* bgView = [[UIView alloc] initWithFrame:self.view.bounds];
+    CGRect mainframe = [[UIScreen mainScreen] bounds];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        mainframe = IPAD_FRAME;
+    }
+    
+    UIView* bgView = [[UIView alloc] initWithFrame:mainframe];
     bgView.backgroundColor = bgCover;
     bgView.layer.opacity = 1;
     bgView.tag = 301;
     [self.view addSubview:bgView];
     CreateBtn* btnView = [[CreateBtn alloc] initWithFrame:CGRectMake(0, 0, 47, 47)];
     btnView.tag = 302;
-    btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 12.0);
+    btnView.center = CGPointMake(mainframe.size.width/2.0, mainframe.size.height-btnView.frame.size.height/2.0 - 12.0);
     btnView.layer.transform = CATransform3DMakeRotation(-M_PI*2.0-M_PI_4,0,0,1);
     [bgView addSubview:btnView];
-    CGFloat h = self.view.frame.size.height;
-    CGFloat w = self.view.frame.size.width;
+    CGFloat h = mainframe.size.height;
+    CGFloat w = mainframe.size.width;
     CGFloat ih = 478.0/2.0*(h-80.0)/488.0;
     CGFloat iw = 296.0/2.0*w/320.0;
     if (h == 480.0) {

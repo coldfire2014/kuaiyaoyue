@@ -21,6 +21,7 @@
 #import "CHWLEditorViewController.h"
 #import "TalkingData.h"
 #import "ZipDown.h"
+
 @interface TemplateViewController (){
     NSString *neftypeId;
     NSArray *data;
@@ -29,7 +30,6 @@
     CGFloat blue;
     UIColor* nowColor;
     UIColor* nowkColor;
-
     NSString *unquieId;
     NSString *nefmbdw;
 }
@@ -56,20 +56,20 @@
     }
     bk.tag = 289;
     [self.view addSubview:bk];
-    UIView* bgView = [[UIView alloc] initWithFrame:self.view.bounds];
+    CGRect mainScreenFrame = [[UIScreen mainScreen] bounds];
+    CGFloat subTap = -20;
+    if (ISIOS7LATER) {
+        subTap = 0;
+    }
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        mainScreenFrame = IPAD_FRAME;
+    }
+    CGFloat titleHeight = 30;
+    UIView* bgView = [[UIView alloc] initWithFrame:mainScreenFrame];
     bgView.backgroundColor = bgCover;
     bgView.layer.opacity = 1;
     bgView.tag = 301;
     [bk addSubview:bgView];
-    //    这段兼容ios6
-    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
-    
-    CGFloat subTap = -20;
-    if (ISIOS7LATER) {
-        mainScreenFrame = [[UIScreen mainScreen] bounds];//568,667
-        subTap = 0;
-    }
-    CGFloat titleHeight = 30;
     //列表布局
     _tempList = [[ctView alloc] initWithFrame:CGRectMake(5,20+44+titleHeight + subTap,mainScreenFrame.size.width-10,mainScreenFrame.size.height-60-20-44-titleHeight- subTap)];
     
@@ -148,7 +148,7 @@
     
     EditBtn* btnView = [[EditBtn alloc] initWithFrame:CGRectMake(0, 0, 47, 47)];
     btnView.tag = 302;
-    btnView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height-btnView.frame.size.height/2.0 - 12.0);
+    btnView.center = CGPointMake(mainScreenFrame.size.width/2.0, mainScreenFrame.size.height-btnView.frame.size.height/2.0 - 12.0);
 //    btnView.layer.transform = CATransform3DMakeRotation(-M_PI*2.0-M_PI_4,0,0,1);
     [self.view addSubview:btnView];
     

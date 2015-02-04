@@ -750,7 +750,7 @@
         PreviewViewController *view = [[PreviewViewController alloc] init];
         view.type = 1;
         view.delegate = self;
-        view.modalPresentationStyle = UIModalPresentationFullScreen;
+        view.modalPresentationStyle = UIModalPresentationFormSheet;
         view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:view animated:YES completion:^{
             
