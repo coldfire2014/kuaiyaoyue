@@ -11,6 +11,7 @@
 #import "waitingView.h"
 #import "TalkingData.h"
 #import "WebNavBar.h"
+#import "PCHeader.h"
 @interface WebViewController ()
 
 @end
@@ -20,9 +21,10 @@
 {
     self = [super init];
     if (self) {
-//        CGFloat w = 320;
-//        CGFloat h = 620;
-//        self.preferredContentSize = CGSizeMake(w, h);
+        CGFloat w = 320;
+        CGFloat h = 620;
+        self.preferredContentSize = CGSizeMake(w, h);
+//        self.view.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -31,13 +33,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"返回";
+    self.view.backgroundColor = [UIColor redColor];
     CGFloat w = [[UIScreen mainScreen] bounds].size.width;
     CGFloat h = [[UIScreen mainScreen] bounds].size.height;
     self.view.frame = [UIScreen mainScreen].bounds;
     CGFloat top = 20.0;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         top = 0.0;
-        w = 540;
+        if (ISIOS8LATER) {
+            w = 320;
+        } else {
+            w = 540;
+        }
         h = 620;
         self.view.frame = CGRectMake(0, 0, w, h);
     }

@@ -692,6 +692,7 @@
         view.weburl = user.nefurl;
         view.viewTitle = @"生成后预览";
         view.modalPresentationStyle = UIModalPresentationFormSheet;
+        //UIModalPresentationOverFullScreen 全屏对下透明
         view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:view animated:YES completion:^{
             
