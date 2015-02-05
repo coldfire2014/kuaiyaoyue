@@ -351,7 +351,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-//    [self GetRecord];
+    [self GetRecord];//markwyb
 }
 
 -(void)changeTimeAtTimedisplay{
