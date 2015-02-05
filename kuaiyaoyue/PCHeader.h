@@ -20,7 +20,7 @@
     #define ChannelId @"Studio"
     #define UZIP @"ZIPS201"
     #define DURL @"http://fir.im/kyyStudio"
-    #define STOREDIR @"http://appkyy.kyy121.com/studio/static/feedback.html"
+    #define STOREDIR @"http://appkyy.kyy121.com/static/feedback.html?appId=kuaiyaoyue-snapshot"
     #define PIC_URL @"http://www.kyy121.com/fss/studio/"
 #else
     #define YINGLOUURL @""

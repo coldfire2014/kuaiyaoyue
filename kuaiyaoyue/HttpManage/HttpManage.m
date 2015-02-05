@@ -743,7 +743,7 @@ closeTimestamp:(NSString *)closeTimestamp
         callback(NO,nil);
     }];
 }
-
+//markwyb
 /*
 查看报名人数
  uniqueId:"1",  //邀约编号
