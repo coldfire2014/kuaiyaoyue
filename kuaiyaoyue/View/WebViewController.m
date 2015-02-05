@@ -16,7 +16,16 @@
 @end
 
 @implementation WebViewController
-
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+//        CGFloat w = 320;
+//        CGFloat h = 620;
+//        self.preferredContentSize = CGSizeMake(w, h);
+    }
+    return self;
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];

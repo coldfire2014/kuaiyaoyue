@@ -175,9 +175,9 @@
                     [[DataBaseManage getDataBaseManage] AddUserdata:dic type:2];
                 }
             }
-            [self loaddata];
+            [self reloaddata];
         }else{
-            [self loaddata];
+            [self reloaddata];
         }
     }];
 }
@@ -276,7 +276,20 @@
         }];
     }
 }
-
+-(void)reloaddata{
+    data = [[NSMutableArray alloc] init];
+    NSArray *arr = [[DataBaseManage getDataBaseManage] getUserdata];
+    if (arr==nil || arr.count == 0) {
+//        [self GetRecord];
+    } else {
+        for (Userdata *user in arr) {
+            [data addObject:user];
+        }
+        run = 0;
+        [self showToptitle];
+        [_tableview reloadData];
+    }
+}
 -(void)loaddata{
     data = [[NSMutableArray alloc] init];
     NSArray *arr = [[DataBaseManage getDataBaseManage] getUserdata];
