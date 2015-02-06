@@ -33,7 +33,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"返回";
-    self.view.backgroundColor = [UIColor redColor];
     CGFloat w = [[UIScreen mainScreen] bounds].size.width;
     CGFloat h = [[UIScreen mainScreen] bounds].size.height;
     self.view.frame = [UIScreen mainScreen].bounds;

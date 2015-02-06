@@ -501,15 +501,28 @@ closeTimestamp:(NSString *)closeTimestamp
  查询历史记录
  token:" fab46ace-1bea-4915-a9a1-f143fc49263f"
  size:10   //查询条数   值为-1时 查询全部
+ queryType:
  */
 +(void)multiHistory:(NSString *)token
                timestamp:(NSString *)timestamp
                size:(NSString *)size
                  cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
-    
+    NSString* queryType = @"";
+    if ([timestamp compare:@"-1"] == NSOrderedSame) {
+        queryType = @"failure";
+        NSString * ts = [UDObject getTimestamp];
+        if (ts == nil || [ts compare:@""] == NSOrderedSame) {
+            queryType = @"success";
+        }else{
+            timestamp = ts;
+        }
+    } else {
+        queryType = @"success";
+    }
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                         token,@"token",timestamp,@"timestamp",
                         @"ios",@"equipment",version,@"version",
+//                        queryType,@"queryType",
                         size,@"size",nil];
     
     [[AFConnectionAPIClient sharedClient] POST:@"nozzle/NefUserData/multiHistory.aspx" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {

@@ -309,6 +309,7 @@ static NSManagedObjectContext *context = nil;
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Userdata"];
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"nefdate" ascending:NO];
     NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
+    
     [request setSortDescriptors: sortDescriptors];
     NSPredicate *predict = [NSPredicate predicateWithFormat:@"(nefAccount = %@)",[UDObject getAccount]];
     

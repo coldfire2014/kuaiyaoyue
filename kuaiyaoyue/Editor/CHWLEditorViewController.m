@@ -1075,7 +1075,7 @@
 }
 
 -(void)GetRecord{
-    [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" size:@"1" cb:^(BOOL isOK, NSDictionary *array) {
+    [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" size:@"-1" cb:^(BOOL isOK, NSDictionary *array) {
         NSLog(@"%@",array);
         if (isOK) {
             NSArray *customList = [array objectForKey:@"customList"];

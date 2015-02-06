@@ -41,6 +41,8 @@
 
 +(void)sethl_imgarr:(NSString *)imgarr;
 
++(NSString *)getTimestamp;
++(void)setTimestamp:(NSString *)time_s;
 //婚礼存储
 +(void)setHLContent:(NSString *) xl_name xn_name:(NSString *)xn_name hltime:(NSString *)hltime bmendtime:(NSString *)bmendtime address_name:(NSString *)address_name music:(NSString *)music musicname:(NSString *)musicname imgarr:(NSString *)imgarr;
 +(NSString *)getxl_name;

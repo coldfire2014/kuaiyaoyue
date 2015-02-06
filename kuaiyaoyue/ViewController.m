@@ -34,7 +34,7 @@
     NSTimeInterval endtime;
     NSTimeInterval datatime;
     NSString *maxnum;
-    
+    BOOL inGetRecord;
     int run;
     UITableViewCellEditingStyle selectEditingStyle;
     BOOL is_chose;
@@ -54,6 +54,7 @@
 
 - (void)viewDidLoad {
     is_bcfs = NO;
+    inGetRecord = NO;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"返回";
@@ -92,14 +93,16 @@
     [self loaddata];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(GetRecord) name:@"message" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(message) name:@"message" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bcfs) name:@"MSG_BCFS" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loaddata) name:@"MSG_FS" object:nil];
 
 }
-
+-(void)message{
+    [self GetRecord:@"-1"];
+}
 -(void)bcfs{
     [self loaddata];
     Userdata *user = [data objectAtIndex:0];
@@ -150,36 +153,57 @@
     
 }
 
--(void)GetRecord{
-    [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" size:@"30" cb:^(BOOL isOK, NSDictionary *array) {
-        NSLog(@"%@",array);
-        if (isOK) {
-            NSArray *customList = [array objectForKey:@"customList"];
-            for (NSDictionary *dic in customList) {
-                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
-                if (!is_bcz) {
-                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:0];
+-(void)GetRecord:(NSString*)count{
+    if (!inGetRecord) {
+        inGetRecord = YES;
+        [HttpManage multiHistory:[UDObject gettoken] timestamp:@"-1" size:count cb:^(BOOL isOK, NSDictionary *array) {
+            if (isOK) {
+                BOOL needReload = NO;
+                NSNumber* ts_max = [NSNumber numberWithDouble:-1];
+                NSArray *customList = [array objectForKey:@"customList"];
+                for (NSDictionary *dic in customList) {
+                    NSNumber* num = [dic valueForKey:@"date"];
+                    if ([num compare:ts_max] == NSOrderedDescending) {
+                        ts_max = num;
+                    }
+                    needReload = YES;
+                    BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                    if (!is_bcz) {
+                        [[DataBaseManage getDataBaseManage] AddUserdata:dic type:0];
+                    }
+                }
+                NSArray *marryList = [array objectForKey:@"marryList"];
+                for (NSDictionary *dic in marryList) {
+                    NSNumber* num = [dic valueForKey:@"date"];
+                    if ([num compare:ts_max] == NSOrderedDescending) {
+                        ts_max = num;
+                    }
+                    needReload = YES;
+                    BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                    if (!is_bcz) {
+                        [[DataBaseManage getDataBaseManage] AddUserdata:dic type:1];
+                    }
+                }
+                NSArray *partyList = [array objectForKey:@"partyList"];
+                for (NSDictionary *dic in partyList) {
+                    NSNumber* num = [dic valueForKey:@"date"];
+                    if ([num compare:ts_max] == NSOrderedDescending) {
+                        ts_max = num;
+                    }
+                    needReload = YES;
+                    BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                    if (!is_bcz) {
+                        [[DataBaseManage getDataBaseManage] AddUserdata:dic type:2];
+                    }
+                }
+                if (needReload) {
+                    [self reloaddata];
+                    [UDObject setTimestamp:[ts_max description]];
                 }
             }
-            NSArray *marryList = [array objectForKey:@"marryList"];
-            for (NSDictionary *dic in marryList) {
-                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
-                if (!is_bcz) {
-                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:1];
-                }
-            }
-            NSArray *partyList = [array objectForKey:@"partyList"];
-            for (NSDictionary *dic in partyList) {
-                BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
-                if (!is_bcz) {
-                    [[DataBaseManage getDataBaseManage] AddUserdata:dic type:2];
-                }
-            }
-            [self reloaddata];
-        }else{
-            [self reloaddata];
-        }
-    }];
+            inGetRecord = NO;
+        }];
+    }
 }
 
 -(void)getBottomRecord{
@@ -187,91 +211,35 @@
         Userdata *user = [data objectAtIndex:[data count] - 1];
         NSString* timestamp = user.nefdate;
         [HttpManage multiHistory:[UDObject gettoken] timestamp:timestamp size:@"30" cb:^(BOOL isOK, NSDictionary *array) {
-            NSLog(@"%@",array);
             if (isOK) {
+                BOOL needReload = NO;
                 NSArray *customList = [array objectForKey:@"customList"];
                 for (NSDictionary *dic in customList) {
-                    Userdata *userdata = [data objectAtIndex:0];
-                    userdata.neftitle = [dic objectForKey:@"title"];
-                    userdata.neflogo = [dic objectForKey:@"logo"];
-                    userdata.nefmusic = [dic objectForKey:@"music"];
-                    userdata.nefcontent = [dic objectForKey:@"content"];
-                    userdata.neftimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
-                    userdata.nefdate = [NSString stringWithFormat:@"%@",[dic objectForKey:@"date"]];
-                    userdata.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
-                    userdata.neftemplateurl = [dic objectForKey:@"templateUrl"];
-                    userdata.nefurl = [dic objectForKey:@"url"];
-                    userdata.neftypeId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"typeId"]];
-                    userdata.nefthumb = [NSString stringWithFormat:@"%@",[dic objectForKey:@"thumb"]];
-                    userdata.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
-                    userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
-                    userdata.neftype = 0;
-                    [data addObject:userdata];
-                    
+                    needReload = YES;
+                    BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                    if (!is_bcz) {
+                        [[DataBaseManage getDataBaseManage] AddUserdata:dic type:0];
+                    }
                 }
                 NSArray *marryList = [array objectForKey:@"marryList"];
                 for (NSDictionary *dic in marryList) {
-                    Userdata *userdata = [data objectAtIndex:0];
-                    userdata.nefid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"unquieId"]];
-                    userdata.nefbride = [dic objectForKey:@"bride"];
-                    userdata.nefgroom = [dic objectForKey:@"groom"];
-                    userdata.nefaddress = [dic objectForKey:@"address"];
-                    userdata.neflocation = [dic objectForKey:@"location"];
-                    NSArray *arr = [dic objectForKey:@"images"];
-                    if (arr != nil) {
-                        userdata.nefimages = [arr componentsJoinedByString:@","];
-                    }else{
-                        userdata.nefimages = @"";
+                    needReload = YES;
+                    BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                    if (!is_bcz) {
+                        [[DataBaseManage getDataBaseManage] AddUserdata:dic type:1];
                     }
-                    userdata.neftimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
-                    userdata.nefdate = [NSString stringWithFormat:@"%@",[dic objectForKey:@"date"]];
-                    userdata.nefurl = [dic objectForKey:@"url"];
-                    userdata.neftypeId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"typeId"]];
-                    userdata.neftemplateurl = [dic objectForKey:@"templateUrl"];
-                    userdata.nefbackground = [dic objectForKey:@"background"];
-                    userdata.nefmusicurl = [dic objectForKey:@"musicUrl"];
-                    userdata.nefthumb = [NSString stringWithFormat:@"%@",[dic objectForKey:@"thumb"]];
-                    userdata.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
-                    userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
-                    userdata.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
-                    userdata.neftype = 1;
-                    [data addObject:userdata];
                 }
                 NSArray *partyList = [array objectForKey:@"partyList"];
                 for (NSDictionary *dic in partyList) {
-                    Userdata *userdata = [data objectAtIndex:0];
-                    
-                    userdata.nefid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"unquieId"]];
-                    userdata.nefinviter = [dic objectForKey:@"inviter"];
-                    userdata.nefaddress = [dic objectForKey:@"address"];
-                    NSArray *arr = [dic objectForKey:@"images"];
-                    if (arr != nil) {
-                        userdata.nefimages = [arr componentsJoinedByString:@","];
-                    }else{
-                        userdata.nefimages = @"";
+                    needReload = YES;
+                    BOOL is_bcz = [[DataBaseManage getDataBaseManage] GetUpUserdata:dic];
+                    if (!is_bcz) {
+                        [[DataBaseManage getDataBaseManage] AddUserdata:dic type:2];
                     }
-                    userdata.neftape = [dic objectForKey:@"tape"];
-                    userdata.nefgroom = [dic objectForKey:@"contact"];
-                    userdata.neftimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"timestamp"]];
-                    userdata.nefclosetimestamp = [NSString stringWithFormat:@"%@",[dic objectForKey:@"closeTimestamp"]];
-                    userdata.nefdescription = [dic objectForKey:@"description"];
-                    userdata.nefdate = [NSString stringWithFormat:@"%@",[dic objectForKey:@"date"]];
-                    userdata.nefurl = [dic objectForKey:@"url"];
-                    userdata.neftypeId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"typeId"]];
-                    userdata.nefpartyname = [dic objectForKey:@"partyName"];
-                    userdata.neftemplateurl = [dic objectForKey:@"templateUrl"];
-                    userdata.nefcardtypeId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"cardTypeId"]];
-                    userdata.nefthumb = [NSString stringWithFormat:@"%@",[dic objectForKey:@"thumb"]];
-                    userdata.nefnumber = [NSString stringWithFormat:@"%@",[dic objectForKey:@"number"]];
-                    userdata.neftotal = [NSString stringWithFormat:@"%@",[dic objectForKey:@"total"]];
-                    userdata.neftype = 2;
-                    [data addObject:userdata];
                 }
-                run = 0;
-                [self showToptitle];
-                [_tableview reloadData];
-            }else{
-            
+                if (needReload) {
+                    [self reloaddata];
+                }
             }
         }];
     }
@@ -280,7 +248,6 @@
     data = [[NSMutableArray alloc] init];
     NSArray *arr = [[DataBaseManage getDataBaseManage] getUserdata];
     if (arr==nil || arr.count == 0) {
-//        [self GetRecord];
     } else {
         for (Userdata *user in arr) {
             [data addObject:user];
@@ -294,7 +261,7 @@
     data = [[NSMutableArray alloc] init];
     NSArray *arr = [[DataBaseManage getDataBaseManage] getUserdata];
     if (arr==nil || arr.count == 0) {
-        [self GetRecord];
+        [self GetRecord:@"30"];
     } else {
         for (Userdata *user in arr) {
             [data addObject:user];
@@ -364,7 +331,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    [self GetRecord];//markwyb
+    [self GetRecord:@"-1"];//markwyb
 }
 
 -(void)changeTimeAtTimedisplay{
@@ -445,7 +412,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
         
-        [self GetRecord];
+        [self GetRecord:@"-1"];
         [_tableview headerEndRefreshing];
     });
 }

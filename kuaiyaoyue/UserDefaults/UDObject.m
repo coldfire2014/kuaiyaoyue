@@ -267,5 +267,12 @@
 +(NSString *)getzdyimgarr{
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"zdyimgarr"];
 }
-
++(NSString *)getTimestamp{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"Timestamp"];
+}
++(void)setTimestamp:(NSString *)time_s{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:time_s forKey:@"Timestamp"];
+    [userInfo synchronize];
+}
 @end

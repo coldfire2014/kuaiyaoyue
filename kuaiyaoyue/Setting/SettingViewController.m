@@ -378,7 +378,7 @@
             [UDObject setWLContent:@"" wltime:@"" wlbmendtime:@"" wladdress_name:@"" wllxr_name:@"" wllxfs_name:@"" wlts_name:@"" wlaudio:@"" wlimgarr:@""];
             [UDObject setZDYContent:@"" zdytitle:@"" zdydd:@"" zdytime:@"" zdyendtime:@"" zdymusic:@"" zdymusicname:@"" zdyimgarr:@""];
             [UDObject setUserInfo:@"" userName:@"" token:@""];
-            
+            [UDObject setTimestamp:@""];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"onebyone" object:self userInfo:nil];
             
         }else{
