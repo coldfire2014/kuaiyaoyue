@@ -570,7 +570,9 @@
         des.needAnimation = NO;
         des.delegate = self;
         //        des.transitioningDelegate = self;
-        des.modalPresentationStyle = UIModalPresentationCustom;
+//        des.modalPresentationStyle = UIModalPresentationCustom;
+        des.modalPresentationStyle = UIModalPresentationFormSheet;
+        des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:des animated:YES completion:^{
             
         }];

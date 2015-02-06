@@ -183,7 +183,9 @@
 //    [self AudioPlay:file];
 }
 -(void)viewWillAppear:(BOOL)animated{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }
     [TalkingData trackPageBegin:@"音乐选择页"];
 }
 -(void)viewDidDisappear:(BOOL)animated{
