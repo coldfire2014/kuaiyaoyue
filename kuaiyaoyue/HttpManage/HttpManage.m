@@ -522,7 +522,7 @@ closeTimestamp:(NSString *)closeTimestamp
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                         token,@"token",timestamp,@"timestamp",
                         @"ios",@"equipment",version,@"version",
-//                        queryType,@"queryType",
+                        queryType,@"queryType",
                         size,@"size",nil];
     
     [[AFConnectionAPIClient sharedClient] POST:@"nozzle/NefUserData/multiHistory.aspx" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {

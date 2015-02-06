@@ -15,7 +15,7 @@
 #define YINGLOU @"YINGLOU"
 #ifdef YINGLOU
     #define YINGLOUURL @"http://appkyy.kyy121.com/studio/"
-//    #define YINGLOUURL @"http://10.142.59.108/studio/"
+//    #define YINGLOUURL @"http://192.168.1.191/studio/"
     #define HTTPURL YINGLOUURL
     #define ChannelId @"Studio"
     #define UZIP @"ZIPS201"
