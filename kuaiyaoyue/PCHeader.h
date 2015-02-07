@@ -12,7 +12,7 @@
 #define ISIOS7LATER [[[UIDevice currentDevice] systemVersion] floatValue]>=7
 #define ISIOS8LATER [[[UIDevice currentDevice] systemVersion] floatValue]>=8
 
-#define YINGLOU @"YINGLOU"
+//#define YINGLOU @"YINGLOU"
 #ifdef YINGLOU
     #define YINGLOUURL @"http://appkyy.kyy121.com/studio/"
 //    #define YINGLOUURL @"http://192.168.1.191/studio/"
