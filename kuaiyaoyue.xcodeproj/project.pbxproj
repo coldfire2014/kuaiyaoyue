@@ -1603,7 +1603,7 @@
 				PRODUCT_NAME = "快邀约";
 				PROVISIONING_PROFILE = "eac00dfb-80b7-4abd-8799-adbaa32e4a28";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1638,7 +1638,7 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "快邀约";
 				PROVISIONING_PROFILE = "f55e5626-139a-41d4-b7f6-b468ac19d36d";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
