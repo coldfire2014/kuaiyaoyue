@@ -33,24 +33,30 @@
     myImageView* logo = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 318.0/2.0, 344.0/2.0) andImageName:@"logo_login@2x" withScale:2.0 andAlign:UIImgAlignmentCenter];
     logo.center = CGPointMake(self.view.bounds.size.width/2.0, (self.view.bounds.size.height - 478.0/2.0)/2.0);
     [self.view addSubview:logo];
+    
+    UIView* ipad_bg = [[UIView alloc] initWithFrame:self.view.bounds];
+    ipad_bg.userInteractionEnabled = YES;
+    ipad_bg.tag = 90;
+    ipad_bg.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:ipad_bg];
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 164.0/2.0, self.view.bounds.size.width, 1.0)];
     line.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.1];
-    [self.view addSubview:line];
+    [ipad_bg addSubview:line];
     
     myImageView* login_btn = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 160.0/2.0, 64.0/2.0) andImageName:@"btn_login_1" withScale:2.0];
     login_btn.tag = 103;
-    [self.view addSubview:login_btn];
+    [ipad_bg addSubview:login_btn];
     myImageView* reg_btn = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 160.0/2.0, 64.0/2.0) andImageName:@"btn_login_2" withScale:2.0];
     reg_btn.tag = 104;
-    [self.view addSubview:reg_btn];
+    [ipad_bg addSubview:reg_btn];
     login_btn.center = CGPointMake(self.view.bounds.size.width/2.0-11.0-160.0/4.0, self.view.bounds.size.height-50.0/2.0-64.0/4.0);
     reg_btn.center = CGPointMake(self.view.bounds.size.width/2.0+11.0+160.0/4.0, self.view.bounds.size.height-50.0/2.0-64.0/4.0);
     myImageView* qq_btn = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 360.0/2.0, 84.0/2.0) andImageName:@"btn_login_qq" withScale:2.0];
     qq_btn.tag = 101;
-    [self.view addSubview:qq_btn];
+    [ipad_bg addSubview:qq_btn];
     myImageView* wx_btn = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 360.0/2.0, 84.0/2.0) andImageName:@"btn_login_weixin" withScale:2.0];
     wx_btn.tag = 102;
-    [self.view addSubview:wx_btn];
+    [ipad_bg addSubview:wx_btn];
     qq_btn.center = CGPointMake(self.view.bounds.size.width/2.0, self.view.bounds.size.height-284.0/2.0-84.0*3.0/4.0-26.0/2.0);
     wx_btn.center = CGPointMake(self.view.bounds.size.width/2.0, self.view.bounds.size.height-284.0/2.0-84.0/4.0);
     
@@ -62,6 +68,9 @@
     [login_btn addGestureRecognizer:tap3];
     UITapGestureRecognizer* tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ZCTap:)];
     [reg_btn addGestureRecognizer:tap4];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        ipad_bg.alpha = 0;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,6 +89,20 @@
                                                  name: @"MSG_SDWX"
                                                object: nil];
     //MSG_Regme
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self ipadgoin];
+    }
+}
+-(void)ipadgoin{
+    UIView* ipad_bg = [self.view viewWithTag:90];
+    ipad_bg.layer.transform = CATransform3DMakeTranslation(0, 150, 0);
+    [UIView animateWithDuration:0.3
+     delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+         ipad_bg.alpha = 1;
+         ipad_bg.layer.transform = CATransform3DIdentity;
+     } completion:^(BOOL finished) {
+         
+     }];
 }
 -(void)sdwx :(NSNotification*)notification{
     NSDictionary *dictionary = [notification userInfo];

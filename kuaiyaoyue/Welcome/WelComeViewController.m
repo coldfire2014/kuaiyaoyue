@@ -44,7 +44,16 @@
         if ([[UDObject gettoken] length] > 0) {
             name = @"main";
         }else{
-            name = @"allnew";
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                if ([YINGLOUURL compare:@""] != NSOrderedSame) {
+                    name = @"ylLogin";
+                    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginDine) name:@"MSG_LOGIN_DONE" object:nil];
+                } else {
+                    name = @"ipadLogin";
+                }
+            } else {
+                name = @"allnew";
+            }
         }
         [self performSegueWithIdentifier:name sender:nil];
     }
@@ -56,7 +65,16 @@
         if ([[UDObject gettoken] length] > 0) {
             name = @"main";
         }else{
-            name = @"allnew";
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                if ([YINGLOUURL compare:@""] != NSOrderedSame) {
+                    name = @"ylLogin";
+                    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginDine) name:@"MSG_LOGIN_DONE" object:nil];
+                } else {
+                    name = @"ipadLogin";
+                }
+            } else {
+                name = @"allnew";
+            }
         }
         [self performSegueWithIdentifier:name sender:nil];
     }
@@ -72,13 +90,24 @@
         [delegate updateMata];
         [ZipDown UnzipI];
     }else{
-        name = @"allnew";
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            if ([YINGLOUURL compare:@""] != NSOrderedSame) {
+                name = @"ylLogin";
+            } else {
+                name = @"ipadLogin";
+            }
+        } else {
+            name = @"allnew";
+        }
         zipDone = NO;
         [delegate updateMata];
         [ZipDown Unzip];
     }
 }
-
+-(void)loginDine{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN_DONE" object:nil];
+    [self performSegueWithIdentifier:@"main" sender:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -97,6 +97,8 @@
                     <connections>
                         <segue destination="eGG-ps-HQp" kind="custom" identifier="main" customClass="coverSegue" id="D53-YK-KM5"/>
                         <segue destination="qHT-nQ-aXb" kind="custom" identifier="allnew" customClass="coverSegue" id="qQi-wG-Yfi"/>
+                        <segue destination="Aah-1p-LT9" kind="custom" identifier="ylLogin" customClass="modelSegue" id="nH8-Jy-0fi"/>
+                        <segue destination="gzh-W5-rRm" kind="custom" identifier="ipadLogin" customClass="loginSegue" id="yfj-Uu-bzj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TkI-tn-yyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1924,7 +1926,8 @@
         <image name="logo_login.png" width="159" height="172"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="nH8-Jy-0fi"/>
+        <segue reference="yfj-Uu-bzj"/>
         <segue reference="D53-YK-KM5"/>
-        <segue reference="djN-Hm-cgS"/>
     </inferredMetricsTieBreakers>
 </document>

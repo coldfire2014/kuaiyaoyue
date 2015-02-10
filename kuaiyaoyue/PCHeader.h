@@ -12,7 +12,7 @@
 #define ISIOS7LATER [[[UIDevice currentDevice] systemVersion] floatValue]>=7
 #define ISIOS8LATER [[[UIDevice currentDevice] systemVersion] floatValue]>=8
 
-#define YINGLOU @"YINGLOU"
+//#define YINGLOU @"YINGLOU"
 #ifdef YINGLOU
     #define YINGLOUURL @"http://appkyy.kyy121.com/studio/"
     #define HTTPURL YINGLOUURL
@@ -24,15 +24,14 @@
 #else
     #define YINGLOUURL @""
     #define HTTPURL @"http://appkyy.kyy121.com/invitation/"
-//    #define ChannelId @"appstore"
+//    #define ChannelId @"AppStore"
     #define ChannelId @"test"
     #define UZIP @"ZIP201"
     #define DURL @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
     #define STOREDIR @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
     #define PIC_URL @"http://www.kyy121.com/fss/invitation/"
 #endif
-//#define HTTPURL @"http://test.kyy121.com/"
-//#define HTTPURL @"http://10.142.59.103/"
-#define version @"5"
+//#define version @"5"
+#define version @"4"
 #define IPAD_FRAME CGRectMake(0, 0, MAX([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width),MIN([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width))
 #endif

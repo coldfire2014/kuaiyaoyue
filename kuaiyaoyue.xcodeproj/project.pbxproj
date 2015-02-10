@@ -239,24 +239,24 @@
 		844825881A318C810018240E /* UDObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDObject.m; sourceTree = "<group>"; };
 		8448258B1A318FBE0018240E /* ViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewCell.h; sourceTree = "<group>"; };
 		8448258C1A318FBE0018240E /* ViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewCell.m; sourceTree = "<group>"; };
-		844825E31A31A1AE0018240E /* TemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateViewController.h; sourceTree = "<group>"; };
-		844825E41A31A1AE0018240E /* TemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateViewController.m; sourceTree = "<group>"; };
-		844825E61A31A1D40018240E /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		844825E71A31A1D40018240E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		844825E31A31A1AE0018240E /* TemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TemplateViewController.h; path = ../TemplateViewController.h; sourceTree = "<group>"; };
+		844825E41A31A1AE0018240E /* TemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TemplateViewController.m; path = ../TemplateViewController.m; sourceTree = "<group>"; };
+		844825E61A31A1D40018240E /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = ../MenuViewController.h; sourceTree = "<group>"; };
+		844825E71A31A1D40018240E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = ../MenuViewController.m; sourceTree = "<group>"; };
 		844825EA1A31A46A0018240E /* HLEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEditViewController.h; sourceTree = "<group>"; };
 		844825EB1A31A46A0018240E /* HLEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEditViewController.m; sourceTree = "<group>"; };
 		844825ED1A31A4800018240E /* CHWLEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHWLEditorViewController.h; sourceTree = "<group>"; };
 		844825EE1A31A4800018240E /* CHWLEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHWLEditorViewController.m; sourceTree = "<group>"; };
 		844825F01A31A48A0018240E /* SWYQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWYQViewController.h; sourceTree = "<group>"; };
 		844825F11A31A48A0018240E /* SWYQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWYQViewController.m; sourceTree = "<group>"; };
-		844825F41A31A4D20018240E /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewViewController.h; sourceTree = "<group>"; };
-		844825F51A31A4D20018240E /* PreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewViewController.m; sourceTree = "<group>"; };
+		844825F41A31A4D20018240E /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreviewViewController.h; path = ../PreviewViewController.h; sourceTree = "<group>"; };
+		844825F51A31A4D20018240E /* PreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreviewViewController.m; path = ../PreviewViewController.m; sourceTree = "<group>"; };
 		844825F71A31A9BA0018240E /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		844825F81A31A9BA0018240E /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
 		844825FB1A31B3C40018240E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		844825FC1A31B3C40018240E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		844825FE1A31B3F40018240E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		844825FF1A31B3F40018240E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		844825FE1A31B3F40018240E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../DetailViewController.h; sourceTree = "<group>"; };
+		844825FF1A31B3F40018240E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../DetailViewController.m; sourceTree = "<group>"; };
 		844826041A31B6E30018240E /* YJFKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJFKViewController.h; sourceTree = "<group>"; };
 		844826051A31B6E30018240E /* YJFKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJFKViewController.m; sourceTree = "<group>"; };
 		844CC57F1A48F93900A34186 /* PlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayView.h; sourceTree = "<group>"; };
@@ -636,6 +636,14 @@
 		844825F31A31A4BB0018240E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				844825E61A31A1D40018240E /* MenuViewController.h */,
+				844825E71A31A1D40018240E /* MenuViewController.m */,
+				844825E31A31A1AE0018240E /* TemplateViewController.h */,
+				844825E41A31A1AE0018240E /* TemplateViewController.m */,
+				844825F41A31A4D20018240E /* PreviewViewController.h */,
+				844825F51A31A4D20018240E /* PreviewViewController.m */,
+				844825FE1A31B3F40018240E /* DetailViewController.h */,
+				844825FF1A31B3F40018240E /* DetailViewController.m */,
 				E577FC211A356E31009ED66D /* pic */,
 				E55AD8A11A60D67700DB2771 /* web */,
 				E52760791A4BD1D400D11F5B /* ChangeTempView */,
@@ -832,14 +840,6 @@
 				84E842611A2EDF6B00A401A0 /* AppDelegate.m */,
 				84E842661A2EDF6B00A401A0 /* ViewController.h */,
 				84E842671A2EDF6B00A401A0 /* ViewController.m */,
-				844825E61A31A1D40018240E /* MenuViewController.h */,
-				844825E71A31A1D40018240E /* MenuViewController.m */,
-				844825E31A31A1AE0018240E /* TemplateViewController.h */,
-				844825E41A31A1AE0018240E /* TemplateViewController.m */,
-				844825F41A31A4D20018240E /* PreviewViewController.h */,
-				844825F51A31A4D20018240E /* PreviewViewController.m */,
-				844825FE1A31B3F40018240E /* DetailViewController.h */,
-				844825FF1A31B3F40018240E /* DetailViewController.m */,
 				8460DDD21A4E73A50031416E /* Main.storyboard */,
 				84E842631A2EDF6B00A401A0 /* kuaiyaoyue.xcdatamodeld */,
 				84E8425C1A2EDF6B00A401A0 /* Supporting Files */,
