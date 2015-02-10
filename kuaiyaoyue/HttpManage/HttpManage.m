@@ -524,10 +524,8 @@ closeTimestamp:(NSString *)closeTimestamp
                         @"ios",@"equipment",version,@"version",
                         queryType,@"queryType",
                         size,@"size",nil];
-    
     [[AFConnectionAPIClient sharedClient] POST:@"nozzle/NefUserData/multiHistory.aspx" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         callback(YES,JSON);
-        
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSLog(@"error-%@",error);
         callback(NO,nil);
