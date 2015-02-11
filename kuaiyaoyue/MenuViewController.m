@@ -205,11 +205,11 @@
 }
 - (void)didTapFour{
     self.tapID = 404;
-//    [self performSegueWithIdentifier:@"showTemplate" sender:@"zdy"];
-//    [self performSegueWithIdentifier:@"zdyedit" sender:nil];
-    [self performSegueWithIdentifier:@"newedit" sender:nil];
-    
-//     [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步其他模块。" inTime:0.51];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self performSegueWithIdentifier:@"newedit" sender:nil];
+    } else {
+        [self performSegueWithIdentifier:@"zdyedit" sender:nil];
+    }
     [TalkingData trackEvent:@"开启自定义编辑"];
 }
 
