@@ -206,7 +206,9 @@
 - (void)didTapFour{
     self.tapID = 404;
 //    [self performSegueWithIdentifier:@"showTemplate" sender:@"zdy"];
-    [self performSegueWithIdentifier:@"zdyedit" sender:nil];
+//    [self performSegueWithIdentifier:@"zdyedit" sender:nil];
+    [self performSegueWithIdentifier:@"newedit" sender:nil];
+    
 //     [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步其他模块。" inTime:0.51];
     [TalkingData trackEvent:@"开启自定义编辑"];
 }
@@ -234,7 +236,10 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"getmax" object:self userInfo:nil];
             [[StatusBar sharedStatusBar] talkMsg:@"模板正在下载中..." inTime:1];
         }
-    }else{
+    }else if ([segue.identifier compare:@"newedit"] == NSOrderedSame){
+        
+    }
+    else{
         TemplateViewController* des = (TemplateViewController*)segue.destinationViewController;
         des.bgimg = (UIImage*)self.bgimg;
         des.type = (NSString*)sender;

@@ -54,8 +54,6 @@
                                             andDelegate:self];
     [TalkingData setExceptionReportEnabled:YES];
     [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:ChannelId];
-//        [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"inhouse"];
-//        [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:@"91shouji"];
     [SMS_SDK registerApp:@"4ec26c11eca2" withSecret:@"e80f13299bf5581e40ed33e2d8350cae"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onebyone) name:@"onebyone" object:nil];
@@ -63,9 +61,9 @@
 }
 - (void)updateMata{
     musicController* music = [[musicController alloc] init];
-    [music update];
     templateController* template = [[templateController alloc] init];
     [template update];
+    [music update];
 }
 #ifdef __IPHONE_8_0
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
@@ -252,18 +250,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(QQZoneshare:) name:@"QQZONE_SENDTO" object:nil];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    
-    [self checkToken];
-    [HttpManage edition:@"ios" cb:^(BOOL isOK, NSString *URL) {
-        if (isOK) {
-            if (![URL isEqualToString:@"failure"]) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"版本需更新" message:@"目前版本不是最新版本，请点击更新" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"版本更新", nil];
-                [alert show];
-            }else{
-                
-            }
-        }
-    }];
+    [self performSelectorInBackground:@selector(checkToken) withObject:nil];
 }
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -288,6 +275,7 @@
 
 -(void)checkToken{
     if ([UDObject gettoken].length > 0) {
+        
         [HttpManage checkToken:[UDObject gettoken] cb:^(BOOL isOK, NSDictionary *dic) {
             if (isOK) {
                 if ([[dic objectForKey:@"result"] isEqualToString:@"success"]) {

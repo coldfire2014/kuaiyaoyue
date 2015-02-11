@@ -11,6 +11,7 @@
 #import "PCHeader.h"
 #import "FileManage.h"
 #import "UDObject.h"
+#import "QiniuSDK.h"
 /*
 43    //BadCredentialsException     密码不正确
 53    VerificationTimeoutException    验证码超时
@@ -49,7 +50,6 @@ static NSString * const APIBaseURLString = HTTPURL;
         _sharedClient.requestSerializer = [AFJSONRequestSerializer serializer];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     });
-    
     return _sharedClient;
 }
 - (instancetype)init{
@@ -294,6 +294,7 @@ password:1235456                     //用户密码
 +(void)checkToken:(NSString *)token cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             token,@"token",@"ios",@"equipment",version,@"version",nil];
+    
     [[AFConnectionAPIClient sharedClient] POST:@"nozzle/NefToken/checkToken.aspx" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         callback(YES,JSON);
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
@@ -664,40 +665,102 @@ closeTimestamp:(NSString *)closeTimestamp
     
     return YES;
 }
++(void)getQNTokenAndSendImg:(UIImage *) image name:(NSString *)name callback:(void(^)(BOOL isOK, NSString *URL))callback{
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[UDObject gettoken],@"token",nil];
+    [[AFConnectionAPIClient sharedClient] POST:QNTOKEN parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
+        NSString* token = [JSON objectForKey:@"token"];
+        [UDObject setQNToken:token];
+        QNUploadManager *upManager = [[QNUploadManager alloc] init];
+        NSData* jtdata = UIImageJPEGRepresentation(image,C_JPEG_SIZE);
+        [upManager putData:jtdata key:name token:token
+                  complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+//                      NSLog(@"%@", info);
+//                      NSLog(@"%@", resp);
+                      if(info.statusCode== 200) {
+                          callback(YES ,[NSString stringWithFormat:@"%@%@",QNPCI,[resp objectForKey:@"key"]]);
+                      }else{
+                          callback(NO ,@"");
+                      }
+                  } option:nil];
+    } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
+        callback(NO ,@"");
+    }];
+}
++(void)getQNTokenAndSendfile:(NSString *) file name:(NSString *)name callback:(void(^)(BOOL isOK, NSString *URL))callback{
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[UDObject gettoken],@"token",nil];
+    [[AFConnectionAPIClient sharedClient] POST:QNTOKEN parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
+        NSString* token = [JSON objectForKey:@"token"];
+        [UDObject setQNToken:token];
+        QNUploadManager *upManager = [[QNUploadManager alloc] init];
+        NSData *data = [NSData dataWithContentsOfFile: file];
+        [upManager putData:data key:name token:token
+                  complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+//                      NSLog(@"%@", info);
+//                      NSLog(@"%@", resp);
+                      if(info.statusCode== 200) {
+                          callback(YES ,[NSString stringWithFormat:@"%@%@",QNPCI,[resp objectForKey:@"key"]]);
+                      }else{
+                          callback(NO ,@"");
+                      }
+                  } option:nil];
+    } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
+        callback(NO ,@"");
+    }];
+}
 /*
  文件上传-图片
  */
 +(void)uploadTP:(UIImage *) image name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback{
-    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:12 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        NSData* jtdata = UIImageJPEGRepresentation(image,C_JPEG_SIZE);
-        [formData appendPartWithFileData:jtdata name:@"files" fileName:name mimeType:@"image/jpeg"];
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        callback(YES,[responseObject objectForKey:@"url"]);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSString* res = operation.responseString;
-        if (nil != res) {
-            NSData* resData=[res dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
-            NSDictionary *err = [resultDic objectForKey:@"error"];
-            NSString* code = [err objectForKey:@"code"];
-            if ([code longLongValue] == 34) {
-                NSArray* sub_errs = [err objectForKey:@"subErrors"];
-                NSDictionary* sub_err = [sub_errs objectAtIndex:0];
-                NSString* codes = [sub_err objectForKey:@"code"];
-                if([codes longLongValue] == 1) {
-                    callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
-                }else{
-                    callback(NO ,@"");
-                }
-            } else {
-                callback(NO ,@"");
-            }
-        }else{
-            callback(NO ,@"");
-        }
-    }];
+    
+    NSString* token = [UDObject getQNToken];
+    if (token == nil || [token compare:@""] == NSOrderedSame) {
+        [HttpManage getQNTokenAndSendImg:image name:name callback:callback];
+        return;
+    }
+    QNUploadManager *upManager = [[QNUploadManager alloc] init];
+    NSData* jtdata = UIImageJPEGRepresentation(image,C_JPEG_SIZE);
+    [upManager putData:jtdata key:name token:token
+              complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+//                  NSLog(@"%@", info);
+//                  NSLog(@"%@", resp);
+                  if(info.statusCode== 200) {
+                      callback(YES ,[NSString stringWithFormat:@"%@%@",QNPCI,[resp objectForKey:@"key"]]);
+                  }else if(info.statusCode== 401){
+                      [HttpManage getQNTokenAndSendImg:image name:name callback:callback];
+                  }else{
+                      callback(NO ,@"");
+                  }
+              } option:nil];
+//    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
+//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:12 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        NSData* jtdata = UIImageJPEGRepresentation(image,C_JPEG_SIZE);
+//        [formData appendPartWithFileData:jtdata name:@"files" fileName:name mimeType:@"image/jpeg"];
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        callback(YES,[responseObject objectForKey:@"url"]);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSString* res = operation.responseString;
+//        if (nil != res) {
+//            NSData* resData=[res dataUsingEncoding:NSUTF8StringEncoding];
+//            NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+//            NSDictionary *err = [resultDic objectForKey:@"error"];
+//            NSString* code = [err objectForKey:@"code"];
+//            if ([code longLongValue] == 34) {
+//                NSArray* sub_errs = [err objectForKey:@"subErrors"];
+//                NSDictionary* sub_err = [sub_errs objectAtIndex:0];
+//                NSString* codes = [sub_err objectForKey:@"code"];
+//                if([codes longLongValue] == 1) {
+//                    callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
+//                }else{
+//                    callback(NO ,@"");
+//                }
+//            } else {
+//                callback(NO ,@"");
+//            }
+//        }else{
+//            callback(NO ,@"");
+//        }
+//    }];
 }
 
 /*
@@ -705,37 +768,59 @@ closeTimestamp:(NSString *)closeTimestamp
  */
 
 +(void)uploadYP :(NSString *)file name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback{
+    NSLog(@"intime");
+    NSString* token = [UDObject getQNToken];
+    if (token == nil || [token compare:@""] == NSOrderedSame) {
+        [HttpManage getQNTokenAndSendfile:file name:name callback:callback];
+        return;
+    }
+    QNUploadManager *upManager = [[QNUploadManager alloc] init];
+    NSData *data = [NSData dataWithContentsOfFile: file];
+    [upManager putData:data key:name token:token
+              complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+//                  NSLog(@"%@", info);
+//                  NSLog(@"%@", resp);
+                  NSLog(@"outtime");
+                  if(info.statusCode== 200) {
+                      callback(YES ,[NSString stringWithFormat:@"%@%@",QNPCI,[resp objectForKey:@"key"]]);
+                  }else if(info.statusCode== 401){
+                      [HttpManage getQNTokenAndSendfile:file name:name callback:callback];
+                  }else{
+                      callback(NO ,@"");
+                  }
+              } option:nil];
     
-    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:20 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        NSData *data = [NSData dataWithContentsOfFile: file];
-        [formData appendPartWithFileData:data name:@"files" fileName:name mimeType:@"audio/wav"];
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        callback(YES ,[responseObject objectForKey:@"url"]);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSString* res = operation.responseString;
-        if (nil != res) {
-            NSData* resData=[res dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
-            NSDictionary *err = [resultDic objectForKey:@"error"];
-            NSString* code = [err objectForKey:@"code"];
-            if ([code longLongValue] == 34) {
-                NSArray* sub_errs = [err objectForKey:@"subErrors"];
-                NSDictionary* sub_err = [sub_errs objectAtIndex:0];
-                NSString* codes = [sub_err objectForKey:@"code"];
-                if([codes longLongValue] == 1) {
-                    callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
-                }else{
-                    callback(NO ,@"");
-                }
-            } else {
-                callback(NO ,@"");
-            }
-        }else{
-            callback(NO ,@"");
-        }
-    }];
+//    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
+//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:20 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        NSData *data = [NSData dataWithContentsOfFile: file];
+//        [formData appendPartWithFileData:data name:@"files" fileName:name mimeType:@"audio/wav"];
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"ontime");
+//        callback(YES ,[responseObject objectForKey:@"url"]);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSString* res = operation.responseString;
+//        if (nil != res) {
+//            NSData* resData=[res dataUsingEncoding:NSUTF8StringEncoding];
+//            NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+//            NSDictionary *err = [resultDic objectForKey:@"error"];
+//            NSString* code = [err objectForKey:@"code"];
+//            if ([code longLongValue] == 34) {
+//                NSArray* sub_errs = [err objectForKey:@"subErrors"];
+//                NSDictionary* sub_err = [sub_errs objectAtIndex:0];
+//                NSString* codes = [sub_err objectForKey:@"code"];
+//                if([codes longLongValue] == 1) {
+//                    callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
+//                }else{
+//                    callback(NO ,@"");
+//                }
+//            } else {
+//                callback(NO ,@"");
+//            }
+//        }else{
+//            callback(NO ,@"");
+//        }
+//    }];
 }
 
 /*

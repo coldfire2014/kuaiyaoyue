@@ -261,6 +261,7 @@
     data = [[NSMutableArray alloc] init];
     NSArray *arr = [[DataBaseManage getDataBaseManage] getUserdata];
     if (arr==nil || arr.count == 0) {
+        [self showToptitle];
         [self GetRecord:@"30"];
     } else {
         for (Userdata *user in arr) {

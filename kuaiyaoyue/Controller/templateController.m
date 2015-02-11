@@ -17,47 +17,7 @@
 -(void)update{
     NSArray *fetchedObjects = [[DataBaseManage getDataBaseManage] QueryTemplate];
     if ([fetchedObjects count] > 0) {
-        Template *template = [fetchedObjects objectAtIndex:0];
-        NSString *timestamp = template.neftimestamp;
-        [self maxtemplate :timestamp];
-        NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-        NSString *uptime = [userInfo objectForKey:@"renewalUptime"];
-        if (uptime == nil) {
-            uptime = timestamp;
-        }
-        [HttpManage templateRenewal:uptime cb:^(BOOL isOK, NSArray *array) {
-            if (isOK) {
-                for (int i = 0; i < [array count]; i++) {
-                    NSDictionary *dic = [array objectAtIndex:i];
-                    [[DataBaseManage getDataBaseManage] UpTemplate:dic];
-                    NSString *renewalType = [dic objectForKey:@"renewalType"];
-                    if ([renewalType isEqualToString:@"coordinate"]) {
-                        [[DataBaseManage getDataBaseManage] UpdataInfo:dic];
-                    }else{
-                        NSString *background = [dic objectForKey:@"background"];
-                        NSString *thumbUrl = [dic objectForKey:@"preview"];
-                        NSString *preview = [dic objectForKey:@"thumbUrl"];
-                        NSArray *array = [background componentsSeparatedByString:@"/"];
-                        NSString *bname = [array objectAtIndex:([array count] - 4)];
-                        NSString *name = [NSString stringWithFormat:@"%@/assets/images/base",bname];
-                        name = [[FileManage sharedFileManage] getImgPath:name];
-                        NSString *pname = [NSString stringWithFormat:@"%@/assets/images/preview",bname];
-                        pname = [[FileManage sharedFileManage] getImgPath:pname];
-                        NSString *tname = [NSString stringWithFormat:@"%@/assets/images/thumb",bname];
-                        tname = [[FileManage sharedFileManage] getImgPath:tname];
-                        [HttpManage postdownloadimg:background :name];
-                        [HttpManage postdownloadimg:preview :pname];
-                        [HttpManage postdownloadimg:thumbUrl :tname];
-                    }
-                    if (i == ([array count]-1)) {
-                        NSDictionary *dic1 = [array objectAtIndex:0];
-                        NSString *uptime = [dic1 objectForKey:@"renewal"];
-                        [userInfo setObject:uptime forKey:@"renewalUptime"];
-                        [userInfo synchronize];
-                    }
-                }
-            }
-        }];
+        [self performSelectorInBackground:@selector(updatetemplate:) withObject:fetchedObjects];
 
     }else{
         NSBundle *bundle = [NSBundle mainBundle];
@@ -71,7 +31,49 @@
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DOWNLOAD_DONE" object:nil];
 }
-
+-(void)updatetemplate:(NSArray*)fetchedObjects{
+    Template *template = [fetchedObjects objectAtIndex:0];
+    NSString *timestamp = template.neftimestamp;
+    [self maxtemplate :timestamp];
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    NSString *uptime = [userInfo objectForKey:@"renewalUptime"];
+    if (uptime == nil) {
+        uptime = timestamp;
+    }
+    [HttpManage templateRenewal:uptime cb:^(BOOL isOK, NSArray *array) {
+        if (isOK) {
+            for (int i = 0; i < [array count]; i++) {
+                NSDictionary *dic = [array objectAtIndex:i];
+                [[DataBaseManage getDataBaseManage] UpTemplate:dic];
+                NSString *renewalType = [dic objectForKey:@"renewalType"];
+                if ([renewalType isEqualToString:@"coordinate"]) {
+                    [[DataBaseManage getDataBaseManage] UpdataInfo:dic];
+                }else{
+                    NSString *background = [dic objectForKey:@"background"];
+                    NSString *thumbUrl = [dic objectForKey:@"preview"];
+                    NSString *preview = [dic objectForKey:@"thumbUrl"];
+                    NSArray *array = [background componentsSeparatedByString:@"/"];
+                    NSString *bname = [array objectAtIndex:([array count] - 4)];
+                    NSString *name = [NSString stringWithFormat:@"%@/assets/images/base",bname];
+                    name = [[FileManage sharedFileManage] getImgPath:name];
+                    NSString *pname = [NSString stringWithFormat:@"%@/assets/images/preview",bname];
+                    pname = [[FileManage sharedFileManage] getImgPath:pname];
+                    NSString *tname = [NSString stringWithFormat:@"%@/assets/images/thumb",bname];
+                    tname = [[FileManage sharedFileManage] getImgPath:tname];
+                    [HttpManage postdownloadimg:background :name];
+                    [HttpManage postdownloadimg:preview :pname];
+                    [HttpManage postdownloadimg:thumbUrl :tname];
+                }
+                if (i == ([array count]-1)) {
+                    NSDictionary *dic1 = [array objectAtIndex:0];
+                    NSString *uptime = [dic1 objectForKey:@"renewal"];
+                    [userInfo setObject:uptime forKey:@"renewalUptime"];
+                    [userInfo synchronize];
+                }
+            }
+        }
+    }];
+}
 -(void)maxtemplate:(NSString *)timestamp{
     [HttpManage template:timestamp size:@"-1" cb:^(BOOL isOK, NSMutableArray *array) {
         if (isOK) {

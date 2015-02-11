@@ -22,6 +22,7 @@
                     <connections>
                         <segue destination="Ltv-6U-l87" kind="show" identifier="showTemplate" id="ELY-CD-8Dq"/>
                         <segue destination="8mc-rE-7os" kind="show" identifier="zdyedit" id="X3g-3s-8JD"/>
+                        <segue destination="fow-92-zGZ" kind="custom" identifier="newedit" customClass="editSegue" id="REU-ia-zZd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hij-Rl-7gw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -395,6 +396,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giO-uz-hMR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1614" y="52"/>
+        </scene>
+        <!--Edit View Controller-->
+        <scene sceneID="dlA-QJ-eZ2">
+            <objects>
+                <viewController id="fow-92-zGZ" customClass="EditViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vt1-J4-4Gz"/>
+                        <viewControllerLayoutGuide type="bottom" id="UKP-Sx-qAH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C2W-y2-ObN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ErD-mZ-J9M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="618" y="-703"/>
         </scene>
         <!--Custom View Controller-->
         <scene sceneID="Gl5-hD-dEh">
@@ -931,7 +950,7 @@
         <!--View Controller-->
         <scene sceneID="VGg-Og-T4r">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="TWI-rP-7Mz" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" extendedLayoutIncludesOpaqueBars="YES" id="TWI-rP-7Mz" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jHc-O0-CXD"/>
                         <viewControllerLayoutGuide type="bottom" id="3P0-pR-epE"/>

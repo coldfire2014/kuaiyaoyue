@@ -275,4 +275,12 @@
     [userInfo setValue:time_s forKey:@"Timestamp"];
     [userInfo synchronize];
 }
++(NSString*)getQNToken{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"QNToken"];
+}
++(void)setQNToken:(NSString *)qnToken{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:qnToken forKey:@"QNToken"];
+    [userInfo synchronize];
+}
 @end

@@ -55,7 +55,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_GO_LOGIN" object:nil];
 }
 -(void)gologin{
-    if ([YINGLOUURL compare:@""] != NSOrderedSame) {
+    NSString* ss =YINGLOUURL;
+    if ([ss compare:@""] != NSOrderedSame) {
         [self performSegueWithIdentifier:@"login" sender:nil];
     } else {
         [self performSegueWithIdentifier:@"commonLogin" sender:nil];
