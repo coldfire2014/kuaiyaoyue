@@ -11,6 +11,22 @@
 #import "ipadbg.h"
 #import "myImageView.h"
 #import "ipadTabItem.h"
+#import "MusicViewController.h"
+#import "PECropViewController.h"
+#import <AVFoundation/AVFoundation.h>
+#import "ImgCollectionViewController.h"
+#import "DatetimeInput.h"
+#import "FileManage.h"
+#import "DataBaseManage.h"
+#import "NSInfoImg.h"
+#import "Info.h"
+#import "Fixeds.h"
+#import "UDObject.h"
+#import "HttpManage.h"
+#import "StatusBar.h"
+#import "PreviewViewController.h"
+#import "TalkingData.h"
+#import "waitingView.h"
 @interface EditViewController ()
 
 @end
@@ -248,7 +264,7 @@
     lbl.leftView = manTitle;
 }
 -(void)setEditList{
-    self.typeid = @"1";
+    self.typeid = @"4";
     tipCount = -1;
     UIView* editItemList = [self.view viewWithTag: 121];
     CGRect r = editItemList.frame;
@@ -355,6 +371,23 @@
         tipInput.delegate = self;
         tipInput.text=@"";
         [tipView addSubview:tipInput];
+        
+        UIView* hideEmi = [[UIView alloc] initWithFrame:CGRectMake(5.0, 110.0/2.0, 90.0, 29.0)];
+        hideEmi.tag = 510;
+        hideEmi.layer.cornerRadius = 3.0;
+        hideEmi.alpha = 0.0;
+        UITapGestureRecognizer* tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emiHide)];
+        [hideEmi addGestureRecognizer:tap4];
+        [tipView addSubview:hideEmi];
+        UILabel* hideLbl = [[UILabel alloc] initWithFrame:CGRectMake(2.0, 3.0, 86.0, 23.0)];
+        hideLbl.font = [UIFont systemFontOfSize:13];
+        hideEmi.backgroundColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+        hideLbl.backgroundColor = [UIColor clearColor];
+        hideLbl.textColor = [UIColor whiteColor];
+        hideLbl.layer.cornerRadius = 3.0;
+        hideLbl.text=@" 点我隐藏键盘";
+        hideLbl.tag = 510;
+        [hideEmi addSubview:hideLbl];
     }
     if ([self.typeid compare:@"4"] == NSOrderedSame) {
         UIView* applyView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 23.0)];
@@ -493,6 +526,13 @@
         [self dismissViewControllerAnimated:YES completion:^{}];
     }
 }
+-(void)emiHide{
+    [tipInput resignFirstResponder];
+    UIView* getLab = [self.editListView viewWithTag:510];
+    [UIView animateWithDuration:0.2 animations:^{
+        getLab.alpha = 0;
+    }];
+}
 -(void)applyHide{
     UIView* getLab = [self.editListView viewWithTag:502];
     if (getLab.alpha == 0) {
@@ -583,6 +623,13 @@
 //    }else{
 //        btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height-keyboardRect.size.height);
 //    }
+}
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    UIView* getLab = [self.editListView viewWithTag:510];
+    [UIView animateWithDuration:0.2 animations:^{
+        getLab.alpha = 1;
+    }];
+    return YES;
 }
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
 //    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
