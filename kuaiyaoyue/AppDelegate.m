@@ -36,7 +36,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+//    NSTimeZone* tz = [NSTimeZone localTimeZone];
+//    NSString* name = tz.name;
+//    NSString* des = [tz description];
+//    NSInteger secondsFromGMT = tz.secondsFromGMT;
     if (ISIOS8LATER) {
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
                                                                                              |UIRemoteNotificationTypeSound

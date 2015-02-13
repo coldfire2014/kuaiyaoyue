@@ -7,9 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface EditViewController : UIViewController
-
+#import "HeadImgView.h"
+@interface EditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate>
+{
+    UITextField* manInput;
+    UITextField* wemanInput;
+    UITextField* titleInput;
+    UITextField* timeInput;
+    UITextField* endtimeInput;
+    UITextField* contactmanInput;
+    UITextField* contactInput;
+    UITextField* locInput;
+    UITextField* musicInput;
+    HeadImgView* headImg;
+    int tipCount;
+    UILabel* tipCountLbl;
+    UITextView* tipInput;
+    CGFloat applyTop;
+    CGFloat applyHeight;
+}
 @property (strong, nonatomic) UIScrollView *editListView;
 @property (nonatomic, strong) NSString *typeid;
 

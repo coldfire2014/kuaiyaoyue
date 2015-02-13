@@ -455,8 +455,8 @@
             des.maxCount = 1;
             des.needAnimation = NO;
             des.delegate = self;
-            //        des.transitioningDelegate = self;
-//            des.modalPresentationStyle = UIModalPresentationCustom;
+//          des.transitioningDelegate = self;
+//          des.modalPresentationStyle = UIModalPresentationCustom;
             des.modalPresentationStyle = UIModalPresentationFormSheet;
             des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
             [self presentViewController:des animated:YES completion:^{
@@ -554,7 +554,6 @@
                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                     if ([actionSheet isVisible]) {
                         [actionSheet dismissWithClickedButtonIndex:2 animated:NO];
-                        
                     }
                 }else{
                     UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];

@@ -205,11 +205,11 @@
 }
 - (void)didTapFour{
     self.tapID = 404;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [self performSegueWithIdentifier:@"newedit" sender:nil];
-    } else {
-        [self performSegueWithIdentifier:@"zdyedit" sender:nil];
-    }
+//    } else {
+//        [self performSegueWithIdentifier:@"zdyedit" sender:nil];
+//    }
     [TalkingData trackEvent:@"开启自定义编辑"];
 }
 
