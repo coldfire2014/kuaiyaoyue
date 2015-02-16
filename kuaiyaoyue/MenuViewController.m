@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController.h"
+#import "EditViewController.h"
 #import "CreateBtn.h"
 #import "myImageView.h"
 #import "TemplateViewController.h"
@@ -190,23 +191,35 @@
 }
 - (void)didTapOne{
     self.tapID = 401;
-    [self performSegueWithIdentifier:@"showTemplate" sender:@"cihe"];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self performSegueWithIdentifier:@"newedit" sender:@"3"];
+    } else {
+        [self performSegueWithIdentifier:@"showTemplate" sender:@"cihe"];
+    }
     [TalkingData trackEvent:@"开启吃喝玩乐编辑"];
 }
 - (void)didTapTwo{
     self.tapID = 402;
-    [self performSegueWithIdentifier:@"showTemplate" sender:@"sanwu"];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self performSegueWithIdentifier:@"newedit" sender:@"2"];
+    } else {
+        [self performSegueWithIdentifier:@"showTemplate" sender:@"sanwu"];
+    }
     [TalkingData trackEvent:@"开启商务编辑"];
 }
 - (void)didTapThree{
     self.tapID = 403;
-    [self performSegueWithIdentifier:@"showTemplate" sender:@"hunli"];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self performSegueWithIdentifier:@"newedit" sender:@"1"];
+    } else {
+        [self performSegueWithIdentifier:@"showTemplate" sender:@"hunli"];
+    }
     [TalkingData trackEvent:@"开启婚礼编辑"];
 }
 - (void)didTapFour{
     self.tapID = 404;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        [self performSegueWithIdentifier:@"newedit" sender:nil];
+        [self performSegueWithIdentifier:@"newedit" sender:@"4"];
     } else {
         [self performSegueWithIdentifier:@"zdyedit" sender:nil];
     }
@@ -219,7 +232,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    
     if ([segue.identifier compare:@"zdyedit"] == NSOrderedSame){
         
         NSArray *data = [[DataBaseManage getDataBaseManage] GetTemplate:@"4"];
@@ -237,7 +249,17 @@
             [[StatusBar sharedStatusBar] talkMsg:@"模板正在下载中..." inTime:1];
         }
     }else if ([segue.identifier compare:@"newedit"] == NSOrderedSame){
-        
+        EditViewController* edit = (EditViewController*)segue.destinationViewController;
+        edit.typeid = (NSString*)sender;
+        if ([edit.typeid compare:@"1"] == NSOrderedSame) {//婚礼
+            
+        }else if([edit.typeid compare:@"2"] == NSOrderedSame) {//商务
+            
+        }else if([edit.typeid compare:@"3"] == NSOrderedSame) {//玩乐
+            
+        }else if([edit.typeid compare:@"4"] == NSOrderedSame) {//自定义
+            
+        }
     }
     else{
         TemplateViewController* des = (TemplateViewController*)segue.destinationViewController;
@@ -245,8 +267,6 @@
         des.type = (NSString*)sender;
         NSLog(@"%@",(NSString*)sender);
     }
-    
-    
 }
 
 @end

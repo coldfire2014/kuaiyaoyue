@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HeadImgView : UIView
-
+@property (strong, nonatomic) UIImage *img;
+@property (strong, nonatomic) UIImageView *imgContext;
 @end

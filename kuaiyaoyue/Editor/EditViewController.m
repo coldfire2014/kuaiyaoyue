@@ -32,10 +32,20 @@
 @end
 
 @implementation EditViewController
-
+-(void)initDate{
+    timeDouble = -1;
+    endtimeDouble = -1;
+    isEndTime = NO;
+    musicURL = @"";
+    tipCount = 70;
+    isHead = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    assert = ASSETHELPER;
+    assert.bReverse = YES;
+    [self initDate];
     CGRect mainScreenFrame = [[UIScreen mainScreen] bounds];
     self.view.backgroundColor = [UIColor whiteColor];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -73,6 +83,7 @@
         UIView* editItemList = [[UIView alloc] initWithFrame:CGRectMake(67.0, 21.0, 400, mainScreenFrame.size.height-20.0)];
         editItemList.backgroundColor = [[UIColor alloc] initWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
         editItemList.tag = 121;
+        editItemList.clipsToBounds = YES;
         [self.view addSubview:editItemList];
         
         UIView* showBg = [[UIView alloc] initWithFrame:CGRectMake(467.0, 21.0, mainScreenFrame.size.width-467.0, mainScreenFrame.size.height-20.0)];
@@ -178,46 +189,10 @@
         [bottombk addSubview:saveBtn];
     }
     [self setEditList];
+    [self initOldInput];
     [self initPreView];
 }
--(void)initPreView{
-//    UIView* showBg = [self.view viewWithTag: 141];
-//    CGRect r = showBg.frame;
-//    CGFloat w = r.size.width;
-//    CGFloat h = r.size.height;
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-//        CGFloat itemW = 120.0;
-//        CGFloat itemH = 180.0;
-//        UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*0.0, 0.0, itemW, itemH)];
-//        bg.backgroundColor = [UIColor blueColor];
-//        [showBg addSubview:bg];
-//        UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*1.0, 0.0, itemW, itemH)];
-//        bg1.backgroundColor = [UIColor blueColor];
-//        [showBg addSubview:bg1];
-//        UIView* bg2 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*2.0, 0.0, itemW, itemH)];
-//        bg2.backgroundColor = [UIColor blueColor];
-//        [showBg addSubview:bg2];
-//    } else {
-//        CGFloat itemW = 200.0;
-//        CGFloat itemH = 200.0/320.0*480.0;
-//        UIView* hbg = [[UIView alloc] initWithFrame:CGRectMake(0, (h-itemH)/2.0, w, itemH)];
-//        hbg.backgroundColor = [UIColor blueColor];
-//        [showBg addSubview:hbg];
-//        UIView* sbg = [[UIView alloc] initWithFrame:CGRectMake(32.0, 0, itemW, h)];
-//        sbg.backgroundColor = [UIColor redColor];
-//        [showBg addSubview:sbg];
-//        
-//        UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*0.0, (h-itemH)/2.0, itemW, itemH)];
-//        bg.backgroundColor = [UIColor yellowColor];
-//        [showBg addSubview:bg];
-//        UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*1.0, (h-itemH)/2.0, itemW, itemH)];
-//        bg1.backgroundColor = [UIColor yellowColor];
-//        [showBg addSubview:bg1];
-//        UIView* bg2 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*2.0, (h-itemH)/2.0, itemW, itemH)];
-//        bg2.backgroundColor = [UIColor yellowColor];
-//        [showBg addSubview:bg2];
-//    }
-}
+
 -(void)addItemBg2View:(UIView*)view WithType:(int)type andTap:(NSInteger)tap andIcon:(NSString*)iconname{
     view.tag = tap;
     view.backgroundColor = [UIColor whiteColor];
@@ -264,7 +239,6 @@
     lbl.leftView = manTitle;
 }
 -(void)setEditList{
-    self.typeid = @"4";
     tipCount = -1;
     UIView* editItemList = [self.view viewWithTag: 121];
     CGRect r = editItemList.frame;
@@ -276,11 +250,6 @@
     [editItemList addSubview:self.editListView];
     CGFloat ch = 36.0/2.0;
     int nextType = 1;
-//    if ([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
-//    }else if([self.typeid compare:@"2"] == NSOrderedSame) {//商务
-//    }else if([self.typeid compare:@"3"] == NSOrderedSame) {//玩乐
-//    }else if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
-//    }
     if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
         UIView* headview = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 120.0/2.0+12.0)];
         [self addItemBg2View:headview WithType:2 andTap:221 andIcon:@"ic_c_pics@2x"];
@@ -300,6 +269,8 @@
         headImg = [[HeadImgView alloc] init];
         headImg.center = CGPointMake(w-120.0/4.0-12.0/2.0, 120.0/4.0+12.0/2.0);
         [headview addSubview:headImg];
+        UITapGestureRecognizer* tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headInput)];
+        [headImg addGestureRecognizer:tap4];
         nextType = 3;
     }else{
         nextType = 2;
@@ -519,6 +490,49 @@
     ch+=36.0/2.0;
     [self.editListView setContentSize:CGSizeMake(w, ch)];
 }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if ([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
+        [TalkingData trackPageEnd:@"婚礼编辑"];
+    }else if([self.typeid compare:@"2"] == NSOrderedSame) {//商务
+        [TalkingData trackPageEnd:@"商务编辑"];
+    }else if([self.typeid compare:@"3"] == NSOrderedSame) {//玩乐
+        [TalkingData trackPageEnd:@"吃喝玩乐编辑"];
+    }else if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
+        [TalkingData trackPageEnd:@"自定义编辑"];
+    }
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if ([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
+        [TalkingData trackPageBegin:@"婚礼编辑"];
+    }else if([self.typeid compare:@"2"] == NSOrderedSame) {//商务
+        [TalkingData trackPageBegin:@"商务编辑"];
+    }else if([self.typeid compare:@"3"] == NSOrderedSame) {//玩乐
+        [TalkingData trackPageBegin:@"吃喝玩乐编辑"];
+    }else if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
+        [TalkingData trackPageBegin:@"自定义编辑"];
+    }
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardShowNotify:) name:UIKeyboardDidShowNotification object:nil];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }else{
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    }
+}
+#pragma mark - UITapGesture
 -(void)closeTap{
     if (nil != self.navigationController) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -533,7 +547,7 @@
         getLab.alpha = 0;
     }];
 }
--(void)applyHide{
+-(void)applyHide{//是否需要报名
     UIView* getLab = [self.editListView viewWithTag:502];
     if (getLab.alpha == 0) {
         UIView* mark = [self.editListView viewWithTag:503];
@@ -559,71 +573,270 @@
         }];
     }
 }
--(void)reviewTap{
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_WEB_REFLASH" object:nil];
-}
--(void)sendTap{
-    
-}
--(void)saveTap{
-    
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-//    [TalkingData trackPageEnd:_viewTitle];
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-//    [TalkingData trackPageBegin:_viewTitle];
+
+-(void)headInput{
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    }else{
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+        if (headImg.img != nil) {
+            UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"修改头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"修改这张" otherButtonTitles:@"从相册选取",@"照一张", nil ];
+            as.tag = 999;
+            [as showInView:self.view];
+        } else {
+            UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"从相册选取" otherButtonTitles:@"照一张", nil ];
+            as.tag = 998;
+            [as showInView:self.view];
+        }
+    } else {
+        if (headImg.img != nil) {
+            UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"修改头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"修改这张" otherButtonTitles:@"从相册选取",@"照一张", nil ];
+            as.tag = 999;
+            [as showFromRect:CGRectMake(30, 60, 0, 0) inView:headImg animated:YES];
+        } else {
+            UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择一张头图" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"从相册选取" otherButtonTitles:@"照一张", nil ];
+            as.tag = 998;
+            [as showFromRect:CGRectMake(30, 60, 0, 0) inView:headImg animated:YES];
+        }
     }
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - 选择头图
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if ((actionSheet.tag == 998 && buttonIndex == 0) || (actionSheet.tag == 999 && buttonIndex == 1)) {
+            isHead = YES;
+            UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+            [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+            flowLayout.minimumInteritemSpacing = 0.0;
+            ImgCollectionViewController* des = [[ImgCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
+            des.maxCount = 1;
+            des.needAnimation = NO;
+            des.delegate = self;
+            des.modalPresentationStyle = UIModalPresentationFormSheet;
+            des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            [self presentViewController:des animated:YES completion:^{
+                
+            }];
+        }else if(actionSheet.tag == 999 && buttonIndex == 0){
+            [self SendPECropView:headImg.img];
+        }else if ((actionSheet.tag == 998 && buttonIndex == 1) || (actionSheet.tag == 999 && buttonIndex == 2)){
+            UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
+            [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [imgPicker setDelegate:self];
+            [imgPicker setAllowsEditing:NO];
+            [self presentViewController:imgPicker animated:YES completion:^{
+                
+            }];
+        }
+    }
 }
-*/
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 998) {
+        switch (buttonIndex) {
+            case 0:
+            {
+                UIImagePickerController *galleryPickerController = [[UIImagePickerController alloc] init];
+                galleryPickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                galleryPickerController.delegate = self;
+                
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    if ([actionSheet isVisible]) {
+                        [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+                        
+                    }
+                }else{
+                    [self presentViewController:galleryPickerController animated:YES completion:nil];
+                }
+            }
+                break;
+            case 1:
+            {
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    if ([actionSheet isVisible]) {
+                        [actionSheet dismissWithClickedButtonIndex:1 animated:NO];
+                        
+                    }
+                }else{
+                    UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
+                    [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+                    [imgPicker setDelegate:self];
+                    [imgPicker setAllowsEditing:NO];
+                    [self presentViewController:imgPicker animated:YES completion:^{
+                        
+                    }];
+                }
+                break;
+            }
+            case 2:
+                
+                break;
+            default:
+                break;
+        }
+    } else {
+        switch (buttonIndex) {
+            case 0:
+            {
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    if ([actionSheet isVisible]) {
+                        [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+                    }
+                }else{
+                    [self SendPECropView:headImg.img];
+                }
+            }
+                break;
+            case 1:
+            {
+                UIImagePickerController *galleryPickerController = [[UIImagePickerController alloc] init];
+                galleryPickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                galleryPickerController.delegate = self;
+                
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    if ([actionSheet isVisible]) {
+                        [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+                    }
+                }else{
+                    [self presentViewController:galleryPickerController animated:YES completion:nil];
+                }
+                
+                break;
+            }
+            case 2:
+            {
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    if ([actionSheet isVisible]) {
+                        [actionSheet dismissWithClickedButtonIndex:2 animated:NO];
+                    }
+                }else{
+                    UIImagePickerController *imgPicker=[[UIImagePickerController alloc]init];
+                    [imgPicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+                    [imgPicker setDelegate:self];
+                    [imgPicker setAllowsEditing:NO];
+                    [self presentViewController:imgPicker animated:YES completion:^{
+                        
+                    }];
+                }
+            }
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage  * userHeadImage=[info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    //    UIImage *midImage = [self imageWithImageSimple:userHeadImage scaledToSize:CGSizeMake(120.0, 120.0)];
+    [self dismissViewControllerAnimated:YES completion:^{
+        headImg.img = userHeadImage;
+        [self SendPECropView:userHeadImage];
+    }];
+}
+
+-(void)SendPECropView :(UIImage *)image{
+    PECropViewController *controller = [[PECropViewController alloc] init];
+    controller.delegate = self;
+    controller.image = image;
+    //    [self.navigationController popToViewController:controller animated:YES];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    
+    [self presentViewController:navigationController animated:YES completion:NULL];
+}
+
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage
+{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+    headImg.imgContext.image = croppedImage;
+}
+
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller
+{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark 图片／时间选择
+- (void)MVCDelegate:(MusicViewController *)cell didTapAtIndex:(NSString *) url :(NSString *)name{
+    musicURL = url;
+    musicInput.text = name;
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:name,@"音乐名称", nil];
+    if ([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
+        [TalkingData trackEvent:@"音乐选择" label:@"婚礼" parameters: parameters];
+    }else if([self.typeid compare:@"2"] == NSOrderedSame) {//商务
+        [TalkingData trackEvent:@"音乐选择" label:@"商务" parameters: parameters];
+    }else if([self.typeid compare:@"3"] == NSOrderedSame) {//玩乐
+        [TalkingData trackEvent:@"音乐选择" label:@"吃喝玩乐" parameters: parameters];
+    }else if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
+        [TalkingData trackEvent:@"音乐选择" label:@"自定义" parameters: parameters];
+    }
+}
+
+- (BOOL)didSelectDateTime:(NSTimeInterval)time{
+    if (!isEndTime) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSDate* date = [NSDate dateWithTimeIntervalSince1970:time];
+        timeDouble = time;
+        timeInput.text = [dateFormatter stringFromDate:date];
+        if (time < endtimeDouble || endtimeDouble < 0) {
+            endtimeDouble = time;
+            endtimeInput.text = [dateFormatter stringFromDate:date];
+        }
+        return YES;
+    } else {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSDate* date = [NSDate dateWithTimeIntervalSince1970:time];
+        if (time > timeDouble) {
+            if ([self.typeid compare:@"1"] == NSOrderedSame) {
+                [[StatusBar sharedStatusBar] talkMsg:@"报名截止时间不能大于婚礼时间" inTime:0.8];
+            } else {
+                [[StatusBar sharedStatusBar] talkMsg:@"报名截止时间不能大于活动时间" inTime:0.8];
+            }
+            return NO;
+        }else{
+            endtimeDouble = time;
+            endtimeInput.text = [dateFormatter stringFromDate:date];
+            return YES;
+        }
+    }
+}
+#pragma mark - keyboardNotify
 
 -(void)keyboardShowNotify:(NSNotification*)aNotification{
     //获取触发事件对象
-//    NSDictionary* info = [aNotification userInfo];
-//    NSValue* aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
-//    CGRect keyboardRect = [aValue CGRectValue];
-//    //将视图Y坐标进行移动，移动距离为弹出键盘的高度
-//    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
-//    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
-//    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
-//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-//        w = 540;
-//        h = 620;
-//        mainScreenFrame = CGRectMake(0, 0, w, h);
-//    }
-//    UIView* btn = [self.view viewWithTag: 517];
-//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-//        if (ISIOS8LATER) {
-//            btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height-keyboardRect.size.height+106);
-//        } else {
-//            btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height-keyboardRect.size.width+106);
-//        }
-//    }else{
-//        btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height-keyboardRect.size.height);
-//    }
+    NSDictionary* info = [aNotification userInfo];
+    NSValue* aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    //将视图Y坐标进行移动，移动距离为弹出键盘的高度
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [contactInput isFirstResponder]) {
+        if (keyboardRect.size.height>360) {
+            self.editListView.frame = CGRectMake(0, -50, self.editListView.frame.size.width, self.editListView.frame.size.height);
+        } else {
+            self.editListView.frame = CGRectMake(0, 0, self.editListView.frame.size.width, self.editListView.frame.size.height);
+        }
+    }else{
+        self.editListView.frame = CGRectMake(0, 0, self.editListView.frame.size.width, self.editListView.frame.size.height);
+    }
 }
+- (void)textViewDidChange:(UITextView *)textView{
+    long max = 70;
+    if ([self.typeid compare:@"4"] == NSOrderedSame) {
+        max = 50;
+    }
+    long num = max - textView.text.length;
+    tipCountLbl.text = [NSString stringWithFormat:@"剩余%ld字",num];
+    if (num >= 0) {
+        tipCountLbl.textColor = [UIColor grayColor];
+    }else{
+        tipCountLbl.textColor = [UIColor redColor];
+    }
+}
+
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
     UIView* getLab = [self.editListView viewWithTag:510];
     [UIView animateWithDuration:0.2 animations:^{
@@ -631,43 +844,199 @@
     }];
     return YES;
 }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField.returnKeyType == UIReturnKeyDone) {
+        [textField resignFirstResponder];
+    } else {
+        if (textField == manInput) {
+            [wemanInput becomeFirstResponder];
+        } else if (textField == titleInput) {
+            [tipInput becomeFirstResponder];
+        } else if (textField == contactmanInput) {
+            [contactInput becomeFirstResponder];
+        } else{
+            
+        }
+    }
+    return YES;
+}
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
-//    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
-//    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
-//    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
-//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-//        w = 540;
-//        h = 620;
-//        mainScreenFrame = CGRectMake(0, 0, w, h);
-//    }
-//    UIView* btn = [self.view viewWithTag: 517];
-//    [UIView animateWithDuration:0.3 animations:^{
-//        btn.center = CGPointMake(btn.center.x, h+86.0/2.0);
-//    }];
+    if (textField == contactInput && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.editListView.frame = CGRectMake(0, 0, self.editListView.frame.size.width, self.editListView.frame.size.height);
+    }
     return YES;
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if (textField == timeInput || textField == endtimeInput || musicInput == textField) {
+        [self.view endEditing:NO];
+        if(textField == timeInput){
+            isEndTime = NO;
+            NSDate* itime = [NSDate date];
+            if (timeDouble > 0) {
+                itime = [NSDate dateWithTimeIntervalSince1970:timeDouble];
+            }
+            [[DatetimeInput sharedDatetimeInput] setTime:itime andMaxTime:nil andMinTime:[NSDate date]];
+            [DatetimeInput sharedDatetimeInput].time_delegate = self;
+            [[DatetimeInput sharedDatetimeInput] show];
+        }else if (textField == endtimeInput){
+            if (timeDouble > 0) {
+                isEndTime = YES;
+                NSDate * date=[NSDate dateWithTimeIntervalSince1970:timeDouble];
+                NSDate* itime = date;
+                if (endtimeDouble > 0) {
+                    itime = [NSDate dateWithTimeIntervalSince1970:endtimeDouble];
+                }
+                [[DatetimeInput sharedDatetimeInput] setTime:itime andMaxTime:date andMinTime:[NSDate date]];
+                [DatetimeInput sharedDatetimeInput].time_delegate = self;
+                [[DatetimeInput sharedDatetimeInput] show];
+            }else{
+                if ([self.typeid compare:@"1"] == NSOrderedSame) {
+                    [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入婚礼时间" inTime:0.8];
+                } else {
+                    [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动时间" inTime:0.8];
+                }
+            }
+        }else if (musicInput == textField){
+            MusicViewController *des = [[MusicViewController alloc] init];
+            des.delegate = self;
+            if ([self.typeid compare:@"3"] == NSOrderedSame) {
+                des.typeid = @"4";
+            } else {
+                des.typeid = self.typeid;
+            }
+            des.modalPresentationStyle = UIModalPresentationFormSheet;
+            des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            [self presentViewController:des animated:YES completion:^{
+                
+            }];
+        }
         return NO;
+    } else if (textField == contactInput && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.editListView.frame = CGRectMake(0, -50, self.editListView.frame.size.width, self.editListView.frame.size.height);
     } else {
         return YES;
     }
-//    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
-//    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
-//    CGFloat h = [[UIScreen mainScreen] bounds].size.height;
-//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-//        w = 540;
-//        h = 620;
-//        mainScreenFrame = CGRectMake(0, 0, w, h-246);
-//    }else{
-//        mainScreenFrame = CGRectMake(0, 0, w, h-216);
-//    }
-//    
-//    UIView* btn = [self.view viewWithTag: 517];
-//    [UIView animateWithDuration:0.3 animations:^{
-//        btn.center = CGPointMake(btn.center.x, mainScreenFrame.size.height);
-//    }];
     return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    if(textField == timeInput){
+        timeDouble = -1;
+        timeInput.text = @"";
+        return YES;
+    }else if (textField == endtimeInput){
+        endtimeDouble = -1;
+        endtimeInput.text = @"";
+        return NO;
+    }else if (musicInput == textField){
+        musicURL = @"";
+        musicInput.text = @"";
+        return NO;
+    }
+    return YES;
+}
+#pragma mark - 图片处理
+-(void)didBack{
+    
+}
+-(void)didSelectAssets:(NSArray*)items{
+    if(isHead){
+        if (items.count>0) {
+            ALAsset* al = [items objectAtIndex:0];
+            UIImage* userHeadImage = [assert getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
+            headImg.img = userHeadImage;
+            [self SendPECropView:userHeadImage];
+        }
+    }else{
+        NSLog(@"%@",items);
+        //        for (int i = 0; i < items.count; i++)
+        //        {
+        //            ALAsset* al = [items objectAtIndex:i];
+        //            UIImage *img = [assert getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
+        //            GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
+        //            [data addObject:info];
+        //        }
+        //
+        //        for (int j = 0;j< [data count] ; j++) {
+        //            GridInfo *info = [data objectAtIndex:j];
+        //            if (!info.is_open) {
+        //                [data removeObject:info];
+        //            }
+        //        }
+        //
+        //        GridInfo *info = [[GridInfo alloc] initWithDictionary:NO :nil];
+        //        [data addObject:info];
+        //        [gridview reloadData];
+        //        count -= items.count;
+        //
+        //        //   [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
+        //        [UIView animateWithDuration:0.3 animations:^{
+        //            [self sethigh];
+        //        }];
+    }
+}
+#pragma mark - 录音
+#pragma mark - PreviewViewControllerDelegate
+-(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw{
+    
+}
+-(void)didSendType:(int) type{
+    
+}
+#pragma mark - ipad 模版
+-(void)initPreView{
+    //    UIView* showBg = [self.view viewWithTag: 141];
+    //    CGRect r = showBg.frame;
+    //    CGFloat w = r.size.width;
+    //    CGFloat h = r.size.height;
+    //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+    //        CGFloat itemW = 120.0;
+    //        CGFloat itemH = 180.0;
+    //        UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*0.0, 0.0, itemW, itemH)];
+    //        bg.backgroundColor = [UIColor blueColor];
+    //        [showBg addSubview:bg];
+    //        UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*1.0, 0.0, itemW, itemH)];
+    //        bg1.backgroundColor = [UIColor blueColor];
+    //        [showBg addSubview:bg1];
+    //        UIView* bg2 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*2.0, 0.0, itemW, itemH)];
+    //        bg2.backgroundColor = [UIColor blueColor];
+    //        [showBg addSubview:bg2];
+    //    } else {
+    //        CGFloat itemW = 200.0;
+    //        CGFloat itemH = 200.0/320.0*480.0;
+    //        UIView* hbg = [[UIView alloc] initWithFrame:CGRectMake(0, (h-itemH)/2.0, w, itemH)];
+    //        hbg.backgroundColor = [UIColor blueColor];
+    //        [showBg addSubview:hbg];
+    //        UIView* sbg = [[UIView alloc] initWithFrame:CGRectMake(32.0, 0, itemW, h)];
+    //        sbg.backgroundColor = [UIColor redColor];
+    //        [showBg addSubview:sbg];
+    //
+    //        UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*0.0, (h-itemH)/2.0, itemW, itemH)];
+    //        bg.backgroundColor = [UIColor yellowColor];
+    //        [showBg addSubview:bg];
+    //        UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*1.0, (h-itemH)/2.0, itemW, itemH)];
+    //        bg1.backgroundColor = [UIColor yellowColor];
+    //        [showBg addSubview:bg1];
+    //        UIView* bg2 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*2.0, (h-itemH)/2.0, itemW, itemH)];
+    //        bg2.backgroundColor = [UIColor yellowColor];
+    //        [showBg addSubview:bg2];
+    //    }
+}
+#pragma mark - 数据操作
+-(void)initOldInput{
+    
+}
+-(void)saveInput{
+    
+}
+-(void)reviewTap{
+    
+}
+-(void)sendTap{
+    
+}
+-(void)saveTap{
+    
 }
 
 @end

@@ -24,6 +24,10 @@
         heng.backgroundColor = [[UIColor alloc] initWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1.0];
         heng.center = CGPointMake(120.0/4.0, 120.0/4.0);
         [self addSubview:heng];
+        self.imgContext = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 120.0/2.0, 120.0/2.0)];
+        self.imgContext.backgroundColor = [UIColor clearColor];
+        self.imgContext.image = self.img;
+        [self addSubview:self.imgContext];
     }
     return self;
 }

@@ -8,23 +8,33 @@
 
 #import <UIKit/UIKit.h>
 #import "HeadImgView.h"
-@interface EditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate>
+#import "DatetimeInput.h"
+#import "MusicViewController.h"
+#import "PreviewViewController.h"
+#import "ImgCollectionViewController.h"
+@interface EditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PreviewViewControllerDelegate,ImgCollectionViewDelegate,datetimeInputDelegate,MVCDelegate>
 {
     UITextField* manInput;
     UITextField* wemanInput;
     UITextField* titleInput;
     UITextField* timeInput;
+    NSTimeInterval timeDouble;
     UITextField* endtimeInput;
+    NSTimeInterval endtimeDouble;
+    BOOL isEndTime;
     UITextField* contactmanInput;
     UITextField* contactInput;
     UITextField* locInput;
     UITextField* musicInput;
+    NSString* musicURL;
     HeadImgView* headImg;
     int tipCount;
     UILabel* tipCountLbl;
     UITextView* tipInput;
     CGFloat applyTop;
     CGFloat applyHeight;
+    BOOL isHead;
+    AssetHelper* assert;
 }
 @property (strong, nonatomic) UIScrollView *editListView;
 @property (nonatomic, strong) NSString *typeid;
