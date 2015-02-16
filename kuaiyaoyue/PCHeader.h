@@ -13,7 +13,7 @@
 #define ISIOS8LATER [[[UIDevice currentDevice] systemVersion] floatValue]>=8
 #define QNTOKEN @"http://appkyy.kyy121.com/oss/upload/getClientDto"
 #define QNPCI @"http://7vili3.com1.z0.glb.clouddn.com/"
-#define YINGLOU @"YINGLOU"
+//#define YINGLOU @"YINGLOU"
 #ifdef YINGLOU
     #define YINGLOUURL @"http://appkyy.kyy121.com/studio/"
     #define HTTPURL YINGLOUURL

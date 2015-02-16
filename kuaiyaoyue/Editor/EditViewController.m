@@ -487,6 +487,8 @@
     recordingTitle.backgroundColor = [UIColor clearColor];
     recordingTitle.text=@"录音";
     [recordingView addSubview:recordingTitle];
+    recordedInput = [[tapeView alloc] initWithFrame:CGRectMake(0, 0, w, 310.0/2.0)];
+    [recordingView addSubview:recordedInput];
     ch+=36.0/2.0;
     [self.editListView setContentSize:CGSizeMake(w, ch)];
 }

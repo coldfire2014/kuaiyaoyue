@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "tapeView.h"
 #import "HeadImgView.h"
 #import "DatetimeInput.h"
 #import "MusicViewController.h"
 #import "PreviewViewController.h"
 #import "ImgCollectionViewController.h"
+
 @interface EditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PreviewViewControllerDelegate,ImgCollectionViewDelegate,datetimeInputDelegate,MVCDelegate>
 {
     UITextField* manInput;
@@ -35,6 +37,8 @@
     CGFloat applyHeight;
     BOOL isHead;
     AssetHelper* assert;
+    tapeView *recordedInput;
+    NSString *recordedFile;
 }
 @property (strong, nonatomic) UIScrollView *editListView;
 @property (nonatomic, strong) NSString *typeid;
