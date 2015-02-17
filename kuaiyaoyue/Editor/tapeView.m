@@ -9,7 +9,7 @@
 #import "tapeView.h"
 #import "StatusBar.h"
 #import "waitingView.h"
-#import <AVFoundation/AVFoundation.h>
+#import "FileManage.h"
 @implementation tapeView
 
 - (instancetype)initWithFrame:(CGRect) frame
@@ -18,7 +18,7 @@
     if (self) {
         playBk = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 176.0/2.0, 75.0/2.0) andImageName:@"bg_bubble@2x" withScale:2.0];
         playBk.center = CGPointMake(frame.size.width/2.0, frame.size.height - 40.0/2.0 - 20.0/2.0 - 24.0/2.0 - 120.0/2.0 - 8.0/2.0 - 75.0/4.0);
-//        [self setPlay];
+        [self setPlay];
         [self setrecord];
         [self addSubview:playBk];
         recordBtn = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 120.0/2.0, 120.0/2.0) andImageName:@"btn_120_recording@2x" withScale:2.0];
@@ -34,9 +34,12 @@
         tapLbl.font = [UIFont systemFontOfSize:13];
         tapLbl.backgroundColor = [UIColor clearColor];
         tapLbl.textColor =  [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
-        tapLbl.text=@"删除录音";
-        tapLbl.tag = 510;
+//        tapLbl.text=@"删除录音";
+        tapLbl.text=@"按住录音";
         [self addSubview:tapLbl];
+        
+        playBk.alpha = 0;
+        playBk.layer.transform = CATransform3DMakeTranslation(0, 83.0/2.0, 0);
         
         AVAudioSession *session = [AVAudioSession sharedInstance];
         NSError *sessionError;
@@ -51,10 +54,14 @@
         if ([session respondsToSelector:@selector(requestRecordPermission:)]) {
             [session requestRecordPermission:^(BOOL granted) {
                 if (granted) {
-                    [self setLongPress];
+                    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tooSmall)];
+                    [self addGestureRecognizer:tap];
+                    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(LongPressed:)];
+                    [self addGestureRecognizer:longPress];
                 }
                 else {
-                    [self gotoSetting];
+                    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setting)];
+                    [self addGestureRecognizer:tap];
                 }
             }];
         }
@@ -65,20 +72,20 @@
     UIView *jd = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, 72.0/6.0)];
     jd.backgroundColor = [UIColor whiteColor];
     jd.tag = 900;
-//    jd.alpha = 0;
+    jd.alpha = 0;
     jd.center = CGPointMake(playBk.bounds.size.width/2.0, (playBk.bounds.size.height-6)/2.0);
     [playBk addSubview:jd];
     for (int i = 1; i < 10; i++) {
         UIView *jl = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, 72.0/6.0)];
         jl.backgroundColor = [[UIColor alloc] initWithWhite:1 alpha:1.0-0.05*i];
         jl.tag = 900 + i;
-//        jl.alpha = 0;
+        jl.alpha = 0;
         jl.center = CGPointMake(playBk.bounds.size.width/2.0 + i*4.0, (playBk.bounds.size.height-6)/2.0);
         [playBk addSubview:jl];
         UIView *jr = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, 72.0/6.0)];
         jr.backgroundColor = [[UIColor alloc] initWithWhite:1 alpha:1.0-0.05*i];
         jr.tag = 800 + i;
-//        jr.alpha = 0;
+        jr.alpha = 0;
         jr.center = CGPointMake(playBk.bounds.size.width/2.0 - i*4.0, (playBk.bounds.size.height-6)/2.0);
         [playBk addSubview:jr];
     }
@@ -105,13 +112,15 @@
     tipLbl.font = [UIFont systemFontOfSize:16];
     tipLbl.backgroundColor = [UIColor clearColor];
     tipLbl.textColor =  [UIColor whiteColor];
+    tipLbl.alpha = 0;
     tipLbl.text=@"听一下";
-    tipLbl.tag = 109;
+    tipLbl.tag = 110;
     [playBk addSubview:tipLbl];
     for (int i = 0; i<3; i++) {
         CGFloat r = 48.0/2.0-8.0*i;
         UIView* playItem = [[UIView alloc] initWithFrame:CGRectMake(0, 0, r, r)];
-        playItem.tag = 110 + i;
+        playItem.alpha = 0;
+        playItem.tag = 111 + i;
         playItem.center = CGPointMake(playBk.frame.size.width - 74.0/4.0, 64.0/4.0);
         playItem.backgroundColor = [UIColor clearColor];
         CAShapeLayer* racetrack = [CAShapeLayer layer];
@@ -131,65 +140,95 @@
         [playBk addSubview:playItem];
     }
 }
--(void)gotoSetting{
-    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setting)];
-    [self addGestureRecognizer:tap];
-}
+
 -(void)setting{
-    [[StatusBar sharedStatusBar] talkMsg:@"请在设置中开启麦克风。" inTime:1.0];
-}
--(void)setLongPress{
-    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tooSmall)];
-    [self addGestureRecognizer:tap];
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(LongPressed:)];
-    [self addGestureRecognizer:longPress];
+    [[StatusBar sharedStatusBar] talkMsg:@"请在隐私设置中允许“快邀约”访问麦克风。" inTime:1.0];
 }
 -(void)tooSmall{
     [[waitingView sharedwaitingView] WarningByMsg:@"录音时间太短了" haveCancel:NO];
+    [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:1.0];
+}
+-(NSURL*)callfile{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.wav",uuid];
+    self.fileName = [[FileManage sharedFileManage] GetYPFile1:uuid] ;
+    return [NSURL fileURLWithPath: self.fileName];
+}
+-(void)levelTimer:(NSTimer*)timer_
+{
+    static double lowPassResults = 0;
+    if (recorderTime >= 30) {
+        if (timer && timer.isValid){
+            [timer invalidate];
+            timer = nil;
+        }
+        [recorder stop];
+        recorder = nil;
+        [[waitingView sharedwaitingView] waitByMsg:@"最多只能录30秒哦。" haveCancel:YES];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:0.5];
+    }
+    [recorder updateMeters];
+    const double ALPHA = 0.05;
+    double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
+    lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;//音谱那个慢慢回的那个背影
+    recorderTime += 0.1;
+    [UIView animateWithDuration:0.1 animations:^{
+        for (int i = 1; i < 10; i++) {
+            if (peakPowerForChannel >= 0.004 + (1.0-0.004)/9.0*i) {
+                UIView* l = [playBk viewWithTag:900+i];
+                l.alpha = 1;
+                UIView* r = [playBk viewWithTag:800+i];
+                r.alpha = 1;
+            }else{
+                UIView* l = [playBk viewWithTag:900+i];
+                l.alpha = 0;
+                UIView* r = [playBk viewWithTag:800+i];
+                r.alpha = 0;
+            }
+        }
+        UIView* c = [playBk viewWithTag:900];
+        if (lowPassResults < 0.004) {
+            c.alpha = 0;
+        } else {
+            c.alpha = 1;
+        }
+    }];
 }
 //长按事件的实现方法
 - (void) LongPressed:(UILongPressGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-//        if (is_audio) {
-//            curCount = 0;
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//            [formatter setLocale:[NSLocale currentLocale]];
-//            [formatter setDateFormat:@"yyyyMMddHHmmss"];
-//            NSString *str = [formatter stringFromDate:[NSDate date]];
-//            audioname = [NSString stringWithFormat:@"audio%@.wav", str];
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                recordedFile = [[FileManage sharedFileManage] GetYPFile1:audioname];
-//                recorder = [[AVAudioRecorder alloc] initWithURL:[NSURL fileURLWithPath: recordedFile] settings:[self getAudioRecorderSettingDict] error:nil];
-//                recorder.meteringEnabled = YES;
-//                [recorder prepareToRecord];
-//                [recorder record];
-//            });
-//            
-//            
-//            player = nil;
-//            
-//            //启动计时器
-//            [self startTimer];
-//            
-//            [playview.audio_view setHidden:NO];
-//            
-//            [UIView animateWithDuration:0.3 animations:^{
-//                [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 9, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
-//                [playview.audio_view setAlpha:1.0];
-//            }];
-//            
-//            [playview.audio_img setImage:[UIImage imageNamed:@"btn_120_recordingpre"]];
-//        }
+        recorderTime = 0.0;
+        recorder = [[AVAudioRecorder alloc] initWithURL:[self callfile] settings:[self getAudioRecorderSettingDict] error:nil];
+        recorder.meteringEnabled = YES;
+        [recorder prepareToRecord];
+        [recorder record];
+        player = nil;
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(levelTimer:) userInfo:nil repeats:YES];
+        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            playBk.alpha = 1;
+            playBk.layer.transform = CATransform3DIdentity;
+        } completion:^(BOOL finished) {
+            
+        }];
     }
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         
+        
 //        NSLog(@"curCount-%f",curCount);
 //        if (is_audio) {
-//            [self stopTimer];
-//            
-//            [recorder stop];
-//            recorder = nil;
-//            
+        if (timer && timer.isValid){
+            [timer invalidate];
+            timer = nil;
+        }
+            [recorder stop];
+            recorder = nil;
+        if (recorderTime > 1.0) {
+            
+        } else {
+            
+        }
+//
 //            //上传音频
 //            if (curCount >= 1) {
 //                [playview.audio_view setHidden:NO];
@@ -230,7 +269,41 @@
 //        }
     }
 }
+- (NSDictionary*)getAudioRecorderSettingDict
+{
+    NSDictionary *recordSetting = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithInt:AVAudioQualityLow],AVEncoderAudioQualityKey,
+                                   [NSNumber numberWithInt:kAudioFormatLinearPCM],AVFormatIDKey,
+                                   [NSNumber numberWithInt:1],AVNumberOfChannelsKey,
+                                   [NSNumber numberWithFloat:10000.0],AVSampleRateKey,
+                                   [NSNumber numberWithBool:NO],AVLinearPCMIsBigEndianKey,
+                                   [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
+                                   nil];
+    return recordSetting;
+}
+
 -(void)play{
-    
+    NSError *playerError;
+    if (player == nil) {
+        player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: self.fileName] error:&playerError];
+        [player prepareToPlay];
+        player.volume = 10.0f;
+        player.delegate = self;
+    }
+    if (player == nil)
+    {
+        NSLog(@"ERror creating player: %@", [playerError description]);
+    }
+    else
+    {
+        if([player isPlaying])
+        {
+            [player stop];
+        }
+        else
+        {
+            [player play];
+        }
+    }
 }
 @end

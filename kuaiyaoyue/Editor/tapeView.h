@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "myImageView.h"
-@interface tapeView : UIView{
+#import <AVFoundation/AVFoundation.h>
+@interface tapeView : UIView<AVAudioPlayerDelegate>{
     myImageView* recordBtn;
     myImageView* playBk;
     myImageView* removeBtn;
     UILabel* tapLbl;
+    AVAudioPlayer *player;
+    AVAudioRecorder *recorder;
+    NSTimer* timer;
+    double recorderTime;
 }
 @property (nonatomic ,strong) NSString* fileName;
 
