@@ -28,7 +28,8 @@
         removeBtn.alpha = 0;
         removeBtn.center = CGPointMake(frame.size.width/2.0, frame.size.height - 40.0/2.0 - 20.0/2.0 - 24.0/2.0 - 120.0/4.0);
         [self addSubview:removeBtn];
-        
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeFile)];
+        [removeBtn addGestureRecognizer:tap];
         tapLbl = [[UILabel alloc] initWithFrame:CGRectMake(0.0,frame.size.height - 40.0/2.0 - 24.0/2.0, frame.size.width, 24.0/2.0)];
         tapLbl.textAlignment = NSTextAlignmentCenter;
         tapLbl.font = [UIFont systemFontOfSize:13];
@@ -40,7 +41,7 @@
         
         playBk.alpha = 0;
         playBk.layer.transform = CATransform3DMakeTranslation(0, 83.0/2.0, 0);
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(outofScreen) name:@"MSG_OUT_SCREEN" object:nil];
         AVAudioSession *session = [AVAudioSession sharedInstance];
         NSError *sessionError;
         [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
@@ -51,22 +52,68 @@
         else{
             [session setActive:YES error:nil];
         }
+        
         if ([session respondsToSelector:@selector(requestRecordPermission:)]) {
             [session requestRecordPermission:^(BOOL granted) {
                 if (granted) {
                     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tooSmall)];
-                    [self addGestureRecognizer:tap];
+                    [recordBtn addGestureRecognizer:tap];
                     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(LongPressed:)];
-                    [self addGestureRecognizer:longPress];
+                    [recordBtn addGestureRecognizer:longPress];
                 }
                 else {
                     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setting)];
-                    [self addGestureRecognizer:tap];
+                    [recordBtn addGestureRecognizer:tap];
                 }
             }];
         }
     }
     return self;
+}
+-(void)showFile:(NSString*)fn{
+    if (fn == nil || [fn compare:@""] == NSOrderedSame) {
+        self.fileName = @"";
+        [UIView animateWithDuration:0.2 animations:^{
+            playBk.alpha = 0;
+            playBk.layer.transform = CATransform3DMakeTranslation(0, 83.0/2.0, 0);
+            UIView* l = [playBk viewWithTag:900];
+            l.alpha = 0;
+            for (int i = 1; i < 10; i++) {
+                UIView* l = [playBk viewWithTag:900+i];
+                l.alpha = 0;
+                UIView* r = [playBk viewWithTag:800+i];
+                r.alpha = 0;
+            }
+            for (int i = 0; i<=3; i++) {
+                UIView* l = [playBk viewWithTag:110+i];
+                l.alpha = 0;
+            }
+            recordBtn.alpha = 1.0;
+            removeBtn.alpha = 0.0;
+            tapLbl.text = @"按住录音";
+        }];
+    } else {
+        self.fileName = fn;
+        [UIView animateWithDuration:0.2 animations:^{
+            playBk.alpha = 1;
+            playBk.layer.transform = CATransform3DIdentity;
+            UIView* l = [playBk viewWithTag:900];
+            l.alpha = 0;
+            for (int i = 1; i < 10; i++) {
+                UIView* l = [playBk viewWithTag:900+i];
+                l.alpha = 0;
+                UIView* r = [playBk viewWithTag:800+i];
+                r.alpha = 0;
+            }
+            for (int i = 0; i<=3; i++) {
+                UIView* l = [playBk viewWithTag:110+i];
+                l.alpha = 1;
+            }
+            recordBtn.alpha = 0.0;
+            removeBtn.alpha = 1.0;
+            tapLbl.text = @"删除录音";
+        }];
+    }
 }
 -(void)setrecord{
     UIView *jd = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, 72.0/6.0)];
@@ -90,19 +137,6 @@
         [playBk addSubview:jr];
     }
 }
-//for (int i = 1; i < 10; i++) {
-//    if (lowPassResults >= 0.02 + (0.30-0.02)/9.0*i) {
-//        UIView* l = [playview.lyyl_view viewWithTag:900+i];
-//        l.alpha = 1;
-//        UIView* r = [playview.lyyl_view viewWithTag:800+i];
-//        r.alpha = 1;
-//    }else{
-//        UIView* l = [playview.lyyl_view viewWithTag:900+i];
-//        l.alpha = 0;
-//        UIView* r = [playview.lyyl_view viewWithTag:800+i];
-//        r.alpha = 0;
-//    }
-//}
 -(void)setPlay{
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(play)];
     [playBk addGestureRecognizer:tap];
@@ -140,11 +174,41 @@
         [playBk addSubview:playItem];
     }
 }
-
+-(void)removeFile{
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSError* err;
+    if (self.fileName != nil && [self.fileName compare:@""] != NSOrderedSame && [fm fileExistsAtPath:self.fileName]) {
+        BOOL ret = [fm removeItemAtPath:self.fileName error:&err];
+        if (!ret) {
+            NSLog(@"%@",err.description);
+        }
+    }
+    [self showFile:@""];
+}
 -(void)setting{
     [[StatusBar sharedStatusBar] talkMsg:@"请在隐私设置中允许“快邀约”访问麦克风。" inTime:1.0];
 }
+-(void)outofScreen{
+    if (timer && timer.isValid){
+        [timer invalidate];
+        timer = nil;
+    }
+    if (playTimer && playTimer.isValid){
+        [playTimer invalidate];
+        playTimer = nil;
+    }
+    if (recorder != nil) {
+        [recorder stop];
+        recorder = nil;
+        [self showFile:@""];
+    }
+    if (player != nil) {
+        [player stop];
+        player = nil;
+    }
+}
 -(void)tooSmall{
+    [self removeFile];
     [[waitingView sharedwaitingView] WarningByMsg:@"录音时间太短了" haveCancel:NO];
     [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:1.0];
 }
@@ -165,7 +229,7 @@
         }
         [recorder stop];
         recorder = nil;
-        [[waitingView sharedwaitingView] waitByMsg:@"最多只能录30秒哦。" haveCancel:YES];
+        [[waitingView sharedwaitingView] waitByMsg:@"最多只能录30秒哦。" haveCancel:NO];
         [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:0.5];
     }
     [recorder updateMeters];
@@ -213,60 +277,17 @@
         }];
     }
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        
-        
-//        NSLog(@"curCount-%f",curCount);
-//        if (is_audio) {
         if (timer && timer.isValid){
             [timer invalidate];
             timer = nil;
         }
-            [recorder stop];
-            recorder = nil;
+        [recorder stop];
+        recorder = nil;
         if (recorderTime > 1.0) {
-            
+            [self showFile:self.fileName];
         } else {
-            
+            [self tooSmall];
         }
-//
-//            //上传音频
-//            if (curCount >= 1) {
-//                [playview.audio_view setHidden:NO];
-//                [playview.audio_showview setHidden:YES];
-//                [playview.del_button setHidden:NO];
-//                playview.show_audioname.text = @"删除重录";
-//                
-//                [playview.lyyl_view setHidden:YES];
-//                [playview.tyx_label setHidden:NO];
-//                [playview.gif_img setHidden:NO];
-//            }
-//            else{
-//                is_audio = NO;
-//                [[waitingView sharedwaitingView] WarningByMsg:@"录音时间太短了" haveCancel:NO];
-//                recordedFile = nil;
-//                audioname = @"";
-//                //            [[StatusBar sharedStatusBar] talkMsg:@"录音时间太短了。" inTime:1.0];
-//                
-//                [UIView animateWithDuration:0.3 animations:^{
-//                    [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 51, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
-//                    [playview.audio_view setAlpha:0.0];
-//                    
-//                }completion:^(BOOL finished) {
-//                    [playview.audio_view setHidden:YES];
-//                    [playview.lyyl_view setHidden:NO];
-//                    [playview.tyx_label setHidden:YES];
-//                    [playview.gif_img setHidden:YES];
-//                }];
-//                
-//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                    is_audio = YES;
-//                    [[waitingView sharedwaitingView] stopWait];
-//                });
-//                
-//            }
-//            
-//            [playview.audio_img setImage:[UIImage imageNamed:@"btn_120_recording"]];
-//        }
     }
 }
 - (NSDictionary*)getAudioRecorderSettingDict
@@ -299,11 +320,43 @@
         if([player isPlaying])
         {
             [player stop];
+            [self playStop];
         }
         else
         {
             [player play];
+            playTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(playTimer:) userInfo:nil repeats:YES];
         }
     }
+}
+- (void)playTimer:(NSTimer*)timer_{
+    static int count = 0;
+    count++;
+    if (count >= 3) {
+        count = 0;
+    }
+    [UIView animateWithDuration:0.1 animations:^{
+        for (int i = 0; i<3; i++) {
+            UIView* l = [playBk viewWithTag:113-i];
+            if (i>=count) {
+                l.alpha = 0;
+            } else {
+                l.alpha = 1;
+            }
+        }
+    }];
+}
+- (void)playStop{
+    if (playTimer && playTimer.isValid){
+        [playTimer invalidate];
+        playTimer = nil;
+    }
+    for (int i = 0; i<=3; i++) {
+        UIView* l = [playBk viewWithTag:110+i];
+        l.alpha = 1;
+    }
+}
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+    [self playStop];
 }
 @end

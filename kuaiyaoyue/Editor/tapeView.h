@@ -17,8 +17,9 @@
     AVAudioPlayer *player;
     AVAudioRecorder *recorder;
     NSTimer* timer;
+    NSTimer* playTimer;
     double recorderTime;
 }
 @property (nonatomic ,strong) NSString* fileName;
-
+-(void)showFile:(NSString*)fn;
 @end
