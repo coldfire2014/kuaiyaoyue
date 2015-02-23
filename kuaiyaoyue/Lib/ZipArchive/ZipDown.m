@@ -10,33 +10,35 @@
 #import "HttpManage.h"
 #import "PCHeader.h"
 @implementation ZipDown
-+(void)UnzipI{
-    NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
++(void)UnzipI{//文件夹存在就不解压
+//    NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:testDirectory]) {
         [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-        [HttpManage unzip:zipPath filename:testDirectory];
+//        [HttpManage unzip:zipPath filename:testDirectory];
+        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSError* err = nil;
+        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/musicFiles"] toPath:[testDirectory stringByAppendingString:@"/musicFiles"] error:&err];
+        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/custom"] toPath:[testDirectory stringByAppendingString:@"/custom"] error:&err];
     }
 }
-+(void)UnzipII{
-    NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
++(void)UnzipSingle:(NSString*)filename{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:testDirectory]) {
-        [fileManager removeItemAtPath:testDirectory error:nil];
-    }
-    [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-    [HttpManage unzip:zipPath filename:testDirectory];
+    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
+    NSError* err = nil;
+    [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingPathComponent:filename] toPath:[testDirectory stringByAppendingPathComponent:filename] error:&err];
 }
-+(void)Unzip{
++(void)Unzip{//升级或首次
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
     NSString *is_open = [userInfo valueForKey:UZIP];
-    NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
+//    NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
@@ -49,7 +51,13 @@
             [fileManager removeItemAtPath:testDirectory error:nil];
         }
         [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-        [HttpManage unzip:zipPath filename:testDirectory];
+//        [HttpManage unzip:zipPath filename:testDirectory];
+        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSError* err = nil;
+        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/musicFiles"] toPath:[testDirectory stringByAppendingString:@"/musicFiles"] error:&err];
+        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/custom"] toPath:[testDirectory stringByAppendingString:@"/custom"] error:&err];
+        
         [userInfo setValue:@"YES" forKey:UZIP];
         [userInfo synchronize];
     }

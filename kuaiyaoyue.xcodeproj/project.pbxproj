@@ -186,6 +186,7 @@
 		E56863AE1A77213000DB6EA4 /* templateController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56863AD1A77213000DB6EA4 /* templateController.m */; };
 		E56863B11A772CD200DB6EA4 /* music.json in Resources */ = {isa = PBXBuildFile; fileRef = E56863B01A772CD200DB6EA4 /* music.json */; };
 		E56863B31A77327600DB6EA4 /* template.json in Resources */ = {isa = PBXBuildFile; fileRef = E56863B21A77327600DB6EA4 /* template.json */; };
+		E569C3E01A9B5D050051226F /* sdyy.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E569C3DF1A9B5D050051226F /* sdyy.bundle */; };
 		E56C0A3B1A8C3C330055495A /* ipadbg.m in Sources */ = {isa = PBXBuildFile; fileRef = E56C0A3A1A8C3C330055495A /* ipadbg.m */; };
 		E56C0A441A8C8EB00055495A /* ipadTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E56C0A431A8C8EB00055495A /* ipadTabItem.m */; };
 		E56C0A4D1A8CAC4D0055495A /* ic_38_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E56C0A4A1A8CAC4D0055495A /* ic_38_save@2x.png */; };
@@ -241,7 +242,6 @@
 		E59832721A8A466100BF77B9 /* QNResumeUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = E59832601A8A466100BF77B9 /* QNResumeUpload.m */; };
 		E59832731A8A466100BF77B9 /* QNUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E59832621A8A466100BF77B9 /* QNUploadManager.m */; };
 		E59832741A8A466100BF77B9 /* QNUploadOption.m in Sources */ = {isa = PBXBuildFile; fileRef = E59832651A8A466100BF77B9 /* QNUploadOption.m */; };
-		E59F85081A70DEE3000B1E61 /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = E59F85061A70DEE3000B1E61 /* 1.zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -552,6 +552,7 @@
 		E56863AD1A77213000DB6EA4 /* templateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = templateController.m; path = Controller/templateController.m; sourceTree = "<group>"; };
 		E56863B01A772CD200DB6EA4 /* music.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = music.json; path = Controller/music.json; sourceTree = "<group>"; };
 		E56863B21A77327600DB6EA4 /* template.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = template.json; sourceTree = "<group>"; };
+		E569C3DF1A9B5D050051226F /* sdyy.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = sdyy.bundle; path = ../../../zipdir/sdyy.bundle; sourceTree = "<group>"; };
 		E56C0A391A8C3C330055495A /* ipadbg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipadbg.h; sourceTree = "<group>"; };
 		E56C0A3A1A8C3C330055495A /* ipadbg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ipadbg.m; sourceTree = "<group>"; };
 		E56C0A421A8C8EB00055495A /* ipadTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipadTabItem.h; sourceTree = "<group>"; };
@@ -643,7 +644,6 @@
 		E59832631A8A466100BF77B9 /* QNUploadOption+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QNUploadOption+Private.h"; sourceTree = "<group>"; };
 		E59832641A8A466100BF77B9 /* QNUploadOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadOption.h; sourceTree = "<group>"; };
 		E59832651A8A466100BF77B9 /* QNUploadOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadOption.m; sourceTree = "<group>"; };
-		E59F85061A70DEE3000B1E61 /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = 1.zip; path = ../../../zipdir/1.zip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1013,7 +1013,7 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
-				E59F85061A70DEE3000B1E61 /* 1.zip */,
+				E569C3DF1A9B5D050051226F /* sdyy.bundle */,
 				E560D64A1A65630400843E38 /* arr32.png */,
 				E565ECCB1A538EA100679BAE /* img_empty_homeb.png */,
 				8431E9071A4D24AA00E9B0EE /* logo.png */,
@@ -1565,6 +1565,7 @@
 				E565ECC61A52CDB900679BAE /* 1w.jpg in Resources */,
 				E5661A1C1A45708C00E4E2BC /* btn_login_qq.png in Resources */,
 				E56863B11A772CD200DB6EA4 /* music.json in Resources */,
+				E569C3E01A9B5D050051226F /* sdyy.bundle in Resources */,
 				E56C0A6B1A8CCA060055495A /* ic_c_timer@2x.png in Resources */,
 				E5661A291A457CB700E4E2BC /* btn_login_1.png in Resources */,
 				E56C0A5F1A8CCA060055495A /* ic_c_clock@2x.png in Resources */,
@@ -1616,7 +1617,6 @@
 				84FE0B881A426C71005A9599 /* PhotoCell.xib in Resources */,
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,
 				8474A4B01A4BB28A00C2E489 /* bubble_play_3@2x.png in Resources */,
-				E59F85081A70DEE3000B1E61 /* 1.zip in Resources */,
 				E5661A2A1A457CB700E4E2BC /* btn_login_2_pre.png in Resources */,
 				8442288C1A4A518300583893 /* PEPhotoCropEditor.bundle in Resources */,
 				E5661A231A45708C00E4E2BC /* logo_login@2x.png in Resources */,

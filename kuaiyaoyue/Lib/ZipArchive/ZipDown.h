@@ -11,5 +11,5 @@
 @interface ZipDown : NSObject
 +(void)Unzip;
 +(void)UnzipI;
-+(void)UnzipII;
++(void)UnzipSingle:(NSString*)filename;
 @end

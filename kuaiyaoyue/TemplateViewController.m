@@ -240,13 +240,14 @@
 
 -(UIView*)cellForItemAtIndex:(NSInteger)index{
     Template *info = [data objectAtIndex:index];
-    NSString *nefmbbg = info.nefmbbg;
+    NSString *nefmbbg = [[NSString alloc] initWithFormat:@"%@",info.nefmbbg];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     nefmbbg = [documentsDirectory stringByAppendingString:nefmbbg];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:nefmbbg]) {
-        [ZipDown UnzipII];//markwyb
+    if (![[NSFileManager defaultManager] fileExistsAtPath:nefmbbg]) {
+        NSArray* names = [info.nefmbbg componentsSeparatedByString:@"/"];
+        NSString *name = [names objectAtIndex:2];
+        [ZipDown UnzipSingle:name];
     }
     UIImage* imgt = [[UIImage alloc]initWithContentsOfFile:nefmbbg];
     UIImage* img = [[UIImage alloc] initWithCGImage:imgt.CGImage scale:2.0 orientation:UIImageOrientationUp];

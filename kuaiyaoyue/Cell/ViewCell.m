@@ -10,7 +10,7 @@
 #import "TimeTool.h"
 #import "FileManage.h"
 #import "UIImageView+AFNetworking.h"
-
+#import "ZipDown.h"
 @implementation ViewCell{
     StateView* s;
 }
@@ -76,9 +76,12 @@
         topimg = [[FileManage sharedFileManage] getImgFile:topimg];
     }else{
         NSArray *array = [_info.nefthumb componentsSeparatedByString:@"/"];
-        topimg = [array objectAtIndex:([array count] - 4)];
-        topimg = [[FileManage sharedFileManage] getThumb:topimg];
+        NSString *topName = [array objectAtIndex:([array count] - 4)];
+        topimg = [[FileManage sharedFileManage] getThumb:topName];
         topimg = [NSString stringWithFormat:@"%@/assets/images/thumb",topimg];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:topimg]) {
+            [ZipDown UnzipSingle:topName];
+        }
     }
     
     UIImage *img = [[UIImage alloc]initWithContentsOfFile:topimg];
