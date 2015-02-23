@@ -10,7 +10,7 @@
 #import "myImageView.h"
 #import "TempCell.h"
 #import "DataBaseManage.h"
-
+#import "ZipDown.h"
 @implementation ChangeTempView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -118,6 +118,11 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     nefmbbg = [documentsDirectory stringByAppendingString:nefmbbg];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:nefmbbg]) {
+        NSArray* names = [info.nefmbbg componentsSeparatedByString:@"/"];
+        NSString *name = [names objectAtIndex:2];
+        [ZipDown UnzipSingle:name];
+    }
     UIImage* imgt = [[UIImage alloc]initWithContentsOfFile:nefmbbg];
     UIImage* img = [[UIImage alloc] initWithCGImage:imgt.CGImage scale:2.0 orientation:UIImageOrientationUp];
     cell.image.image = img;

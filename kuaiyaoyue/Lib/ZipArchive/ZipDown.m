@@ -24,6 +24,7 @@
         NSError* err = nil;
         [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/musicFiles"] toPath:[testDirectory stringByAppendingString:@"/musicFiles"] error:&err];
         [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/custom"] toPath:[testDirectory stringByAppendingString:@"/custom"] error:&err];
+        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/public"] toPath:[testDirectory stringByAppendingString:@"/public"] error:&err];
     }
 }
 +(void)UnzipSingle:(NSString*)filename{
@@ -57,7 +58,7 @@
         NSError* err = nil;
         [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/musicFiles"] toPath:[testDirectory stringByAppendingString:@"/musicFiles"] error:&err];
         [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/custom"] toPath:[testDirectory stringByAppendingString:@"/custom"] error:&err];
-        
+        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/public"] toPath:[testDirectory stringByAppendingString:@"/public"] error:&err];
         [userInfo setValue:@"YES" forKey:UZIP];
         [userInfo synchronize];
     }
