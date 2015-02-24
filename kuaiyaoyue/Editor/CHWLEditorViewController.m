@@ -836,11 +836,13 @@
 }
 
 - (void)send_onclick:(UITapGestureRecognizer *)gr{
+    is_yl = YES;
     is_bcfs = NO;
     [self SendUp];
 }
 
 - (void)sendandshare_onclick:(UITapGestureRecognizer *)gr{
+    is_yl = YES;
     is_bcfs = YES;
     [self SendUp];
 }
