@@ -198,6 +198,9 @@
                 }
                 if (needReload) {
                     [self reloaddata];
+                    if ([count compare:@"30"] == NSOrderedSame) {
+                        [_tableview headerEndRefreshing];
+                    }
                     [UDObject setTimestamp:[ts_max description]];
                 }
             }
@@ -262,6 +265,7 @@
     NSArray *arr = [[DataBaseManage getDataBaseManage] getUserdata];
     if (arr==nil || arr.count == 0) {
         [self showToptitle];
+        [_tableview headerBeginRefreshing];
         [self GetRecord:@"30"];
     } else {
         for (Userdata *user in arr) {
