@@ -31,7 +31,12 @@
     UIViewController* fromView = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     if (isPresent) {
         [[transitionContext containerView] addSubview:toView.view];
-        MenuViewController* mvc = (MenuViewController*)fromView;
+        MenuViewController* mvc = nil;
+        if ([fromView isKindOfClass:[MenuViewController class]]) {
+            mvc = (MenuViewController*)fromView;
+        } else {
+            mvc = (MenuViewController*)toView;
+        }
         int tapID = mvc.tapID;
         UIView* btnBack = [fromView.view viewWithTag:302];
         UIView* bg = [fromView.view viewWithTag:301];

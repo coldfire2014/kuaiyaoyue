@@ -79,9 +79,42 @@
         [self performSegueWithIdentifier:name sender:nil];
     }
 }
+- (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize
+{
+    // Create a graphics image context
+    UIGraphicsBeginImageContext(newSize);
+    
+    // Tell the old image to draw in this new context, with the desired
+    // new size
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
+    // Get the new image from the context
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // End the context
+    UIGraphicsEndImageContext();
+    
+    // Return the new image.
+    return newImage;
+}
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [TalkingData trackPageBegin:@"加载页面"];
+//    WXMediaMessage *message = [WXMediaMessage message];
+//    WXImageObject *ext = [WXImageObject object];
+//    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"1w" ofType:@"jpg"]];
+////    CGSize size = CGSizeMake(img.size.width/3.0, img.size.height/3.0);
+////    UIImage* img_s = [self imageWithImageSimple:img scaledToSize:size];
+////    message.title = @"快邀约图片";
+////    message.description = @"图片分享";
+////    [message setThumbImage:img_s];
+//    ext.imageData = UIImagePNGRepresentation(img);
+//    message.mediaObject = ext;
+//    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+//    req.bText = NO;
+//    req.message = message;
+//    req.scene = WXSceneSession;
+//    [WXApi sendReq:req];
     NSString *name = nil;
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     if ([[UDObject gettoken] length] > 0) {
