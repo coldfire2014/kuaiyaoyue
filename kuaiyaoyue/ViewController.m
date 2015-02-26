@@ -198,9 +198,9 @@
                 }
                 if (needReload) {
                     [self reloaddata];
-                    if ([count compare:@"30"] == NSOrderedSame) {
-                        [_tableview headerEndRefreshing];
-                    }
+//                    if ([count compare:@"30"] == NSOrderedSame) {
+//                        [_tableview headerEndRefreshing];
+//                    }
                     [UDObject setTimestamp:[ts_max description]];
                 }
             }
