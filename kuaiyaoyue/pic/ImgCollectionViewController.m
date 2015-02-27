@@ -91,6 +91,7 @@ static NSString * const fIdentifier = @"imgcellf";
         selectItems = [self.delegate ownAssets];
     }
     [assert getGroupList:^(NSArray *ag) {
+        NSLog(@"%@",ag);
         [self reloadData];
     }];
 }

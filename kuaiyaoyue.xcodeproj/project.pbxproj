@@ -288,16 +288,16 @@
 		844825E41A31A1AE0018240E /* TemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TemplateViewController.m; path = ../TemplateViewController.m; sourceTree = "<group>"; };
 		844825E61A31A1D40018240E /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = ../MenuViewController.h; sourceTree = "<group>"; };
 		844825E71A31A1D40018240E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = ../MenuViewController.m; sourceTree = "<group>"; };
-		844825EA1A31A46A0018240E /* HLEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLEditViewController.h; sourceTree = "<group>"; };
-		844825EB1A31A46A0018240E /* HLEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLEditViewController.m; sourceTree = "<group>"; };
-		844825ED1A31A4800018240E /* CHWLEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHWLEditorViewController.h; sourceTree = "<group>"; };
-		844825EE1A31A4800018240E /* CHWLEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHWLEditorViewController.m; sourceTree = "<group>"; };
-		844825F01A31A48A0018240E /* SWYQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWYQViewController.h; sourceTree = "<group>"; };
-		844825F11A31A48A0018240E /* SWYQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWYQViewController.m; sourceTree = "<group>"; };
+		844825EA1A31A46A0018240E /* HLEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HLEditViewController.h; path = ../Editor/HLEditViewController.h; sourceTree = "<group>"; };
+		844825EB1A31A46A0018240E /* HLEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HLEditViewController.m; path = ../Editor/HLEditViewController.m; sourceTree = "<group>"; };
+		844825ED1A31A4800018240E /* CHWLEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHWLEditorViewController.h; path = ../Editor/CHWLEditorViewController.h; sourceTree = "<group>"; };
+		844825EE1A31A4800018240E /* CHWLEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHWLEditorViewController.m; path = ../Editor/CHWLEditorViewController.m; sourceTree = "<group>"; };
+		844825F01A31A48A0018240E /* SWYQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWYQViewController.h; path = ../Editor/SWYQViewController.h; sourceTree = "<group>"; };
+		844825F11A31A48A0018240E /* SWYQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWYQViewController.m; path = ../Editor/SWYQViewController.m; sourceTree = "<group>"; };
 		844825F41A31A4D20018240E /* PreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreviewViewController.h; path = ../PreviewViewController.h; sourceTree = "<group>"; };
 		844825F51A31A4D20018240E /* PreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreviewViewController.m; path = ../PreviewViewController.m; sourceTree = "<group>"; };
-		844825F71A31A9BA0018240E /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
-		844825F81A31A9BA0018240E /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
+		844825F71A31A9BA0018240E /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomViewController.h; path = ../Editor/CustomViewController.h; sourceTree = "<group>"; };
+		844825F81A31A9BA0018240E /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomViewController.m; path = ../Editor/CustomViewController.m; sourceTree = "<group>"; };
 		844825FB1A31B3C40018240E /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		844825FC1A31B3C40018240E /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		844825FE1A31B3F40018240E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../DetailViewController.h; sourceTree = "<group>"; };
@@ -741,23 +741,17 @@
 				E5853C3D1A8D9A4C00387BD9 /* HeadImgView.h */,
 				E5853C3E1A8D9A4C00387BD9 /* HeadImgView.m */,
 				E56C0A491A8CAC0E0055495A /* editIcon */,
-				844825EA1A31A46A0018240E /* HLEditViewController.h */,
-				844825EB1A31A46A0018240E /* HLEditViewController.m */,
-				844825F01A31A48A0018240E /* SWYQViewController.h */,
-				844825F11A31A48A0018240E /* SWYQViewController.m */,
-				844825ED1A31A4800018240E /* CHWLEditorViewController.h */,
-				844825EE1A31A4800018240E /* CHWLEditorViewController.m */,
-				844825F71A31A9BA0018240E /* CustomViewController.h */,
-				844825F81A31A9BA0018240E /* CustomViewController.m */,
 				E514F44B1A8AF70C00C09C6E /* EditViewController.h */,
 				E514F44C1A8AF70C00C09C6E /* EditViewController.m */,
 			);
-			path = Editor;
+			name = Editor;
+			path = ../Editor;
 			sourceTree = "<group>";
 		};
 		844825F31A31A4BB0018240E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				844825E91A31A45C0018240E /* Editor */,
 				E56C0A3D1A8C3CFA0055495A /* edit */,
 				E56C0A3C1A8C3C8E0055495A /* ipad */,
 				844825E61A31A1D40018240E /* MenuViewController.h */,
@@ -939,7 +933,6 @@
 				84B446CD1A32B91F00546859 /* Login */,
 				844825FA1A31B3B70018240E /* Setting */,
 				844825F31A31A4BB0018240E /* View */,
-				844825E91A31A45C0018240E /* Editor */,
 				8448258A1A318FAC0018240E /* Cell */,
 				844825861A318C630018240E /* UserDefaults */,
 				844825731A31535A0018240E /* Welcome */,
@@ -1318,6 +1311,14 @@
 		E56C0A3D1A8C3CFA0055495A /* edit */ = {
 			isa = PBXGroup;
 			children = (
+				844825EA1A31A46A0018240E /* HLEditViewController.h */,
+				844825EB1A31A46A0018240E /* HLEditViewController.m */,
+				844825F01A31A48A0018240E /* SWYQViewController.h */,
+				844825F11A31A48A0018240E /* SWYQViewController.m */,
+				844825ED1A31A4800018240E /* CHWLEditorViewController.h */,
+				844825EE1A31A4800018240E /* CHWLEditorViewController.m */,
+				844825F71A31A9BA0018240E /* CustomViewController.h */,
+				844825F81A31A9BA0018240E /* CustomViewController.m */,
 				849D667C1A484875004EF00F /* HLEditView.h */,
 				849D667D1A484875004EF00F /* HLEditView.m */,
 				849D667F1A484887004EF00F /* HLEditView.xib */,

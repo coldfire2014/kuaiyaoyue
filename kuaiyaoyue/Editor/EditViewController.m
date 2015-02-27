@@ -27,6 +27,8 @@
 #import "PreviewViewController.h"
 #import "TalkingData.h"
 #import "waitingView.h"
+#import "ZipDown.h"
+
 @interface EditViewController ()
 
 @end
@@ -85,10 +87,12 @@
         editItemList.tag = 121;
         editItemList.clipsToBounds = YES;
         [self.view addSubview:editItemList];
-        
-        UIView* showBg = [[UIView alloc] initWithFrame:CGRectMake(467.0, 21.0, mainScreenFrame.size.width-467.0, mainScreenFrame.size.height-20.0)];
+        UIScrollView* showBg = [[UIScrollView alloc] initWithFrame:CGRectMake(467.0, 21.0, mainScreenFrame.size.width-467.0, mainScreenFrame.size.height-20.0)];
         showBg.backgroundColor = [UIColor clearColor];
+        [showBg setContentSize:CGSizeMake(mainScreenFrame.size.width-467.0, mainScreenFrame.size.height-20.0)];
         showBg.tag = 141;
+        showBg.showsHorizontalScrollIndicator = NO;
+        showBg.showsVerticalScrollIndicator = NO;
         [self.view addSubview:showBg];
         
     }else{
@@ -461,9 +465,12 @@
         andn.text=@"页面预览与编辑";
         [picsView addSubview:andn];
         ch += 86.0/2.0+180.0+6.0+12.0;
-        UIView* showBg = [[UIView alloc] initWithFrame:CGRectMake(0.0, 86.0/2.0, w, 180)];
+        UIScrollView* showBg = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 86.0/2.0, w, 180)];
         showBg.backgroundColor = [UIColor clearColor];
+        [showBg setContentSize:CGSizeMake(w, 180)];
         showBg.tag = 141;
+        showBg.showsHorizontalScrollIndicator = NO;
+        showBg.showsVerticalScrollIndicator = NO;
         [picsView addSubview:showBg];
     }
     UIView* musicView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 86.0/2.0)];
@@ -825,6 +832,9 @@
         self.editListView.frame = CGRectMake(0, 0, self.editListView.frame.size.width, self.editListView.frame.size.height);
     }
 }
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    [self drowImg];
+}
 - (void)textViewDidChange:(UITextView *)textView{
     long max = 70;
     if ([self.typeid compare:@"4"] == NSOrderedSame) {
@@ -861,6 +871,9 @@
         }
     }
     return YES;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    [self drowImg];
 }
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     if (textField == contactInput && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -987,42 +1000,129 @@
 }
 #pragma mark - ipad 模版
 -(void)initPreView{
-    //    UIView* showBg = [self.view viewWithTag: 141];
-    //    CGRect r = showBg.frame;
-    //    CGFloat w = r.size.width;
-    //    CGFloat h = r.size.height;
-    //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-    //        CGFloat itemW = 120.0;
-    //        CGFloat itemH = 180.0;
-    //        UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*0.0, 0.0, itemW, itemH)];
-    //        bg.backgroundColor = [UIColor blueColor];
-    //        [showBg addSubview:bg];
-    //        UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*1.0, 0.0, itemW, itemH)];
-    //        bg1.backgroundColor = [UIColor blueColor];
-    //        [showBg addSubview:bg1];
-    //        UIView* bg2 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*2.0, 0.0, itemW, itemH)];
-    //        bg2.backgroundColor = [UIColor blueColor];
-    //        [showBg addSubview:bg2];
-    //    } else {
-    //        CGFloat itemW = 200.0;
-    //        CGFloat itemH = 200.0/320.0*480.0;
-    //        UIView* hbg = [[UIView alloc] initWithFrame:CGRectMake(0, (h-itemH)/2.0, w, itemH)];
-    //        hbg.backgroundColor = [UIColor blueColor];
-    //        [showBg addSubview:hbg];
-    //        UIView* sbg = [[UIView alloc] initWithFrame:CGRectMake(32.0, 0, itemW, h)];
-    //        sbg.backgroundColor = [UIColor redColor];
-    //        [showBg addSubview:sbg];
-    //
-    //        UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*0.0, (h-itemH)/2.0, itemW, itemH)];
-    //        bg.backgroundColor = [UIColor yellowColor];
-    //        [showBg addSubview:bg];
-    //        UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*1.0, (h-itemH)/2.0, itemW, itemH)];
-    //        bg1.backgroundColor = [UIColor yellowColor];
-    //        [showBg addSubview:bg1];
-    //        UIView* bg2 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*2.0, (h-itemH)/2.0, itemW, itemH)];
-    //        bg2.backgroundColor = [UIColor yellowColor];
-    //        [showBg addSubview:bg2];
-    //    }
+        UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+        CGRect r = showBg.frame;
+//        CGFloat w = r.size.width;
+        CGFloat h = r.size.height;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            CGFloat itemW = 120.0;
+            CGFloat itemH = 180.0;
+            UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*0.0, 0.0, itemW, itemH)];
+            bg.backgroundColor = [UIColor clearColor];
+            [showBg addSubview:bg];
+            [self setPreviewImg2:bg];
+            UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*1.0, 0.0, itemW, itemH)];
+            bg1.backgroundColor = [UIColor clearColor];
+            [showBg addSubview:bg1];
+            UIView* bg2 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*2.0, 0.0, itemW, itemH)];
+            bg2.backgroundColor = [UIColor clearColor];
+            [showBg addSubview:bg2];
+            
+            [showBg setContentSize:CGSizeMake(6.0 + (itemW+6.0)*3.0, itemH)];
+        } else {
+            CGFloat itemW = 200.0;
+            CGFloat itemH = 200.0/320.0*480.0;
+
+            UIView* sbg = [[UIView alloc] initWithFrame:CGRectMake(32.0, 0, itemW, h)];
+            sbg.backgroundColor = [UIColor clearColor];
+            [showBg addSubview:sbg];
+            
+            [self setPreviewImg2:sbg];
+    
+            UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*1.0, (h-itemH)/2.0, itemW, itemH)];
+            bg1.backgroundColor = [UIColor clearColor];
+            [showBg addSubview:bg1];
+            UIView* bg2 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*2.0, (h-itemH)/2.0, itemW, itemH)];
+            bg2.backgroundColor = [UIColor clearColor];
+            [showBg addSubview:bg2];
+            
+            [showBg setContentSize:CGSizeMake(32.0 + (itemW+16.0)*3.0, h)];
+        }
+}
+-(void)setPreviewImg2:(UIView*)bg{
+    self.tempId = @"1";
+    self.tempLoc = @"/sdyy/aiqingduo/assets/images/base";
+    
+    CGFloat itemW = 120.0;
+    CGFloat itemH = 180.0;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        itemW = 120.0;
+        itemH = 180.0;
+    } else {
+        itemW = 200.0;
+        itemH = 200.0/320.0*480.0;
+    }
+    UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, itemW, itemH)];
+    img.tag = 395;
+    img.center = CGPointMake(bg.frame.size.width/2.0, bg.frame.size.height/2.0);
+    [bg addSubview:img];
+    [self drowImg];
+}
+-(void)drowImg{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *nefmbbg = [documentsDirectory stringByAppendingString:self.tempLoc];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:nefmbbg]) {
+        NSArray* names = [self.tempLoc componentsSeparatedByString:@"/"];
+        NSString *name = [names objectAtIndex:2];
+        [ZipDown UnzipSingle:name];
+    }
+    UIImageView* view = (UIImageView*)[self.view viewWithTag:395];
+    view.image = [self getimg:nefmbbg];
+}
+-(UIImage *)getimg:(NSString *) str{
+    NSArray *dataarray = [[DataBaseManage getDataBaseManage] GetInfo:self.tempId];
+    NSInfoImg* infodata = [[NSInfoImg alloc] initWithbgImagePath:str];//背景图文件路径
+    
+    CGFloat red1 = 0.0;
+    CGFloat green1 = 0.0;
+    CGFloat blue1 = 0.0;
+    
+    for (int i = 0; i < [dataarray count]; i++) {
+        Info *info = [dataarray objectAtIndex:i];
+        NSString *parameterName = info.nefparametername;
+        CGFloat x = [info.nefx floatValue];
+        CGFloat y = [info.nefy floatValue];
+        CGFloat w = [info.nefwidth floatValue];
+        CGFloat h = [info.nefheight floatValue];
+        CGFloat size = [info.neffontsize floatValue];
+        NSString *rgb = info.neffontcolor;
+        red1 = strtoul([[rgb substringWithRange:NSMakeRange(1,2)] UTF8String],0,16);
+        green1 = strtoul([[rgb substringWithRange:NSMakeRange(3,2)] UTF8String],0,16);
+        blue1 = strtoul([[rgb substringFromIndex:5] UTF8String],0,16);
+        if ([parameterName isEqualToString:@"marryName"]) {
+            NSString *name = [NSString stringWithFormat:@"%@ & %@",manInput.text,wemanInput.text];
+            [infodata addInfoWithValue:name andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+        }else if ([parameterName isEqualToString:@"partyName"]) {
+            
+            [infodata addInfoWithValue:titleInput.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+            
+        }else if ([parameterName isEqualToString:@"timestamp"]) {
+            
+            [infodata addInfoWithValue:timeInput.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+            
+        }else if ([parameterName isEqualToString:@"address"]) {
+            [infodata addInfoWithValue:locInput.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+        }
+        
+        else if ([parameterName isEqualToString:@"description"]) {
+            NSString *content = tipInput.text;
+            if (content.length > 0) {
+                [infodata addInfoWithValue:tipInput.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:NO:YES];
+            }
+        }
+    }
+    NSArray *fixeds = [[DataBaseManage getDataBaseManage] GetFixeds:self.tempId];
+    for (Fixeds *info in fixeds) {
+        CGFloat x = info.nefX;
+        CGFloat y = info.nefY;
+        CGFloat w = info.nefWidth;
+        CGFloat h = info.nefHeight;
+        CGFloat size = info.nefFontSize;
+        [infodata addInfoWithValue:info.nefContent andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
+    }
+    UIImage *bgimg = [infodata getSaveImg :YES];
+    return bgimg;
 }
 #pragma mark - 数据操作
 -(void)initOldInput{

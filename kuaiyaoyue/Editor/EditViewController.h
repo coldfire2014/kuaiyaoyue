@@ -43,4 +43,6 @@
 @property (strong, nonatomic) UIScrollView *editListView;
 @property (nonatomic, strong) NSString *typeid;
 
+@property (nonatomic, strong) NSString *tempId;//模板id
+@property (nonatomic, strong) NSString *tempLoc;//模版位置
 @end

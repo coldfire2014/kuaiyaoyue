@@ -44,7 +44,7 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    
+    NSLog(@"Unzipin");
     if ([is_open length] > 0){
         
     }else{
@@ -63,7 +63,7 @@
         [userInfo synchronize];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ZIP_DONE" object:nil];
-
+    NSLog(@"Unzipout");
 }
 
 @end
