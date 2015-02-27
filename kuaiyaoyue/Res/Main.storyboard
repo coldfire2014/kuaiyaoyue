@@ -46,6 +46,7 @@
                         <segue destination="oWB-DN-aF8" kind="show" identifier="hledit" id="Oey-PZ-F9W"/>
                         <segue destination="7YK-37-kxW" kind="show" identifier="swedit" id="keJ-rR-p7N"/>
                         <segue destination="B8p-9i-iFV" kind="show" identifier="chedit" id="x3h-Pp-84V"/>
+                        <segue destination="fow-92-zGZ" kind="custom" identifier="newedit" customClass="editSegue" id="9Bh-fZ-loP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kj-8d-xif" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1945,8 +1946,9 @@
         <image name="logo_login.png" width="159" height="172"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nH8-Jy-0fi"/>
-        <segue reference="yfj-Uu-bzj"/>
         <segue reference="D53-YK-KM5"/>
+        <segue reference="yfj-Uu-bzj"/>
+        <segue reference="nH8-Jy-0fi"/>
+        <segue reference="9Bh-fZ-loP"/>
     </inferredMetricsTieBreakers>
 </document>

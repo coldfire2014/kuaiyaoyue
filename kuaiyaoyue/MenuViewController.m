@@ -200,11 +200,11 @@
 }
 - (void)didTapTwo{
     self.tapID = 402;
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [self performSegueWithIdentifier:@"newedit" sender:@"2"];
-//    } else {
-//        [self performSegueWithIdentifier:@"showTemplate" sender:@"sanwu"];
-//    }
+    } else {
+        [self performSegueWithIdentifier:@"showTemplate" sender:@"sanwu"];
+    }
     [TalkingData trackEvent:@"开启商务编辑"];
 }
 - (void)didTapThree{
@@ -218,11 +218,11 @@
 }
 - (void)didTapFour{
     self.tapID = 404;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [self performSegueWithIdentifier:@"newedit" sender:@"4"];
-    } else {
-        [self performSegueWithIdentifier:@"zdyedit" sender:nil];
-    }
+//    } else {
+//        [self performSegueWithIdentifier:@"zdyedit" sender:nil];
+//    }
     [TalkingData trackEvent:@"开启自定义编辑"];
 }
 

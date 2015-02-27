@@ -21,7 +21,7 @@
 #import "CHWLEditorViewController.h"
 #import "TalkingData.h"
 #import "ZipDown.h"
-
+#import "EditViewController.h"
 @interface TemplateViewController (){
     NSString *neftypeId;
     NSArray *data;
@@ -272,16 +272,16 @@
     int type = [neftypeId intValue];
     switch (type) {
         case 1:
-            [self performSegueWithIdentifier:@"hledit" sender:nil];
+            [self performSegueWithIdentifier:@"newedit" sender:@"1"];
             [TalkingData trackEvent:@"编辑内容" label:[[NSString alloc] initWithFormat:@"婚礼-%@",info.nefname]];
             break;
         case 2:
-            [self performSegueWithIdentifier:@"swedit" sender:nil];
+            [self performSegueWithIdentifier:@"newedit" sender:@"2"];
             [TalkingData trackEvent:@"编辑内容" label:[[NSString alloc] initWithFormat:@"商务-%@",info.nefname]];
 //             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         case 3:
-            [self performSegueWithIdentifier:@"chedit" sender:nil];
+            [self performSegueWithIdentifier:@"newedit" sender:@"3"];
             [TalkingData trackEvent:@"编辑内容" label:[[NSString alloc] initWithFormat:@"吃喝玩乐-%@",info.nefname]];
 //             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
@@ -341,21 +341,25 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     [loading startAnimating];
-    if ([segue.identifier compare:@"hledit"] == NSOrderedSame ) {
-        HLEditViewController* des = (HLEditViewController*)segue.destinationViewController;
-        des.unquieId = unquieId;
-        des.nefmbdw = nefmbdw;
-    }else if ([segue.identifier compare:@"swedit"] == NSOrderedSame){
-        SWYQViewController *view = (SWYQViewController *)segue.destinationViewController;
-        view.unquieId = unquieId;
-        view.nefmbdw = nefmbdw;
-    }else if ([segue.identifier compare:@"chedit"] == NSOrderedSame){
-        CHWLEditorViewController *view = (CHWLEditorViewController *)segue.destinationViewController;
-        view.unquieId = unquieId;
-        view.nefmbdw = nefmbdw;
-    }else if ([segue.identifier compare:@"zdedit"] == NSOrderedSame){
-        
-    }
+    EditViewController* des = (EditViewController*)segue.destinationViewController;
+    des.tempId = unquieId;
+    des.tempLoc = nefmbdw;
+    des.typeid = (NSString*)sender;
+//    if ([segue.identifier compare:@"hledit"] == NSOrderedSame ) {
+//        HLEditViewController* des = (HLEditViewController*)segue.destinationViewController;
+//        des.unquieId = unquieId;
+//        des.nefmbdw = nefmbdw;
+//    }else if ([segue.identifier compare:@"swedit"] == NSOrderedSame){
+//        SWYQViewController *view = (SWYQViewController *)segue.destinationViewController;
+//        view.unquieId = unquieId;
+//        view.nefmbdw = nefmbdw;
+//    }else if ([segue.identifier compare:@"chedit"] == NSOrderedSame){
+//        CHWLEditorViewController *view = (CHWLEditorViewController *)segue.destinationViewController;
+//        view.unquieId = unquieId;
+//        view.nefmbdw = nefmbdw;
+//    }else if ([segue.identifier compare:@"zdedit"] == NSOrderedSame){
+//        
+//    }
 }
 
 //- (IBAction)hl_onclick:(id)sender {

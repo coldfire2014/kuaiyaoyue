@@ -790,6 +790,7 @@
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:time];
         timeDouble = time;
         timeInput.text = [dateFormatter stringFromDate:date];
+        [self drowImg];
         if (time < endtimeDouble || endtimeDouble < 0) {
             endtimeDouble = time;
             endtimeInput.text = [dateFormatter stringFromDate:date];
@@ -1040,8 +1041,11 @@
         }
 }
 -(void)setPreviewImg2:(UIView*)bg{
-    self.tempId = @"1";
-    self.tempLoc = @"/sdyy/aiqingduo/assets/images/base";
+    if ([self.typeid compare:@"4"] == NSOrderedSame) {
+        self.tempId = @"";
+        self.tempLoc = @"";
+        return;
+    }
     
     CGFloat itemW = 120.0;
     CGFloat itemH = 180.0;
@@ -1059,6 +1063,9 @@
     [self drowImg];
 }
 -(void)drowImg{
+    if ([self.typeid compare:@"4"] == NSOrderedSame) {
+        return;
+    }
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *nefmbbg = [documentsDirectory stringByAppendingString:self.tempLoc];
