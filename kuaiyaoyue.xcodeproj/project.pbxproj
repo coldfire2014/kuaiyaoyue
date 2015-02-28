@@ -147,6 +147,7 @@
 		E5590CC71A469CAB0080F3B1 /* card_r.png in Resources */ = {isa = PBXBuildFile; fileRef = E5590CC31A469CAB0080F3B1 /* card_r.png */; };
 		E55AD89D1A60D51A00DB2771 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E55AD89C1A60D51A00DB2771 /* WebViewController.m */; };
 		E55AD8A01A60D66900DB2771 /* WebNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E55AD89F1A60D66900DB2771 /* WebNavBar.m */; };
+		E55E4BFB1AA1751B0029CA13 /* myPicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E55E4BFA1AA1751B0029CA13 /* myPicItem.m */; };
 		E55F59EE1A36894B00B0D587 /* StateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59ED1A36894B00B0D587 /* StateView.m */; };
 		E55F59F11A368AC800B0D587 /* CreateBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59F01A368AC800B0D587 /* CreateBtn.m */; };
 		E55F59F41A36967D00B0D587 /* BigStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59F31A36967D00B0D587 /* BigStateView.m */; };
@@ -499,6 +500,8 @@
 		E55AD89C1A60D51A00DB2771 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		E55AD89E1A60D66900DB2771 /* WebNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebNavBar.h; sourceTree = "<group>"; };
 		E55AD89F1A60D66900DB2771 /* WebNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebNavBar.m; sourceTree = "<group>"; };
+		E55E4BF91AA1751B0029CA13 /* myPicItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myPicItem.h; sourceTree = "<group>"; };
+		E55E4BFA1AA1751B0029CA13 /* myPicItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myPicItem.m; sourceTree = "<group>"; };
 		E55F59EC1A36894B00B0D587 /* StateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StateView.h; path = element/StateView.h; sourceTree = "<group>"; };
 		E55F59ED1A36894B00B0D587 /* StateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StateView.m; path = element/StateView.m; sourceTree = "<group>"; };
 		E55F59EF1A368AC800B0D587 /* CreateBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateBtn.h; path = element/CreateBtn.h; sourceTree = "<group>"; };
@@ -738,6 +741,8 @@
 			children = (
 				E57ED5D51A924044000BA51A /* tapeView.h */,
 				E57ED5D61A924044000BA51A /* tapeView.m */,
+				E55E4BF91AA1751B0029CA13 /* myPicItem.h */,
+				E55E4BFA1AA1751B0029CA13 /* myPicItem.m */,
 				E5853C3D1A8D9A4C00387BD9 /* HeadImgView.h */,
 				E5853C3E1A8D9A4C00387BD9 /* HeadImgView.m */,
 				E56C0A491A8CAC0E0055495A /* editIcon */,
@@ -1522,7 +1527,7 @@
 				TargetAttributes = {
 					84E842581A2EDF6B00A401A0 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = E68S9675TU;
+						DevelopmentTeam = PSEU9Z2979;
 					};
 				};
 			};
@@ -1644,6 +1649,7 @@
 				E577FC101A356D57009ED66D /* StatusBar.m in Sources */,
 				E55F59F41A36967D00B0D587 /* BigStateView.m in Sources */,
 				E5826F291A76244C0055189B /* loginSegue.m in Sources */,
+				E55E4BFB1AA1751B0029CA13 /* myPicItem.m in Sources */,
 				8460DDD61A4E78A70031416E /* UserInfoViewController.m in Sources */,
 				E59832731A8A466100BF77B9 /* QNUploadManager.m in Sources */,
 				84B446C61A32B3D000546859 /* MJRefreshConst.m in Sources */,
@@ -1907,7 +1913,7 @@
 				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "快邀约";
-				PROVISIONING_PROFILE = "eac00dfb-80b7-4abd-8799-adbaa32e4a28";
+				PROVISIONING_PROFILE = "09c4e361-7fab-49a4-8912-269bfc8b2618";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -37,6 +37,7 @@
     NSMutableArray* cells;
     NSMutableArray* selectItems;
     NSMutableArray* selectIndexs;
+    NSMutableArray* selectIDs;
 }
 @property (nonatomic,weak) id<ImgCollectionViewDelegate> delegate;
 @property (nonatomic) BOOL needAnimation;

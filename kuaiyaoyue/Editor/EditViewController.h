@@ -39,6 +39,10 @@
     AssetHelper* assert;
     tapeView *recordedInput;
     NSString *recordedFile;
+    UIImage* drowImage;
+    int firstImgIndex;
+    int imageCount;
+    int imageMax;
 }
 @property (strong, nonatomic) UIScrollView *editListView;
 @property (nonatomic, strong) NSString *typeid;

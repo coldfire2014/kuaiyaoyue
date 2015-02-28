@@ -190,6 +190,9 @@
         NSDictionary *json = response.jsonResponse;
         NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:[json objectForKey:@"nickname"],@"nickname",[_tencentOAuth openId],@"openid", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_SDWX" object:self userInfo:dic];
+    }else{
+        [[waitingView sharedwaitingView] stopWait];
+        [[StatusBar sharedStatusBar] talkMsg:@"未能成功使用QQ登陆。" inTime:0.5];
     }
 }
 - (void)responseDidReceived:(APIResponse*)response forMessage:(NSString *)message{

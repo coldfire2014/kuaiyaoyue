@@ -28,7 +28,7 @@
 #import "TalkingData.h"
 #import "waitingView.h"
 #import "ZipDown.h"
-
+#import "myPicItem.h"
 @interface EditViewController ()
 
 @end
@@ -41,6 +41,7 @@
     musicURL = @"";
     tipCount = 70;
     isHead = NO;
+    imageCount = 0;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -254,7 +255,9 @@
     [editItemList addSubview:self.editListView];
     CGFloat ch = 36.0/2.0;
     int nextType = 1;
+    imageMax = 9;
     if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
+        imageMax = 15;
         UIView* headview = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 120.0/2.0+12.0)];
         [self addItemBg2View:headview WithType:2 andTap:221 andIcon:@"ic_c_pics@2x"];
         ch += 120.0/2.0+12.0;
@@ -457,17 +460,17 @@
         [contactView addSubview:contactInput];
     }
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        UIView* picsView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 86.0/2.0+180+6.0)];
+        UIView* picsView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 86.0/2.0+165.0+6.0)];
         [self addItemBg2View:picsView WithType:1 andTap:229 andIcon:@"ic_c_pics@2x"];
         UILabel* andn = [[UILabel alloc] initWithFrame:CGRectMake(iconWidth, 0, w, 86.0/2.0)];
         andn.font = [UIFont systemFontOfSize:14];
         andn.backgroundColor = [UIColor clearColor];
         andn.text=@"页面预览与编辑";
         [picsView addSubview:andn];
-        ch += 86.0/2.0+180.0+6.0+12.0;
-        UIScrollView* showBg = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 86.0/2.0, w, 180)];
+        ch += 86.0/2.0+165.0+6.0+12.0;
+        UIScrollView* showBg = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 86.0/2.0, w, 166.0)];
         showBg.backgroundColor = [UIColor clearColor];
-        [showBg setContentSize:CGSizeMake(w, 180)];
+        [showBg setContentSize:CGSizeMake(w, 166.0)];
         showBg.tag = 141;
         showBg.showsHorizontalScrollIndicator = NO;
         showBg.showsVerticalScrollIndicator = NO;
@@ -530,6 +533,7 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_REMOVE_ME" object:nil];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -540,6 +544,7 @@
     }else{
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeImage:) name:@"MSG_REMOVE_ME" object:nil];
 }
 #pragma mark - UITapGesture
 -(void)closeTap{
@@ -955,6 +960,65 @@
 -(void)didBack{
     
 }
+-(void)addImgs{
+    UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    flowLayout.minimumInteritemSpacing = 0.0;
+    ImgCollectionViewController* des = [[ImgCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
+    des.maxCount = imageMax - imageCount;
+    des.needAnimation = NO;
+    des.delegate = self;
+    //        des.transitioningDelegate = self;
+    //        des.modalPresentationStyle = UIModalPresentationCustom;
+    des.modalPresentationStyle = UIModalPresentationFormSheet;
+    des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:des animated:YES completion:^{
+        
+    }];
+}
+-(void)removeImage:(NSNotification*)aNotification{
+    //获取触发事件对象
+    NSNumber* info = [aNotification object];
+    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+    UIView* item = [showBg viewWithTag:[info intValue]];
+    [item removeFromSuperview];
+    CGFloat w = 216.0;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        w = 116.0;
+    }
+    for (int i = [info intValue]+1-400; i<imageCount; i++) {
+        UIView* item = [showBg viewWithTag:i+400];
+        item.tag = 399 + i;
+        item.frame = CGRectOffset(item.frame,-w,0);
+    }
+    imageCount--;
+    UIView* bgEmpty = [showBg viewWithTag: 370];
+    bgEmpty.alpha = 1.0;
+    int itemCount = firstImgIndex+imageCount+1;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        CGFloat itemW = 110.0;
+        CGFloat itemH = 165.0;
+        bgEmpty.frame = CGRectMake(6.0 + (itemW+6.0)*(firstImgIndex+imageCount), 0.0, itemW, itemH);
+        
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            UIView* bgDrow = [showBg viewWithTag: 390];
+            bgDrow.frame = CGRectMake(6.0 + (itemW+6.0)*(firstImgIndex+imageCount+1), 0.0, itemW, itemH);
+            itemCount++;
+        }
+        [showBg setContentSize:CGSizeMake(6.0 + (itemW+6.0)*itemCount, itemH+1.0)];
+    }else{
+        CGFloat itemW = 200.0;
+        CGFloat itemH = 200.0/320.0*480.0;
+        CGFloat h = showBg.bounds.size.height;
+        bgEmpty.frame = CGRectMake(32.0 + (itemW+16.0)*(firstImgIndex+imageCount), (h-itemH)/2.0, itemW, itemH);
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            UIView* bgDrow = [showBg viewWithTag: 390];
+            bgDrow.frame = CGRectMake(32.0 + (itemW+16.0)*(firstImgIndex+imageCount+1), (h-itemH)/2.0, itemW, itemH);
+            itemCount++;
+        }
+        [showBg setContentSize:CGSizeMake(32.0 + (itemW+16.0)*itemCount, itemH+1.0)];
+    }
+}
 -(void)didSelectAssets:(NSArray*)items{
     if(isHead){
         if (items.count>0) {
@@ -965,96 +1029,233 @@
         }
     }else{
         NSLog(@"%@",items);
-        //        for (int i = 0; i < items.count; i++)
-        //        {
-        //            ALAsset* al = [items objectAtIndex:i];
-        //            UIImage *img = [assert getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
-        //            GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
-        //            [data addObject:info];
-        //        }
-        //
-        //        for (int j = 0;j< [data count] ; j++) {
-        //            GridInfo *info = [data objectAtIndex:j];
-        //            if (!info.is_open) {
-        //                [data removeObject:info];
-        //            }
-        //        }
-        //
-        //        GridInfo *info = [[GridInfo alloc] initWithDictionary:NO :nil];
-        //        [data addObject:info];
-        //        [gridview reloadData];
-        //        count -= items.count;
-        //
-        //        //   [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeHigh) userInfo:nil repeats:NO];
-        //        [UIView animateWithDuration:0.3 animations:^{
-        //            [self sethigh];
-        //        }];
+        for (int i = 0; i < items.count; i++)
+        {
+            ALAsset* al = [items objectAtIndex:i];
+            UIImage *img = [assert getImageFromAsset:al type:ASSET_PHOTO_THUMBNAIL];
+            [self addImgfromAsset:al andThumb:img  orFile:@"" atIndex:imageCount];
+            imageCount++;
+        }
     }
 }
-#pragma mark - 录音
+
 #pragma mark - PreviewViewControllerDelegate
 -(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw{
-    
+    self.tempId = index;
+    self.tempLoc = nefmbdw;
+    [self drowImg];
 }
 -(void)didSendType:(int) type{
-    
+    if (type == 0) {
+        [self sendTap];
+    } else {
+        [self saveTap];
+    }
 }
 #pragma mark - ipad 模版
+-(void)addImgfromAsset:(ALAsset*)al andThumb:(UIImage*)img orFile:(NSString*)fileName atIndex:(int)index{
+    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone){
+        CGFloat itemW = 110.0;
+        CGFloat itemH = 165.0;
+        UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*(firstImgIndex+index), 0.0, itemW, itemH)];
+        bg1.backgroundColor = [[UIColor alloc] initWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1.0];
+        [showBg addSubview:bg1];
+        bg1.layer.shadowRadius = 2;
+        bg1.layer.shadowOpacity = 1.0;
+        bg1.layer.shadowColor = [UIColor grayColor].CGColor;
+        bg1.layer.shadowOffset = CGSizeMake(1, 1);
+        
+        myPicItem *item = [[myPicItem alloc] initWithFrame:bg1.bounds fromAsset:al andThumb:img orFile:fileName];
+        item.tag = 300 + index;
+        [bg1 addSubview: item];
+        bg1.tag = 400 + index;
+        UIView* bgEmpty = [showBg viewWithTag: 370];
+        int itemCount = firstImgIndex + 2 + index;
+        if (index == imageMax - 1) {
+            bgEmpty.alpha = 0.0;
+            itemCount--;
+        } else {
+            bgEmpty.alpha = 1.0;
+            bgEmpty.frame = CGRectMake(6.0 + (itemW+6.0)*(firstImgIndex+index+1), 0.0, itemW, itemH);
+        }
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            UIView* bgDrow = [showBg viewWithTag: 390];
+            bgDrow.frame = CGRectMake(6.0 + (itemW+6.0)*itemCount, 0, itemW, itemH);
+            itemCount++;
+        }
+        [showBg setContentSize:CGSizeMake(6.0 + (itemW+6.0)*itemCount, itemH+1.0)];
+    }else{
+        CGFloat itemW = 200.0;
+        CGFloat itemH = 200.0/320.0*480.0;
+        CGFloat h = showBg.bounds.size.height;
+        UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*(firstImgIndex+index), (h-itemH)/2.0, itemW, itemH)];
+        bg1.backgroundColor = [[UIColor alloc] initWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1.0];
+        [showBg addSubview:bg1];
+        bg1.layer.shadowRadius = 2;
+        bg1.layer.shadowOpacity = 1.0;
+        bg1.layer.shadowColor = [UIColor grayColor].CGColor;
+        bg1.layer.shadowOffset = CGSizeMake(1, 1);
+        
+        myPicItem *item = [[myPicItem alloc] initWithFrame:bg1.bounds fromAsset:al andThumb:img orFile:fileName];
+        item.tag = 300 + index;
+        [bg1 addSubview: item];
+        bg1.tag = 400 + index;
+        UIView* bgEmpty = [showBg viewWithTag: 370];
+        int itemCount = firstImgIndex + 2 + index;
+        if (index == imageMax - 1) {
+            bgEmpty.alpha = 0.0;
+            itemCount--;
+        } else {
+            bgEmpty.alpha = 1.0;
+            bgEmpty.frame = CGRectMake(32.0 + (itemW+16.0)*(firstImgIndex+index+1), (h-itemH)/2.0, itemW, itemH);
+        }
+        
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            UIView* bgDrow = [showBg viewWithTag: 390];
+            bgDrow.frame = CGRectMake(32.0 + (itemW+16.0)*itemCount, (h-itemH)/2.0, itemW, itemH);
+            itemCount++;
+        }
+        [showBg setContentSize:CGSizeMake(32.0 + (itemW+16.0)*itemCount, h)];
+    }
+}
 -(void)initPreView{
         UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
         CGRect r = showBg.frame;
 //        CGFloat w = r.size.width;
         CGFloat h = r.size.height;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            CGFloat itemW = 120.0;
-            CGFloat itemH = 180.0;
-            UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*0.0, 0.0, itemW, itemH)];
-            bg.backgroundColor = [UIColor clearColor];
-            [showBg addSubview:bg];
-            [self setPreviewImg2:bg];
-            UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*1.0, 0.0, itemW, itemH)];
-            bg1.backgroundColor = [UIColor clearColor];
+            CGFloat itemW = 110.0;
+            CGFloat itemH = 165.0;
+            [self setPreviewImg];
+            UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*firstImgIndex, 0.0, itemW, itemH)];
+            bg1.backgroundColor = [[UIColor alloc] initWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1.0];
+            bg1.layer.shadowRadius = 2;
+            bg1.layer.shadowOpacity = 1.0;
+            bg1.layer.shadowColor = [UIColor grayColor].CGColor;
+            bg1.layer.shadowOffset = CGSizeMake(1, 1);
             [showBg addSubview:bg1];
-            UIView* bg2 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*2.0, 0.0, itemW, itemH)];
-            bg2.backgroundColor = [UIColor clearColor];
-            [showBg addSubview:bg2];
-            
-            [showBg setContentSize:CGSizeMake(6.0 + (itemW+6.0)*3.0, itemH)];
+            bg1.tag = 370;
+            [self addEmptyImg2view:bg1];
+            int itemCount = firstImgIndex + 1;
+            if ([self.typeid compare:@"1"] == NSOrderedSame) {
+                itemCount++;
+            }
+            [showBg setContentSize:CGSizeMake(6.0 + (itemW+6.0)*itemCount, itemH+1.0)];
         } else {
             CGFloat itemW = 200.0;
             CGFloat itemH = 200.0/320.0*480.0;
 
-            UIView* sbg = [[UIView alloc] initWithFrame:CGRectMake(32.0, 0, itemW, h)];
-            sbg.backgroundColor = [UIColor clearColor];
-            [showBg addSubview:sbg];
-            
-            [self setPreviewImg2:sbg];
+            [self setPreviewImg];
     
-            UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*1.0, (h-itemH)/2.0, itemW, itemH)];
-            bg1.backgroundColor = [UIColor clearColor];
+            UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*firstImgIndex, (h-itemH)/2.0, itemW, itemH)];
+            bg1.backgroundColor = [[UIColor alloc] initWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1.0];
             [showBg addSubview:bg1];
-            UIView* bg2 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*2.0, (h-itemH)/2.0, itemW, itemH)];
-            bg2.backgroundColor = [UIColor clearColor];
-            [showBg addSubview:bg2];
-            
-            [showBg setContentSize:CGSizeMake(32.0 + (itemW+16.0)*3.0, h)];
+            bg1.layer.shadowRadius = 2;
+            bg1.layer.shadowOpacity = 1.0;
+            bg1.layer.shadowColor = [UIColor grayColor].CGColor;
+            bg1.layer.shadowOffset = CGSizeMake(1, 1);
+            bg1.tag = 370;
+            [self addEmptyImg2view:bg1];
+            int itemCount = firstImgIndex + 1;
+            if ([self.typeid compare:@"1"] == NSOrderedSame) {
+                itemCount++;
+            }
+            [showBg setContentSize:CGSizeMake(32.0 + (itemW+16.0)*itemCount, h)];
         }
 }
--(void)setPreviewImg2:(UIView*)bg{
+-(void) addEmptyImg2view:(UIView*)bg1{
+    UIView * emptyView = [[UIView alloc] initWithFrame:bg1.bounds];
+    emptyView.backgroundColor = [UIColor clearColor];
+    UITapGestureRecognizer* tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImgs)];
+    [emptyView addGestureRecognizer:tap4 ];
+    CGFloat h = bg1.bounds.size.width*0.618;
+    CGFloat w = 3.0;
+    UIView *hen = [[UIView alloc] initWithFrame:CGRectMake(0, 0, h, w)];
+    hen.backgroundColor = [UIColor whiteColor];
+    hen.layer.cornerRadius = 1.0;
+    hen.center = CGPointMake(emptyView.bounds.size.width/2.0, emptyView.bounds.size.height/2.0);
+    [emptyView addSubview:hen];
+    UIView *shu = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, h)];
+    shu.backgroundColor = [UIColor whiteColor];
+    shu.layer.cornerRadius = 1.0;
+    shu.center = CGPointMake(emptyView.bounds.size.width/2.0, emptyView.bounds.size.height/2.0);
+    [emptyView addSubview:shu];
+    [bg1 addSubview: emptyView];
+}
+
+-(void)setPreviewImg{
+    
     if ([self.typeid compare:@"4"] == NSOrderedSame) {
         self.tempId = @"";
         self.tempLoc = @"";
+        firstImgIndex = 0;
         return;
+    }//markwyb
+    else{
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.tempId = @"1";
+        self.tempLoc = @"/sdyy/huayang/assets/images/base";
+        }
     }
-    
-    CGFloat itemW = 120.0;
-    CGFloat itemH = 180.0;
+    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+    firstImgIndex = 1;
+    CGFloat itemW = 110.0;
+    CGFloat itemH = 165.0;
+    UIView* bg = nil;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        itemW = 120.0;
-        itemH = 180.0;
+        itemW = 110.0;
+        itemH = 165.0;
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(6.0, 0, itemW, itemH)];
+            img.tag = 394;
+            img.layer.shadowRadius = 2;
+            img.layer.shadowOpacity = 1.0;
+            img.layer.shadowColor = [UIColor grayColor].CGColor;
+            img.layer.shadowOffset = CGSizeMake(1, 1);
+            [showBg addSubview:img];
+            
+            bg = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*2.0, 0.0, itemW, itemH)];
+        }else{
+            bg = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*0.0, 0.0, itemW, itemH)];
+        }
+        bg.backgroundColor = [UIColor clearColor];
+        [showBg addSubview:bg];
+        bg.layer.shadowRadius = 2;
+        bg.layer.shadowOpacity = 1.0;
+        bg.layer.shadowColor = [UIColor grayColor].CGColor;
+        bg.layer.shadowOffset = CGSizeMake(1, 1);
+        bg.tag = 390;
     } else {
         itemW = 200.0;
         itemH = 200.0/320.0*480.0;
+        CGFloat h = showBg.frame.size.height;
+        UIView* sbg = [[UIView alloc] initWithFrame:CGRectMake(32.0, 0, itemW, h)];
+        sbg.backgroundColor = [UIColor clearColor];
+        [showBg addSubview:sbg];
+        sbg.tag = 380;
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, itemW, itemH)];
+            img.tag = 394;
+            img.layer.shadowRadius = 2;
+            img.layer.shadowOpacity = 1.0;
+            img.layer.shadowColor = [UIColor grayColor].CGColor;
+            img.layer.shadowOffset = CGSizeMake(1, 1);
+            img.center = CGPointMake(sbg.frame.size.width/2.0, sbg.frame.size.height/2.0);
+            [sbg addSubview:img];
+            
+            bg = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*2.0, (h-itemH)/2.0, itemW, itemH)];
+            [showBg addSubview:bg];
+        }else{
+            bg = [[UIView alloc] initWithFrame:CGRectMake(0, (h-itemH)/2.0, itemW, itemH)];
+            [sbg addSubview:bg];
+        }
+        bg.backgroundColor = [UIColor clearColor];
+        bg.layer.shadowRadius = 2;
+        bg.layer.shadowOpacity = 1.0;
+        bg.layer.shadowColor = [UIColor grayColor].CGColor;
+        bg.layer.shadowOffset = CGSizeMake(1, 1);
+        bg.tag = 390;
     }
     UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, itemW, itemH)];
     img.tag = 395;
@@ -1076,15 +1277,20 @@
     }
     UIImageView* view = (UIImageView*)[self.view viewWithTag:395];
     view.image = [self getimg:nefmbbg];
+    if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        UIImageView* img = (UIImageView*)[self.view viewWithTag:394];
+        NSString *homeLoc = [self.tempLoc stringByReplacingOccurrencesOfString:@"base" withString:@"home"];
+        NSString *nefmbbg = [documentsDirectory stringByAppendingString:homeLoc];
+        UIImage* ti = [[UIImage alloc] initWithContentsOfFile:nefmbbg];
+        img.image = [[UIImage alloc] initWithCGImage:ti.CGImage scale:2.0 orientation:UIImageOrientationUp];
+    }
 }
 -(UIImage *)getimg:(NSString *) str{
     NSArray *dataarray = [[DataBaseManage getDataBaseManage] GetInfo:self.tempId];
     NSInfoImg* infodata = [[NSInfoImg alloc] initWithbgImagePath:str];//背景图文件路径
-    
     CGFloat red1 = 0.0;
     CGFloat green1 = 0.0;
     CGFloat blue1 = 0.0;
-    
     for (int i = 0; i < [dataarray count]; i++) {
         Info *info = [dataarray objectAtIndex:i];
         NSString *parameterName = info.nefparametername;
@@ -1101,17 +1307,12 @@
             NSString *name = [NSString stringWithFormat:@"%@ & %@",manInput.text,wemanInput.text];
             [infodata addInfoWithValue:name andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
         }else if ([parameterName isEqualToString:@"partyName"]) {
-            
             [infodata addInfoWithValue:titleInput.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
-            
         }else if ([parameterName isEqualToString:@"timestamp"]) {
-            
             [infodata addInfoWithValue:timeInput.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
-            
         }else if ([parameterName isEqualToString:@"address"]) {
             [infodata addInfoWithValue:locInput.text andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
         }
-        
         else if ([parameterName isEqualToString:@"description"]) {
             NSString *content = tipInput.text;
             if (content.length > 0) {
@@ -1128,12 +1329,11 @@
         CGFloat size = info.nefFontSize;
         [infodata addInfoWithValue:info.nefContent andRect:CGRectMake(x, y, w, h) andSize:size andR:red1 G:green1 B:blue1 andSingle:YES:YES];
     }
-    UIImage *bgimg = [infodata getSaveImg :YES];
-    return bgimg;
+    drowImage = [infodata getSaveImg :YES];
+    return drowImage;
 }
 #pragma mark - 数据操作
 -(void)initOldInput{
-    
 }
 -(void)saveInput{
     

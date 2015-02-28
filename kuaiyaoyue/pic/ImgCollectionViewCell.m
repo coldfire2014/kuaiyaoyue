@@ -90,6 +90,7 @@
         NSArray* ips = [cv indexPathsForSelectedItems];
         if (ips.count < self.maxCount) {
             [cv selectItemAtIndexPath:self.index animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_ADD_ID" object:self.index];
             gc.hidden = !gc.hidden;
             CATransform3D t = CATransform3DIdentity;
             CAKeyframeAnimation* moveAnim = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
@@ -113,6 +114,7 @@
         }
     }else{
         [cv deselectItemAtIndexPath:self.index animated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_REMOVE_ID" object:self.index];
         [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             gc.alpha = 0;
         } completion:^(BOOL finished) {

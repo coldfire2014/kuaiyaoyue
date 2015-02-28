@@ -27,6 +27,7 @@ static NSString * const fIdentifier = @"imgcellf";
     isShow = YES;
     selectIndexs = [[NSMutableArray alloc] init];
     selectItems = [[NSMutableArray alloc] init];
+    selectIDs = [[NSMutableArray alloc] init];
     CGFloat w = [[UIScreen mainScreen] bounds].size.width;
     CGFloat h = [[UIScreen mainScreen] bounds].size.height;
     self.view.frame = [UIScreen mainScreen].bounds;
@@ -191,6 +192,8 @@ static NSString * const fIdentifier = @"imgcellf";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backWithNO) name:@"MSG_BACK" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backWithOK) name:@"MSG_IMGS_OK" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setBadge:) name:@"MSG_SET_BADGE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addID:) name:@"MSG_ADD_ID" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeID:) name:@"MSG_REMOVE_ID" object:nil];
 }
 -(void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -198,6 +201,14 @@ static NSString * const fIdentifier = @"imgcellf";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_BACK" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_IMGS_OK" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SET_BADGE" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_ADD_ID" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_REMOVE_ID" object:nil];
+}
+-(void)addID:(NSNotification*)noc{
+    [selectIDs addObject:[noc object]];
+}
+-(void)removeID:(NSNotification*)noc{
+    [selectIDs removeObject:[noc object]];
 }
 -(void)backWithOK{
     isOK = YES;
@@ -264,9 +275,9 @@ static NSString * const fIdentifier = @"imgcellf";
         [self dismissViewControllerAnimated:YES completion:^{
             if (isOK) {
                 if (nil != [self.collectionView indexPathsForSelectedItems]){
-                    NSArray* ips= [self.collectionView indexPathsForSelectedItems];
+//                    NSArray* ips= [self.collectionView indexPathsForSelectedItems];
                     NSMutableArray* als = [[NSMutableArray alloc] init];
-                    for (NSIndexPath* index in ips) {
+                    for (NSIndexPath* index in selectIDs) {
                         NSArray* ar = [cells objectAtIndex:index.section];
                         ALAsset* al = [ar objectAtIndex:index.row];
                         [als addObject:al];
@@ -299,8 +310,10 @@ static NSString * const fIdentifier = @"imgcellf";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 //#warning Incomplete method implementation -- Return the number of items in the section
-    NSDictionary* dic =[sections objectAtIndex:section];
-    return [[dic objectForKey:@"count" ] integerValue];
+//    NSDictionary* dic =[sections objectAtIndex:section];
+    NSArray* ar = [cells objectAtIndex:section];
+    
+    return ar.count;//[[dic objectForKey:@"count" ] integerValue];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -308,6 +321,10 @@ static NSString * const fIdentifier = @"imgcellf";
     
     // Configure the cell
     NSArray* ar = [cells objectAtIndex:indexPath.section];
+    if (ar.count <= indexPath.row) {
+        cell.backgroundColor = [UIColor whiteColor];
+        return cell;
+    }
     ALAsset* al = [ar objectAtIndex:indexPath.row];
     UIImageView* imgv = (UIImageView*)[cell viewWithTag:202];
     imgv.image = [assert getImageFromAsset:al type:ASSET_PHOTO_THUMBNAIL];
