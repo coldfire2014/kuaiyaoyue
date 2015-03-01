@@ -739,15 +739,15 @@
 		844825E91A31A45C0018240E /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				E514F44B1A8AF70C00C09C6E /* EditViewController.h */,
+				E514F44C1A8AF70C00C09C6E /* EditViewController.m */,
+				E56C0A491A8CAC0E0055495A /* editIcon */,
 				E57ED5D51A924044000BA51A /* tapeView.h */,
 				E57ED5D61A924044000BA51A /* tapeView.m */,
 				E55E4BF91AA1751B0029CA13 /* myPicItem.h */,
 				E55E4BFA1AA1751B0029CA13 /* myPicItem.m */,
 				E5853C3D1A8D9A4C00387BD9 /* HeadImgView.h */,
 				E5853C3E1A8D9A4C00387BD9 /* HeadImgView.m */,
-				E56C0A491A8CAC0E0055495A /* editIcon */,
-				E514F44B1A8AF70C00C09C6E /* EditViewController.h */,
-				E514F44C1A8AF70C00C09C6E /* EditViewController.m */,
 			);
 			name = Editor;
 			path = ../Editor;
@@ -1527,7 +1527,7 @@
 				TargetAttributes = {
 					84E842581A2EDF6B00A401A0 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = PSEU9Z2979;
+						DevelopmentTeam = E68S9675TU;
 					};
 				};
 			};

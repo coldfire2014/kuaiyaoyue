@@ -331,7 +331,7 @@
             tipCount = 70;
         }else if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
             andn.text=@"封面导读: ";
-            tipCount = 50;
+            tipCount = 70;//50
         }
         [tipView addSubview:andn];
         tipCountLbl = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 66.0/2.0, 82, 46.0/2.0)];
@@ -367,6 +367,7 @@
         hideLbl.tag = 510;
         [hideEmi addSubview:hideLbl];
     }
+//    if ([self.typeid compare:@"5"] == NSOrderedSame) {//
     if ([self.typeid compare:@"4"] == NSOrderedSame) {
         UIView* applyView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 23.0)];
         [self addItemBg2View:applyView WithType:1 andTap:444 andIcon:@""];
@@ -844,7 +845,7 @@
 - (void)textViewDidChange:(UITextView *)textView{
     long max = 70;
     if ([self.typeid compare:@"4"] == NSOrderedSame) {
-        max = 50;
+        max = 70;//50
     }
     long num = max - textView.text.length;
     tipCountLbl.text = [NSString stringWithFormat:@"剩余%ld字",num];
@@ -1335,17 +1336,138 @@
 #pragma mark - 数据操作
 -(void)initOldInput{
 }
--(void)saveInput{
-    
+-(BOOL)isEmpty:(NSString*)txt{
+    if (txt == nil || [txt compare:@""] == NSOrderedSame) {
+        return YES;
+    }
+    return NO;
+}
+-(BOOL)checkAndsaveInput{
+    [self.view endEditing:YES];
+    if ([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
+        if ([self isEmpty:manInput.text] || [self isEmpty:wemanInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入新人姓名。" inTime:1.0];
+            return NO;
+        }
+        if ([self isEmpty:locInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入婚宴地点。" inTime:1.0];
+            return NO;
+        }
+        if ([self isEmpty:timeInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择婚礼时间。" inTime:1.0];
+            return NO;
+        }
+        if ([self isEmpty:endtimeInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择报名截止时间。" inTime:1.0];
+            return NO;
+        }
+        if (manInput.text.length > 5 || wemanInput.text.length > 5) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您填写的新郎或新娘姓名超过了5个字。" inTime:1.0];
+            return NO;
+        }
+        if (locInput.text.length > 20) {
+            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的地址信息有%d字超过了20个。",locInput.text.length];
+            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+            return NO;
+        }
+        if (![self isEmpty:musicInput.text] && ![self isEmpty:recordedInput.fileName]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
+            return NO;
+        }
+    } else if ([self.typeid compare:@"2"] == NSOrderedSame || [self.typeid compare:@"3"] == NSOrderedSame) {//商务,娱乐
+        if ([self isEmpty:titleInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动名称。" inTime:1.0];
+            return NO;
+        }
+        if ([self isEmpty:locInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入地点。" inTime:1.0];
+            return NO;
+        }
+        if ([self isEmpty:timeInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择活动时间。" inTime:1.0];
+            return NO;
+        }
+        if ([self isEmpty:endtimeInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择报名截止时间。" inTime:1.0];
+            return NO;
+        }
+        if (titleInput.text.length > 13) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您填写的活动名称超过了13个字,将无法完整显示。" inTime:1.0];
+            return NO;
+        }
+        if (locInput.text.length > 20) {
+            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的地址信息有%d字超过了20个。",locInput.text.length];
+            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+            return NO;
+        }
+        if (tipInput.text != nil && tipInput.text.length > 70) {
+            if ([self.typeid compare:@"3"] == NSOrderedSame) {
+                [[StatusBar sharedStatusBar] talkMsg:@"您填写的温馨提示超过了70个字。" inTime:1.0];
+            } else {
+                [[StatusBar sharedStatusBar] talkMsg:@"您填写的活动简介超过了70个字。" inTime:1.0];
+            }
+            return NO;
+        }
+        if (contactmanInput.text != nil && contactmanInput.text.length > 20) {
+            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的联系人有%d字超过了20个。",contactmanInput.text.length];
+            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+            return NO;
+        }
+        if (contactInput.text != nil && contactInput.text.length > 40) {
+            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的联系方式有%d字超过了40个。",contactInput.text.length];
+            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+            return NO;
+        }
+        if (![self isEmpty:musicInput.text] && ![self isEmpty:recordedInput.fileName]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
+            return NO;
+        }
+    } else if ([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
+        if (headImg.img == nil) {
+            [[StatusBar sharedStatusBar] talkMsg:@"请选择一张封面图片。" inTime:1.0];
+            return NO;
+        }
+        if ([self isEmpty:titleInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入标题。" inTime:1.0];
+            return NO;
+        }
+        if ([self isEmpty:tipInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入封面导读。" inTime:1.0];
+            return NO;
+        }
+        if (titleInput.text.length > 20) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您填写的标题超过了20个字,将无法完整显示。" inTime:1.0];
+            return NO;
+        }
+        if (tipInput.text != nil && tipInput.text.length > 70) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您填写的封面导读超过了70个字。" inTime:1.0];
+            return NO;
+        }
+        if (imageCount <= 0) {
+            [[StatusBar sharedStatusBar] talkMsg:@"请至少选择一张图片。" inTime:1.0];
+            return NO;
+        }
+        if (![self isEmpty:musicInput.text] && ![self isEmpty:recordedInput.fileName]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
+            return NO;
+        }
+    }
+    return YES;
 }
 -(void)reviewTap{
-    
+    if ([self checkAndsaveInput]) {
+        
+    }
 }
 -(void)sendTap{
-    
+    if ([self checkAndsaveInput]) {
+        
+    }
 }
 -(void)saveTap{
-    
+    if ([self checkAndsaveInput]) {
+        
+    }
 }
 
 @end
