@@ -22,7 +22,7 @@
         UIView* btn = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.size.width-44, self.bounds.size.height-71, 44, 49)];
         btn.backgroundColor = [UIColor clearColor];
         myImageView* bg = [[myImageView alloc] initWithFrame:CGRectMake(12, 0, 32, 49) andImageName:@"btn_sidebar" withScale:2.0];
-        
+//        UILabel* 
 //        UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 40)];
 //        bg.backgroundColor = [[UIColor alloc] initWithWhite:0.7 alpha:0.5];
 //        bg.center = CGPointMake(btn.bounds.size.width/2.0-8.0, btn.bounds.size.height/2.0);
@@ -134,7 +134,7 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self viewInorOut];
+//    [self viewInorOut];
     
     Template *info = [data objectAtIndex:[indexPath row]];
     [self.delegate didSelectTemplate:info];

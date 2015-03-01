@@ -368,8 +368,8 @@
         hideLbl.tag = 510;
         [hideEmi addSubview:hideLbl];
     }
-//    if ([self.typeid compare:@"5"] == NSOrderedSame) {//
-    if ([self.typeid compare:@"4"] == NSOrderedSame) {
+    if ([self.typeid compare:@"5"] == NSOrderedSame) {//
+//    if ([self.typeid compare:@"4"] == NSOrderedSame) {
         UIView* applyView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 23.0)];
         [self addItemBg2View:applyView WithType:1 andTap:444 andIcon:@""];
         UILabel* andn = [[UILabel alloc] initWithFrame:CGRectMake(iconWidth, 0, w, 23.0)];
@@ -1350,6 +1350,15 @@
 }
 #pragma mark - 数据操作
 -(void)initOldInput{
+    if ([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
+        
+    } else if ([self.typeid compare:@"2"] == NSOrderedSame) {//商务
+        
+    } else if ([self.typeid compare:@"3"] == NSOrderedSame) {//娱乐
+        
+    } else if ([self.typeid compare:@"3"] == NSOrderedSame) {//自定义
+        
+    }
 }
 -(BOOL)isEmpty:(NSString*)txt{
     if (txt == nil || [txt compare:@""] == NSOrderedSame) {
@@ -1502,10 +1511,15 @@
         music_u = @"";
         music_n = @"";
     } else if (musicInput.text.length == 0 && recordedInput.fileName.length != 0){
-        music_u = recordedInput.fileName;
+        NSArray *sa= [recordedInput.fileName componentsSeparatedByString:@"/"];
+        music_u = [NSString stringWithFormat:@"../Audio/%@",[sa lastObject]];//recordedInput.fileName;
         music_n = @"";
     }
-    [UDObject setHLContent:manInput.text xn_name:wemanInput.text hltime:timeInput.text bmendtime:endtimeInput.text address_name:locInput.text music:music_u musicname:music_n imgarr:hlarr];
+    [UDObject setHLContent:manInput.text xn_name:wemanInput.text hltime:[self time2str:timeDouble] bmendtime:[self time2str:endtimeDouble] address_name:locInput.text music:music_u musicname:music_n imgarr:hlarr];
+}
+-(NSString*)time2str:(NSTimeInterval)time{
+    NSArray* time_s = [[[NSString alloc] initWithFormat:@"%f",time*1000.0] componentsSeparatedByString:@"."];
+    return [time_s objectAtIndex:0];
 }
 -(void)savePlay{
     [self saveMadePic];
@@ -1525,9 +1539,12 @@
         music_u = @"";
         music_n = @"";
     } else if (musicInput.text.length == 0 && recordedInput.fileName.length != 0){
-        music_u = recordedInput.fileName;
+        NSArray *sa= [recordedInput.fileName componentsSeparatedByString:@"/"];
+        music_u = [NSString stringWithFormat:@"../Audio/%@",[sa lastObject]];
         music_n = @"";
     }
+    
+    [UDObject setWLContent:titleInput.text wltime:[self time2str:timeDouble] wlbmendtime:[self time2str:endtimeDouble] wladdress_name:locInput.text wllxr_name:contactmanInput.text wllxfs_name:contactInput.text wlts_name:tipInput.text wlmusicname:music_n wlmusic:music_u wlimgarr:hlarr];
 }
 -(void)saveBuss{
     [self saveMadePic];
@@ -1547,15 +1564,18 @@
         music_u = @"";
         music_n = @"";
     } else if (musicInput.text.length == 0 && recordedInput.fileName.length != 0){
-        music_u = recordedInput.fileName;
+        NSArray *sa= [recordedInput.fileName componentsSeparatedByString:@"/"];
+        music_u = [NSString stringWithFormat:@"../Audio/%@",[sa lastObject]];
         music_n = @"";
     }
+    [UDObject setSWContent:titleInput.text swtime:[self time2str:timeDouble] swbmendtime:[self time2str:endtimeDouble] address_name:locInput.text swxlr_name:contactmanInput.text swxlfs_name:contactInput.text swhd_name:tipInput.text music:music_u musicname:music_n imgarr:hlarr];
 }
 -(void)saveDIY{
     CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
     NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
     headFile = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    NSString* headName = [NSString stringWithFormat:@"../Image/%@",uuid];
     [UIImageJPEGRepresentation(headImg.imgContext.image,C_JPEG_SIZE) writeToFile:headFile atomically:YES];
     NSMutableArray* webPics = [[NSMutableArray alloc] init];
     UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
@@ -1573,13 +1593,22 @@
         music_u = @"";
         music_n = @"";
     } else if (musicInput.text.length == 0 && recordedInput.fileName.length != 0){
-        music_u = recordedInput.fileName;
+        NSArray *sa= [recordedInput.fileName componentsSeparatedByString:@"/"];
+        music_u = [NSString stringWithFormat:@"../Audio/%@",[sa lastObject]];
         music_n = @"";
     }
+    [UDObject setZDYContent:headName zdytitle:titleInput.text zdydd:tipInput.text zdytime:[self time2str:timeDouble] zdyendtime:[self time2str:endtimeDouble] zdymusic:music_u zdymusicname:music_n zdyimgarr:hlarr];
 }
 -(void)reviewTap{
     if ([self checkAndsaveInput]) {
-        
+        PreviewViewController *view = [[PreviewViewController alloc] init];
+        view.type = [self.typeid intValue]-1;
+        view.delegate = self;
+        view.modalPresentationStyle = UIModalPresentationFormSheet;
+        view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentViewController:view animated:YES completion:^{
+            
+        }];
     }
 }
 -(void)sendTap{

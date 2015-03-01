@@ -1018,7 +1018,7 @@
         NSString *hlarr = [arr componentsJoinedByString:@","];
         NSString *audioname1 = [NSString stringWithFormat:@"../Audio/%@",audioname];
         
-        [UDObject setWLContent:playview.jh_edit.text wltime:hltime wlbmendtime:bmendtime wladdress_name:playview.address_edit.text wllxr_name:playview.xlr_edit.text wllxfs_name:playview.xlfs_edit.text wlts_name:playview.show_summary.text wlaudio:audioname1 wlimgarr:hlarr];
+        [UDObject setWLContent:playview.jh_edit.text wltime:hltime wlbmendtime:bmendtime wladdress_name:playview.address_edit.text wllxr_name:playview.xlr_edit.text wllxfs_name:playview.xlfs_edit.text wlts_name:playview.show_summary.text wlmusicname:@"" wlmusic:audioname1 wlimgarr:hlarr];
         PreviewViewController *view = [[PreviewViewController alloc] init];
         view.type = 2;
         view.delegate = self;
@@ -1067,7 +1067,7 @@
             if (musicUrl.length > 0) {
                 audioname = [NSString stringWithFormat:@"../Audio/%@",audioname];
             }
-            [UDObject setWLContent:partyName wltime:timestamp wlbmendtime:closetime wladdress_name:address wllxr_name:inviter wllxfs_name:telephone wlts_name:description wlaudio:audioname wlimgarr:hlarr];
+            [UDObject setWLContent:partyName wltime:timestamp wlbmendtime:closetime wladdress_name:address wllxr_name:inviter wllxfs_name:telephone wlts_name:description wlmusicname:@"" wlmusic:audioname wlimgarr:hlarr];
             [self GetRecord];
             [[waitingView sharedwaitingView] stopWait];
             [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];

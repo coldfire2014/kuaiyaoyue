@@ -189,7 +189,7 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"sw_imgarr"];
 }
 
-+(void)setWLContent:(NSString *)wljh_name wltime:(NSString *)wltime wlbmendtime:(NSString *)wlbmendtime wladdress_name :(NSString *)wladdress_name wllxr_name:(NSString *)wllxr_name wllxfs_name:(NSString *) wllxfs_name wlts_name:(NSString *)wlts_name wlaudio:(NSString *)wlaudio wlimgarr:(NSString *)wlimgarr{
++(void)setWLContent:(NSString *)wljh_name wltime:(NSString *)wltime wlbmendtime:(NSString *)wlbmendtime wladdress_name :(NSString *)wladdress_name wllxr_name:(NSString *)wllxr_name wllxfs_name:(NSString *) wllxfs_name wlts_name:(NSString *)wlts_name wlmusicname:(NSString *)wlmusicname wlmusic:(NSString *)wlmusic wlimgarr:(NSString *)wlimgarr{
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
     [userInfo setValue:wljh_name forKey:@"wljh_name"];
     [userInfo setValue:wltime forKey:@"wltime"];
@@ -198,7 +198,8 @@
     [userInfo setValue:wllxr_name forKey:@"wllxr_name"];
     [userInfo setValue:wllxfs_name forKey:@"wllxfs_name"];
     [userInfo setValue:wlts_name forKey:@"wlts_name"];
-    [userInfo setValue:wlaudio forKey:@"wlaudio"];
+    [userInfo setValue:wlmusic forKey:@"wlmusic"];
+    [userInfo setValue:wlmusicname forKey:@"wlmusicname"];
     [userInfo setValue:wlimgarr forKey:@"wlimgarr"];
     [userInfo synchronize];
 }
@@ -226,6 +227,12 @@
 }
 +(NSString *)getwlaudio{
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"wlaudio"];
+}
++(NSString *)getwlmusic{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wlmusic"];
+}
++(NSString *)getwlmusicname{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wlmusicname"];
 }
 +(NSString *)getwlimgarr{
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"wlimgarr"];

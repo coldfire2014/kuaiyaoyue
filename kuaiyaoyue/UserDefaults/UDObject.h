@@ -73,7 +73,7 @@
 +(NSString *)getsw_imgarr;
 
 //吃喝玩乐
-+(void)setWLContent:(NSString *)wljh_name wltime:(NSString *)wltime wlbmendtime:(NSString *)wlbmendtime wladdress_name :(NSString *)wladdress_name wllxr_name:(NSString *)wllxr_name wllxfs_name:(NSString *) wllxfs_name wlts_name:(NSString *)wlts_name wlaudio:(NSString *)wlaudio wlimgarr:(NSString *)wlimgarr;
++(void)setWLContent:(NSString *)wljh_name wltime:(NSString *)wltime wlbmendtime:(NSString *)wlbmendtime wladdress_name :(NSString *)wladdress_name wllxr_name:(NSString *)wllxr_name wllxfs_name:(NSString *) wllxfs_name wlts_name:(NSString *)wlts_name wlmusicname:(NSString *)wlmusicname wlmusic:(NSString *)wlmusic wlimgarr:(NSString *)wlimgarr;
 +(NSString *)getwljh_name;
 +(NSString *)gewltime;
 +(NSString *)getwlbmendtime;
@@ -83,7 +83,8 @@
 +(NSString *)getwlts_name;
 +(NSString *)getwlaudio;
 +(NSString *)getwlimgarr;
-
++(NSString *)getwlmusic;
++(NSString *)getwlmusicname;
 //自定义
 +(void)setZDYContent:(NSString *) zdytopimg zdytitle:(NSString *)zdytitle zdydd:(NSString *)zdydd zdytime:(NSString *)zdytime zdyendtime:(NSString *)zdyendtime zdymusic:(NSString *)zdymusic zdymusicname:(NSString *)zdymusicname zdyimgarr:(NSString *)zdyimgarr;
 +(NSString *)getzdytopimg;
