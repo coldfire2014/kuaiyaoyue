@@ -171,7 +171,7 @@
     [mbtitle4 setLineBreakMode:NSLineBreakByClipping];
     [mbtitle4 setTextColor:[[UIColor alloc] initWithWhite:0.4 alpha:1.0]];
     [mbtitle4 setBackgroundColor:[UIColor clearColor]];
-    [mbtitle4 setText:@"取消发送"];
+    [mbtitle4 setText:@"关闭窗口"];
     [bg2 addSubview:mbtitle4];
     
     UILabel* mbtitle5 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 128.0/2.0,16.0)];

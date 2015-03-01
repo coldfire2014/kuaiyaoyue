@@ -16,6 +16,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.fileName = @"";
         playBk = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 176.0/2.0, 75.0/2.0) andImageName:@"bg_bubble@2x" withScale:2.0];
         playBk.center = CGPointMake(frame.size.width/2.0, frame.size.height - 40.0/2.0 - 20.0/2.0 - 24.0/2.0 - 120.0/2.0 - 8.0/2.0 - 75.0/4.0);
         [self setPlay];

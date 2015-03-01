@@ -30,6 +30,8 @@
     UITextField* musicInput;
     NSString* musicURL;
     HeadImgView* headImg;
+    NSString* headFile;
+    NSString* madeFile;
     int tipCount;
     UILabel* tipCountLbl;
     UITextView* tipInput;
@@ -43,6 +45,7 @@
     int firstImgIndex;
     int imageCount;
     int imageMax;
+    NSMutableArray* uploadFiles;
 }
 @property (strong, nonatomic) UIScrollView *editListView;
 @property (nonatomic, strong) NSString *typeid;

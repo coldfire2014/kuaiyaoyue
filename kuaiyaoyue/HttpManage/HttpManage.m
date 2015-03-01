@@ -226,7 +226,7 @@ password:1235456                     //用户密码
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSString *html = operation.responseString;
-//        NSLog(@"error-%@",html);
+        NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
 }
@@ -247,7 +247,7 @@ password:1235456                     //用户密码
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSString *html = operation.responseString;
-//        NSLog(@"error-%@-%@",error,html);
+        NSLog(@"error-%@-%@",error,html);
         callback(NO,nil);
     }];
 }
@@ -318,7 +318,7 @@ password:1235456                     //用户密码
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSString *html = operation.responseString;
-//        NSLog(@"error-%@",html);
+        NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
     
@@ -388,7 +388,7 @@ closeTimestamp:(NSString *)closeTimestamp
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSString *html = operation.responseString;
-//        NSLog(@"error-%@",html);
+        NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
 
@@ -433,7 +433,7 @@ closeTimestamp:(NSString *)closeTimestamp
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSString *html = operation.responseString;
-//        NSLog(@"error-%@",html);
+        NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
 }

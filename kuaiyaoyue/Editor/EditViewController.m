@@ -35,6 +35,7 @@
 
 @implementation EditViewController
 -(void)initDate{
+    uploadFiles = [[NSMutableArray alloc] init];
     timeDouble = -1;
     endtimeDouble = -1;
     isEndTime = NO;
@@ -535,6 +536,7 @@
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_REMOVE_ME" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_ADD_ME" object:nil];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -546,6 +548,7 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeImage:) name:@"MSG_REMOVE_ME" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addaImage:) name:@"MSG_ADD_ME" object:nil];
 }
 #pragma mark - UITapGesture
 -(void)closeTap{
@@ -977,12 +980,24 @@
         
     }];
 }
--(void)removeImage:(NSNotification*)aNotification{
-    //获取触发事件对象
+-(void)addaImage:(NSNotification*)aNotification{
     NSNumber* info = [aNotification object];
     UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
-    UIView* item = [showBg viewWithTag:[info intValue]];
+    UIView* item = [showBg viewWithTag:[info integerValue]];
+    myPicItem* pic = (myPicItem*)[item viewWithTag:item.tag-100];
+    if (![uploadFiles containsObject:pic.fileName]) {
+        [uploadFiles addObject:pic.fileName];
+    }
+}
+-(void)removeImage:(NSNotification*)aNotification{
+    NSNumber* info = [aNotification object];
+    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+    UIView* item = [showBg viewWithTag:[info integerValue]];
     [item removeFromSuperview];
+    myPicItem* pic = (myPicItem*)[item viewWithTag:item.tag-100];
+    if ([uploadFiles containsObject:pic.fileName]) {
+        [uploadFiles removeObject:pic.fileName];
+    }
     CGFloat w = 216.0;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         w = 116.0;
@@ -1366,7 +1381,7 @@
             return NO;
         }
         if (locInput.text.length > 20) {
-            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的地址信息有%d字超过了20个。",locInput.text.length];
+            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的地址信息有%lu字超过了20个。",(unsigned long)locInput.text.length];
             [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
             return NO;
         }
@@ -1374,6 +1389,7 @@
             [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
             return NO;
         }
+        [self saveMarry];
     } else if ([self.typeid compare:@"2"] == NSOrderedSame || [self.typeid compare:@"3"] == NSOrderedSame) {//商务,娱乐
         if ([self isEmpty:titleInput.text]) {
             [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动名称。" inTime:1.0];
@@ -1396,7 +1412,7 @@
             return NO;
         }
         if (locInput.text.length > 20) {
-            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的地址信息有%d字超过了20个。",locInput.text.length];
+            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的地址信息有%lu字超过了20个。",(unsigned long)locInput.text.length];
             [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
             return NO;
         }
@@ -1409,18 +1425,23 @@
             return NO;
         }
         if (contactmanInput.text != nil && contactmanInput.text.length > 20) {
-            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的联系人有%d字超过了20个。",contactmanInput.text.length];
+            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的联系人有%lu字超过了20个。",(unsigned long)contactmanInput.text.length];
             [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
             return NO;
         }
         if (contactInput.text != nil && contactInput.text.length > 40) {
-            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的联系方式有%d字超过了40个。",contactInput.text.length];
+            NSString* tip = [[NSString alloc] initWithFormat:@"您填写的联系方式有%lu字超过了40个。",(unsigned long)contactInput.text.length];
             [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
             return NO;
         }
         if (![self isEmpty:musicInput.text] && ![self isEmpty:recordedInput.fileName]) {
             [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
             return NO;
+        }
+        if ([self.typeid compare:@"3"] == NSOrderedSame) {
+            [self savePlay];
+        } else {
+            [self saveBuss];
         }
     } else if ([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
         if (headImg.img == nil) {
@@ -1451,8 +1472,110 @@
             [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
             return NO;
         }
+        [self saveDIY];
     }
     return YES;
+}
+-(void)saveMadePic{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    madeFile = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    [UDObject setMbimg:[NSString stringWithFormat:@"../Image/%@",uuid]];
+    [UIImageJPEGRepresentation(drowImage,C_JPEG_SIZE) writeToFile:madeFile atomically:YES];
+}
+-(void)saveMarry{
+    [self saveMadePic];
+    NSMutableArray* webPics = [[NSMutableArray alloc] init];
+    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+    for (int i = 0; i<imageCount; i++) {
+        myPicItem* itemPic = (myPicItem*)[showBg viewWithTag:300+i];
+        [webPics addObject:itemPic.localName];
+    }
+    NSString *hlarr = [webPics componentsJoinedByString:@","];
+    if(webPics.count == 0){
+        hlarr = @"";
+    }
+    NSString *music_u = musicURL;
+    NSString *music_n = musicInput.text;
+    if (musicInput.text.length == 0 && recordedInput.fileName.length == 0) {
+        music_u = @"";
+        music_n = @"";
+    } else if (musicInput.text.length == 0 && recordedInput.fileName.length != 0){
+        music_u = recordedInput.fileName;
+        music_n = @"";
+    }
+    [UDObject setHLContent:manInput.text xn_name:wemanInput.text hltime:timeInput.text bmendtime:endtimeInput.text address_name:locInput.text music:music_u musicname:music_n imgarr:hlarr];
+}
+-(void)savePlay{
+    [self saveMadePic];
+    NSMutableArray* webPics = [[NSMutableArray alloc] init];
+    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+    for (int i = 0; i<imageCount; i++) {
+        myPicItem* itemPic = (myPicItem*)[showBg viewWithTag:300+i];
+        [webPics addObject:itemPic.localName];
+    }
+    NSString *hlarr = [webPics componentsJoinedByString:@","];
+    if(webPics.count == 0){
+        hlarr = @"";
+    }
+    NSString *music_u = musicURL;
+    NSString *music_n = musicInput.text;
+    if (musicInput.text.length == 0 && recordedInput.fileName.length == 0) {
+        music_u = @"";
+        music_n = @"";
+    } else if (musicInput.text.length == 0 && recordedInput.fileName.length != 0){
+        music_u = recordedInput.fileName;
+        music_n = @"";
+    }
+}
+-(void)saveBuss{
+    [self saveMadePic];
+    NSMutableArray* webPics = [[NSMutableArray alloc] init];
+    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+    for (int i = 0; i<imageCount; i++) {
+        myPicItem* itemPic = (myPicItem*)[showBg viewWithTag:300+i];
+        [webPics addObject:itemPic.localName];
+    }
+    NSString *hlarr = [webPics componentsJoinedByString:@","];
+    if(webPics.count == 0){
+        hlarr = @"";
+    }
+    NSString *music_u = musicURL;
+    NSString *music_n = musicInput.text;
+    if (musicInput.text.length == 0 && recordedInput.fileName.length == 0) {
+        music_u = @"";
+        music_n = @"";
+    } else if (musicInput.text.length == 0 && recordedInput.fileName.length != 0){
+        music_u = recordedInput.fileName;
+        music_n = @"";
+    }
+}
+-(void)saveDIY{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+    headFile = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+    [UIImageJPEGRepresentation(headImg.imgContext.image,C_JPEG_SIZE) writeToFile:headFile atomically:YES];
+    NSMutableArray* webPics = [[NSMutableArray alloc] init];
+    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+    for (int i = 0; i<imageCount; i++) {
+        myPicItem* itemPic = (myPicItem*)[showBg viewWithTag:300+i];
+        [webPics addObject:itemPic.localName];
+    }
+    NSString *hlarr = [webPics componentsJoinedByString:@","];
+    if(webPics.count == 0){
+        hlarr = @"";
+    }
+    NSString *music_u = musicURL;
+    NSString *music_n = musicInput.text;
+    if (musicInput.text.length == 0 && recordedInput.fileName.length == 0) {
+        music_u = @"";
+        music_n = @"";
+    } else if (musicInput.text.length == 0 && recordedInput.fileName.length != 0){
+        music_u = recordedInput.fileName;
+        music_n = @"";
+    }
 }
 -(void)reviewTap{
     if ([self checkAndsaveInput]) {

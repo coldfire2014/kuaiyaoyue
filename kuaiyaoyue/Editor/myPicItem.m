@@ -14,6 +14,7 @@
 {
     self = [super initWithFrame:rect];
     if (self) {
+        self.uploaded = NO;
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor blackColor];
         UIImageView* image = [[UIImageView alloc] initWithFrame:rect];
@@ -24,6 +25,8 @@
             [self performSelectorInBackground:@selector(loadImage:) withObject:al];
         } else {
             self.fileName = [[NSString alloc] initWithFormat:@"%@",fileName];
+            NSArray* arr = [self.fileName componentsSeparatedByString:@"/"];
+            self.localName = [[NSString alloc] initWithFormat:@"../Image/%@",[arr lastObject]];
             [self resetImage];
         }
         UIView *removeBtn = [[UIView alloc] initWithFrame:CGRectMake(rect.size.width - 44, 0, 44, 44)];
@@ -56,7 +59,7 @@
     return self;
 }
 -(void)removeMe{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_REMOVE_ME" object:[NSNumber numberWithInt:[self superview].tag]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_REMOVE_ME" object:[NSNumber numberWithInteger:[self superview].tag]];
 }
 -(void)loadImage:(ALAsset*)al{
     CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
@@ -65,8 +68,9 @@
     UIImage* fullImage = [[AssetHelper sharedAssetHelper] getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
     self.fileName = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     [UIImageJPEGRepresentation(fullImage,C_JPEG_SIZE) writeToFile:self.fileName atomically:YES];
-    
+    self.localName = [[NSString alloc] initWithFormat:@"../Image/%@",uuid];
     [self performSelectorOnMainThread:@selector(resetImage) withObject:nil waitUntilDone:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_ADD_ME" object:[NSNumber numberWithInteger:[self superview].tag]];
 }
 -(void)resetImage{
     UIImageView* image = (UIImageView*)[self viewWithTag:11];
