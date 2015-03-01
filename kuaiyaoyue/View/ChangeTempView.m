@@ -19,24 +19,24 @@
     if (self) {
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor clearColor];
-        UIView* btn = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.size.width-44, self.bounds.size.height-71, 44, 49)];
+        UIView* btn = [[UIView alloc] initWithFrame:CGRectMake(self.bounds.size.width-44, self.bounds.size.height-120, 44, 72)];
         btn.backgroundColor = [UIColor clearColor];
-        myImageView* bg = [[myImageView alloc] initWithFrame:CGRectMake(12, 0, 32, 49) andImageName:@"btn_sidebar" withScale:2.0];
-//        UILabel* 
-//        UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 40)];
-//        bg.backgroundColor = [[UIColor alloc] initWithWhite:0.7 alpha:0.5];
-//        bg.center = CGPointMake(btn.bounds.size.width/2.0-8.0, btn.bounds.size.height/2.0);
-//        bg.layer.cornerRadius = 5.0;
-//        bg.layer.borderWidth = 1.5;
-//        bg.layer.borderColor = [[UIColor alloc] initWithWhite:0.4 alpha:0.6].CGColor;
+//        myImageView* bg = [[myImageView alloc] initWithFrame:CGRectMake(12, 0, 32, 49) andImageName:@"btn_sidebar1" withScale:2.0];
+
+        UIView* bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 72)];
+        bg.backgroundColor = [[UIColor alloc] initWithWhite:0.7 alpha:0.6];
+        bg.center = CGPointMake(btn.bounds.size.width/2.0-8.0, btn.bounds.size.height/2.0);
+        bg.layer.cornerRadius = 5.0;
+        bg.layer.borderWidth = 1.5;
+        bg.layer.borderColor = [[UIColor alloc] initWithWhite:0.4 alpha:0.6].CGColor;
         [btn addSubview:bg];
-//        myImageView* arr = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 16, 16) andImageName:@"ic_32_arr" withScale:2.0];
-//        arr.tag = 302;
-//        arr.center = CGPointMake(bg.bounds.size.width/2.0+3, 10);
-//        [bg addSubview:arr];
-//        myImageView* tp = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 16, 16) andImageName:@"ic_c_meeting" withScale:2.0];
-//        tp.center = CGPointMake(bg.bounds.size.width/2.0+6, 30);
-//        [bg addSubview:tp];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 0, 24, 72)];
+        label.text = @"更换模板";
+        label.numberOfLines = 4;
+        label.textColor = [UIColor blackColor];
+        label.font = [UIFont boldSystemFontOfSize:13];
+        [bg addSubview:label];
+        
         [self addSubview:btn];
         
         UITapGestureRecognizer* didTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewInorOut)];

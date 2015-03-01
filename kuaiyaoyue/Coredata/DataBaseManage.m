@@ -461,8 +461,10 @@ static NSManagedObjectContext *context = nil;
 
 -(NSArray *)getMusic:(NSString *)typeid{
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Music"];
-    NSPredicate *predict = [NSPredicate predicateWithFormat:@"(neftypeid = %@)",typeid];
-    [request setPredicate:predict];
+    if([typeid compare:@"4"] != NSOrderedSame){
+        NSPredicate *predict = [NSPredicate predicateWithFormat:@"(neftypeid = %@)",typeid];
+        [request setPredicate:predict];
+    }
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
     return fetchedObjects;

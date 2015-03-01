@@ -1316,6 +1316,7 @@
 		E56C0A3D1A8C3CFA0055495A /* edit */ = {
 			isa = PBXGroup;
 			children = (
+				84FE0B891A426E65005A9599 /* Model */,
 				844825EA1A31A46A0018240E /* HLEditViewController.h */,
 				844825EB1A31A46A0018240E /* HLEditViewController.m */,
 				844825F01A31A48A0018240E /* SWYQViewController.h */,
@@ -1336,7 +1337,6 @@
 				844CC5861A491CAE00A34186 /* CustomView.h */,
 				844CC5871A491CAE00A34186 /* CustomView.m */,
 				844CC5891A491CBA00A34186 /* CustomView.xib */,
-				84FE0B891A426E65005A9599 /* Model */,
 			);
 			name = edit;
 			sourceTree = "<group>";
