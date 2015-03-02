@@ -1408,117 +1408,127 @@
             }
         }
         [self drowImg];
-    } else if ([self.typeid compare:@"2"] == NSOrderedSame) {//商务
-//        mp3name = @"";
-//        mp3url = @"";
-//        count = 9;
-//        if ([UDObject getjhname].length > 0) {
-//            moreview.jh_edit.text = [UDObject getjhname];
-//            hltime = [UDObject getswtime];
-//            bmendtime = [UDObject getswbmendtime];
-//            moreview.time_label.text = [TimeTool getFullTimeStr:[hltime doubleValue]/1000];
-//            moreview.bmtime_label.text = [TimeTool getFullTimeStr:[bmendtime doubleValue]/1000];
-//            moreview.address_edit.text = [UDObject getswaddress_name];
-//            moreview.xlr_edit.text = [UDObject getswxlr_name];
-//            moreview.xlfs_edit.text = [UDObject getswxlfs_name];
-//            moreview.show_summary.text = [UDObject getswhd_name];
-//            long num = 70 - moreview.show_summary.text.length;
-//            moreview.text_label_num.text = [NSString stringWithFormat:@"剩余%ld字",num];
-//            
-//            if (num > 0) {
-//                [moreview.text_label_num setTextColor:[UIColor lightGrayColor]];
-//            }else{
-//                [moreview.text_label_num setTextColor:[UIColor redColor]];
-//            }
-//            
-//            if ([UDObject getsw_music].length > 0) {
-//                mp3name = [UDObject getsw_musicname];
-//                moreview.show_music.text = mp3name;
-//                mp3url = [UDObject getsw_music];
-//                [moreview.del_music_view setHidden:NO];
-//            }
-//            NSArray *arr = [[UDObject getsw_imgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
-//            NSString *name = @"";
-//            if ([arr count] > 0) {
-//                name = [arr objectAtIndex:0];
-//            }
-//            if (name.length > 0) {
-//                
-//                for (NSString *name in arr) {
-//                    NSArray *array = [name componentsSeparatedByString:@"/"];
-//                    NSString *imgname = [array objectAtIndex:([array count] - 1)];
-//                    NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: imgname];
-//                    UIImage *img = [[UIImage alloc]initWithContentsOfFile:imgpath];
-//                    GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
-//                    [data addObject:info];
-//                }
-//                count -= [arr count];
-//            }
-//            
-//        }
-//        [self initImgData];
-    } else if ([self.typeid compare:@"3"] == NSOrderedSame) {//娱乐
-//        count = 9;
-//        if ([UDObject getwljh_name].length > 0) {
-//            playview.jh_edit.text = [UDObject getwljh_name];
-//            hltime = [UDObject gewltime];
-//            bmendtime = [UDObject getwlbmendtime];
-//            playview.time_label.text = [TimeTool getFullTimeStr:[hltime doubleValue]/1000.0];
-//            playview.bmtime_label.text = [TimeTool getFullTimeStr:[bmendtime doubleValue]/1000.0];
-//            playview.address_edit.text = [UDObject getwladdress_name];
-//            playview.xlr_edit.text = [UDObject getwllxr_name];
-//            playview.xlfs_edit.text = [UDObject getwllxfs_name];
-//            playview.show_summary.text = [UDObject getwlts_name];
-//            long num = 70-playview.show_summary.text.length;
-//            playview.text_label_num.text = [NSString stringWithFormat:@"剩余%ld字",num];
-//            if (num > 0) {
-//                [playview.text_label_num setTextColor:[UIColor lightGrayColor]];
-//            }else{
-//                [playview.text_label_num setTextColor:[UIColor redColor]];
-//            }
-//            
-//            if ([UDObject getwlaudio].length > 0 && ![[UDObject getwlaudio] isEqualToString:@"../Audio/"]) {
-//                NSArray *array = [[UDObject getwlaudio] componentsSeparatedByString:@"/"];
-//                audioname = [array objectAtIndex:([array count] - 1)];
-//                recordedFile = [[FileManage sharedFileManage] GetYPFile1:audioname];
-//                
-//                [playview.audio_view setFrame:CGRectMake(playview.audio_view.frame.origin.x, 9, playview.audio_view.frame.size.width, playview.audio_view.frame.size.height)];
-//                [playview.audio_view setAlpha:1.0];
-//                [playview.audio_view setHidden:NO];
-//                [playview.audio_showview setHidden:YES];
-//                [playview.del_button setHidden:NO];
-//                
-//                [playview.lyyl_view setHidden:YES];
-//                [playview.tyx_label setHidden:NO];
-//                [playview.gif_img setHidden:NO];
-//                
-//                playview.show_audioname.text = @"删除重录";
-//            }
-//            
-//            NSArray *arr = [[UDObject getwlimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
-//            NSString *name = @"";
-//            if ([arr count] > 0) {
-//                name = [arr objectAtIndex:0];
-//            }
-//            if (name.length > 0) {
-//                
-//                for (NSString *name in arr) {
-//                    NSArray *array = [name componentsSeparatedByString:@"/"];
-//                    NSString *imgname = [array objectAtIndex:([array count] - 1)];
-//                    NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: imgname];
-//                    UIImage *img = [[UIImage alloc]initWithContentsOfFile:imgpath];
-//                    GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
-//                    [data addObject:info];
-//                }
-//                count -= [arr count];
-//            }
-//        }
-//        [self initImgData];
+    } else if ([self.typeid compare:@"2"] == NSOrderedSame && [UDObject getjhname].length > 0) {//商务
+        NSString* uploads = [UDObject getSWupload];
+        titleInput.text = [UDObject getjhname];
+        timeDouble = [[UDObject getswtime] doubleValue]/1000.0;
+        endtimeDouble = [[UDObject getswbmendtime] doubleValue]/1000.0;
+        NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:timeDouble];
+        timeInput.text = [dateFormatter stringFromDate:date];
+        date = [[NSDate alloc] initWithTimeIntervalSince1970:endtimeDouble];
+        endtimeInput.text = [dateFormatter stringFromDate:date];
+        locInput.text = [UDObject getswaddress_name];
+        contactmanInput.text = [UDObject getswxlr_name];
+        contactInput.text = [UDObject getswxlfs_name];
+        tipInput.text = [UDObject getswhd_name];
+        long num = tipCount - tipInput.text.length;
+        tipCountLbl.text = [NSString stringWithFormat:@"剩余%ld字",num];
+        if (num >= 0) {
+            tipCountLbl.textColor = [UIColor grayColor];
+        }else{
+            tipCountLbl.textColor = [UIColor redColor];
+        }
+        if ([UDObject getsw_music].length > 0) {
+            if ([UDObject getsw_musicname].length > 0) {
+                musicInput.text = [UDObject getsw_musicname];
+                musicURL = [UDObject getsw_music];
+            } else {
+                NSArray *array = [[UDObject getsw_music] componentsSeparatedByString:@"/"];
+                NSString* fileTape = [[FileManage sharedFileManage].audioDirectory stringByAppendingPathComponent: [array lastObject]];
+                [recordedInput showFile:fileTape];
+                if (uploads.length > 0) {
+                    NSRange r = [uploads rangeOfString:fileTape];
+                    if (r.length == fileTape.length) {
+                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
+                    }
+                }
+            }
+        }
+        if ([UDObject getsw_imgarr].length > 2) {
+            NSArray *arr = [[UDObject getsw_imgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
+            for (NSString *name in arr) {
+                NSArray *array = [name componentsSeparatedByString:@"/"];
+                NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: [array lastObject]];
+                [self addImgfromAsset:nil andThumb:nil  orFile:imgpath atIndex:imageCount];
+                imageCount++;
+                if (uploads.length > 0) {
+                    NSRange r = [uploads rangeOfString:imgpath];
+                    if (r.length == imgpath.length) {
+                        //                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
+                    }else{
+                        if (![uploadFiles containsObject:imgpath]) {
+                            [uploadFiles addObject:imgpath];
+                        }
+                    }
+                }else{
+                    if (![uploadFiles containsObject:imgpath]) {
+                        [uploadFiles addObject:imgpath];
+                    }
+                }
+            }
+        }
+        [self drowImg];
+    } else if ([self.typeid compare:@"3"] == NSOrderedSame && [UDObject getwljh_name].length > 0) {//娱乐
+        NSString* uploads = [UDObject getWLupload];
+        titleInput.text = [UDObject getwljh_name];
+        timeDouble = [[UDObject gewltime] doubleValue]/1000.0;
+        endtimeDouble = [[UDObject getwlbmendtime] doubleValue]/1000.0;
+        NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:timeDouble];
+        timeInput.text = [dateFormatter stringFromDate:date];
+        date = [[NSDate alloc] initWithTimeIntervalSince1970:endtimeDouble];
+        endtimeInput.text = [dateFormatter stringFromDate:date];
+        locInput.text = [UDObject getwladdress_name];
+        contactmanInput.text = [UDObject getwllxr_name];
+        contactInput.text = [UDObject getwllxfs_name];
+        tipInput.text = [UDObject getwlts_name];
+        long num = tipCount - tipInput.text.length;
+        tipCountLbl.text = [NSString stringWithFormat:@"剩余%ld字",num];
+        if (num >= 0) {
+            tipCountLbl.textColor = [UIColor grayColor];
+        }else{
+            tipCountLbl.textColor = [UIColor redColor];
+        }
+        if ([UDObject getwlmusic].length > 0) {
+            if ([UDObject getwlmusicname].length > 0) {
+                musicInput.text = [UDObject getwlmusicname];
+                musicURL = [UDObject getwlmusic];
+            } else {
+                NSArray *array = [[UDObject getwlmusic] componentsSeparatedByString:@"/"];
+                NSString* fileTape = [[FileManage sharedFileManage].audioDirectory stringByAppendingPathComponent: [array lastObject]];
+                [recordedInput showFile:fileTape];
+                if (uploads.length > 0) {
+                    NSRange r = [uploads rangeOfString:fileTape];
+                    if (r.length == fileTape.length) {
+                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
+                    }
+                }
+            }
+        }
+        if ([UDObject getwlimgarr].length > 2) {
+            NSArray *arr = [[UDObject getwlimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
+            for (NSString *name in arr) {
+                NSArray *array = [name componentsSeparatedByString:@"/"];
+                NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: [array lastObject]];
+                [self addImgfromAsset:nil andThumb:nil  orFile:imgpath atIndex:imageCount];
+                imageCount++;
+                if (uploads.length > 0) {
+                    NSRange r = [uploads rangeOfString:imgpath];
+                    if (r.length == imgpath.length) {
+                        //                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
+                    }else{
+                        if (![uploadFiles containsObject:imgpath]) {
+                            [uploadFiles addObject:imgpath];
+                        }
+                    }
+                }else{
+                    if (![uploadFiles containsObject:imgpath]) {
+                        [uploadFiles addObject:imgpath];
+                    }
+                }
+            }
+        }
+        [self drowImg];
     } else if ([self.typeid compare:@"4"] == NSOrderedSame && [UDObject getzdytopimg].length > 0) {//自定义
-//        mp3name = @"";
-//        mp3url = @"";
-//        count = 15;
-//        if ([UDObject getzdytopimg].length > 0) {
         NSString* uploads = [UDObject getZDYupload];
         NSArray *array = [[UDObject getzdytopimg] componentsSeparatedByString:@"/"];
         NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: [array lastObject]];
@@ -1526,47 +1536,60 @@
         headImg.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
         headImg.imgContext.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
         
-        
-//            topimgname = [UDObject getzdytopimg];
-//            NSArray *array = [[UDObject getzdytopimg] componentsSeparatedByString:@"/"];
-//            NSString *topimg = [array objectAtIndex:([array count] - 1)];
-//            topimg = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent:topimg];
-//            UIImage *img = [[UIImage alloc]initWithContentsOfFile:topimg];
-//            custom.show_top_img.image = img;
-//            hltime = [UDObject getzdytime];
-//            bmendtime = [UDObject getzdyendtime];
-//            custom.time_label.text = [TimeTool getFullTimeStr:[hltime doubleValue]/1000.0];
-//            custom.endtime_label.text = [TimeTool getFullTimeStr:[bmendtime doubleValue]/1000.0];
-//            custom.title_edit.text = [UDObject getzdytitle];
-//            custom.content_edit.text = [UDObject getzdydd];
-//            long tc = 50-custom.content_edit.text.length;
-//            custom.text_label_num.text = [NSString stringWithFormat:@"剩余%ld字",tc];
-//            if ([UDObject getzdymusic].length > 0) {
-//                mp3name = [UDObject getzdymusicname];
-//                custom.music_label.text = mp3name;
-//                mp3url = [UDObject getzdymusic];
-//                [custom.del_music_view setHidden:NO];
-//            }
-//            NSArray *arr = [[UDObject getzdyimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
-//            NSString *name = @"";
-//            if ([arr count] > 0) {
-//                name = [arr objectAtIndex:0];
-//            }
-//            if (name.length > 0) {
-//                
-//                for (NSString *name in arr) {
-//                    NSArray *array = [name componentsSeparatedByString:@"/"];
-//                    NSString *imgname = [array objectAtIndex:([array count] - 1)];
-//                    NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: imgname];
-//                    UIImage *img = [[UIImage alloc]initWithContentsOfFile:imgpath];
-//                    GridInfo *info = [[GridInfo alloc] initWithDictionary:YES :img];
-//                    [data addObject:info];
-//                }
-//                count -= [arr count];
-//            }
-//            
-//        }
-//        [self initImgData];
+        titleInput.text = [UDObject getzdytitle];
+        timeDouble = [[UDObject getzdytime] doubleValue]/1000.0;
+        endtimeDouble = [[UDObject getzdyendtime] doubleValue]/1000.0;
+        NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:timeDouble];
+        timeInput.text = [dateFormatter stringFromDate:date];
+        date = [[NSDate alloc] initWithTimeIntervalSince1970:endtimeDouble];
+        endtimeInput.text = [dateFormatter stringFromDate:date];
+        tipInput.text = [UDObject getzdydd];
+        long num = tipCount - tipInput.text.length;
+        tipCountLbl.text = [NSString stringWithFormat:@"剩余%ld字",num];
+        if (num >= 0) {
+            tipCountLbl.textColor = [UIColor grayColor];
+        }else{
+            tipCountLbl.textColor = [UIColor redColor];
+        }
+        if ([UDObject getzdymusic].length > 0) {
+            if ([UDObject getzdymusicname].length > 0) {
+                musicInput.text = [UDObject getzdymusicname];
+                musicURL = [UDObject getzdymusic];
+            } else {
+                NSArray *array = [[UDObject getzdymusic] componentsSeparatedByString:@"/"];
+                NSString* fileTape = [[FileManage sharedFileManage].audioDirectory stringByAppendingPathComponent: [array lastObject]];
+                [recordedInput showFile:fileTape];
+                if (uploads.length > 0) {
+                    NSRange r = [uploads rangeOfString:fileTape];
+                    if (r.length == fileTape.length) {
+                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
+                    }
+                }
+            }
+        }
+        if ([UDObject getzdyimgarr].length > 2) {
+            NSArray *arr = [[UDObject getzdyimgarr] componentsSeparatedByString:NSLocalizedString(@",", nil)];
+            for (NSString *name in arr) {
+                NSArray *array = [name componentsSeparatedByString:@"/"];
+                NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: [array lastObject]];
+                [self addImgfromAsset:nil andThumb:nil  orFile:imgpath atIndex:imageCount];
+                imageCount++;
+                if (uploads.length > 0) {
+                    NSRange r = [uploads rangeOfString:imgpath];
+                    if (r.length == imgpath.length) {
+                        //                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
+                    }else{
+                        if (![uploadFiles containsObject:imgpath]) {
+                            [uploadFiles addObject:imgpath];
+                        }
+                    }
+                }else{
+                    if (![uploadFiles containsObject:imgpath]) {
+                        [uploadFiles addObject:imgpath];
+                    }
+                }
+            }
+        }
     }
 }
 -(BOOL)isEmpty:(NSString*)txt{

@@ -223,7 +223,7 @@
                 musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
             } else {
                 musicUrl = musicname;
-                musicType = @"tape";
+                musicType = @"musicUrl";//@"tape";
             }
         }
         
@@ -259,7 +259,7 @@
                 NSArray *array = [musicname componentsSeparatedByString:@"/"];
                 musicname = [array objectAtIndex:([array count] - 1)];
                 musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
-                musicType = @"musicUrl";
+                musicType = @"tape";//@"musicUrl";//
             } else {
                 musicUrl = musicname;
                 musicType = @"tape";
@@ -302,7 +302,7 @@
                 NSArray *array = [musicname componentsSeparatedByString:@"/"];
                 musicname = [array objectAtIndex:([array count] - 1)];
                 musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
-                musicType = @"musicUrl";
+                musicType = @"tape";//@"musicUrl";
             } else {
                 musicUrl = musicname;
                 musicType = @"tape";
@@ -339,7 +339,7 @@
                 musicType = @"musicUrl";
             } else {
                 musicUrl = musicname;
-                musicType = @"tape";
+                musicType = @"musicUrl";//@"tape";
             }
         }
         NSString *timestamp = [TimeTool getFullTimeStr:[[UDObject getzdytime] doubleValue]/1000.0];

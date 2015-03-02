@@ -759,7 +759,6 @@
 				844825E91A31A45C0018240E /* Editor */,
 				E56C0A3D1A8C3CFA0055495A /* edit */,
 				E56C0A3C1A8C3C8E0055495A /* ipad */,
-				844825E61A31A1D40018240E /* MenuViewController.h */,
 				844825E71A31A1D40018240E /* MenuViewController.m */,
 				844825E31A31A1AE0018240E /* TemplateViewController.h */,
 				844825E41A31A1AE0018240E /* TemplateViewController.m */,
@@ -1316,6 +1315,7 @@
 		E56C0A3D1A8C3CFA0055495A /* edit */ = {
 			isa = PBXGroup;
 			children = (
+				844825E61A31A1D40018240E /* MenuViewController.h */,
 				84FE0B891A426E65005A9599 /* Model */,
 				844825EA1A31A46A0018240E /* HLEditViewController.h */,
 				844825EB1A31A46A0018240E /* HLEditViewController.m */,
