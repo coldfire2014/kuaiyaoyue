@@ -290,4 +290,37 @@
     [userInfo setValue:qnToken forKey:@"QNToken"];
     [userInfo synchronize];
 }
+
++(NSString*)getHLupload{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"hlupload"];
+}
++(void)setHLupload:(NSString*)hlupload{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:hlupload forKey:@"hlupload"];
+    [userInfo synchronize];
+}
++(NSString*)getSWupload{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"swupload"];
+}
++(void)setSWupload:(NSString*)swupload{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:swupload forKey:@"swupload"];
+    [userInfo synchronize];
+}
++(NSString*)getWLupload{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"wlupload"];
+}
++(void)setWLupload:(NSString*)wlupload{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:wlupload forKey:@"wlupload"];
+    [userInfo synchronize];
+}
++(NSString*)getZDYupload{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"zdyupload"];
+}
++(void)setZDYupload:(NSString*)zdyupload{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:zdyupload forKey:@"zdyupload"];
+    [userInfo synchronize];
+}
 @end

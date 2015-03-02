@@ -95,4 +95,13 @@
 +(NSString *)getzdymusic;
 +(NSString *)getzdymusicname;
 +(NSString *)getzdyimgarr;
+
++(NSString*)getHLupload;
++(void)setHLupload:(NSString*)hlupload;
++(NSString*)getSWupload;
++(void)setSWupload:(NSString*)swupload;
++(NSString*)getWLupload;
++(void)setWLupload:(NSString*)wlupload;
++(NSString*)getZDYupload;
++(void)setZDYupload:(NSString*)zdyupload;
 @end
