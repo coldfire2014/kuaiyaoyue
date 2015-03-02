@@ -1908,7 +1908,7 @@
     NSString* tapeFile = @"";
     NSMutableString* upfile = [[NSMutableString alloc] init];
     if (recordedInput.fileName.length != 0) {
-        tapeFile = recordedInput.fileName;
+        tapeFile = [HttpManage getWebLoc:recordedInput.fileName];
         [upfile appendFormat:@",%@",tapeFile];
     }else if(musicInput.text.length != 0){
         tapeFile = musicURL;
@@ -1918,16 +1918,31 @@
     for (int i = 0; i<imageCount; i++) {
         myPicItem* itemPic = (myPicItem*)[showBg viewWithTag:300+i];
         [upfile appendFormat:@",%@",itemPic.fileName];
-        [webImgs addObject:itemPic.fileName];
+        [webImgs addObject:[HttpManage getWebLoc:itemPic.fileName ]];
     }
     if ([self.typeid compare:@"1"] == NSOrderedSame) {//hl
         [UDObject setHLupload:upfile];
-        [HttpManage marry:[UDObject gettoken] bride:wemanInput.text groom:manInput.text address:locInput.text location:nil images:webImgs timestamp:[self time2str:timeDouble] background:madeFile musicUrl:tapeFile closeTimestamp:[self time2str:endtimeDouble] mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic){
+        [HttpManage marry:[UDObject gettoken] bride:wemanInput.text groom:manInput.text address:locInput.text location:nil images:webImgs timestamp:[self time2str:timeDouble] background:[HttpManage getWebLoc:madeFile] musicUrl:tapeFile closeTimestamp:[self time2str:endtimeDouble] mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic){
             if (isOK) {
                 [[waitingView sharedwaitingView] stopWait];
                 [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
-                
-                
+                NSString* url_str = [dic objectForKey:@"url"];
+                NSString* rid = [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"recordId"] ];
+                NSRange r = [url_str rangeOfString:rid];
+                NSString* urlhead = [url_str substringToIndex:r.location];
+                NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        locInput.text,@"address",
+                                        [HttpManage getWebLoc:madeFile],@"background",
+                                        wemanInput.text,@"bride",
+                                        manInput.text,@"groom",
+                                        tapeFile,@"musicUrl",[self time2str:timeDouble],@"timestamp",[self time2str:endtimeDouble],@"closeTimestamp",
+                                        webImgs,@"images",
+                                        [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"timestamp"]],
+                                        @"date",@"0",@"number",@"0",@"total",self.tempId,@"typeId",
+                                        [[NSString alloc] initWithFormat:@"%@index.html",urlhead],@"templateUrl",
+                                        [[NSString alloc] initWithFormat:@"%@assets/images/preview.jpg",urlhead],@"thumb",rid,@"unquieId",url_str,@"url",
+                                        nil];
+                [[DataBaseManage getDataBaseManage] AddUserdata:params type:1];
                 [self dismissViewControllerAnimated:NO completion:^{}];
                 if (sendtaped) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
@@ -1945,12 +1960,29 @@
         } else {
             [UDObject setWLupload:upfile];
         }
-        [HttpManage party:[UDObject gettoken] partyName:titleInput.text inviter:contactmanInput.text telephone:contactInput.text address:locInput.text images:webImgs tape:tapeFile timestamp:[self time2str:timeDouble] closetime:[self time2str:endtimeDouble] description:tipInput.text background:madeFile mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic) {
+        [HttpManage party:[UDObject gettoken] partyName:titleInput.text inviter:contactmanInput.text telephone:contactInput.text address:locInput.text images:webImgs tape:tapeFile timestamp:[self time2str:timeDouble] closetime:[self time2str:endtimeDouble] description:tipInput.text background:[HttpManage getWebLoc:madeFile] mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic) {
             if (isOK) {
                 [[waitingView sharedwaitingView] stopWait];
                 [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
-                
-                
+                NSString* url_str = [dic objectForKey:@"url"];
+                NSString* rid = [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"recordId"] ];
+                NSRange r = [url_str rangeOfString:rid];
+                NSString* urlhead = [url_str substringToIndex:r.location];
+                NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        locInput.text,@"address",
+                                        [HttpManage getWebLoc:madeFile],@"background",
+                                        [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"cardTypeId"]],@"cardTypeId",
+                                        contactInput.text,@"telephone",
+                                        contactmanInput.text,@"contact",
+                                        titleInput.text,@"partyName",tipInput.text,@"description",
+                                        tapeFile,@"tape",[self time2str:timeDouble],@"timestamp",[self time2str:endtimeDouble],@"closeTimestamp",
+                                        webImgs,@"images",
+                                        [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"timestamp"]],
+                                        @"date",@"0",@"number",@"0",@"total",self.tempId,@"typeId",
+                                        [[NSString alloc] initWithFormat:@"%@index.html",urlhead],@"templateUrl",
+                                        [[NSString alloc] initWithFormat:@"%@assets/images/preview.jpg",urlhead],@"thumb",rid,@"unquieId",url_str,@"url",
+                                        nil];
+                [[DataBaseManage getDataBaseManage] AddUserdata:params type:2];
                 [self dismissViewControllerAnimated:NO completion:^{}];
                 if (sendtaped) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
@@ -1965,12 +1997,24 @@
     } else if ([self.typeid compare:@"4"] == NSOrderedSame) {//zdy
         [upfile appendFormat:@",%@",headFile];
         [UDObject setZDYupload:upfile];
-        [HttpManage custom:[UDObject gettoken] title:titleInput.text content:tipInput.text logo:headFile music:tapeFile timestamp:[self time2str:timeDouble] closeTimestamp:[self time2str:endtimeDouble] images:webImgs mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic) {
+        [HttpManage custom:[UDObject gettoken] title:titleInput.text content:tipInput.text logo:[HttpManage getWebLoc:headFile] music:tapeFile timestamp:[self time2str:timeDouble] closeTimestamp:[self time2str:endtimeDouble] images:webImgs mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic) {
             if (isOK) {
                 [[waitingView sharedwaitingView] stopWait];
                 [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
-                
-                
+                NSString* url_str = [dic objectForKey:@"url"];
+                NSString* rid = [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"recordId"] ];
+                NSRange r = [url_str rangeOfString:rid];
+                NSString* urlhead = [url_str substringToIndex:r.location];
+                NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        titleInput.text,@"title",tipInput.text,@"content",
+                                        [HttpManage getWebLoc:headFile],@"logo",tapeFile,@"music",[self time2str:timeDouble],@"timestamp",[self time2str:endtimeDouble],@"closeTimestamp",
+                                        webImgs,@"images",
+                                        [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"timestamp"]],
+                                        @"date",@"0",@"number",@"0",@"total",self.tempId,@"typeId",
+                                        [[NSString alloc] initWithFormat:@"%@index.html",urlhead],@"templateUrl",
+                                        [[NSString alloc] initWithFormat:@"%@assets/images/preview.jpg",urlhead],@"thumb",rid,@"unquieId",url_str,@"url",
+                                        nil];
+                [[DataBaseManage getDataBaseManage] AddUserdata:params type:0];
                 [self dismissViewControllerAnimated:NO completion:^{}];
                 if (sendtaped) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];

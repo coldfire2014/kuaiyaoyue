@@ -707,6 +707,10 @@ closeTimestamp:(NSString *)closeTimestamp
         callback(NO ,@"");
     }];
 }
++ (NSString*)getWebLoc:(NSString*)filePath{
+    NSArray* fs = [filePath componentsSeparatedByString:@"/"];
+    return [NSString stringWithFormat:@"%@%@",QNPCI,[fs lastObject]];
+}
 +(void)uploadfile:(NSString *)file name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback{
     NSLog(@"intime");
     NSString* token = [UDObject getQNToken];

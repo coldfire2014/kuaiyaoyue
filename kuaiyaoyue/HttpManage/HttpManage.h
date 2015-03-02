@@ -31,6 +31,7 @@
 @end
 
 @interface HttpManage : NSObject
++ (NSString*)getWebLoc:(NSString*)filePath ;
 //解压文件
 + (void)unzip:(NSString*)filePath filename:(NSString *) filename;
 //下载ZIP包
