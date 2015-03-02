@@ -114,6 +114,7 @@
             removeBtn.alpha = 1.0;
             tapLbl.text = @"删除录音";
         }];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_ADD_FILE" object:nil];
     }
 }
 -(void)setrecord{
@@ -180,6 +181,7 @@
     NSError* err;
     if (self.fileName != nil && [self.fileName compare:@""] != NSOrderedSame && [fm fileExistsAtPath:self.fileName]) {
         BOOL ret = [fm removeItemAtPath:self.fileName error:&err];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_REMOVE_FILE" object:self.fileName];
         if (!ret) {
             NSLog(@"%@",err.description);
         }

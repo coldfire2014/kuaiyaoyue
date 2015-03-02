@@ -43,7 +43,6 @@
     tipCount = 70;
     isHead = NO;
     imageCount = 0;
-    recordedFile = @"";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -333,7 +332,15 @@
             tipCount = 70;
         }else if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
             andn.text=@"封面导读: ";
-            tipCount = 70;//50
+            tipCount = 50;
+            UILabel* tipLbl = [[UILabel alloc] initWithFrame:CGRectMake(5.0, 110.0/2.0, 90.0, 29.0)];
+            tipLbl.font = [UIFont systemFontOfSize:10];
+            tipLbl.backgroundColor = [UIColor clearColor];
+            tipLbl.textColor = [UIColor redColor];
+            tipLbl.layer.cornerRadius = 3.0;
+            tipLbl.text=@"注:若导读含有换行可能影响完整显示。";
+            tipLbl.numberOfLines = 2;
+            [tipView addSubview:tipLbl];
         }
         [tipView addSubview:andn];
         tipCountLbl = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 66.0/2.0, 82, 46.0/2.0)];
@@ -538,6 +545,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_REMOVE_ME" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_ADD_ME" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_REMOVE_FILE" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_ADD_FILE" object:nil];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -550,6 +559,8 @@
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeImage:) name:@"MSG_REMOVE_ME" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addaImage:) name:@"MSG_ADD_ME" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removefile4list:) name:@"MSG_REMOVE_FILE" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addfile2list:) name:@"MSG_ADD_FILE" object:nil];
 }
 #pragma mark - UITapGesture
 -(void)closeTap{
@@ -849,7 +860,7 @@
 - (void)textViewDidChange:(UITextView *)textView{
     long max = 70;
     if ([self.typeid compare:@"4"] == NSOrderedSame) {
-        max = 70;//50
+        max = 50;
     }
     long num = max - textView.text.length;
     tipCountLbl.text = [NSString stringWithFormat:@"剩余%ld字",num];
@@ -927,6 +938,8 @@
             des.delegate = self;
             if ([self.typeid compare:@"3"] == NSOrderedSame) {
                 des.typeid = @"4";
+            } else if ([self.typeid compare:@"4"] == NSOrderedSame) {
+                des.typeid = @"5";
             } else {
                 des.typeid = self.typeid;
             }
@@ -980,6 +993,18 @@
     [self presentViewController:des animated:YES completion:^{
         
     }];
+}
+-(void)removefile4list:(NSNotification*)aNotification{
+    NSString* info = [aNotification object];
+    if ([uploadFiles containsObject:info]) {
+        [uploadFiles removeObject:info];
+    }
+}
+-(void)addfile2list:(NSNotification*)aNotification{
+    NSString* info = [aNotification object];
+    if (![uploadFiles containsObject:info]) {
+        [uploadFiles addObject:info];
+    }
 }
 -(void)addaImage:(NSNotification*)aNotification{
     NSNumber* info = [aNotification object];
@@ -1206,13 +1231,13 @@
 -(void)setPreviewImg{
     
     if ([self.typeid compare:@"4"] == NSOrderedSame) {
-        self.tempId = @"";
         self.tempLoc = @"";
         firstImgIndex = 0;
         return;
     }//markwyb
     else{
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            //markwyb
         self.tempId = @"1";
         self.tempLoc = @"/sdyy/huayang/assets/images/base";
         }
@@ -1283,6 +1308,7 @@
     [self drowImg];
 }
 -(void)drowImg{
+    isBgsend = NO;
     if ([self.typeid compare:@"4"] == NSOrderedSame) {
         return;
     }
@@ -1353,7 +1379,6 @@
 }
 #pragma mark - 数据操作
 -(void)initOldInput{
-    recordedFile = @"";//如果不为空 录音就要判断下再上传
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 
@@ -1378,8 +1403,10 @@
                 [recordedInput showFile:fileTape];
                 if (uploads.length > 0) {
                     NSRange r = [uploads rangeOfString:fileTape];
-                    if (r.length == fileTape.length) {
-                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
+                    if (r.length != fileTape.length) {
+                        if (![uploadFiles containsObject:fileTape]) {
+                            [uploadFiles addObject:fileTape];
+                        }
                     }
                 }
             }
@@ -1439,7 +1466,9 @@
                 if (uploads.length > 0) {
                     NSRange r = [uploads rangeOfString:fileTape];
                     if (r.length == fileTape.length) {
-                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
+                        if (![uploadFiles containsObject:fileTape]) {
+                            [uploadFiles addObject:fileTape];
+                        }
                     }
                 }
             }
@@ -1499,7 +1528,9 @@
                 if (uploads.length > 0) {
                     NSRange r = [uploads rangeOfString:fileTape];
                     if (r.length == fileTape.length) {
-                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
+                        if (![uploadFiles containsObject:fileTape]) {
+                            [uploadFiles addObject:fileTape];
+                        }
                     }
                 }
             }
@@ -1562,7 +1593,9 @@
                 if (uploads.length > 0) {
                     NSRange r = [uploads rangeOfString:fileTape];
                     if (r.length == fileTape.length) {
-                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
+                        if (![uploadFiles containsObject:fileTape]) {
+                            [uploadFiles addObject:fileTape];
+                        }
                     }
                 }
             }
@@ -1701,8 +1734,8 @@
             [[StatusBar sharedStatusBar] talkMsg:@"您填写的标题超过了20个字,将无法完整显示。" inTime:1.0];
             return NO;
         }
-        if (tipInput.text != nil && tipInput.text.length > 70) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您填写的封面导读超过了70个字。" inTime:1.0];
+        if (tipInput.text != nil && tipInput.text.length > 50) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您填写的封面导读超过了50个字。" inTime:1.0];
             return NO;
         }
         if (imageCount <= 0) {
@@ -1711,6 +1744,14 @@
         }
         if (![self isEmpty:musicInput.text] && ![self isEmpty:recordedInput.fileName]) {
             [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
+            return NO;
+        }
+        if ([self isEmpty:timeInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择活动时间。" inTime:1.0];
+            return NO;
+        }
+        if ([self isEmpty:endtimeInput.text]) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择报名截止时间。" inTime:1.0];
             return NO;
         }
         [self saveDIY];
@@ -1802,13 +1843,31 @@
     }
     [UDObject setSWContent:titleInput.text swtime:[self time2str:timeDouble] swbmendtime:[self time2str:endtimeDouble] address_name:locInput.text swxlr_name:contactmanInput.text swxlfs_name:contactInput.text swhd_name:tipInput.text music:music_u musicname:music_n imgarr:hlarr];
 }
+- (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize
+{
+    // Create a graphics image context
+    UIGraphicsBeginImageContext(newSize);
+    
+    // Tell the old image to draw in this new context, with the desired
+    // new size
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
+    // Get the new image from the context
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // End the context
+    UIGraphicsEndImageContext();
+    
+    // Return the new image.
+    return newImage;
+}
 -(void)saveDIY{
     CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
     NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
     headFile = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     NSString* headName = [NSString stringWithFormat:@"../Image/%@",uuid];
-    [UIImageJPEGRepresentation(headImg.imgContext.image,C_JPEG_SIZE) writeToFile:headFile atomically:YES];
+    [UIImageJPEGRepresentation([self imageWithImageSimple:headImg.imgContext.image scaledToSize:CGSizeMake(120, 120)],C_JPEG_SIZE) writeToFile:headFile atomically:YES];
     //markwyb 这个一定要按尺寸压缩处理
     NSMutableArray* webPics = [[NSMutableArray alloc] init];
     UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
@@ -1844,27 +1903,147 @@
         }];
     }
 }
+-(void)save2web{
+    [[waitingView sharedwaitingView] changeWord:@"正在努力制作中……"];
+    NSString* tapeFile = @"";
+    NSMutableString* upfile = [[NSMutableString alloc] init];
+    if (recordedInput.fileName.length != 0) {
+        tapeFile = recordedInput.fileName;
+        [upfile appendFormat:@",%@",tapeFile];
+    }else if(musicInput.text.length != 0){
+        tapeFile = musicURL;
+    }
+    NSMutableArray* webImgs = [[NSMutableArray alloc] init];
+    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+    for (int i = 0; i<imageCount; i++) {
+        myPicItem* itemPic = (myPicItem*)[showBg viewWithTag:300+i];
+        [upfile appendFormat:@",%@",itemPic.fileName];
+        [webImgs addObject:itemPic.fileName];
+    }
+    if ([self.typeid compare:@"1"] == NSOrderedSame) {//hl
+        [UDObject setHLupload:upfile];
+        [HttpManage marry:[UDObject gettoken] bride:wemanInput.text groom:manInput.text address:locInput.text location:nil images:webImgs timestamp:[self time2str:timeDouble] background:madeFile musicUrl:tapeFile closeTimestamp:[self time2str:endtimeDouble] mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic){
+            if (isOK) {
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
+                
+                
+                [self dismissViewControllerAnimated:NO completion:^{}];
+                if (sendtaped) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
+                }else{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
+                }
+            }else{
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
+            }
+        }];
+    } else if ([self.typeid compare:@"2"] == NSOrderedSame || [self.typeid compare:@"3"] == NSOrderedSame) {//sw//pl
+        if ([self.typeid compare:@"2"] == NSOrderedSame) {
+            [UDObject setSWupload:upfile];
+        } else {
+            [UDObject setWLupload:upfile];
+        }
+        [HttpManage party:[UDObject gettoken] partyName:titleInput.text inviter:contactmanInput.text telephone:contactInput.text address:locInput.text images:webImgs tape:tapeFile timestamp:[self time2str:timeDouble] closetime:[self time2str:endtimeDouble] description:tipInput.text background:madeFile mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic) {
+            if (isOK) {
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
+                
+                
+                [self dismissViewControllerAnimated:NO completion:^{}];
+                if (sendtaped) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
+                }else{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
+                }
+            }else{
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
+            }
+        }];
+    } else if ([self.typeid compare:@"4"] == NSOrderedSame) {//zdy
+        [upfile appendFormat:@",%@",headFile];
+        [UDObject setZDYupload:upfile];
+        [HttpManage custom:[UDObject gettoken] title:titleInput.text content:tipInput.text logo:headFile music:tapeFile timestamp:[self time2str:timeDouble] closeTimestamp:[self time2str:endtimeDouble] images:webImgs mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic) {
+            if (isOK) {
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
+                
+                
+                [self dismissViewControllerAnimated:NO completion:^{}];
+                if (sendtaped) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
+                }else{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
+                }
+            }else{
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
+            }
+        }];
+    }
+}
+-(void)uploadFile{
+    if ([uploadFiles count] > 0) {
+        NSString* file = [uploadFiles lastObject];
+        NSArray *names = [file componentsSeparatedByString:@"/"];
+        [HttpManage uploadfile:file name:[names lastObject] cb:^(BOOL isOK, NSString *URL) {
+            if (isOK) {
+                [uploadFiles removeLastObject];
+                [self uploadFile];
+            } else {
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"上传素材失败了，再试一次吧" inTime:0.8];
+            }
+        }];
+    } else {
+        [self save2web];
+    }
+}
+-(void)uploadMade{
+    if (isBgsend) {
+        [self uploadFile];
+    } else {
+        NSArray *names = [madeFile componentsSeparatedByString:@"/"];
+        [HttpManage uploadfile:madeFile name:[names lastObject] cb:^(BOOL isOK, NSString *URL) {
+            if (isOK) {
+                isBgsend = YES;
+                [self uploadFile];
+            } else {
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"上传模板图片失败了，再试一次吧" inTime:0.8];
+            }
+        }];
+    }
+}
+-(void)uploadHead{
+    if ([self.typeid compare:@"4"] == NSOrderedSame) {
+        NSArray *names = [headFile componentsSeparatedByString:@"/"];
+        [HttpManage uploadfile:headFile name:[names lastObject] cb:^(BOOL isOK, NSString *URL) {
+            if (isOK) {
+                [self uploadFile];
+            } else {
+                [[waitingView sharedwaitingView] stopWait];
+                [[StatusBar sharedStatusBar] talkMsg:@"上传封面图片失败了，再试一次吧" inTime:0.8];
+            }
+        }];
+    } else {
+        [self uploadMade];
+    }
+}
 -(void)sendTap{
     if ([self checkAndsaveInput]) {
-        
+        sendtaped = YES;
+        [[waitingView sharedwaitingView] waitByMsg:@"正在上传素材，请稍候。" haveCancel:NO];
+        [self uploadHead];
     }
 }
 -(void)saveTap{
-    if ([self checkAndsaveInput]) {//上传前先排除删掉的
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {//hl
-            [UDObject setHLupload:@""];
-        } else if ([self.typeid compare:@"2"] == NSOrderedSame) {//sw
-            [UDObject setSWupload:@""];
-        } else if ([self.typeid compare:@"3"] == NSOrderedSame) {//pl
-            [UDObject setWLupload:@""];
-        } else if ([self.typeid compare:@"3"] == NSOrderedSame) {//zdy
-            [UDObject setZDYupload:@""];
-        }
-        if (recordedFile.length > 0) {
-            if ([recordedFile compare:recordedInput.fileName] == NSOrderedSame) {
-                //不上传
-            }
-        }
+    if ([self checkAndsaveInput]) {
+        sendtaped = NO;
+        [[waitingView sharedwaitingView] waitByMsg:@"正在上传素材，请稍候。" haveCancel:NO];
+        [self uploadHead];
     }
 }
 

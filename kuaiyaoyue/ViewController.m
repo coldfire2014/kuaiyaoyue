@@ -97,13 +97,18 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bcfs) name:@"MSG_BCFS" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loaddata) name:@"MSG_FS" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bc) name:@"MSG_FS" object:nil];
 
 }
 -(void)message{
     [self GetRecord:@"-1"];
 }
+-(void)bc{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self loaddata];
+}
 -(void)bcfs{
+    [self.navigationController popToRootViewControllerAnimated:NO];
     [self loaddata];
     Userdata *user = [data objectAtIndex:0];
     switch (user.neftype) {
@@ -261,6 +266,7 @@
     }
 }
 -(void)loaddata{
+    [self.navigationController popToRootViewControllerAnimated:NO];
     data = [[NSMutableArray alloc] init];
     NSArray *arr = [[DataBaseManage getDataBaseManage] getUserdata];
     if (arr==nil || arr.count == 0) {

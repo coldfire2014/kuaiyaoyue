@@ -40,12 +40,13 @@
     BOOL isHead;
     AssetHelper* assert;
     tapeView *recordedInput;
-    NSString *recordedFile;
     UIImage* drowImage;
     int firstImgIndex;
     int imageCount;
     int imageMax;
     NSMutableArray* uploadFiles;
+    BOOL sendtaped;
+    BOOL isBgsend;
 }
 @property (strong, nonatomic) UIScrollView *editListView;
 @property (nonatomic, strong) NSString *typeid;

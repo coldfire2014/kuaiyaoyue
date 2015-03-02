@@ -471,7 +471,7 @@ closeTimestamp:(NSString *)closeTimestamp
         callback(YES,JSON);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
-        NSLog(@"error-%@",error);
+        NSLog(@"error-%@", operation.responseString);
         callback(NO,nil);
     }];
 
@@ -707,6 +707,27 @@ closeTimestamp:(NSString *)closeTimestamp
         callback(NO ,@"");
     }];
 }
++(void)uploadfile:(NSString *)file name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback{
+    NSLog(@"intime");
+    NSString* token = [UDObject getQNToken];
+    if (token == nil || [token compare:@""] == NSOrderedSame) {
+        [HttpManage getQNTokenAndSendfile:file name:name callback:callback];
+        return;
+    }
+    QNUploadManager *upManager = [[QNUploadManager alloc] init];
+    NSData *data = [NSData dataWithContentsOfFile: file];
+    [upManager putData:data key:name token:token
+              complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                  NSLog(@"outtime");
+                  if(info.statusCode== 200) {
+                      callback(YES ,[NSString stringWithFormat:@"%@%@",QNPCI,[resp objectForKey:@"key"]]);
+                  }else if(info.statusCode== 401){
+                      [HttpManage getQNTokenAndSendfile:file name:name callback:callback];
+                  }else{
+                      callback(NO ,@"");
+                  }
+              } option:nil];
+}
 /*
  文件上传-图片
  */
@@ -717,6 +738,7 @@ closeTimestamp:(NSString *)closeTimestamp
         [HttpManage getQNTokenAndSendImg:image name:name callback:callback];
         return;
     }
+    NSLog(@"QNin");
     QNUploadManager *upManager = [[QNUploadManager alloc] init];
     NSData* jtdata = UIImageJPEGRepresentation(image,C_JPEG_SIZE);
     [upManager putData:jtdata key:name token:token
@@ -724,6 +746,9 @@ closeTimestamp:(NSString *)closeTimestamp
 //                  NSLog(@"%@", info);
 //                  NSLog(@"%@", resp);
                   if(info.statusCode== 200) {
+                      NSLog(@"QNout");
+                      NSLog(@"ALLin");
+                
                       callback(YES ,[NSString stringWithFormat:@"%@%@",QNPCI,[resp objectForKey:@"key"]]);
                   }else if(info.statusCode== 401){
                       [HttpManage getQNTokenAndSendImg:image name:name callback:callback];
@@ -731,38 +756,39 @@ closeTimestamp:(NSString *)closeTimestamp
                       callback(NO ,@"");
                   }
               } option:nil];
-//    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
-//    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//    [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:12 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//        NSData* jtdata = UIImageJPEGRepresentation(image,C_JPEG_SIZE);
-//        [formData appendPartWithFileData:jtdata name:@"files" fileName:name mimeType:@"image/jpeg"];
-//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        callback(YES,[responseObject objectForKey:@"url"]);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSString* res = operation.responseString;
-//        if (nil != res) {
-//            NSData* resData=[res dataUsingEncoding:NSUTF8StringEncoding];
-//            NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
-//            NSDictionary *err = [resultDic objectForKey:@"error"];
-//            NSString* code = [err objectForKey:@"code"];
-//            if ([code longLongValue] == 34) {
-//                NSArray* sub_errs = [err objectForKey:@"subErrors"];
-//                NSDictionary* sub_err = [sub_errs objectAtIndex:0];
-//                NSString* codes = [sub_err objectForKey:@"code"];
-//                if([codes longLongValue] == 1) {
-//                    callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
-//                }else{
-//                    callback(NO ,@"");
-//                }
-//            } else {
-//                callback(NO ,@"");
-//            }
-//        }else{
-//            callback(NO ,@"");
-//        }
-//    }];
 }
-
+//                      AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:APIBaseURLString]];
+//                      [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//                      [manager POST:@"nozzle/NefImages/upload.aspx" parameters:nil timeout:12 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//                          NSData* jtdata = UIImageJPEGRepresentation(image,C_JPEG_SIZE);
+//                          [formData appendPartWithFileData:jtdata name:@"files" fileName:name mimeType:@"image/jpeg"];
+//                      } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                          NSLog(@"ALLout");
+//                          callback(YES,[responseObject objectForKey:@"url"]);
+//                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                          NSLog(@"ALLfaile");
+//                          NSString* res = operation.responseString;
+//                          if (nil != res) {
+//                              NSData* resData=[res dataUsingEncoding:NSUTF8StringEncoding];
+//                              NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+//                              NSDictionary *err = [resultDic objectForKey:@"error"];
+//                              NSString* code = [err objectForKey:@"code"];
+//                              if ([code longLongValue] == 34) {
+//                                  NSArray* sub_errs = [err objectForKey:@"subErrors"];
+//                                  NSDictionary* sub_err = [sub_errs objectAtIndex:0];
+//                                  NSString* codes = [sub_err objectForKey:@"code"];
+//                                  if([codes longLongValue] == 1) {
+//                                      callback(YES ,[NSString stringWithFormat:@"%@%@",PIC_URL,name]);
+//                                  }else{
+//                                      callback(NO ,@"");
+//                                  }
+//                              } else {
+//                                  callback(NO ,@"");
+//                              }
+//                          }else{
+//                              callback(NO ,@"");
+//                          }
+//                      }];
 /*
  文件上传音频
  */

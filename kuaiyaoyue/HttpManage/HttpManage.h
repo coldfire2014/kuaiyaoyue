@@ -152,6 +152,7 @@ closeTimestamp:(NSString *)closeTimestamp
                cb:(void(^)(BOOL isOK ,NSDictionary *array))callback;
 
 //文件上传
++(void)uploadfile:(NSString *)file name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback;
 +(void)uploadTP:(UIImage *) image name:(NSString *)name cb:(void(^)(BOOL isOK, NSString *URL))callback;
 +(void)uploadYP:(NSString *) file name:(NSString *)name cb:(void (^)(BOOL isOK, NSString *URL))callback;
 
