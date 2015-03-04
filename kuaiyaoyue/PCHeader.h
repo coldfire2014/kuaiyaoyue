@@ -25,6 +25,7 @@
 #else
     #define YINGLOUURL @""
     #define HTTPURL @"http://appkyy.kyy121.com/invitation/"
+//#define HTTPURL @"http://10.142.59.104/invitation/"
 //    #define ChannelId @"AppStore"
     #define ChannelId @"test"
     #define UZIP @"ZIP211"

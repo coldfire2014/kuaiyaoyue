@@ -219,7 +219,6 @@ password:1235456                     //用户密码
                             phoneId,@"phoneId",openId,@"openId",
                             @"ios",@"equipment",version,@"version",
                             nil];
-    
     [[AFConnectionAPIClient sharedClient] POST:@"nozzle/NefUser/registers.aspx" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
 
         callback(YES,JSON);
@@ -375,9 +374,11 @@ closeTimestamp:(NSString *)closeTimestamp
     
     if ([YINGLOUURL compare:@""] != NSOrderedSame) {
         NSString* ylid = [UDObject getYLID];
+        NSTimeZone* tz = [NSTimeZone localTimeZone];
+        NSString* timeZoneId = tz.name;
         params = [NSDictionary dictionaryWithObjectsAndKeys:
                   token,@"token",bride,@"bride",groom,@"groom",
-                  address,@"address",images,@"images",
+                  address,@"address",images,@"images",timeZoneId,@"timeZoneId",
                   ylid,@"studioId",timestamp,@"timestamp",background,@"background",musicUrl,@"musicUrl",closeTimestamp,@"closeTimestamp",
                   @"ios",@"equipment",version,@"version",
                   nil];
@@ -420,9 +421,11 @@ closeTimestamp:(NSString *)closeTimestamp
   background:(NSString *)background
          mid:(NSString *)mid
          cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
+    NSTimeZone* tz = [NSTimeZone localTimeZone];
+    NSString* timeZoneId = tz.name;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             token,@"token",partyName,@"partyName",inviter,@"contact",
-                            telephone,@"telephone",
+                            telephone,@"telephone",timeZoneId,@"timeZoneId",
                             address,@"address",images,@"images",tape,@"tape",
                             timestamp,@"timestamp",closetime,@"closeTimestamp",description,@"description",
                             background,@"background",@"ios",@"equipment",version,@"version",
@@ -459,9 +462,10 @@ closeTimestamp:(NSString *)closeTimestamp
        images:(NSArray *)images
           mid:(NSString *)mid
            cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
-    
+    NSTimeZone* tz = [NSTimeZone localTimeZone];
+    NSString* timeZoneId = tz.name;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            token,@"token",title,@"title",content,@"content",
+                            token,@"token",title,@"title",content,@"content",timeZoneId,@"timeZoneId",
                             logo,@"logo",music,@"music",timestamp,@"timestamp",closeTimestamp,@"closeTimestamp",
                             images,@"images",@"ios",@"equipment",version,@"version",
                             nil];
@@ -485,9 +489,10 @@ closeTimestamp:(NSString *)closeTimestamp
 +(void)dueDate:(NSString *)unquieId
      timestamp:(NSString *)timestamp
             cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
-
+    NSTimeZone* tz = [NSTimeZone localTimeZone];
+    NSString* timeZoneId = tz.name;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            unquieId,@"unquieId",timestamp,@"timestamp",
+                            unquieId,@"unquieId",timestamp,@"timestamp",timeZoneId,@"timeZoneId",
                             @"ios",@"equipment",version,@"version",nil];
     [[AFConnectionAPIClient sharedClient] POST:@"nozzle/NefUserData/dueDate.aspx" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         callback(YES,JSON);
