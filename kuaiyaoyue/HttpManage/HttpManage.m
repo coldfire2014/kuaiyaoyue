@@ -365,20 +365,20 @@ password:1235456                     //用户密码
 closeTimestamp:(NSString *)closeTimestamp
          mid:(NSString *)mid
           cb:(void(^)(BOOL isOK ,NSDictionary *array))callback{
+    NSTimeZone* tz = [NSTimeZone localTimeZone];
+    NSString* timeZoneId = tz.name;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             token,@"token",bride,@"bride",groom,@"groom",
-                            address,@"address",images,@"images",
+                            address,@"address",images,@"images",timeZoneId,@"timeZoneId",
                             timestamp,@"timestamp",background,@"background",musicUrl,@"musicUrl",closeTimestamp,@"closeTimestamp",
                             @"ios",@"equipment",version,@"version",
                             nil];
     
     if ([YINGLOUURL compare:@""] != NSOrderedSame) {
         NSString* ylid = [UDObject getYLID];
-        NSTimeZone* tz = [NSTimeZone localTimeZone];
-        NSString* timeZoneId = tz.name;
         params = [NSDictionary dictionaryWithObjectsAndKeys:
                   token,@"token",bride,@"bride",groom,@"groom",
-                  address,@"address",images,@"images",timeZoneId,@"timeZoneId",
+                  address,@"address",images,@"images",//timeZoneId,@"timeZoneId",
                   ylid,@"studioId",timestamp,@"timestamp",background,@"background",musicUrl,@"musicUrl",closeTimestamp,@"closeTimestamp",
                   @"ios",@"equipment",version,@"version",
                   nil];
@@ -392,7 +392,6 @@ closeTimestamp:(NSString *)closeTimestamp
         NSLog(@"error-%@",html);
         callback(NO,nil);
     }];
-
 }
 
 /*
