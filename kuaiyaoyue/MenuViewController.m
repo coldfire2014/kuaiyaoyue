@@ -13,7 +13,6 @@
 #import "TemplateViewController.h"
 #import "UIImageView+LBBlurredImage.h"
 #import "StatusBar.h"
-#import "CustomViewController.h"
 #import "TalkingData.h"
 #import "DataBaseManage.h"
 #import "Template.h"
@@ -232,23 +231,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier compare:@"zdyedit"] == NSOrderedSame){
-        
-        NSArray *data = [[DataBaseManage getDataBaseManage] GetTemplate:@"4"];
-        if (data.count > 0) {
-            Template *info = [data objectAtIndex:0];
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString *zipurl = [documentsDirectory stringByAppendingPathComponent:info.nefzipurl];
-            [UDObject setWebUrl:zipurl];
-            NSLog(@"%@",[NSString stringWithFormat:@"%@",info.nefid]);
-            CustomViewController *view = (CustomViewController*)segue.destinationViewController;
-            view.unquieId = [NSString stringWithFormat:@"%@",info.nefid];
-        }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"getmax" object:self userInfo:nil];
-            [[StatusBar sharedStatusBar] talkMsg:@"模板正在下载中..." inTime:1];
-        }
-    }else if ([segue.identifier compare:@"newedit"] == NSOrderedSame){
+    if ([segue.identifier compare:@"newedit"] == NSOrderedSame){
         EditViewController* edit = (EditViewController*)segue.destinationViewController;
         edit.typeid = (NSString*)sender;
         if ([edit.typeid compare:@"1"] == NSOrderedSame) {//婚礼

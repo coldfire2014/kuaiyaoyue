@@ -332,7 +332,7 @@
             tipCount = 70;
         }else if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
             andn.text=@"封面导读: ";
-            tipCount = 50;
+            tipCount = 40;
             UILabel* tipLbl = [[UILabel alloc] initWithFrame:CGRectMake(5.0, 110.0/2.0, 90.0, 29.0)];
             tipLbl.font = [UIFont systemFontOfSize:10];
             tipLbl.backgroundColor = [UIColor clearColor];
@@ -860,7 +860,7 @@
 - (void)textViewDidChange:(UITextView *)textView{
     long max = 70;
     if ([self.typeid compare:@"4"] == NSOrderedSame) {
-        max = 50;
+        max = 40;
     }
     long num = max - textView.text.length;
     tipCountLbl.text = [NSString stringWithFormat:@"剩余%ld字",num];
@@ -1734,8 +1734,8 @@
             [[StatusBar sharedStatusBar] talkMsg:@"您填写的标题超过了20个字,将无法完整显示。" inTime:1.0];
             return NO;
         }
-        if (tipInput.text != nil && tipInput.text.length > 50) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您填写的封面导读超过了50个字。" inTime:1.0];
+        if (tipInput.text != nil && tipInput.text.length > 40) {
+            [[StatusBar sharedStatusBar] talkMsg:@"您填写的封面导读超过了40个字。" inTime:1.0];
             return NO;
         }
         if (imageCount <= 0) {
@@ -1893,6 +1893,7 @@
 }
 -(void)reviewTap{
     if ([self checkAndsaveInput]) {
+        [TalkingData trackEvent:@"点击预览"];
         PreviewViewController *view = [[PreviewViewController alloc] init];
         view.type = [self.typeid intValue]-1;
         view.delegate = self;
@@ -1910,8 +1911,10 @@
     if (recordedInput.fileName.length != 0) {
         tapeFile = [HttpManage getWebLoc:recordedInput.fileName];
         [upfile appendFormat:@",%@",tapeFile];
+        [TalkingData trackEvent:@"添加录音"];
     }else if(musicInput.text.length != 0){
         tapeFile = musicURL;
+        [TalkingData trackEvent:@"添加音乐" label:musicInput.text];
     }
     NSMutableArray* webImgs = [[NSMutableArray alloc] init];
     UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
@@ -1945,12 +1948,15 @@
                 [[DataBaseManage getDataBaseManage] AddUserdata:params type:1];
                 [self dismissViewControllerAnimated:NO completion:^{}];
                 if (sendtaped) {
+                    [TalkingData trackEvent:@"点击保存并分享"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
                 }else{
+                    [TalkingData trackEvent:@"点击保存"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
                 }
             }else{
                 [[waitingView sharedwaitingView] stopWait];
+                [TalkingData trackEvent:@"保存数据失败"];
                 [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
             }
         }];
@@ -1985,12 +1991,15 @@
                 [[DataBaseManage getDataBaseManage] AddUserdata:params type:2];
                 [self dismissViewControllerAnimated:NO completion:^{}];
                 if (sendtaped) {
+                    [TalkingData trackEvent:@"点击保存并分享"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
                 }else{
+                    [TalkingData trackEvent:@"点击保存"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
                 }
             }else{
                 [[waitingView sharedwaitingView] stopWait];
+                [TalkingData trackEvent:@"保存数据失败"];
                 [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
             }
         }];
@@ -2017,12 +2026,15 @@
                 [[DataBaseManage getDataBaseManage] AddUserdata:params type:0];
                 [self dismissViewControllerAnimated:NO completion:^{}];
                 if (sendtaped) {
+                    [TalkingData trackEvent:@"点击保存并分享"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
                 }else{
+                    [TalkingData trackEvent:@"点击保存"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
                 }
             }else{
                 [[waitingView sharedwaitingView] stopWait];
+                [TalkingData trackEvent:@"保存数据失败"];
                 [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
             }
         }];
@@ -2038,6 +2050,7 @@
                 [self uploadFile];
             } else {
                 [[waitingView sharedwaitingView] stopWait];
+                [TalkingData trackEvent:@"上传素材失败"];
                 [[StatusBar sharedStatusBar] talkMsg:@"上传素材失败了，再试一次吧" inTime:0.8];
             }
         }];
@@ -2056,6 +2069,7 @@
                 [self uploadFile];
             } else {
                 [[waitingView sharedwaitingView] stopWait];
+                [TalkingData trackEvent:@"上传素材失败"];
                 [[StatusBar sharedStatusBar] talkMsg:@"上传模板图片失败了，再试一次吧" inTime:0.8];
             }
         }];
@@ -2069,6 +2083,7 @@
                 [self uploadFile];
             } else {
                 [[waitingView sharedwaitingView] stopWait];
+                [TalkingData trackEvent:@"上传素材失败"];
                 [[StatusBar sharedStatusBar] talkMsg:@"上传封面图片失败了，再试一次吧" inTime:0.8];
             }
         }];

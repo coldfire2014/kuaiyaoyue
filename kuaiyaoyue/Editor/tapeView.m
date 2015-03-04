@@ -114,7 +114,7 @@
             removeBtn.alpha = 1.0;
             tapLbl.text = @"删除录音";
         }];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_ADD_FILE" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_ADD_FILE" object:fn];
     }
 }
 -(void)setrecord{

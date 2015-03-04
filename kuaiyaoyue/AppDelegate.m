@@ -219,7 +219,6 @@
     [[StatusBar sharedStatusBar] talkMsg:@"无网络连接，请设置网络。" inTime:0.5];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
-    
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
@@ -233,7 +232,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_OUT_SCREEN" object:nil];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    [self updateMata];
+//
 }
 - (void)application:(UIApplication *)application willChangeStatusBarFrame:(CGRect)newStatusBarFrame{
     
@@ -243,7 +242,6 @@
 }
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    
 }
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
@@ -283,7 +281,7 @@
         [HttpManage checkToken:[UDObject gettoken] cb:^(BOOL isOK, NSDictionary *dic) {
             if (isOK) {
                 if ([[dic objectForKey:@"result"] isEqualToString:@"success"]) {
-                    
+                    [self updateMata];
                 }else{
                     [[StatusBar sharedStatusBar] talkMsg:@"账号已过期" inTime:0.5];
                     [UDObject setHLContent:@"" xn_name:@"" hltime:@"" bmendtime:@"" address_name:@"" music:@"" musicname:@"" imgarr:@""];
