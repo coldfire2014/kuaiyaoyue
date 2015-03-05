@@ -806,6 +806,9 @@
 
 - (BOOL)didSelectDateTime:(NSTimeInterval)time{
     if (!isEndTime) {
+        if (time == 0) {
+            return NO;
+        }
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:time];
@@ -818,6 +821,9 @@
         }
         return YES;
     } else {
+        if (time == 0) {
+            return NO;
+        }
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:time];
