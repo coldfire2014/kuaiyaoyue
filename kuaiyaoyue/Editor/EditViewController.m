@@ -545,6 +545,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_REMOVE_ME" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_ADD_ME" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SHOW_ME" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_REMOVE_FILE" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_ADD_FILE" object:nil];
 }
@@ -559,6 +560,7 @@
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeImage:) name:@"MSG_REMOVE_ME" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addaImage:) name:@"MSG_ADD_ME" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showImage:) name:@"MSG_SHOW_ME" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removefile4list:) name:@"MSG_REMOVE_FILE" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addfile2list:) name:@"MSG_ADD_FILE" object:nil];
 }
@@ -1012,6 +1014,109 @@
         [uploadFiles addObject:info];
     }
 }
+-(void)hideDetail{
+    UIView* view = [self.view viewWithTag:800];
+    [view removeFromSuperview];
+}
+-(void)showImg:(NSInteger)tag{
+    UIImage* img = nil;
+    if (tag == 395 || tag == 394) {
+        UIImageView* view = (UIImageView*)[self.view viewWithTag:tag];
+        img = view.image;
+    } else {
+        UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+        UIView* item = [showBg viewWithTag:tag];
+        myPicItem* pic = (myPicItem*)[item viewWithTag:item.tag-100];
+        img = [pic myImage];
+    }
+    myPicDetail* show = [[myPicDetail alloc] initWithFrame:self.view.bounds];
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideDetail)];
+    [show addGestureRecognizer:tap];
+    show.delegate = self;
+    [self.view addSubview:show];
+    [show setDetail:tag withImg:img];
+}
+-(void)showHomePic{
+    [self showImg:394];
+}
+-(void)showDraw{
+    [self showImg:395];
+}
+-(UIImage*)getPic:(NSInteger)tag{
+    UIImage* img = nil;
+    if (tag == 395 || tag == 394) {
+        UIImageView* view = (UIImageView*)[self.view viewWithTag:tag];
+        img = view.image;
+    } else {
+        UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+        UIView* item = [showBg viewWithTag:tag];
+        myPicItem* pic = (myPicItem*)[item viewWithTag:item.tag-100];
+        img = [pic myImage];
+    }
+    return img;
+}
+-(NSInteger)showNextPic:(NSInteger)tag withLeft:(BOOL)isLeft{
+    if (tag == 394) {
+        if (isLeft) {
+            return -1;
+        } else {
+            if (imageCount == 0) {
+                return 395;
+            }else{
+                return 400;
+            }
+        }
+    } else if (tag == 395) {
+        if (isLeft) {
+            if ([self.typeid compare:@"1"] == NSOrderedSame) {
+                if (imageCount == 0) {
+                    return 394;
+                }else{
+                    return 399 + imageCount;
+                }
+            }
+            return -1;
+        } else {
+            if ([self.typeid compare:@"1"] == NSOrderedSame) {
+                return -1;
+            }
+            if (imageCount == 0) {
+                return -1;
+            }else{
+                return 400;
+            }
+        }
+    } else {
+        if (isLeft) {
+            if (tag == 400) {
+                if ([self.typeid compare:@"4"] == NSOrderedSame) {
+                    tag = -1;
+                } else if ([self.typeid compare:@"1"] == NSOrderedSame) {
+                    tag = 394;
+                } else {
+                    tag = 395;
+                }
+            } else {
+                tag = tag-1;
+            }
+        } else {
+            if (tag == 399 + imageCount) {
+                if ([self.typeid compare:@"1"] == NSOrderedSame) {
+                    tag = 395;
+                } else {
+                    tag = -1;
+                }
+            } else {
+                tag = tag+1;
+            }
+        }
+    }
+    return tag;
+}
+-(void)showImage:(NSNotification*)aNotification{
+    NSNumber* info = [aNotification object];
+    [self showImg:[info integerValue]];
+}
 -(void)addaImage:(NSNotification*)aNotification{
     NSNumber* info = [aNotification object];
     UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
@@ -1264,7 +1369,9 @@
             img.layer.shadowColor = [UIColor grayColor].CGColor;
             img.layer.shadowOffset = CGSizeMake(1, 1);
             [showBg addSubview:img];
-            
+            img.userInteractionEnabled = YES;
+            UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHomePic)];
+            [img addGestureRecognizer:tap];
             bg = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*2.0, 0.0, itemW, itemH)];
         }else{
             bg = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*0.0, 0.0, itemW, itemH)];
@@ -1293,7 +1400,9 @@
             img.layer.shadowOffset = CGSizeMake(1, 1);
             img.center = CGPointMake(sbg.frame.size.width/2.0, sbg.frame.size.height/2.0);
             [sbg addSubview:img];
-            
+            img.userInteractionEnabled = YES;
+            UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHomePic)];
+            [img addGestureRecognizer:tap];
             bg = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*2.0, (h-itemH)/2.0, itemW, itemH)];
             [showBg addSubview:bg];
         }else{
@@ -1311,6 +1420,9 @@
     img.tag = 395;
     img.center = CGPointMake(bg.frame.size.width/2.0, bg.frame.size.height/2.0);
     [bg addSubview:img];
+    img.userInteractionEnabled = YES;
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDraw)];
+    [img addGestureRecognizer:tap];
     [self drowImg];
 }
 -(void)drowImg{
@@ -1899,7 +2011,7 @@
 }
 -(void)reviewTap{
     if ([self checkAndsaveInput]) {
-        [TalkingData trackEvent:@"点击预览"];
+        [TalkingData trackEvent:@"预览"];
         PreviewViewController *view = [[PreviewViewController alloc] init];
         view.type = [self.typeid intValue]-1;
         view.delegate = self;
@@ -1954,10 +2066,10 @@
                 [[DataBaseManage getDataBaseManage] AddUserdata:params type:1];
                 [self dismissViewControllerAnimated:NO completion:^{}];
                 if (sendtaped) {
-                    [TalkingData trackEvent:@"点击保存并分享"];
+                    [TalkingData trackEvent:@"生成并发送"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
                 }else{
-                    [TalkingData trackEvent:@"点击保存"];
+                    [TalkingData trackEvent:@"生成"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
                 }
             }else{
@@ -1997,10 +2109,10 @@
                 [[DataBaseManage getDataBaseManage] AddUserdata:params type:2];
                 [self dismissViewControllerAnimated:NO completion:^{}];
                 if (sendtaped) {
-                    [TalkingData trackEvent:@"点击保存并分享"];
+                    [TalkingData trackEvent:@"生成并发送"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
                 }else{
-                    [TalkingData trackEvent:@"点击保存"];
+                    [TalkingData trackEvent:@"生成"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
                 }
             }else{
@@ -2032,10 +2144,10 @@
                 [[DataBaseManage getDataBaseManage] AddUserdata:params type:0];
                 [self dismissViewControllerAnimated:NO completion:^{}];
                 if (sendtaped) {
-                    [TalkingData trackEvent:@"点击保存并分享"];
+                    [TalkingData trackEvent:@"生成并发送"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
                 }else{
-                    [TalkingData trackEvent:@"点击保存"];
+                    [TalkingData trackEvent:@"生成"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_FS" object:self userInfo:nil];
                 }
             }else{

@@ -19,6 +19,7 @@
         self.backgroundColor = [UIColor blackColor];
         UIImageView* image = [[UIImageView alloc] initWithFrame:rect];
         image.tag=11;
+        image.userInteractionEnabled = YES;
         [self addSubview:image];
         if ([fileName compare:@""] == NSOrderedSame) {
             image.image = img;
@@ -84,8 +85,16 @@
     }
     image.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
     image.center = CGPointMake(self.bounds.size.width/2.0,self.bounds.size.height/2.0);
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetail)];
+    [image addGestureRecognizer:tap];
 }
-
+-(void)showDetail{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_SHOW_ME" object:[NSNumber numberWithInteger:[self superview].tag]];
+}
+-(UIImage*)myImage{
+    UIImageView* image = (UIImageView*)[self viewWithTag:11];
+    return image.image;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -15,4 +15,5 @@
 @property (nonatomic) BOOL uploaded;
 @property (nonatomic,retain) NSString* localName;
 - (instancetype)initWithFrame:(CGRect)rect fromAsset:(ALAsset*)al andThumb:(UIImage*)img orFile:(NSString*)fileName;
+-(UIImage*)myImage;
 @end

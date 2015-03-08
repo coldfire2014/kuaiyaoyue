@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "tapeView.h"
+#import "myPicDetail.h"
 #import "HeadImgView.h"
 #import "DatetimeInput.h"
 #import "MusicViewController.h"
 #import "PreviewViewController.h"
 #import "ImgCollectionViewController.h"
 
-@interface EditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PreviewViewControllerDelegate,ImgCollectionViewDelegate,datetimeInputDelegate,MVCDelegate>
+@interface EditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PreviewViewControllerDelegate,ImgCollectionViewDelegate,datetimeInputDelegate,MVCDelegate,myPicDetailtDelegate>
 {
     UITextField* manInput;
     UITextField* wemanInput;

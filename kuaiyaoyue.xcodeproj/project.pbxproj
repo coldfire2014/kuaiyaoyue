@@ -121,6 +121,7 @@
 		E5573F971A4303A9006AAB8F /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F8F1A4303A9006AAB8F /* unzip.c */; };
 		E5573F981A4303A9006AAB8F /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = E5573F911A4303A9006AAB8F /* zip.c */; };
 		E5573F991A4303A9006AAB8F /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = E5573F941A4303A9006AAB8F /* ZipArchive.mm */; };
+		E5574C3F1AABCD9600FAC141 /* myPicDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E5574C3E1AABCD9600FAC141 /* myPicDetail.m */; };
 		E558D0191A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E558D0171A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		E558D01A1A47CDE8009BFC50 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E558D0181A47CDE8009BFC50 /* TencentOpenAPI.framework */; };
 		E558D0201A47D130009BFC50 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E558D01F1A47D130009BFC50 /* libsqlite3.dylib */; };
@@ -142,8 +143,6 @@
 		E55F5A031A36A64800B0D587 /* modelListAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F59FF1A36A64800B0D587 /* modelListAnimate.m */; };
 		E55F5A081A36FA9100B0D587 /* MenuBackBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F5A071A36FA9100B0D587 /* MenuBackBtn.m */; };
 		E55F5A0B1A3702E000B0D587 /* EditBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F5A0A1A3702E000B0D587 /* EditBtn.m */; };
-		E560028A1A7D0BC100F52ABE /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E56002881A7D0BC100F52ABE /* Default-Landscape@2x~ipad.png */; };
-		E560028B1A7D0BC100F52ABE /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E56002891A7D0BC100F52ABE /* Default-Landscape~ipad.png */; };
 		E560D64B1A65630400843E38 /* arr32.png in Resources */ = {isa = PBXBuildFile; fileRef = E560D64A1A65630400843E38 /* arr32.png */; };
 		E560D64E1A6564D900843E38 /* SettingNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E560D64D1A6564D900843E38 /* SettingNavBar.m */; };
 		E565ECC01A52C90100679BAE /* SiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E565ECBF1A52C90100679BAE /* SiViewController.m */; };
@@ -445,6 +444,8 @@
 		E5573F921A4303A9006AAB8F /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		E5573F931A4303A9006AAB8F /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		E5573F941A4303A9006AAB8F /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		E5574C3D1AABCD9600FAC141 /* myPicDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myPicDetail.h; sourceTree = "<group>"; };
+		E5574C3E1AABCD9600FAC141 /* myPicDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myPicDetail.m; sourceTree = "<group>"; };
 		E558D0171A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TencentOpenApi_IOS_Bundle.bundle; path = Tencent/TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		E558D0181A47CDE8009BFC50 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = Tencent/TencentOpenAPI.framework; sourceTree = "<group>"; };
 		E558D01F1A47D130009BFC50 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -479,8 +480,6 @@
 		E55F5A071A36FA9100B0D587 /* MenuBackBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuBackBtn.m; path = element/MenuBackBtn.m; sourceTree = "<group>"; };
 		E55F5A091A3702E000B0D587 /* EditBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditBtn.h; path = element/EditBtn.h; sourceTree = "<group>"; };
 		E55F5A0A1A3702E000B0D587 /* EditBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditBtn.m; path = element/EditBtn.m; sourceTree = "<group>"; };
-		E56002881A7D0BC100F52ABE /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
-		E56002891A7D0BC100F52ABE /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		E560D64A1A65630400843E38 /* arr32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arr32.png; sourceTree = "<group>"; };
 		E560D64C1A6564D900843E38 /* SettingNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingNavBar.h; sourceTree = "<group>"; };
 		E560D64D1A6564D900843E38 /* SettingNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingNavBar.m; sourceTree = "<group>"; };
@@ -698,6 +697,8 @@
 				E57ED5D61A924044000BA51A /* tapeView.m */,
 				E55E4BF91AA1751B0029CA13 /* myPicItem.h */,
 				E55E4BFA1AA1751B0029CA13 /* myPicItem.m */,
+				E5574C3D1AABCD9600FAC141 /* myPicDetail.h */,
+				E5574C3E1AABCD9600FAC141 /* myPicDetail.m */,
 				E5853C3D1A8D9A4C00387BD9 /* HeadImgView.h */,
 				E5853C3E1A8D9A4C00387BD9 /* HeadImgView.m */,
 			);
@@ -858,8 +859,6 @@
 		84E842501A2EDF6B00A401A0 = {
 			isa = PBXGroup;
 			children = (
-				E56002881A7D0BC100F52ABE /* Default-Landscape@2x~ipad.png */,
-				E56002891A7D0BC100F52ABE /* Default-Landscape~ipad.png */,
 				E56786F81A50EA0500308A4B /* Default-568h@2x.png */,
 				E56786FA1A50F38100308A4B /* Default@2x.png */,
 				84B4738D1A30069900A21457 /* Frameworks */,
@@ -1492,7 +1491,6 @@
 				E56C0A621A8CCA060055495A /* ic_c_location@2x.png in Resources */,
 				E534DD721A4643B900542D67 /* ic_54_x@2x.png in Resources */,
 				E560D64B1A65630400843E38 /* arr32.png in Resources */,
-				E560028B1A7D0BC100F52ABE /* Default-Landscape~ipad.png in Resources */,
 				E56C0A4F1A8CAC4D0055495A /* ic_38_view.png in Resources */,
 				E56787021A5153E700308A4B /* btn_sidebar_pre.png in Resources */,
 				E5590CC51A469CAB0080F3B1 /* card_g.png in Resources */,
@@ -1521,7 +1519,6 @@
 				84B208831A5296E1008549B0 /* T5.png in Resources */,
 				E565ECC71A52CDB900679BAE /* 2w.jpg in Resources */,
 				E56C0A611A8CCA060055495A /* ic_c_lady@2x.png in Resources */,
-				E560028A1A7D0BC100F52ABE /* Default-Landscape@2x~ipad.png in Resources */,
 				E558D0191A47CDE8009BFC50 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E5661A281A457CB700E4E2BC /* btn_login_1_pre.png in Resources */,
 				E541B32E1A43DC9E006F89E1 /* imgBar.bundle in Resources */,
@@ -1653,6 +1650,7 @@
 				E541B3031A43C944006F89E1 /* CalHelper.m in Sources */,
 				E56863AE1A77213000DB6EA4 /* templateController.m in Sources */,
 				84B446C81A32B3D000546859 /* MJRefreshHeaderView.m in Sources */,
+				E5574C3F1AABCD9600FAC141 /* myPicDetail.m in Sources */,
 				E560D64E1A6564D900843E38 /* SettingNavBar.m in Sources */,
 				84B5D1181A441C3E00C5C6E8 /* Contacts.m in Sources */,
 				E527607C1A4BD26800D11F5B /* TempCell.m in Sources */,
@@ -1801,7 +1799,7 @@
 				PRODUCT_NAME = "快邀约";
 				PROVISIONING_PROFILE = "09c4e361-7fab-49a4-8912-269bfc8b2618";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1836,7 +1834,7 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "快邀约";
 				PROVISIONING_PROFILE = "f55e5626-139a-41d4-b7f6-b468ac19d36d";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
