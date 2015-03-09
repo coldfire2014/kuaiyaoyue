@@ -106,7 +106,7 @@
     [self.head_view addSubview:tj_Btn];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    label.text = @"推荐";
+    label.text = TJ_TITLE;
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:16];
@@ -118,19 +118,20 @@
     new_btn.tag = 309;
     [tj_Btn addSubview:new_btn];
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-    NSString *is_tap = [userInfo valueForKey:@"TUIJIAN_DIDTAP"];
+    NSString *is_tap = [userInfo valueForKey:@"TUIJIANDIDTAP"];
     if (is_tap != nil && [is_tap compare:@""] != NSOrderedSame) {
         new_btn.alpha = 0;
     }else{
         NSTimer* countDownTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timeFireMethod:) userInfo:nil repeats:YES];
         [countDownTimer fire];
     }
-    tj_Btn.alpha = 0;
+//    tj_Btn.alpha = 0;
 }
 -(void)timeFireMethod:(NSTimer*)timer{
     CATransform3D t = CATransform3DIdentity;
     UIView* tj_Btn = [self.head_view viewWithTag:308];
-    if (tj_Btn.alpha == 0) {
+    UIView* new_btn = [self.head_view viewWithTag:309];
+    if (tj_Btn.alpha == 0 || new_btn.alpha == 0) {
         [timer invalidate];
         return;
     }
@@ -148,13 +149,13 @@
 }
 -(void)showTJ{
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-    [userInfo setValue:@"TUIJIAN_DIDTAP" forKey:@"TUIJIAN_DIDTAP"];
+    [userInfo setValue:@"TUIJIANDIDTAP" forKey:@"TUIJIANDIDTAP"];
     [userInfo synchronize];
     UIView* new_btn = [self.head_view viewWithTag:309];
     new_btn.alpha = 0;
     WebViewController *view = [[WebViewController alloc] init];
-    view.name = @"推荐";
-    view.weburl = @"http://www.baidu.com";
+    view.name = TJ_TITLE;
+    view.weburl = TJ_URL;
     view.viewTitle = @"推荐页面";
     view.modalPresentationStyle = UIModalPresentationFullScreen;
     //UIModalPresentationOverFullScreen 全屏对下透明
