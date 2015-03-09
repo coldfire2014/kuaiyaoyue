@@ -125,7 +125,7 @@
         NSTimer* countDownTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timeFireMethod:) userInfo:nil repeats:YES];
         [countDownTimer fire];
     }
-//    tj_Btn.alpha = 0;
+    tj_Btn.alpha = 0;
 }
 -(void)timeFireMethod:(NSTimer*)timer{
     CATransform3D t = CATransform3DIdentity;
