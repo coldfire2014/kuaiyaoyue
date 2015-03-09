@@ -17,6 +17,7 @@
         self.uploaded = NO;
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor blackColor];
+        self.clipsToBounds = YES;
         UIImageView* image = [[UIImageView alloc] initWithFrame:rect];
         image.tag=11;
         image.userInteractionEnabled = YES;
@@ -78,11 +79,15 @@
     UIImage* img = [[UIImage alloc] initWithContentsOfFile:self.fileName];
     CGFloat img_w = img.size.width;
     CGFloat img_h = img.size.height;
-    if (img_w/img_h > self.bounds.size.width/self.bounds.size.height) {
-        image.frame = CGRectMake(0, 0, self.bounds.size.width, img_h/img_w*self.bounds.size.width);
-    } else {
-        image.frame = CGRectMake(0, 0, img_w/img_h*self.bounds.size.height, self.bounds.size.height);
-    }
+    image.frame = self.bounds;
+//    if (img_w/img_h > self.bounds.size.width/self.bounds.size.height)
+//    if (img_w/img_h < self.bounds.size.width/self.bounds.size.height)
+//    {
+//        image.frame = CGRectMake(0, 0, self.bounds.size.width, img_h/img_w*self.bounds.size.width);
+//    } else {
+//        image.frame = CGRectMake(0, 0, img_w/img_h*self.bounds.size.height, self.bounds.size.height);
+//    }
+
     image.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
     image.center = CGPointMake(self.bounds.size.width/2.0,self.bounds.size.height/2.0);
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetail)];

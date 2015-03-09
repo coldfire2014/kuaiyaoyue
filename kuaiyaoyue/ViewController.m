@@ -98,7 +98,70 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bcfs) name:@"MSG_BCFS" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bc) name:@"MSG_FS" object:nil];
-
+    UIView* tj_Btn = [[UIView alloc] initWithFrame:CGRectMake(0, 20, 44, 44)];
+    tj_Btn.backgroundColor = [UIColor clearColor];
+    tj_Btn.tag = 308;
+    UITapGestureRecognizer* pan1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTJ)];
+    [tj_Btn addGestureRecognizer:pan1];
+    [self.head_view addSubview:tj_Btn];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    label.text = @"推荐";
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"Helvetica Neue" size:16];
+    [tj_Btn addSubview:label];
+    
+    UIView* new_btn = [[UIView alloc] initWithFrame:CGRectMake(34, 10, 10, 10)];
+    new_btn.backgroundColor = [UIColor redColor];
+    new_btn.layer.cornerRadius = 5.0;
+    new_btn.tag = 309;
+    [tj_Btn addSubview:new_btn];
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    NSString *is_tap = [userInfo valueForKey:@"TUIJIAN_DIDTAP"];
+    if (is_tap != nil && [is_tap compare:@""] != NSOrderedSame) {
+        new_btn.alpha = 0;
+    }else{
+        NSTimer* countDownTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timeFireMethod:) userInfo:nil repeats:YES];
+        [countDownTimer fire];
+    }
+    tj_Btn.alpha = 0;
+}
+-(void)timeFireMethod:(NSTimer*)timer{
+    CATransform3D t = CATransform3DIdentity;
+    UIView* tj_Btn = [self.head_view viewWithTag:308];
+    if (tj_Btn.alpha == 0) {
+        [timer invalidate];
+        return;
+    }
+    CAKeyframeAnimation* transformAnim1 = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    transformAnim1.values = [[NSArray alloc] initWithObjects:
+                             [NSValue valueWithCATransform3D:CATransform3DTranslate(t, 5.0, -5.0, 0)],
+                             [NSValue valueWithCATransform3D:CATransform3DTranslate(t, -4.0, 4.0, 0)],
+                             [NSValue valueWithCATransform3D:CATransform3DTranslate(t, 3.0, -3.0, 0)],
+                             [NSValue valueWithCATransform3D:CATransform3DTranslate(t, -2.0, 2.0, 0)],
+                             [NSValue valueWithCATransform3D:CATransform3DIdentity],nil];
+    transformAnim1.removedOnCompletion = YES;
+    transformAnim1.duration = 0.4;
+    transformAnim1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [tj_Btn.layer addAnimation:transformAnim1 forKey:@"tj_Btn"];
+}
+-(void)showTJ{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:@"TUIJIAN_DIDTAP" forKey:@"TUIJIAN_DIDTAP"];
+    [userInfo synchronize];
+    UIView* new_btn = [self.head_view viewWithTag:309];
+    new_btn.alpha = 0;
+    WebViewController *view = [[WebViewController alloc] init];
+    view.name = @"推荐";
+    view.weburl = @"http://www.baidu.com";
+    view.viewTitle = @"推荐页面";
+    view.modalPresentationStyle = UIModalPresentationFullScreen;
+    //UIModalPresentationOverFullScreen 全屏对下透明
+    view.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:view animated:YES completion:^{
+        
+    }];
 }
 -(void)message{
     [self GetRecord:@"-1"];

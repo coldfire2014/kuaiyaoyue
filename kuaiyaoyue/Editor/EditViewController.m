@@ -1016,7 +1016,11 @@
 }
 -(void)hideDetail{
     UIView* view = [self.view viewWithTag:800];
-    [view removeFromSuperview];
+    [UIView animateWithDuration:0.3 animations:^{
+        view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+    }];
 }
 -(void)showImg:(NSInteger)tag{
     UIImage* img = nil;
