@@ -696,6 +696,7 @@
                         <outlet property="cancel_view" destination="1JR-ND-kVo" id="FEO-pI-qXO"/>
                         <outlet property="endtime_view" destination="qPy-GF-74Y" id="Vqp-Zh-Nd2"/>
                         <outlet property="headview" destination="oU1-ba-Dvp" id="zQs-5W-bpp"/>
+                        <outlet property="showview_img" destination="a7k-88-WVh" id="sfT-0B-3KT"/>
                         <outlet property="tableView" destination="93c-RI-GMd" id="u39-RD-cXT"/>
                     </connections>
                 </viewController>
@@ -1090,6 +1091,7 @@
                         <outlet property="show_toptitle" destination="pUc-rT-udx" id="Ygz-Tz-Nf1"/>
                         <outlet property="showsetting" destination="9BW-12-aFQ" id="y4I-cL-r3a"/>
                         <outlet property="showtm" destination="lQV-Tk-9rp" id="66x-aY-ae0"/>
+                        <outlet property="showview_img" destination="FYe-7L-8BU" id="dDT-GR-dAj"/>
                         <outlet property="tableview" destination="X5t-Q5-YDK" id="Mfq-I3-DIm"/>
                         <segue destination="vz3-vm-ap6" kind="show" identifier="menu" id="ZGs-xJ-ADz"/>
                         <segue destination="Dq2-pa-Aad" kind="show" identifier="detail" id="Fgy-C4-1g4"/>

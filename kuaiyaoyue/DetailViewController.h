@@ -19,6 +19,7 @@
 @property NSTimeInterval endtime;
 @property NSTimeInterval datatime;
 
+@property (weak, nonatomic) IBOutlet UIImageView *showview_img;
 @property (weak, nonatomic) NSString *maxnum;
 @property (weak, nonatomic) IBOutlet UIView *endtime_view;
 - (IBAction)endtime_onclick:(id)sender;

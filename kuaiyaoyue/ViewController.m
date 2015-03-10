@@ -53,6 +53,10 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
+    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"navImg/small" ofType:@"jpg"]];
+    self.showview_img.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
     is_bcfs = NO;
     inGetRecord = NO;
     [super viewDidLoad];
@@ -122,10 +126,12 @@
     if (is_tap != nil && [is_tap compare:@""] != NSOrderedSame) {
         new_btn.alpha = 0;
     }else{
-        NSTimer* countDownTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timeFireMethod:) userInfo:nil repeats:YES];
+        NSTimer* countDownTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timeFireMethod:) userInfo:nil repeats:YES];
         [countDownTimer fire];
     }
-    tj_Btn.alpha = 0;
+    if ([YINGLOUURL compare:@""] != NSOrderedSame) {
+        tj_Btn.alpha = 0;
+    }
 }
 -(void)timeFireMethod:(NSTimer*)timer{
     CATransform3D t = CATransform3DIdentity;
@@ -153,6 +159,7 @@
     [userInfo synchronize];
     UIView* new_btn = [self.head_view viewWithTag:309];
     new_btn.alpha = 0;
+    [TalkingData trackEvent: @"推荐点击"];
     WebViewController *view = [[WebViewController alloc] init];
     view.name = TJ_TITLE;
     view.weburl = TJ_URL;
@@ -390,8 +397,6 @@
 -(void)headview{
     _show_img.layer.masksToBounds = YES;
     _show_img.layer.cornerRadius = 34;
-    _showview_img.layer.cornerRadius = 36;
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated{

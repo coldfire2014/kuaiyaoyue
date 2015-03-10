@@ -70,21 +70,44 @@
         bg2.backgroundColor = [UIColor clearColor];
         [bg addSubview:bg2];
         UIDatePicker* oneDatePicker = [[UIDatePicker alloc] init];
+        oneDatePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+        oneDatePicker.backgroundColor = [[UIColor alloc] initWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1.0];
         oneDatePicker.date = [NSDate date];
-        oneDatePicker.datePickerMode = UIDatePickerModeDateAndTime; // 设置样式
-        UIView* bk = [[UIView alloc] initWithFrame:CGRectMake(0, 0, oneDatePicker.bounds.size.width+4.0, oneDatePicker.bounds.size.height+48.0)];
+        oneDatePicker.datePickerMode = UIDatePickerModeDate; // 设置样式
+        oneDatePicker.frame = CGRectMake(0, 0, 230, 216);
+        CGFloat bkw = 324.0;
+        CGFloat clockLeft = 0;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            bkw = f.size.width+4.0;
+            clockLeft = (bkw - 324.0)/2.0;
+        }
+        UIView* bk = [[UIView alloc] initWithFrame:CGRectMake(0, 0, bkw, oneDatePicker.bounds.size.height+48.0)];
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             bk.center = CGPointMake(f.size.width/2.0, f.size.height/2.0);
         }else{
             bk.center = CGPointMake(f.size.width/2.0, f.size.height - bk.bounds.size.height/2.0);
         }
+        bk.clipsToBounds = YES;
         bk.layer.cornerRadius = 4.0;
         bk.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
         [bg2 addSubview:bk];
-        oneDatePicker.center = CGPointMake(bk.bounds.size.width/2.0, bk.bounds.size.height/2.0 + 22.0);
+        oneDatePicker.center = CGPointMake(oneDatePicker.frame.size.width/2.0-6.0 + clockLeft, bk.bounds.size.height/2.0 + 22.0);
         [oneDatePicker addTarget:self action:@selector(DatePickerValueChanged:) forControlEvents:UIControlEventValueChanged]; // 添加监听器
         oneDatePicker.tag = 899;
         [bk addSubview:oneDatePicker];
+        
+        UIDatePicker* twoDatePicker = [[UIDatePicker alloc] init];
+        twoDatePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+        twoDatePicker.backgroundColor = [[UIColor alloc] initWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1.0];
+        twoDatePicker.date = [NSDate date];
+        twoDatePicker.datePickerMode = UIDatePickerModeTime; // 设置样式
+        twoDatePicker.frame = CGRectMake(0, 0, 140, 216);
+
+        twoDatePicker.center = CGPointMake(bk.bounds.size.width - twoDatePicker.frame.size.width/2.0+10.0 - clockLeft, bk.bounds.size.height/2.0 + 22.0);
+        [twoDatePicker addTarget:self action:@selector(DatePickerValueChanged:) forControlEvents:UIControlEventValueChanged]; // 添加监听器
+        twoDatePicker.tag = 889;
+        [bk addSubview:twoDatePicker];
+        
         UITapGestureRecognizer* tapOther = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
         [bg2 addGestureRecognizer:tapOther];
         /////////////////////////////////////////////////////////////
@@ -119,11 +142,35 @@
     return self;
 }
 - (void)DatePickerValueChanged:(UIDatePicker *) sender {
-    self.time = [sender date];
+    UIDatePicker* oneDatePicker = (UIDatePicker*)[self viewWithTag:899];
+    UIDatePicker* twoDatePicker = (UIDatePicker*)[self viewWithTag:889];
+    NSDateFormatter *tempFormatter = [[NSDateFormatter alloc]init];
+    [tempFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
+    NSDateFormatter *dayFormatter = [[NSDateFormatter alloc]init];
+    [dayFormatter setDateFormat:@"dd.MM.yyyy"];
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
+    [timeFormatter setDateFormat:@"HH:mm"];
+    NSString* time_str = [[NSString alloc] initWithFormat:@"%@ %@",[dayFormatter stringFromDate:[oneDatePicker date]],[timeFormatter stringFromDate:[twoDatePicker date]]];
+    
+    self.time = [tempFormatter dateFromString: time_str];
+    if ([oneDatePicker.minimumDate compare:[NSDate date]] == NSOrderedAscending) {
+        oneDatePicker.minimumDate = [NSDate date];
+    }
+    if (oneDatePicker.minimumDate != nil && [oneDatePicker.minimumDate compare:self.time] == NSOrderedDescending) {
+        [oneDatePicker setDate:oneDatePicker.minimumDate animated:YES];
+        [twoDatePicker setDate:oneDatePicker.minimumDate animated:YES];
+        self.time = oneDatePicker.minimumDate;
+    }else if (oneDatePicker.maximumDate != nil && [oneDatePicker.maximumDate compare:self.time] == NSOrderedAscending) {
+        [oneDatePicker setDate:oneDatePicker.maximumDate animated:YES];
+        [twoDatePicker setDate:oneDatePicker.maximumDate animated:YES];
+        self.time = oneDatePicker.maximumDate;
+    }
 }
 -(void)setTime:(NSDate*)ntime andMaxTime:(NSDate*)max andMinTime:(NSDate*)min{
     UIDatePicker* oneDatePicker = (UIDatePicker*)[self viewWithTag:899];
     oneDatePicker.date = ntime;
+    UIDatePicker* twoDatePicker = (UIDatePicker*)[self viewWithTag:889];
+    twoDatePicker.date = ntime;
     if (nil != max) {
         oneDatePicker.maximumDate = max;
     }else{

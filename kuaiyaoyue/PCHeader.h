@@ -13,7 +13,7 @@
 #define ISIOS8LATER [[[UIDevice currentDevice] systemVersion] floatValue]>=8
 #define QNTOKEN @"http://appkyy.kyy121.com/oss/upload/getClientDto"
 #define QNPCI @"http://7vili3.com2.z0.glb.qiniucdn.com/"
-#define TJ_URL @"http://www.baidu.com/"
+#define TJ_URL @"http://weidian.com/item.html?itemID=1114208923&wfr=wx&from=groupmessage&isappinstalled=0"
 #define TJ_TITLE @"推荐"
 //#define YINGLOU @"YINGLOU"
 #ifdef YINGLOU
