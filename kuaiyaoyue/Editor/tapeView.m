@@ -72,6 +72,7 @@
     return self;
 }
 -(void)showFile:(NSString*)fn{
+    
     if (fn == nil || [fn compare:@""] == NSOrderedSame) {
         self.fileName = @"";
         [UIView animateWithDuration:0.2 animations:^{
@@ -177,6 +178,11 @@
     }
 }
 -(void)removeFile{
+    if([player isPlaying])
+    {
+        [player stop];
+        [self playStop];
+    }
     NSFileManager* fm = [NSFileManager defaultManager];
     NSError* err;
     if (self.fileName != nil && [self.fileName compare:@""] != NSOrderedSame && [fm fileExistsAtPath:self.fileName]) {
@@ -309,10 +315,12 @@
 -(void)play{
     NSError *playerError;
     if (player == nil) {
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: self.fileName] error:&playerError];
-        [player prepareToPlay];
-        player.volume = 10.0f;
-        player.delegate = self;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:self.fileName] == YES) {
+            player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: self.fileName] error:&playerError];
+            [player prepareToPlay];
+            player.volume = 10.0f;
+            player.delegate = self;
+        }
     }
     if (player == nil)
     {

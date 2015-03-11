@@ -477,6 +477,21 @@
         andn.backgroundColor = [UIColor clearColor];
         andn.text=@"页面预览与编辑";
         [picsView addSubview:andn];
+        UILabel* ande = [[UILabel alloc] initWithFrame:CGRectMake(iconWidth, 13, w, 86.0/2.0)];
+        ande.font = [UIFont systemFontOfSize:8];
+        ande.textColor = [UIColor redColor];
+        ande.backgroundColor = [UIColor clearColor];
+        ande.text=@"为保证制作效果，建议使用竖版图片。";
+        UILabel* andt = [[UILabel alloc] initWithFrame:CGRectMake(iconWidth + 100, 2, w, 86.0/2.0)];
+        andt.font = [UIFont systemFontOfSize:11];
+        andt.textColor = [UIColor redColor];
+        andt.backgroundColor = [UIColor clearColor];
+        andt.text=@"（可添加最多9张图片。）";
+        if ([self.typeid compare:@"4"] == NSOrderedSame) {
+            andt.text=@"（可添加最多15张图片。）";
+        }
+        [picsView addSubview:ande];
+        [picsView addSubview:andt];
         ch += 86.0/2.0+165.0+6.0+12.0;
         UIScrollView* showBg = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 86.0/2.0, w, 166.0)];
         showBg.backgroundColor = [UIColor clearColor];
@@ -1522,12 +1537,16 @@
             } else {
                 NSArray *array = [[UDObject gethlmusic] componentsSeparatedByString:@"/"];
                 NSString* fileTape = [[FileManage sharedFileManage].audioDirectory stringByAppendingPathComponent: [array lastObject]];
-                [recordedInput showFile:fileTape];
-                if (uploads.length > 0) {
-                    NSRange r = [uploads rangeOfString:fileTape];
-                    if (r.length != fileTape.length) {
-                        if (![uploadFiles containsObject:fileTape]) {
-                            [uploadFiles addObject:fileTape];
+                NSFileManager* fm = [NSFileManager defaultManager];
+                if([fm fileExistsAtPath:fileTape]){
+                    [recordedInput showFile:fileTape];
+                    if (uploads.length > 0) {
+                        NSString* name = [array lastObject];
+                        NSRange r = [uploads rangeOfString:name];
+                        if (r.length != name.length) {
+                            if (![uploadFiles containsObject:fileTape]) {
+                                [uploadFiles addObject:fileTape];
+                            }
                         }
                     }
                 }
@@ -1557,7 +1576,12 @@
             }
         }
         [self drowImg];
-    } else if ([self.typeid compare:@"2"] == NSOrderedSame && [UDObject getjhname].length > 0) {//商务
+    }
+    else if ([self.typeid compare:@"2"] == NSOrderedSame && [UDObject getjhname].length == 0) {
+        contactmanInput.text = [UDObject getXM];
+        contactInput.text = [UDObject getLXFS];
+    }
+    else if ([self.typeid compare:@"2"] == NSOrderedSame && [UDObject getjhname].length > 0) {//商务
         NSString* uploads = [UDObject getSWupload];
         titleInput.text = [UDObject getjhname];
         timeDouble = [[UDObject getswtime] doubleValue]/1000.0;
@@ -1569,6 +1593,12 @@
         locInput.text = [UDObject getswaddress_name];
         contactmanInput.text = [UDObject getswxlr_name];
         contactInput.text = [UDObject getswxlfs_name];
+        if ([contactmanInput.text length] == 0) {
+            contactmanInput.text = [UDObject getXM];
+        }
+        if ([contactInput.text length] == 0) {
+            contactInput.text = [UDObject getLXFS];
+        }
         tipInput.text = [UDObject getswhd_name];
         long num = tipCount - tipInput.text.length;
         tipCountLbl.text = [NSString stringWithFormat:@"剩余%ld字",num];
@@ -1584,12 +1614,16 @@
             } else {
                 NSArray *array = [[UDObject getsw_music] componentsSeparatedByString:@"/"];
                 NSString* fileTape = [[FileManage sharedFileManage].audioDirectory stringByAppendingPathComponent: [array lastObject]];
-                [recordedInput showFile:fileTape];
-                if (uploads.length > 0) {
-                    NSRange r = [uploads rangeOfString:fileTape];
-                    if (r.length == fileTape.length) {
-                        if (![uploadFiles containsObject:fileTape]) {
-                            [uploadFiles addObject:fileTape];
+                NSFileManager* fm = [NSFileManager defaultManager];
+                if([fm fileExistsAtPath:fileTape]){
+                    [recordedInput showFile:fileTape];
+                    if (uploads.length > 0) {
+                        NSString* name = [array lastObject];
+                        NSRange r = [uploads rangeOfString:name];
+                        if (r.length != name.length) {
+                            if (![uploadFiles containsObject:fileTape]) {
+                                [uploadFiles addObject:fileTape];
+                            }
                         }
                     }
                 }
@@ -1619,7 +1653,12 @@
             }
         }
         [self drowImg];
-    } else if ([self.typeid compare:@"3"] == NSOrderedSame && [UDObject getwljh_name].length > 0) {//娱乐
+    }
+    else if ([self.typeid compare:@"3"] == NSOrderedSame && [UDObject getwljh_name].length == 0) {
+        contactmanInput.text = [UDObject getXM];
+        contactInput.text = [UDObject getLXFS];
+    }
+    else if ([self.typeid compare:@"3"] == NSOrderedSame && [UDObject getwljh_name].length > 0) {//娱乐
         NSString* uploads = [UDObject getWLupload];
         titleInput.text = [UDObject getwljh_name];
         timeDouble = [[UDObject gewltime] doubleValue]/1000.0;
@@ -1631,6 +1670,12 @@
         locInput.text = [UDObject getwladdress_name];
         contactmanInput.text = [UDObject getwllxr_name];
         contactInput.text = [UDObject getwllxfs_name];
+        if ([contactmanInput.text length] == 0) {
+            contactmanInput.text = [UDObject getXM];
+        }
+        if ([contactInput.text length] == 0) {
+            contactInput.text = [UDObject getLXFS];
+        }
         tipInput.text = [UDObject getwlts_name];
         long num = tipCount - tipInput.text.length;
         tipCountLbl.text = [NSString stringWithFormat:@"剩余%ld字",num];
@@ -1646,12 +1691,16 @@
             } else {
                 NSArray *array = [[UDObject getwlmusic] componentsSeparatedByString:@"/"];
                 NSString* fileTape = [[FileManage sharedFileManage].audioDirectory stringByAppendingPathComponent: [array lastObject]];
-                [recordedInput showFile:fileTape];
-                if (uploads.length > 0) {
-                    NSRange r = [uploads rangeOfString:fileTape];
-                    if (r.length == fileTape.length) {
-                        if (![uploadFiles containsObject:fileTape]) {
-                            [uploadFiles addObject:fileTape];
+                NSFileManager* fm = [NSFileManager defaultManager];
+                if([fm fileExistsAtPath:fileTape]){
+                    [recordedInput showFile:fileTape];
+                    if (uploads.length > 0) {
+                        NSString* name = [array lastObject];
+                        NSRange r = [uploads rangeOfString:name];
+                        if (r.length != name.length) {
+                            if (![uploadFiles containsObject:fileTape]) {
+                                [uploadFiles addObject:fileTape];
+                            }
                         }
                     }
                 }
@@ -1711,12 +1760,16 @@
             } else {
                 NSArray *array = [[UDObject getzdymusic] componentsSeparatedByString:@"/"];
                 NSString* fileTape = [[FileManage sharedFileManage].audioDirectory stringByAppendingPathComponent: [array lastObject]];
-                [recordedInput showFile:fileTape];
-                if (uploads.length > 0) {
-                    NSRange r = [uploads rangeOfString:fileTape];
-                    if (r.length == fileTape.length) {
-                        if (![uploadFiles containsObject:fileTape]) {
-                            [uploadFiles addObject:fileTape];
+                NSFileManager* fm = [NSFileManager defaultManager];
+                if([fm fileExistsAtPath:fileTape]){
+                    [recordedInput showFile:fileTape];
+                    if (uploads.length > 0) {
+                        NSString* name = [array lastObject];
+                        NSRange r = [uploads rangeOfString:name];
+                        if (r.length != name.length) {
+                            if (![uploadFiles containsObject:fileTape]) {
+                                [uploadFiles addObject:fileTape];
+                            }
                         }
                     }
                 }

@@ -152,6 +152,7 @@
     NSString* rurl=[[request URL] resourceSpecifier];
     NSString* scheme = [[request URL] scheme];
     if ([scheme hasPrefix:@"goto"]) {
+        
         NSRange r = [rurl rangeOfString:@"?"];
         NSString* hurl = [rurl substringToIndex:r.location];
 //        NSString* title_c = [rurl substringFromIndex: r.location+1];
@@ -163,6 +164,11 @@
         NSURL *url =[NSURL URLWithString:newurl];
         NSURLRequest *request =[NSURLRequest requestWithURL:url];
         [_webview loadRequest:request];
+        return NO;
+    }
+    NSRange range = [rurl rangeOfString:@"weidian.com"];
+    if (range.length > 0) {
+        [[UIApplication sharedApplication] openURL:[request URL]];
         return NO;
     }
     return YES; // 继续对本次请求进行导航

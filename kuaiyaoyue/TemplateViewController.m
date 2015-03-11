@@ -119,13 +119,13 @@
     [title setTextColor:[[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0  blue:88.0/255.0  alpha:1.0]];
     [title setBackgroundColor:[UIColor clearColor]];
     if ([_type isEqualToString:@"hunli"]) {
-        [title setText:@"结婚喜宴"];
+        [title setText:@"婚礼微喜帖"];
     }else if ([_type isEqualToString:@"sanwu"]){
-        [title setText:@"商务邀请"];
+        [title setText:@"商务邀请函"];
     }else if ([_type isEqualToString:@"cihe"]){
-        [title setText:@"吃喝玩乐"];
+        [title setText:@"聚会邀请函"];
     }else if ([_type isEqualToString:@"zdy"]){
-        [title setText:@"自定义"];
+        [title setText:@"自定义请柬"];
     }
     
     [bk addSubview:title];
