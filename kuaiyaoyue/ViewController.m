@@ -54,8 +54,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
-    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"navImg/small" ofType:@"jpg"]];
+    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"small" ofType:@"png"]];
     self.showview_img.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
     is_bcfs = NO;
     inGetRecord = NO;
@@ -109,14 +108,16 @@
     [tj_Btn addGestureRecognizer:pan1];
     [self.head_view addSubview:tj_Btn];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    label.text = TJ_TITLE;
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont fontWithName:@"Helvetica Neue" size:16];
-    [tj_Btn addSubview:label];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    label.text = TJ_TITLE;
+//    label.textColor = [UIColor whiteColor];
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.font = [UIFont fontWithName:@"Helvetica Neue" size:16];
+    myImageView* btn_img = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 48.0/2.0, 48.0/2.0) andImageName:@"tj_btn" withScale:2.0];
+    btn_img.center = CGPointMake(22, 22);
+    [tj_Btn addSubview:btn_img];
     
-    UIView* new_btn = [[UIView alloc] initWithFrame:CGRectMake(34, 10, 10, 10)];
+    UIView* new_btn = [[UIView alloc] initWithFrame:CGRectMake(32, 10, 10, 10)];
     new_btn.backgroundColor = [UIColor redColor];
     new_btn.layer.cornerRadius = 5.0;
     new_btn.tag = 309;
@@ -143,10 +144,10 @@
     }
     CAKeyframeAnimation* transformAnim1 = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
     transformAnim1.values = [[NSArray alloc] initWithObjects:
-                             [NSValue valueWithCATransform3D:CATransform3DTranslate(t, 5.0, -5.0, 0)],
-                             [NSValue valueWithCATransform3D:CATransform3DTranslate(t, -4.0, 4.0, 0)],
-                             [NSValue valueWithCATransform3D:CATransform3DTranslate(t, 3.0, -3.0, 0)],
-                             [NSValue valueWithCATransform3D:CATransform3DTranslate(t, -2.0, 2.0, 0)],
+                             [NSValue valueWithCATransform3D:CATransform3DRotate(t, -0.22, 0, 0, 4)],
+                             [NSValue valueWithCATransform3D:CATransform3DRotate(t, -0.22, 0, 0, -3)],
+                             [NSValue valueWithCATransform3D:CATransform3DRotate(t, -0.22, 0, 0, 2)],
+                             [NSValue valueWithCATransform3D:CATransform3DRotate(t, -0.22, 0, 0, -0.5)],
                              [NSValue valueWithCATransform3D:CATransform3DIdentity],nil];
     transformAnim1.removedOnCompletion = YES;
     transformAnim1.duration = 0.4;
@@ -154,9 +155,9 @@
     [tj_Btn.layer addAnimation:transformAnim1 forKey:@"tj_Btn"];
 }
 -(void)showTJ{
-    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
-    [userInfo setValue:@"TUIJIANDIDTAP" forKey:@"TUIJIANDIDTAP"];
-    [userInfo synchronize];
+//    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+//    [userInfo setValue:@"TUIJIANDIDTAP" forKey:@"TUIJIANDIDTAP"];
+//    [userInfo synchronize];
     UIView* new_btn = [self.head_view viewWithTag:309];
     new_btn.alpha = 0;
     [TalkingData trackEvent: @"推荐点击"];
@@ -164,7 +165,11 @@
     view.name = TJ_TITLE;
     view.weburl = TJ_URL;
     view.viewTitle = @"推荐页面";
-    view.modalPresentationStyle = UIModalPresentationFullScreen;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        view.modalPresentationStyle = UIModalPresentationFormSheet;
+    } else {
+        view.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
     //UIModalPresentationOverFullScreen 全屏对下透明
     view.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:view animated:YES completion:^{

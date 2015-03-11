@@ -226,6 +226,9 @@
 		E59832721A8A466100BF77B9 /* QNResumeUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = E59832601A8A466100BF77B9 /* QNResumeUpload.m */; };
 		E59832731A8A466100BF77B9 /* QNUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E59832621A8A466100BF77B9 /* QNUploadManager.m */; };
 		E59832741A8A466100BF77B9 /* QNUploadOption.m in Sources */ = {isa = PBXBuildFile; fileRef = E59832651A8A466100BF77B9 /* QNUploadOption.m */; };
+		E5A150A61AB024EB004B5D03 /* tj_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = E5A150A51AB024EB004B5D03 /* tj_btn.png */; };
+		E5A150A91AB02AE6004B5D03 /* big.png in Resources */ = {isa = PBXBuildFile; fileRef = E5A150A71AB02AE6004B5D03 /* big.png */; };
+		E5A150AA1AB02AE6004B5D03 /* small.png in Resources */ = {isa = PBXBuildFile; fileRef = E5A150A81AB02AE6004B5D03 /* small.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -603,6 +606,9 @@
 		E59832631A8A466100BF77B9 /* QNUploadOption+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QNUploadOption+Private.h"; sourceTree = "<group>"; };
 		E59832641A8A466100BF77B9 /* QNUploadOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadOption.h; sourceTree = "<group>"; };
 		E59832651A8A466100BF77B9 /* QNUploadOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadOption.m; sourceTree = "<group>"; };
+		E5A150A51AB024EB004B5D03 /* tj_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tj_btn.png; sourceTree = "<group>"; };
+		E5A150A71AB02AE6004B5D03 /* big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big.png; sourceTree = "<group>"; };
+		E5A150A81AB02AE6004B5D03 /* small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -961,6 +967,9 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				E5A150A71AB02AE6004B5D03 /* big.png */,
+				E5A150A81AB02AE6004B5D03 /* small.png */,
+				E5A150A51AB024EB004B5D03 /* tj_btn.png */,
 				E569C3DF1A9B5D050051226F /* sdyy.bundle */,
 				E560D64A1A65630400843E38 /* arr32.png */,
 				E565ECCB1A538EA100679BAE /* img_empty_homeb.png */,
@@ -1474,6 +1483,7 @@
 				E57ED5E11A924848000BA51A /* btn_120_recording_del_pre@2x.png in Resources */,
 				E565ECCA1A52CDB900679BAE /* btn5s.png in Resources */,
 				8474A4AF1A4BB28A00C2E489 /* bubble_play_2@2x.png in Resources */,
+				E5A150A91AB02AE6004B5D03 /* big.png in Resources */,
 				E56C0A661A8CCA060055495A /* ic_c_name@2x.png in Resources */,
 				E56C0A691A8CCA060055495A /* ic_c_setting@2x.png in Resources */,
 				E56C0A601A8CCA060055495A /* ic_c_contact@2x.png in Resources */,
@@ -1484,6 +1494,7 @@
 				E56863B11A772CD200DB6EA4 /* music.json in Resources */,
 				E569C3E01A9B5D050051226F /* sdyy.bundle in Resources */,
 				E56C0A6B1A8CCA060055495A /* ic_c_timer@2x.png in Resources */,
+				E5A150AA1AB02AE6004B5D03 /* small.png in Resources */,
 				E5661A291A457CB700E4E2BC /* btn_login_1.png in Resources */,
 				E56C0A5F1A8CCA060055495A /* ic_c_clock@2x.png in Resources */,
 				E54889871A6125E1008EA808 /* loading.gif in Resources */,
@@ -1496,6 +1507,7 @@
 				E5590CC51A469CAB0080F3B1 /* card_g.png in Resources */,
 				84E8426D1A2EDF6B00A401A0 /* Images.xcassets in Resources */,
 				E56786FD1A50F38100308A4B /* Default@2x.png in Resources */,
+				E5A150A61AB024EB004B5D03 /* tj_btn.png in Resources */,
 				E57ED5E21A924848000BA51A /* btn_120_recording_del@2x.png in Resources */,
 				8460DDD31A4E73A50031416E /* Main.storyboard in Resources */,
 				E57ED5E31A924848000BA51A /* btn_120_recording@2x.png in Resources */,
@@ -1799,7 +1811,7 @@
 				PRODUCT_NAME = "快邀约";
 				PROVISIONING_PROFILE = "09c4e361-7fab-49a4-8912-269bfc8b2618";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1834,7 +1846,7 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "快邀约";
 				PROVISIONING_PROFILE = "7cc2b366-7e0a-44d7-abfc-deed0b62d6ef";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

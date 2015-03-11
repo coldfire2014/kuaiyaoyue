@@ -7,6 +7,7 @@
 //
 
 #import "myPicDetail.h"
+#import "UIImageView+LBBlurredImage.h"
 
 @implementation myPicDetail
 - (instancetype)initWithFrame:(CGRect)frame
@@ -31,8 +32,11 @@
         layer.locations = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:1.0], nil];
         layer.opacity = 0.95;
         [self.layer addSublayer:layer];
-        
+ 
         maxRect = CGRectInset(self.bounds,20.0,20.0*frame.size.height/frame.size.width);
+//        UIImageView* bk = [[UIImageView alloc] initWithFrame:frame];
+//        bk.tag = 101;
+//        [self addSubview:bk];
         bkView = [[UIImageView alloc] initWithFrame:maxRect];
         bkView.backgroundColor = [UIColor blackColor];
         [self addSubview:bkView];
@@ -40,7 +44,6 @@
         picView = [[UIImageView alloc] initWithFrame:maxRect];
         picView.backgroundColor = [UIColor blackColor];
         [self addSubview:picView];
-
         self.alpha = 0;
     }
     return self;
@@ -55,6 +58,10 @@
     }
     view.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0);
     view.image = img;
+//    if (view == picView) {
+//        UIImageView* bk = (UIImageView*)[self viewWithTag:101];
+//        [bk setImageToBlur:img blurRadius:50.0 completionBlock:^(NSError *error) {}];
+//    }
 }
 -(void) setDetail:(NSInteger)tag withImg:(UIImage*)img{
     imgTag = tag;
