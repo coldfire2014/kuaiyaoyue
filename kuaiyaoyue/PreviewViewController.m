@@ -60,7 +60,7 @@
                                         delegate:self
                                cancelButtonTitle:@"取消"
                           destructiveButtonTitle:nil
-                               otherButtonTitles:@"生成", @"生成并发送", nil];
+                               otherButtonTitles:@"保存", @"分享", nil];
     
          [sheet showInView:self.view];
      }else{
@@ -68,7 +68,7 @@
                                                             delegate:self
                                                    cancelButtonTitle:@"取消"
                                               destructiveButtonTitle:nil
-                                                   otherButtonTitles:@"生成", @"生成并发送", nil];
+                                                   otherButtonTitles:@"保存", @"分享", nil];
          [sheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
      }
 }
@@ -79,14 +79,14 @@
         case 0:
         {
             [self dismissViewControllerAnimated:YES completion:^{
-                [self.delegate didSendType:0];
+                [self.delegate didSendType:1];
             }];
             break;
         }
         case 1:
         {
             [self dismissViewControllerAnimated:YES completion:^{
-                [self.delegate didSendType:1];
+                [self.delegate didSendType:0];
             }];
             break;
         }

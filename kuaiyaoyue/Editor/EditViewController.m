@@ -289,7 +289,7 @@
         ch += 24.0/2.0;
         manInput = [[UITextField alloc] initWithFrame:CGRectMake(iconWidth, 0, w/2.0-18.0/2.0-48.0/2.0 -12.0/2.0, 86.0/2.0)];
         [self resetInput:manInput andTitle:@"新郎:" andPlaceholder:@"新郎姓名"];
-        manInput.clearButtonMode = UITextFieldViewModeWhileEditing;
+        manInput.clearButtonMode = UITextFieldViewModeNever;
         manInput.returnKeyType = UIReturnKeyNext;
         [titleview addSubview:manInput];
         UILabel* andn = [[UILabel alloc] initWithFrame:CGRectMake(manInput.frame.origin.x+manInput.frame.size.width-3.0, 0, 15, 86.0/2.0)];
@@ -301,7 +301,7 @@
         [titleview addSubview:icon];
         wemanInput = [[UITextField alloc] initWithFrame:CGRectMake(icon.frame.origin.x+icon.frame.size.width +12.0/2.0, 0, w/2.0-18.0/2.0-48.0/2.0 -12.0/2.0, 86.0/2.0)];
         [self resetInput:wemanInput andTitle:@"新娘:" andPlaceholder:@"新娘姓名"];
-        wemanInput.clearButtonMode = UITextFieldViewModeWhileEditing;
+        wemanInput.clearButtonMode = UITextFieldViewModeNever;
         wemanInput.returnKeyType = UIReturnKeyDone;
         [titleview addSubview:wemanInput];
     } else {

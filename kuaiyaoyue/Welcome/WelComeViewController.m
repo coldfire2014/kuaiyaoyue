@@ -118,7 +118,7 @@
     NSString *name = nil;
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     if ([[UDObject gettoken] length] > 0) {
-        zipDone = YES;
+        zipDone = NO;
         name = @"main";
         [delegate updateMata];
         [ZipDown UnzipI];

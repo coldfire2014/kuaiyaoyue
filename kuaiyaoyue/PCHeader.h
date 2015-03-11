@@ -20,7 +20,7 @@
     #define YINGLOUURL @"http://appkyy.kyy121.com/studio/"
     #define HTTPURL YINGLOUURL
     #define ChannelId @"Studio"
-    #define UZIP @"ZIPS211"
+    #define UZIP @"ZIPS223"
     #define DURL @"http://fir.im/kyyyl"
     #define STOREDIR @"http://appkyy.kyy121.com/static/feedback.html?appId=kuaiyaoyue-snapshot"
     #define PIC_URL @"http://www.kyy121.com/fss/studio/"
@@ -30,7 +30,7 @@
 //#define HTTPURL @"http://10.142.59.104/invitation/"
     #define ChannelId @"AppStore"
 //    #define ChannelId @"test"
-    #define UZIP @"ZIP211"
+    #define UZIP @"ZIP223"
     #define DURL @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
     #define STOREDIR @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
     #define PIC_URL @"http://www.kyy121.com/fss/invitation/"
