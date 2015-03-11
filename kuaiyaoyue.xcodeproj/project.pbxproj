@@ -696,8 +696,6 @@
 		844825E91A31A45C0018240E /* Editor */ = {
 			isa = PBXGroup;
 			children = (
-				E514F44B1A8AF70C00C09C6E /* EditViewController.h */,
-				E514F44C1A8AF70C00C09C6E /* EditViewController.m */,
 				E56C0A491A8CAC0E0055495A /* editIcon */,
 				E57ED5D51A924044000BA51A /* tapeView.h */,
 				E57ED5D61A924044000BA51A /* tapeView.m */,
@@ -707,6 +705,8 @@
 				E5574C3E1AABCD9600FAC141 /* myPicDetail.m */,
 				E5853C3D1A8D9A4C00387BD9 /* HeadImgView.h */,
 				E5853C3E1A8D9A4C00387BD9 /* HeadImgView.m */,
+				E514F44B1A8AF70C00C09C6E /* EditViewController.h */,
+				E514F44C1A8AF70C00C09C6E /* EditViewController.m */,
 			);
 			name = Editor;
 			path = ../Editor;
