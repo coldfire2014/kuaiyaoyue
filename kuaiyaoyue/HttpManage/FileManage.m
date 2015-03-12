@@ -7,7 +7,7 @@
 //
 
 #import "FileManage.h"
-
+#import "UDObject.h"
 @implementation FileManage{
 
 }
@@ -31,6 +31,53 @@
     return _sharedInstance;
 }
 
+-(void)removeTemp{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    _dirDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
+    self.imgDirectory = [_dirDirectory stringByAppendingPathComponent:@"Image"];
+    if ([fileManager fileExistsAtPath:self.imgDirectory]) {
+        NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:self.imgDirectory];
+        NSString* path = nil;
+        while ((path = [dirEnum nextObject]) != nil)
+        {
+            NSLog(@"%@",path);
+            NSString* uploads = [UDObject gethlimgarr];
+            if (uploads.length > 0) {
+                NSRange r = [uploads rangeOfString:path];
+                if (r.length == path.length) {
+                    continue;
+                }
+            }
+            uploads = [UDObject getsw_imgarr];
+            if (uploads.length > 0) {
+                NSRange r = [uploads rangeOfString:path];
+                if (r.length == path.length) {
+                    continue;
+                }
+            }
+            uploads = [UDObject getzdyimgarr];
+            if (uploads.length > 0) {
+                NSRange r = [uploads rangeOfString:path];
+                if (r.length == path.length) {
+                    continue;
+                }
+            }
+            uploads = [UDObject getwlimgarr];
+            if (uploads.length > 0) {
+                NSRange r = [uploads rangeOfString:path];
+                if (r.length == path.length) {
+                    continue;
+                }
+            }
+            NSString* fileTape = [self.imgDirectory stringByAppendingPathComponent: path];
+            if ([fileManager fileExistsAtPath:fileTape]) {
+                [fileManager removeItemAtPath:fileTape error:nil];
+            }
+        }
+    }
+}
 -(void)CreateFile{
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);

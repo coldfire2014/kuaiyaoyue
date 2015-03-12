@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "UDObject.h"
 #import "HttpManage.h"
+#import "FileManage.h"
 #import "StatusBar.h"
 #import "TalkingData.h"
 #import "SMS_SDK/SMS_SDK.h"
@@ -56,7 +57,7 @@
     [TalkingData setExceptionReportEnabled:YES];
     [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:ChannelId];
     [SMS_SDK registerApp:@"4ec26c11eca2" withSecret:@"e80f13299bf5581e40ed33e2d8350cae"];
-    
+    [[FileManage sharedFileManage] removeTemp];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onebyone) name:@"onebyone" object:nil];
     return YES;
 }

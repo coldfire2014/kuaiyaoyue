@@ -23,5 +23,5 @@
 -(NSString *)getImgFile:(NSString *)name;
 -(NSString *)getThumb:(NSString *)name;
 -(NSString *)getImgPath:(NSString *)name;
-
+-(void)removeTemp;
 @end
