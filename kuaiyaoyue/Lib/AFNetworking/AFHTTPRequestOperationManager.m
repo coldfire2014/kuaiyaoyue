@@ -147,11 +147,10 @@
                          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:nil];
-    if([URLString compare:@"nozzle/NefUser/registers.aspx"] != NSOrderedSame){
+//    if([URLString compare:@"nozzle/NefUser/registers.aspx"] != NSOrderedSame && [URLString compare:@"j_spring_security_check"] != NSOrderedSame){
         [request setTimeoutInterval:8];
-    }
-    
-    NSLog(@"%@",[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] );
+//    }
+
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
 
     [self.operationQueue addOperation:operation];

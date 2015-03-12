@@ -9,39 +9,26 @@
 #import "ZipDown.h"
 #import "HttpManage.h"
 #import "PCHeader.h"
+#import "FileManage.h"
 @implementation ZipDown
 +(void)UnzipI{//文件夹存在就不解压
 //    NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
     NSString *is_open = [userInfo valueForKey:UZIP];
+    NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:testDirectory]) {
-        [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-//        [HttpManage unzip:zipPath filename:testDirectory];
-        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSError* err = nil;
-        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/musicFiles"] toPath:[testDirectory stringByAppendingString:@"/musicFiles"] error:&err];
-        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/custom"] toPath:[testDirectory stringByAppendingString:@"/custom"] error:&err];
-        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/public"] toPath:[testDirectory stringByAppendingString:@"/public"] error:&err];
+        [HttpManage unzip:zipPath filename:testDirectory];
         [userInfo setValue:@"YES" forKey:UZIP];
         [userInfo synchronize];
     }else if ([is_open length] == 0){//升级
         if ([fileManager fileExistsAtPath:testDirectory]) {
             [fileManager removeItemAtPath:testDirectory error:nil];
         }
-        [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-        //        [HttpManage unzip:zipPath filename:testDirectory];
-        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSError* err = nil;
-        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/musicFiles"] toPath:[testDirectory stringByAppendingString:@"/musicFiles"] error:&err];
-        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/custom"] toPath:[testDirectory stringByAppendingString:@"/custom"] error:&err];
-        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/public"] toPath:[testDirectory stringByAppendingString:@"/public"] error:&err];
-        [userInfo setValue:@"YES" forKey:UZIP];
+        [HttpManage unzip:zipPath filename:testDirectory];
         [userInfo synchronize];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ZIP_DONE" object:nil];
@@ -58,29 +45,19 @@
 +(void)Unzip{//升级或首次
     NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
     NSString *is_open = [userInfo valueForKey:UZIP];
-//    NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSLog(@"Unzipin");
     if ([is_open length] > 0){
         
     }else{
+        NSString * zipPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"1.zip"];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *testDirectory = [documentsDirectory stringByAppendingPathComponent:@"sdyy"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
         if ([fileManager fileExistsAtPath:testDirectory]) {
             [fileManager removeItemAtPath:testDirectory error:nil];
         }
-        [fileManager createDirectoryAtPath:testDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-//        [HttpManage unzip:zipPath filename:testDirectory];
-        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSError* err = nil;
-        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/musicFiles"] toPath:[testDirectory stringByAppendingString:@"/musicFiles"] error:&err];
-        for (NSString *filename in [fileManager enumeratorAtPath:[testDirectory stringByAppendingString:@"/musicFiles"]]) {
-            NSLog(@"%@",filename);
-        }
-        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/custom"] toPath:[testDirectory stringByAppendingString:@"/custom"] error:&err];
-        [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/public"] toPath:[testDirectory stringByAppendingString:@"/public"] error:&err];
+        [HttpManage unzip:zipPath filename:testDirectory];
         [userInfo setValue:@"YES" forKey:UZIP];
         [userInfo synchronize];
     }

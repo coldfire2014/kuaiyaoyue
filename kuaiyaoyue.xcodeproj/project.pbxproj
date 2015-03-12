@@ -141,6 +141,7 @@
 		E55F5A0B1A3702E000B0D587 /* EditBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E55F5A0A1A3702E000B0D587 /* EditBtn.m */; };
 		E560D64B1A65630400843E38 /* arr32.png in Resources */ = {isa = PBXBuildFile; fileRef = E560D64A1A65630400843E38 /* arr32.png */; };
 		E560D64E1A6564D900843E38 /* SettingNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E560D64D1A6564D900843E38 /* SettingNavBar.m */; };
+		E565A41E1AB1BA01003A247A /* 1.zip in Resources */ = {isa = PBXBuildFile; fileRef = E565A41D1AB1BA01003A247A /* 1.zip */; };
 		E565ECC01A52C90100679BAE /* SiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E565ECBF1A52C90100679BAE /* SiViewController.m */; };
 		E565ECC61A52CDB900679BAE /* 1w.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E565ECC11A52CDB900679BAE /* 1w.jpg */; };
 		E565ECC71A52CDB900679BAE /* 2w.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E565ECC21A52CDB900679BAE /* 2w.jpg */; };
@@ -320,8 +321,8 @@
 		84B473A41A30372A00A21457 /* DataBaseManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseManage.m; sourceTree = "<group>"; };
 		84B5A4771A3EC9C200C55200 /* TimeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTool.h; sourceTree = "<group>"; };
 		84B5A4781A3EC9C200C55200 /* TimeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTool.m; sourceTree = "<group>"; };
-		84B5D1131A43C44700C5C6E8 /* ZipDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipDown.h; sourceTree = "<group>"; };
-		84B5D1141A43C44700C5C6E8 /* ZipDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipDown.m; sourceTree = "<group>"; };
+		84B5D1131A43C44700C5C6E8 /* ZipDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZipDown.h; path = Lib/ZipArchive/ZipDown.h; sourceTree = "<group>"; };
+		84B5D1141A43C44700C5C6E8 /* ZipDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZipDown.m; path = Lib/ZipArchive/ZipDown.m; sourceTree = "<group>"; };
 		84B5D1161A441C3E00C5C6E8 /* Contacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contacts.h; sourceTree = "<group>"; };
 		84B5D1171A441C3E00C5C6E8 /* Contacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contacts.m; sourceTree = "<group>"; };
 		84D530221A5BCD4300C4ED73 /* kuaiyaoyue 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "kuaiyaoyue 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -477,6 +478,7 @@
 		E560D64A1A65630400843E38 /* arr32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arr32.png; sourceTree = "<group>"; };
 		E560D64C1A6564D900843E38 /* SettingNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingNavBar.h; sourceTree = "<group>"; };
 		E560D64D1A6564D900843E38 /* SettingNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingNavBar.m; sourceTree = "<group>"; };
+		E565A41D1AB1BA01003A247A /* 1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = 1.zip; path = ../../../zipdir/1.zip; sourceTree = "<group>"; };
 		E565ECBE1A52C90100679BAE /* SiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiViewController.h; sourceTree = "<group>"; };
 		E565ECBF1A52C90100679BAE /* SiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiViewController.m; sourceTree = "<group>"; };
 		E565ECC11A52CDB900679BAE /* 1w.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1w.jpg; sourceTree = "<group>"; };
@@ -948,11 +950,12 @@
 		84E842861A2EE88100A401A0 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				E569C3DF1A9B5D050051226F /* sdyy.bundle */,
+				E565A41D1AB1BA01003A247A /* 1.zip */,
 				8460DDD21A4E73A50031416E /* Main.storyboard */,
 				E5A150A71AB02AE6004B5D03 /* big.png */,
 				E5A150A81AB02AE6004B5D03 /* small.png */,
 				E5A150A51AB024EB004B5D03 /* tj_btn.png */,
-				E569C3DF1A9B5D050051226F /* sdyy.bundle */,
 				E560D64A1A65630400843E38 /* arr32.png */,
 				E565ECCB1A538EA100679BAE /* img_empty_homeb.png */,
 				8431E9071A4D24AA00E9B0EE /* logo.png */,
@@ -1124,8 +1127,6 @@
 		E5573F881A4303A9006AAB8F /* ZipArchive */ = {
 			isa = PBXGroup;
 			children = (
-				84B5D1131A43C44700C5C6E8 /* ZipDown.h */,
-				84B5D1141A43C44700C5C6E8 /* ZipDown.m */,
 				E5573F891A4303A9006AAB8F /* minizip */,
 				E5573F931A4303A9006AAB8F /* ZipArchive.h */,
 				E5573F941A4303A9006AAB8F /* ZipArchive.mm */,
@@ -1202,6 +1203,8 @@
 		E56863A81A77202700DB6EA4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				84B5D1131A43C44700C5C6E8 /* ZipDown.h */,
+				84B5D1141A43C44700C5C6E8 /* ZipDown.m */,
 				84E842D11A2F087A00A401A0 /* HttpManage.h */,
 				84E842D21A2F087A00A401A0 /* HttpManage.m */,
 				84B473861A2FFEC800A21457 /* FileManage.h */,
@@ -1515,6 +1518,7 @@
 				E56787031A5153E700308A4B /* btn_sidebar.png in Resources */,
 				E534DD741A464CE700542D67 /* ic_54_edit@2x.png in Resources */,
 				8474A4B01A4BB28A00C2E489 /* bubble_play_3@2x.png in Resources */,
+				E565A41E1AB1BA01003A247A /* 1.zip in Resources */,
 				E5661A2A1A457CB700E4E2BC /* btn_login_2_pre.png in Resources */,
 				8442288C1A4A518300583893 /* PEPhotoCropEditor.bundle in Resources */,
 				E5661A231A45708C00E4E2BC /* logo_login@2x.png in Resources */,

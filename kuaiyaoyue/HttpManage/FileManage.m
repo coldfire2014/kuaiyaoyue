@@ -85,6 +85,7 @@
         }
     }
 }
+
 -(void)CreateFile{
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
@@ -113,7 +114,10 @@
 
 -(NSString *)GetYPFile:(NSString *) name{
     [self CreateFile];
-    name = [NSString stringWithFormat:@"%@.mp3",name];
+    NSRange r = [name rangeOfString:@".mp3"];
+    if (r.length != 4) {
+        name = [NSString stringWithFormat:@"%@.mp3",name];
+    }
     return [self.musicFiles stringByAppendingPathComponent:name];
 }
 -(NSString *)GetYPFile1:(NSString *) name{

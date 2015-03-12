@@ -179,7 +179,20 @@
     [_tableView reloadData];
     
     NSString *file  = [[FileManage sharedFileManage] GetYPFile:info.uniqueId];
-    [NSThread detachNewThreadSelector:@selector(AudioPlay:) toTarget:self withObject:file];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:file]){
+        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
+        NSString *path = [bundle.bundlePath stringByAppendingString:@"/musicFiles"];
+        
+        NSString* copyfile = [path stringByAppendingPathComponent:[[file componentsSeparatedByString:@"/"] lastObject]];
+        if(![[NSFileManager defaultManager] fileExistsAtPath:copyfile]){
+            return;
+        }else{
+            [[NSFileManager defaultManager] copyItemAtPath:copyfile toPath:file error:nil];
+            [NSThread detachNewThreadSelector:@selector(AudioPlay:) toTarget:self withObject:copyfile];
+        }
+    }else{
+        [NSThread detachNewThreadSelector:@selector(AudioPlay:) toTarget:self withObject:file];
+    }
 //    [self AudioPlay:file];
 }
 -(void)viewWillAppear:(BOOL)animated{
