@@ -100,8 +100,14 @@
     }else{
         [_bg_view setHidden:NO];
     }
-    
     [_tableView reloadData];
+    int16_t count = 0;
+    for (Contacts *contacts in data) {
+        count += contacts.number;
+    }
+    _maxnum = [[NSString alloc] initWithFormat:@"%d",count];
+    [s setState:StateGoing withAll:_maxnum andAdd:@""];
+    [s setStartTime:[NSDate dateWithTimeIntervalSince1970:_starttime] EndTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:_datatime]];
     [_tableView headerEndRefreshing];
 }
 
@@ -208,7 +214,7 @@
         DVCCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
         Contacts *contacts = [data objectAtIndex:[indexPath row]];
-        cell.show_num.text = [NSString stringWithFormat:@"%d",contacts.number];
+        cell.show_num.text = [NSString stringWithFormat:@"%d人",contacts.number];
         cell.show_name.text = contacts.name;
         cell.show_content.text = contacts.message;
         cell.phone = contacts.mobile;

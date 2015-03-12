@@ -46,7 +46,7 @@
         huan.layer.borderColor = [[UIColor alloc] initWithWhite:0.7 alpha:0.4].CGColor;
         [self addSubview:huan];
         
-        UILabel *all = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 88, 88)];
+        UILabel *all = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 84, 84)];
         all.tag = 1302;
         all.center = CGPointMake(self.bounds.size.width/2.0, self.bounds.size.height/2.0);
         [all setFont:[UIFont systemFontOfSize:40]];
@@ -139,7 +139,8 @@
     addv.alpha = 0;
     addv.text = add;
     UILabel* allv = (UILabel*)[self viewWithTag:1302];
-    allv.text = all;
+    allv.text = [[NSString alloc] initWithFormat:@"%@",all];//all;
+    allv.adjustsFontSizeToFitWidth = YES;
     UIView* gone = [self viewWithTag: 1303];
     gone.alpha = 0;
     UIView* get = [self viewWithTag: 1304];

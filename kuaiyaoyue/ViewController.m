@@ -458,8 +458,8 @@
         des.bgimg = (UIImage*)sender;
     }else if ([segue.identifier compare:@"detail"] == NSOrderedSame){
         DetailViewController *view = (DetailViewController*)segue.destinationViewController;
-        view.uniqueId = uniqueId;
-        view.maxnum = maxnum;
+        view.uniqueId = [[NSString alloc] initWithFormat:@"%@", uniqueId ];
+        view.maxnum = [[NSString alloc] initWithFormat:@"%@", maxnum ];
         view.starttime = starttime;
         view.datatime = datatime;
         view.endtime = endtime;

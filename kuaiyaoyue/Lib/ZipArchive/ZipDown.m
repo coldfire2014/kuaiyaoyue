@@ -76,6 +76,9 @@
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSError* err = nil;
         [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/musicFiles"] toPath:[testDirectory stringByAppendingString:@"/musicFiles"] error:&err];
+        for (NSString *filename in [fileManager enumeratorAtPath:[testDirectory stringByAppendingString:@"/musicFiles"]]) {
+            NSLog(@"%@",filename);
+        }
         [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/custom"] toPath:[testDirectory stringByAppendingString:@"/custom"] error:&err];
         [fileManager copyItemAtPath:[bundle.bundlePath stringByAppendingString:@"/public"] toPath:[testDirectory stringByAppendingString:@"/public"] error:&err];
         [userInfo setValue:@"YES" forKey:UZIP];

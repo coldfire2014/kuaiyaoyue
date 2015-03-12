@@ -175,13 +175,13 @@ password:1235456                     //用户密码
                             @"true",@"isJson",
                             @"ios",@"equipment",version,@"version",
                             nil];
-    
+    NSLog(@"j_spring_security_check_in");
     [[AFConnectionAPIClientLogin sharedClient] POST:@"j_spring_security_check" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSString *html = operation.responseString;
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
         callback(YES,resultDic);
-        
+        NSLog(@"j_spring_security_check_out");
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSString *html = operation.responseString;
         NSLog(@"error-%@",html);

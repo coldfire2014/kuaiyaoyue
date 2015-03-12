@@ -14,13 +14,13 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *headview;
 
-@property (weak, nonatomic) NSString *uniqueId;
+@property (strong, nonatomic) NSString *uniqueId;
 @property NSTimeInterval starttime;
 @property NSTimeInterval endtime;
 @property NSTimeInterval datatime;
 
 @property (weak, nonatomic) IBOutlet UIImageView *showview_img;
-@property (weak, nonatomic) NSString *maxnum;
+@property (strong, nonatomic) NSString *maxnum;
 @property (weak, nonatomic) IBOutlet UIView *endtime_view;
 - (IBAction)endtime_onclick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *cancel_view;
