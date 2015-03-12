@@ -71,6 +71,13 @@
                     continue;
                 }
             }
+            uploads = [UDObject getzdytopimg];
+            if (uploads.length > 0) {
+                NSRange r = [uploads rangeOfString:path];
+                if (r.length == path.length) {
+                    continue;
+                }
+            }
             NSString* fileTape = [self.imgDirectory stringByAppendingPathComponent: path];
             if ([fileManager fileExistsAtPath:fileTape]) {
                 [fileManager removeItemAtPath:fileTape error:nil];
