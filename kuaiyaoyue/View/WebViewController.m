@@ -166,12 +166,13 @@
         [_webview loadRequest:request];
         return NO;
     }
-//    NSRange range = [rurl rangeOfString:@"weidian.com"];
-//    if (range.length > 0) {
-//        [[UIApplication sharedApplication] openURL:[request URL]];
-//        return NO;
-//    }
-    return YES; // 继续对本次请求进行导航
+    NSRange range = [rurl rangeOfString:@"kyy121.com"];
+    if (range.length > 0) {
+        return YES; // 继续对本次请求进行导航
+    }else{
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        return NO;
+    }
 }
 
 
