@@ -528,10 +528,10 @@
                                                                 <action selector="message_onclick:" destination="5Ap-qS-mSD" eventType="touchUpInside" id="uas-mk-kpC"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeK-oc-Dvp">
-                                                            <rect key="frame" x="71" y="17" width="106" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeK-oc-Dvp">
+                                                            <rect key="frame" x="71" y="17" width="50" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="106" id="Oov-pf-5TT"/>
+                                                                <constraint firstAttribute="width" constant="50" id="Oov-pf-5TT"/>
                                                                 <constraint firstAttribute="height" constant="21" id="bhK-yy-P8t"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>

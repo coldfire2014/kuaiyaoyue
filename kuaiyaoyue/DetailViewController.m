@@ -214,8 +214,8 @@
         DVCCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
         Contacts *contacts = [data objectAtIndex:[indexPath row]];
-        cell.show_num.text = [NSString stringWithFormat:@"%d人",contacts.number];
-        cell.show_name.text = contacts.name;
+        cell.show_num.text = @"";//[NSString stringWithFormat:@"%d人",contacts.number];
+        cell.show_name.text = [NSString stringWithFormat:@"%@报名,到场%d人",contacts.name,contacts.number];
         cell.show_content.text = contacts.message;
         cell.phone = contacts.mobile;
         cell.talk = contacts.message;
