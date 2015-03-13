@@ -35,7 +35,7 @@
     #define STOREDIR @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
     #define PIC_URL @"http://www.kyy121.com/fss/invitation/"
 #endif
-//#define version @"5"
-#define version @"4"
+#define version @"5"
+//#define version @"4"
 #define IPAD_FRAME CGRectMake(0, 0, MAX([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width),MIN([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width))
 #endif
