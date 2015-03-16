@@ -14,10 +14,11 @@
 #import "MusicViewController.h"
 #import "PreviewViewController.h"
 #import "ImgCollectionViewController.h"
-
-@interface EditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PreviewViewControllerDelegate,ImgCollectionViewDelegate,datetimeInputDelegate,MVCDelegate,myPicDetailtDelegate>
+#import "padTempView.h"
+@interface EditViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PreviewViewControllerDelegate,ImgCollectionViewDelegate,datetimeInputDelegate,MVCDelegate,myPicDetailtDelegate,padTempViewDelegate>
 {
     UITextField* manInput;
+    padTempView* tempView;
     UITextField* wemanInput;
     UITextField* titleInput;
     UITextField* timeInput;
@@ -48,6 +49,7 @@
     NSMutableArray* uploadFiles;
     BOOL sendtaped;
     BOOL isBgsend;
+    NSArray *tempData;
 }
 @property (strong, nonatomic) UIScrollView *editListView;
 @property (nonatomic, strong) NSString *typeid;

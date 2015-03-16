@@ -36,7 +36,7 @@
     self.webview.scalesPageToFit = YES;
     self.webview.delegate = self;
     [self.view addSubview:self.webview];
-    WebNavBar* bar = [[WebNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0 + top)];
+    WebNavBar* bar = [[WebNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0 + top) andBgColor:[[UIColor alloc] initWithWhite:1 alpha:0.95] andTitleColor:[[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0]];
     bar.tag = 501;
     [bar setTitle:@"预览"];
     [bar setRight:@"完成"];
@@ -45,13 +45,15 @@
     }
     [self.view addSubview:bar];
     [self.view bringSubviewToFront:bar];
-    CGRect frame = CGRectMake(-120+32, 88.0/2.0 + top, 120, h-88.0/2.0 - top);
-    tempView = [[ChangeTempView alloc] initWithFrame:frame];
-    tempView.delegate = self;
-    tempView.type = _type;//0婚礼,1商务,2玩乐,3自定义
-    [tempView loadDate];
-    tempView.alpha = 0;
-    [self.view addSubview:tempView];    
+    if (self.showTemp) {
+        CGRect frame = CGRectMake(-120+32, 88.0/2.0 + top, 120, h-88.0/2.0 - top);
+        tempView = [[ChangeTempView alloc] initWithFrame:frame];
+        tempView.delegate = self;
+        tempView.type = _type;//0婚礼,1商务,2玩乐,3自定义
+        [tempView loadDate];
+        tempView.alpha = 0;
+        [self.view addSubview:tempView];
+    }
 }
 
 -(void)rightonclick{
@@ -104,7 +106,7 @@
     NSString *urlpath = [documentsDirectory stringByAppendingString:items.nefmbdw];
     NSString *zipurl = [documentsDirectory stringByAppendingPathComponent:items.nefzipurl];
     [UDObject setWebUrl:zipurl];
-    UIImage *bgimg = [self.delegate getimg:urlpath];
+    UIImage *bgimg = [self.delegate getimg:urlpath andIndex:[[NSString alloc] initWithFormat:@"%@",items.nefid]];
     CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
     NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];

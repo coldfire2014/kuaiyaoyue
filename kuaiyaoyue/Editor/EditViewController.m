@@ -1002,6 +1002,7 @@
     
 }
 -(void)addImgs{
+    isHead = NO;
     UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     flowLayout.minimumInteritemSpacing = 0.0;
@@ -1038,16 +1039,7 @@
     }];
 }
 -(void)showImg:(NSInteger)tag{
-    UIImage* img = nil;
-    if (tag == 395 || tag == 394) {
-        UIImageView* view = (UIImageView*)[self.view viewWithTag:tag];
-        img = view.image;
-    } else {
-        UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
-        UIView* item = [showBg viewWithTag:tag];
-        myPicItem* pic = (myPicItem*)[item viewWithTag:item.tag-100];
-        img = [pic myImage];
-    }
+    UIImage* img = [self getPic:tag];
     myPicDetail* show = [[myPicDetail alloc] initWithFrame:self.view.bounds];
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideDetail)];
     [show addGestureRecognizer:tap];
@@ -1063,10 +1055,24 @@
 }
 -(UIImage*)getPic:(NSInteger)tag{
     UIImage* img = nil;
-    if (tag == 395 || tag == 394) {
-        UIImageView* view = (UIImageView*)[self.view viewWithTag:tag];
-        img = view.image;
-    } else {
+    if (tag == 395) {
+        if ([self.typeid compare:@"1"] != NSOrderedSame && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            padTempView* view = (padTempView*)[self.view viewWithTag:tag];
+            img = view.image;
+        } else {
+            UIImageView* view = (UIImageView*)[self.view viewWithTag:tag];
+            img = view.image;
+        }
+    }else if(tag == 394){
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            UIImageView* view = (UIImageView*)[self.view viewWithTag:tag];
+            img = view.image;
+        } else {
+            padTempView* view = (padTempView*)[self.view viewWithTag:tag];
+            img = view.image;
+        }
+    }
+    else {
         UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
         UIView* item = [showBg viewWithTag:tag];
         myPicItem* pic = (myPicItem*)[item viewWithTag:item.tag-100];
@@ -1319,9 +1325,7 @@
         } else {
             CGFloat itemW = 200.0;
             CGFloat itemH = 200.0/320.0*480.0;
-
             [self setPreviewImg];
-    
             UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*firstImgIndex, (h-itemH)/2.0, itemW, itemH)];
             bg1.backgroundColor = [[UIColor alloc] initWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1.0];
             [showBg addSubview:bg1];
@@ -1402,46 +1406,100 @@
         bg.layer.shadowColor = [UIColor grayColor].CGColor;
         bg.layer.shadowOffset = CGSizeMake(1, 1);
         bg.tag = 390;
+        UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, itemW, itemH)];
+        img.tag = 395;
+        img.center = CGPointMake(bg.frame.size.width/2.0, bg.frame.size.height/2.0);
+        [bg addSubview:img];
+        img.userInteractionEnabled = YES;
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDraw)];
+        [img addGestureRecognizer:tap];
     } else {
         itemW = 200.0;
         itemH = 200.0/320.0*480.0;
         CGFloat h = showBg.frame.size.height;
-        UIView* sbg = [[UIView alloc] initWithFrame:CGRectMake(32.0, 0, itemW, h)];
-        sbg.backgroundColor = [UIColor clearColor];
-        [showBg addSubview:sbg];
-        sbg.tag = 380;
+        UIView * padK = [[UIView alloc] initWithFrame:CGRectMake(32.0, (h-itemH)/2.0, itemW, itemH)];
+        [showBg addSubview:padK];
+        padK.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.95];
+        padK.layer.shadowRadius = 2;
+        padK.layer.shadowOpacity = 1.0;
+        padK.layer.shadowColor = [UIColor grayColor].CGColor;
+        padK.layer.shadowOffset = CGSizeMake(1, 1);
+        tempView = [[padTempView alloc] initWithFrame:CGRectMake(32.0, 0, itemW, h)];
+        tempView.backgroundColor = [UIColor clearColor];
+        [showBg addSubview:tempView];
+        tempView.delegate = self;
+        tempView.itemSize = CGSizeMake(itemW,itemH);
+//        markwyb
         if ([self.typeid compare:@"1"] == NSOrderedSame) {
-            UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, itemW, itemH)];
-            img.tag = 394;
-            img.layer.shadowRadius = 2;
-            img.layer.shadowOpacity = 1.0;
-            img.layer.shadowColor = [UIColor grayColor].CGColor;
-            img.layer.shadowOffset = CGSizeMake(1, 1);
-            img.center = CGPointMake(sbg.frame.size.width/2.0, sbg.frame.size.height/2.0);
-            [sbg addSubview:img];
-            img.userInteractionEnabled = YES;
+            tempView.tag = 394;
             UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHomePic)];
-            [img addGestureRecognizer:tap];
+            [tempView addGestureRecognizer:tap];
             bg = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*2.0, (h-itemH)/2.0, itemW, itemH)];
             [showBg addSubview:bg];
+            bg.backgroundColor = [UIColor clearColor];
+            bg.layer.shadowRadius = 2;
+            bg.layer.shadowOpacity = 1.0;
+            bg.layer.shadowColor = [UIColor grayColor].CGColor;
+            bg.layer.shadowOffset = CGSizeMake(1, 1);
+            bg.tag = 390;
+            UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, itemW, itemH)];
+            img.tag = 395;
+            img.center = CGPointMake(bg.frame.size.width/2.0, bg.frame.size.height/2.0);
+            [bg addSubview:img];
+            img.userInteractionEnabled = YES;
+            UITapGestureRecognizer* tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDraw)];
+            [img addGestureRecognizer:tap2];
         }else{
-            bg = [[UIView alloc] initWithFrame:CGRectMake(0, (h-itemH)/2.0, itemW, itemH)];
-            [sbg addSubview:bg];
+            tempView.tag = 395;
+            UITapGestureRecognizer* tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDraw)];
+            [tempView addGestureRecognizer:tap2];
         }
-        bg.backgroundColor = [UIColor clearColor];
-        bg.layer.shadowRadius = 2;
-        bg.layer.shadowOpacity = 1.0;
-        bg.layer.shadowColor = [UIColor grayColor].CGColor;
-        bg.layer.shadowOffset = CGSizeMake(1, 1);
-        bg.tag = 390;
+        tempData = [[DataBaseManage getDataBaseManage] GetTemplate:self.typeid];
+        [tempView reloadViews];
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            [tempView showListAtIndex:[UDObject gethltempIndex]];
+            [self didShowItemAtIndex:[UDObject gethltempIndex]];
+        } else if ([self.typeid compare:@"2"] == NSOrderedSame){
+            [tempView showListAtIndex:[UDObject getswtempIndex]];
+            [self didShowItemAtIndex:[UDObject getswtempIndex]];
+        }else if ([self.typeid compare:@"3"] == NSOrderedSame){
+            [tempView showListAtIndex:[UDObject gethdtempIndex]];
+            [self didShowItemAtIndex:[UDObject gethdtempIndex]];
+        }
     }
-    UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, itemW, itemH)];
-    img.tag = 395;
-    img.center = CGPointMake(bg.frame.size.width/2.0, bg.frame.size.height/2.0);
-    [bg addSubview:img];
-    img.userInteractionEnabled = YES;
-    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDraw)];
-    [img addGestureRecognizer:tap];
+    [self drowImg];
+}
+-(NSInteger)numberOfItems{
+    //列表元素个数哈哈
+    return [tempData count];
+}
+-(UIView*)cellForItemAtIndex:(NSInteger)index{
+    Template *info = [tempData objectAtIndex:index];
+    NSString *nefmbbg = [[NSString alloc] initWithFormat:@"%@",info.nefmbdw];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    nefmbbg = [documentsDirectory stringByAppendingString:nefmbbg];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:nefmbbg]) {
+        NSArray* names = [info.nefmbbg componentsSeparatedByString:@"/"];
+        NSString *name = [names objectAtIndex:2];
+        [ZipDown UnzipSingle:name];
+    }
+    CGFloat itemW = 200.0;
+    CGFloat itemH = 200.0/320.0*480.0;
+    if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        nefmbbg = [nefmbbg stringByReplacingOccurrencesOfString:@"base" withString:@"home"];
+    }
+    UIImage* imgt = [[UIImage alloc]initWithContentsOfFile:nefmbbg];
+    UIImage* img2 = [[UIImage alloc] initWithCGImage:imgt.CGImage scale:2.0 orientation:UIImageOrientationUp];
+    UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0, itemW, itemH)];
+    img.image = img2;
+    return img;
+}
+
+-(void)didShowItemAtIndex:(NSInteger)index{
+    Template *info = [tempData objectAtIndex:index];
+    self.tempLoc = [[NSString alloc] initWithFormat:@"%@",info.nefmbdw];
+    self.tempId = [[NSString alloc] initWithFormat:@"%@",info.nefid];
     [self drowImg];
 }
 -(void)drowImg{
@@ -1457,18 +1515,49 @@
         NSString *name = [names objectAtIndex:2];
         [ZipDown UnzipSingle:name];
     }
-    UIImageView* view = (UIImageView*)[self.view viewWithTag:395];
-    view.image = [self getimg:nefmbbg];
-    if ([self.typeid compare:@"1"] == NSOrderedSame) {
-        UIImageView* img = (UIImageView*)[self.view viewWithTag:394];
-        NSString *homeLoc = [self.tempLoc stringByReplacingOccurrencesOfString:@"base" withString:@"home"];
-        NSString *nefmbbg = [documentsDirectory stringByAppendingString:homeLoc];
-        UIImage* ti = [[UIImage alloc] initWithContentsOfFile:nefmbbg];
-        img.image = [[UIImage alloc] initWithCGImage:ti.CGImage scale:2.0 orientation:UIImageOrientationUp];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        UIImageView* view = (UIImageView*)[self.view viewWithTag:395];
+        view.image = [self getimg:nefmbbg andIndex:self.tempId];
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            UIImageView* img = (UIImageView*)[self.view viewWithTag:394];
+            NSString *homeLoc = [self.tempLoc stringByReplacingOccurrencesOfString:@"base" withString:@"home"];
+            NSString *nefmbbg = [documentsDirectory stringByAppendingString:homeLoc];
+            UIImage* ti = [[UIImage alloc] initWithContentsOfFile:nefmbbg];
+            img.image = [[UIImage alloc] initWithCGImage:ti.CGImage scale:2.0 orientation:UIImageOrientationUp];
+        }
+    } else {
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            UIImageView* view = (UIImageView*)[self.view viewWithTag:395];
+            view.image = [self getimg:nefmbbg andIndex:self.tempId];
+        } else {
+            NSInteger cid = [tempView getIndex];
+            UIImageView* view = (UIImageView*)[tempView viewWithTag:990+cid];
+            view.image = [self getimg:nefmbbg andIndex:self.tempId];
+            NSInteger up = cid - 1;
+            if (up < 0) {
+                up = tempData.count - 1;
+            }
+            Template *info = [tempData objectAtIndex:up];
+            nefmbbg = [documentsDirectory stringByAppendingString:info.nefmbdw];
+            view = (UIImageView*)[tempView viewWithTag:990+up];
+            view.image = [self getimg:nefmbbg andIndex:[[NSString alloc] initWithFormat:@"%@",info.nefid]];
+            NSInteger down = cid + 1;
+            if (down >= tempData.count) {
+                down = 0;
+            }
+            info = [tempData objectAtIndex:down];
+            nefmbbg = [documentsDirectory stringByAppendingString:info.nefmbdw];
+            view = (UIImageView*)[tempView viewWithTag:990+down];
+            view.image = [self getimg:nefmbbg andIndex:[[NSString alloc] initWithFormat:@"%@",info.nefid]];
+        }
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            UIImageView*view = (UIImageView*)[tempView viewWithTag:990+[tempView getIndex]];
+            tempView.image = view.image;
+        }
     }
 }
--(UIImage *)getimg:(NSString *) str{
-    NSArray *dataarray = [[DataBaseManage getDataBaseManage] GetInfo:self.tempId];
+-(UIImage *)getimg:(NSString *) str andIndex:(NSString*) index{
+    NSArray *dataarray = [[DataBaseManage getDataBaseManage] GetInfo:index];
     NSInfoImg* infodata = [[NSInfoImg alloc] initWithbgImagePath:str];//背景图文件路径
     CGFloat red1 = 0.0;
     CGFloat green1 = 0.0;
@@ -1807,6 +1896,22 @@
     return NO;
 }
 -(BOOL)checkAndsaveInput{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            [UDObject sethltempIndex:[tempView getIndex]];
+        } else if ([self.typeid compare:@"2"] == NSOrderedSame){
+            [UDObject setswtempIndex:[tempView getIndex]];
+        }else if ([self.typeid compare:@"3"] == NSOrderedSame){
+            [UDObject sethdtempIndex:[tempView getIndex]];
+        }
+        if ([self.typeid compare:@"4"] != NSOrderedSame) {
+            Template *items = [tempData objectAtIndex:[tempView getIndex]];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *zipurl = [documentsDirectory stringByAppendingPathComponent:items.nefzipurl];
+            [UDObject setWebUrl:zipurl];
+        }
+    }
     [self.view endEditing:YES];
     if ([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
         if ([self isEmpty:manInput.text] || [self isEmpty:wemanInput.text]) {
@@ -2071,6 +2176,11 @@
         [TalkingData trackEvent:@"预览"];
         PreviewViewController *view = [[PreviewViewController alloc] init];
         view.type = [self.typeid intValue]-1;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            view.showTemp = YES;
+        }else{
+            view.showTemp = NO;
+        }
         view.delegate = self;
         view.modalPresentationStyle = UIModalPresentationFormSheet;
         view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;

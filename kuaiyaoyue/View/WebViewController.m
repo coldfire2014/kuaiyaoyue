@@ -25,8 +25,14 @@
         CGFloat h = 620;
         self.preferredContentSize = CGSizeMake(w, h);
 //        self.view.backgroundColor = [UIColor clearColor];
+        self.navColor = [[UIColor alloc] initWithWhite:1 alpha:0.95];
+        self.navtextColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
     }
     return self;
+}
+- (void)NavColor:(UIColor *)navColor andtextColor:(UIColor *)textColor{
+    self.navColor = navColor;
+    self.navtextColor = textColor;
 }
 - (void)viewDidLoad {
     
@@ -52,7 +58,7 @@
     self.webview.delegate = self;
     
     [self.view addSubview:self.webview];
-    WebNavBar* bar = [[WebNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0+top)];
+    WebNavBar* bar = [[WebNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0+top) andBgColor:self.navColor andTitleColor:self.navtextColor];
     bar.tag = 501;
     [bar setTitle:self.name];
     [self.view addSubview:bar];

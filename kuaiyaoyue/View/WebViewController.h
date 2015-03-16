@@ -13,4 +13,7 @@
 @property (weak ,nonatomic) NSString *weburl;
 @property (weak ,nonatomic) NSString *name;
 @property (weak ,nonatomic) NSString *viewTitle;
+@property (strong ,nonatomic) UIColor *navColor;
+@property (strong ,nonatomic) UIColor *navtextColor;
+- (void)NavColor:(UIColor *)navColor andtextColor:(UIColor *)textColor;
 @end

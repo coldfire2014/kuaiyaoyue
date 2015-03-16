@@ -104,4 +104,12 @@
 +(void)setWLupload:(NSString*)wlupload;
 +(NSString*)getZDYupload;
 +(void)setZDYupload:(NSString*)zdyupload;
+
++(void)sethltempIndex:(NSInteger)index;
++(void)sethdtempIndex:(NSInteger)index;
++(void)setswtempIndex:(NSInteger)index;
++(NSInteger)gethltempIndex;
++(NSInteger)gethdtempIndex;
++(NSInteger)getswtempIndex;
+
 @end

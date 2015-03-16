@@ -27,7 +27,7 @@
 #else
     #define YINGLOUURL @""
     #define HTTPURL @"http://appkyy.kyy121.com/invitation/"
-//#define HTTPURL @"http://10.142.59.104/invitation/"
+//    #define HTTPURL @"http://10.142.59.104/invitation/"
 //    #define ChannelId @"AppStore"
     #define ChannelId @"test"
     #define UZIP @"ZIP223"
@@ -35,6 +35,6 @@
     #define STOREDIR @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
     #define PIC_URL @"http://www.kyy121.com/fss/invitation/"
 #endif
-#define version @"5"
+#define version @"4"
 #define IPAD_FRAME CGRectMake(0, 0, MAX([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width),MIN([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width))
 #endif

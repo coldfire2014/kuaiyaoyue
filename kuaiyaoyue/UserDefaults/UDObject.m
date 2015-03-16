@@ -323,4 +323,43 @@
     [userInfo setValue:zdyupload forKey:@"zdyupload"];
     [userInfo synchronize];
 }
++(void)sethltempIndex:(NSInteger)index{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:[NSNumber numberWithInteger:index] forKey:@"hltempIndex"];
+    [userInfo synchronize];
+}
++(void)sethdtempIndex:(NSInteger)index{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:[NSNumber numberWithInteger:index] forKey:@"hdtempIndex"];
+    [userInfo synchronize];
+}
++(void)setswtempIndex:(NSInteger)index{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    [userInfo setValue:[NSNumber numberWithInteger:index] forKey:@"swtempIndex"];
+    [userInfo synchronize];
+}
++(NSInteger)gethltempIndex{
+    NSNumber* num = [[NSUserDefaults standardUserDefaults] objectForKey:@"hltempIndex"];
+    if (num == nil) {
+        return 0;
+    } else {
+        return [num integerValue];
+    }
+}
++(NSInteger)gethdtempIndex{
+    NSNumber* num = [[NSUserDefaults standardUserDefaults] objectForKey:@"hdtempIndex"];
+    if (num == nil) {
+        return 0;
+    } else {
+        return [num integerValue];
+    }
+}
++(NSInteger)getswtempIndex{
+    NSNumber* num = [[NSUserDefaults standardUserDefaults] objectForKey:@"swtempIndex"];
+    if (num == nil) {
+        return 0;
+    } else {
+        return [num integerValue];
+    }
+}
 @end

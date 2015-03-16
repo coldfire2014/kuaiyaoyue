@@ -10,7 +10,7 @@
 #import "myImageView.h"
 @implementation WebNavBar
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame andBgColor:(UIColor*)bkColor andTitleColor:(UIColor*)titleColor
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -19,7 +19,7 @@
             top = 0;
         }
         UIView* bk = [[UIView alloc] initWithFrame:self.bounds];
-        bk.backgroundColor = [UIColor colorWithWhite:1 alpha:0.95];
+        bk.backgroundColor = bkColor;//[UIColor colorWithWhite:1 alpha:0.95];
         
 //        CAGradientLayer* layer = [CAGradientLayer layer];
 //        CGRect f = CGRectMake(0, 0, self.bounds.size.height, self.bounds.size.width);
@@ -43,7 +43,8 @@
         lbl_OK.font = [UIFont systemFontOfSize:18];
         lbl_OK.text = @"返回";
         lbl_OK.textAlignment = NSTextAlignmentCenter;
-        lbl_OK.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+//        lbl_OK.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+        lbl_OK.textColor = titleColor;
         [btnLeft addSubview:lbl_OK];
         
         myImageView* btnRight = [[myImageView alloc] initWithFrame:CGRectMake(bk.frame.size.width-44.0-8.0, top, 44.0, 44.0) andImageName:@"T" withScale:2.0 andBundleName:@"imgBar"];
@@ -56,7 +57,8 @@
         lbl_OKr.font = [UIFont systemFontOfSize:18];
         lbl_OKr.text = @"刷新";
         lbl_OKr.textAlignment = NSTextAlignmentCenter;
-        lbl_OKr.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+//        lbl_OKr.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+        lbl_OKr.textColor = titleColor;
         [btnRight addSubview:lbl_OKr];
         
         myImageView* btnClose = [[myImageView alloc] initWithFrame:CGRectMake(12.0+44.0, top, 44.0, 44.0) andImageName:@"T" withScale:2.0 andBundleName:@"imgBar"];
@@ -69,7 +71,8 @@
         lbl_OKc.font = [UIFont systemFontOfSize:18];
         lbl_OKc.text = @"关闭";
         lbl_OKc.textAlignment = NSTextAlignmentCenter;
-        lbl_OKc.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+//        lbl_OKc.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+        lbl_OKc.textColor = titleColor;
         [btnClose addSubview:lbl_OKc];
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-0.5, self.frame.size.width, 0.5)];
@@ -81,7 +84,8 @@
         lbl.font = [UIFont systemFontOfSize:20];
         lbl.text = @"关闭";
         lbl.textAlignment = NSTextAlignmentCenter;
-        lbl.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+//        lbl.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
+        lbl.textColor = titleColor;
         [self addSubview:lbl];
     }
     return self;

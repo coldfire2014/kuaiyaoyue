@@ -13,12 +13,13 @@
 -(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw;
 -(void)didSendType:(int) type;
 @optional
--(UIImage *)getimg :(NSString *) str;
+-(UIImage *)getimg :(NSString *) str andIndex:(NSString*) index;
 @end
 @interface PreviewViewController : UIViewController<UIScrollViewDelegate,UIWebViewDelegate,ChangeTempViewDelegate,UIActionSheetDelegate>
 {
     ChangeTempView* tempView;
 }
+@property (nonatomic) BOOL showTemp;
 @property (strong, nonatomic) UIWebView *webview;
 @property int type;
 @property (nonatomic, strong) NSString* unquieId;

@@ -208,6 +208,7 @@
 		E5826F261A7624100055189B /* modelSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E5826F251A7624100055189B /* modelSegue.m */; };
 		E5826F291A76244C0055189B /* loginSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E5826F281A76244C0055189B /* loginSegue.m */; };
 		E5853C3F1A8D9A4C00387BD9 /* HeadImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5853C3E1A8D9A4C00387BD9 /* HeadImgView.m */; };
+		E596F69D1AB41F4B006B0B3F /* padTempView.m in Sources */ = {isa = PBXBuildFile; fileRef = E596F69C1AB41F4B006B0B3F /* padTempView.m */; };
 		E59832661A8A466100BF77B9 /* QNAsyncRun.m in Sources */ = {isa = PBXBuildFile; fileRef = E59832411A8A466100BF77B9 /* QNAsyncRun.m */; };
 		E59832671A8A466100BF77B9 /* QNConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E59832431A8A466100BF77B9 /* QNConfig.m */; };
 		E59832681A8A466100BF77B9 /* QNCrc32.m in Sources */ = {isa = PBXBuildFile; fileRef = E59832451A8A466100BF77B9 /* QNCrc32.m */; };
@@ -564,6 +565,8 @@
 		E5826F281A76244C0055189B /* loginSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginSegue.m; sourceTree = "<group>"; };
 		E5853C3D1A8D9A4C00387BD9 /* HeadImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeadImgView.h; path = ../View/HeadImgView.h; sourceTree = "<group>"; };
 		E5853C3E1A8D9A4C00387BD9 /* HeadImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeadImgView.m; path = ../View/HeadImgView.m; sourceTree = "<group>"; };
+		E596F69B1AB41F4B006B0B3F /* padTempView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = padTempView.h; path = element/padTempView.h; sourceTree = "<group>"; };
+		E596F69C1AB41F4B006B0B3F /* padTempView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = padTempView.m; path = element/padTempView.m; sourceTree = "<group>"; };
 		E59832401A8A466100BF77B9 /* QNAsyncRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNAsyncRun.h; sourceTree = "<group>"; };
 		E59832411A8A466100BF77B9 /* QNAsyncRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNAsyncRun.m; sourceTree = "<group>"; };
 		E59832421A8A466100BF77B9 /* QNConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNConfig.h; sourceTree = "<group>"; };
@@ -1195,6 +1198,8 @@
 				E55F5A071A36FA9100B0D587 /* MenuBackBtn.m */,
 				E55F5A091A3702E000B0D587 /* EditBtn.h */,
 				E55F5A0A1A3702E000B0D587 /* EditBtn.m */,
+				E596F69B1AB41F4B006B0B3F /* padTempView.h */,
+				E596F69C1AB41F4B006B0B3F /* padTempView.m */,
 			);
 			name = element;
 			path = ..;
@@ -1647,6 +1652,7 @@
 				844825891A318C810018240E /* UDObject.m in Sources */,
 				84B208811A5233ED008549B0 /* Music.m in Sources */,
 				84B5A4791A3EC9C200C55200 /* TimeTool.m in Sources */,
+				E596F69D1AB41F4B006B0B3F /* padTempView.m in Sources */,
 				84E842CB1A2EFDCB00A401A0 /* UIRefreshControl+AFNetworking.m in Sources */,
 				E5732B7F1A77C8880072143B /* DatetimeInput.m in Sources */,
 				8431E8FA1A4D01AF00E9B0EE /* RegistrationViewController.m in Sources */,

@@ -863,7 +863,7 @@ closeTimestamp:(NSString *)closeTimestamp
  */
 
 +(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, NSString *URL))callback{
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",nil];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",@"ios",@"equipment",nil];
     
     [[AFConnectionAPIClient sharedClient] POST:@"nozzle/NefEdition/edition.aspx" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         callback(YES,[JSON objectForKey:@"result"]);

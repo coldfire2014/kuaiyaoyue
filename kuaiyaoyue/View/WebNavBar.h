@@ -13,4 +13,6 @@
 -(void)closeShow:(BOOL)isShow;
 -(void)setTitle:(NSString*)title;
 -(void)setRight:(NSString*)title;
+- (instancetype)initWithFrame:(CGRect)frame andBgColor:(UIColor*)bkColor andTitleColor:(UIColor*)titleColor;
+
 @end
