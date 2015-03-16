@@ -184,11 +184,11 @@
 }
 -(CATransform3D)transformForItemView:(UIView *)view withOffset:(CGFloat)offset
 {
-    CGFloat zIndex = -30;
+    CGFloat zIndex = -15;
     perspective = -1.0f/90.0f;//透视
     CATransform3D transform = CATransform3DIdentity;
     transform.m34 = perspective;
-    CGFloat y = view.bounds.size.height+70;
+    CGFloat y = view.bounds.size.height+40;
     if (offset == -1 || offset == itemCount - 1) {
         view.alpha = 0.8;
         transform = CATransform3DTranslate(transform,0, y,zIndex);
@@ -212,7 +212,6 @@
         view.alpha = 0;
         return CATransform3DIdentity;
     }
-    
 }
 
 -(void)btnSwipe:(UISwipeGestureRecognizer *)recognizer{
@@ -231,7 +230,6 @@
             currentItemIndex++;
         }
     }
-
     [self scrollToItemAtIndex:currentItemIndex animated:YES inOrout:isIn];
     if ([_delegate respondsToSelector:@selector(didShowItemAtIndex:)]) {
         [_delegate didShowItemAtIndex:currentItemIndex];

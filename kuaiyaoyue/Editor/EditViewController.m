@@ -96,6 +96,9 @@
         showBg.showsHorizontalScrollIndicator = NO;
         showBg.showsVerticalScrollIndicator = NO;
         [self.view addSubview:showBg];
+        [self setEditList];
+        [self initPreView];
+        [self initOldInput];
         
     }else{
         UIView* mainbk = [[UIView alloc] initWithFrame:CGRectMake(0, 64.0, mainScreenFrame.size.width, mainScreenFrame.size.height - 44.0 - 64.0)];
@@ -193,10 +196,10 @@
         [savec addSubview:btnSave];
         
         [bottombk addSubview:saveBtn];
+        [self setEditList];
+        [self initPreView];
+        [self initOldInput];
     }
-    [self setEditList];
-    [self initPreView];
-    [self initOldInput];
 }
 
 -(void)addItemBg2View:(UIView*)view WithType:(int)type andTap:(NSInteger)tap andIcon:(NSString*)iconname{
@@ -500,6 +503,31 @@
         showBg.showsHorizontalScrollIndicator = NO;
         showBg.showsVerticalScrollIndicator = NO;
         [picsView addSubview:showBg];
+    }
+    else{
+        UIView* picsView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 86.0/2.0)];
+        [self addItemBg2View:picsView WithType:1 andTap:229 andIcon:@"ic_c_pics@2x"];
+        UILabel* andn = [[UILabel alloc] initWithFrame:CGRectMake(iconWidth, 0, w, 86.0/2.0)];
+        andn.font = [UIFont systemFontOfSize:14];
+        andn.backgroundColor = [UIColor clearColor];
+        andn.text=@"页面预览与编辑";
+        [picsView addSubview:andn];
+        UILabel* ande = [[UILabel alloc] initWithFrame:CGRectMake(iconWidth, 13, w, 86.0/2.0)];
+        ande.font = [UIFont systemFontOfSize:8];
+        ande.textColor = [UIColor redColor];
+        ande.backgroundColor = [UIColor clearColor];
+        ande.text=@"为保证制作效果，建议使用竖版图片。";
+        UILabel* andt = [[UILabel alloc] initWithFrame:CGRectMake(iconWidth + 100, 2, w, 86.0/2.0)];
+        andt.font = [UIFont systemFontOfSize:11];
+        andt.textColor = [UIColor redColor];
+        andt.backgroundColor = [UIColor clearColor];
+        andt.text=@"（请在右测选择图片,可添加最多9张图片）";
+        if ([self.typeid compare:@"4"] == NSOrderedSame) {
+            andt.text=@"（请在右测选择图片,可添加最多15张图片）";
+        }
+        [picsView addSubview:ande];
+        [picsView addSubview:andt];
+        ch += 86.0/2.0+12.0;
     }
     UIView* musicView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 86.0/2.0)];
     [self addItemBg2View:musicView WithType:2 andTap:230 andIcon:@"ic_c_music@2x"];
@@ -1368,13 +1396,6 @@
         self.tempLoc = @"";
         firstImgIndex = 0;
         return;
-    }//markwyb
-    else{
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            //markwyb
-        self.tempId = @"1";
-        self.tempLoc = @"/sdyy/huayang/assets/images/base";
-        }
     }
     UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
     firstImgIndex = 1;
@@ -1466,6 +1487,27 @@
             [tempView showListAtIndex:[UDObject gethdtempIndex]];
             [self didShowItemAtIndex:[UDObject gethdtempIndex]];
         }
+        UIView* upMark = [[UIView alloc] initWithFrame:CGRectMake(0, 0, showBg.bounds.size.width, 90)];
+        upMark.backgroundColor = [UIColor clearColor];
+        [showBg addSubview:upMark];
+        CAGradientLayer* layer = [CAGradientLayer layer];
+        CGRect f = CGRectMake(0, 0, upMark.bounds.size.width, upMark.bounds.size.height);
+        layer.frame = f;
+        layer.colors = [[NSArray alloc] initWithObjects:
+                        (id)[UIColor colorWithWhite:0.95 alpha:1.00].CGColor,
+                        (id)[UIColor colorWithWhite:0.95 alpha:0].CGColor, nil];
+        layer.locations = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:1.0], nil];
+        [upMark.layer addSublayer:layer];
+        UIView* downMark = [[UIView alloc] initWithFrame:CGRectMake(0, -90+showBg.frame.size.height, showBg.bounds.size.width, 90)];
+        downMark.backgroundColor = [UIColor clearColor];
+        CAGradientLayer* layer2 = [CAGradientLayer layer];
+        layer2.frame = f;
+        layer2.colors = [[NSArray alloc] initWithObjects:
+                        (id)[UIColor colorWithWhite:0.95 alpha:0.00].CGColor,
+                        (id)[UIColor colorWithWhite:0.95 alpha:1.0].CGColor, nil];
+        layer2.locations = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:1.0], nil];
+        [downMark.layer addSublayer:layer2];
+        [showBg addSubview:downMark];
     }
     [self drowImg];
 }
