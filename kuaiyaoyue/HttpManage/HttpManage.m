@@ -862,15 +862,16 @@ closeTimestamp:(NSString *)closeTimestamp
  type:"ios"
  */
 
-+(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, NSString *URL))callback{
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",@"ios",@"equipment",nil];
++(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, BOOL update))callback{
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",@"IOS",@"equipment",@"kuaiyaoyue-release",@"appId",nil];
     
-    [[AFConnectionAPIClient sharedClient] POST:@"nozzle/NefEdition/edition.aspx" parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
-        callback(YES,[JSON objectForKey:@"result"]);
+    [[AFConnectionAPIClient sharedClient] POST:UPDATE_CHECK parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
+        NSNumber* update = [JSON objectForKey:@"update"];
+        callback(YES,[update boolValue]);
         
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSLog(@"error-%@",error);
-        callback(NO,nil);
+        callback(NO,NO);
     }];
 }
 //markwyb

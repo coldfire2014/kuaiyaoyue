@@ -684,7 +684,9 @@
             des.maxCount = 1;
             des.needAnimation = NO;
             des.delegate = self;
-            des.modalPresentationStyle = UIModalPresentationFormSheet;
+            des.isHead = YES;
+            des.needLocal = YES;
+            des.modalPresentationStyle = UIModalPresentationFullScreen;
             des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
             [self presentViewController:des animated:YES completion:^{
                 
@@ -722,7 +724,9 @@
                     des.maxCount = 1;
                     des.needAnimation = NO;
                     des.delegate = self;
-                    des.modalPresentationStyle = UIModalPresentationFormSheet;
+                    des.isHead = YES;
+                    des.needLocal = YES;
+                    des.modalPresentationStyle = UIModalPresentationFullScreen;
                     des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
                     [self presentViewController:des animated:YES completion:^{}];
                 }
@@ -769,7 +773,7 @@
             {
                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                     if ([actionSheet isVisible]) {
-                        [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+                        [actionSheet dismissWithClickedButtonIndex:1 animated:NO];
                         
                     }
                 }else{
@@ -781,7 +785,9 @@
                     des.maxCount = 1;
                     des.needAnimation = NO;
                     des.delegate = self;
-                    des.modalPresentationStyle = UIModalPresentationFormSheet;
+                    des.isHead = YES;
+                    des.needLocal = YES;
+                    des.modalPresentationStyle = UIModalPresentationFullScreen;
                     des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
                     [self presentViewController:des animated:YES completion:^{}];
                 }
@@ -1050,9 +1056,15 @@
     des.maxCount = imageMax - imageCount;
     des.needAnimation = NO;
     des.delegate = self;
+    des.isHead = NO;
+    if ([self.typeid compare:@"4"] == NSOrderedSame) {
+        des.needLocal = YES;
+    } else {
+        des.needLocal = NO;
+    }
     //        des.transitioningDelegate = self;
     //        des.modalPresentationStyle = UIModalPresentationCustom;
-    des.modalPresentationStyle = UIModalPresentationFormSheet;
+    des.modalPresentationStyle = UIModalPresentationFullScreen;
     des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:des animated:YES completion:^{
         
@@ -1182,6 +1194,14 @@
     NSNumber* info = [aNotification object];
     [self showImg:[info integerValue]];
 }
+-(void)addanImage:(NSNumber*)info{
+    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+    UIView* item = [showBg viewWithTag:[info integerValue]];
+    myPicItem* pic = (myPicItem*)[item viewWithTag:item.tag-100];
+    if (![uploadFiles containsObject:pic.fileName]) {
+        [uploadFiles addObject:pic.fileName];
+    }
+}
 -(void)addaImage:(NSNotification*)aNotification{
     NSNumber* info = [aNotification object];
     UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
@@ -1239,22 +1259,50 @@
         [showBg setContentSize:CGSizeMake(32.0 + (itemW+16.0)*itemCount, itemH+1.0)];
     }
 }
--(void)didSelectAssets:(NSArray*)items{
-    if(isHead){
-        if (items.count>0) {
-            ALAsset* al = [items objectAtIndex:0];
-            UIImage* userHeadImage = [assert getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
-            headImg.img = userHeadImage;
-            [self SendPECropView:userHeadImage];
+-(void)didSelectAssets:(NSArray*)items isAssets:(BOOL)isassets{
+    if (isassets) {
+        if(isHead){
+            if (items.count>0) {
+                ALAsset* al = [items objectAtIndex:0];
+                UIImage* userHeadImage = [assert getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
+                headImg.img = userHeadImage;
+                [self SendPECropView:userHeadImage];
+            }
+        }else{
+            NSLog(@"%@",items);
+            for (int i = 0; i < items.count; i++)
+            {
+                ALAsset* al = [items objectAtIndex:i];
+                UIImage *img = [assert getImageFromAsset:al type:ASSET_PHOTO_THUMBNAIL];
+                [self addImgfromAsset:al andThumb:img orFile:@"" atIndex:imageCount];
+                imageCount++;
+            }
         }
-    }else{
-        NSLog(@"%@",items);
-        for (int i = 0; i < items.count; i++)
-        {
-            ALAsset* al = [items objectAtIndex:i];
-            UIImage *img = [assert getImageFromAsset:al type:ASSET_PHOTO_THUMBNAIL];
-            [self addImgfromAsset:al andThumb:img  orFile:@"" atIndex:imageCount];
-            imageCount++;
+    } else {
+        if(isHead){
+            if (items.count>0) {
+                NSString* al = [items objectAtIndex:0];
+                UIImage* userHeadImage = [[UIImage alloc] initWithContentsOfFile:al];
+                headImg.img = userHeadImage;
+                headImg.imgContext.image = userHeadImage;
+            }
+        }else{
+            NSLog(@"%@",items);
+            for (int i = 0; i < items.count; i++)
+            {
+                NSString* al = [items objectAtIndex:i];
+                UIImage *img = [[UIImage alloc] initWithContentsOfFile:al];
+                
+                
+                CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+                NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+                uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
+                NSString *fileName = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
+                [[NSFileManager defaultManager] copyItemAtPath:al toPath:fileName error:nil];
+                
+                [self addImgfromAsset:nil andThumb:img orFile:fileName atIndex:imageCount];
+                imageCount++;
+            }
         }
     }
 }
@@ -1285,11 +1333,10 @@
         bg1.layer.shadowOpacity = 1.0;
         bg1.layer.shadowColor = [UIColor grayColor].CGColor;
         bg1.layer.shadowOffset = CGSizeMake(1, 1);
-        
-        myPicItem *item = [[myPicItem alloc] initWithFrame:bg1.bounds fromAsset:al andThumb:img orFile:fileName];
-        item.tag = 300 + index;
-        [bg1 addSubview: item];
         bg1.tag = 400 + index;
+        myPicItem *item = [[myPicItem alloc] initWithFrame:bg1.bounds fromAsset:al andThumb:img orFile:fileName andTag: 300 + index];
+        [bg1 addSubview: item];
+        
         UIView* bgEmpty = [showBg viewWithTag: 370];
         int itemCount = firstImgIndex + 2 + index;
         if (index == imageMax - 1) {
@@ -1316,11 +1363,12 @@
         bg1.layer.shadowOpacity = 1.0;
         bg1.layer.shadowColor = [UIColor grayColor].CGColor;
         bg1.layer.shadowOffset = CGSizeMake(1, 1);
-        
-        myPicItem *item = [[myPicItem alloc] initWithFrame:bg1.bounds fromAsset:al andThumb:img orFile:fileName];
-        item.tag = 300 + index;
-        [bg1 addSubview: item];
         bg1.tag = 400 + index;
+        myPicItem *item = [[myPicItem alloc] initWithFrame:bg1.bounds fromAsset:al andThumb:img orFile:fileName andTag: 300 + index];
+        [bg1 addSubview: item];
+        if (fileName.length>0) {
+            [self addanImage:[NSNumber numberWithInteger:bg1.tag]];
+        }
         UIView* bgEmpty = [showBg viewWithTag: 370];
         int itemCount = firstImgIndex + 2 + index;
         if (index == imageMax - 1) {
@@ -1705,6 +1753,9 @@
                 if (uploads.length > 0) {
                     NSRange r = [uploads rangeOfString:imgpath];
                     if (r.length == imgpath.length) {
+                        if ([uploadFiles containsObject:imgpath]) {
+                            [uploadFiles removeObject:imgpath];
+                        }
 //                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
                     }else{
                         if (![uploadFiles containsObject:imgpath]) {
@@ -1782,6 +1833,9 @@
                 if (uploads.length > 0) {
                     NSRange r = [uploads rangeOfString:imgpath];
                     if (r.length == imgpath.length) {
+                        if ([uploadFiles containsObject:imgpath]) {
+                            [uploadFiles removeObject:imgpath];
+                        }
                         //                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
                     }else{
                         if (![uploadFiles containsObject:imgpath]) {
@@ -1859,6 +1913,9 @@
                 if (uploads.length > 0) {
                     NSRange r = [uploads rangeOfString:imgpath];
                     if (r.length == imgpath.length) {
+                        if ([uploadFiles containsObject:imgpath]) {
+                            [uploadFiles removeObject:imgpath];
+                        }
                         //                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
                     }else{
                         if (![uploadFiles containsObject:imgpath]) {
@@ -1928,6 +1985,9 @@
                 if (uploads.length > 0) {
                     NSRange r = [uploads rangeOfString:imgpath];
                     if (r.length == imgpath.length) {
+                        if ([uploadFiles containsObject:imgpath]) {
+                            [uploadFiles removeObject:imgpath];
+                        }
                         //                        recordedFile = [[NSString alloc] initWithFormat:@"%@",fileTape];
                     }else{
                         if (![uploadFiles containsObject:imgpath]) {

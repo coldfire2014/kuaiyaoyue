@@ -447,9 +447,9 @@
 
 -(void)edition{
     UIView* gx = [self.view viewWithTag: 610];
-    [HttpManage edition:@"ios" cb:^(BOOL isOK, NSString *URL) {
+    [HttpManage edition:@"ios" cb:^(BOOL isOK, BOOL update) {
         if (isOK) {
-            if (![URL isEqualToString:@"failure"]) {
+            if (update) {
                 gx.hidden = NO;
             }else{
                 gx.hidden = YES;

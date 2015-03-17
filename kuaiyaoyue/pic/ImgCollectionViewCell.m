@@ -9,6 +9,7 @@
 #import "ImgCollectionViewCell.h"
 #import "perviewImg.h"
 #import "StatusBar.h"
+#import "PCHeader.h"
 @implementation ImgCollectionViewCell
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -64,8 +65,19 @@
     CGPoint p = [t locationInView:self];
     CGPoint pc = [t locationInView:self.superview.superview];
     CGRect r = CGRectMake(self.frame.origin.x, (pc.y-p.y), self.frame.size.width, self.frame.size.height);
-    perviewImg* img = [[perviewImg alloc] initWithFrame:[UIScreen mainScreen].bounds andInitframe:r andAsset:self.asset];
-    [self.window addSubview:img];
+    CGRect f = [UIScreen mainScreen].bounds;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        f = IPAD_FRAME;
+    }
+    if ([self.imgPath compare:@""] == NSOrderedSame) {
+        perviewImg* img = [[perviewImg alloc] initWithFrame:f andInitframe:r andAsset:self.asset orImage:nil];
+        [self.window addSubview:img];
+    } else {
+        UIImage* imgt = [[UIImage alloc] initWithContentsOfFile:self.imgPath];
+        UIImage* imga = [[UIImage alloc] initWithCGImage:imgt.CGImage scale:2.0 orientation:UIImageOrientationUp];
+        perviewImg* img = [[perviewImg alloc] initWithFrame:f andInitframe:r andAsset:nil orImage:imga];
+        [self.window addSubview:img];
+    }
 }
 -(void) checkSelect{//考虑被调用地点，目前不合适（有已选项目时）
     UIView* gc = [self viewWithTag:203];

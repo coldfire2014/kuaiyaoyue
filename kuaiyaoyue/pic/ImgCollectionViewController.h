@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PCHeader.h"
 #import "AssetHelper.h"
+#import "DataBaseManage.h"
 //调用例子
 //var imgView = segue.destinationViewController as ImgCollectionViewController
 //if obj == "head" {
@@ -22,12 +23,12 @@
 //}
 @protocol ImgCollectionViewDelegate <NSObject>
 -(void)didBack;
--(void)didSelectAssets:(NSArray*)items;
+-(void)didSelectAssets:(NSArray*)items isAssets:(BOOL)isassets;
 @optional
 -(NSMutableArray*)ownAssets;
 
 @end
-@interface ImgCollectionViewController : UICollectionViewController
+@interface ImgCollectionViewController : UICollectionViewController<UIActionSheetDelegate>
 {
     BOOL isOK;
     BOOL isShow;
@@ -38,9 +39,13 @@
     NSMutableArray* selectItems;
     NSMutableArray* selectIndexs;
     NSMutableArray* selectIDs;
+    NSInteger selectLib;
+    NSInteger oldSelectLib;
 }
 @property (nonatomic,weak) id<ImgCollectionViewDelegate> delegate;
 @property (nonatomic) BOOL needAnimation;
 @property (nonatomic) int maxCount;
+@property (nonatomic) BOOL isHead;
+@property (nonatomic) BOOL needLocal;
 @end
 

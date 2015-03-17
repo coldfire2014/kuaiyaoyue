@@ -11,6 +11,7 @@
 @interface ImgCollectionViewCell : UICollectionViewCell
 @property (nonatomic ,strong) NSIndexPath* index;
 @property (nonatomic ,strong) ALAsset* asset;
+@property (nonatomic ,strong) NSString* imgPath;
 @property (nonatomic) int maxCount;
 -(void) checkSelect;
 -(void) setSelect;

@@ -311,7 +311,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_list.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="a7k-88-WVh">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="big.png" translatesAutoresizingMaskIntoConstraints="NO" id="a7k-88-WVh">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="600" id="dPi-iM-gnq"/>
@@ -752,7 +752,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aes-o2-gCr">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="101"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_top.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="FYe-7L-8BU">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small.png" translatesAutoresizingMaskIntoConstraints="NO" id="FYe-7L-8BU">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="101"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="101" id="yQT-jI-D5w"/>
@@ -1436,9 +1436,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg_list.jpg" width="640" height="360"/>
         <image name="bg_login.jpg" width="320" height="568"/>
-        <image name="bg_top.jpg" width="640" height="202"/>
+        <image name="big.png" width="640" height="360"/>
         <image name="ic_32_clock" width="16" height="16"/>
         <image name="ic_32_timer" width="16" height="16"/>
         <image name="ic_38_cancel" width="19" height="19"/>
@@ -1459,6 +1458,7 @@
         <image name="icon120.png" width="120" height="120"/>
         <image name="img_empty_namelist" width="104" height="105"/>
         <image name="logo_login.png" width="159" height="172"/>
+        <image name="small.png" width="640" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="D53-YK-KM5"/>

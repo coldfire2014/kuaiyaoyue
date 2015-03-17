@@ -7,21 +7,40 @@
 //
 
 #import "perviewImg.h"
-
+#import "PCHeader.h"
 @implementation perviewImg
-
-- (instancetype)initWithFrame:(CGRect)frame andInitframe:(CGRect)initframe andAsset:(ALAsset*)asset
+-(void)updateOrientation{
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    CGFloat pi = (CGFloat)M_PI;
+    if (orientation == UIDeviceOrientationPortrait) {
+        self.transform = CGAffineTransformIdentity;
+    }else if (orientation == UIDeviceOrientationLandscapeLeft) {
+        self.transform = CGAffineTransformMakeRotation(pi * (90.f) / 180.0f);
+        self.frame = CGRectMake(0,0, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationLandscapeRight) {
+        self.transform = CGAffineTransformMakeRotation(pi * (-90.f) / 180.0f);
+        self.frame = CGRectMake(0,0, self.frame.size.width, self.frame.size.height);
+    } else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
+    }
+}
+- (instancetype)initWithFrame:(CGRect)frame andInitframe:(CGRect)initframe andAsset:(ALAsset*)asset orImage:(UIImage*)img
 {
     self = [super initWithFrame:frame];
     if (self) {
         assert = ASSETHELPER;
         zframe = initframe;
+        BOOL i8 = ISIOS8LATER;
+        if (!i8 && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            [self updateOrientation];
+        }
         self.backgroundColor = [UIColor clearColor];
         self.alpha = 1.0;
         self.clipsToBounds = YES;
         UITapGestureRecognizer* tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didbig)];
         [self addGestureRecognizer:tap2];
-        UIImage* img = [assert getImageFromAsset:asset type:ASSET_PHOTO_SCREEN_SIZE];
+        if (img == nil) {
+            img = [assert getImageFromAsset:asset type:ASSET_PHOTO_SCREEN_SIZE];
+        }
         CGFloat iwidth = img.size.width;
         CGFloat iheight = img.size.height;
         UIView* bkd = [[UIView alloc] initWithFrame:frame];
@@ -129,7 +148,12 @@
     UIView* bk = [self viewWithTag:205];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         bkd.alpha = 1;
+        BOOL i8 = ISIOS8LATER;
         bk.center = self.center;
+        if (!i8 && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            bk.center = CGPointMake(IPAD_FRAME.size.width/2.0, IPAD_FRAME.size.height/2.0);
+        }
+        
     } completion:^(BOOL finished) {
         bk.clipsToBounds = false;
         [self goBig];
@@ -147,7 +171,7 @@
         d = smallSize.width / bigSize.width;
     }
     img.layer.transform = CATransform3DMakeScale(d, d, 1);
-    [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         img.layer.transform = CATransform3DIdentity;
     } completion:^(BOOL finished) {
         

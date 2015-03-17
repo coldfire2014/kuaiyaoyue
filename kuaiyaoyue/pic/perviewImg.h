@@ -18,6 +18,6 @@
     CGPoint previousTranslation;
     CATransform3D t;
 }
-- (instancetype)initWithFrame:(CGRect)frame andInitframe:(CGRect)initframe andAsset:(ALAsset*)asset;
+- (instancetype)initWithFrame:(CGRect)frame andInitframe:(CGRect)initframe andAsset:(ALAsset*)asset orImage:(UIImage*)img;
 @property (nonatomic,retain) UILabel* title;
 @end

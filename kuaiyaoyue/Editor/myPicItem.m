@@ -10,10 +10,11 @@
 #import "PCHeader.h"
 #import "FileManage.h"
 @implementation myPicItem
-- (instancetype)initWithFrame:(CGRect)rect fromAsset:(ALAsset*)al andThumb:(UIImage*)img orFile:(NSString*)fileName
+- (instancetype)initWithFrame:(CGRect)rect fromAsset:(ALAsset*)al andThumb:(UIImage*)img orFile:(NSString*)fileName andTag:(NSInteger)ntag
 {
     self = [super initWithFrame:rect];
     if (self) {
+        self.tag = ntag;
         self.uploaded = NO;
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor blackColor];
@@ -72,6 +73,9 @@
     [UIImageJPEGRepresentation(fullImage,C_JPEG_SIZE) writeToFile:self.fileName atomically:YES];
     self.localName = [[NSString alloc] initWithFormat:@"../Image/%@",uuid];
     [self performSelectorOnMainThread:@selector(resetImage) withObject:nil waitUntilDone:YES];
+    while ([self superview] == nil) {
+        [NSThread sleepForTimeInterval:1];
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_ADD_ME" object:[NSNumber numberWithInteger:[self superview].tag]];
 }
 -(void)resetImage{

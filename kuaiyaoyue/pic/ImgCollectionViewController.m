@@ -12,6 +12,8 @@
 #import "myImageView.h"
 #import "ImgNavBar.h"
 #import "ImgToolBar.h"
+#import "ZipDown.h"
+#import "Template.h"
 @interface ImgCollectionViewController ()
 
 @end
@@ -25,6 +27,7 @@ static NSString * const fIdentifier = @"imgcellf";
 - (void)viewDidLoad {
     [super viewDidLoad];
     isShow = YES;
+    selectLib = -1;
     selectIndexs = [[NSMutableArray alloc] init];
     selectItems = [[NSMutableArray alloc] init];
     selectIDs = [[NSMutableArray alloc] init];
@@ -33,12 +36,14 @@ static NSString * const fIdentifier = @"imgcellf";
     self.view.frame = [UIScreen mainScreen].bounds;
     CGFloat top = 20.0;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        top = 0.0;
-        w = 540;
-        h = 620;
-        self.view.frame = CGRectMake(0, 0, w, h);
+        self.view.frame = IPAD_FRAME;
+        w = self.view.frame.size.width;
+        h = self.view.frame.size.height;
+        m_w = (w-1.5*11.0)/11.0;
+    }else{
+        m_w = (w-6.0)/4.0;
     }
-    m_w = (w-6.0)/4.0;
+    
     self.clearsSelectionOnViewWillAppear = YES;
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -52,8 +57,8 @@ static NSString * const fIdentifier = @"imgcellf";
     
     // Register cell classes
     [self.collectionView registerClass:[ImgCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    [self.collectionView registerClass:[imgGroupView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:hIdentifier];
-    [self.collectionView registerClass:[imgGroupView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:fIdentifier];
+//    [self.collectionView registerClass:[imgGroupView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:hIdentifier];
+//    [self.collectionView registerClass:[imgGroupView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:fIdentifier];
     self.view.backgroundColor = [UIColor whiteColor];
     self.collectionView.backgroundColor = [[UIColor alloc] initWithWhite:1.0 alpha:0.9];
     self.collectionView.frame = CGRectMake(0, 88.0/2.0+top, w, h-88.0/2.0-top);
@@ -70,18 +75,18 @@ static NSString * const fIdentifier = @"imgcellf";
     bar.tag = 501;
     [self.view addSubview:bar];
     [self.view bringSubviewToFront:bar];
-    
-    ImgToolBar* bar2 = [[ImgToolBar alloc] initWithFrame:CGRectMake(0, h - 88.0/2.0, w, 88.0/2.0)];
+    CGFloat toolH = 48.0;
+    ImgToolBar* bar2 = [[ImgToolBar alloc] initWithFrame:CGRectMake(0, h - toolH, w, toolH)];
     bar2.tag = 502;
     [self.view addSubview:bar2];
     [self.view bringSubviewToFront:bar2];
     //加了已经有的数量
-    if (nil != [self.collectionView indexPathsForSelectedItems]) {
-        [self setNowCount:[self.collectionView indexPathsForSelectedItems].count];
-    }
+//    if (nil != [self.collectionView indexPathsForSelectedItems] && [self.collectionView indexPathsForSelectedItems].count > 0) {
+//        [self setNowCount:[self.collectionView indexPathsForSelectedItems].count];
+//    }
 }
 -(void) handleEnterForeground:(NSNotification*)noc{
-    [self initDate];
+    [self reloadData];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -91,26 +96,60 @@ static NSString * const fIdentifier = @"imgcellf";
     if ([self.delegate respondsToSelector:@selector(ownAssets)]) {
         selectItems = [self.delegate ownAssets];
     }
+    selectIDs = [[NSMutableArray alloc] init];
+    cells = [[NSMutableArray alloc] init];
+    sections = [[NSMutableArray alloc] init];
     [assert getGroupList:^(NSArray *ag) {
-        NSLog(@"%@",ag);
+        for (ALAssetsGroup* g in ag) {
+            [assert getPhotoListOfGroup:g result:^(NSArray *imgs) {
+                if (imgs != nil && imgs.count > 0) {
+                    [sections addObject:g];
+                }
+            }];
+        }
         [self reloadData];
     }];
 }
 -(void)reloadData{
-    NSInteger gc = [assert getGroupCount];
-    sections = [[NSMutableArray alloc] init];
-    cells = [[NSMutableArray alloc] init];
-    for (int i=0; i<gc; i++) {
-        NSDictionary* group = [assert getGroupInfo:i];
-        NSInteger groupCount = [[group objectForKey:@"count"] integerValue];
-        if (groupCount > 0) {
-            [sections addObject:group];
-            [assert getPhotoListOfGroupByIndex:i result:^(NSArray *imgs) {
-                [cells addObject:imgs];
-            }];
+    if (selectLib == -1) {
+        selectLib = 0;
+        oldSelectLib = 0;
+    }
+    [selectIDs removeAllObjects];
+    [cells removeAllObjects];
+    if (selectLib < sections.count) {
+        for (int i=0; i<sections.count; i++) {
+            ALAssetsGroup* g = [sections objectAtIndex:i];
+            if (i == selectLib) {
+                ImgNavBar* bar = (ImgNavBar*)[self.view viewWithTag:501];
+                [bar setTitle:[g valueForProperty:ALAssetsGroupPropertyName]];
+                [assert getPhotoListOfGroup:g result:^(NSArray *imgs) {
+                    [cells addObject:imgs];
+                }];
+            }
         }
+    } else if (self.needLocal){
+        NSInteger index = selectLib - sections.count;
+        NSString* neftypeId = @"";
+        switch (index) {
+            case 0:
+                neftypeId = @"1";
+                break;
+            case 1:
+                neftypeId = @"3";
+                break;
+            case 2:
+                neftypeId = @"2";
+                break;
+            default:
+                break;
+        }
+        NSArray *data = [[DataBaseManage getDataBaseManage] GetTemplate:neftypeId];
+        [cells addObject:data];
     }
     [self.collectionView reloadData];
+    [self setNowCount:0];
+    
     if (self.needAnimation) {
 //        ImgNavBar* bar = (ImgNavBar*)[self.view viewWithTag: 501];
 //        bar.frame = CGRectMake(0, -bar.frame.size.height, bar.frame.size.width, bar.frame.size.height);
@@ -150,7 +189,7 @@ static NSString * const fIdentifier = @"imgcellf";
         for (NSIndexPath* index in selectIndexs) {
             [self.collectionView selectItemAtIndexPath:index animated:NO scrollPosition:UICollectionViewScrollPositionNone];
         }
-        if (nil != [self.collectionView indexPathsForSelectedItems]){
+        if (nil != [self.collectionView indexPathsForSelectedItems] && [self.collectionView indexPathsForSelectedItems].count > 0){
             [selectIndexs removeAllObjects];
             [selectItems removeAllObjects];
             [self setNowCount:[self.collectionView indexPathsForSelectedItems].count];
@@ -159,16 +198,36 @@ static NSString * const fIdentifier = @"imgcellf";
         [self setNowCount:0];
         [self dismissViewControllerAnimated:YES completion:^{
             if (isOK) {
-                if (nil != [self.collectionView indexPathsForSelectedItems]){
+                if (nil != [self.collectionView indexPathsForSelectedItems] && [self.collectionView indexPathsForSelectedItems].count > 0){
                     NSArray* ips= [self.collectionView indexPathsForSelectedItems];
                     NSMutableArray* als = [[NSMutableArray alloc] init];
-                    for (NSIndexPath* index in ips) {
+                    for (NSIndexPath* index in selectIDs) {
                         NSArray* ar = [cells objectAtIndex:index.section];
-                        ALAsset* al = [ar objectAtIndex:index.row];
-                        [als addObject:al];
+                        if (selectLib < sections.count) {
+                            ALAsset* al = [ar objectAtIndex:index.row];
+                            [als addObject:al];
+                        } else {
+                            Template *info = [ar objectAtIndex:index.row];
+                            NSString *nefmbbg = [[NSString alloc] initWithFormat:@"%@",info.nefmbbg];
+                            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+                            NSString *documentsDirectory = [paths objectAtIndex:0];
+                            nefmbbg = [documentsDirectory stringByAppendingString:nefmbbg];
+                            if (self.isHead) {
+                                [als addObject:[nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"thumb"]];
+                            } else if(sections.count == selectLib){
+                                [als addObject:[nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"home"]];
+                            }else{
+                                [als addObject:nefmbbg];
+                                //                                [als addObject:[nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"base"]];
+                            }
+                        }
                     }
                     if (als.count > 0) {
-                        [self.delegate didSelectAssets:als];
+                        if (selectLib < sections.count) {
+                            [self.delegate didSelectAssets:als isAssets:YES];
+                        }else{
+                            [self.delegate didSelectAssets:als isAssets:NO];
+                        }
                     }
                 }
             }
@@ -182,8 +241,8 @@ static NSString * const fIdentifier = @"imgcellf";
 - (void) setNowCount:(NSInteger)count{
     ImgToolBar* bar = (ImgToolBar*)[self.view viewWithTag: 502];
     [bar okCount:count];
-    ImgNavBar* bar2 = (ImgNavBar*)[self.view viewWithTag: 501];
-    [bar2 okCount:count];
+//    ImgNavBar* bar2 = (ImgNavBar*)[self.view viewWithTag: 501];
+//    [bar2 okCount:count];
 }
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -191,6 +250,8 @@ static NSString * const fIdentifier = @"imgcellf";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backWithNO) name:@"MSG_BACK" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backWithOK) name:@"MSG_IMGS_OK" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(previewImage) name:@"MSG_IMGS_PV" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(libList) name:@"MSG_IMGS_LIST" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setBadge:) name:@"MSG_SET_BADGE" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addID:) name:@"MSG_ADD_ID" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeID:) name:@"MSG_REMOVE_ID" object:nil];
@@ -199,10 +260,78 @@ static NSString * const fIdentifier = @"imgcellf";
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_BACK" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_IMGS_PV" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_IMGS_LIST" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_IMGS_OK" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SET_BADGE" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_ADD_ID" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_REMOVE_ID" object:nil];
+}
+-(void)libList{
+    int listCount = 0;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择相册" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles: nil ];
+        for (int i=0; i<sections.count; i++) {
+            ALAssetsGroup* g = [sections objectAtIndex:i];
+            [as addButtonWithTitle:[g valueForProperty:ALAssetsGroupPropertyName]];
+            listCount++;
+        }
+        if (self.needLocal) {
+            [as addButtonWithTitle:@"婚礼资源"];
+            [as addButtonWithTitle:@"聚会资源"];
+            [as addButtonWithTitle:@"商务资源"];
+            listCount++;
+        }
+        if (listCount > 0) {
+            [as showInView:self.view];
+        }
+    } else {
+        
+        UIActionSheet *as=[[UIActionSheet alloc]initWithTitle:@"选择相册" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles: nil ];
+        for (int i=0; i<sections.count; i++) {
+            ALAssetsGroup* g = [sections objectAtIndex:i];
+            [as addButtonWithTitle:[g valueForProperty:ALAssetsGroupPropertyName]];
+            listCount++;
+        }
+        if (self.needLocal) {
+            [as addButtonWithTitle:@"婚礼资源"];
+            [as addButtonWithTitle:@"聚会资源"];
+            [as addButtonWithTitle:@"商务资源"];
+            listCount++;
+        }
+        if (listCount > 0) {
+            UIView* bar = [self.view viewWithTag: 501];
+            [as showFromRect:CGRectMake(55, 40, 0, 0) inView:bar animated:YES];
+        }
+    }
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == oldSelectLib || buttonIndex == -1) {
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            if ([actionSheet isVisible]) {
+                [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+            }
+        }
+    } else {
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            if ([actionSheet isVisible]) {
+                [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+            }
+        }
+        if (buttonIndex < sections.count) {
+            selectLib = buttonIndex;
+            oldSelectLib = buttonIndex;
+            [self reloadData];
+        } else {
+            selectLib = buttonIndex;
+            oldSelectLib = buttonIndex;
+            [self reloadData];
+        }
+    }
+}
+-(void)previewImage{
+    
 }
 -(void)addID:(NSNotification*)noc{
     [selectIDs addObject:[noc object]];
@@ -227,15 +356,15 @@ static NSString * const fIdentifier = @"imgcellf";
 {
     [self resignFirstResponder];
     [super viewWillAppear:animated];
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    }
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+//    }
 }
 
 - (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
     if (motion == UIEventSubtypeMotionShake) {
-        NSLog(@"Shake..........");
+        [self reloadData];
     }
 }
 -(void)back{
@@ -274,16 +403,36 @@ static NSString * const fIdentifier = @"imgcellf";
         [self setNowCount:0];
         [self dismissViewControllerAnimated:YES completion:^{
             if (isOK) {
-                if (nil != [self.collectionView indexPathsForSelectedItems]){
+                if (nil != [self.collectionView indexPathsForSelectedItems] && [self.collectionView indexPathsForSelectedItems].count > 0){
 //                    NSArray* ips= [self.collectionView indexPathsForSelectedItems];
                     NSMutableArray* als = [[NSMutableArray alloc] init];
                     for (NSIndexPath* index in selectIDs) {
                         NSArray* ar = [cells objectAtIndex:index.section];
-                        ALAsset* al = [ar objectAtIndex:index.row];
-                        [als addObject:al];
+                        if (selectLib < sections.count) {
+                            ALAsset* al = [ar objectAtIndex:index.row];
+                            [als addObject:al];
+                        } else {
+                            Template *info = [ar objectAtIndex:index.row];
+                            NSString *nefmbbg = [[NSString alloc] initWithFormat:@"%@",info.nefmbbg];
+                            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+                            NSString *documentsDirectory = [paths objectAtIndex:0];
+                            nefmbbg = [documentsDirectory stringByAppendingString:nefmbbg];
+                            if (self.isHead) {
+                                [als addObject:[nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"thumb"]];
+                            } else if(sections.count == selectLib){
+                                [als addObject:[nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"home"]];
+                            }else{
+                                [als addObject:nefmbbg];
+//                                [als addObject:[nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"base"]];
+                            }
+                        }
                     }
                     if (als.count > 0) {
-                        [self.delegate didSelectAssets:als];
+                        if (selectLib < sections.count) {
+                            [self.delegate didSelectAssets:als isAssets:YES];
+                        }else{
+                            [self.delegate didSelectAssets:als isAssets:NO];
+                        }
                     }
                 }
             }
@@ -304,16 +453,24 @@ static NSString * const fIdentifier = @"imgcellf";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 //#warning Incomplete method implementation -- Return the number of sections
-    return sections.count;
+//    return sections.count;
+    if (sections.count == 0) {
+        if (self.needLocal) {
+            return 1;
+        }
+        return 0;
+    }
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//#warning Incomplete method implementation -- Return the number of items in the section
-//    NSDictionary* dic =[sections objectAtIndex:section];
-    NSArray* ar = [cells objectAtIndex:section];
-    
-    return ar.count;//[[dic objectForKey:@"count" ] integerValue];
+    if (cells.count > 0) {
+        NSArray* ar = [cells objectAtIndex:0];
+        return ar.count;
+    }else{
+        return 0;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -325,19 +482,50 @@ static NSString * const fIdentifier = @"imgcellf";
         cell.backgroundColor = [UIColor whiteColor];
         return cell;
     }
-    ALAsset* al = [ar objectAtIndex:indexPath.row];
+    ALAsset* al = nil;
+    Template *info = nil;
     UIImageView* imgv = (UIImageView*)[cell viewWithTag:202];
-    imgv.image = [assert getImageFromAsset:al type:ASSET_PHOTO_THUMBNAIL];
+    if (selectLib < sections.count) {
+        al = [ar objectAtIndex:indexPath.row];
+        imgv.image = [assert getImageFromAsset:al type:ASSET_PHOTO_THUMBNAIL];
+        cell.asset = al;
+        cell.imgPath = @"";
+    } else {
+        info = [ar objectAtIndex:indexPath.row];
+        NSString *nefmbbg = [[NSString alloc] initWithFormat:@"%@",info.nefmbbg];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        nefmbbg = [documentsDirectory stringByAppendingString:nefmbbg];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:nefmbbg]) {
+            NSArray* names = [info.nefmbbg componentsSeparatedByString:@"/"];
+            NSString *name = [names objectAtIndex:2];
+            [ZipDown UnzipSingle:name];
+        }
+        NSString* imgPath = [nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"thumb"];
+        imgv.image = [[UIImage alloc] initWithContentsOfFile:imgPath];
+        cell.asset = nil;
+        if (self.isHead) {
+            cell.imgPath = [nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"thumb"];
+        } else if(sections.count == selectLib){
+            cell.imgPath = [nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"home"];
+        }else{
+            cell.imgPath = nefmbbg;
+//            cell.imgPath = [nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"base"];
+        }
+    }
     cell.index = indexPath;
-    cell.asset = al;
     cell.maxCount = self.maxCount;
     [cell checkSelect];
     if (selectItems.count > 0) {
-        for (ALAsset* item in selectItems) {
-            if ([[al description] compare:[item description]] == NSOrderedSame) {
-                [selectIndexs addObject:indexPath];
-                [cell setSelect];
+        if (selectLib < sections.count) {
+            for (ALAsset* item in selectItems) {
+                if ([[al description] compare:[item description]] == NSOrderedSame) {
+                    [selectIndexs addObject:indexPath];
+                    [cell setSelect];
+                }
             }
+        }else{
+            
         }
     }
     return cell;
@@ -379,8 +567,8 @@ static NSString * const fIdentifier = @"imgcellf";
     return CGSizeZero;
 }
 -(CGSize) collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-    CGSize size = [UIScreen mainScreen].bounds.size;
-    return CGSizeMake(size.width, 80.0/2.0);
+//    CGSize size = [UIScreen mainScreen].bounds.size;
+    return CGSizeZero;//return CGSizeMake(size.width, 80.0/2.0);
 }
 -(CGSize) collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(m_w, m_w);

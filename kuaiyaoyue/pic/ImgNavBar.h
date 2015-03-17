@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ImgNavBar : UIView
--(void)okCount:(NSInteger)count;
-
+-(void)setTitle:(NSString*)t_s;
 @end
