@@ -319,10 +319,10 @@
         [UIView setAnimationDelegate:self];
         //        [UIView setAnimationDidStopSelector:@selector(tapAnimationStop)];
         if (isIn) {
-            [UIView setAnimationDuration:0.55];
+            [UIView setAnimationDuration:0.35];
             [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
         } else {
-            [UIView setAnimationDuration:0.40];
+            [UIView setAnimationDuration:0.35];
             [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
         }
         

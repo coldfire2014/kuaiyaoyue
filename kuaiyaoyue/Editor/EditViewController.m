@@ -708,20 +708,26 @@
         switch (buttonIndex) {
             case 0:
             {
-                UIImagePickerController *galleryPickerController = [[UIImagePickerController alloc] init];
-                galleryPickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                galleryPickerController.delegate = self;
-                
                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                     if ([actionSheet isVisible]) {
                         [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
                         
                     }
                 }else{
-                    [self presentViewController:galleryPickerController animated:YES completion:nil];
+                    isHead = YES;
+                    UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+                    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+                    flowLayout.minimumInteritemSpacing = 0.0;
+                    ImgCollectionViewController* des = [[ImgCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
+                    des.maxCount = 1;
+                    des.needAnimation = NO;
+                    des.delegate = self;
+                    des.modalPresentationStyle = UIModalPresentationFormSheet;
+                    des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+                    [self presentViewController:des animated:YES completion:^{}];
                 }
-            }
                 break;
+            }
             case 1:
             {
                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -757,22 +763,28 @@
                 }else{
                     [self SendPECropView:headImg.img];
                 }
-            }
                 break;
+            }
             case 1:
             {
-                UIImagePickerController *galleryPickerController = [[UIImagePickerController alloc] init];
-                galleryPickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                galleryPickerController.delegate = self;
-                
                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                     if ([actionSheet isVisible]) {
                         [actionSheet dismissWithClickedButtonIndex:0 animated:NO];
+                        
                     }
                 }else{
-                    [self presentViewController:galleryPickerController animated:YES completion:nil];
+                    isHead = YES;
+                    UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+                    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+                    flowLayout.minimumInteritemSpacing = 0.0;
+                    ImgCollectionViewController* des = [[ImgCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
+                    des.maxCount = 1;
+                    des.needAnimation = NO;
+                    des.delegate = self;
+                    des.modalPresentationStyle = UIModalPresentationFormSheet;
+                    des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+                    [self presentViewController:des animated:YES completion:^{}];
                 }
-                
                 break;
             }
             case 2:
@@ -790,8 +802,8 @@
                         
                     }];
                 }
-            }
                 break;
+            }
             default:
                 break;
         }
@@ -1328,47 +1340,47 @@
     }
 }
 -(void)initPreView{
-        UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
-        CGRect r = showBg.frame;
-//        CGFloat w = r.size.width;
-        CGFloat h = r.size.height;
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            CGFloat itemW = 110.0;
-            CGFloat itemH = 165.0;
-            [self setPreviewImg];
-            UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*firstImgIndex, 0.0, itemW, itemH)];
-            bg1.backgroundColor = [[UIColor alloc] initWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1.0];
-            bg1.layer.shadowRadius = 2;
-            bg1.layer.shadowOpacity = 1.0;
-            bg1.layer.shadowColor = [UIColor grayColor].CGColor;
-            bg1.layer.shadowOffset = CGSizeMake(1, 1);
-            [showBg addSubview:bg1];
-            bg1.tag = 370;
-            [self addEmptyImg2view:bg1];
-            int itemCount = firstImgIndex + 1;
-            if ([self.typeid compare:@"1"] == NSOrderedSame) {
-                itemCount++;
-            }
-            [showBg setContentSize:CGSizeMake(6.0 + (itemW+6.0)*itemCount, itemH+1.0)];
-        } else {
-            CGFloat itemW = 200.0;
-            CGFloat itemH = 200.0/320.0*480.0;
-            [self setPreviewImg];
-            UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*firstImgIndex, (h-itemH)/2.0, itemW, itemH)];
-            bg1.backgroundColor = [[UIColor alloc] initWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1.0];
-            [showBg addSubview:bg1];
-            bg1.layer.shadowRadius = 2;
-            bg1.layer.shadowOpacity = 1.0;
-            bg1.layer.shadowColor = [UIColor grayColor].CGColor;
-            bg1.layer.shadowOffset = CGSizeMake(1, 1);
-            bg1.tag = 370;
-            [self addEmptyImg2view:bg1];
-            int itemCount = firstImgIndex + 1;
-            if ([self.typeid compare:@"1"] == NSOrderedSame) {
-                itemCount++;
-            }
-            [showBg setContentSize:CGSizeMake(32.0 + (itemW+16.0)*itemCount, h)];
+    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
+    CGRect r = showBg.frame;
+//    CGFloat w = r.size.width;
+    CGFloat h = r.size.height;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        CGFloat itemW = 110.0;
+        CGFloat itemH = 165.0;
+        [self setPreviewImg];
+        UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(6.0 + (itemW+6.0)*firstImgIndex, 0.0, itemW, itemH)];
+        bg1.backgroundColor = [[UIColor alloc] initWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1.0];
+        bg1.layer.shadowRadius = 2;
+        bg1.layer.shadowOpacity = 1.0;
+        bg1.layer.shadowColor = [UIColor grayColor].CGColor;
+        bg1.layer.shadowOffset = CGSizeMake(1, 1);
+        [showBg addSubview:bg1];
+        bg1.tag = 370;
+        [self addEmptyImg2view:bg1];
+        int itemCount = firstImgIndex + 1;
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            itemCount++;
         }
+        [showBg setContentSize:CGSizeMake(6.0 + (itemW+6.0)*itemCount, itemH+1.0)];
+    } else {
+        CGFloat itemW = 200.0;
+        CGFloat itemH = 200.0/320.0*480.0;
+        [self setPreviewImg];
+        UIView* bg1 = [[UIView alloc] initWithFrame:CGRectMake(32.0 + (itemW+16.0)*firstImgIndex, (h-itemH)/2.0, itemW, itemH)];
+        bg1.backgroundColor = [[UIColor alloc] initWithRed:222.0/255.0 green:222.0/255.0 blue:222.0/255.0 alpha:1.0];
+        [showBg addSubview:bg1];
+        bg1.layer.shadowRadius = 2;
+        bg1.layer.shadowOpacity = 1.0;
+        bg1.layer.shadowColor = [UIColor grayColor].CGColor;
+        bg1.layer.shadowOffset = CGSizeMake(1, 1);
+        bg1.tag = 370;
+        [self addEmptyImg2view:bg1];
+        int itemCount = firstImgIndex + 1;
+        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            itemCount++;
+        }
+        [showBg setContentSize:CGSizeMake(32.0 + (itemW+16.0)*itemCount, h)];
+    }
 }
 -(void) addEmptyImg2view:(UIView*)bg1{
     UIView * emptyView = [[UIView alloc] initWithFrame:bg1.bounds];
