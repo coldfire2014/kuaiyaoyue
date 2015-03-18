@@ -368,7 +368,7 @@
 //0自定义，1婚礼，2趴体
 -(void)showToptitle{
     NSDate *datenow = [NSDate date];
-    NSTimeInterval newdata = (long)[datenow timeIntervalSince1970];
+    NSTimeInterval newdata = [datenow timeIntervalSince1970];
     int runtime = 0;
     for (int i = 0; i < [data count]; i++) {
         Userdata *info = [data objectAtIndex:i];
@@ -416,10 +416,12 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [TalkingData trackPageEnd:@"首页"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [self GetRecord:@"-1"];//markwyb

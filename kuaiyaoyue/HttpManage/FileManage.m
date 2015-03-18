@@ -30,7 +30,12 @@
     
     return _sharedInstance;
 }
-
++(NSString*)getUUID{
+    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    CFRelease(uuidRef);
+    return uuid;
+}
 -(void)removeTemp{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);

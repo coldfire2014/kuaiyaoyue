@@ -65,8 +65,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_REMOVE_ME" object:[NSNumber numberWithInteger:[self superview].tag]];
 }
 -(void)loadImage:(ALAsset*)al{
-    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    NSString *uuid = [FileManage getUUID];
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
     UIImage* fullImage = [[AssetHelper sharedAssetHelper] getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
     self.fileName = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];

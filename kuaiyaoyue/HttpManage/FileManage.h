@@ -24,4 +24,5 @@
 -(NSString *)getThumb:(NSString *)name;
 -(NSString *)getImgPath:(NSString *)name;
 -(void)removeTemp;
++(NSString*)getUUID;
 @end

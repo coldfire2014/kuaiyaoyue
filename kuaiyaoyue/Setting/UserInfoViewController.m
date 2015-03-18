@@ -217,13 +217,13 @@
     }
 }
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
-    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
-    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+//    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+//    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
     CGFloat h = [[UIScreen mainScreen] bounds].size.height;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        w = 540;
+//        w = 540;
         h = 620;
-        mainScreenFrame = CGRectMake(0, 0, w, h);
+//        mainScreenFrame = CGRectMake(0, 0, w, h);
     }
     UIView* btn = [self.view viewWithTag: 517];
     [UIView animateWithDuration:0.3 animations:^{

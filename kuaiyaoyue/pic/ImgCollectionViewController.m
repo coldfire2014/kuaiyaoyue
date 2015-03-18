@@ -198,8 +198,8 @@ static NSString * const fIdentifier = @"imgcellf";
         [self setNowCount:0];
         [self dismissViewControllerAnimated:YES completion:^{
             if (isOK) {
-                if (nil != [self.collectionView indexPathsForSelectedItems] && [self.collectionView indexPathsForSelectedItems].count > 0){
-                    NSArray* ips= [self.collectionView indexPathsForSelectedItems];
+                NSArray* ips= [self.collectionView indexPathsForSelectedItems];
+                if (nil != ips && ips.count > 0){
                     NSMutableArray* als = [[NSMutableArray alloc] init];
                     for (NSIndexPath* index in selectIDs) {
                         NSArray* ar = [cells objectAtIndex:index.section];
@@ -403,8 +403,8 @@ static NSString * const fIdentifier = @"imgcellf";
         [self setNowCount:0];
         [self dismissViewControllerAnimated:YES completion:^{
             if (isOK) {
-                if (nil != [self.collectionView indexPathsForSelectedItems] && [self.collectionView indexPathsForSelectedItems].count > 0){
-//                    NSArray* ips= [self.collectionView indexPathsForSelectedItems];
+                NSArray* ips= [self.collectionView indexPathsForSelectedItems];
+                if (nil != ips && ips.count > 0){
                     NSMutableArray* als = [[NSMutableArray alloc] init];
                     for (NSIndexPath* index in selectIDs) {
                         NSArray* ar = [cells objectAtIndex:index.section];

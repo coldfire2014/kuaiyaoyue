@@ -87,7 +87,7 @@
         UIView* bkRight = [self viewWithTag:123];
         bkRight.backgroundColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
         UILabel* lbl_OK = (UILabel*)[self viewWithTag:113];
-        lbl_OK.text = [[NSString alloc] initWithFormat:@"确定(%d)",count];
+        lbl_OK.text = [[NSString alloc] initWithFormat:@"确定(%ld)",(long)count];
         lbl_OK.textColor = [UIColor whiteColor];
     }else{
         UIView* bkRight = [self viewWithTag:123];

@@ -60,34 +60,34 @@
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
     NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDateComponents * component=[calendar components:unitFlags fromDate:date];
-    NSInteger weekday= [component weekday];
+//    NSInteger weekday= [component weekday];
     
-    NSString * daystr=nil;
-    switch (weekday) {
-        case 1:
-            daystr=@"日";
-            break;
-        case 2:
-            daystr=@"一";
-            break;
-        case 3:
-            daystr=@"二";
-            break;
-        case 4:
-            daystr=@"三";
-            break;
-        case 5:
-            daystr=@"四";
-            break;
-        case 6:
-            daystr=@"五";
-            break;
-        case 7:
-            daystr=@"六";
-            break;
-        default:
-            break;
-    }
+//    NSString * daystr=nil;
+//    switch (weekday) {
+//        case 1:
+//            daystr=@"日";
+//            break;
+//        case 2:
+//            daystr=@"一";
+//            break;
+//        case 3:
+//            daystr=@"二";
+//            break;
+//        case 4:
+//            daystr=@"三";
+//            break;
+//        case 5:
+//            daystr=@"四";
+//            break;
+//        case 6:
+//            daystr=@"五";
+//            break;
+//        case 7:
+//            daystr=@"六";
+//            break;
+//        default:
+//            break;
+//    }
     
 //    NSString * string=[NSString stringWithFormat:@"%04d/%02d/%02d %02d:%02ld:%02ld",[component year],[component month],[component day],[component hour],(long)[component minute],(long)[component second]];
     NSString * string=[NSString stringWithFormat:@"%04ld-%02ld-%02ld %02ld:%02ld",(long)[component year],(long)[component month],(long)[component day],(long)[component hour],(long)[component minute]];

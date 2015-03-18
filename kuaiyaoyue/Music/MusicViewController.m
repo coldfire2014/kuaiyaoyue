@@ -196,12 +196,14 @@
 //    [self AudioPlay:file];
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     }
     [TalkingData trackPageBegin:@"音乐选择页"];
 }
 -(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
     [TalkingData trackPageEnd:@"音乐选择页"];
 }
 -(void)AudioPlay:(NSString *)recordedFile{

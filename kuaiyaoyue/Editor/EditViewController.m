@@ -230,7 +230,7 @@
         line2.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5];
         [view addSubview:line2];
     }
-    [self.editListView addSubview:view];
+    [_editListView addSubview:view];
 }
 -(void)resetInput:(UITextField*)lbl andTitle:(NSString*)title andPlaceholder:(NSString*)placeholder{
     lbl.borderStyle = UITextBorderStyleNone;
@@ -254,13 +254,13 @@
     CGFloat w = r.size.width;
     CGFloat h = r.size.height;
     CGFloat iconWidth = 18.0/2.0+48.0/2.0+12.0/2.0;
-    self.editListView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, w, h)];
-    self.editListView.backgroundColor = [UIColor clearColor];
-    [editItemList addSubview:self.editListView];
+    _editListView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, w, h)];
+    _editListView.backgroundColor = [UIColor clearColor];
+    [editItemList addSubview:_editListView];
     CGFloat ch = 36.0/2.0;
     int nextType = 1;
     imageMax = 9;
-    if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
+    if([_typeid compare:@"4"] == NSOrderedSame) {//自定义
         imageMax = 15;
         UIView* headview = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 120.0/2.0+12.0)];
         [self addItemBg2View:headview WithType:2 andTap:221 andIcon:@"ic_c_pics@2x"];
@@ -287,7 +287,7 @@
         nextType = 2;
     }
     UIView* titleview = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 86.0/2.0)];
-    if ([self.typeid compare:@"1"] == NSOrderedSame) {
+    if ([_typeid compare:@"1"] == NSOrderedSame) {
         [self addItemBg2View:titleview WithType:1 andTap:222 andIcon:@"ic_c_man@2x"];
         ch += 24.0/2.0;
         manInput = [[UITextField alloc] initWithFrame:CGRectMake(iconWidth, 0, w/2.0-18.0/2.0-48.0/2.0 -12.0/2.0, 86.0/2.0)];
@@ -320,20 +320,20 @@
         [titleview addSubview:titleInput];
     }
     ch += 86.0/2.0;
-    if ([self.typeid compare:@"1"] != NSOrderedSame) {
+    if ([_typeid compare:@"1"] != NSOrderedSame) {
         UIView* tipView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 80.0+12.0)];
         [self addItemBg2View:tipView WithType:4 andTap:223 andIcon:@"ic_c_tips@2x"];
         ch += 92.0+12.0;
         UILabel* andn = [[UILabel alloc] initWithFrame:CGRectMake(iconWidth, 0, w, 86.0/2.0)];
         andn.font = [UIFont systemFontOfSize:14];
         andn.backgroundColor = [UIColor clearColor];
-        if([self.typeid compare:@"2"] == NSOrderedSame) {//商务
+        if([_typeid compare:@"2"] == NSOrderedSame) {//商务
             andn.text=@"活动简介: ";
             tipCount = 70;
-        }else if([self.typeid compare:@"3"] == NSOrderedSame) {//玩乐
+        }else if([_typeid compare:@"3"] == NSOrderedSame) {//玩乐
             andn.text=@"温馨提示: ";
             tipCount = 70;
-        }else if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
+        }else if([_typeid compare:@"4"] == NSOrderedSame) {//自定义
             andn.text=@"封面导读: ";
             tipCount = 40;
             UILabel* tipLbl = [[UILabel alloc] initWithFrame:CGRectMake(5.0, 110.0/2.0, 90.0, 29.0)];
@@ -379,7 +379,7 @@
         hideLbl.tag = 510;
         [hideEmi addSubview:hideLbl];
     }
-    if ([self.typeid compare:@"5"] == NSOrderedSame) {//
+    if ([_typeid compare:@"5"] == NSOrderedSame) {//
 //    if ([self.typeid compare:@"4"] == NSOrderedSame) {
         UIView* applyView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 23.0)];
         [self addItemBg2View:applyView WithType:1 andTap:444 andIcon:@""];
@@ -424,7 +424,7 @@
     UIView* timeView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 86.0/2.0)];
     [self addItemBg2View:timeView WithType:2 andTap:224 andIcon:@"ic_c_clock@2x"];
     timeInput = [[UITextField alloc] initWithFrame:CGRectMake(iconWidth, 0, w-iconWidth, 86.0/2.0)];
-    if([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
+    if([_typeid compare:@"1"] == NSOrderedSame) {//婚礼
         [self resetInput:timeInput andTitle:@"婚礼时间: " andPlaceholder:@"请点击选择时间。"];
     }else {//其它
         [self resetInput:timeInput andTitle:@"活动时间: " andPlaceholder:@"请点击选择时间。"];
@@ -434,7 +434,7 @@
     [timeView addSubview:timeInput];
     
     ch += 86.0/2.0;
-    if ([self.typeid compare:@"4"] != NSOrderedSame) {
+    if ([_typeid compare:@"4"] != NSOrderedSame) {
         UIView* locationView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 86.0/2.0)];
         [self addItemBg2View:locationView WithType:3 andTap:225 andIcon:@"ic_c_location@2x"];
         ch += 86.0/2.0;
@@ -454,7 +454,7 @@
 
     ch += 110.0/2.0;
     applyHeight = ch - applyTop - 12.0;//markwyb
-    if ([self.typeid compare:@"2"] == NSOrderedSame || [self.typeid compare:@"3"] == NSOrderedSame) {
+    if ([_typeid compare:@"2"] == NSOrderedSame || [_typeid compare:@"3"] == NSOrderedSame) {
         UIView* contactmanView = [[UIView alloc] initWithFrame:CGRectMake(0, ch, w, 86.0/2.0)];
         [self addItemBg2View:contactmanView WithType:2 andTap:227 andIcon:@"ic_c_name@2x"];
         ch += 86.0/2.0;
@@ -490,7 +490,7 @@
         andt.textColor = [UIColor redColor];
         andt.backgroundColor = [UIColor clearColor];
         andt.text=@"（可添加最多9张图片。）";
-        if ([self.typeid compare:@"4"] == NSOrderedSame) {
+        if ([_typeid compare:@"4"] == NSOrderedSame) {
             andt.text=@"（可添加最多15张图片。）";
         }
         [picsView addSubview:ande];
@@ -522,7 +522,7 @@
         andt.textColor = [UIColor redColor];
         andt.backgroundColor = [UIColor clearColor];
         andt.text=@"（请在右测选择图片,可添加最多9张图片）";
-        if ([self.typeid compare:@"4"] == NSOrderedSame) {
+        if ([_typeid compare:@"4"] == NSOrderedSame) {
             andt.text=@"（请在右测选择图片,可添加最多15张图片）";
         }
         [picsView addSubview:ande];
@@ -553,7 +553,7 @@
     recordedInput = [[tapeView alloc] initWithFrame:CGRectMake(0, 0, w, 310.0/2.0)];
     [recordingView addSubview:recordedInput];
     ch+=36.0/2.0;
-    [self.editListView setContentSize:CGSizeMake(w, ch)];
+    [_editListView setContentSize:CGSizeMake(w, ch)];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -561,25 +561,25 @@
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    if ([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
+    if ([_typeid compare:@"1"] == NSOrderedSame) {//婚礼
         [TalkingData trackPageEnd:@"婚礼编辑"];
-    }else if([self.typeid compare:@"2"] == NSOrderedSame) {//商务
+    }else if([_typeid compare:@"2"] == NSOrderedSame) {//商务
         [TalkingData trackPageEnd:@"商务编辑"];
-    }else if([self.typeid compare:@"3"] == NSOrderedSame) {//玩乐
+    }else if([_typeid compare:@"3"] == NSOrderedSame) {//玩乐
         [TalkingData trackPageEnd:@"吃喝玩乐编辑"];
-    }else if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
+    }else if([_typeid compare:@"4"] == NSOrderedSame) {//自定义
         [TalkingData trackPageEnd:@"自定义编辑"];
     }
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if ([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
+    if ([_typeid compare:@"1"] == NSOrderedSame) {//婚礼
         [TalkingData trackPageBegin:@"婚礼编辑"];
-    }else if([self.typeid compare:@"2"] == NSOrderedSame) {//商务
+    }else if([_typeid compare:@"2"] == NSOrderedSame) {//商务
         [TalkingData trackPageBegin:@"商务编辑"];
-    }else if([self.typeid compare:@"3"] == NSOrderedSame) {//玩乐
+    }else if([_typeid compare:@"3"] == NSOrderedSame) {//玩乐
         [TalkingData trackPageBegin:@"吃喝玩乐编辑"];
-    }else if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
+    }else if([_typeid compare:@"4"] == NSOrderedSame) {//自定义
         [TalkingData trackPageBegin:@"自定义编辑"];
     }
 }
@@ -617,30 +617,30 @@
 }
 -(void)emiHide{
     [tipInput resignFirstResponder];
-    UIView* getLab = [self.editListView viewWithTag:510];
+    UIView* getLab = [_editListView viewWithTag:510];
     [UIView animateWithDuration:0.2 animations:^{
         getLab.alpha = 0;
     }];
 }
 -(void)applyHide{//是否需要报名
-    UIView* getLab = [self.editListView viewWithTag:502];
+    UIView* getLab = [_editListView viewWithTag:502];
     if (getLab.alpha == 0) {
-        UIView* mark = [self.editListView viewWithTag:503];
+        UIView* mark = [_editListView viewWithTag:503];
         [UIView animateWithDuration:0.2 animations:^{
             getLab.alpha = 1;
             mark.alpha = 0;
         }];
     } else {
-        UIView* mark = [self.editListView viewWithTag:503];
+        UIView* mark = [_editListView viewWithTag:503];
         if (nil == mark) {
-            CGFloat w = self.editListView.frame.size.width;
+            CGFloat w = _editListView.frame.size.width;
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                 w=w-1.0;
             }
             UIView* mark = [[UIView alloc] initWithFrame:CGRectMake(0.0, applyTop, w, applyHeight)];
             mark.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.8];
             mark.tag = 503;
-            [self.editListView addSubview:mark];
+            [_editListView addSubview:mark];
         }
         [UIView animateWithDuration:0.2 animations:^{
             getLab.alpha = 0;
@@ -856,13 +856,13 @@
     musicURL = url;
     musicInput.text = name;
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:name,@"音乐名称", nil];
-    if ([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
+    if ([_typeid compare:@"1"] == NSOrderedSame) {//婚礼
         [TalkingData trackEvent:@"音乐选择" label:@"婚礼" parameters: parameters];
-    }else if([self.typeid compare:@"2"] == NSOrderedSame) {//商务
+    }else if([_typeid compare:@"2"] == NSOrderedSame) {//商务
         [TalkingData trackEvent:@"音乐选择" label:@"商务" parameters: parameters];
-    }else if([self.typeid compare:@"3"] == NSOrderedSame) {//玩乐
+    }else if([_typeid compare:@"3"] == NSOrderedSame) {//玩乐
         [TalkingData trackEvent:@"音乐选择" label:@"吃喝玩乐" parameters: parameters];
-    }else if([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
+    }else if([_typeid compare:@"4"] == NSOrderedSame) {//自定义
         [TalkingData trackEvent:@"音乐选择" label:@"自定义" parameters: parameters];
     }
 }
@@ -891,7 +891,7 @@
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:time];
         if (time > timeDouble) {
-            if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            if ([_typeid compare:@"1"] == NSOrderedSame) {
                 [[StatusBar sharedStatusBar] talkMsg:@"报名截止时间不能大于婚礼时间" inTime:0.8];
             } else {
                 [[StatusBar sharedStatusBar] talkMsg:@"报名截止时间不能大于活动时间" inTime:0.8];
@@ -915,12 +915,12 @@
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [contactInput isFirstResponder]) {
         if (keyboardRect.size.height>360) {
-            self.editListView.frame = CGRectMake(0, -50, self.editListView.frame.size.width, self.editListView.frame.size.height);
+            _editListView.frame = CGRectMake(0, -50, _editListView.frame.size.width, _editListView.frame.size.height);
         } else {
-            self.editListView.frame = CGRectMake(0, 0, self.editListView.frame.size.width, self.editListView.frame.size.height);
+            _editListView.frame = CGRectMake(0, 0, _editListView.frame.size.width, _editListView.frame.size.height);
         }
     }else{
-        self.editListView.frame = CGRectMake(0, 0, self.editListView.frame.size.width, self.editListView.frame.size.height);
+        _editListView.frame = CGRectMake(0, 0, _editListView.frame.size.width, _editListView.frame.size.height);
     }
 }
 - (void)textViewDidEndEditing:(UITextView *)textView{
@@ -928,7 +928,7 @@
 }
 - (void)textViewDidChange:(UITextView *)textView{
     long max = 70;
-    if ([self.typeid compare:@"4"] == NSOrderedSame) {
+    if ([_typeid compare:@"4"] == NSOrderedSame) {
         max = 40;
     }
     long num = max - textView.text.length;
@@ -941,7 +941,7 @@
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-    UIView* getLab = [self.editListView viewWithTag:510];
+    UIView* getLab = [_editListView viewWithTag:510];
     [UIView animateWithDuration:0.2 animations:^{
         getLab.alpha = 1;
     }];
@@ -968,7 +968,7 @@
 }
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     if (textField == contactInput && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.editListView.frame = CGRectMake(0, 0, self.editListView.frame.size.width, self.editListView.frame.size.height);
+        _editListView.frame = CGRectMake(0, 0, _editListView.frame.size.width, _editListView.frame.size.height);
     }
     return YES;
 }
@@ -996,7 +996,7 @@
                 [DatetimeInput sharedDatetimeInput].time_delegate = self;
                 [[DatetimeInput sharedDatetimeInput] show];
             }else{
-                if ([self.typeid compare:@"1"] == NSOrderedSame) {
+                if ([_typeid compare:@"1"] == NSOrderedSame) {
                     [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入婚礼时间" inTime:0.8];
                 } else {
                     [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动时间" inTime:0.8];
@@ -1005,12 +1005,12 @@
         }else if (musicInput == textField){
             MusicViewController *des = [[MusicViewController alloc] init];
             des.delegate = self;
-            if ([self.typeid compare:@"3"] == NSOrderedSame) {
+            if ([_typeid compare:@"3"] == NSOrderedSame) {
                 des.typeid = @"4";
-            } else if ([self.typeid compare:@"4"] == NSOrderedSame) {
+            } else if ([_typeid compare:@"4"] == NSOrderedSame) {
                 des.typeid = @"5";
             } else {
-                des.typeid = self.typeid;
+                des.typeid = _typeid;
             }
             des.modalPresentationStyle = UIModalPresentationFormSheet;
             des.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -1020,7 +1020,7 @@
         }
         return NO;
     } else if (textField == contactInput && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.editListView.frame = CGRectMake(0, -50, self.editListView.frame.size.width, self.editListView.frame.size.height);
+        _editListView.frame = CGRectMake(0, -50, _editListView.frame.size.width, _editListView.frame.size.height);
     } else {
         return YES;
     }
@@ -1057,7 +1057,7 @@
     des.needAnimation = NO;
     des.delegate = self;
     des.isHead = NO;
-    if ([self.typeid compare:@"4"] == NSOrderedSame) {
+    if ([_typeid compare:@"4"] == NSOrderedSame) {
         des.needLocal = YES;
     } else {
         des.needLocal = NO;
@@ -1108,7 +1108,7 @@
 -(UIImage*)getPic:(NSInteger)tag{
     UIImage* img = nil;
     if (tag == 395) {
-        if ([self.typeid compare:@"1"] != NSOrderedSame && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if ([_typeid compare:@"1"] != NSOrderedSame && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             padTempView* view = (padTempView*)[self.view viewWithTag:tag];
             img = view.image;
         } else {
@@ -1145,7 +1145,7 @@
         }
     } else if (tag == 395) {
         if (isLeft) {
-            if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            if ([_typeid compare:@"1"] == NSOrderedSame) {
                 if (imageCount == 0) {
                     return 394;
                 }else{
@@ -1154,7 +1154,7 @@
             }
             return -1;
         } else {
-            if ([self.typeid compare:@"1"] == NSOrderedSame) {
+            if ([_typeid compare:@"1"] == NSOrderedSame) {
                 return -1;
             }
             if (imageCount == 0) {
@@ -1166,9 +1166,9 @@
     } else {
         if (isLeft) {
             if (tag == 400) {
-                if ([self.typeid compare:@"4"] == NSOrderedSame) {
+                if ([_typeid compare:@"4"] == NSOrderedSame) {
                     tag = -1;
-                } else if ([self.typeid compare:@"1"] == NSOrderedSame) {
+                } else if ([_typeid compare:@"1"] == NSOrderedSame) {
                     tag = 394;
                 } else {
                     tag = 395;
@@ -1178,7 +1178,7 @@
             }
         } else {
             if (tag == 399 + imageCount) {
-                if ([self.typeid compare:@"1"] == NSOrderedSame) {
+                if ([_typeid compare:@"1"] == NSOrderedSame) {
                     tag = 395;
                 } else {
                     tag = -1;
@@ -1240,7 +1240,7 @@
         CGFloat itemH = 165.0;
         bgEmpty.frame = CGRectMake(6.0 + (itemW+6.0)*(firstImgIndex+imageCount), 0.0, itemW, itemH);
         
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             UIView* bgDrow = [showBg viewWithTag: 390];
             bgDrow.frame = CGRectMake(6.0 + (itemW+6.0)*(firstImgIndex+imageCount+1), 0.0, itemW, itemH);
             itemCount++;
@@ -1251,7 +1251,7 @@
         CGFloat itemH = 200.0/320.0*480.0;
         CGFloat h = showBg.bounds.size.height;
         bgEmpty.frame = CGRectMake(32.0 + (itemW+16.0)*(firstImgIndex+imageCount), (h-itemH)/2.0, itemW, itemH);
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             UIView* bgDrow = [showBg viewWithTag: 390];
             bgDrow.frame = CGRectMake(32.0 + (itemW+16.0)*(firstImgIndex+imageCount+1), (h-itemH)/2.0, itemW, itemH);
             itemCount++;
@@ -1292,10 +1292,7 @@
             {
                 NSString* al = [items objectAtIndex:i];
                 UIImage *img = [[UIImage alloc] initWithContentsOfFile:al];
-                
-                
-                CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-                NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+                NSString *uuid = [FileManage getUUID];
                 uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
                 NSString *fileName = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
                 [[NSFileManager defaultManager] copyItemAtPath:al toPath:fileName error:nil];
@@ -1309,8 +1306,8 @@
 
 #pragma mark - PreviewViewControllerDelegate
 -(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw{
-    self.tempId = index;
-    self.tempLoc = nefmbdw;
+    _tempId = index;
+    _tempLoc = nefmbdw;
     [self drowImg];
 }
 -(void)didSendType:(int) type{
@@ -1346,7 +1343,7 @@
             bgEmpty.alpha = 1.0;
             bgEmpty.frame = CGRectMake(6.0 + (itemW+6.0)*(firstImgIndex+index+1), 0.0, itemW, itemH);
         }
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             UIView* bgDrow = [showBg viewWithTag: 390];
             bgDrow.frame = CGRectMake(6.0 + (itemW+6.0)*itemCount, 0, itemW, itemH);
             itemCount++;
@@ -1379,7 +1376,7 @@
             bgEmpty.frame = CGRectMake(32.0 + (itemW+16.0)*(firstImgIndex+index+1), (h-itemH)/2.0, itemW, itemH);
         }
         
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             UIView* bgDrow = [showBg viewWithTag: 390];
             bgDrow.frame = CGRectMake(32.0 + (itemW+16.0)*itemCount, (h-itemH)/2.0, itemW, itemH);
             itemCount++;
@@ -1406,7 +1403,7 @@
         bg1.tag = 370;
         [self addEmptyImg2view:bg1];
         int itemCount = firstImgIndex + 1;
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             itemCount++;
         }
         [showBg setContentSize:CGSizeMake(6.0 + (itemW+6.0)*itemCount, itemH+1.0)];
@@ -1424,7 +1421,7 @@
         bg1.tag = 370;
         [self addEmptyImg2view:bg1];
         int itemCount = firstImgIndex + 1;
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             itemCount++;
         }
         [showBg setContentSize:CGSizeMake(32.0 + (itemW+16.0)*itemCount, h)];
@@ -1452,8 +1449,8 @@
 
 -(void)setPreviewImg{
     
-    if ([self.typeid compare:@"4"] == NSOrderedSame) {
-        self.tempLoc = @"";
+    if ([_typeid compare:@"4"] == NSOrderedSame) {
+        _tempLoc = @"";
         firstImgIndex = 0;
         return;
     }
@@ -1465,7 +1462,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         itemW = 110.0;
         itemH = 165.0;
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             UIImageView* img = [[UIImageView alloc] initWithFrame:CGRectMake(6.0, 0, itemW, itemH)];
             img.tag = 394;
             img.layer.shadowRadius = 2;
@@ -1511,7 +1508,7 @@
         tempView.delegate = self;
         tempView.itemSize = CGSizeMake(itemW,itemH);
 //        markwyb
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             tempView.tag = 394;
             UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showHomePic)];
             [tempView addGestureRecognizer:tap];
@@ -1535,15 +1532,15 @@
             UITapGestureRecognizer* tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDraw)];
             [tempView addGestureRecognizer:tap2];
         }
-        tempData = [[DataBaseManage getDataBaseManage] GetTemplate:self.typeid];
+        tempData = [[DataBaseManage getDataBaseManage] GetTemplate:_typeid];
         [tempView reloadViews];
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             [tempView showListAtIndex:[UDObject gethltempIndex]];
             [self didShowItemAtIndex:[UDObject gethltempIndex]];
-        } else if ([self.typeid compare:@"2"] == NSOrderedSame){
+        } else if ([_typeid compare:@"2"] == NSOrderedSame){
             [tempView showListAtIndex:[UDObject getswtempIndex]];
             [self didShowItemAtIndex:[UDObject getswtempIndex]];
-        }else if ([self.typeid compare:@"3"] == NSOrderedSame){
+        }else if ([_typeid compare:@"3"] == NSOrderedSame){
             [tempView showListAtIndex:[UDObject gethdtempIndex]];
             [self didShowItemAtIndex:[UDObject gethdtempIndex]];
         }
@@ -1588,7 +1585,7 @@
     }
     CGFloat itemW = 200.0;
     CGFloat itemH = 200.0/320.0*480.0;
-    if ([self.typeid compare:@"1"] == NSOrderedSame) {
+    if ([_typeid compare:@"1"] == NSOrderedSame) {
         nefmbbg = [nefmbbg stringByReplacingOccurrencesOfString:@"base" withString:@"home"];
     }
     UIImage* imgt = [[UIImage alloc]initWithContentsOfFile:nefmbbg];
@@ -1600,48 +1597,46 @@
 
 -(void)didShowItemAtIndex:(NSInteger)index{
     Template *info = [tempData objectAtIndex:index];
-    self.tempLoc = [[NSString alloc] initWithFormat:@"%@",info.nefmbdw];
-    self.tempId = [[NSString alloc] initWithFormat:@"%@",info.nefid];
+    _tempLoc = [[NSString alloc] initWithFormat:@"%@",info.nefmbdw];
+    _tempId = [[NSString alloc] initWithFormat:@"%@",info.nefid];
     [self drowImg];
 }
 -(void)drowImg{
     isBgsend = NO;
-    if ([self.typeid compare:@"4"] == NSOrderedSame) {
+    if ([_typeid compare:@"4"] == NSOrderedSame) {
         return;
     }
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *nefmbbg = [documentsDirectory stringByAppendingString:self.tempLoc];
+    NSString *nefmbbg = [documentsDirectory stringByAppendingString:_tempLoc];
     if (![[NSFileManager defaultManager] fileExistsAtPath:nefmbbg]) {
-        NSArray* names = [self.tempLoc componentsSeparatedByString:@"/"];
+        NSArray* names = [_tempLoc componentsSeparatedByString:@"/"];
         NSString *name = [names objectAtIndex:2];
         [ZipDown UnzipSingle:name];
     }
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         UIImageView* view = (UIImageView*)[self.view viewWithTag:395];
-        view.image = [self getimg:nefmbbg andIndex:self.tempId];
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        view.image = [self getimg:nefmbbg andIndex:_tempId];
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             UIImageView* img = (UIImageView*)[self.view viewWithTag:394];
-            NSString *homeLoc = [self.tempLoc stringByReplacingOccurrencesOfString:@"base" withString:@"home"];
+            NSString *homeLoc = [_tempLoc stringByReplacingOccurrencesOfString:@"base" withString:@"home"];
             NSString *nefmbbg = [documentsDirectory stringByAppendingString:homeLoc];
             UIImage* ti = [[UIImage alloc] initWithContentsOfFile:nefmbbg];
             img.image = [[UIImage alloc] initWithCGImage:ti.CGImage scale:2.0 orientation:UIImageOrientationUp];
         }
     } else {
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             UIImageView* view = (UIImageView*)[self.view viewWithTag:395];
-            view.image = [self getimg:nefmbbg andIndex:self.tempId];
+            view.image = [self getimg:nefmbbg andIndex:_tempId];
         } else {
             NSInteger cid = [tempView getIndex];
-            UIImageView* view = (UIImageView*)[tempView viewWithTag:990+cid];
-            view.image = [self getimg:nefmbbg andIndex:self.tempId];
             NSInteger up = cid - 1;
             if (up < 0) {
                 up = tempData.count - 1;
             }
             Template *info = [tempData objectAtIndex:up];
             nefmbbg = [documentsDirectory stringByAppendingString:info.nefmbdw];
-            view = (UIImageView*)[tempView viewWithTag:990+up];
+            UIImageView* view = (UIImageView*)[tempView viewWithTag:990+up];
             view.image = [self getimg:nefmbbg andIndex:[[NSString alloc] initWithFormat:@"%@",info.nefid]];
             NSInteger down = cid + 1;
             if (down >= tempData.count) {
@@ -1651,6 +1646,9 @@
             nefmbbg = [documentsDirectory stringByAppendingString:info.nefmbdw];
             view = (UIImageView*)[tempView viewWithTag:990+down];
             view.image = [self getimg:nefmbbg andIndex:[[NSString alloc] initWithFormat:@"%@",info.nefid]];
+            view = (UIImageView*)[tempView viewWithTag:990+cid];
+            nefmbbg = [documentsDirectory stringByAppendingString:_tempLoc];
+            view.image = [self getimg:nefmbbg andIndex:_tempId];
         }
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             UIImageView*view = (UIImageView*)[tempView viewWithTag:990+[tempView getIndex]];
@@ -1693,7 +1691,7 @@
             }
         }
     }
-    NSArray *fixeds = [[DataBaseManage getDataBaseManage] GetFixeds:self.tempId];
+    NSArray *fixeds = [[DataBaseManage getDataBaseManage] GetFixeds:_tempId];
     for (Fixeds *info in fixeds) {
         CGFloat x = info.nefX;
         CGFloat y = info.nefY;
@@ -1710,7 +1708,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 
-    if ([self.typeid compare:@"1"] == NSOrderedSame && [UDObject getxl_name].length > 0) {//婚礼
+    if ([_typeid compare:@"1"] == NSOrderedSame && [UDObject getxl_name].length > 0) {//婚礼
         NSString* uploads = [UDObject getHLupload];
         manInput.text = [UDObject getxl_name];
         wemanInput.text = [UDObject getxn_name];
@@ -1771,11 +1769,11 @@
         }
         [self drowImg];
     }
-    else if ([self.typeid compare:@"2"] == NSOrderedSame && [UDObject getjhname].length == 0) {
+    else if ([_typeid compare:@"2"] == NSOrderedSame && [UDObject getjhname].length == 0) {
         contactmanInput.text = [UDObject getXM];
         contactInput.text = [UDObject getLXFS];
     }
-    else if ([self.typeid compare:@"2"] == NSOrderedSame && [UDObject getjhname].length > 0) {//商务
+    else if ([_typeid compare:@"2"] == NSOrderedSame && [UDObject getjhname].length > 0) {//商务
         NSString* uploads = [UDObject getSWupload];
         titleInput.text = [UDObject getjhname];
         timeDouble = [[UDObject getswtime] doubleValue]/1000.0;
@@ -1851,11 +1849,11 @@
         }
         [self drowImg];
     }
-    else if ([self.typeid compare:@"3"] == NSOrderedSame && [UDObject getwljh_name].length == 0) {
+    else if ([_typeid compare:@"3"] == NSOrderedSame && [UDObject getwljh_name].length == 0) {
         contactmanInput.text = [UDObject getXM];
         contactInput.text = [UDObject getLXFS];
     }
-    else if ([self.typeid compare:@"3"] == NSOrderedSame && [UDObject getwljh_name].length > 0) {//娱乐
+    else if ([_typeid compare:@"3"] == NSOrderedSame && [UDObject getwljh_name].length > 0) {//娱乐
         NSString* uploads = [UDObject getWLupload];
         titleInput.text = [UDObject getwljh_name];
         timeDouble = [[UDObject gewltime] doubleValue]/1000.0;
@@ -1930,7 +1928,7 @@
             }
         }
         [self drowImg];
-    } else if ([self.typeid compare:@"4"] == NSOrderedSame && [UDObject getzdytopimg].length > 0) {//自定义
+    } else if ([_typeid compare:@"4"] == NSOrderedSame && [UDObject getzdytopimg].length > 0) {//自定义
         NSString* uploads = [UDObject getZDYupload];
         NSArray *array = [[UDObject getzdytopimg] componentsSeparatedByString:@"/"];
         NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: [array lastObject]];
@@ -2011,14 +2009,14 @@
 }
 -(BOOL)checkAndsaveInput{
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        if ([self.typeid compare:@"1"] == NSOrderedSame) {
+        if ([_typeid compare:@"1"] == NSOrderedSame) {
             [UDObject sethltempIndex:[tempView getIndex]];
-        } else if ([self.typeid compare:@"2"] == NSOrderedSame){
+        } else if ([_typeid compare:@"2"] == NSOrderedSame){
             [UDObject setswtempIndex:[tempView getIndex]];
-        }else if ([self.typeid compare:@"3"] == NSOrderedSame){
+        }else if ([_typeid compare:@"3"] == NSOrderedSame){
             [UDObject sethdtempIndex:[tempView getIndex]];
         }
-        if ([self.typeid compare:@"4"] != NSOrderedSame) {
+        if ([_typeid compare:@"4"] != NSOrderedSame) {
             Template *items = [tempData objectAtIndex:[tempView getIndex]];
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
             NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -2027,7 +2025,7 @@
         }
     }
     [self.view endEditing:YES];
-    if ([self.typeid compare:@"1"] == NSOrderedSame) {//婚礼
+    if ([_typeid compare:@"1"] == NSOrderedSame) {//婚礼
         if ([self isEmpty:manInput.text] || [self isEmpty:wemanInput.text]) {
             [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入新人姓名。" inTime:1.0];
             return NO;
@@ -2058,7 +2056,7 @@
             return NO;
         }
         [self saveMarry];
-    } else if ([self.typeid compare:@"2"] == NSOrderedSame || [self.typeid compare:@"3"] == NSOrderedSame) {//商务,娱乐
+    } else if ([_typeid compare:@"2"] == NSOrderedSame || [_typeid compare:@"3"] == NSOrderedSame) {//商务,娱乐
         if ([self isEmpty:titleInput.text]) {
             [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动名称。" inTime:1.0];
             return NO;
@@ -2085,7 +2083,7 @@
             return NO;
         }
         if (tipInput.text != nil && tipInput.text.length > 70) {
-            if ([self.typeid compare:@"3"] == NSOrderedSame) {
+            if ([_typeid compare:@"3"] == NSOrderedSame) {
                 [[StatusBar sharedStatusBar] talkMsg:@"您填写的温馨提示超过了70个字。" inTime:1.0];
             } else {
                 [[StatusBar sharedStatusBar] talkMsg:@"您填写的活动简介超过了70个字。" inTime:1.0];
@@ -2106,12 +2104,12 @@
             [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
             return NO;
         }
-        if ([self.typeid compare:@"3"] == NSOrderedSame) {
+        if ([_typeid compare:@"3"] == NSOrderedSame) {
             [self savePlay];
         } else {
             [self saveBuss];
         }
-    } else if ([self.typeid compare:@"4"] == NSOrderedSame) {//自定义
+    } else if ([_typeid compare:@"4"] == NSOrderedSame) {//自定义
         if (headImg.img == nil) {
             [[StatusBar sharedStatusBar] talkMsg:@"请选择一张封面图片。" inTime:1.0];
             return NO;
@@ -2153,8 +2151,7 @@
     return YES;
 }
 -(void)saveMadePic{
-    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    NSString *uuid = [FileManage getUUID];
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
     madeFile = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     [UDObject setMbimg:[NSString stringWithFormat:@"../Image/%@",uuid]];
@@ -2256,8 +2253,7 @@
     return newImage;
 }
 -(void)saveDIY{
-    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    NSString *uuid = [FileManage getUUID];
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
     headFile = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     NSString* headName = [NSString stringWithFormat:@"../Image/%@",uuid];
@@ -2289,7 +2285,7 @@
     if ([self checkAndsaveInput]) {
         [TalkingData trackEvent:@"预览"];
         PreviewViewController *view = [[PreviewViewController alloc] init];
-        view.type = [self.typeid intValue]-1;
+        view.type = [_typeid intValue]-1;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             view.showTemp = YES;
         }else{
@@ -2322,9 +2318,9 @@
         [upfile appendFormat:@",%@",itemPic.fileName];
         [webImgs addObject:[HttpManage getWebLoc:itemPic.fileName ]];
     }
-    if ([self.typeid compare:@"1"] == NSOrderedSame) {//hl
+    if ([_typeid compare:@"1"] == NSOrderedSame) {//hl
         [UDObject setHLupload:upfile];
-        [HttpManage marry:[UDObject gettoken] bride:wemanInput.text groom:manInput.text address:locInput.text location:nil images:webImgs timestamp:[self time2str:timeDouble] background:[HttpManage getWebLoc:madeFile] musicUrl:tapeFile closeTimestamp:[self time2str:endtimeDouble] mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic){
+        [HttpManage marry:[UDObject gettoken] bride:wemanInput.text groom:manInput.text address:locInput.text location:nil images:webImgs timestamp:[self time2str:timeDouble] background:[HttpManage getWebLoc:madeFile] musicUrl:tapeFile closeTimestamp:[self time2str:endtimeDouble] mid:_tempId cb:^(BOOL isOK, NSDictionary *dic){
             if (isOK) {
                 [[waitingView sharedwaitingView] stopWait];
                 [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
@@ -2340,7 +2336,7 @@
                                         tapeFile,@"musicUrl",[self time2str:timeDouble],@"timestamp",[self time2str:endtimeDouble],@"closeTimestamp",
                                         webImgs,@"images",
                                         [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"timestamp"]],
-                                        @"date",@"0",@"number",@"0",@"total",self.tempId,@"typeId",
+                                        @"date",@"0",@"number",@"0",@"total",_tempId,@"typeId",
                                         [[NSString alloc] initWithFormat:@"%@index.html",urlhead],@"templateUrl",
                                         [[NSString alloc] initWithFormat:@"%@assets/images/preview.jpg",urlhead],@"thumb",rid,@"unquieId",url_str,@"url",
                                         nil];
@@ -2359,13 +2355,13 @@
                 [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
             }
         }];
-    } else if ([self.typeid compare:@"2"] == NSOrderedSame || [self.typeid compare:@"3"] == NSOrderedSame) {//sw//pl
-        if ([self.typeid compare:@"2"] == NSOrderedSame) {
+    } else if ([_typeid compare:@"2"] == NSOrderedSame || [_typeid compare:@"3"] == NSOrderedSame) {//sw//pl
+        if ([_typeid compare:@"2"] == NSOrderedSame) {
             [UDObject setSWupload:upfile];
         } else {
             [UDObject setWLupload:upfile];
         }
-        [HttpManage party:[UDObject gettoken] partyName:titleInput.text inviter:contactmanInput.text telephone:contactInput.text address:locInput.text images:webImgs tape:tapeFile timestamp:[self time2str:timeDouble] closetime:[self time2str:endtimeDouble] description:tipInput.text background:[HttpManage getWebLoc:madeFile] mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic) {
+        [HttpManage party:[UDObject gettoken] partyName:titleInput.text inviter:contactmanInput.text telephone:contactInput.text address:locInput.text images:webImgs tape:tapeFile timestamp:[self time2str:timeDouble] closetime:[self time2str:endtimeDouble] description:tipInput.text background:[HttpManage getWebLoc:madeFile] mid:_tempId cb:^(BOOL isOK, NSDictionary *dic) {
             if (isOK) {
                 [[waitingView sharedwaitingView] stopWait];
                 [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
@@ -2383,7 +2379,7 @@
                                         tapeFile,@"tape",[self time2str:timeDouble],@"timestamp",[self time2str:endtimeDouble],@"closeTimestamp",
                                         webImgs,@"images",
                                         [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"timestamp"]],
-                                        @"date",@"0",@"number",@"0",@"total",self.tempId,@"typeId",
+                                        @"date",@"0",@"number",@"0",@"total",_tempId,@"typeId",
                                         [[NSString alloc] initWithFormat:@"%@index.html",urlhead],@"templateUrl",
                                         [[NSString alloc] initWithFormat:@"%@assets/images/preview.jpg",urlhead],@"thumb",rid,@"unquieId",url_str,@"url",
                                         nil];
@@ -2402,10 +2398,10 @@
                 [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
             }
         }];
-    } else if ([self.typeid compare:@"4"] == NSOrderedSame) {//zdy
+    } else if ([_typeid compare:@"4"] == NSOrderedSame) {//zdy
         [upfile appendFormat:@",%@",headFile];
         [UDObject setZDYupload:upfile];
-        [HttpManage custom:[UDObject gettoken] title:titleInput.text content:tipInput.text logo:[HttpManage getWebLoc:headFile] music:tapeFile timestamp:[self time2str:timeDouble] closeTimestamp:[self time2str:endtimeDouble] images:webImgs mid:self.tempId cb:^(BOOL isOK, NSDictionary *dic) {
+        [HttpManage custom:[UDObject gettoken] title:titleInput.text content:tipInput.text logo:[HttpManage getWebLoc:headFile] music:tapeFile timestamp:[self time2str:timeDouble] closeTimestamp:[self time2str:endtimeDouble] images:webImgs mid:_tempId cb:^(BOOL isOK, NSDictionary *dic) {
             if (isOK) {
                 [[waitingView sharedwaitingView] stopWait];
                 [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
@@ -2418,7 +2414,7 @@
                                         [HttpManage getWebLoc:headFile],@"logo",tapeFile,@"music",[self time2str:timeDouble],@"timestamp",[self time2str:endtimeDouble],@"closeTimestamp",
                                         webImgs,@"images",
                                         [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"timestamp"]],
-                                        @"date",@"0",@"number",@"0",@"total",self.tempId,@"typeId",
+                                        @"date",@"0",@"number",@"0",@"total",_tempId,@"typeId",
                                         [[NSString alloc] initWithFormat:@"%@index.html",urlhead],@"templateUrl",
                                         [[NSString alloc] initWithFormat:@"%@assets/images/preview.jpg",urlhead],@"thumb",rid,@"unquieId",url_str,@"url",
                                         nil];
@@ -2475,7 +2471,7 @@
     }
 }
 -(void)uploadHead{
-    if ([self.typeid compare:@"4"] == NSOrderedSame) {
+    if ([_typeid compare:@"4"] == NSOrderedSame) {
         NSArray *names = [headFile componentsSeparatedByString:@"/"];
         [HttpManage uploadfile:headFile name:[names lastObject] cb:^(BOOL isOK, NSString *URL) {
             if (isOK) {

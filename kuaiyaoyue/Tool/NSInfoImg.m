@@ -92,12 +92,12 @@
     CGRect bounds = CGRectMake(0, 0, width, height);
     
     UIImageView* iv = [[UIImageView alloc] initWithFrame:bounds];
-    float tr = 0.0;
-    float tg = 0.0;
-    float tb = 0.0;
+//    float tr = 0.0;
+//    float tg = 0.0;
+//    float tb = 0.0;
     
-    float qto = 0.0;
-    float qtw = 0.0;
+//    float qto = 0.0;
+//    float qtw = 0.0;
     
     iv.image = _bgImg;
     for (int i = 0; i<_infoArr.count; i++) {
@@ -105,11 +105,11 @@
         NSNumber* x = (NSNumber*)[dic valueForKey:@"x"];
         NSNumber* y = (NSNumber*)[dic valueForKey:@"y"];
         
-        if (i == 1) {
-            qto = [y floatValue];
-        }else if (i == 2){
-            qtw = [y floatValue];
-        }
+//        if (i == 1) {
+//            qto = [y floatValue];
+//        }else if (i == 2){
+//            qtw = [y floatValue];
+//        }
         
         NSNumber* width = (NSNumber*)[dic valueForKey:@"width"];
         NSNumber* height = (NSNumber*)[dic valueForKey:@"height"];
@@ -118,9 +118,9 @@
         NSNumber* r = (NSNumber*)[dic valueForKey:@"r"];
         NSNumber* g = (NSNumber*)[dic valueForKey:@"g"];
         NSNumber* b = (NSNumber*)[dic valueForKey:@"b"];
-        tr = [r floatValue];
-        tg = [g floatValue];
-        tb = [b floatValue];
+//        tr = [r floatValue];
+//        tg = [g floatValue];
+//        tb = [b floatValue];
         NSString* text = [dic valueForKey:@"string"];
         NSNumber* single = (NSNumber*)[dic valueForKey:@"single"];
         NSNumber* isjz = (NSNumber*)[dic valueForKey:@"isjz"];

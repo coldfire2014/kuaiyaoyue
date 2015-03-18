@@ -107,8 +107,7 @@
     NSString *zipurl = [documentsDirectory stringByAppendingPathComponent:items.nefzipurl];
     [UDObject setWebUrl:zipurl];
     UIImage *bgimg = [self.delegate getimg:urlpath andIndex:[[NSString alloc] initWithFormat:@"%@",items.nefid]];
-    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    NSString *uuid = [FileManage getUUID];
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
     NSString *imgpath = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     [UDObject setMbimg:[NSString stringWithFormat:@"../Image/%@",uuid]];

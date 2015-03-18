@@ -24,10 +24,6 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         f = IPAD_FRAME;
     }
-    CGFloat subTap = -20;
-    if (ISIOS7LATER) {
-        subTap = 0;
-    }
     self.frame = f;
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     CGFloat pi = (CGFloat)M_PI;
@@ -53,10 +49,6 @@
         CGRect f = [UIScreen mainScreen].bounds;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             f = IPAD_FRAME;
-        }
-        CGFloat subTap = -20;
-        if (ISIOS7LATER) {
-            subTap = 0;
         }
         self.frame = f;
         [self updateOrientation];

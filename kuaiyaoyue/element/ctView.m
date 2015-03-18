@@ -100,7 +100,7 @@
                 UIView *webbg0 = [_delegate cellForItemAtIndex:i];          
                 webbg0.tag = 990+i;
                 webbg0.layer.anchorPoint = CGPointMake(1, 0);
-                webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + self.itemSize.width/2.0, bk.bounds.size.height/2.0 - self.itemSize.height/2.0);
+                webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + _itemSize.width/2.0, bk.bounds.size.height/2.0 - _itemSize.height/2.0);
                 webbg0.layer.transform = [self ftransformForItemView:webbg0 withOffset:i];
                 [bk addSubview:webbg0];
             } else {
@@ -115,7 +115,7 @@
                 UIView *webbg0 = [_delegate cellForItemAtIndex:i];
                 webbg0.tag = 990+i;
                 webbg0.layer.anchorPoint = CGPointMake(1, 0);
-                webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + self.itemSize.width/2.0, bk.bounds.size.height/2.0 - self.itemSize.height/2.0);
+                webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + _itemSize.width/2.0, bk.bounds.size.height/2.0 - _itemSize.height/2.0);
                 webbg0.layer.transform = [self ftransformForItemView:webbg0 withOffset:i];
                 [bk addSubview:webbg0];
             } else {
@@ -130,7 +130,7 @@
         UIView *webbg0 = [_delegate cellForItemAtIndex:i];
         webbg0.tag = 990+i;
         webbg0.layer.anchorPoint = CGPointMake(1, 0);
-        webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + self.itemSize.width/2.0, bk.bounds.size.height/2.0 - self.itemSize.height/2.0);
+        webbg0.center = CGPointMake(bk.bounds.size.width/2.0 + _itemSize.width/2.0, bk.bounds.size.height/2.0 - _itemSize.height/2.0);
         webbg0.layer.transform = [self transformForItemView:webbg0 withOffset:i];
         [bk addSubview:webbg0];
     } else {

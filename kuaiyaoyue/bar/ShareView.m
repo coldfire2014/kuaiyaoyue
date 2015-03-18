@@ -45,10 +45,6 @@
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             f = IPAD_FRAME;
         }
-        CGFloat subTap = -20;
-        if (ISIOS7LATER) {
-            subTap = 0;
-        }
         self.frame = f;
         [self updateOrientation];
         UIView* bg = [[UIView alloc] initWithFrame:f];
@@ -233,10 +229,6 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         f = IPAD_FRAME;
     }
-    CGFloat subTap = -20;
-    if (ISIOS7LATER) {
-        subTap = 0;
-    }
     self.frame = f;
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     CGFloat pi = (CGFloat)M_PI;
@@ -256,11 +248,6 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         f = IPAD_FRAME;
     }
-    CGFloat subTap = -20;
-    if (ISIOS7LATER) {
-        subTap = 0;
-    }
-
     [self updateOrientation];
     UIView* bg = [self viewWithTag:799];
     UIView* bg2 = [self viewWithTag:798];

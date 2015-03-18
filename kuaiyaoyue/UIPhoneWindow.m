@@ -33,10 +33,6 @@
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             mainScreenFrame = IPAD_FRAME;
         }
-        CGFloat subTap = -20;
-        if (ISIOS7LATER) {
-            subTap = 0;
-        }
         self.frame = mainScreenFrame;
         UIImageView* imgbk = [[UIImageView alloc] initWithFrame:mainScreenFrame];
         

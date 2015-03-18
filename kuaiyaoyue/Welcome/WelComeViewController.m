@@ -24,7 +24,6 @@
     [super viewDidLoad];
 }
 -(void)viewWillAppear:(BOOL)animated{
-    
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     downloadDone = NO;
@@ -32,6 +31,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doneDownload) name:@"DOWNLOAD_DONE" object:nil];
 }
 -(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
     [TalkingData trackPageEnd:@"加载页面"];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ZIP_DONE" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DOWNLOAD_DONE" object:nil];
@@ -100,38 +100,12 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [TalkingData trackPageBegin:@"加载页面"];
-//    WXMediaMessage *message = [WXMediaMessage message];
-//    WXImageObject *ext = [WXImageObject object];
-//    UIImage* img = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"1w" ofType:@"jpg"]];
-////    CGSize size = CGSizeMake(img.size.width/3.0, img.size.height/3.0);
-////    UIImage* img_s = [self imageWithImageSimple:img scaledToSize:size];
-////    message.title = @"快邀约图片";
-////    message.description = @"图片分享";
-////    [message setThumbImage:img_s];
-//    ext.imageData = UIImagePNGRepresentation(img);
-//    message.mediaObject = ext;
-//    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-//    req.bText = NO;
-//    req.message = message;
-//    req.scene = WXSceneSession;
-//    [WXApi sendReq:req];
-    NSString *name = nil;
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     if ([[UDObject gettoken] length] > 0) {
         zipDone = NO;
-        name = @"main";
         [delegate updateMata];
         [ZipDown UnzipI];
     }else{
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            if ([YINGLOUURL compare:@""] != NSOrderedSame) {
-                name = @"ylLogin";
-            } else {
-                name = @"ipadLogin";
-            }
-        } else {
-            name = @"allnew";
-        }
         zipDone = NO;
         [delegate updateMata];
         [ZipDown Unzip];

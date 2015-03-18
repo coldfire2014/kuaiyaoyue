@@ -45,7 +45,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(outofScreen) name:@"MSG_OUT_SCREEN" object:nil];
         AVAudioSession *session = [AVAudioSession sharedInstance];
         NSError *sessionError;
-        [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+        [session setCategory:AVAudioSessionCategoryRecord error:&sessionError];
         
         if(session == nil){
             NSLog(@"Error creating session: %@", [sessionError description]);
@@ -222,8 +222,7 @@
     [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:1.0];
 }
 -(NSURL*)callfile{
-    CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-    NSString *uuid= (NSString *)CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+    NSString *uuid = [FileManage getUUID];
     uuid = [NSString stringWithFormat:@"%@.wav",uuid];
     self.fileName = [[FileManage sharedFileManage] GetYPFile1:uuid] ;
     return [NSURL fileURLWithPath: self.fileName];
@@ -271,11 +270,14 @@
 //长按事件的实现方法
 - (void) LongPressed:(UILongPressGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        NSError *sessionError;
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:&sessionError];
         recorderTime = 0.0;
         recorder = [[AVAudioRecorder alloc] initWithURL:[self callfile] settings:[self getAudioRecorderSettingDict] error:nil];
         recorder.meteringEnabled = YES;
         [recorder prepareToRecord];
         [recorder record];
+    
         player = nil;
         timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(levelTimer:) userInfo:nil repeats:YES];
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -316,11 +318,13 @@
     NSError *playerError;
     if (player == nil) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:self.fileName] == YES) {
+            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
             player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: self.fileName] error:&playerError];
             [player prepareToPlay];
-            player.volume = 10.0f;
+            player.volume = 1.0f;
             player.delegate = self;
         }
+        
     }
     if (player == nil)
     {
@@ -336,7 +340,7 @@
         else
         {
             [player play];
-            playTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(playTimer:) userInfo:nil repeats:YES];
+            playTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(playTimer:) userInfo:nil repeats:YES];
         }
     }
 }
@@ -346,7 +350,7 @@
     if (count >= 3) {
         count = 0;
     }
-    [UIView animateWithDuration:0.1 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
         for (int i = 0; i<3; i++) {
             UIView* l = [playBk viewWithTag:113-i];
             if (i>=count) {

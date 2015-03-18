@@ -29,7 +29,7 @@
     // Do any additional setup after loading the view.
     self.title = @"返回";
     self.view.backgroundColor = [UIColor redColor];
-    UIImageView* bk = [[UIImageView alloc] initWithImage:self.bgimg];
+    UIImageView* bk = [[UIImageView alloc] initWithImage:_bgimg];
     
     UIVisualEffectView* all = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
     all.frame = bk.bounds;
@@ -168,6 +168,7 @@
     [TalkingData trackPageBegin:@"新建菜单"];
 }
 -(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [TalkingData trackPageEnd:@"新建菜单"];
 }
 
@@ -189,7 +190,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didTapOne{
-    self.tapID = 401;
+    _tapID = 401;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [self performSegueWithIdentifier:@"newedit" sender:@"3"];
     } else {
@@ -198,7 +199,7 @@
     [TalkingData trackEvent:@"开启吃喝玩乐编辑"];
 }
 - (void)didTapTwo{
-    self.tapID = 402;
+    _tapID = 402;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [self performSegueWithIdentifier:@"newedit" sender:@"2"];
     } else {
@@ -207,7 +208,7 @@
     [TalkingData trackEvent:@"开启商务编辑"];
 }
 - (void)didTapThree{
-    self.tapID = 403;
+    _tapID = 403;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [self performSegueWithIdentifier:@"newedit" sender:@"1"];
     } else {
@@ -216,7 +217,7 @@
     [TalkingData trackEvent:@"开启婚礼编辑"];
 }
 - (void)didTapFour{
-    self.tapID = 404;
+    _tapID = 404;
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [self performSegueWithIdentifier:@"newedit" sender:@"4"];
 //    } else {
@@ -253,7 +254,7 @@
     }
     else{
         TemplateViewController* des = (TemplateViewController*)segue.destinationViewController;
-        des.bgimg = (UIImage*)self.bgimg;
+        des.bgimg = _bgimg;
         des.type = (NSString*)sender;
         NSLog(@"%@",(NSString*)sender);
     }

@@ -40,7 +40,7 @@
         bk.tag = 101;
         [self addSubview:bk];
         
-        UIView* btnRight = [[UIView alloc] initWithFrame:CGRectMake(bk.frame.size.width-60.0, 20.0, 60.0, 44.0)];
+        UIView* btnRight = [[UIView alloc] initWithFrame:CGRectMake(bk.frame.size.width-60.0, top, 60.0, 44.0)];
         btnRight.backgroundColor = [UIColor clearColor];
         btnRight.tag = 103;
         [bk addSubview:btnRight];
@@ -54,7 +54,7 @@
         lbl_OK.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
         [btnRight addSubview:lbl_OK];
         
-        UIView* btnLeft = [[UIView alloc] initWithFrame:CGRectMake(0.0, 20.0, 60.0, 44.0)];
+        UIView* btnLeft = [[UIView alloc] initWithFrame:CGRectMake(0.0, top, 60.0, 44.0)];
         btnLeft.backgroundColor = [UIColor clearColor];
         btnLeft.tag = 104;
         [bk addSubview:btnLeft];
@@ -72,7 +72,7 @@
         line.backgroundColor = [UIColor colorWithWhite:0.4 alpha:0.5];
         [self addSubview:line];
         
-        UILabel* lbl_title = [[UILabel alloc] initWithFrame:CGRectMake(60.0, 20.0, bk.frame.size.width-120.0, 44.0)];
+        UILabel* lbl_title = [[UILabel alloc] initWithFrame:CGRectMake(60.0, top, bk.frame.size.width-120.0, 44.0)];
         lbl_title.tag = 105;
         lbl_title.font = [UIFont boldSystemFontOfSize:19];
         lbl_title.text = @"相册";
