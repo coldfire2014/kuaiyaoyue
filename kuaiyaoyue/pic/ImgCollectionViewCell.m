@@ -10,12 +10,13 @@
 #import "perviewImg.h"
 #import "StatusBar.h"
 #import "PCHeader.h"
+#import "ZipDown.h"
 @implementation ImgCollectionViewCell
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor greenColor];
+        self.backgroundColor = [UIColor grayColor];
         UIImageView* img = [[UIImageView alloc] initWithFrame:self.bounds];
         img.tag = 202;
         [self addSubview:img];
@@ -136,5 +137,20 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_SET_BADGE" object:count];
         }];
     }
+}
+-(void)ci:(NSString*)p{
+    UIImageView* imgv = (UIImageView*)[self viewWithTag:202];
+    imgv.image = [[UIImage alloc] initWithContentsOfFile:p];
+}
+-(void) changeImage:(NSString*)name{
+    NSArray* names = [name componentsSeparatedByString:@"/"];
+    NSString *zname = [names objectAtIndex:2];
+    [ZipDown UnzipSingle:zname];
+    NSString *nefmbbg = [[NSString alloc] initWithFormat:@"%@",name];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    nefmbbg = [documentsDirectory stringByAppendingString:nefmbbg];
+    NSString* imgPath = [nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"thumb"];
+    [self performSelectorOnMainThread:@selector(ci:) withObject:imgPath waitUntilDone:YES];
 }
 @end

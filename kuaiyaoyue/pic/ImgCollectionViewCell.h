@@ -15,4 +15,5 @@
 @property (nonatomic) int maxCount;
 -(void) checkSelect;
 -(void) setSelect;
+-(void) changeImage:(NSString*)name;
 @end

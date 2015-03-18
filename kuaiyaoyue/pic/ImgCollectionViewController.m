@@ -112,8 +112,8 @@ static NSString * const fIdentifier = @"imgcellf";
 }
 -(void)reloadData{
     if (selectLib == -1) {
-        selectLib = 0;
-        oldSelectLib = 0;
+        selectLib = 1;
+        oldSelectLib = 1;
     }
     [selectIDs removeAllObjects];
     [cells removeAllObjects];
@@ -131,16 +131,26 @@ static NSString * const fIdentifier = @"imgcellf";
     } else if (self.needLocal){
         NSInteger index = selectLib - sections.count;
         NSString* neftypeId = @"";
+        ImgNavBar* bar = (ImgNavBar*)[self.view viewWithTag:501];
         switch (index) {
             case 0:
+            {
                 neftypeId = @"1";
+                [bar setTitle:@"婚礼资源"];
                 break;
+            }
             case 1:
+            {
                 neftypeId = @"3";
+                [bar setTitle:@"聚会资源"];
                 break;
+            }
             case 2:
+            {
                 neftypeId = @"2";
+                [bar setTitle:@"商务资源"];
                 break;
+            }
             default:
                 break;
         }
@@ -497,12 +507,12 @@ static NSString * const fIdentifier = @"imgcellf";
         NSString *documentsDirectory = [paths objectAtIndex:0];
         nefmbbg = [documentsDirectory stringByAppendingString:nefmbbg];
         if (![[NSFileManager defaultManager] fileExistsAtPath:nefmbbg]) {
-            NSArray* names = [info.nefmbbg componentsSeparatedByString:@"/"];
-            NSString *name = [names objectAtIndex:2];
-            [ZipDown UnzipSingle:name];
+            [cell performSelectorInBackground:@selector(changeImage:) withObject:info.nefmbbg];
+            
+        }else{
+            NSString* imgPath = [nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"thumb"];
+            imgv.image = [[UIImage alloc] initWithContentsOfFile:imgPath];
         }
-        NSString* imgPath = [nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"thumb"];
-        imgv.image = [[UIImage alloc] initWithContentsOfFile:imgPath];
         cell.asset = nil;
         if (self.isHead) {
             cell.imgPath = [nefmbbg stringByReplacingOccurrencesOfString:@"preview" withString:@"thumb"];
