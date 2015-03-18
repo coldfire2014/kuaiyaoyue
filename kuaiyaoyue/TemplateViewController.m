@@ -129,13 +129,18 @@
     }
     
     [bk addSubview:title];
-
+    UIView* backall_btn = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 88.0/2.0, 88.0/2.0)];
+    backall_btn.backgroundColor = [UIColor clearColor];
+    backall_btn.center = CGPointMake(mainScreenFrame.size.width-31.0, 20.0+subTap + 29.0);
+    backall_btn.tag = 304;
+    [self.view addSubview:backall_btn];
+    
     myImageView* backall = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 54.0/2.0, 54.0/2.0) andImageName:@"ic_54_x@2x" withScale:2.0];
-    backall.center = CGPointMake(mainScreenFrame.size.width-31.0, 20.0+subTap + 29.0);
-    backall.tag = 304;
-    [self.view addSubview:backall];
+    backall.center = CGPointMake(44.0/2.0, 44.0/2.0);
+    
+    [backall_btn addSubview:backall];
     UITapGestureRecognizer* panall = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backAll)];
-    [backall addGestureRecognizer:panall];
+    [backall_btn addGestureRecognizer:panall];
     
     MenuBackBtn* backBtn = [[MenuBackBtn alloc] initWithFrame:CGRectMake(0, 20.0+subTap, 88.0/2.0, 88.0/2.0) andType:self.type];
     backBtn.tag = 303;

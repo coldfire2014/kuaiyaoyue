@@ -1214,18 +1214,18 @@
 		E56863A81A77202700DB6EA4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E56863B01A772CD200DB6EA4 /* music.json */,
+				E56863B21A77327600DB6EA4 /* template.json */,
 				84B5D1131A43C44700C5C6E8 /* ZipDown.h */,
 				84B5D1141A43C44700C5C6E8 /* ZipDown.m */,
-				84E842D11A2F087A00A401A0 /* HttpManage.h */,
-				84E842D21A2F087A00A401A0 /* HttpManage.m */,
 				84B473861A2FFEC800A21457 /* FileManage.h */,
 				84B473871A2FFEC800A21457 /* FileManage.m */,
+				84E842D11A2F087A00A401A0 /* HttpManage.h */,
+				84E842D21A2F087A00A401A0 /* HttpManage.m */,
 				E56863A91A7720B500DB6EA4 /* musicController.h */,
 				E56863AA1A7720B500DB6EA4 /* musicController.m */,
 				E56863AC1A77213000DB6EA4 /* templateController.h */,
 				E56863AD1A77213000DB6EA4 /* templateController.m */,
-				E56863B01A772CD200DB6EA4 /* music.json */,
-				E56863B21A77327600DB6EA4 /* template.json */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
