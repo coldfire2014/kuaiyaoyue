@@ -288,6 +288,7 @@
                 }
             }
             inGetRecord = NO;
+            [_tableview headerEndRefreshing];
         }];
     }
 }
@@ -327,7 +328,10 @@
                     [self reloaddata];
                 }
             }
+            [_tableview footerEndRefreshing];
         }];
+    }else{
+        [_tableview footerEndRefreshing];
     }
 }
 -(void)reloaddata{
@@ -431,7 +435,6 @@
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
     return img;
 }
 
@@ -495,23 +498,12 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
-    // 2.2秒后刷新表格UI
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 刷新表格
-        
-        [self GetRecord:@"-1"];
-        [_tableview headerEndRefreshing];
-    });
+    [self GetRecord:@"-1"];
 }
 
 - (void)footerRereshing
 {
-    // 2.2秒后刷新表格UI
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self getBottomRecord];
-        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
-        [_tableview footerEndRefreshing];
-    });
+    [self getBottomRecord];
 }
 
 

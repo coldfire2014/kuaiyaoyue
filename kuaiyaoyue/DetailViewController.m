@@ -155,33 +155,14 @@
 #pragma mark 开始进入刷新状态
 - (void)headerRereshing
 {
-    // 2.2秒后刷新表格UI
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self renewal];
-        
-        
-    });
+    [self renewal];
 }
 
 - (void)footerRereshing
 {
-    // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 刷新表格
-//        for (int i = 0; i< 4; i++) {
-//            NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-//                                 @"哈哈哈",@"name",
-//                                 @"12",@"count",
-//                                 @"18650140605",@"phone",
-//                                 @"哈哈哈",@"talk",nil];
-//            [data addObject:dic];
-//        }
-//        [_tableView reloadData];
-        
-        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
         [_tableView footerEndRefreshing];
     });
-    
 }
 
 /*
