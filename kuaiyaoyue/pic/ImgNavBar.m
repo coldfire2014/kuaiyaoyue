@@ -54,7 +54,7 @@
         lbl_OK.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
         [btnRight addSubview:lbl_OK];
         
-        UIView* btnLeft = [[UIView alloc] initWithFrame:CGRectMake(0.0, top, 60.0, 44.0)];
+        UIView* btnLeft = [[UIView alloc] initWithFrame:CGRectMake(0.0, top, 70.0, 44.0)];
         btnLeft.backgroundColor = [UIColor clearColor];
         btnLeft.tag = 104;
         [bk addSubview:btnLeft];
@@ -63,7 +63,7 @@
         UILabel* lbl_PV = [[UILabel alloc] initWithFrame:btnLeft.bounds];
         lbl_PV.tag = 114;
         lbl_PV.font = [UIFont systemFontOfSize:18];
-        lbl_PV.text = @"相册";
+        lbl_PV.text = @"相册…";
         lbl_PV.textAlignment = NSTextAlignmentCenter;
         lbl_PV.textColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
         [btnLeft addSubview:lbl_PV];

@@ -86,7 +86,9 @@ static NSString * const fIdentifier = @"imgcellf";
 //    }
 }
 -(void) handleEnterForeground:(NSNotification*)noc{
-    [self reloadData];
+    if (selectLib < sections.count) {
+        [self reloadData];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -112,8 +114,8 @@ static NSString * const fIdentifier = @"imgcellf";
 }
 -(void)reloadData{
     if (selectLib == -1) {
-        selectLib = 1;
-        oldSelectLib = 1;
+        selectLib = 0;
+        oldSelectLib = 0;
     }
     [selectIDs removeAllObjects];
     [cells removeAllObjects];
@@ -311,7 +313,7 @@ static NSString * const fIdentifier = @"imgcellf";
         }
         if (listCount > 0) {
             UIView* bar = [self.view viewWithTag: 501];
-            [as showFromRect:CGRectMake(55, 40, 0, 0) inView:bar animated:YES];
+            [as showFromRect:CGRectMake(52.0, 40.0, 0, 0) inView:bar animated:YES];
         }
     }
 }
