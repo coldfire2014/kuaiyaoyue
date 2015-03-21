@@ -208,6 +208,7 @@
 		E5826F261A7624100055189B /* modelSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E5826F251A7624100055189B /* modelSegue.m */; };
 		E5826F291A76244C0055189B /* loginSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E5826F281A76244C0055189B /* loginSegue.m */; };
 		E5853C3F1A8D9A4C00387BD9 /* HeadImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5853C3E1A8D9A4C00387BD9 /* HeadImgView.m */; };
+		E586E46E1ABBD68D0038C431 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E586E46D1ABBD68D0038C431 /* AVFoundation.framework */; };
 		E596F69D1AB41F4B006B0B3F /* padTempView.m in Sources */ = {isa = PBXBuildFile; fileRef = E596F69C1AB41F4B006B0B3F /* padTempView.m */; };
 		E59832661A8A466100BF77B9 /* QNAsyncRun.m in Sources */ = {isa = PBXBuildFile; fileRef = E59832411A8A466100BF77B9 /* QNAsyncRun.m */; };
 		E59832671A8A466100BF77B9 /* QNConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E59832431A8A466100BF77B9 /* QNConfig.m */; };
@@ -567,6 +568,7 @@
 		E5826F281A76244C0055189B /* loginSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginSegue.m; sourceTree = "<group>"; };
 		E5853C3D1A8D9A4C00387BD9 /* HeadImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeadImgView.h; path = ../View/HeadImgView.h; sourceTree = "<group>"; };
 		E5853C3E1A8D9A4C00387BD9 /* HeadImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeadImgView.m; path = ../View/HeadImgView.m; sourceTree = "<group>"; };
+		E586E46D1ABBD68D0038C431 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E596F69B1AB41F4B006B0B3F /* padTempView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = padTempView.h; path = element/padTempView.h; sourceTree = "<group>"; };
 		E596F69C1AB41F4B006B0B3F /* padTempView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = padTempView.m; path = element/padTempView.m; sourceTree = "<group>"; };
 		E59832401A8A466100BF77B9 /* QNAsyncRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNAsyncRun.h; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 				8431E8FC1A4D12C300E9B0EE /* SMS_SDK.framework in Frameworks */,
 				E558D01A1A47CDE8009BFC50 /* TencentOpenAPI.framework in Frameworks */,
 				E558D0201A47D130009BFC50 /* libsqlite3.dylib in Frameworks */,
+				E586E46E1ABBD68D0038C431 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,6 +821,7 @@
 		84B4738D1A30069900A21457 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E586E46D1ABBD68D0038C431 /* AVFoundation.framework */,
 				8431E9051A4D161900E9B0EE /* CoreGraphics.framework */,
 				8431E9031A4D160F00E9B0EE /* libicucore.dylib */,
 				8431E8FD1A4D15F400E9B0EE /* MessageUI.framework */,
@@ -826,6 +830,7 @@
 				84FE0B981A42C963005A9599 /* libz.dylib */,
 			);
 			name = Frameworks;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		84B4739F1A3036E100A21457 /* Coredata */ = {
@@ -872,7 +877,6 @@
 				E56786FA1A50F38100308A4B /* Default@2x.png */,
 				E5A2C87A1AB7AB9300A55425 /* Default-Landscape@2x~ipad.png */,
 				E5A2C87B1AB7AB9300A55425 /* Default-Landscape~ipad.png */,
-				84B4738D1A30069900A21457 /* Frameworks */,
 				84E8425B1A2EDF6B00A401A0 /* kuaiyaoyue */,
 				84E842781A2EDF6C00A401A0 /* kuaiyaoyueTests */,
 				84E8425A1A2EDF6B00A401A0 /* Products */,
@@ -935,6 +939,8 @@
 		84E842851A2EE88100A401A0 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				84B4738D1A30069900A21457 /* Frameworks */,
+				E586E4421ABBD5940038C431 /* um */,
 				E598323E1A8A466100BF77B9 /* Qiniu */,
 				8431E8FB1A4D12C300E9B0EE /* SMS_SDK.framework */,
 				8442287F1A4A518300583893 /* PECrop */,
@@ -1334,6 +1340,14 @@
 			name = recording;
 			sourceTree = "<group>";
 		};
+		E586E4421ABBD5940038C431 /* um */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = um;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		E598323E1A8A466100BF77B9 /* Qiniu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1450,6 +1464,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 84E842501A2EDF6B00A401A0;
 			productRefGroup = 84E8425A1A2EDF6B00A401A0 /* Products */;
@@ -1792,6 +1807,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/ShareLinb",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/TalkingData",
+					/Users/wuyangbing/Downloads/UMFeedback_iOS_2.1.1/UMengFeedback_SDK_2.1.1,
+					/Users/wuyangbing/Downloads/UMFeedback_iOS_2.1.1/UMengFeedback_SDK_2.1.1/UMOpus,
+					/Users/wuyangbing/Downloads/UMFeedback_iOS_2.1.1/UMessage_Sdk_1.1.0,
 				);
 				OTHER_CFLAGS = (
 					"-Xclang",
@@ -1828,6 +1846,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/ShareLinb",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib/TalkingData",
+					/Users/wuyangbing/Downloads/UMFeedback_iOS_2.1.1/UMengFeedback_SDK_2.1.1,
+					/Users/wuyangbing/Downloads/UMFeedback_iOS_2.1.1/UMengFeedback_SDK_2.1.1/UMOpus,
+					/Users/wuyangbing/Downloads/UMFeedback_iOS_2.1.1/UMessage_Sdk_1.1.0,
 				);
 				OTHER_CFLAGS = (
 					"-Xclang",

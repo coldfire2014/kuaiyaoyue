@@ -17,6 +17,7 @@
 #import "waitingView.h"
 #import "musicController.h"
 #import "templateController.h"
+//#import "UMFeedback.h"
 @interface AppDelegate (){
     BOOL is_xz;
     BOOL is_add;
@@ -57,6 +58,7 @@
     [TalkingData setExceptionReportEnabled:YES];
     [TalkingData sessionStarted:@"D556EA902795B17C4B339CEE2F61FA41" withChannelId:ChannelId];
     [SMS_SDK registerApp:@"4ec26c11eca2" withSecret:@"e80f13299bf5581e40ed33e2d8350cae"];
+//    [UMFeedback setAppkey:@"550beb14fd98c5298300051f"];
     [[FileManage sharedFileManage] removeTemp];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onebyone) name:@"onebyone" object:nil];
     return YES;

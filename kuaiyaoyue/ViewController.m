@@ -130,7 +130,7 @@
         NSTimer* countDownTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timeFireMethod:) userInfo:nil repeats:YES];
         [countDownTimer fire];
     }
-    if ([YINGLOUURL compare:@""] != NSOrderedSame)
+//    if ([YINGLOUURL compare:@""] != NSOrderedSame)
     {
         tj_Btn.alpha = 0;
     }

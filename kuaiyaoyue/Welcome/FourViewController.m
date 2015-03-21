@@ -16,6 +16,8 @@
 #import "HttpManage.h"
 #import "coverAnimation.h"
 #import "PCHeader.h"
+#import "WXApi.h"
+#import <TencentOpenAPI/TencentOAuth.h>
 @interface FourViewController ()
 
 @end
@@ -42,6 +44,14 @@
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 164.0/2.0, self.view.bounds.size.width, 1.0)];
     line.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.1];
     [ipad_bg addSubview:line];
+    
+    UILabel* mbtitle = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 204.0/2.0, self.view.bounds.size.width, 15.0)];
+    [mbtitle setFont:[UIFont systemFontOfSize:13]];
+    [mbtitle setTextAlignment:NSTextAlignmentCenter];
+    [mbtitle setTextColor:[UIColor whiteColor]];
+    [mbtitle setBackgroundColor:[UIColor clearColor]];
+    [mbtitle setText:@"使用快邀约账号登录"];
+    [ipad_bg addSubview:mbtitle];
     
     myImageView* login_btn = [[myImageView alloc] initWithFrame:CGRectMake(0, 0, 160.0/2.0, 64.0/2.0) andImageName:@"btn_login_1" withScale:2.0];
     login_btn.tag = 103;
@@ -132,30 +142,40 @@
 }
 */
 -(void)WXTap:(UIGestureRecognizer*)g{
-    [TalkingData trackEvent:@"微信登陆"];
-    myImageView* btn = (myImageView*)[self.view viewWithTag:102];
-    [UIView animateWithDuration:0.1 animations:^{
-        [btn changeWithImageName:@"btn_login_weixin_pre" withScale:2.0];
-    } completion:^(BOOL finished) {
+    if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi]) {
+        [[waitingView sharedwaitingView] WarningByMsg:@"未安装微信，您可以使用快邀约账号登录。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:0.8];
+    } else {
+        [TalkingData trackEvent:@"微信登陆"];
+        myImageView* btn = (myImageView*)[self.view viewWithTag:102];
         [UIView animateWithDuration:0.1 animations:^{
-            [btn changeWithImageName:@"btn_login_weixin" withScale:2.0];
+            [btn changeWithImageName:@"btn_login_weixin_pre" withScale:2.0];
         } completion:^(BOOL finished) {
-            [self loginwx];
+            [UIView animateWithDuration:0.1 animations:^{
+                [btn changeWithImageName:@"btn_login_weixin" withScale:2.0];
+            } completion:^(BOOL finished) {
+                [self loginwx];
+            }];
         }];
-    }];
+    }
 }
 -(void)QQTap:(UIGestureRecognizer*)g{
-    [TalkingData trackEvent:@"QQ登陆"];
-    myImageView* btn = (myImageView*)[self.view viewWithTag:101];
-    [UIView animateWithDuration:0.1 animations:^{
-        [btn changeWithImageName:@"btn_login_qq_pre" withScale:2.0];
-    } completion:^(BOOL finished) {
+    if (![TencentOAuth iphoneQQInstalled] || ![TencentOAuth iphoneQQSupportSSOLogin]) {
+        [[waitingView sharedwaitingView] WarningByMsg:@"未安装QQ，您可以使用快邀约账号登录。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:0.8];
+    } else {
+        [TalkingData trackEvent:@"QQ登陆"];
+        myImageView* btn = (myImageView*)[self.view viewWithTag:101];
         [UIView animateWithDuration:0.1 animations:^{
-            [btn changeWithImageName:@"btn_login_qq" withScale:2.0];
+            [btn changeWithImageName:@"btn_login_qq_pre" withScale:2.0];
         } completion:^(BOOL finished) {
-            [self loginQQ];
+            [UIView animateWithDuration:0.1 animations:^{
+                [btn changeWithImageName:@"btn_login_qq" withScale:2.0];
+            } completion:^(BOOL finished) {
+                [self loginQQ];
+            }];
         }];
-    }];
+    }
 }
 -(void)DLTap:(UIGestureRecognizer*)g{
     [TalkingData trackEvent:@"手机登陆"];

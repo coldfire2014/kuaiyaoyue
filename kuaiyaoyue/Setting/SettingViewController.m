@@ -19,6 +19,7 @@
 #import "myImageView.h"
 #import "DataBaseManage.h"
 #import "UserInfoViewController.h"
+//#import "UMFeedback.h"
 @interface SettingViewController ()
 
 @end
@@ -82,8 +83,10 @@
     
     UIView* update_btn = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 86.0/2.0)];
     update_btn.tag = 513;
+    update_btn.alpha = 0;
     update_btn.backgroundColor = [UIColor whiteColor];
-    update_btn.center = CGPointMake(w/2.0, info_btn.center.y + 86.0/4.0 + 24.0/2.0 + 86.0/4.0);
+//    update_btn.center = CGPointMake(w/2.0, info_btn.center.y + 86.0/4.0 + 24.0/2.0 + 86.0/4.0);
+    update_btn.center = CGPointMake(w/2.0, info_btn.center.y + 24.0/2.0);
     [self.view addSubview:update_btn];
     [self zxupdate];
     UITapGestureRecognizer *update_btntap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(checkupdata)];
@@ -248,7 +251,8 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         w = 540;
     }
-    UIView* t_line = [[UIView alloc] initWithFrame:CGRectMake(8.0, 0, w-16.0, 0.5)];
+//    UIView* t_line = [[UIView alloc] initWithFrame:CGRectMake(8.0, 0, w-16.0, 0.5)];
+    UIView* t_line = [[UIView alloc] initWithFrame:CGRectMake(8.0, 0, w, 0.5)];
     t_line.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [btn addSubview:t_line];
     UIView* b_line = [[UIView alloc] initWithFrame:CGRectMake(8.0, btn.bounds.size.height-0.5, w-16.0, 0.5)];
@@ -341,6 +345,13 @@
 - (void)pl {
     [TalkingData trackEvent:@"评论"];
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:STOREDIR]];
+//    [self presentModalViewController:[UMFeedback feedbackModalViewController] animated:YES];
+//    [self.navigationController pushViewController:[UMFeedback feedbackViewController] animated:YES];
+    
+//    UIViewController *view = [UMFeedback feedbackModalViewController];
+//    view.modalPresentationStyle = UIModalPresentationFullScreen;
+//    view.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//    [self presentViewController:view animated:YES completion:^{}];
 }
 
 - (void)gw {
