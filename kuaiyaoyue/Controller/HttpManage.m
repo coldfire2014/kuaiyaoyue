@@ -477,7 +477,6 @@ closeTimestamp:(NSString *)closeTimestamp
         NSLog(@"error-%@", operation.responseString);
         callback(NO,nil);
     }];
-
 }
 
 /*
@@ -863,12 +862,10 @@ closeTimestamp:(NSString *)closeTimestamp
  */
 
 +(void)edition:(NSString *)type cb:(void (^)(BOOL isOK, BOOL update))callback{
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",@"IOS",@"equipment",@"kuaiyaoyue-release",@"appId",nil];
-    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",@"IOS",@"equipment",APPID,@"appId",nil];
     [[AFConnectionAPIClient sharedClient] POST:UPDATE_CHECK parameters:params success:^(AFHTTPRequestOperation * operation, id JSON) {
         NSNumber* update = [JSON objectForKey:@"update"];
         callback(YES,[update boolValue]);
-        
     } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
         NSLog(@"error-%@",error);
         callback(NO,NO);

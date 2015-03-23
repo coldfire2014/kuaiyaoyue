@@ -9,7 +9,6 @@
 #import "OneViewController.h"
 #import "waitingView.h"
 #import "myImageView.h"
-#import "getImgColor.h"
 #import "PCHeader.h"
 @interface OneViewController ()
 
@@ -23,7 +22,7 @@
         NSBundle *bundle = [NSBundle mainBundle];
         UIImage* img = [[UIImage alloc] initWithContentsOfFile:[bundle pathForResource:@"1w" ofType:@"jpg"]];
         img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
-        self.view.backgroundColor = [[getImgColor getRGBAsFromImage:img atX:0 andY:0 count:1] objectAtIndex:0];
+        self.view.backgroundColor = [[myImageView getRGBAsFromImage:img atX:0 andY:0 count:1] objectAtIndex:0];
         
         CGRect f = IPAD_FRAME;
         myImageView* bg2 = [[myImageView alloc] initWithFrame:f andImageName:@"1w.jpg" withScale:2.0 andAlign:UIImgAlignmentBottom];
