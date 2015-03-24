@@ -124,7 +124,6 @@
 }
 -(void)QQLogin:(NSNotification*)noc{
     [_tencentOAuth authorize:[NSArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo", @"add_t", nil] localAppId:@"1103283068" inSafari:YES];
-//    [_tencentOAuth authorize:[NSArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo", @"add_t", nil] inSafari:NO];
 }
 
 -(void)QQshare:(NSNotification*)noc{
@@ -274,10 +273,8 @@
 }
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
     switch (buttonIndex) {
         case 0:
-            
             break;
         case 1:
             [self tzurl];
@@ -285,7 +282,6 @@
         default:
             break;
     }
-    
 }
 
 -(void)tzurl{
@@ -369,7 +365,7 @@
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
         if (resp.errCode == 0) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"back" object:self];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"back" object:self];
 //            [SVProgressHUD showSuccessWithStatus:@"分享成功" duration:1];
         }
     }else{

@@ -198,11 +198,11 @@
     }];
 }
 -(void)QQTap:(UIGestureRecognizer*)g{
-    if (![TencentOAuth iphoneQQInstalled] || ![TencentOAuth iphoneQQSupportSSOLogin]) {
-        UIAlertView* al = [[UIAlertView alloc] initWithTitle:@"未检测到QQ" message:@"您可以选择以下操作： \n1、点击并安装手机QQ; 2、点击匿名登录系统(将无法得到历史数据); 3、点击取消，选择其它登录方式; " delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"安装手机QQ",@"匿名登录", nil];
-        al.tag = 23;
-        [al show];
-    } else {
+//    if (![TencentOAuth iphoneQQInstalled] || ![TencentOAuth iphoneQQSupportSSOLogin]) {
+//        UIAlertView* al = [[UIAlertView alloc] initWithTitle:@"未检测到QQ" message:@"您可以选择以下操作： \n1、点击并安装手机QQ; 2、点击匿名登录系统(将无法得到历史数据); 3、点击取消，选择其它登录方式; " delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"安装手机QQ",@"匿名登录", nil];
+//        al.tag = 23;
+//        [al show];
+//    } else {
         [TalkingData trackEvent:@"QQ登陆"];
         myImageView* btn = (myImageView*)[self.view viewWithTag:101];
         [UIView animateWithDuration:0.1 animations:^{
@@ -214,7 +214,7 @@
                 [self loginQQ];
             }];
         }];
-    }
+//    }
 }
 -(void)DLTap:(UIGestureRecognizer*)g{
     [TalkingData trackEvent:@"手机登陆"];
