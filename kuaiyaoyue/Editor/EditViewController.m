@@ -23,7 +23,6 @@
 #import "Fixeds.h"
 #import "UDObject.h"
 #import "HttpManage.h"
-#import "StatusBar.h"
 #import "PreviewViewController.h"
 #import "TalkingData.h"
 #import "waitingView.h"
@@ -892,9 +891,13 @@
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:time];
         if (time > timeDouble) {
             if ([_typeid compare:@"1"] == NSOrderedSame) {
-                [[StatusBar sharedStatusBar] talkMsg:@"报名截止时间不能大于婚礼时间" inTime:0.8];
+//                [[StatusBar sharedStatusBar] talkMsg:@"报名截止时间不能大于婚礼时间" inTime:0.8];
+                [[waitingView sharedwaitingView] WarningByMsg:@"报名截止时间不能大于婚礼时间" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
             } else {
-                [[StatusBar sharedStatusBar] talkMsg:@"报名截止时间不能大于活动时间" inTime:0.8];
+//                [[StatusBar sharedStatusBar] talkMsg:@"报名截止时间不能大于活动时间" inTime:0.8];
+                [[waitingView sharedwaitingView] WarningByMsg:@"报名截止时间不能大于活动时间" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
             }
             return NO;
         }else{
@@ -997,9 +1000,13 @@
                 [[DatetimeInput sharedDatetimeInput] show];
             }else{
                 if ([_typeid compare:@"1"] == NSOrderedSame) {
-                    [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入婚礼时间" inTime:0.8];
+//                    [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入婚礼时间" inTime:0.8];
+                    [[waitingView sharedwaitingView] WarningByMsg:@"您还没有输入婚礼时间" haveCancel:NO];
+                    [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
                 } else {
-                    [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动时间" inTime:0.8];
+//                    [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动时间" inTime:0.8];
+                    [[waitingView sharedwaitingView] WarningByMsg:@"您还没有输入活动时间" haveCancel:NO];
+                    [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
                 }
             }
         }else if (musicInput == textField){
@@ -2027,81 +2034,117 @@
     [self.view endEditing:YES];
     if ([_typeid compare:@"1"] == NSOrderedSame) {//婚礼
         if ([self isEmpty:manInput.text] || [self isEmpty:wemanInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入新人姓名。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入新人姓名。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有输入新人姓名。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if ([self isEmpty:locInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入婚宴地点。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入婚宴地点。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有输入婚宴地点。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if ([self isEmpty:timeInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择婚礼时间。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择婚礼时间。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有选择婚礼时间。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if ([self isEmpty:endtimeInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择报名截止时间。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择报名截止时间。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有选择报名截止时间。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if (manInput.text.length > 5 || wemanInput.text.length > 5) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您填写的新郎或新娘姓名超过了5个字。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您填写的新郎或新娘姓名超过了5个字。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您填写的新郎或新娘姓名超过了5个字。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if (locInput.text.length > 20) {
             NSString* tip = [[NSString alloc] initWithFormat:@"您填写的地址信息有%lu字超过了20个。",(unsigned long)locInput.text.length];
-            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:tip haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
             return NO;
         }
         if (![self isEmpty:musicInput.text] && ![self isEmpty:recordedInput.fileName]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"背景音乐和录音仅能选择一个。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         [self saveMarry];
     } else if ([_typeid compare:@"2"] == NSOrderedSame || [_typeid compare:@"3"] == NSOrderedSame) {//商务,娱乐
         if ([self isEmpty:titleInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动名称。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入活动名称。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有输入活动名称。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if ([self isEmpty:locInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入地点。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入地点。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有输入地点。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if ([self isEmpty:timeInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择活动时间。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择活动时间。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有选择活动时间。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if ([self isEmpty:endtimeInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择报名截止时间。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择报名截止时间。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有选择报名截止时间。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if (titleInput.text.length > 13) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您填写的活动名称超过了13个字,将无法完整显示。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您填写的活动名称超过了13个字,将无法完整显示。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您填写的活动名称超过了13个字,将无法完整显示。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if (locInput.text.length > 20) {
             NSString* tip = [[NSString alloc] initWithFormat:@"您填写的地址信息有%lu字超过了20个。",(unsigned long)locInput.text.length];
-            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:tip haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if (tipInput.text != nil && tipInput.text.length > 70) {
             if ([_typeid compare:@"3"] == NSOrderedSame) {
-                [[StatusBar sharedStatusBar] talkMsg:@"您填写的温馨提示超过了70个字。" inTime:1.0];
+//                [[StatusBar sharedStatusBar] talkMsg:@"您填写的温馨提示超过了70个字。" inTime:1.0];
+                [[waitingView sharedwaitingView] WarningByMsg:@"您填写的温馨提示超过了70个字。" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             } else {
-                [[StatusBar sharedStatusBar] talkMsg:@"您填写的活动简介超过了70个字。" inTime:1.0];
+//                [[StatusBar sharedStatusBar] talkMsg:@"您填写的活动简介超过了70个字。" inTime:1.0];
+                [[waitingView sharedwaitingView] WarningByMsg:@"您填写的活动简介超过了70个字。" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             }
             return NO;
         }
         if (contactmanInput.text != nil && contactmanInput.text.length > 20) {
             NSString* tip = [[NSString alloc] initWithFormat:@"您填写的联系人有%lu字超过了20个。",(unsigned long)contactmanInput.text.length];
-            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:tip haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if (contactInput.text != nil && contactInput.text.length > 40) {
             NSString* tip = [[NSString alloc] initWithFormat:@"您填写的联系方式有%lu字超过了40个。",(unsigned long)contactInput.text.length];
-            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:tip inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:tip haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if (![self isEmpty:musicInput.text] && ![self isEmpty:recordedInput.fileName]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"背景音乐和录音仅能选择一个。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if ([_typeid compare:@"3"] == NSOrderedSame) {
@@ -2111,39 +2154,57 @@
         }
     } else if ([_typeid compare:@"4"] == NSOrderedSame) {//自定义
         if (headImg.img == nil) {
-            [[StatusBar sharedStatusBar] talkMsg:@"请选择一张封面图片。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"请选择一张封面图片。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"请选择一张封面图片。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if ([self isEmpty:titleInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入标题。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入标题。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有输入标题。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if ([self isEmpty:tipInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入封面导读。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有输入封面导读。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有输入封面导读。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if (titleInput.text.length > 20) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您填写的标题超过了20个字,将无法完整显示。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您填写的标题超过了20个字,将无法完整显示。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您填写的标题超过了20个字,将无法完整显示。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if (tipInput.text != nil && tipInput.text.length > 40) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您填写的封面导读超过了40个字。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您填写的封面导读超过了40个字。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您填写的封面导读超过了40个字。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if (imageCount <= 0) {
-            [[StatusBar sharedStatusBar] talkMsg:@"请至少选择一张图片。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"请至少选择一张图片。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"请至少选择一张图片。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if (![self isEmpty:musicInput.text] && ![self isEmpty:recordedInput.fileName]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"背景音乐和录音仅能选择一个。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"背景音乐和录音仅能选择一个。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if ([self isEmpty:timeInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择活动时间。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择活动时间。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有选择活动时间。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         if ([self isEmpty:endtimeInput.text]) {
-            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择报名截止时间。" inTime:1.0];
+//            [[StatusBar sharedStatusBar] talkMsg:@"您还没有选择报名截止时间。" inTime:1.0];
+            [[waitingView sharedwaitingView] WarningByMsg:@"您还没有选择报名截止时间。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             return NO;
         }
         [self saveDIY];
@@ -2323,7 +2384,7 @@
         [HttpManage marry:[UDObject gettoken] bride:wemanInput.text groom:manInput.text address:locInput.text location:nil images:webImgs timestamp:[self time2str:timeDouble] background:[HttpManage getWebLoc:madeFile] musicUrl:tapeFile closeTimestamp:[self time2str:endtimeDouble] mid:_tempId cb:^(BOOL isOK, NSDictionary *dic){
             if (isOK) {
                 [[waitingView sharedwaitingView] stopWait];
-                [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
+//                [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
                 NSString* url_str = [dic objectForKey:@"url"];
                 NSString* rid = [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"recordId"] ];
                 NSRange r = [url_str rangeOfString:rid];
@@ -2352,7 +2413,9 @@
             }else{
                 [[waitingView sharedwaitingView] stopWait];
                 [TalkingData trackEvent:@"保存数据失败"];
-                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
+//                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
+                [[waitingView sharedwaitingView] WarningByMsg:@"生成失败了，再试一次吧" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             }
         }];
     } else if ([_typeid compare:@"2"] == NSOrderedSame || [_typeid compare:@"3"] == NSOrderedSame) {//sw//pl
@@ -2364,7 +2427,7 @@
         [HttpManage party:[UDObject gettoken] partyName:titleInput.text inviter:contactmanInput.text telephone:contactInput.text address:locInput.text images:webImgs tape:tapeFile timestamp:[self time2str:timeDouble] closetime:[self time2str:endtimeDouble] description:tipInput.text background:[HttpManage getWebLoc:madeFile] mid:_tempId cb:^(BOOL isOK, NSDictionary *dic) {
             if (isOK) {
                 [[waitingView sharedwaitingView] stopWait];
-                [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
+//                [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
                 NSString* url_str = [dic objectForKey:@"url"];
                 NSString* rid = [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"recordId"] ];
                 NSRange r = [url_str rangeOfString:rid];
@@ -2395,7 +2458,9 @@
             }else{
                 [[waitingView sharedwaitingView] stopWait];
                 [TalkingData trackEvent:@"保存数据失败"];
-                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
+//                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
+                [[waitingView sharedwaitingView] WarningByMsg:@"生成失败了，再试一次吧" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             }
         }];
     } else if ([_typeid compare:@"4"] == NSOrderedSame) {//zdy
@@ -2404,7 +2469,7 @@
         [HttpManage custom:[UDObject gettoken] title:titleInput.text content:tipInput.text logo:[HttpManage getWebLoc:headFile] music:tapeFile timestamp:[self time2str:timeDouble] closeTimestamp:[self time2str:endtimeDouble] images:webImgs mid:_tempId cb:^(BOOL isOK, NSDictionary *dic) {
             if (isOK) {
                 [[waitingView sharedwaitingView] stopWait];
-                [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
+//                [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
                 NSString* url_str = [dic objectForKey:@"url"];
                 NSString* rid = [[NSString alloc] initWithFormat:@"%@",[dic objectForKey:@"recordId"] ];
                 NSRange r = [url_str rangeOfString:rid];
@@ -2430,7 +2495,9 @@
             }else{
                 [[waitingView sharedwaitingView] stopWait];
                 [TalkingData trackEvent:@"保存数据失败"];
-                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
+//                [[StatusBar sharedStatusBar] talkMsg:@"生成失败了，再试一次吧" inTime:0.8];
+                [[waitingView sharedwaitingView] WarningByMsg:@"生成失败了，再试一次吧" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             }
         }];
     }
@@ -2446,7 +2513,9 @@
             } else {
                 [[waitingView sharedwaitingView] stopWait];
                 [TalkingData trackEvent:@"上传素材失败"];
-                [[StatusBar sharedStatusBar] talkMsg:@"上传素材失败了，再试一次吧" inTime:0.8];
+//                [[StatusBar sharedStatusBar] talkMsg:@"上传素材失败了，再试一次吧" inTime:0.8];
+                [[waitingView sharedwaitingView] WarningByMsg:@"上传素材失败了，再试一次吧" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             }
         }];
     } else {
@@ -2465,7 +2534,9 @@
             } else {
                 [[waitingView sharedwaitingView] stopWait];
                 [TalkingData trackEvent:@"上传素材失败"];
-                [[StatusBar sharedStatusBar] talkMsg:@"上传模板图片失败了，再试一次吧" inTime:0.8];
+//                [[StatusBar sharedStatusBar] talkMsg:@"上传模板图片失败了，再试一次吧" inTime:0.8];
+                [[waitingView sharedwaitingView] WarningByMsg:@"上传模板图片失败了，再试一次吧" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             }
         }];
     }
@@ -2479,7 +2550,9 @@
             } else {
                 [[waitingView sharedwaitingView] stopWait];
                 [TalkingData trackEvent:@"上传素材失败"];
-                [[StatusBar sharedStatusBar] talkMsg:@"上传封面图片失败了，再试一次吧" inTime:0.8];
+//                [[StatusBar sharedStatusBar] talkMsg:@"上传封面图片失败了，再试一次吧" inTime:0.8];
+                [[waitingView sharedwaitingView] WarningByMsg:@"上传封面图片失败了，再试一次吧" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             }
         }];
     } else {

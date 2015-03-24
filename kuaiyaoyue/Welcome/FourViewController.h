@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FourViewController : UIViewController<UIViewControllerTransitioningDelegate>
+@interface FourViewController : UIViewController<UIViewControllerTransitioningDelegate,UIAlertViewDelegate>
 
 @end

@@ -9,7 +9,7 @@
 #import "ShareView.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
-#import "StatusBar.h"
+#import "waitingView.h"
 #import "myImageView.h"
 #import "TalkingData.h"
 #import "PCHeader.h"
@@ -486,7 +486,9 @@
         }];
         
     } else {
-        [[StatusBar sharedStatusBar] talkMsg:@"请在手机设置中添加您的腾讯微博账号。" inTime:0.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"请在手机设置中添加您的腾讯微博账号。" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"请在手机设置中添加您的腾讯微博账号。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:LONG_TIME];
     }
 }
 
@@ -527,7 +529,9 @@
         }];
         
     } else {
-        [[StatusBar sharedStatusBar] talkMsg:@"请在手机设置中添加您的新浪微博账号。" inTime:0.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"请在手机设置中添加您的新浪微博账号。" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"请在手机设置中添加您的新浪微博账号。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:LONG_TIME];
     }
 }
 -(void)shareWXWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img{
@@ -565,16 +569,16 @@
 -(void)copyWithMsg:(NSString*)msg{
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.string = msg;
-    [[StatusBar sharedStatusBar] talkMsg:@"已复制到剪贴板。" inTime:1.51];
+//    [[StatusBar sharedStatusBar] talkMsg:@"已复制到剪贴板。" inTime:1.51];
+    [[waitingView sharedwaitingView] WarningByMsg:@"已复制到剪贴板。" haveCancel:NO];
+    [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
 }
 
 -(void)shareQQZoneWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(NSString*)img{
-//    [[StatusBar sharedStatusBar] talkMsg:@"暂不支持QQ分享。" inTime:0.51];
     NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:title,@"title",des,@"des",url,@"url",img,@"imgUrl", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"QQZONE_SENDTO" object:dic];
 }
 -(void)shareQQWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(NSString*)img{
-//    [[StatusBar sharedStatusBar] talkMsg:@"暂不支持QQ分享。" inTime:0.51];
     NSDictionary* dic = [[NSDictionary alloc] initWithObjectsAndKeys:title,@"title",des,@"des",url,@"url",img,@"imgUrl", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"QQ_SENDTO" object:dic];
 }
@@ -593,7 +597,9 @@
             [self.fromvc presentViewController:mailPicker animated:YES completion:nil];
         }];
     }else{
-        [[StatusBar sharedStatusBar] talkMsg:@"您还没有设置iOS邮件账户。" inTime:1.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"您还没有设置iOS邮件账户。" inTime:1.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"您还没有设置iOS邮件账户。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
     }
 }
 

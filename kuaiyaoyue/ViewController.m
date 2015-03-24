@@ -20,7 +20,6 @@
 #import "DataBaseManage.h"
 #import "Userdata.h"
 #import "DetailViewController.h"
-#import "StatusBar.h"
 #import "ShareView.h"
 #import "WebViewController.h"
 #import "FileManage.h"
@@ -635,10 +634,14 @@
                 // 删除行
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 [[DataBaseManage getDataBaseManage] DelUserdata:userdata.nefid];
-                [[StatusBar sharedStatusBar] talkMsg:@"删除成功" inTime:0.51];
+//                [[StatusBar sharedStatusBar] talkMsg:@"删除成功" inTime:0.51];
+                [[waitingView sharedwaitingView] WarningByMsg:@"删除成功" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
                 [self showToptitle];
             }else{
-                [[StatusBar sharedStatusBar] talkMsg:@"删除失败" inTime:0.51];
+//                [[StatusBar sharedStatusBar] talkMsg:@"删除失败" inTime:0.51];
+                [[waitingView sharedwaitingView] WarningByMsg:@"删除失败" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             }
         }];
         
@@ -657,9 +660,13 @@
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     if (MFMailComposeResultSent == result || MFMailComposeResultSaved == result) {
-        [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"分享成功。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
     } else {
-        [[StatusBar sharedStatusBar] talkMsg:@"消息未发送。" inTime:0.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"消息未发送。" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"消息未发送。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
     }
     [controller dismissViewControllerAnimated:YES completion:^{
         ShareView* share = [ShareView sharedShareView];
@@ -677,9 +684,13 @@
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     if (result == MessageComposeResultSent) {
-        [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"分享成功。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
     } else {
-        [[StatusBar sharedStatusBar] talkMsg:@"消息未发送。" inTime:0.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"消息未发送。" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"消息未发送。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
     }
     [controller dismissViewControllerAnimated:YES completion:^{
         ShareView* share = [ShareView sharedShareView];
@@ -759,11 +770,12 @@
             // 删除行
             [_tableview deleteRowsAtIndexPaths:@[index_path] withRowAnimation:UITableViewRowAnimationFade];
             [[DataBaseManage getDataBaseManage] DelUserdata:nefid];
-            [[StatusBar sharedStatusBar] talkMsg:@"删除成功" inTime:0.51];
+            //                [[StatusBar sharedStatusBar] talkMsg:@"删除成功" inTime:0.51];
             [self showToptitle];
-            
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"删除失败" inTime:0.51];
+            //                [[StatusBar sharedStatusBar] talkMsg:@"删除失败" inTime:0.51];
+            [[waitingView sharedwaitingView] WarningByMsg:@"删除失败" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         }
     }];
 }

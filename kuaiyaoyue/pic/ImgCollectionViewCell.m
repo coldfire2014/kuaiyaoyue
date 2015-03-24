@@ -7,8 +7,8 @@
 //
 
 #import "ImgCollectionViewCell.h"
+#import "waitingView.h"
 #import "perviewImg.h"
-#import "StatusBar.h"
 #import "PCHeader.h"
 #import "ZipDown.h"
 @implementation ImgCollectionViewCell
@@ -123,7 +123,9 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_SET_BADGE" object:count];
         }else{
             NSString* msg = [[NSString alloc] initWithFormat:@"最多只能选%d张哦 !",self.maxCount ];
-            [[StatusBar sharedStatusBar] talkMsg:msg inTime:1];
+//            [[StatusBar sharedStatusBar] talkMsg:msg inTime:1];
+            [[waitingView sharedwaitingView] WarningByMsg:msg haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         }
     }else{
         [cv deselectItemAtIndexPath:self.index animated:YES];

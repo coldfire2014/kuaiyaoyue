@@ -15,7 +15,6 @@
 #import "HttpManage.h"
 #import "DataBaseManage.h"
 #import "Contacts.h"
-#import "StatusBar.h"
 #import "DatetimeInput.h"
 #import "waitingView.h"
 #import "UIPhoneWindow.h"
@@ -311,9 +310,13 @@
             _endtime = time;
             [s setStartTime:[NSDate dateWithTimeIntervalSince1970:_starttime] EndTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:_datatime]];
             
-            [[StatusBar sharedStatusBar] talkMsg:@"修改成功" inTime:1.01];
+//            [[StatusBar sharedStatusBar] talkMsg:@"修改成功" inTime:1.01];
+            [[waitingView sharedwaitingView] WarningByMsg:@"修改成功" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"修改失败" inTime:1.51];
+//            [[StatusBar sharedStatusBar] talkMsg:@"修改失败" inTime:1.51];
+            [[waitingView sharedwaitingView] WarningByMsg:@"修改失败" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         }
     }];
     return YES;

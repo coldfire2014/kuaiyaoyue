@@ -10,7 +10,6 @@
 #import "SMS_SDK/SMS_SDK.h"
 #import "HttpManage.h"
 #import "waitingView.h"
-#import "StatusBar.h"
 #import "UDObject.h"
 #import "PCHeader.h"
 @interface RegistrationViewController (){
@@ -127,7 +126,9 @@
             [self sendmessage:phone :dq];
         }
     }else{
-        [[StatusBar sharedStatusBar] talkMsg:@"手机号和区号不能为空" inTime:0.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"手机号和区号不能为空" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"手机号和区号不能为空" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
     }
     
     
@@ -142,15 +143,21 @@
         }
         else if(0==state)
         {
-            [[StatusBar sharedStatusBar] talkMsg:@"获取验证码失败" inTime:0.51];
+//            [[StatusBar sharedStatusBar] talkMsg:@"获取验证码失败" inTime:0.51];
+            [[waitingView sharedwaitingView] WarningByMsg:@"获取验证码失败" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         }
         else if (SMS_ResponseStateMaxVerifyCode==state)
         {
-            [[StatusBar sharedStatusBar] talkMsg:@"获取验证码失败" inTime:0.51];
+//            [[StatusBar sharedStatusBar] talkMsg:@"获取验证码失败" inTime:0.51];
+            [[waitingView sharedwaitingView] WarningByMsg:@"获取验证码失败" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         }
         else if(SMS_ResponseStateGetVerifyCodeTooOften==state)
         {
-            [[StatusBar sharedStatusBar] talkMsg:@"获取验证码失败" inTime:0.51];
+//            [[StatusBar sharedStatusBar] talkMsg:@"获取验证码失败" inTime:0.51];
+            [[waitingView sharedwaitingView] WarningByMsg:@"获取验证码失败" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         }
     }];
 }
@@ -163,7 +170,9 @@
         }
         else if(0==state)
         {
-            [[StatusBar sharedStatusBar] talkMsg:@"短信验证失败" inTime:0.51];
+//            [[StatusBar sharedStatusBar] talkMsg:@"短信验证失败" inTime:0.51];
+            [[waitingView sharedwaitingView] WarningByMsg:@"短信验证失败" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         }
     }];
 }
@@ -181,9 +190,13 @@
             [[waitingView sharedwaitingView] stopWait];
             if (array != nil) {
                 NSString *message = (NSString *)[array objectAtIndex:0];
-                [[StatusBar sharedStatusBar] talkMsg:message inTime:0.51];
+//                [[StatusBar sharedStatusBar] talkMsg:message inTime:0.51];
+                [[waitingView sharedwaitingView] WarningByMsg:message haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             }else{
-                [[StatusBar sharedStatusBar] talkMsg:@"注册失败了，再试试吧" inTime:0.51];
+//                [[StatusBar sharedStatusBar] talkMsg:@"注册失败了，再试试吧" inTime:0.51];
+                [[waitingView sharedwaitingView] WarningByMsg:@"注册失败了，再试试吧" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             }
         }
     }];
@@ -197,12 +210,14 @@
             [UDObject setUserInfo:username userName:@"" token:token];
 //            [self performSegueWithIdentifier:@"wel2main" sender:nil];
             [UDObject setLXFS:username];
-            [[StatusBar sharedStatusBar] talkMsg:@"成功登录" inTime:0.31];
+//            [[StatusBar sharedStatusBar] talkMsg:@"成功登录" inTime:0.31];
             [self dismissViewControllerAnimated:YES completion:^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_LOGIN_DONE" object:nil];
             }];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"登录失败了，再试一下吧。" inTime:0.51];
+//            [[StatusBar sharedStatusBar] talkMsg:@"登录失败了，再试一下吧。" inTime:0.51];
+            [[waitingView sharedwaitingView] WarningByMsg:@"登录失败了，再试一下吧。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         }
     }];
 }
@@ -220,10 +235,14 @@
         if ([passwordsure isEqualToString:password]) {
             [self getmessgae:yzm :mobilePhone :password];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"2次输入的密码不相同" inTime:0.51];
+//            [[StatusBar sharedStatusBar] talkMsg:@"2次输入的密码不相同" inTime:0.51];
+            [[waitingView sharedwaitingView] WarningByMsg:@"两次输入的密码不相同" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         }
     }else{
-        [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"内容不能为空" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"用户名密码不能为空" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
     }
 }
 

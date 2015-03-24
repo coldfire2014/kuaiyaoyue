@@ -18,7 +18,6 @@
 #import "UDObject.h"
 #import "DataBaseManage.h"
 #import "UDObject.h"
-#import "StatusBar.h"
 #import "waitingView.h"
 #import "PCHeader.h"
 #import "DatetimeInput.h"

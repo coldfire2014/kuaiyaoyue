@@ -7,7 +7,6 @@
 //
 
 #import "WebViewController.h"
-#import "StatusBar.h"
 #import "waitingView.h"
 #import "TalkingData.h"
 #import "WebNavBar.h"
@@ -137,7 +136,9 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [[waitingView sharedwaitingView] stopWait];
-    [[StatusBar sharedStatusBar] talkMsg:@"页面加载失败了" inTime:0.5];
+//    [[StatusBar sharedStatusBar] talkMsg:@"页面加载失败了" inTime:0.5];
+    [[waitingView sharedwaitingView] WarningByMsg:@"页面加载失败了" haveCancel:NO];
+    [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
     WebNavBar* bar = (WebNavBar*)[self.view viewWithTag: 501];
     [bar reflashShow:YES];
 }

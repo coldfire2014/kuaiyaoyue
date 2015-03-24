@@ -7,7 +7,6 @@
 //
 
 #import "tapeView.h"
-#import "StatusBar.h"
 #import "waitingView.h"
 #import "FileManage.h"
 @implementation tapeView
@@ -195,7 +194,9 @@
     [self showFile:@""];
 }
 -(void)setting{
-    [[StatusBar sharedStatusBar] talkMsg:@"请在隐私设置中允许“快邀约”访问麦克风。" inTime:1.0];
+//    [[StatusBar sharedStatusBar] talkMsg:@"请在隐私设置中允许“快邀约”访问麦克风。" inTime:1.0];
+    [[waitingView sharedwaitingView] WarningByMsg:@"请在隐私设置中允许“快邀约”访问麦克风。" haveCancel:NO];
+    [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:LONG_TIME];
 }
 -(void)outofScreen{
     if (timer && timer.isValid){

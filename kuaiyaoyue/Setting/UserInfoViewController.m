@@ -12,7 +12,7 @@
 #import "SettingNavBar.h"
 #import "TalkingData.h"
 #import "myImageView.h"
-#import "StatusBar.h"
+#import "waitingView.h"
 #import "PCHeader.h"
 @interface UserInfoViewController (){
     int is_chage;
@@ -257,9 +257,14 @@
 -(void)save{
     if (self.content_edit.text.length > self.info_length) {
         if (self.info_chage == 0) {
-            [[StatusBar sharedStatusBar] talkMsg:@"请不要输入操过20个字。" inTime:1.5];
+//            [[StatusBar sharedStatusBar] talkMsg:@"请不要输入操过20个字。" inTime:1.5];
+            [[waitingView sharedwaitingView] WarningByMsg:@"请不要输入操过20个字。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         } else {
-            [[StatusBar sharedStatusBar] talkMsg:@"请不要输入操过17个字。" inTime:1.5];
+//            [[StatusBar sharedStatusBar] talkMsg:@"请不要输入操过17个字。" inTime:1.5];
+            [[waitingView sharedwaitingView] WarningByMsg:@"请不要输入操过17个字。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
+            
         }
         return;
     }

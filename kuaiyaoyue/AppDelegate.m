@@ -10,7 +10,6 @@
 #import "UDObject.h"
 #import "HttpManage.h"
 #import "FileManage.h"
-#import "StatusBar.h"
 #import "TalkingData.h"
 #import "SMS_SDK/SMS_SDK.h"
 #import "PCHeader.h"
@@ -174,13 +173,17 @@
             
         }else{
             [[waitingView sharedwaitingView] stopWait];
-            [[StatusBar sharedStatusBar] talkMsg:@"获取QQ用户数据失败。" inTime:0.5];
+//            [[StatusBar sharedStatusBar] talkMsg:@"获取QQ用户数据失败。" inTime:0.5];
+            [[waitingView sharedwaitingView] WarningByMsg:@"获取QQ用户数据失败。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         }
     }
     else
     {
         [[waitingView sharedwaitingView] stopWait];
-        [[StatusBar sharedStatusBar] talkMsg:@"未能成功使用QQ登陆。" inTime:0.5];
+//        [[StatusBar sharedStatusBar] talkMsg:@"未能成功使用QQ登陆。" inTime:0.5];
+        [[waitingView sharedwaitingView] WarningByMsg:@"未能成功使用QQ登陆。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
 //        _labelAccessToken.text = @"登录不成功 没有获取accesstoken";
     }
 }
@@ -195,7 +198,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_SDWX" object:self userInfo:dic];
     }else{
         [[waitingView sharedwaitingView] stopWait];
-        [[StatusBar sharedStatusBar] talkMsg:@"未能成功使用QQ登陆。" inTime:0.5];
+//        [[StatusBar sharedStatusBar] talkMsg:@"未能成功使用QQ登陆。" inTime:0.5];
+        [[waitingView sharedwaitingView] WarningByMsg:@"未能成功使用QQ登陆。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
     }
 }
 - (void)responseDidReceived:(APIResponse*)response forMessage:(NSString *)message{
@@ -206,20 +211,26 @@
     if (cancelled)
     {
         [[waitingView sharedwaitingView] stopWait];
-        [[StatusBar sharedStatusBar] talkMsg:@"QQ登陆失败。" inTime:0.5];
+//        [[StatusBar sharedStatusBar] talkMsg:@"QQ登陆失败。" inTime:0.5];
+        [[waitingView sharedwaitingView] WarningByMsg:@"未能成功使用QQ登陆。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
 //        _labelTitle.text = @"用户取消登录";
     }
     else
     {
         [[waitingView sharedwaitingView] stopWait];
-        [[StatusBar sharedStatusBar] talkMsg:@"QQ登陆失败了，再试一次吧。" inTime:0.5];
+//        [[StatusBar sharedStatusBar] talkMsg:@"QQ登陆失败了，再试一次吧。" inTime:0.5];
+        [[waitingView sharedwaitingView] WarningByMsg:@"未能成功使用QQ登陆。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
 //        _labelTitle.text = @"登录失败";
     }
 }
 -(void)tencentDidNotNetWork
 {
     [[waitingView sharedwaitingView] stopWait];
-    [[StatusBar sharedStatusBar] talkMsg:@"无网络连接，请设置网络。" inTime:0.5];
+//    [[StatusBar sharedStatusBar] talkMsg:@"无网络连接，请设置网络。" inTime:0.5];
+    [[waitingView sharedwaitingView] WarningByMsg:@"无网络连接，请设置网络。" haveCancel:NO];
+    [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:TURN_TIME];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -287,7 +298,9 @@
                 if ([[dic objectForKey:@"result"] isEqualToString:@"success"]) {
                     [self updateMata];
                 }else{
-                    [[StatusBar sharedStatusBar] talkMsg:@"账号已过期" inTime:0.5];
+//                    [[StatusBar sharedStatusBar] talkMsg:@"账号已过期" inTime:0.5];
+                    [[waitingView sharedwaitingView] WarningByMsg:@"账号已过期" haveCancel:NO];
+                    [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:LONG_TIME];
                     [UDObject setHLContent:@"" xn_name:@"" hltime:@"" bmendtime:@"" address_name:@"" music:@"" musicname:@"" imgarr:@""];
                     [UDObject setSWContent:@"" swtime:@"" swbmendtime:@"" address_name:@"" swxlr_name:@"" swxlfs_name:@"" swhd_name:@"" music:@"" musicname:@"" imgarr:@""];
                     [UDObject setWLContent:@"" wltime:@"" wlbmendtime:@"" wladdress_name:@"" wllxr_name:@"" wllxfs_name:@"" wlts_name:@"" wlmusicname:@"" wlmusic:@"" wlimgarr:@""];
@@ -362,7 +375,9 @@
             [self getAccess_token:req.code];
         }else{
             [[waitingView sharedwaitingView] stopWait];
-            [[StatusBar sharedStatusBar] talkMsg:@"微信登陆失败了，再试一次吧。" inTime:0.5];
+//            [[StatusBar sharedStatusBar] talkMsg:@"微信登陆失败了，再试一次吧。" inTime:0.5];
+            [[waitingView sharedwaitingView] WarningByMsg:@"微信登陆失败了，再试一次吧。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:TURN_TIME];
         }
     }
 }
@@ -384,7 +399,9 @@
                 [self getUserInfo:[dic objectForKey:@"access_token"] :[dic objectForKey:@"openid"]];
             }else{
                 [[waitingView sharedwaitingView] stopWait];
-                [[StatusBar sharedStatusBar] talkMsg:@"微信登陆失败了，再试一次吧。" inTime:0.5];
+//                [[StatusBar sharedStatusBar] talkMsg:@"微信登陆失败了，再试一次吧。" inTime:0.5];
+                [[waitingView sharedwaitingView] WarningByMsg:@"微信登陆失败了，再试一次吧。" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:TURN_TIME];
             }
         });
     });
@@ -408,7 +425,9 @@
             }
             else{
                 [[waitingView sharedwaitingView] stopWait];
-                [[StatusBar sharedStatusBar] talkMsg:@"微信登陆失败了，再试一次吧。" inTime:0.5];
+//                [[StatusBar sharedStatusBar] talkMsg:@"微信登陆失败了，再试一次吧。" inTime:0.5];
+                [[waitingView sharedwaitingView] WarningByMsg:@"微信登陆失败了，再试一次吧。" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:TURN_TIME];
             }
         });
         

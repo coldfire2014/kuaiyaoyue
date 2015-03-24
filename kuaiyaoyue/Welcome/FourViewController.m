@@ -9,15 +9,16 @@
 #import "FourViewController.h"
 #import "UDObject.h"
 #import "myImageView.h"
-#import "StatusBar.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "TalkingData.h"
 #import "waitingView.h"
 #import "HttpManage.h"
 #import "coverAnimation.h"
+#import "FileManage.h"
 #import "PCHeader.h"
 #import "WXApi.h"
-#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApi.h>
+
 @interface FourViewController ()
 
 @end
@@ -90,6 +91,7 @@
 -(void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN_DONE" object:nil];
 }
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -122,12 +124,14 @@
     [HttpManage registers:name userPwd:@"123456" phoneId:[UDObject getTSID] openId:opneid cb:^(BOOL isOK, NSDictionary *dic) {
         [[waitingView sharedwaitingView] stopWait];
         if (isOK) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_SDWX" object:nil];
             [UDObject setUserInfo:name userName:name token:[dic objectForKey:@"token"]];
             [UDObject setXM:name];
             [self performSegueWithIdentifier:@"wel2main" sender:nil];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"登陆失败了，再试一次吧。" inTime:0.5];
+            
+//            [[StatusBar sharedStatusBar] talkMsg:@"登陆失败了，再试一次吧。" inTime:0.5];
+            [[waitingView sharedwaitingView] WarningByMsg:@"登陆失败了，再试一次吧。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
         }
     }];
 }
@@ -143,8 +147,9 @@
 */
 -(void)WXTap:(UIGestureRecognizer*)g{
     if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi]) {
-        [[waitingView sharedwaitingView] WarningByMsg:@"未安装微信，您可以使用快邀约账号登录。" haveCancel:NO];
-        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:0.8];
+        UIAlertView* al = [[UIAlertView alloc] initWithTitle:@"未检测到微信" message:@"您可以选择以下操作： \n1、点击并安装微信; 2、点击匿名登录系统(将无法得到历史数据); 3、点击取消，选择其它登录方式; " delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"安装微信",@"匿名登录", nil];
+        al.tag = 22;
+        [al show];
     } else {
         [TalkingData trackEvent:@"微信登陆"];
         myImageView* btn = (myImageView*)[self.view viewWithTag:102];
@@ -159,10 +164,44 @@
         }];
     }
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        
+    } else if (buttonIndex == 1) {
+        if (alertView.tag == 22) {
+            NSURL *url = [NSURL URLWithString:[WXApi getWXAppInstallUrl]];
+            [[UIApplication sharedApplication]openURL:url];
+        } else {
+            NSURL *url = [NSURL URLWithString:[QQApi getQQInstallURL]];
+            [[UIApplication sharedApplication]openURL:url];
+        }
+    } else if (buttonIndex == 2) {
+        [self nickLogin];
+    }
+}
+-(void)nickLogin{
+    [[waitingView sharedwaitingView] waitByMsg:@"请稍候……" haveCancel:NO];
+    NSString *name = @"匿名用户";
+    NSString *opneid = [FileManage getUUID];
+    [HttpManage registers:name userPwd:@"123456" phoneId:[UDObject getTSID] openId:opneid cb:^(BOOL isOK, NSDictionary *dic) {
+        [[waitingView sharedwaitingView] stopWait];
+        if (isOK) {
+            [TalkingData trackEvent:@"匿名登录"];
+            [UDObject setUserInfo:name userName:name token:[dic objectForKey:@"token"]];
+            [UDObject setXM:@""];
+            [self performSegueWithIdentifier:@"wel2main" sender:nil];
+        }else{
+            //            [[StatusBar sharedStatusBar] talkMsg:@"登陆失败了，再试一次吧。" inTime:0.5];
+            [[waitingView sharedwaitingView] WarningByMsg:@"登陆失败了，再试一次吧。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
+        }
+    }];
+}
 -(void)QQTap:(UIGestureRecognizer*)g{
     if (![TencentOAuth iphoneQQInstalled] || ![TencentOAuth iphoneQQSupportSSOLogin]) {
-        [[waitingView sharedwaitingView] WarningByMsg:@"未安装QQ，您可以使用快邀约账号登录。" haveCancel:NO];
-        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:0.8];
+        UIAlertView* al = [[UIAlertView alloc] initWithTitle:@"未检测到QQ" message:@"您可以选择以下操作： \n1、点击并安装手机QQ; 2、点击匿名登录系统(将无法得到历史数据); 3、点击取消，选择其它登录方式; " delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"安装手机QQ",@"匿名登录", nil];
+        al.tag = 23;
+        [al show];
     } else {
         [TalkingData trackEvent:@"QQ登陆"];
         myImageView* btn = (myImageView*)[self.view viewWithTag:101];
@@ -218,7 +257,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"WX_LOGIN" object:nil];
 }
 -(void)loginDine{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_LOGIN_DONE" object:nil];
     [self performSegueWithIdentifier:@"wel2main" sender:nil];
 }
 -(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{

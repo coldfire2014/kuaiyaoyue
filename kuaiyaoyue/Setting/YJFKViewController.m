@@ -7,7 +7,6 @@
 //
 
 #import "YJFKViewController.h"
-#import "StatusBar.h"
 #import "HttpManage.h"
 #import "waitingView.h"
 #import "UDObject.h"
@@ -43,15 +42,21 @@
         [HttpManage suggestion:[UDObject gettoken] type:@"1" content:content model:model cb:^(BOOL isOK, NSDictionary *array) {
             [[waitingView sharedwaitingView] stopWait];
             if (isOK) {
-                [[StatusBar sharedStatusBar] talkMsg:@"谢谢您的反馈" inTime:0.51];
+//                [[StatusBar sharedStatusBar] talkMsg:@"谢谢您的反馈" inTime:0.51];
+                [[waitingView sharedwaitingView] WarningByMsg:@"谢谢您的反馈" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
                 [self.navigationController popViewControllerAnimated:YES];
             }else{
-                [[StatusBar sharedStatusBar] talkMsg:@"失败了，再试试吧。" inTime:0.51];
+//                [[StatusBar sharedStatusBar] talkMsg:@"失败了，再试试吧。" inTime:0.51];
+                [[waitingView sharedwaitingView] WarningByMsg:@"失败了，再试试吧。" haveCancel:NO];
+                [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
             }
         }];
 
     }else{
-        [[StatusBar sharedStatusBar] talkMsg:@"写点什么吧" inTime:0.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"写点什么吧" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"来了就写点什么吧。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
     }
 }
 

@@ -15,7 +15,6 @@
 #import "DataBaseManage.h"
 #import "Template.h"
 #import "UDObject.h"
-#import "StatusBar.h"
 #import "TalkingData.h"
 #import "ZipDown.h"
 #import "EditViewController.h"
@@ -219,7 +218,6 @@
         [self didShowItemAtIndex:0];
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"getmax" object:self userInfo:nil];
-        [[StatusBar sharedStatusBar] talkMsg:@"模板正在下载中..." inTime:0.5];
     }
 }
 
@@ -282,15 +280,12 @@
         case 2:
             [self performSegueWithIdentifier:@"newedit" sender:@"2"];
             [TalkingData trackEvent:@"编辑内容" label:[[NSString alloc] initWithFormat:@"商务-%@",info.nefname]];
-//             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         case 3:
             [self performSegueWithIdentifier:@"newedit" sender:@"3"];
             [TalkingData trackEvent:@"编辑内容" label:[[NSString alloc] initWithFormat:@"吃喝玩乐-%@",info.nefname]];
-//             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         case 4:
-             [[StatusBar sharedStatusBar] talkMsg:@"尽请期待，请移步婚礼编辑。" inTime:0.51];
             break;
         default:
             break;

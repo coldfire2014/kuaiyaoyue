@@ -10,7 +10,6 @@
 #import "LoginViewController.h"
 #import "HttpManage.h"
 #import "waitingView.h"
-#import "StatusBar.h"
 #import "UDObject.h"
 #import "PCHeader.h"
 @interface LoginViewController ()
@@ -135,7 +134,9 @@
         [self.view endEditing:NO];
         [self j_spring_security_check:username password:password];
     }else{
-        [[StatusBar sharedStatusBar] talkMsg:@"账号密码不能为空" inTime:0.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"账号密码不能为空" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"账号密码不能为空" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
     }
 }
 -(void)back{
@@ -158,12 +159,14 @@
             }
 //            [self performSegueWithIdentifier:@"wel2main" sender:nil];
             [UDObject setLXFS:username];
-            [[StatusBar sharedStatusBar] talkMsg:@"成功登录" inTime:0.31];
+//            [[StatusBar sharedStatusBar] talkMsg:@"成功登录" inTime:0.31];
             [self dismissViewControllerAnimated:YES completion:^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_LOGIN_DONE" object:nil];
             }];
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"登录失败了，再试一下吧。" inTime:0.51];
+//            [[StatusBar sharedStatusBar] talkMsg:@"登录失败了，再试一下吧。" inTime:0.51];
+            [[waitingView sharedwaitingView] WarningByMsg:@"登录失败了，再试一下吧。" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:TURN_TIME];
         }
     }];
 }

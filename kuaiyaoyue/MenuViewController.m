@@ -12,7 +12,6 @@
 #import "myImageView.h"
 #import "TemplateViewController.h"
 #import "UIImageView+LBBlurredImage.h"
-#import "StatusBar.h"
 #import "TalkingData.h"
 #import "DataBaseManage.h"
 #import "Template.h"

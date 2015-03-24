@@ -8,7 +8,7 @@
 
 #import "SettingViewController.h"
 #import "HttpManage.h"
-#import "StatusBar.h"
+#import "waitingView.h"
 #import "UDObject.h"
 #import "AppDelegate.h"
 #import "WXApi.h"
@@ -338,7 +338,9 @@
     if (![gx isHidden]) {
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:DURL]];
     }else{
-        [[StatusBar sharedStatusBar] talkMsg:@"目前为最新版本" inTime:0.51];
+//        [[StatusBar sharedStatusBar] talkMsg:@"目前为最新版本" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"目前为最新版本" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
     }
 }
 
@@ -393,7 +395,9 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"onebyone" object:self userInfo:nil];
             
         }else{
-            [[StatusBar sharedStatusBar] talkMsg:@"退出失败" inTime:0.51];
+//            [[StatusBar sharedStatusBar] talkMsg:@"退出失败" inTime:0.51];
+            [[waitingView sharedwaitingView] WarningByMsg:@"退出失败" haveCancel:NO];
+            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:TURN_TIME];
         }
     }];
 }

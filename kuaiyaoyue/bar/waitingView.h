@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define ERR_TIME 0.6
+#define LONG_TIME 1.0
+#define WAITING_TIME 0.7
+#define TURN_TIME 0.6
 @interface waitingView : UIWindow{
 //    UIImageView* loading;
     UIActivityIndicatorView* loading;
