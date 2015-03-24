@@ -162,7 +162,7 @@
     new_btn.alpha = 0;
     [TalkingData trackEvent: @"推荐点击"];
     WebViewController *view = [[WebViewController alloc] init];
-    [view NavColor:[[UIColor alloc] initWithRed:248.0/255.0 green:78.0/255.0 blue:88.0/255.0 alpha:1.0] andtextColor:[UIColor whiteColor]];
+    [view NavColor:[[UIColor alloc] initWithRed:248.0/255.0 green:78.0/255.0 blue:78.0/255.0 alpha:1.0] andtextColor:[UIColor whiteColor]];
     view.name = TJ_TITLE;
     view.weburl = TJ_URL;
     view.viewTitle = @"推荐页面";
