@@ -13,8 +13,8 @@
 #define ISIOS8LATER [[[UIDevice currentDevice] systemVersion] floatValue]>=8
 
 #define UPDATE_CHECK @"http://appkyy.kyy121.com/media/app/checkVersion"
-#define TJ_URL @"http://weidian.com/item.html?itemID=1114208923&wfr=wx&from=groupmessage&isappinstalled=0"
-#define TJ_TITLE @"礼尚往来"
+#define TJ_URL @"http://www.kyy121.com"
+#define TJ_TITLE @"推荐"
 //#define YINGLOU @"YINGLOU"
 #ifdef YINGLOU
     #define QNTOKEN @"http://appkyy.kyy121.com/oss/upload/getClientDto"
