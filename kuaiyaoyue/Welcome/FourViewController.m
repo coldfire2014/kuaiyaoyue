@@ -146,11 +146,11 @@
 }
 */
 -(void)WXTap:(UIGestureRecognizer*)g{
-    if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi]) {
-        UIAlertView* al = [[UIAlertView alloc] initWithTitle:@"未检测到微信" message:@"您可以选择以下操作： \n1、点击并安装微信; 2、点击匿名登录系统(将无法得到历史数据); 3、点击取消，选择其它登录方式; " delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"安装微信",@"匿名登录", nil];
-        al.tag = 22;
-        [al show];
-    } else {
+//    if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi]) {
+//        UIAlertView* al = [[UIAlertView alloc] initWithTitle:@"未检测到微信" message:@"您可以选择以下操作： \n1、点击并安装微信; 2、点击匿名登录系统(将无法得到历史数据); 3、点击取消，选择其它登录方式; " delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"安装微信",@"匿名登录", nil];
+//        al.tag = 22;
+//        [al show];
+//    } else {
         [TalkingData trackEvent:@"微信登陆"];
         myImageView* btn = (myImageView*)[self.view viewWithTag:102];
         [UIView animateWithDuration:0.1 animations:^{
@@ -162,7 +162,7 @@
                 [self loginwx];
             }];
         }];
-    }
+//    }
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
@@ -249,12 +249,10 @@
     [self performSegueWithIdentifier:@"login" sender:nil];
 }
 -(void)loginQQ{
-    [[waitingView sharedwaitingView] waitByMsg:@"请稍候……" haveCancel:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"QQ_LOGIN" object:nil];
 }
 -(void)loginwx{
-    [[waitingView sharedwaitingView] waitByMsg:@"请稍候……" haveCancel:NO];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"WX_LOGIN" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"WX_LOGIN" object:self];
 }
 -(void)loginDine{
     [self performSegueWithIdentifier:@"wel2main" sender:nil];

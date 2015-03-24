@@ -115,14 +115,16 @@
 
 
 -(void)WXLogin:(NSNotification*)noc{
+    UIViewController * vc = (UIViewController *)[noc object];
     SendAuthReq* req =[[SendAuthReq alloc ] init];
     req.scope = @"snsapi_userinfo" ;
     req.state = @"com.nef" ;
     //第三方向微信终端发送一个SendAuthReq消息结构
-    [WXApi sendReq:req];
+    [WXApi sendAuthReq:req viewController:vc delegate:self];
 }
 -(void)QQLogin:(NSNotification*)noc{
-    [_tencentOAuth authorize:[NSArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo", @"add_t", nil] inSafari:NO];
+    [_tencentOAuth authorize:[NSArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo", @"add_t", nil] localAppId:@"1103283068" inSafari:YES];
+//    [_tencentOAuth authorize:[NSArray arrayWithObjects:@"get_user_info",@"get_simple_userinfo", @"add_t", nil] inSafari:NO];
 }
 
 -(void)QQshare:(NSNotification*)noc{
@@ -169,6 +171,7 @@
 //        NSString* token = [_tencentOAuth accessToken] ;
 //        NSString* openid = [_tencentOAuth openId] ;
 //        NSDate* expirationDate = [_tencentOAuth expirationDate] ;
+        [[waitingView sharedwaitingView] waitByMsg:@"请稍候……" haveCancel:NO];
         if ([_tencentOAuth getUserInfo]) {
             
         }else{
@@ -210,7 +213,7 @@
 {
     if (cancelled)
     {
-        [[waitingView sharedwaitingView] stopWait];
+//        [[waitingView sharedwaitingView] stopWait];
 //        [[StatusBar sharedStatusBar] talkMsg:@"QQ登陆失败。" inTime:0.5];
         [[waitingView sharedwaitingView] WarningByMsg:@"未能成功使用QQ登陆。" haveCancel:NO];
         [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
@@ -218,7 +221,7 @@
     }
     else
     {
-        [[waitingView sharedwaitingView] stopWait];
+//        [[waitingView sharedwaitingView] stopWait];
 //        [[StatusBar sharedStatusBar] talkMsg:@"QQ登陆失败了，再试一次吧。" inTime:0.5];
         [[waitingView sharedwaitingView] WarningByMsg:@"未能成功使用QQ登陆。" haveCancel:NO];
         [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
@@ -227,7 +230,7 @@
 }
 -(void)tencentDidNotNetWork
 {
-    [[waitingView sharedwaitingView] stopWait];
+//    [[waitingView sharedwaitingView] stopWait];
 //    [[StatusBar sharedStatusBar] talkMsg:@"无网络连接，请设置网络。" inTime:0.5];
     [[waitingView sharedwaitingView] WarningByMsg:@"无网络连接，请设置网络。" haveCancel:NO];
     [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:TURN_TIME];
@@ -371,11 +374,10 @@
         }
     }else{
         if (resp.errCode == 0) {
+            [[waitingView sharedwaitingView] waitByMsg:@"请稍候……" haveCancel:NO];
             SendAuthResp *req = (SendAuthResp *)resp;
             [self getAccess_token:req.code];
         }else{
-            [[waitingView sharedwaitingView] stopWait];
-//            [[StatusBar sharedStatusBar] talkMsg:@"微信登陆失败了，再试一次吧。" inTime:0.5];
             [[waitingView sharedwaitingView] WarningByMsg:@"微信登陆失败了，再试一次吧。" haveCancel:NO];
             [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:TURN_TIME];
         }
