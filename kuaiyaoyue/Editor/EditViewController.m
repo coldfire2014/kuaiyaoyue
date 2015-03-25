@@ -275,6 +275,9 @@
         tip.textColor = [UIColor grayColor];
         tip.numberOfLines = 2;
         tip.text=@"--- 封面图片将与标题和导读一起出现在\n\x20\x20\x20\x20\x20分享快照中。";
+        if (nil != [[NSUserDefaults standardUserDefaults] objectForKey:@"zdytip"]) {
+            tip.alpha = 0;
+        }
         [headview addSubview:tip];
         headImg = [[HeadImgView alloc] init];
         headImg.center = CGPointMake(w-120.0/4.0-12.0/2.0, 120.0/4.0+12.0/2.0);
@@ -342,6 +345,7 @@
             tipLbl.layer.cornerRadius = 3.0;
             tipLbl.text=@"注:若导读含有换行可能影响完整显示。";
             tipLbl.numberOfLines = 2;
+            tipLbl.alpha = 0;
             [tipView addSubview:tipLbl];
         }
         [tipView addSubview:andn];
@@ -484,13 +488,14 @@
         ande.textColor = [UIColor redColor];
         ande.backgroundColor = [UIColor clearColor];
         ande.text=@"为保证制作效果，建议使用竖版图片。";
+        ande.alpha = 0;
         UILabel* andt = [[UILabel alloc] initWithFrame:CGRectMake(iconWidth + 100, 2, w, 86.0/2.0)];
         andt.font = [UIFont systemFontOfSize:11];
-        andt.textColor = [UIColor redColor];
+        andt.textColor = [UIColor grayColor];
         andt.backgroundColor = [UIColor clearColor];
-        andt.text=@"（可添加最多9张图片。）";
+        andt.text=@"（最多9张,建议使用竖版图片）";
         if ([_typeid compare:@"4"] == NSOrderedSame) {
-            andt.text=@"（可添加最多15张图片。）";
+            andt.text=@"（最多15张,建议使用竖版图片）";
         }
         [picsView addSubview:ande];
         [picsView addSubview:andt];
@@ -516,13 +521,14 @@
         ande.textColor = [UIColor redColor];
         ande.backgroundColor = [UIColor clearColor];
         ande.text=@"为保证制作效果，建议使用竖版图片。";
+        ande.alpha = 0;
         UILabel* andt = [[UILabel alloc] initWithFrame:CGRectMake(iconWidth + 100, 2, w, 86.0/2.0)];
         andt.font = [UIFont systemFontOfSize:11];
-        andt.textColor = [UIColor redColor];
+        andt.textColor = [UIColor grayColor];
         andt.backgroundColor = [UIColor clearColor];
-        andt.text=@"（请在右测选择图片,可添加最多9张图片）";
+        andt.text=@"（请在右测选择图片,最多9张,建议使用竖版图片）";
         if ([_typeid compare:@"4"] == NSOrderedSame) {
-            andt.text=@"（请在右测选择图片,可添加最多15张图片）";
+            andt.text=@"（请在右测选择图片,最多15张,建议使用竖版图片）";
         }
         [picsView addSubview:ande];
         [picsView addSubview:andt];
@@ -537,7 +543,7 @@
     UILabel* musicTip = [[UILabel alloc] initWithFrame:CGRectMake(iconWidth, 86.0/2.0-16.0, w, 16.0)];
     musicTip.font = [UIFont systemFontOfSize:9];
     musicTip.backgroundColor = [UIColor clearColor];
-    musicTip.textColor = [UIColor redColor];
+    musicTip.textColor = [UIColor grayColor];
     musicTip.text=@"注：背景音乐与录音只能选择一个";
     [musicView addSubview:musicTip];
     [musicView addSubview:musicInput];
@@ -2468,6 +2474,8 @@
         [UDObject setZDYupload:upfile];
         [HttpManage custom:[UDObject gettoken] title:titleInput.text content:tipInput.text logo:[HttpManage getWebLoc:headFile] music:tapeFile timestamp:[self time2str:timeDouble] closeTimestamp:[self time2str:endtimeDouble] images:webImgs mid:_tempId cb:^(BOOL isOK, NSDictionary *dic) {
             if (isOK) {
+                [[NSUserDefaults standardUserDefaults] setValue:@"zdytip" forKey:@"zdytip"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
                 [[waitingView sharedwaitingView] stopWait];
 //                [[StatusBar sharedStatusBar] talkMsg:@"生成成功" inTime:0.3];
                 NSString* url_str = [dic objectForKey:@"url"];
