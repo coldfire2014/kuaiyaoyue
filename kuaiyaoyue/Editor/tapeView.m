@@ -41,7 +41,7 @@
         
         playBk.alpha = 0;
         playBk.layer.transform = CATransform3DMakeTranslation(0, 83.0/2.0, 0);
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(outofScreen) name:@"MSG_OUT_SCREEN" object:nil];
+        
         AVAudioSession *session = [AVAudioSession sharedInstance];
         NSError *sessionError;
         [session setCategory:AVAudioSessionCategoryRecord error:&sessionError];

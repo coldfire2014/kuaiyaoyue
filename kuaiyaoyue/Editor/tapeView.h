@@ -22,4 +22,5 @@
 }
 @property (nonatomic ,strong) NSString* fileName;
 -(void)showFile:(NSString*)fn;
+-(void)outofScreen;
 @end

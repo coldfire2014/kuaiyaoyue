@@ -587,9 +587,11 @@
     }else if([_typeid compare:@"4"] == NSOrderedSame) {//自定义
         [TalkingData trackPageBegin:@"自定义编辑"];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:recordedInput selector:@selector(outofScreen) name:@"MSG_OUT_SCREEN" object:nil];
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:recordedInput name:@"MSG_OUT_SCREEN" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_REMOVE_ME" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_ADD_ME" object:nil];
@@ -606,6 +608,7 @@
     }else{
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeImage:) name:@"MSG_REMOVE_ME" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addaImage:) name:@"MSG_ADD_ME" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showImage:) name:@"MSG_SHOW_ME" object:nil];
@@ -1759,7 +1762,10 @@
             for (NSString *name in arr) {
                 NSArray *array = [name componentsSeparatedByString:@"/"];
                 NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: [array lastObject]];
-                [self addImgfromAsset:nil andThumb:nil  orFile:imgpath atIndex:imageCount];
+                if (![[NSFileManager defaultManager] fileExistsAtPath:imgpath]) {
+                    break;
+                }
+                [self addImgfromAsset:nil andThumb:nil orFile:imgpath atIndex:imageCount];
                 imageCount++;
                 if (uploads.length > 0) {
                     NSRange r = [uploads rangeOfString:imgpath];
@@ -1839,6 +1845,9 @@
             for (NSString *name in arr) {
                 NSArray *array = [name componentsSeparatedByString:@"/"];
                 NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: [array lastObject]];
+                if (![[NSFileManager defaultManager] fileExistsAtPath:imgpath]) {
+                    break;
+                }
                 [self addImgfromAsset:nil andThumb:nil  orFile:imgpath atIndex:imageCount];
                 imageCount++;
                 if (uploads.length > 0) {
@@ -1919,6 +1928,9 @@
             for (NSString *name in arr) {
                 NSArray *array = [name componentsSeparatedByString:@"/"];
                 NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: [array lastObject]];
+                if (![[NSFileManager defaultManager] fileExistsAtPath:imgpath]) {
+                    break;
+                }
                 [self addImgfromAsset:nil andThumb:nil  orFile:imgpath atIndex:imageCount];
                 imageCount++;
                 if (uploads.length > 0) {
@@ -1945,10 +1957,11 @@
         NSString* uploads = [UDObject getZDYupload];
         NSArray *array = [[UDObject getzdytopimg] componentsSeparatedByString:@"/"];
         NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: [array lastObject]];
-        UIImage* img = [[UIImage alloc] initWithContentsOfFile:imgpath];
-        headImg.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
-        headImg.imgContext.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
-        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:imgpath]) {
+            UIImage* img = [[UIImage alloc] initWithContentsOfFile:imgpath];
+            headImg.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+            headImg.imgContext.image = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+        }
         titleInput.text = [UDObject getzdytitle];
         timeDouble = [[UDObject getzdytime] doubleValue]/1000.0;
         endtimeDouble = [[UDObject getzdyendtime] doubleValue]/1000.0;
@@ -1991,6 +2004,9 @@
             for (NSString *name in arr) {
                 NSArray *array = [name componentsSeparatedByString:@"/"];
                 NSString *imgpath = [[FileManage sharedFileManage].imgDirectory stringByAppendingPathComponent: [array lastObject]];
+                if (![[NSFileManager defaultManager] fileExistsAtPath:imgpath]) {
+                    break;
+                }
                 [self addImgfromAsset:nil andThumb:nil  orFile:imgpath atIndex:imageCount];
                 imageCount++;
                 if (uploads.length > 0) {

@@ -178,9 +178,9 @@
         return YES; // 继续对本次请求进行导航
     }else{
         [[UIApplication sharedApplication] openURL:[request URL]];
+        [TalkingData trackEvent:@"跳转购买" label:rurl];
         return NO;
     }
 }
-
 
 @end

@@ -13,7 +13,7 @@
 #define ISIOS8LATER [[[UIDevice currentDevice] systemVersion] floatValue]>=8
 
 #define UPDATE_CHECK @"http://appkyy.kyy121.com/media/app/checkVersion"
-#define TJ_URL @"http://www.kyy121.com"
+#define TJ_URL @"http://appkyy.kyy121.com/static/store/index.html"
 #define TJ_TITLE @"推荐"
 //#define YINGLOU @"YINGLOU"
 #ifdef YINGLOU
@@ -22,7 +22,7 @@
     #define YINGLOUURL @"http://appkyy.kyy121.com/studio/"
     #define HTTPURL YINGLOUURL
     #define ChannelId @"Studio"
-    #define UZIP @"ZIPS223"
+    #define UZIP @"ZIPS230"
     #define APPID @"kuaiyaoyue-studio-release"
     #define DURL @"http://fir.im/kyyyl"
     #define STOREDIR @"http://appkyy.kyy121.com/static/feedback.html?appId=kuaiyaoyue-snapshot"
@@ -34,7 +34,7 @@
     #define HTTPURL @"http://appkyy.kyy121.com/invitation/"
     #define ChannelId @"AppStore"
 //    #define ChannelId @"test"
-    #define UZIP @"ZIP223"
+    #define UZIP @"ZIP230"
     #define APPID @"kuaiyaoyue-release"
     #define DURL @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
     #define STOREDIR @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=927884233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"

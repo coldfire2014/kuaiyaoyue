@@ -1790,7 +1790,7 @@
 				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "快邀约";
-				PROVISIONING_PROFILE = "a322ea88-89d7-4009-9b9d-04f0bc711ae9";
+				PROVISIONING_PROFILE = "0902152a-b3ce-4180-a3aa-427118dddd01";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1803,7 +1803,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xiamen NEF Network Technology Co., Ltd. (PSEU9Z2979)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: xiamen NEF Network Technology Co.Ltd";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib",
@@ -1827,7 +1827,7 @@
 				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "快邀约";
-				PROVISIONING_PROFILE = "e889649d-5273-48c0-80bb-3baec87f1f20";
+				PROVISIONING_PROFILE = "7cc2b366-7e0a-44d7-abfc-deed0b62d6ef";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
