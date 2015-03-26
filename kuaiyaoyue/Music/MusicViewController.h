@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MusicTableViewController.h"
 @protocol MVCDelegate;
 
-@interface MusicViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MusicViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MusicTableDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (nonatomic, weak) id<MVCDelegate> delegate;

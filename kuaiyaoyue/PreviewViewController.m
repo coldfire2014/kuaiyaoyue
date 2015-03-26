@@ -12,6 +12,7 @@
 #import "TalkingData.h"
 #import "TimeTool.h"
 #import "WebNavBar.h"
+#import "PCHeader.h"
 @interface PreviewViewController ()
 
 @end
@@ -221,14 +222,15 @@
                 musicType = @"mp3";
                 NSArray *array = [musicname componentsSeparatedByString:@"/"];
                 musicname = [array objectAtIndex:([array count] - 1)];
-                musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
-                NSString *file  = [[FileManage sharedFileManage] GetYPFile:musicname];
-                if(![[NSFileManager defaultManager] fileExistsAtPath:file]){
-                    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
-                    NSString *path = [bundle.bundlePath stringByAppendingString:@"/musicFiles"];
-                    NSString* copyfile = [path stringByAppendingPathComponent:[[file componentsSeparatedByString:@"/"] lastObject]];
-                    [[NSFileManager defaultManager] copyItemAtPath:copyfile toPath:file error:nil];
-                }
+                musicUrl  = [[NSString alloc] initWithFormat:@"%@/%@",MUSIC_URL,musicname];
+                //                musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+                //                NSString *file  = [[FileManage sharedFileManage] GetYPFile:musicname];
+                //                if(![[NSFileManager defaultManager] fileExistsAtPath:file]){
+                //                    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
+                //                    NSString *path = [bundle.bundlePath stringByAppendingString:@"/musicFiles"];
+                //                    NSString* copyfile = [path stringByAppendingPathComponent:[[file componentsSeparatedByString:@"/"] lastObject]];
+                //                    [[NSFileManager defaultManager] copyItemAtPath:copyfile toPath:file error:nil];
+                //                }
             } else {
                 musicUrl = musicname;
                 musicType = @"wav";//@"tape";
@@ -266,14 +268,15 @@
             if (mn.length > 0) {
                 NSArray *array = [musicname componentsSeparatedByString:@"/"];
                 musicname = [array objectAtIndex:([array count] - 1)];
-                musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
-                NSString *file  = [[FileManage sharedFileManage] GetYPFile:musicname];
-                if(![[NSFileManager defaultManager] fileExistsAtPath:file]){
-                    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
-                    NSString *path = [bundle.bundlePath stringByAppendingString:@"/musicFiles"];
-                    NSString* copyfile = [path stringByAppendingPathComponent:[[file componentsSeparatedByString:@"/"] lastObject]];
-                    [[NSFileManager defaultManager] copyItemAtPath:copyfile toPath:file error:nil];
-                }
+                musicUrl  = [[NSString alloc] initWithFormat:@"%@/%@",MUSIC_URL,musicname];
+                //                musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+                //                NSString *file  = [[FileManage sharedFileManage] GetYPFile:musicname];
+                //                if(![[NSFileManager defaultManager] fileExistsAtPath:file]){
+                //                    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
+                //                    NSString *path = [bundle.bundlePath stringByAppendingString:@"/musicFiles"];
+                //                    NSString* copyfile = [path stringByAppendingPathComponent:[[file componentsSeparatedByString:@"/"] lastObject]];
+                //                    [[NSFileManager defaultManager] copyItemAtPath:copyfile toPath:file error:nil];
+                //                }
                 musicType = @"mp3";//@"musicUrl";//
             } else {
                 musicUrl = musicname;
@@ -317,14 +320,15 @@
             if (mn.length > 0) {
                 NSArray *array = [musicname componentsSeparatedByString:@"/"];
                 musicname = [array objectAtIndex:([array count] - 1)];
-                musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
-                NSString *file  = [[FileManage sharedFileManage] GetYPFile:musicname];
-                if(![[NSFileManager defaultManager] fileExistsAtPath:file]){
-                    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
-                    NSString *path = [bundle.bundlePath stringByAppendingString:@"/musicFiles"];
-                    NSString* copyfile = [path stringByAppendingPathComponent:[[file componentsSeparatedByString:@"/"] lastObject]];
-                    [[NSFileManager defaultManager] copyItemAtPath:copyfile toPath:file error:nil];
-                }
+                musicUrl  = [[NSString alloc] initWithFormat:@"%@/%@",MUSIC_URL,musicname];
+                //                musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+                //                NSString *file  = [[FileManage sharedFileManage] GetYPFile:musicname];
+                //                if(![[NSFileManager defaultManager] fileExistsAtPath:file]){
+                //                    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
+                //                    NSString *path = [bundle.bundlePath stringByAppendingString:@"/musicFiles"];
+                //                    NSString* copyfile = [path stringByAppendingPathComponent:[[file componentsSeparatedByString:@"/"] lastObject]];
+                //                    [[NSFileManager defaultManager] copyItemAtPath:copyfile toPath:file error:nil];
+                //                }
                 musicType = @"mp3";//@"musicUrl";
             } else {
                 musicUrl = musicname;
@@ -359,14 +363,15 @@
             if (mn.length > 0) {
                 NSArray *array = [musicname componentsSeparatedByString:@"/"];
                 musicname = [array objectAtIndex:([array count] - 1)];
-                musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
-                NSString *file  = [[FileManage sharedFileManage] GetYPFile:musicname];
-                if(![[NSFileManager defaultManager] fileExistsAtPath:file]){
-                    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
-                    NSString *path = [bundle.bundlePath stringByAppendingString:@"/musicFiles"];
-                    NSString* copyfile = [path stringByAppendingPathComponent:[[file componentsSeparatedByString:@"/"] lastObject]];
-                    [[NSFileManager defaultManager] copyItemAtPath:copyfile toPath:file error:nil];
-                }
+                musicUrl  = [[NSString alloc] initWithFormat:@"%@/%@",MUSIC_URL,musicname];
+//                musicUrl = [NSString stringWithFormat:@"../musicFiles/%@",musicname];
+//                NSString *file  = [[FileManage sharedFileManage] GetYPFile:musicname];
+//                if(![[NSFileManager defaultManager] fileExistsAtPath:file]){
+//                    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
+//                    NSString *path = [bundle.bundlePath stringByAppendingString:@"/musicFiles"];
+//                    NSString* copyfile = [path stringByAppendingPathComponent:[[file componentsSeparatedByString:@"/"] lastObject]];
+//                    [[NSFileManager defaultManager] copyItemAtPath:copyfile toPath:file error:nil];
+//                }
                 musicType = @"mp3";
             } else {
                 musicUrl = musicname;

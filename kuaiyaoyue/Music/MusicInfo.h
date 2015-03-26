@@ -14,7 +14,7 @@
 @property (strong ,nonatomic) NSString *title;
 @property (strong ,nonatomic) NSString *url;
 @property (strong ,nonatomic) NSString *uniqueId;
-
+@property (strong ,nonatomic) NSURL *locUrl;
 -(MusicInfo *)SetMusicValue:(BOOL) state : (NSString *) title :(NSString *) url :(NSString *)uniqueId;
-
+-(MusicInfo *)SetMusicValue:(BOOL) state andTitle: (NSString *) title andUrl:(NSURL *) url;
 @end

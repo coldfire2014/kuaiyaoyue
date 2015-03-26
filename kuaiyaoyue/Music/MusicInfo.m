@@ -17,5 +17,11 @@
     _uniqueId = uniqueId;
     return self;
 }
+-(MusicInfo *)SetMusicValue:(BOOL) state andTitle: (NSString *) title andUrl:(NSURL *) url{
+    _state = state;
+    _title = title;
+    _locUrl = url;
+    return self;
+}
 
 @end

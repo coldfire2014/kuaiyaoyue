@@ -43,7 +43,7 @@
                 for (int i = 0; i < [array count]; i++) {
                     NSDictionary *dic = [array objectAtIndex:i];
                     [[DataBaseManage getDataBaseManage] setMusic:dic];
-                    [self downYP:[dic objectForKey:@"uniqueId"] :[dic objectForKey:@"url"]];
+//                    [self downYP:[dic objectForKey:@"uniqueId"] :[dic objectForKey:@"url"]];
                 }
             }
         }
