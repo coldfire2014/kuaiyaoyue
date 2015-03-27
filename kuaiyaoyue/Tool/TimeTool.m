@@ -53,7 +53,30 @@
     return timetext;
     
 }
-
++(NSString *)endTime:(NSDate*) enddate{
+    NSDate* today = [NSDate date];
+    NSTimeInterval tt = [today timeIntervalSince1970];
+    NSTimeInterval dt = [enddate timeIntervalSince1970];
+    double cha = dt-tt;
+    NSString* timetext;
+    if (cha<=0) {
+        timetext = @"已截止";
+    } else if (cha<60*60*24) {
+        int a = cha/60/60;
+        int b = cha - a*60*60;
+        b=b/60;
+        NSDateFormatter *tempFormatter = [[NSDateFormatter alloc]init];
+        [tempFormatter setDateFormat:@"HH:mm"];
+        //        timetext = [NSString stringWithFormat:@"%d小时前",a];
+        timetext = [tempFormatter stringFromDate:enddate];
+    } else {
+        NSDateFormatter *tempFormatter = [[NSDateFormatter alloc]init];
+        [tempFormatter setDateFormat:@"yyyy/MM/dd"];
+        //        timetext = [NSString stringWithFormat:@"%d小时前",a];
+        timetext = [tempFormatter stringFromDate:enddate];
+    }
+    return timetext;
+}
 +(NSString*)getFullTimeStr:(NSTimeInterval)time{
     NSDate * date=[NSDate dateWithTimeIntervalSince1970:time];
     NSCalendar * calendar=[[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];

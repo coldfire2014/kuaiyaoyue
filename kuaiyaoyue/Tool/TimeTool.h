@@ -11,7 +11,7 @@
 @interface TimeTool : NSObject
 
 +(NSString *)TopJZTime:(NSDate*) jzdate;
-
++(NSString *)endTime:(NSDate*) enddate;
 +(NSString*)getFullTimeStr:(NSTimeInterval)time;
 
 @end

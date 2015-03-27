@@ -311,8 +311,8 @@
             [s setStartTime:[NSDate dateWithTimeIntervalSince1970:_starttime] EndTime:[NSDate dateWithTimeIntervalSince1970:_endtime] andGoneTime:[NSDate dateWithTimeIntervalSince1970:_datatime]];
             
 //            [[StatusBar sharedStatusBar] talkMsg:@"修改成功" inTime:1.01];
-            [[waitingView sharedwaitingView] WarningByMsg:@"修改成功" haveCancel:NO];
-            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
+//            [[waitingView sharedwaitingView] WarningByMsg:@"修改成功" haveCancel:NO];
+//            [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
         }else{
 //            [[StatusBar sharedStatusBar] talkMsg:@"修改失败" inTime:1.51];
             [[waitingView sharedwaitingView] WarningByMsg:@"修改失败" haveCancel:NO];
