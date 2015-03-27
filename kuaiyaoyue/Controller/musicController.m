@@ -14,11 +14,16 @@
 #import "FileManage.h"
 @implementation musicController
 -(void)update{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    NSString *is_open = [userInfo valueForKey:MUSIC_TOKEN];
     NSArray *arr = [[DataBaseManage getDataBaseManage] getMusic];
-    if ([arr count] > 0) {
+    if ([arr count] > 0 && [is_open length] > 0) {
         [self performSelectorInBackground:@selector(updatemusic:) withObject:arr];
         
     }else{
+        if ([arr count] > 0) {
+            [[DataBaseManage getDataBaseManage] resetMusic];
+        }
         NSBundle *bundle = [NSBundle mainBundle];
         NSString* html = [[NSString alloc] initWithContentsOfFile:[bundle pathForResource:@"music" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
@@ -30,6 +35,7 @@
                 [[DataBaseManage getDataBaseManage] setMusic:dic];
             }
         }
+        [userInfo setObject:MUSIC_TOKEN forKey:MUSIC_TOKEN];
     }
 }
 -(void)updatemusic:(NSArray*)arr{

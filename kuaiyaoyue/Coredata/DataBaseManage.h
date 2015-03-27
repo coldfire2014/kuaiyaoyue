@@ -14,11 +14,13 @@
 +(DataBaseManage *)getDataBaseManage;
 
 //设置音乐表内容
+-(void)resetMusic;
 -(void)setMusic:(NSDictionary *) dic;
 //获取音乐表
 -(NSArray *)getMusic:(NSString *)typeid;
 -(NSArray *)getMusic;
 //查询模板表
+-(void)resetTemplate;
 -(NSArray *)QueryTemplate;
 //添加模板内容
 -(BOOL)AddTemplate:(NSDictionary *) resultDic;

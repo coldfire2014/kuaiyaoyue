@@ -28,7 +28,21 @@ static NSManagedObjectContext *context = nil;
     }
     return database;
 }
-
+-(void)resetTemplate{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Template"];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    
+    if ([fetchedObjects count] > 0) {
+        for(Template * item in fetchedObjects){
+            [context deleteObject:item];
+        }
+    }
+    if (![context save:&error])
+    {
+        NSLog(@"error:%@",error);
+    }
+}
 -(NSArray *)QueryTemplate{
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Template"];
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"neftimestamp" ascending:NO];
@@ -444,7 +458,21 @@ static NSManagedObjectContext *context = nil;
     NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
     return fetchedObjects;
 }
-
+-(void)resetMusic{
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Music"];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+    
+    if ([fetchedObjects count] > 0) {
+        for(Music * item in fetchedObjects){
+            [context deleteObject:item];
+        }
+    }
+    if (![context save:&error])
+    {
+        NSLog(@"error:%@",error);
+    }
+}
 -(void)setMusic:(NSDictionary *) dic{
     Music *music = [NSEntityDescription insertNewObjectForEntityForName:@"Music" inManagedObjectContext:context];
     music.neftypeid = [NSString stringWithFormat:@"%@",[dic objectForKey:@"typeId"]];

@@ -15,11 +15,16 @@
 
 @implementation templateController
 -(void)update{
+    NSUserDefaults *userInfo = [NSUserDefaults standardUserDefaults];
+    NSString *is_open = [userInfo valueForKey:TEMP_TOKEN];
     NSArray *fetchedObjects = [[DataBaseManage getDataBaseManage] QueryTemplate];
-    if ([fetchedObjects count] > 0) {
+    if ([fetchedObjects count] > 0 && [is_open length] > 0) {
         [self performSelectorInBackground:@selector(updatetemplate:) withObject:fetchedObjects];
 
     }else{
+        if ([fetchedObjects count] > 0) {
+            [[DataBaseManage getDataBaseManage] resetTemplate];
+        }
         NSBundle *bundle = [NSBundle mainBundle];
         NSString* html = [[NSString alloc] initWithContentsOfFile:[bundle pathForResource:@"template" ofType:@"json"] encoding:NSUTF8StringEncoding error:nil];
         NSData* resData=[html dataUsingEncoding:NSUTF8StringEncoding];
@@ -27,7 +32,8 @@
         for (int i = 0; i < [array count]; i++) {
             NSDictionary *resultDic = [array objectAtIndex:i];
             [[DataBaseManage getDataBaseManage] AddTemplate:resultDic];
-        }  
+        }
+        [userInfo setObject:TEMP_TOKEN forKey:TEMP_TOKEN];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DOWNLOAD_DONE" object:nil];
 }
