@@ -154,7 +154,23 @@
         [bar closeShow:NO];
     }
 }
-
+- (BOOL)donotJump:(NSString*)url{
+    NSRange range = [url rangeOfString:@"kyy121.com"];
+    if (range.length > 0) {
+        return YES; // 继续对本次请求进行导航
+    }else if([url rangeOfString:@"blank"].length > 0){
+        return YES;
+    }else if([url rangeOfString:@"t.cn"].length > 0){
+        return YES;
+    }else if([url rangeOfString:@"map.baidu"].length > 0){
+        return YES;
+    }else if([url rangeOfString:@"mp.weixin.qq.com"].length > 0){
+        return YES;
+    }else if([url rangeOfString:@"//"].length == 0){
+        return YES;
+    }
+    return NO;
+}
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString* rurl=[[request URL] resourceSpecifier];
     NSString* scheme = [[request URL] scheme];
@@ -173,8 +189,7 @@
         [_webview loadRequest:request];
         return NO;
     }
-    NSRange range = [rurl rangeOfString:@"kyy121.com"];
-    if (range.length > 0) {
+    if ([self donotJump:rurl]) {
         return YES; // 继续对本次请求进行导航
     }else{
         [[UIApplication sharedApplication] openURL:[request URL]];
