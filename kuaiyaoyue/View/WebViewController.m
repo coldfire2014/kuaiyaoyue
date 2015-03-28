@@ -43,14 +43,25 @@
     self.view.frame = [UIScreen mainScreen].bounds;
     CGFloat top = 20.0;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        top = 0.0;
-        if (ISIOS8LATER) {
-            w = 320;
-        } else {
+        if ([_viewTitle compare:@"生成后预览"] == NSOrderedSame) {
+            top = 0.0;
+            if (ISIOS8LATER) {
+                w = 320;
+            } else {
+                w = 540;
+            }
+            h = 620;
+            self.view.frame = CGRectMake(0, 0, w, h);
+        } else if ([_viewTitle compare:@"攻略"] == NSOrderedSame) {
+            top = 0.0;
             w = 540;
+            h = 620;
+            self.view.frame = CGRectMake(0, 0, w, h);
+        } else {
+            w=IPAD_FRAME.size.width;
+            h=IPAD_FRAME.size.height;
+            self.view.frame = CGRectMake(0, 0, w, h);
         }
-        h = 620;
-        self.view.frame = CGRectMake(0, 0, w, h);
     }
     self.webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 88.0/2.0+top, w, h-88.0/2.0-top)];
     self.webview.scalesPageToFit = YES;
@@ -59,7 +70,7 @@
     [self.view addSubview:self.webview];
     WebNavBar* bar = [[WebNavBar alloc] initWithFrame:CGRectMake(0, 0, w, 88.0/2.0+top) andBgColor:self.navColor andTitleColor:self.navtextColor];
     bar.tag = 501;
-    [bar setTitle:self.name];
+    [bar setTitle:_name];
     [self.view addSubview:bar];
     [self.view bringSubviewToFront:bar];
 }

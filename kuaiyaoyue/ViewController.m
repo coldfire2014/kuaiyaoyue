@@ -166,11 +166,7 @@
     view.name = TJ_TITLE;
     view.weburl = TJ_URL;
     view.viewTitle = @"推荐页面";
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        view.modalPresentationStyle = UIModalPresentationFormSheet;
-    } else {
-        view.modalPresentationStyle = UIModalPresentationFullScreen;
-    }
+    view.modalPresentationStyle = UIModalPresentationFullScreen;
     //UIModalPresentationOverFullScreen 全屏对下透明
     view.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:view animated:YES completion:^{
