@@ -21,7 +21,8 @@
 @interface MusicViewController ()<AVAudioPlayerDelegate>{
     NSMutableArray *data;
     long num;
-    AVPlayer *player;
+    AVPlayer *uplayer;
+    AVAudioPlayer *player;
     MusicTableViewCell *bfcell;
     NSManagedObjectContext *context;
     long tjnum;
@@ -159,8 +160,7 @@
         [cell.show_status setHidden:YES];
     }else{
         [cell.show_status setHidden:NO];
-        URL  = [[NSString alloc] initWithFormat:@"%@/%@.mp3",MUSIC_URL,info.uniqueId];
-//        URL = info.url;
+        URL = [[NSString alloc] initWithString:info.url];
         name = info.title;
     }
     cell.show_content.text = info.title;
@@ -197,22 +197,21 @@
     num = [indexPath row];
     [_tableView reloadData];
     
-    NSString *file  = [[NSString alloc] initWithFormat:@"%@/%@.mp3",MUSIC_URL,info.uniqueId];//[[FileManage sharedFileManage] GetYPFile:info.uniqueId];
-//    NSString *file  = [[FileManage sharedFileManage] GetYPFile:info.uniqueId];
-//    if(![[NSFileManager defaultManager] fileExistsAtPath:file]){
-//        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"sdyy" ofType:@"bundle"]];
-//        NSString *path = [bundle.bundlePath stringByAppendingString:@"/musicFiles"];
-//        
-//        NSString* copyfile = [path stringByAppendingPathComponent:[[file componentsSeparatedByString:@"/"] lastObject]];
-//        if(![[NSFileManager defaultManager] fileExistsAtPath:copyfile]){
-//            return;
-//        }else{
-//            [[NSFileManager defaultManager] copyItemAtPath:copyfile toPath:file error:nil];
-//            [NSThread detachNewThreadSelector:@selector(AudioPlay:) toTarget:self withObject:copyfile];
-//        }
-//    }else{
+    NSString *url = [[NSString alloc] initWithString:info.url];
+    NSString *file  = [[FileManage sharedFileManage] GetYPFile:info.uniqueId];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:file]){
+        [HttpManage DownMusic:url filepath:file cb:^(BOOL isOK) {
+            if (isOK) {
+//                NSLog(@"DownMusic ok");
+//                [NSThread sleepForTimeInterval:0.3];
+//                [NSThread detachNewThreadSelector:@selector(AudioPlay:) toTarget:self withObject:file];
+                [self performSelector:@selector(AudioPlay:) withObject:file afterDelay:0.3];
+            }
+        }];
+//        [NSThread detachNewThreadSelector:@selector(uAudioPlay:) toTarget:self withObject:url];
+    }else{
         [NSThread detachNewThreadSelector:@selector(AudioPlay:) toTarget:self withObject:file];
-//    }
+    }
     
     //    [self AudioPlay:file];
 }
@@ -227,36 +226,44 @@
     [super viewDidDisappear:animated];
     [TalkingData trackPageEnd:@"音乐选择页"];
 }
-//-(void)AudioPlay:(NSString *)recordedFile{
-//    NSError *playerError;
-//    player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: recordedFile] error:&playerError];
-//    NSLog(@"%@",[NSURL fileURLWithPath: recordedFile]);
-//    [player prepareToPlay];
-//    //    player.volume = 10.0f;
-//    player.delegate = self;
-//    player.numberOfLoops = 1;
-//    if (player == nil)
-//    {
-//        NSLog(@"ERror creating player: %@", [playerError description]);
-//    }
-//    //    player.delegate = self;
-//    if([player isPlaying])
-//    {
-//        [player pause];
-//    }
-//    //If the track is not player, play the track and change the play button to "Pause"
-//    else
-//    {
-//        [player play];
-//    }
-//}
 -(void)AudioPlay:(NSString *)recordedFile{
-    player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:recordedFile]];
+    if(uplayer != nil)
+    {
+        [uplayer pause];
+    }
+    NSError *playerError;
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: recordedFile] error:&playerError];
+//    NSLog(@"%@",[NSURL fileURLWithPath: recordedFile]);
+    [player prepareToPlay];
+    //    player.volume = 10.0f;
+    player.delegate = self;
+    player.numberOfLoops = 1;
     if (player == nil)
+    {
+        NSLog(@"ERror creating player: %@", [playerError description]);
+    }
+    //    player.delegate = self;
+    if([player isPlaying])
+    {
+        [player pause];
+    }
+    //If the track is not player, play the track and change the play button to "Pause"
+    else
+    {
+        [player play];
+    }
+}
+-(void)uAudioPlay:(NSString *)recordedFile{
+    if(player != nil && [player isPlaying])
+    {
+        [player pause];
+    }
+    uplayer = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:recordedFile]];
+    if (uplayer == nil)
     {
         return;
     }
-    [player play];
+    [uplayer play];
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag{

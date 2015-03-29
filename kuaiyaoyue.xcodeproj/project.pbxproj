@@ -710,6 +710,7 @@
 		844825F31A31A4BB0018240E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				84B446DE1A32BEF500546859 /* Animation */,
 				E55F59EB1A3688A900B0D587 /* element */,
 				8448258A1A318FAC0018240E /* Cell */,
 				84E8428E1A2EEA0800A401A0 /* Music */,
@@ -781,7 +782,8 @@
 				E55F59F51A36A26300B0D587 /* MainNavigationControllerDelegate.h */,
 				E55F59F61A36A26300B0D587 /* MainNavigationControllerDelegate.m */,
 			);
-			path = Animation;
+			name = Animation;
+			path = ../Animation;
 			sourceTree = "<group>";
 		};
 		84B4738D1A30069900A21457 /* Frameworks */ = {
@@ -860,11 +862,10 @@
 		84E8425B1A2EDF6B00A401A0 /* kuaiyaoyue */ = {
 			isa = PBXGroup;
 			children = (
-				84B446DE1A32BEF500546859 /* Animation */,
+				84B4739F1A3036E100A21457 /* Coredata */,
 				E56863A81A77202700DB6EA4 /* Controller */,
 				84B5A4761A3EC9B100C55200 /* Tool */,
 				844825F31A31A4BB0018240E /* UI */,
-				84B4739F1A3036E100A21457 /* Coredata */,
 				84E842861A2EE88100A401A0 /* Res */,
 				84E842601A2EDF6B00A401A0 /* AppDelegate.h */,
 				84E842611A2EDF6B00A401A0 /* AppDelegate.m */,
@@ -1433,7 +1434,7 @@
 				TargetAttributes = {
 					84E842581A2EDF6B00A401A0 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = PSEU9Z2979;
+						DevelopmentTeam = E68S9675TU;
 					};
 				};
 			};
@@ -1809,7 +1810,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xiamen NEF Network Technology Co., Ltd. (PSEU9Z2979)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: xiamen NEF Network Technology Co.Ltd";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/kuaiyaoyue/Lib",
@@ -1833,7 +1834,7 @@
 				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "快邀约";
-				PROVISIONING_PROFILE = "e889649d-5273-48c0-80bb-3baec87f1f20";
+				PROVISIONING_PROFILE = "7cc2b366-7e0a-44d7-abfc-deed0b62d6ef";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

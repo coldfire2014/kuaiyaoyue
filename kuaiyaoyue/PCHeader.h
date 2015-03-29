@@ -15,7 +15,6 @@
 #define UPDATE_CHECK @"http://appkyy.kyy121.com/media/app/checkVersion"
 #define TJ_URL @"http://appkyy.kyy121.com/static/store/index.html"
 #define TJ_TITLE @"推荐"
-#define MUSIC_URL @"http://7vilen.com1.z0.glb.clouddn.com"
 #define MUSIC_TOKEN @"MUSIC_230"
 #define TEMP_TOKEN @"TEMP_230"
 //#define YINGLOU @"YINGLOU"
