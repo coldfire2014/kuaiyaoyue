@@ -211,7 +211,7 @@
 -(void)AudioPlay:(NSString *)recordedFile{
     NSError *playerError;
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: recordedFile] error:&playerError];
-    NSLog(@"%@",[NSURL fileURLWithPath: recordedFile]);
+//    NSLog(@"%@",[NSURL fileURLWithPath: recordedFile]);
     [player prepareToPlay];
     //    player.volume = 10.0f;
     player.delegate = self;

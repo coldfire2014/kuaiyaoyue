@@ -467,10 +467,10 @@ static NSManagedObjectContext *context = nil;
         for(Music * item in fetchedObjects){
             [context deleteObject:item];
         }
-    }
-    if (![context save:&error])
-    {
-        NSLog(@"error:%@",error);
+        if (![context save:&error])
+        {
+            NSLog(@"error:%@",error);
+        }
     }
 }
 -(void)setMusic:(NSDictionary *) dic{
@@ -500,6 +500,9 @@ static NSManagedObjectContext *context = nil;
 
 -(NSArray *)getMusic{
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Music"];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
+    [request setSortDescriptors: sortDescriptors];
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
     return fetchedObjects;

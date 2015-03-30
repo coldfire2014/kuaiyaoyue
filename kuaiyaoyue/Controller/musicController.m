@@ -19,7 +19,6 @@
     NSArray *arr = [[DataBaseManage getDataBaseManage] getMusic];
     if ([arr count] > 0 && [is_open length] > 0) {
         [self performSelectorInBackground:@selector(updatemusic:) withObject:arr];
-        
     }else{
         if ([arr count] > 0) {
             [[DataBaseManage getDataBaseManage] resetMusic];
@@ -39,7 +38,7 @@
     }
 }
 -(void)updatemusic:(NSArray*)arr{
-    Music *music = [arr objectAtIndex:[arr count] -1];
+    Music *music = [arr objectAtIndex:0];
     NSString *timestamp = music.timestamp;
     [HttpManage getAll:timestamp cb:^(BOOL isOK, NSMutableArray *array) {
         if (isOK && nil != array) {

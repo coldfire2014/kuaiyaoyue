@@ -205,10 +205,10 @@
 //                NSLog(@"DownMusic ok");
 //                [NSThread sleepForTimeInterval:0.3];
 //                [NSThread detachNewThreadSelector:@selector(AudioPlay:) toTarget:self withObject:file];
-                [self performSelector:@selector(AudioPlay:) withObject:file afterDelay:0.3];
+//                [self performSelector:@selector(AudioPlay:) withObject:file afterDelay:0.3];
             }
         }];
-//        [NSThread detachNewThreadSelector:@selector(uAudioPlay:) toTarget:self withObject:url];
+        [NSThread detachNewThreadSelector:@selector(uAudioPlay:) toTarget:self withObject:url];
     }else{
         [NSThread detachNewThreadSelector:@selector(AudioPlay:) toTarget:self withObject:file];
     }
@@ -231,17 +231,20 @@
     {
         [uplayer pause];
     }
-    NSError *playerError;
+    NSError *playerError = nil;
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath: recordedFile] error:&playerError];
-//    NSLog(@"%@",[NSURL fileURLWithPath: recordedFile]);
+    if (player == nil && playerError != nil)
+    {
+        if([[NSFileManager defaultManager] fileExistsAtPath:recordedFile]){
+            [[NSFileManager defaultManager] removeItemAtPath:recordedFile error:&playerError];
+        }
+        NSLog(@"ERror creating player: %@", [playerError description]);
+    }
+    //    NSLog(@"%@",[NSURL fileURLWithPath: recordedFile]);
     [player prepareToPlay];
     //    player.volume = 10.0f;
     player.delegate = self;
     player.numberOfLoops = 1;
-    if (player == nil)
-    {
-        NSLog(@"ERror creating player: %@", [playerError description]);
-    }
     //    player.delegate = self;
     if([player isPlaying])
     {
