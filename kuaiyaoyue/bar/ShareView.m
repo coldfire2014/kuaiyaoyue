@@ -37,7 +37,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.windowLevel = UIWindowLevelStatusBar - 1.0;
+        self.windowLevel = UIWindowLevelStatusBar - 2.0;
         self.backgroundColor = [UIColor clearColor];
         self.alpha = 1;
         self.hidden = NO;
@@ -535,6 +535,11 @@
     }
 }
 -(void)shareWXWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img{
+    if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi]) {
+        [[waitingView sharedwaitingView] WarningByMsg:@"微信未安装。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
+        return;
+    }
     WXMediaMessage *message = [WXMediaMessage message];
     message.title = title;
     message.description = des;
@@ -551,6 +556,11 @@
     [WXApi sendReq:req];
 }
 -(void)shareWXPYWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img{
+    if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi]) {
+        [[waitingView sharedwaitingView] WarningByMsg:@"微信未安装。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
+        return;
+    }
     WXMediaMessage *message = [WXMediaMessage message];
     message.title = title;
     message.description = des;

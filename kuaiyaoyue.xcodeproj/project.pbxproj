@@ -230,6 +230,7 @@
 		E5A150AA1AB02AE6004B5D03 /* small.png in Resources */ = {isa = PBXBuildFile; fileRef = E5A150A81AB02AE6004B5D03 /* small.png */; };
 		E5A2C87C1AB7AB9400A55425 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E5A2C87A1AB7AB9300A55425 /* Default-Landscape@2x~ipad.png */; };
 		E5A2C87D1AB7AB9400A55425 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E5A2C87B1AB7AB9300A55425 /* Default-Landscape~ipad.png */; };
+		E5CFA8831ACA78620079784D /* icon180.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CFA8821ACA78620079784D /* icon180.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -611,6 +612,7 @@
 		E5A150A81AB02AE6004B5D03 /* small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small.png; sourceTree = "<group>"; };
 		E5A2C87A1AB7AB9300A55425 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		E5A2C87B1AB7AB9300A55425 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		E5CFA8821ACA78620079784D /* icon180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon180.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -941,6 +943,7 @@
 				8474A4AC1A4BB28A00C2E489 /* bubble_play_2@2x.png */,
 				8474A4AD1A4BB28A00C2E489 /* bubble_play_3@2x.png */,
 				843DBEDB1A46FA2600CDFFCB /* icon57.png */,
+				E5CFA8821ACA78620079784D /* icon180.png */,
 				843DBED91A46F16600CDFFCB /* icon120.png */,
 				E5590CC01A469CAB0080F3B1 /* card_b.png */,
 				E5590CC11A469CAB0080F3B1 /* card_g.png */,
@@ -1476,6 +1479,7 @@
 				E56C0A601A8CCA060055495A /* ic_c_contact@2x.png in Resources */,
 				843DBEDA1A46F16600CDFFCB /* icon120.png in Resources */,
 				E56C0A4D1A8CAC4D0055495A /* ic_38_save@2x.png in Resources */,
+				E5CFA8831ACA78620079784D /* icon180.png in Resources */,
 				E565ECC61A52CDB900679BAE /* 1w.jpg in Resources */,
 				E5661A1C1A45708C00E4E2BC /* btn_login_qq.png in Resources */,
 				E56863B11A772CD200DB6EA4 /* music.json in Resources */,

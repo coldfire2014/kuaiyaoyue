@@ -11,6 +11,7 @@
 #import "TalkingData.h"
 #import "WebNavBar.h"
 #import "PCHeader.h"
+#import "ShareView.h"
 @interface WebViewController ()
 
 @end
@@ -28,6 +29,10 @@
         self.navtextColor = [[UIColor alloc] initWithRed:255.0/255.0 green:88.0/255.0 blue:88.0/255.0 alpha:1.0];
     }
     return self;
+}
+- (void)NavBtnName:(NSString*)name{
+    WebNavBar* bar = (WebNavBar*)[self.view viewWithTag: 501];
+    [bar setRight:name];
 }
 - (void)NavColor:(UIColor *)navColor andtextColor:(UIColor *)textColor{
     self.navColor = navColor;
@@ -94,7 +99,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopLoad) name:@"MSG_STOP_WAITING" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(back) name:@"MSG_BACK" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:@"MSG_CLOSE" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:@"MSG_WEB_REFLASH" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMe) name:@"MSG_WEB_REFLASH" object:nil];
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MSG_STOP_WAITING" object:nil];
@@ -122,12 +127,27 @@
         [self dismissViewControllerAnimated:YES completion:^{}];
     }
 }
--(void)refresh{
-    [self.webview stopLoading];
-    [self.webview reload];
-    WebNavBar* bar = (WebNavBar*)[self.view viewWithTag: 501];
-    [bar reflashShow:NO];
-    [[waitingView sharedwaitingView] waitByMsg:@"正在努力为您加载中……" haveCancel:YES];
+-(void)refreshMe{
+    if ([_viewTitle compare:@"推荐页面"] == NSOrderedSame) {
+        NSString* oldUrl = [[_webview.request URL] absoluteString];
+        NSString* title = [_webview stringByEvaluatingJavaScriptFromString:@"document.title"];
+        [TalkingData trackEvent:@"分享推荐" label:title];
+        ShareView* share = [ShareView sharedShareView];
+        share.fromvc = self;
+        share.url = oldUrl;
+        share.msg = @"来自快邀约的推荐";
+        share.title = [[NSString alloc] initWithString:title];
+        share.imgUrl = @"http://7xia0i.com2.z0.glb.qiniucdn.com/kyy/logo.jpg";
+        UIImage *img = [[UIImage alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"icon180" ofType:@"png"]];
+        share.img = [[UIImage alloc] initWithCGImage:img.CGImage scale:2.0 orientation:UIImageOrientationUp];
+        [share show];
+    } else {
+        [self.webview stopLoading];
+        [self.webview reload];
+        WebNavBar* bar = (WebNavBar*)[self.view viewWithTag: 501];
+        [bar reflashShow:NO];
+        [[waitingView sharedwaitingView] waitByMsg:@"正在努力为您加载中……" haveCancel:YES];
+    }
 }
 -(void)stopLoad{
     [self.webview stopLoading];
@@ -206,7 +226,46 @@
         [[UIApplication sharedApplication] openURL:[request URL]];
         [TalkingData trackEvent:@"跳转购买" label:rurl];
         return NO;
+//        NSString* oldUrl=[[webView.request URL] resourceSpecifier];
+//        if ([oldUrl rangeOfString:@"kyy121.com"].length > 0) {
+//
+//
+//            NSLog(@"%@",rurl);
+//            return YES;
+//        }else{
+//            [[UIApplication sharedApplication] openURL:[request URL]];
+//
+//        }
     }
 }
 
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    if (MFMailComposeResultSent == result || MFMailComposeResultSaved == result) {
+        //        [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"分享成功。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
+    } else {
+        //        [[StatusBar sharedStatusBar] talkMsg:@"消息未发送。" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"消息未发送。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
+    }
+    [controller dismissViewControllerAnimated:YES completion:^{
+
+    }];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
+    if (result == MessageComposeResultSent) {
+        //        [[StatusBar sharedStatusBar] talkMsg:@"分享成功。" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"分享成功。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:WAITING_TIME];
+    } else {
+        //        [[StatusBar sharedStatusBar] talkMsg:@"消息未发送。" inTime:0.51];
+        [[waitingView sharedwaitingView] WarningByMsg:@"消息未发送。" haveCancel:NO];
+        [[waitingView sharedwaitingView] performSelector:@selector(stopWait) withObject:nil afterDelay:ERR_TIME];
+    }
+    [controller dismissViewControllerAnimated:YES completion:^{
+
+    }];
+}
 @end

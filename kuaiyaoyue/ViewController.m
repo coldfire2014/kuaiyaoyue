@@ -163,12 +163,13 @@
     [TalkingData trackEvent: @"推荐点击"];
     WebViewController *view = [[WebViewController alloc] init];
     [view NavColor:[[UIColor alloc] initWithRed:248.0/255.0 green:78.0/255.0 blue:78.0/255.0 alpha:1.0] andtextColor:[UIColor whiteColor]];
+    [view NavBtnName:@"分享"];
     view.name = TJ_TITLE;
     view.weburl = TJ_URL;
     view.viewTitle = @"推荐页面";
     view.modalPresentationStyle = UIModalPresentationFullScreen;
     //UIModalPresentationOverFullScreen 全屏对下透明
-    view.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    view.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:view animated:YES completion:^{
         
     }];
@@ -703,8 +704,6 @@
 }
 
 - (void)VCDelegate:(ViewCell *)cell didTapAtIndex:(long ) index type:(int)type{
-    
-    
     Userdata *user = [data objectAtIndex:index];
     switch (user.neftype) {
         case 0:
@@ -787,19 +786,16 @@
             break;
         case 1:
             title = [NSString stringWithFormat:@"%@&%@ 结婚典礼",user.nefgroom,user.nefbride];
-            
             msg = [NSString stringWithFormat:@"谨定于%@ 席设%@",[TimeTool getFullTimeStr:[user.neftimestamp doubleValue]/1000.0],user.nefaddress];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;
         case 2:
             title = [NSString stringWithFormat:@"%@",user.nefpartyname];
-            
             msg = [NSString stringWithFormat:@"%@ %@ %@ %@",user.nefgroom,[TimeTool getFullTimeStr:[user.neftimestamp doubleValue]/1000.0],user.nefaddress,user.nefdescription];
             url = user.nefurl;
             thumb = user.nefthumb;
             break;
-            
         default:
             break;
     }
@@ -814,8 +810,6 @@
         topimg = [[FileManage sharedFileManage] getThumb:topimg];
         topimg = [NSString stringWithFormat:@"%@/assets/images/thumb",topimg];
     }
-    
-    
     ShareView* share = [ShareView sharedShareView];
     share.fromvc = self;
     share.url = url;

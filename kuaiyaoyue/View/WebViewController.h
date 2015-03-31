@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface WebViewController : UIViewController<UIWebViewDelegate>
+@import MessageUI;
+@interface WebViewController : UIViewController<UIWebViewDelegate,MFMessageComposeViewControllerDelegate,MFMailComposeViewControllerDelegate>
 @property (strong ,nonatomic) UIWebView *webview;
 @property (weak ,nonatomic) NSString *weburl;
 @property (weak ,nonatomic) NSString *name;
@@ -16,4 +16,5 @@
 @property (strong ,nonatomic) UIColor *navColor;
 @property (strong ,nonatomic) UIColor *navtextColor;
 - (void)NavColor:(UIColor *)navColor andtextColor:(UIColor *)textColor;
+- (void)NavBtnName:(NSString*)name;
 @end

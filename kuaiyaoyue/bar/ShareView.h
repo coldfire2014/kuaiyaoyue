@@ -13,11 +13,11 @@
 @interface ShareView : UIWindow
 + (ShareView *)sharedShareView;
 @property (nonatomic,weak) UIViewController<MFMessageComposeViewControllerDelegate,MFMailComposeViewControllerDelegate>* fromvc;
-@property (nonatomic,weak) NSString* title;
-@property (nonatomic,weak) NSString* msg;
-@property (nonatomic,weak) NSString* url;
+@property (nonatomic,strong) NSString* title;
+@property (nonatomic,strong) NSString* msg;
+@property (nonatomic,strong) NSString* url;
 @property (nonatomic,strong) UIImage* img;
-@property (nonatomic,weak) NSString* imgUrl;
+@property (nonatomic,strong) NSString* imgUrl;
 
 -(void)shareSinaWeiboWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img;
 -(void)shareTencentWeiboWithTitle:(NSString*)title andDes:(NSString*)des andURL:(NSString*)url andHeadImg:(UIImage*)img;
