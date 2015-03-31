@@ -10,7 +10,7 @@
 #import "ChangeTempView.h"
 @protocol PreviewViewControllerDelegate <NSObject>
 
--(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw;
+-(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw andName:(NSString*)nefname;
 -(void)didSendType:(int) type;
 @optional
 -(UIImage *)getimg :(NSString *) str andIndex:(NSString*) index;

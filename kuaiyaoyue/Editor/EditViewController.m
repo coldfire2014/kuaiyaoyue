@@ -1321,9 +1321,10 @@
 }
 
 #pragma mark - PreviewViewControllerDelegate
--(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw{
+-(void)didSelectID:(NSString*)index andNefmbdw:(NSString*)nefmbdw andName:(NSString*)nefname{
     _tempId = index;
     _tempLoc = nefmbdw;
+    _tempName = nefname;
     [self drowImg];
 }
 -(void)didSendType:(int) type{
@@ -1615,6 +1616,7 @@
     Template *info = [tempData objectAtIndex:index];
     _tempLoc = [[NSString alloc] initWithFormat:@"%@",info.nefmbdw];
     _tempId = [[NSString alloc] initWithFormat:@"%@",info.nefid];
+    _tempName = [[NSString alloc] initWithFormat:@"%@",info.nefname];
     [self drowImg];
 }
 -(void)drowImg{
@@ -2425,6 +2427,8 @@
                                         nil];
                 [[DataBaseManage getDataBaseManage] AddUserdata:params type:1];
                 [self dismissViewControllerAnimated:NO completion:^{}];
+                NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:_tempName,@"模版名称", nil];
+                [TalkingData trackEvent:@"创建邀约" label:@"婚礼" parameters:parameters ];
                 if (sendtaped) {
                     [TalkingData trackEvent:@"生成并发送"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];
@@ -2470,6 +2474,12 @@
                                         nil];
                 [[DataBaseManage getDataBaseManage] AddUserdata:params type:2];
                 [self dismissViewControllerAnimated:NO completion:^{}];
+                NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:_tempName,@"模版名称", nil];
+                if ([_typeid compare:@"2"] == NSOrderedSame) {
+                    [TalkingData trackEvent:@"创建邀约" label:@"商务" parameters:parameters ];
+                } else {
+                    [TalkingData trackEvent:@"创建邀约" label:@"娱乐" parameters:parameters ];
+                }
                 if (sendtaped) {
                     [TalkingData trackEvent:@"生成并发送"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_BCFS" object:self userInfo:nil];

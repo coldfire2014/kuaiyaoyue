@@ -20,7 +20,7 @@
     NSArray *fetchedObjects = [[DataBaseManage getDataBaseManage] QueryTemplate];
     if ([fetchedObjects count] > 0 && [is_open length] > 0) {
         [self performSelectorInBackground:@selector(updatetemplate:) withObject:fetchedObjects];
-
+//        [self performSelectorInBackground:@selector(maxtemplate:) withObject:@"-1"];
     }else{
         if ([fetchedObjects count] > 0) {
             [[DataBaseManage getDataBaseManage] resetTemplate];
@@ -83,11 +83,11 @@
 -(void)maxtemplate:(NSString *)timestamp{
     [HttpManage template:timestamp size:@"-1" cb:^(BOOL isOK, NSMutableArray *array) {
         if (isOK) {
-            for (int i = 0; i < [array count]; i++) {
-                NSDictionary *resultDic = [array objectAtIndex:i];
-                [self zip:[resultDic objectForKey:@"zipUrl"] :[NSString stringWithFormat:@"%d",i]];
-                [[DataBaseManage getDataBaseManage] AddTemplate:resultDic];
-            }
+//            for (int i = 0; i < [array count]; i++) {
+//                NSDictionary *resultDic = [array objectAtIndex:i];
+//                [self zip:[resultDic objectForKey:@"zipUrl"] :[NSString stringWithFormat:@"%d",i]];
+//                [[DataBaseManage getDataBaseManage] AddTemplate:resultDic];
+//            }
         }
     }];
 }

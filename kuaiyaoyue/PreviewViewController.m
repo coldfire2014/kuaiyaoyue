@@ -101,7 +101,7 @@
 
 -(void)didSelectTemplate:(Template*)items{
     [TalkingData trackEvent:@"预览时更换模版"];
-    [self.delegate didSelectID:[[NSString alloc] initWithFormat:@"%@",items.nefid] andNefmbdw:items.nefmbdw];
+    [self.delegate didSelectID:[[NSString alloc] initWithFormat:@"%@",items.nefid] andNefmbdw:items.nefmbdw andName:items.nefname];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *urlpath = [documentsDirectory stringByAppendingString:items.nefmbdw];

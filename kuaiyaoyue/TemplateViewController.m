@@ -28,6 +28,7 @@
     UIColor* nowkColor;
     NSString *unquieId;
     NSString *nefmbdw;
+    NSString *nefname;
 }
 
 @end
@@ -266,6 +267,7 @@
     Template *info = [data objectAtIndex:index];
     unquieId = [NSString stringWithFormat:@"%@",info.nefid];
     nefmbdw = info.nefmbdw;
+    nefname = info.nefname;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *zipurl = [documentsDirectory stringByAppendingPathComponent:info.nefzipurl];
@@ -344,6 +346,7 @@
     EditViewController* des = (EditViewController*)segue.destinationViewController;
     des.tempId = unquieId;
     des.tempLoc = nefmbdw;
+    des.tempName = nefname;
     des.typeid = (NSString*)sender;
 //    if ([segue.identifier compare:@"hledit"] == NSOrderedSame ) {
 //        HLEditViewController* des = (HLEditViewController*)segue.destinationViewController;

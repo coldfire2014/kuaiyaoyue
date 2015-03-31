@@ -56,4 +56,5 @@
 
 @property (nonatomic, strong) NSString *tempId;//模板id
 @property (nonatomic, strong) NSString *tempLoc;//模版位置
+@property (nonatomic, strong) NSString *tempName;//模版名称
 @end
