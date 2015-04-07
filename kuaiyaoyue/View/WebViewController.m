@@ -135,6 +135,7 @@
         ShareView* share = [ShareView sharedShareView];
         share.fromvc = self;
         share.url = oldUrl;
+//        NSString* des = [_webview stringByEvaluatingJavaScriptFromString:@"document.description"];
         share.msg = @"来自快邀约的推荐";
         share.title = [[NSString alloc] initWithString:title];
         share.imgUrl = @"http://7xia0i.com2.z0.glb.qiniucdn.com/kyy/logo.jpg";

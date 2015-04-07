@@ -32,11 +32,16 @@
         layer.locations = [[NSArray alloc] initWithObjects:[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:1.0], nil];
         layer.opacity = 0.95;
         [self.layer addSublayer:layer];
- 
-        maxRect = CGRectInset(self.bounds,20.0,20.0*frame.size.height/frame.size.width);
-//        UIImageView* bk = [[UIImageView alloc] initWithFrame:frame];
-//        bk.tag = 101;
-//        [self addSubview:bk];
+
+        maxRect = CGRectInset(self.bounds,8.0,8.0*frame.size.height/frame.size.width);
+        UIImageView* bk = [[UIImageView alloc] initWithFrame:frame];
+        bk.tag = 101;
+        [self addSubview:bk];
+        
+//        UIView* bkmark = [[UIView alloc] initWithFrame:frame];
+//        bkmark.backgroundColor = [UIColor colorWithWhite:0.05 alpha:0.6];
+//        [bk addSubview:bkmark];
+     
         bkView = [[UIImageView alloc] initWithFrame:maxRect];
         bkView.backgroundColor = [UIColor blackColor];
         [self addSubview:bkView];
@@ -53,15 +58,21 @@
     CGFloat img_h = img.size.height;
     if (img_w/img_h > maxRect.size.width/maxRect.size.height) {
         view.frame = CGRectMake(0, 0, maxRect.size.width, img_h/img_w*maxRect.size.width);
-    } else {
+        view.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0);
+        view.image = img;
+//        if (view == picView) {
+//            UIImageView* bk = (UIImageView*)[self viewWithTag:101];
+//            [bk setImageToBlur:img blurRadius:60.0 completionBlock:^(NSError *error) {}];
+//        }
+    } else {//正常
         view.frame = CGRectMake(0, 0, img_w/img_h*maxRect.size.height, maxRect.size.height);
+        view.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0);
+        view.image = img;
+        if (view == picView) {
+            UIImageView* bk = (UIImageView*)[self viewWithTag:101];
+            bk.image = nil;
+        }
     }
-    view.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0);
-    view.image = img;
-//    if (view == picView) {
-//        UIImageView* bk = (UIImageView*)[self viewWithTag:101];
-//        [bk setImageToBlur:img blurRadius:50.0 completionBlock:^(NSError *error) {}];
-//    }
 }
 -(void) setDetail:(NSInteger)tag withImg:(UIImage*)img{
     imgTag = tag;

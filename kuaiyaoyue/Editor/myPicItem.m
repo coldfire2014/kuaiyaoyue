@@ -9,6 +9,7 @@
 #import "myPicItem.h"
 #import "PCHeader.h"
 #import "FileManage.h"
+#import "myImageView.h"
 @implementation myPicItem
 - (instancetype)initWithFrame:(CGRect)rect fromAsset:(ALAsset*)al andThumb:(UIImage*)img orFile:(NSString*)fileName andTag:(NSInteger)ntag
 {
@@ -64,10 +65,12 @@
 -(void)removeMe{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MSG_REMOVE_ME" object:[NSNumber numberWithInteger:[self superview].tag]];
 }
+
 -(void)loadImage:(ALAsset*)al{
     NSString *uuid = [FileManage getUUID];
     uuid = [NSString stringWithFormat:@"%@.jpg",uuid];
-    UIImage* fullImage = [[AssetHelper sharedAssetHelper] getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
+//    UIImage* fullImage = [[AssetHelper sharedAssetHelper] getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE];
+    UIImage* fullImage = [myImageView addBackgroundOfImage:[[AssetHelper sharedAssetHelper] getImageFromAsset:al type:ASSET_PHOTO_SCREEN_SIZE] withTitle:@"~~~ INVITATION ~~~"];;
     self.fileName = [[[FileManage sharedFileManage] imgDirectory] stringByAppendingPathComponent:uuid];
     [UIImageJPEGRepresentation(fullImage,C_JPEG_SIZE) writeToFile:self.fileName atomically:YES];
     self.localName = [[NSString alloc] initWithFormat:@"../Image/%@",uuid];
