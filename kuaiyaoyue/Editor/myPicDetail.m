@@ -38,9 +38,6 @@
         bk.tag = 101;
         [self addSubview:bk];
         
-//        UIView* bkmark = [[UIView alloc] initWithFrame:frame];
-//        bkmark.backgroundColor = [UIColor colorWithWhite:0.05 alpha:0.6];
-//        [bk addSubview:bkmark];
      
         bkView = [[UIImageView alloc] initWithFrame:maxRect];
         bkView.backgroundColor = [UIColor blackColor];

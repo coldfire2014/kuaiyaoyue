@@ -67,24 +67,29 @@ CGFloat const   kLBBlurredImageDefaultBlurRadius    = 100.0;
                     forKey:@"inputRadius"];
     
     CIImage *gaussianBlurResult = [gaussianBlur valueForKey:kCIOutputImageKey];
+    CGImageRef cgImage = [context createCGImage:gaussianBlurResult
+                                       fromRect:[sourceImage extent]];
     
-    __weak UIImageView *selfWeak = self;
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        CGImageRef cgImage = [context createCGImage:gaussianBlurResult
-                                           fromRect:[sourceImage extent]];
-        
-        UIImage *blurredImage = [UIImage imageWithCGImage:cgImage];
-        CGImageRelease(cgImage);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            selfWeak.image = blurredImage;
-            if (completion){
-                completion(nil);
-            }
-        });
-    });
+    self.image = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+//
+//    __weak UIImageView *selfWeak = self;
+//    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        
+//        CGImageRef cgImage = [context createCGImage:gaussianBlurResult
+//                                           fromRect:[sourceImage extent]];
+//        
+//        UIImage *blurredImage = [UIImage imageWithCGImage:cgImage];
+//        CGImageRelease(cgImage);
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            selfWeak.image = blurredImage;
+//            if (completion){
+//                completion(nil);
+//            }
+//        });
+//    });
 }
 
 /**

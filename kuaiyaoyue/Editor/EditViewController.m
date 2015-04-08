@@ -1099,6 +1099,7 @@
     }
 }
 -(void)hideDetail{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     UIView* view = [self.view viewWithTag:800];
     [UIView animateWithDuration:0.3 animations:^{
         view.alpha = 0;
@@ -1113,6 +1114,7 @@
     [show addGestureRecognizer:tap];
     show.delegate = self;
     [self.view addSubview:show];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     [show setDetail:tag withImg:img];
 }
 -(void)showHomePic{
@@ -1213,19 +1215,18 @@
 -(void)addanImage:(NSNumber*)info{
     UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
     UIView* item = [showBg viewWithTag:[info integerValue]];
-    myPicItem* pic = (myPicItem*)[item viewWithTag:item.tag-100];
-    if (![uploadFiles containsObject:pic.fileName]) {
-        [uploadFiles addObject:pic.fileName];
+    if (item != nil) {
+        myPicItem* pic = (myPicItem*)[item viewWithTag:item.tag-100];
+        if (pic != nil) {
+            if (![uploadFiles containsObject:pic.fileName]) {
+                [uploadFiles addObject:pic.fileName];
+            }
+        }
     }
 }
 -(void)addaImage:(NSNotification*)aNotification{
     NSNumber* info = [aNotification object];
-    UIScrollView* showBg = (UIScrollView*)[self.view viewWithTag: 141];
-    UIView* item = [showBg viewWithTag:[info integerValue]];
-    myPicItem* pic = (myPicItem*)[item viewWithTag:item.tag-100];
-    if (![uploadFiles containsObject:pic.fileName]) {
-        [uploadFiles addObject:pic.fileName];
-    }
+    [self addanImage:info];
 }
 -(void)removeImage:(NSNotification*)aNotification{
     NSNumber* info = [aNotification object];
