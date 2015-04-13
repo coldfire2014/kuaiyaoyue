@@ -15,7 +15,7 @@
 #define UPDATE_CHECK @"http://appkyy.kyy121.com/media/app/checkVersion"
 #define TJ_URL @"http://appkyy.kyy121.com/static/store/index.html"
 #define TJ_TITLE @"推荐"
-#define MUSIC_TOKEN @"MUSIC_235"
+#define MUSIC_TOKEN @"MUSIC_236"
 #define TEMP_TOKEN @"TEMP_230"
 //#define YINGLOU @"YINGLOU"
 #ifdef YINGLOU

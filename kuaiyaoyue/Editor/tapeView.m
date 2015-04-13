@@ -231,6 +231,7 @@
 -(void)levelTimer:(NSTimer*)timer_
 {
     static double lowPassResults = 0;
+//    static double db = 0;
     if (recorderTime >= 30) {
         if (timer && timer.isValid){
             [timer invalidate];
@@ -244,6 +245,9 @@
     [recorder updateMeters];
     const double ALPHA = 0.05;
     double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
+//    db = 20* log10(peakPowerForChannel);
+//    db += taraturaDb;
+//    db = db < 0 ? 0 : db;
     lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;//音谱那个慢慢回的那个背影
     recorderTime += 0.1;
     [UIView animateWithDuration:0.1 animations:^{

@@ -80,6 +80,7 @@
     }
 }
 -(void)viewDidAppear:(BOOL)animated{
+    [SMS_SDK registerApp:@"4ec26c11eca2" withSecret:@"e80f13299bf5581e40ed33e2d8350cae"];
     [SMS_SDK enableAppContactFriends:NO];
     [super viewDidAppear:animated];
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
@@ -135,7 +136,6 @@
 }
 
 -(void)sendmessage:(NSString *)phone :(NSString *)dq{
-    
     [SMS_SDK getVerifyCodeByPhoneNumber:phone AndZone:dq result:^(enum SMS_GetVerifyCodeResponseState state) {
         if (1==state) {
             NSLog(@"block 获取验证码成功");

@@ -85,7 +85,12 @@
             }
             NSString* fileTape = [self.imgDirectory stringByAppendingPathComponent: path];
             if ([fileManager fileExistsAtPath:fileTape]) {
-                [fileManager removeItemAtPath:fileTape error:nil];
+                NSError* err = nil;
+                if (![fileManager removeItemAtPath:fileTape error:&err]) {
+                    NSLog(@"%@",err.description);
+                }else{
+//                    NSLog(@"OK");
+                }
             }
         }
     }
